@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img"><title>Headings help us find the passages that matter</title><desc>For a request for main findings, a passage under Executive summary and Key findings is a stronger candidate than an Acronyms glossary entry. Acronyms remains useful when the user asks what an abbreviation means. This illustrates relevance, which the benchmark did not score.</desc>
+<rect x="0" y="0" width="1200" height="650" rx="16" fill="#f4f7fb" stroke="none"/>
+<text x="45" y="58" font-family="sans-serif" font-size="34" fill="#183247" font-weight="700">Headings help us find the passages that matter</text>
+<rect x="230" y="100" width="740" height="65" rx="16" fill="#183247" stroke="none"/>
+<text x="260" y="142" font-family="sans-serif" font-size="27" fill="#ffffff" font-weight="700">User asks: “What were the main findings?”</text>
+<path d="M600 165 V200 H300 V235 M600 200 H900 V235" fill="none" stroke="#7b8fa2" stroke-width="3"/>
+<rect x="45" y="235" width="535" height="290" rx="16" fill="#ffffff" stroke="#d6e0e9"/>
+<text x="70" y="280" font-family="sans-serif" font-size="27" fill="#183247" font-weight="700">Summary passage</text>
+<text x="70" y="320" font-family="sans-serif" font-size="21" fill="#526779" font-weight="400">Executive summary &gt; Key findings</text>
+<text x="70" y="375" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">“WFP reached the intended groups,</text>
+<text x="70" y="408" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">but funding delays limited delivery.”</text>
+<rect x="65" y="445" width="495" height="55" rx="16" fill="#e4f3ed" stroke="none"/>
+<text x="80" y="480" font-family="sans-serif" font-size="22" fill="#08755c" font-weight="700">Stronger candidate for this question</text>
+<rect x="620" y="235" width="535" height="290" rx="16" fill="#ffffff" stroke="#d6e0e9"/>
+<text x="645" y="280" font-family="sans-serif" font-size="27" fill="#183247" font-weight="700">Glossary passage</text>
+<text x="645" y="320" font-family="sans-serif" font-size="21" fill="#526779" font-weight="400">Acronyms</text>
+<text x="645" y="375" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">“WFP = World Food Programme”</text>
+<text x="645" y="408" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400"></text>
+<rect x="640" y="445" width="495" height="55" rx="16" fill="#fff3dc" stroke="none"/>
+<text x="655" y="480" font-family="sans-serif" font-size="22" fill="#8a5b18" font-weight="700">Less useful for this question</text>
+<text x="45" y="573" font-family="sans-serif" font-size="24" fill="#183247" font-weight="400">Both passages mention WFP. Their heading paths explain their different roles.</text>
+<text x="45" y="612" font-family="sans-serif" font-size="22" fill="#526779" font-weight="400">Acronyms may be exactly what is needed for “What does WFP mean?”</text>
+</svg>
