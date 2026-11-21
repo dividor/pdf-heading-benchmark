@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img"><title>Heading labels change the document structure</title><desc>Illustrative headings: correct classification preserves H1 Executive summary, H2 Key findings, body text, and a separate H1 Acronyms. Incorrect classification promotes Key findings to H1, promotes a sentence to H2, and nests Acronyms as H2.</desc>
+<rect x="0" y="0" width="1200" height="650" rx="16" fill="#f4f7fb" stroke="none"/>
+<text x="45" y="58" font-family="sans-serif" font-size="34" fill="#183247" font-weight="700">Heading labels change the document structure</text>
+<text x="45" y="96" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">Same text, different labels. H1 = section; H2 = subsection; Body = ordinary text.</text>
+<rect x="45" y="130" width="535" height="450" rx="16" fill="#ffffff" stroke="#d6e0e9"/>
+<rect x="65" y="150" width="495" height="52" rx="16" fill="#e4f3ed" stroke="none"/>
+<text x="83" y="185" font-family="sans-serif" font-size="26" fill="#08755c" font-weight="700">Correct classification</text>
+<rect x="620" y="130" width="535" height="450" rx="16" fill="#ffffff" stroke="#d6e0e9"/>
+<rect x="640" y="150" width="495" height="52" rx="16" fill="#fff0e9" stroke="none"/>
+<text x="658" y="185" font-family="sans-serif" font-size="26" fill="#aa4024" font-weight="700">Incorrect classification</text>
+<text x="70" y="240" font-family="sans-serif" font-size="20" fill="#08755c" font-weight="700">H1</text>
+<text x="140" y="240" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Executive summary</text>
+<text x="96" y="300" font-family="sans-serif" font-size="20" fill="#08755c" font-weight="700">H2</text>
+<text x="166" y="300" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Key findings</text>
+<text x="122" y="350" font-family="sans-serif" font-size="20" fill="#08755c" font-weight="700">Body</text>
+<text x="192" y="350" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">Funding was delayed.</text>
+<text x="70" y="420" font-family="sans-serif" font-size="20" fill="#08755c" font-weight="700">H1</text>
+<text x="140" y="420" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Acronyms</text>
+<text x="96" y="470" font-family="sans-serif" font-size="20" fill="#08755c" font-weight="700">Body</text>
+<text x="166" y="470" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">WFP = World Food Programme</text>
+<text x="645" y="240" font-family="sans-serif" font-size="20" fill="#aa4024" font-weight="700">H1</text>
+<text x="715" y="240" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Executive summary</text>
+<text x="645" y="300" font-family="sans-serif" font-size="20" fill="#aa4024" font-weight="700">H1</text>
+<text x="715" y="300" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Key findings</text>
+<text x="671" y="350" font-family="sans-serif" font-size="20" fill="#aa4024" font-weight="700">H2</text>
+<text x="741" y="350" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Funding was delayed.</text>
+<text x="671" y="420" font-family="sans-serif" font-size="20" fill="#aa4024" font-weight="700">H2</text>
+<text x="741" y="420" font-family="sans-serif" font-size="23" fill="#183247" font-weight="400">Acronyms</text>
+<text x="697" y="470" font-family="sans-serif" font-size="20" fill="#aa4024" font-weight="700">Body</text>
+<text x="767" y="470" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">WFP = World Food Programme</text>
+<text x="70" y="530" font-family="sans-serif" font-size="19" fill="#08755c" font-weight="400">Section boundaries and body text are preserved.</text>
+<text x="645" y="522" font-family="sans-serif" font-size="19" fill="#aa4024" font-weight="400">Subsection and sentence promoted; Acronyms</text>
+<text x="645" y="548" font-family="sans-serif" font-size="19" fill="#aa4024" font-weight="400">incorrectly nested under Key findings.</text>
+<text x="45" y="620" font-family="sans-serif" font-size="19" fill="#526779" font-weight="400">Illustrative example only; these are not outputs attributed to a tested model.</text>
+</svg>

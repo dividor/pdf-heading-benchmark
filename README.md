@@ -4,9 +4,27 @@ How well do PDF parsers recover **heading text, page numbers and hierarchy level
 
 This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible league table with scores, costs and links to the exact method code.
 
-**Best in this pilot:** Qwen3.6-27B with sampled visual memory recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These are configuration-specific results on 32 selected pages, annotated visually by one assistant. They do not establish general document accuracy.
+**TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took about 62 minutes for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
+
+Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These are configuration-specific results on 32 selected pages, annotated visually by one assistant. They do not establish general document accuracy. Local $0 API cost excludes hardware, electricity, setup and review.
 
 [Full scores, costs and methods (Markdown)](outputs/report/league_table.md) · [HTML report](outputs/report/index.html) · [Reproducibility and limitations](docs/reproducibility.md) · [Source documents](configs/corpus.json)
+
+## Why heading classification matters
+
+Headings help determine whether a block of text is relevant to the user's question. Someone looking for summary findings may prefer a passage under **Executive summary > Key findings** to an **Acronyms** entry, even if both contain the same search term. The acronyms entry may be exactly what is needed when the question asks for an abbreviation's meaning. Relevance depends on the task; an acronyms section is not inherently unimportant.
+
+![A summary passage and an acronyms entry mention WFP, but their heading paths indicate different relevance to a question about main findings.](docs/images/heading-relevance.png)
+
+*Illustrative example; the sentences are invented, not quotations from the WFP reports.*
+
+Correct classification preserves both a block's role and its place in the hierarchy. In the example below, **Key findings** is an H2 subsection of **Executive summary**, **Acronyms** starts a separate H1 section, and an ordinary sentence remains body text. The incorrect version promotes the subsection and sentence, then incorrectly nests Acronyms under Key findings. Systems that rely on those boundaries could group or label passages incorrectly.
+
+![Correct classification preserves H1 sections, an H2 subsection and body text; incorrect classification promotes a subsection and a sentence and incorrectly nests Acronyms.](docs/images/heading-classification.png)
+
+*Explanatory classifications of the same text, not outputs attributed to any tested model. H1 and H2 follow this experiment's section-level convention.*
+
+Heading titles and hierarchy provide context for passage selection alongside the text and the user's question. This benchmark measures heading extraction, not downstream search or answer quality. Editable SVGs and PNGs are in [docs/images](docs/images/README.md).
 
 ## Quick start: reproduce the scores without downloading models
 
