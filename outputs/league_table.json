@@ -100,6 +100,23 @@
     "processed_pages": 32
   },
   {
+    "method": "supervised_extra_trees",
+    "name": "Supervised Extra Trees / CPU / assistant labels",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py",
+    "status": "completed",
+    "documents_scored": 4,
+    "gold": 77,
+    "predicted": 79,
+    "matched": 59,
+    "correct_level": 35,
+    "false_headings": 20,
+    "native_prose_retention": null,
+    "measured_seconds": 7.724947458074894,
+    "processed_pages": 523,
+    "heading_recall": 0.7662337662337663,
+    "correct_heading_and_level": 0.45454545454545453
+  },
+  {
     "method": "azure_layout",
     "name": "Azure Document Intelligence Layout",
     "source_url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0",

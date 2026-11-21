@@ -12,22 +12,28 @@ from pdf_heading_benchmark.io import REPO, data_root, read_json, write_json
 from pdf_heading_benchmark.report import build_report
 
 
+def runner_command(step: dict) -> list[str]:
+    if step["environment"] == "project":
+        return ["uv", "run", "--locked", "python", str(REPO / step["script"])]
+    return [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.12",
+        "--with-requirements",
+        str(REPO / "configs/environments" / (step["environment"] + ".txt")),
+        "python",
+        str(REPO / step["script"]),
+    ]
+
+
 def run_method(method: str, root: Path) -> None:
     config = read_json(REPO / "configs/methods.json")[method]
     manifest = read_json(root / "corpus/manifest.json")
     environment = dict(os.environ, PDF_BENCHMARK_DATA=str(root))
     for step in config["steps"]:
-        command = [
-            "uv",
-            "run",
-            "--no-project",
-            "--python",
-            "3.12",
-            "--with-requirements",
-            str(REPO / "configs/environments" / (step["environment"] + ".txt")),
-            "python",
-            str(REPO / step["script"]),
-        ]
+        command = runner_command(step)
         arguments = step.get("args", [])
         if step.get("per_document"):
             for item in manifest:

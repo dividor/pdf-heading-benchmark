@@ -11,7 +11,7 @@ td:nth-child(2) { min-width: 240px; }
 code { background: #e7eef4; padding: 2px 4px; }
 @media (max-width: 600px) { main { padding: 16px; } }
 </style></head><body><main><h1>On-premises PDF heading benchmark: scores, timings and methods</h1>
-<p><strong>16 completed local configurations, suitable for on-premises inference.</strong> This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.</p>
+<p><strong>17 completed local configurations, suitable for on-premises inference.</strong> This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.</p>
 <p>The strongest completed configuration was Qwen3.6-27B with sampled visual memory: <strong>65/77 (84.4%)</strong> headings recovered at the correct level, all 77 reference titles recovered, and two false headings. These are configuration-specific results from a small pilot with one AI assistant annotator, without independent human validation.</p>
 <p><a href="https://github.com/dividor/pdf-heading-benchmark">Repository and runnable instructions</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md">Markdown report</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/results.json">Frozen results</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/details.json">Per-report local scores</a></p>
 <h2>Documents and their sources</h2>
@@ -66,9 +66,9 @@ code { background: #e7eef4; padding: 2px 4px; }
 <li><strong>Score the same audit pages.</strong> The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py">scorer</a> matches titles on the same original PDF page, using normalized text similarity of at least 90% after one-to-one Hungarian assignment. A combined success requires the exact reference H level too. Main chapters and annexes are H1; the cover title does not shift the body hierarchy. Missing headings remain in the denominator of 77. Extra predictions are counted separately, so the combined score is not precision or F1 and does not penalize false headings directly.</li>
 <li><strong>Check prose and record resources.</strong> Native prose retention measures preserved five-word sequences from native PDF blocks of at least 50 words on the audit pages. It does not measure character accuracy, reading order or table extraction. Processing times were observed on a shared 48 GB Apple M4 Pro and have different scopes. Hardware, electricity, engineering, review and licensing costs were not measured in dollars.</li>
 </ol>
-<p>This is <strong>sampled-page heading accuracy</strong>, even when a parser processed the full document. Sixteen completed configurations include variants of the same packages and models; they are not 16 independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.</p>
+<p>This is <strong>sampled-page heading accuracy</strong>, even when a parser processed the full document. Seventeen completed configurations include variants of the same packages and models; they are not 17 independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.</p>
 <h2>Full configuration results</h2>
-<p>Sorted by correct heading plus level. Each <strong>Configuration</strong> links to the package or model; each <strong>Method / code</strong> links to the benchmark's GitHub implementation. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. All 16 configurations ran locally; no hosted inference service is included. See the notes immediately below the table for scope and licensing qualifications.</p>
+<p>Sorted by correct heading plus level. Each <strong>Configuration</strong> links to the package or model; each <strong>Method / code</strong> links to the benchmark's GitHub implementation. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. All 17 configurations ran locally; no hosted inference service is included. See the notes immediately below the table for scope and licensing qualifications.</p>
 <table>
 <thead>
 <tr>
@@ -132,6 +132,16 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>2</td>
 <td>—</td>
 <td>6.4 s / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py">Supervised Extra Trees / CPU / assistant labels</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py">Frozen 200-tree classifier trained on 16 different WFP reports; PyMuPDF line features; full PDFs. No refit on benchmark.</a></td>
+<td>completed</td>
+<td>76.6% (59/77)</td>
+<td>45.5% (35/77)</td>
+<td>20</td>
+<td>—</td>
+<td>7.7 s / 523 pages</td>
 </tr>
 <tr>
 <td><a href="https://github.com/opendatalab/MinerU">MinerU 4.2.3 basic CPU</a></td>
@@ -251,8 +261,9 @@ code { background: #e7eef4; padding: 2px 4px; }
 <p><strong>Text:</strong> native prose retention measures five-word sequences preserved from native PDF blocks of at least 50 words, on the audit pages. It is not character accuracy, reading order, semantic accuracy or table correctness. A missing score means not evaluated or not applicable. Hierarchy-only stages reuse extracted text.</p>
 <p><strong>Configuration caveats:</strong> MinerU Pro's direct interface recovered headings but supplied no hierarchy levels; its 0/77 complete outputs must not be described as zero heading detection. The Qwen3.6 implementation uses only previously processed audit pages as visual memory; it is not a reproduction of a full-document memory benchmark. The Popo result is an experimental 8-bit MLX port with 8-page chunks, not an upstream performance claim. LightOn 4B historical timing includes five single-page checkpoints followed by batch-two processing; a clean rerun uses batch two throughout. The 0.15 Docling tolerance was fixed across these reports but remains an exploratory choice, not an untuned general default.</p>
 <p><strong>Reference and uncertainty:</strong> pages were deliberately selected to span front matter, body chapters, subsections and annexes. A single assistant annotated them visually. The original 2018 resilience report was excluded after prior document-specific investigation. No per-report title/level correction rules are applied here. The sample is small, covers born-digital reports only, and has no inter-annotator agreement study. Ranking on it cannot establish robustness on arbitrary documents. No missing run is assigned a zero score.</p>
-<p><strong>Reproducibility:</strong> the repo includes the frozen audit labels, page-restricted predictions and original summary/match records. <code>uv run pdf-headings score --historical</code> recomputes the bundled historical predictions, including the 16 local configurations selected for this report, without model downloads or credentials. Raw full-page responses remain in the original local experiment archive; they are not bundled in the public repo. Fresh runners save raw responses outside Git. Seven historical Qwen formatting deviations were accepted by a generic JSON array/wrapper/single-fence reader without changing title or level values. Refactored runners retain prompts and settings; model/GPU runs have not all been repeated after packaging. See <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md">method details</a>.</p>
+<p><strong>Reproducibility:</strong> the repo includes the frozen audit labels, page-restricted predictions and original summary/match records. <code>uv run pdf-headings score --historical</code> recomputes the bundled historical predictions, including the 17 local configurations selected for this report, without model downloads or credentials. Raw full-page responses remain in the original local experiment archive; they are not bundled in the public repo. Fresh runners save raw responses outside Git. Seven historical Qwen formatting deviations were accepted by a generic JSON array/wrapper/single-fence reader without changing title or level values. Refactored runners retain prompts and settings; model/GPU runs have not all been repeated after packaging. See <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md">method details</a>.</p>
 <p><strong>Licenses:</strong> the repository's MIT license covers its code, not third-party packages, model weights or WFP reports. Chandra weights have commercial-use restrictions; applicable licensing costs are additional. See each linked model/package and <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/THIRD_PARTY_NOTICES.md">third-party notices</a>.</p>
+<p><strong>Supervised Extra Trees:</strong> the frozen classifier was trained on 16 different WFP reports, selected using four validation reports, and first evaluated on four new test reports. It was then applied without refitting to the original four benchmark PDFs and scored with the same 77-heading matching contract as every row above: <strong>59/77 recovered, 35/77 at the correct level, 20 extra headings</strong>. The 7.7-second measurement covers all 523 pages, including extraction and classification but excluding model loading and output writes. Native prose retention was not evaluated. Its separate 82.0% exact-level line F1 on the new test set uses a different corpus and metric and is not the number ranked here. <a href="https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/comparison">Comparison runner and evidence</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/report.md">Training protocol</a>.</p>
 <h2>Results by report</h2>
 <table>
 <thead>
@@ -711,6 +722,34 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>colombia</td>
 <td>23/23</td>
 <td>16/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>compare.py / supervised_extra_trees</td>
+<td>targeting</td>
+<td>10/15</td>
+<td>4/15</td>
+<td>10</td>
+</tr>
+<tr>
+<td>compare.py / supervised_extra_trees</td>
+<td>midterm</td>
+<td>16/18</td>
+<td>13/18</td>
+<td>2</td>
+</tr>
+<tr>
+<td>compare.py / supervised_extra_trees</td>
+<td>indonesia</td>
+<td>14/21</td>
+<td>9/21</td>
+<td>6</td>
+</tr>
+<tr>
+<td>compare.py / supervised_extra_trees</td>
+<td>colombia</td>
+<td>19/23</td>
+<td>9/23</td>
 <td>2</td>
 </tr>
 </tbody>
