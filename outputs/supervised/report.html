@@ -1,0 +1,455 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Supervised WFP headings pilot</title><style>body{font:17px/1.6 system-ui;max-width:1200px;margin:3rem auto;padding:0 2rem;color:#182838}table{border-collapse:collapse;font-size:14px;display:block;overflow:auto}td,th{padding:9px;border:1px solid #ccd5de;text-align:left}th{background:#e8f1fa}a{color:#0757a0}pre{background:#eef2f6;padding:1rem;overflow:auto}</style><body><h1>Can assistant annotations train a small local heading model?</h1>
+<p><strong>Yes, as a promising pilot—not yet a robust general document parser.</strong> A small CPU tree classifier learned from assistant-labelled WFP reports and reached 82.0% exact-level F1 on sampled pages of four unseen reports. It correctly labelled every line of 22 of 27 test headings. This experiment evaluates supervised heading classification, not fine-tuning a language model.</p>
+<p>The goal is to preserve extracted text while identifying heading levels cheaply. Headings tell retrieval systems what a passage belongs to: an acronyms list and an executive summary can contain similar words but serve very different user needs. A wrong heading or parent can attach useful text to the wrong section.</p>
+<h2>Documents and separation</h2>
+<p>The supplied <strong>Evaluation list - Phase 1.xlsx</strong>, sheet <strong>Evaluation list</strong>, contains 335 catalogue entries. We matched 333 original PDFs in the supplied WFP archive snapshot <strong>20261121T043910Z</strong>. We selected 24 reports dated 2017–2026: 17 English, four French and three Spanish; 1,524 PDF pages altogether. Selection is a deliberately varied convenience sample, not a random estimate of all WFP reports.</p>
+<p>Sources, catalogue row numbers, exact archive member names and SHA-256 checksums are recorded in the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/supervised/corpus.json">corpus manifest</a>. Archive extraction uses exact members and verifies size and checksum. No network download script was added: the supplied local archive is the reproducible source. Public PDF links are supplied in the table for access outside that archive; their future bytes may change.</p>
+<p>Prior benchmark reports—Colombia, Indonesia, the mid-term strategic plan, targeting, and the original 2018 resilience report—are excluded by catalogue identity, WFP document identifier and checksum where available. An additional resilience entry was conservatively excluded. A GAFSP report was removed during source review because it was not a WFP evaluation, and replaced before fitting. See the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/supervised/excluded.json">exclusion manifest</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th style="text-align:right">Reports</th>
+<th style="text-align:right">All PDF pages</th>
+<th style="text-align:right">Reviewed pages</th>
+<th style="text-align:right">Reviewed text lines</th>
+<th style="text-align:right">Positive heading lines</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training</td>
+<td style="text-align:right">16</td>
+<td style="text-align:right">934</td>
+<td style="text-align:right">112</td>
+<td style="text-align:right">6,052</td>
+<td style="text-align:right">203</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">313</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">1,028</td>
+<td style="text-align:right">31</td>
+</tr>
+<tr>
+<td>Test</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">277</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">834</td>
+<td style="text-align:right">33</td>
+</tr>
+</tbody>
+</table>
+<p>Splits are by entire report. No page from a validation or test report is used for fitting. Shared WFP templates, countries and report families can still occur across splits; this is not a template-disjoint experiment.</p>
+<h2>How the training labels were created</h2>
+<p>The assistant inspected rendered page images, extracted text, contents pages and surrounding sections, assigning body/non-heading (0) or H1–H6. There are <strong>202 heading groups</strong>: 154 training, 21 validation and 27 test. Wrapped titles have explicit constituent line IDs. These are assistant annotations with documented decisions, not independently adjudicated human gold or established 100% accuracy.</p>
+<p>Initially five pages per report were reviewed: contents when detected (otherwise page 2), approximate body start, one-third, two-thirds and end. The catalogue's machine-generated heading columns were not used as labels. The El Salvador body start was corrected from the catalogue using the PDF. After initial validation, two additional pages per training report were selected using numbered/bold-line counts and visually reviewed. Validation and test pages stayed fixed. Exact 1-based PDF pages appear below; they differ from printed page numbers.</p>
+<p>Only reviewed pages contribute examples. Every other extracted line on a reviewed page is a negative. Unreviewed pages are <strong>unlabelled</strong>, never automatically treated as negatives. Contents entries, table captions, boxed findings, running headers and inline bold paragraph lead-ins are excluded. A standalone contents-section title is a heading. These policy choices matter; other applications may want different labels.</p>
+<p>The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/supervised/labels.tsv">labels</a> and <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/evidence/annotations.json">readable annotations with bounding boxes</a> are committed for review. No model predictions were used as ground truth. Training labels were clarified during expansion; test labels were fixed before fitting and no test scores were examined until final selection.</p>
+<h2>Methods and runnable code</h2>
+<table>
+<thead>
+<tr>
+<th>Stage / model</th>
+<th>Method</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local archive preparation</td>
+<td>Extract the selected regular-file members; verify SHA-256 and reject prior-document overlap</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/prepare.py">prepare.py</a>, <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_data.py">data validation</a></td>
+</tr>
+<tr>
+<td>Text and features</td>
+<td>PyMuPDF text lines; relative font size, bold/italic, colour, position, repetition, numbering and neighbouring lines</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_features.py">feature extractor</a></td>
+</tr>
+<tr>
+<td>Logistic regression</td>
+<td>Standardized features; balanced class weights; C=1; seed 42</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py">model implementation</a></td>
+</tr>
+<tr>
+<td>Extra Trees</td>
+<td>200 trees; depth 16; minimum leaf 2; 80% features; balanced class weights; seed 42; four CPU workers</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py">model implementation</a></td>
+</tr>
+<tr>
+<td>Selection</td>
+<td>Fit only training reports; choose highest validation exact-level F1</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/train.py">train.py</a></td>
+</tr>
+<tr>
+<td>Final test</td>
+<td>Evaluate only the selected model; refuse changed labels/corpus/model or an existing test result</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/evaluate_test.py">evaluate_test.py</a></td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>Data-only JSON classifier, preserved text and predicted heading groups; inferred parents flagged as unevaluated</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/predict.py">predict.py</a>, <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_inference.py">inference</a></td>
+</tr>
+<tr>
+<td>Timing</td>
+<td>Run extraction and classification over every page of all 24 PDFs</td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/benchmark.py">benchmark.py</a></td>
+</tr>
+</tbody>
+</table>
+<p>This baseline learns the classification decisions. It still uses engineered layout/text features, including general numbering and caption patterns; it is not a rule-free neural model. There are no per-report correction rules, report IDs as features or hard heading-candidate filters. Full-document font/repetition statistics are calculated without labels, including at inference. Docling is not required for this baseline.</p>
+<h2>Results and measured local cost</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Scored set</th>
+<th style="text-align:right">Detection precision</th>
+<th style="text-align:right">Recall</th>
+<th style="text-align:right">Detection F1</th>
+<th style="text-align:right">Exact-level F1</th>
+<th style="text-align:right">Whole headings correct</th>
+<th style="text-align:right">Fit time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic regression</td>
+<td>Validation</td>
+<td style="text-align:right">52.8%</td>
+<td style="text-align:right">90.3%</td>
+<td style="text-align:right">66.7%</td>
+<td style="text-align:right">47.6%</td>
+<td style="text-align:right">15/21</td>
+<td style="text-align:right">0.253s</td>
+</tr>
+<tr>
+<td>Extra Trees, 200 trees</td>
+<td>Validation</td>
+<td style="text-align:right">95.8%</td>
+<td style="text-align:right">74.2%</td>
+<td style="text-align:right">83.6%</td>
+<td style="text-align:right">69.1%</td>
+<td style="text-align:right">15/21</td>
+<td style="text-align:right">0.455s</td>
+</tr>
+<tr>
+<td>Extra Trees, selected</td>
+<td>Held-out test</td>
+<td style="text-align:right">100.0%</td>
+<td style="text-align:right">84.8%</td>
+<td style="text-align:right">91.8%</td>
+<td style="text-align:right">82.0%</td>
+<td style="text-align:right">22/27</td>
+<td style="text-align:right">0.455s</td>
+</tr>
+</tbody>
+</table>
+<p>Test evaluation was performed once. The linear model was not scored on test.</p>
+<p>Actual full-document inference covered <strong>1,524 pages in 21.88 seconds</strong> on an Apple M4 Pro Mac mini (14 CPU cores, 48 GB RAM), CPU only. This sums extraction, feature calculation, classification and heading grouping, excluding interpreter/model loading and output-file writes. That is <strong>7.18 seconds per 500 pages</strong>, a throughput normalization, not a separately timed run. Peak process RSS was 557.5 MiB. The selected JSON model is 9.97 MiB.</p>
+<p><strong>Cost:</strong> no metered API inference spend and no GPU. Electricity, hardware amortization and annotation labour were not measured, so total cost is not reported as zero. Assistant annotation was used to create the dataset; the preparation, training and deployed classifier run locally.</p>
+<p>Detection F1 treats any positive level as a detected heading. Exact-level F1 counts a heading line as correct only at the annotated level; wrong-level predictions reduce both precision and recall. True-negative body lines do not inflate either score. Whole-headings-correct requires every constituent line to have the right level, but does not measure whether predicted groups have perfect boundaries. Scores are micro-averaged over reviewed lines, not full documents.</p>
+<p>The initial 120-page tree run scored 70.4% validation exact-level F1. With 32 extra training pages this was 69.1%, while complete correctly levelled validation headings increased from 14/21 to 15/21. More examples did not automatically improve the line metric. The expanded tree model was selected against the expanded linear baseline (47.6%). An intermediate export failed its sklearn probability-parity check and was corrected to match sklearn's float32 tree traversal; no test was scored during that failure. Frozen run history and predictions are in <a href="https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/evidence">evidence</a>.</p>
+<h3>Where the test failed</h3>
+<table>
+<thead>
+<tr>
+<th>Held-out report</th>
+<th style="text-align:right">Reviewed pages</th>
+<th style="text-align:right">Positive heading lines</th>
+<th style="text-align:right">Exact-level F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Madagascar country strategic plan (611)</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">63.2%</td>
+</tr>
+<tr>
+<td>El Salvador country strategic plan (585)</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">75.0%</td>
+</tr>
+<tr>
+<td>Guatemala school programmes impact (815)</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">100.0%</td>
+</tr>
+<tr>
+<td>UN humanitarian coordination synthesis (1037)</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">100.0%</td>
+</tr>
+</tbody>
+</table>
+<p>All five incorrectly or incompletely levelled heading groups occurred in the French and Spanish country-plan reports. In Madagascar, a geography subsection was missed; one long question was partly missed and partly promoted from H3 to H2; another wrapped question was missed entirely. In El Salvador, two H3 questions were wholly or partly demoted to H4. These small samples cannot isolate a language effect from report style. Perfect scores on the other ten sampled pages do not imply perfect parsing of those reports.</p>
+<h2>What this establishes—and what it does not</h2>
+<ul>
+<li>Small learned classifiers can capture useful WFP layout patterns with very little local compute. They are a credible third technique to investigate alongside parsers and larger models.</li>
+<li>The test contains only 27 heading groups and <strong>only H1–H3 positives</strong>. It does not establish H4–H6 reliability. Training has only one H5 line and no H6 examples.</li>
+<li>We have not independently verified the assistant labels. An annotator can make consistent hierarchy mistakes that a model then learns. A separate reviewer should adjudicate ambiguous cases and a larger untouched test set.</li>
+<li>These results cannot be ranked directly against the earlier league table: the reports, page sample, labels and line-based metric differ.</li>
+<li>This is embedded-text PDF extraction. It performs no OCR, does not recover glyphs missing from the text layer, and does not evaluate text completeness, reading order, table reconstruction or parent links. JSON retains each extracted line; Markdown is a readable line-preserving view.</li>
+<li>Nearby-line features provide limited context. Document-wide semantic hierarchy, long question headings, bold recommendations and unfamiliar layouts remain difficult. Confidence scores are uncalibrated.</li>
+</ul>
+<p>The next justified experiment is to expand independently reviewed H4–H6 examples and different template families, then compare this baseline with a small model that learns from text, layout and surrounding blocks. Keep a new untouched test set for that round. More assistant-labelled data is feasible; the present evidence supports proceeding, not a claim that it already works on any document.</p>
+<h2>Selected-report table</h2>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Catalogue ID / row</th>
+<th>Report (source PDF)</th>
+<th style="text-align:right">Year</th>
+<th>Language</th>
+<th style="text-align:right">PDF pages</th>
+<th>Reviewed PDF pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>train</td>
+<td>347 / 2</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000023485/download/">Annual Synthesis of Operation Evaluations (2016-2017)</a></td>
+<td style="text-align:right">2017</td>
+<td>English</td>
+<td style="text-align:right">31</td>
+<td>3, 6, 11, 13, 21, 23, 28</td>
+</tr>
+<tr>
+<td>train</td>
+<td>534 / 112</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000115570/download">Synthesis of evidence and lessons from WFP's policy evaluations (2011 - 2019)</a></td>
+<td style="text-align:right">2020</td>
+<td>English</td>
+<td style="text-align:right">32</td>
+<td>2, 3, 7, 11, 12, 20, 29</td>
+</tr>
+<tr>
+<td>train</td>
+<td>584 / 138</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000127565/download/">Synthesis of evidence and lessons on country capacity strengthening from decentralized evaluations</a></td>
+<td style="text-align:right">2021</td>
+<td>English</td>
+<td style="text-align:right">30</td>
+<td>2, 4, 10, 13, 15, 18, 21</td>
+</tr>
+<tr>
+<td>train</td>
+<td>425 / 13</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000063326/download/">Four Evaluations of the Impact of WFP Programmes on Nutrition in Humanitarian Contexts in the Sahel: A Synthesis</a></td>
+<td style="text-align:right">2017</td>
+<td>English</td>
+<td style="text-align:right">38</td>
+<td>3, 7, 8, 13, 17, 26, 36</td>
+</tr>
+<tr>
+<td>train</td>
+<td>443 / 97</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000127163/download/">Evaluation Series on Emergency School Feeding in Lebanon 2015-2019</a></td>
+<td style="text-align:right">2020</td>
+<td>English</td>
+<td style="text-align:right">49</td>
+<td>3, 10, 23, 35, 36, 39, 49</td>
+</tr>
+<tr>
+<td>train</td>
+<td>44 / 68</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000107946/download/">Evaluation of the Satellite Index Insurance for Pastoralists in Ethiopia (SIIPE) Programme: Impact Evaluation of the SIIPE Pilot (2017 – 2019)</a></td>
+<td style="text-align:right">2019</td>
+<td>English</td>
+<td style="text-align:right">50</td>
+<td>3, 10, 15, 23, 34, 36, 49</td>
+</tr>
+<tr>
+<td>train</td>
+<td>104 / 12</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000023073/download/">Final Evaluation of USDA McGovern-Dole-funded International Food for Education and Child Nutrition Program’s Support in Liberia (2013-2016)</a></td>
+<td style="text-align:right">2017</td>
+<td>English</td>
+<td style="text-align:right">58</td>
+<td>3, 17, 30, 31, 44, 57, 58</td>
+</tr>
+<tr>
+<td>train</td>
+<td>79 / 44</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000101797/download/">Evaluation of WFP’s General Food Assistance to Syrian Refugees in Jordan from 2015 to mid-2018</a></td>
+<td style="text-align:right">2018</td>
+<td>English</td>
+<td style="text-align:right">58</td>
+<td>3, 9, 15, 24, 36, 40, 55</td>
+</tr>
+<tr>
+<td>train</td>
+<td>177 / 33</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000100401/download/">Emergency Social Safety Nets (ESSN) Mid-term Evaluation in Turkey</a></td>
+<td style="text-align:right">2018</td>
+<td>English</td>
+<td style="text-align:right">64</td>
+<td>3, 10, 17, 27, 43, 60, 63</td>
+</tr>
+<tr>
+<td>train</td>
+<td>35 / 40</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000099834/download/">Evaluation of the Nutrition Components of the Algeria PRRO 200301</a></td>
+<td style="text-align:right">2018</td>
+<td>English</td>
+<td style="text-align:right">64</td>
+<td>3, 13, 15, 30, 37, 46, 63</td>
+</tr>
+<tr>
+<td>train</td>
+<td>448 / 169</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000139663/download/">Evaluation of WFP’s support to smallholder farmers and expanded portfolio across the agriculture value chain in Bhutan, 2019-2021</a></td>
+<td style="text-align:right">2022</td>
+<td>English</td>
+<td style="text-align:right">62</td>
+<td>4, 11, 28, 30, 34, 44, 61</td>
+</tr>
+<tr>
+<td>train</td>
+<td>857 / 250</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000160228/download/">Mid-term Evaluation of WFP’s Private Sector Partnerships and Fundraising Strategy 2020-2025</a></td>
+<td style="text-align:right">2024</td>
+<td>English</td>
+<td style="text-align:right">78</td>
+<td>4, 17, 28, 36, 56, 60, 75</td>
+</tr>
+<tr>
+<td>train</td>
+<td>37 / 35</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000073498/download/">Evaluación final de la relevancia del rol y la respuesta del PMA para avanzar en un enfoque de asistencia alimentaria vinculado a los sistemas de protección social en Ecuador</a></td>
+<td style="text-align:right">2018</td>
+<td>Spanish</td>
+<td style="text-align:right">53</td>
+<td>3, 12, 24, 30, 37, 42, 49</td>
+</tr>
+<tr>
+<td>train</td>
+<td>494 / 82</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000118909/download/">Contribution des cantines scolaires aux résultats de l’éducation dans le sud de Madagascar (2015 à 2019) : Une analyse de la contribution</a></td>
+<td style="text-align:right">2020</td>
+<td>French</td>
+<td style="text-align:right">93</td>
+<td>3, 9, 21, 33, 45, 52, 83</td>
+</tr>
+<tr>
+<td>train</td>
+<td>340 / 6</td>
+<td><a href="https://docs.wfp.org/api/documents/72403381cf214e11925fb73b5b1968b9/download/">Djibouti IPSR 200824 : Une évaluation d’opération à mi-parcours du PAM</a></td>
+<td style="text-align:right">2017</td>
+<td>French</td>
+<td style="text-align:right">96</td>
+<td>2, 27, 49, 72, 87, 90, 94</td>
+</tr>
+<tr>
+<td>train</td>
+<td>324 / 28</td>
+<td><a href="https://www.3ieimpact.org/sites/default/files/GFR-TW6.1039-food-insecure-population-mali.pdf">The Impact of Humanitarian Aid on Food Insecure Populations During Conflict in Mali: An impact evaluation</a></td>
+<td style="text-align:right">2017</td>
+<td>English</td>
+<td style="text-align:right">78</td>
+<td>5, 7, 25, 29, 38, 42, 60</td>
+</tr>
+<tr>
+<td>validation</td>
+<td>103 / 96</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000128024/download/">Evaluation of WFP Livelihoods and Resilience Activities in Lebanon from 2016 to 2019</a></td>
+<td style="text-align:right">2020</td>
+<td>English</td>
+<td style="text-align:right">54</td>
+<td>3, 10, 24, 39, 53</td>
+</tr>
+<tr>
+<td>validation</td>
+<td>538 / 298</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000164067/download/">Evaluation of School Feeding Modalities Applied in Armenia</a></td>
+<td style="text-align:right">2024</td>
+<td>English</td>
+<td style="text-align:right">65</td>
+<td>4, 10, 28, 46, 64</td>
+</tr>
+<tr>
+<td>validation</td>
+<td>176 / 70</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000108206/download/">Evaluation of WFP’s capacity strengthening activities  to develop the  School Meals Programme from 2016 to 2018 in Tunisia</a></td>
+<td style="text-align:right">2019</td>
+<td>French</td>
+<td style="text-align:right">105</td>
+<td>3, 10, 24, 37, 51</td>
+</tr>
+<tr>
+<td>validation</td>
+<td>128 / 148</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000138855/download/">Evaluación Intermedia del Proyecto BOOST en las zonas de Nueva Segovia, Madriz, Estelí, Matagalpa,  Jinotega y la RACCN en Nicaragua, 2018-2021</a></td>
+<td style="text-align:right">2022</td>
+<td>Spanish</td>
+<td style="text-align:right">89</td>
+<td>4, 11, 27, 44, 60</td>
+</tr>
+<tr>
+<td>test</td>
+<td>611 / 211</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000154968/download/">Evaluation of Madagascar WFP Country Strategic Plan, 2019-2023</a></td>
+<td style="text-align:right">2023</td>
+<td>French</td>
+<td style="text-align:right">87</td>
+<td>4, 23, 44, 65, 86</td>
+</tr>
+<tr>
+<td>test</td>
+<td>585 / 120</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000136296/download/">Evaluación del plan estratégico para El Salvador (2017-2022)</a></td>
+<td style="text-align:right">2021</td>
+<td>Spanish</td>
+<td style="text-align:right">100</td>
+<td>4, 27, 51, 75, 99</td>
+</tr>
+<tr>
+<td>test</td>
+<td>815 / 281</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000166224/download/">Guatemala: School-based Programmes Impact Evaluation</a></td>
+<td style="text-align:right">2025</td>
+<td>English</td>
+<td style="text-align:right">42</td>
+<td>2, 7, 16, 25, 34</td>
+</tr>
+<tr>
+<td>test</td>
+<td>1037 / 333</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000173295/download/">Synthesis on WFP's engagement in UN humanitarian coordination</a></td>
+<td style="text-align:right">2026</td>
+<td>English</td>
+<td style="text-align:right">48</td>
+<td>4, 6, 17, 29, 40</td>
+</tr>
+</tbody>
+</table>
+<h2>Reproduce locally</h2>
+<p>Use Python 3.12 and the committed uv.lock. This run used scikit-learn 1.9.1. PDFs, extracted full text and fitted models remain outside Git. Source PDF and package licences are separate from the repository licence.</p>
+<pre><code class="language-bash">uv sync --locked --extra training
+# Set these to your existing local archive and an external output directory.
+ARCHIVE=/path/to/wfp-20261121T043910Z.tar
+DATA=/path/to/external/supervised-v1
+uv run python scripts/supervised/prepare.py --archive &quot;$ARCHIVE&quot; --data &quot;$DATA&quot;
+# Optional: generate page images and line IDs for reviewing or expanding annotations.
+uv run python scripts/supervised/review.py --data &quot;$DATA&quot; --output &quot;$DATA/review-pack&quot;
+uv run --extra training python scripts/supervised/train.py --data &quot;$DATA&quot; --output &quot;$DATA/my-run&quot;
+# Inspect validation first; this is the final held-out test, not a tuning loop.
+uv run python scripts/supervised/evaluate_test.py --data &quot;$DATA&quot; --run &quot;$DATA/my-run&quot;
+uv run python scripts/supervised/benchmark.py --data &quot;$DATA&quot; --run &quot;$DATA/my-run&quot;
+uv run python scripts/supervised/predict.py --pdf /path/to/new-report.pdf \
+  --model &quot;$DATA/my-run/trees.json&quot; --output &quot;$DATA/new-report-output&quot;
+uv run python scripts/supervised/report.py
+</code></pre>
+<p>Use the selected model named in <code>my-run/selection.json</code>; <code>trees.json</code> is the winner in this recorded run. New reports need an embedded text layer and the same feature schema. The report generator regenerates the <strong>committed frozen evidence</strong>, not a new experiment's results. Changing the corpus or labels requires preparing features again and a fresh run directory. Do not repeatedly use the published test for model selection.</p>
+</body></html>

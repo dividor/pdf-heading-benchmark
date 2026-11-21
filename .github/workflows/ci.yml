@@ -26,7 +26,7 @@ jobs:
         run: uv python install 3.12
 
       - name: Install the project
-        run: uv sync --locked
+        run: uv sync --locked --extra training
 
       - name: Run pre-commit hooks
         run: uv run pre-commit run --all-files --show-diff-on-failure
@@ -46,17 +46,18 @@ jobs:
         run: uv python install 3.12
 
       - name: Install the project
-        run: uv sync --locked
+        run: uv sync --locked --extra training
 
       - name: Run unit tests
-        run: uv run pytest -q
+        run: uv run --extra training pytest -q
 
       # The report and the README's results section are built from the committed results alone, so they must
       # come out byte for byte the same.
       - name: Check the report and README match the committed results
         run: |
           uv run pdf-headings report
-          git diff --exit-code outputs/report
+          uv run python scripts/supervised/report.py
+          git diff --exit-code outputs/report outputs/supervised
 
   security-scan:
     runs-on: ubuntu-latest
@@ -79,7 +80,7 @@ jobs:
       # Python dependency vulnerability scanning
       - name: Run pip-audit
         run: |
-          uv export --frozen --no-dev --no-emit-project --format requirements-txt --no-hashes > requirements-audit.txt
+          uv export --frozen --extra training --no-dev --no-emit-project --format requirements-txt --no-hashes > requirements-audit.txt
           uvx pip-audit -r requirements-audit.txt --desc on
 
       # Python SAST with Bandit (MEDIUM and HIGH severity fail the job)
@@ -108,7 +109,7 @@ jobs:
       # A CycloneDX bill of materials of the locked dependencies, kept with the run.
       - name: Generate the SBOM
         run: |
-          uv export --frozen --no-dev --no-emit-project --format requirements-txt --no-hashes > requirements-sbom.txt
+          uv export --frozen --extra training --no-dev --no-emit-project --format requirements-txt --no-hashes > requirements-sbom.txt
           uvx --from cyclonedx-bom cyclonedx-py requirements requirements-sbom.txt -o sbom-python.json \
             --output-format JSON
 

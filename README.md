@@ -10,6 +10,12 @@ Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These 
 
 [Full local scores, timings and methods (Markdown)](outputs/report/league_table.md) · [HTML report](outputs/report/index.html) · [Reproducibility and limitations](docs/reproducibility.md) · [Source documents](configs/corpus.json)
 
+## Supervised learning pilot on 24 new WFP reports
+
+A separate experiment uses assistant annotations to train small CPU classifiers: **202 heading groups across 152 reviewed pages**, with whole-report train/validation/test splits. The selected Extra Trees model reached **82.0% exact-level F1** on 20 held-out pages (22/27 complete headings correct). These are different documents and metrics from the original league table; the test contains H1–H3 only.
+
+[Experiment, complete report table and runnable commands](outputs/supervised/report.md) · [HTML](outputs/supervised/report.html) · [Annotations](configs/supervised/labels.tsv) · [Source manifest](configs/supervised/corpus.json) · [Training scripts](scripts/supervised)
+
 ## Why heading classification matters
 
 Headings help determine whether a block of text is relevant to the user's question. Someone looking for summary findings may prefer a passage under **Executive summary > Key findings** to an **Acronyms** entry, even if both contain the same search term. The acronyms entry may be exactly what is needed when the question asks for an abbreviation's meaning. Relevance depends on the task; an acronyms section is not inherently unimportant.

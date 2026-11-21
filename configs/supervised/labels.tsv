@@ -1,0 +1,203 @@
+report_id	level	line_ids	note
+347	1	p003b002l00	Contents title; entries are not body headings
+347	1	p006b002l00	Visual/text review
+347	2	p006b006l00	Visual/text review
+347	2	p006b018l00	Visual/text review
+347	1	p013b002l00	Visual/text review
+347	2	p013b003l00	Visual/text review
+347	2	p013b006l00	Visual/text review
+347	3	p013b008l00	Roman subpart of 3.2
+347	4	p013b009l00	Subheading within 3.2.i
+347	4	p013b013l00	Subheading within 3.2.i
+347	4	p021b002l00	Under Brokering Solutions within 3.3
+347	4	p021b014l00	Under Brokering Solutions within 3.3
+347	4	p021b020l00	Under Brokering Solutions within 3.3
+534	1	p002b008l00	Visual/text review
+534	1	p003b002l00	Visual/text review
+534	2	p003b006l00	Visual/text review
+534	3	p012b007l00	Under findings question on preceding page
+584	1	p004b001l01	Visual/text review
+584	2	p004b002l00	Visual/text review
+584	2	p004b005l00	Visual/text review
+584	3	p015b001l01	Subsection under synthesis question 4
+584	2	p015b007l00	Box labels excluded from section hierarchy
+425	1	p003b001l00	Visual/text review
+425	1	p007b002l00	Visual/text review
+425	2	p007b003l00	Visual/text review
+425	2	p017b004l00	Page 36 title is a table caption
+443	1	p003b004l00	Visual/text review
+443	1	p010b003l00	Visual/text review
+443	2	p010b025l00+p010b025l01	Separate number and title fragments
+443	4	p023b006l00	Visible number 2.1.1.3; number missing from extracted text
+443	3	p023b014l00	Box repeats question; not a new subsection
+443	3	p036b008l00	Visual/text review
+443	4	p036b011l00	Visible number 2.2.3.1; number missing from extracted text
+443	3	p049b003l00+p049b003l01	Standalone recommendation title above its table
+443	3	p049b009l00	Standalone recommendation title above its table
+44	1	p003b003l00	Visual/text review
+44	1	p010b002l00	Visual/text review
+44	2	p010b004l00+p010b004l01	Visual/text review
+44	3	p023b004l00	Visual/text review
+44	4	p036b004l00	Under 2.3.3; italic underlined subsection
+44	3	p049b002l00	Under 3.2 then Operational Recommendations
+104	1	p003b000l01	Visual/text review
+104	1	p017b002l00+p017b002l01	Visual/text review
+104	4	p031b002l00	Under 2.2.1 Capacity building results
+104	4	p031b003l00	Visual/text review
+104	4	p031b007l00+p031b007l01	Visual/text review
+104	4	p058b004l00+p058b004l01	Under 3.2 then Operational Recommendations
+104	4	p058b013l00+p058b013l01+p058b013l02	Visual/text review
+79	1	p003b002l00	Visual/text review
+79	1	p009b002l00	Visual/text review
+79	3	p055b023l00	Standalone recommendation; inline bold lead-ins excluded
+177	1	p003b002l00	Visual/text review
+177	1	p010b002l00+p010b002l01	Visual/text review
+177	2	p010b011l00+p010b011l01	Visual/text review
+177	2	p027b004l00+p027b004l01	Visual/text review
+177	3	p027b005l00+p027b005l01	Visual/text review
+177	4	p027b006l00	Underlined subsection; box title excluded
+35	1	p003b004l00	Visual/text review
+35	1	p013b002l00	Visual/text review
+35	2	p013b003l00	Visual/text review
+35	3	p030b008l00	Under 2.3 Effectiveness
+448	1	p004b001l00	Visual/text review
+448	1	p004b021l01	Visual/text review
+448	1	p011b001l00	Visual/text review
+448	2	p011b002l00+p011b002l01	Visual/text review
+448	2	p028b004l00+p028b004l01	Visual/text review
+448	3	p028b006l00+p028b006l01	Sub-question; following boxed finding excluded
+448	4	p028b008l00	Under sub-question 2.1
+448	2	p044b014l00+p044b014l01	Visual/text review
+857	1	p004b002l00	Visual/text review
+857	1	p017b002l00	Visual/text review
+857	2	p017b003l00+p017b003l01	Visual/text review
+857	3	p017b004l00	Visual/text review
+37	1	p003b003l00	Visual/text review
+37	1	p012b002l00	Visual/text review
+37	2	p037b017l00+p037b017l01	Visual/text review
+37	3	p037b018l00	Visual/text review
+37	3	p049b003l00	Under 3.2 Recomendaciones
+494	1	p003b002l00	Visual/text review
+494	1	p009b002l00+p009b002l01	Visual/text review
+494	2	p009b007l00+p009b007l01	Visual/text review
+494	3	p033b005l00	Under 2.4 Critere de impact
+340	1	p002b001l00	Visual/text review
+340	1	p002b008l00	Visual/text review
+340	1	p002b012l00	Visual/text review
+340	1	p027b001l00	Visual/text review
+340	2	p027b002l00	Visual/text review
+324	1	p005b001l00	Visual/text review
+324	1	p007b001l00	Visual/text review
+324	2	p042b002l00	Visual/text review
+103	1	p003b001l00	Visual/text review
+103	1	p010b002l00	Visual/text review
+103	3	p039b013l00	Under 2.6; inline recommendation on page 53 excluded
+538	1	p004b004l00	Visual/text review
+538	1	p010b004l00	Visual/text review
+538	2	p010b006l00+p010b006l01	Visual/text review
+538	1	p028b004l00	Visual/text review
+538	2	p028b005l00+p028b005l01	Visual/text review
+538	3	p028b006l01+p028b006l02	Standalone EQ; paragraph number excluded
+538	4	p028b007l01+p028b007l02	Subquestion of EQ1
+538	4	p046b004l01+p046b004l02	Subquestion of EQ4
+538	4	p046b017l01+p046b017l02	Subquestion of EQ4
+340	4	p072b004l00	Under 2.3.1 Facteurs internes
+324	3	p025b003l00	Italic heading
+176	1	p003b001l00	Visual/text review
+176	1	p010b003l00	Visual/text review
+176	2	p010b008l00	Visual/text review
+176	2	p037b005l00	Visual/text review
+176	3	p037b006l00+p037b006l01+p037b006l02	Visual/text review
+128	1	p004b001l00	Visual/text review
+128	1	p011b001l00	Visual/text review
+128	2	p011b002l00+p011b002l01	Visual/text review
+128	2	p011b009l00+p011b009l01	Visual/text review
+611	1	p004b002l00	Visual/text review
+611	1	p023b002l00	Visual/text review
+611	2	p023b003l00+p023b003l01	Visual/text review
+611	2	p023b014l00+p023b014l01	Visual/text review
+611	3	p023b015l00	Visual/text review
+611	3	p044b002l00+p044b002l01+p044b002l02	Under numbered question 2.1
+611	3	p065b007l00+p065b007l01	Under numbered question 2.3
+585	1	p004b002l00	Visual/text review
+585	1	p004b010l01	Visual/text review
+585	1	p027b002l00	Visual/text review
+585	2	p027b003l00	Visual/text review
+585	3	p051b008l00+p051b008l01	Under 2.1
+585	3	p075b002l00	Printed three-part numbering; semantic nesting warrants independent review
+585	3	p075b005l00	Under 2.2
+815	1	p002b003l00	Visual/text review
+815	1	p002b005l20	Visual/text review
+815	1	p002b007l06	Contact label is metadata
+815	1	p007b004l00	Visual/text review
+815	1	p016b004l00	Visual/text review
+815	2	p016b006l00	Visual/text review
+815	2	p034b004l00	Visual/text review
+815	2	p034b007l00	Visual/text review
+1037	1	p004b002l01	Visual/text review
+1037	1	p006b001l00	Visual/text review
+1037	2	p006b002l00	Under executive summary
+1037	3	p017b007l00	Under 1.2 Context
+1037	2	p040b001l00	Visual/text review
+347	2	p011b004l00	Visual/text review
+347	3	p011b005l00	Visual/text review
+347	2	p011b010l00	Visual/text review
+347	3	p011b011l00	Visual/text review
+347	3	p011b017l00	Visual/text review
+347	1	p023b002l00	Visual/text review
+347	2	p023b003l00	Visual/text review
+347	2	p023b009l00	Visual/text review
+534	1	p007b002l00	Visual/text review
+534	2	p007b003l00+p007b003l01	Visual/text review
+534	3	p007b005l00	Visual/text review
+534	2	p011b008l00+p011b008l01	Visual/text review
+584	2	p013b001l01+p013b001l02	Visual/text review
+584	3	p013b010l00	Visual/text review
+584	3	p018b002l00	Under Conclusions
+584	2	p018b006l00	Under Conclusions
+425	2	p008b005l00	Visual/text review
+425	1	p013b002l00	Visual/text review
+425	2	p013b003l00	Visual/text review
+425	2	p013b005l00	Visual/text review
+443	4	p035b004l00	Visible number 2.2.2.1; number omitted by PDF extractor
+443	4	p035b012l00	Visible number 2.2.2.2
+443	4	p035b018l00	Visible number 2.2.2.3
+443	2	p039b004l00+p039b004l01	Visual/text review
+443	3	p039b005l00	Visual/text review
+443	4	p039b008l00	Visible number 2.3.1.1
+44	3	p015b003l00	Visual/text review
+44	3	p015b014l00	Visual/text review
+44	4	p015b015l00	Visual/text review
+44	3	p034b002l00	Visual/text review
+44	3	p034b009l00	Visual/text review
+104	2	p030b002l00	Visual/text review
+104	3	p030b005l00	Visual/text review
+104	4	p030b006l00+p030b006l01	Visual/text review
+104	3	p057b005l00	Operational is under 3.2; timing bullet is metadata
+104	4	p057b006l00+p057b006l01+p057b006l02	Under Operational Recommendations
+104	4	p057b008l00+p057b008l01+p057b008l02+p057b008l03	Under Operational Recommendations
+104	4	p057b013l00+p057b013l01+p057b013l02	Under Operational Recommendations
+79	1	p015b002l00+p015b002l01	Visual/text review
+79	2	p015b005l00+p015b006l00	Visual/text review
+79	3	p015b007l00+p015b007l01	Visual/text review
+79	3	p036b014l00	Visual/text review
+177	1	p017b002l00+p017b002l01	Visual/text review
+177	2	p017b004l00+p017b004l01	Visual/text review
+177	3	p017b005l00+p017b005l01	Visual/text review
+177	1	p063b002l00	Other lines are an index of annexes in another volume
+35	2	p015b004l00	Visual/text review
+857	1	p028b002l00	Visual/text review
+857	2	p028b003l00+p028b003l01	Visual/text review
+857	3	p028b004l00+p028b004l01	Visual/text review
+857	3	p028b007l00+p028b007l01+p028b007l02	Visual/text review
+857	2	p060b003l00+p060b003l01+p060b003l02	Visual/text review
+857	3	p060b004l00+p060b004l01	Visual/text review
+857	3	p060b007l00+p060b007l01	Visual/text review
+857	4	p060b010l00	Visual/text review
+857	5	p060b014l00	Under PPF Capacity and Structure
+37	3	p030b003l00+p030b003l01	Under 2.1 Pertinencia
+37	3	p030b008l00+p030b008l01	Under 2.1 Pertinencia
+37	2	p042b015l00+p042b015l01	Visual/text review
+37	3	p042b016l00	Visual/text review
+340	2	p087b001l00	Numbered recommendations below are inline paragraph lead-ins, excluded
+324	2	p029b004l00	Visual/text review

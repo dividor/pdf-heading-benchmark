@@ -1,0 +1,90 @@
+{
+  "hardware": "Apple M4 Pro Mac mini, 14 CPU cores, 48 GB RAM",
+  "execution": "CPU only, tree training n_jobs=4; no paid inference or external model calls",
+  "counts": {
+    "train": {
+      "reports": 16,
+      "pages": 934,
+      "reviewed_pages": 112,
+      "lines": 6052,
+      "heading_lines": 203,
+      "levels": {
+        "1": 47,
+        "0": 5849,
+        "2": 64,
+        "3": 53,
+        "4": 38,
+        "5": 1
+      }
+    },
+    "validation": {
+      "reports": 4,
+      "pages": 313,
+      "reviewed_pages": 20,
+      "lines": 1028,
+      "heading_lines": 31,
+      "levels": {
+        "0": 997,
+        "1": 9,
+        "3": 6,
+        "2": 10,
+        "4": 6
+      }
+    },
+    "test": {
+      "reports": 4,
+      "pages": 277,
+      "reviewed_pages": 20,
+      "lines": 834,
+      "heading_lines": 33,
+      "levels": {
+        "0": 801,
+        "1": 12,
+        "2": 10,
+        "3": 11
+      }
+    }
+  },
+  "features": [
+    "block_lines",
+    "blue",
+    "bold",
+    "caption_prefix",
+    "digit_fraction",
+    "dot_leader",
+    "ends_sentence",
+    "gap_after",
+    "gap_before",
+    "green",
+    "height",
+    "italic",
+    "log_chars",
+    "log_words",
+    "next_bold",
+    "next_number_only",
+    "next_same_block",
+    "next_size",
+    "number_only",
+    "page_dot_fraction",
+    "prefix_depth",
+    "previous_bold",
+    "previous_number_only",
+    "previous_same_block",
+    "previous_size",
+    "red",
+    "relative_size",
+    "repeat_count",
+    "size_rank",
+    "upper_fraction",
+    "width",
+    "x",
+    "y"
+  ],
+  "annotation_source": "Assistant visual inspection and text/context review, not independent human gold",
+  "run_history": [
+    "run-001: 120 reviewed pages; validation only",
+    "run-002: expanded training; aborted on JSON/sklearn probability parity check before any test scoring",
+    "run-003: tree traversal float32 parity fixed; 152 reviewed pages; selected by validation, then evaluated test once"
+  ],
+  "cost": "No metered API spend. Electricity, hardware amortization and annotation labour not measured. Annotation was performed by an assistant; this is not a fully on-prem annotation workflow."
+}
