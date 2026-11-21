@@ -1,0 +1,16 @@
+{
+  "catalogue_name": "Evaluation list - Phase 1.xlsx",
+  "catalogue_sha256": "8d3e9a046cf6519fc58bd9dbf7c00072d1e054fae22c7c44016e9909605b490a",
+  "sheet": "Evaluation list",
+  "archive_name": "wfp-20261121T043910Z.tar",
+  "snapshot": "20261121T043910Z",
+  "pdfs_matched": 333,
+  "reports": 24,
+  "total_pages": 1524,
+  "annotation": "assistant visual and text review; no independent human adjudication",
+  "sampling": "First detected contents page when title matched, otherwise page 2; catalogue body start, one-third, two-thirds and end. El Salvador body start manually corrected to PDF 27. Exact frozen pages in corpus.json. Catalogue ranges are approximate and include some annexes.",
+  "scope": "Section headings on selected pages; contents entries, table/box captions and labels, running headers and inline bold lead-ins are negatives. Unselected pages are unlabelled, never negatives.",
+  "test_status": "Final test evaluated once after validation selection; no subsequent tuning",
+  "reviewed_pages": 152,
+  "training_expansion": "After initial validation, two additional visually reviewed pages per training report; candidates ranked by numbered/bold lines. No additional validation/test pages and no test scores consulted."
+}

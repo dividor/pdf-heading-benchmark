@@ -1,0 +1,933 @@
+{
+  "selected": "trees",
+  "selection_metric": "validation exact-level line F1",
+  "validation": {
+    "linear": {
+      "lines": 1028,
+      "heading_lines": 31,
+      "predicted_heading_lines": 53,
+      "detected_heading_lines": 28,
+      "correct_level_lines": 20,
+      "detection_precision": 0.5283018867924528,
+      "detection_recall": 0.9032258064516129,
+      "detection_f1": 0.6666666666666666,
+      "exact_level_precision": 0.37735849056603776,
+      "exact_level_recall": 0.6451612903225806,
+      "exact_level_f1": 0.4761904761904762,
+      "level_accuracy_given_detected": 0.7142857142857143,
+      "confusion_labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "confusion": [
+        [
+          972,
+          0,
+          12,
+          3,
+          8,
+          2,
+          0
+        ],
+        [
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          10,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "predict_seconds": 0.0034922920167446136,
+      "per_document": {
+        "103": {
+          "lines": 183,
+          "heading_lines": 3,
+          "predicted_heading_lines": 24,
+          "detected_heading_lines": 3,
+          "correct_level_lines": 2,
+          "detection_precision": 0.125,
+          "detection_recall": 1.0,
+          "detection_f1": 0.2222222222222222,
+          "exact_level_precision": 0.08333333333333333,
+          "exact_level_recall": 0.6666666666666666,
+          "exact_level_f1": 0.14814814814814814,
+          "level_accuracy_given_detected": 0.6666666666666666,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              159,
+              0,
+              10,
+              3,
+              8,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "128": {
+          "lines": 364,
+          "heading_lines": 6,
+          "predicted_heading_lines": 7,
+          "detected_heading_lines": 6,
+          "correct_level_lines": 6,
+          "detection_precision": 0.8571428571428571,
+          "detection_recall": 1.0,
+          "detection_f1": 0.923076923076923,
+          "exact_level_precision": 0.8571428571428571,
+          "exact_level_recall": 1.0,
+          "exact_level_f1": 0.923076923076923,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              357,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "176": {
+          "lines": 214,
+          "heading_lines": 7,
+          "predicted_heading_lines": 6,
+          "detected_heading_lines": 5,
+          "correct_level_lines": 5,
+          "detection_precision": 0.8333333333333334,
+          "detection_recall": 0.7142857142857143,
+          "detection_f1": 0.7692307692307692,
+          "exact_level_precision": 0.8333333333333334,
+          "exact_level_recall": 0.7142857142857143,
+          "exact_level_f1": 0.7692307692307692,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              206,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "538": {
+          "lines": 267,
+          "heading_lines": 15,
+          "predicted_heading_lines": 16,
+          "detected_heading_lines": 14,
+          "correct_level_lines": 7,
+          "detection_precision": 0.875,
+          "detection_recall": 0.9333333333333333,
+          "detection_f1": 0.9032258064516129,
+          "exact_level_precision": 0.4375,
+          "exact_level_recall": 0.4666666666666667,
+          "exact_level_f1": 0.45161290322580644,
+          "level_accuracy_given_detected": 0.5,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              250,
+              0,
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "heading_groups": 21,
+      "complete_groups_detected": 19,
+      "complete_groups_correct_level": 15,
+      "fit_seconds": 0.2529799999902025,
+      "model_bytes": 8521
+    },
+    "trees": {
+      "lines": 1028,
+      "heading_lines": 31,
+      "predicted_heading_lines": 24,
+      "detected_heading_lines": 23,
+      "correct_level_lines": 19,
+      "detection_precision": 0.9583333333333334,
+      "detection_recall": 0.7419354838709677,
+      "detection_f1": 0.8363636363636364,
+      "exact_level_precision": 0.7916666666666666,
+      "exact_level_recall": 0.6129032258064516,
+      "exact_level_f1": 0.6909090909090909,
+      "level_accuracy_given_detected": 0.8260869565217391,
+      "confusion_labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "confusion": [
+        [
+          996,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          10,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "predict_seconds": 0.06558908300939947,
+      "per_document": {
+        "103": {
+          "lines": 183,
+          "heading_lines": 3,
+          "predicted_heading_lines": 4,
+          "detected_heading_lines": 3,
+          "correct_level_lines": 2,
+          "detection_precision": 0.75,
+          "detection_recall": 1.0,
+          "detection_f1": 0.8571428571428571,
+          "exact_level_precision": 0.5,
+          "exact_level_recall": 0.6666666666666666,
+          "exact_level_f1": 0.5714285714285715,
+          "level_accuracy_given_detected": 0.6666666666666666,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              179,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "128": {
+          "lines": 364,
+          "heading_lines": 6,
+          "predicted_heading_lines": 6,
+          "detected_heading_lines": 6,
+          "correct_level_lines": 6,
+          "detection_precision": 1.0,
+          "detection_recall": 1.0,
+          "detection_f1": 1.0,
+          "exact_level_precision": 1.0,
+          "exact_level_recall": 1.0,
+          "exact_level_f1": 1.0,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              358,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "176": {
+          "lines": 214,
+          "heading_lines": 7,
+          "predicted_heading_lines": 4,
+          "detected_heading_lines": 4,
+          "correct_level_lines": 4,
+          "detection_precision": 1.0,
+          "detection_recall": 0.5714285714285714,
+          "detection_f1": 0.7272727272727273,
+          "exact_level_precision": 1.0,
+          "exact_level_recall": 0.5714285714285714,
+          "exact_level_f1": 0.7272727272727273,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              207,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "538": {
+          "lines": 267,
+          "heading_lines": 15,
+          "predicted_heading_lines": 10,
+          "detected_heading_lines": 10,
+          "correct_level_lines": 7,
+          "detection_precision": 1.0,
+          "detection_recall": 0.6666666666666666,
+          "detection_f1": 0.8,
+          "exact_level_precision": 0.7,
+          "exact_level_recall": 0.4666666666666667,
+          "exact_level_f1": 0.56,
+          "level_accuracy_given_detected": 0.7,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              252,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              3,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "heading_groups": 21,
+      "complete_groups_detected": 16,
+      "complete_groups_correct_level": 15,
+      "fit_seconds": 0.4549954159883782,
+      "model_bytes": 10449824
+    }
+  },
+  "sklearn": "1.9.1",
+  "python": "3.12.3",
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "train_reports": [
+    35,
+    37,
+    44,
+    79,
+    104,
+    177,
+    324,
+    340,
+    347,
+    425,
+    443,
+    448,
+    494,
+    534,
+    584,
+    857
+  ],
+  "validation_reports": [
+    103,
+    128,
+    176,
+    538
+  ],
+  "label_sha256": "42249ba0d1d4b7df9d167b701af0bde23edecfeb7705d78dc68aca417e82bc2d",
+  "corpus_sha256": "8922d0e0fcdcb8708e2b0d7e89308f745abb6f7f3f409e3a9e7526bfdd8cbe6b",
+  "selected_model_sha256": "250f7f3e457181c2bcb3e929071b094907507971da433151673c63ec6b36c79a"
+}

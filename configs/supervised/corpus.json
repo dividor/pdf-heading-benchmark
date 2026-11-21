@@ -1,0 +1,634 @@
+[
+  {
+    "id": 347,
+    "title": "Annual Synthesis of Operation Evaluations (2016-2017)",
+    "year": 2017,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Synthesis",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000023485/download/",
+    "sheet_row": 2,
+    "member": "wfp/pdfs/WFP/2017/annual_synthesis_of_operation_evaluations_2016_2017_347.pdf",
+    "size": 868048,
+    "pages": 31,
+    "sha256": "18725630a33b6a3f0bd5a9963d1efaf161eac4142cbc624b4f60bd14ea9ca309",
+    "split": "train",
+    "review_pages": [
+      3,
+      6,
+      11,
+      13,
+      21,
+      23,
+      28
+    ],
+    "additional_review_pages": [
+      11,
+      23
+    ]
+  },
+  {
+    "id": 534,
+    "title": "Synthesis of evidence and lessons from WFP's policy evaluations (2011 - 2019)",
+    "year": 2020,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Synthesis",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000115570/download",
+    "sheet_row": 112,
+    "member": "wfp/pdfs/WFP/2020/synthesis_of_evidence_and_lessons_from_wfps_policy_evaluations_2011_2019_534.pdf",
+    "size": 735027,
+    "pages": 32,
+    "sha256": "6cdd758459c0b53357dffc868c04dbd70875f0be7fa8a8d35c58f5fff24328f8",
+    "split": "train",
+    "review_pages": [
+      2,
+      3,
+      7,
+      11,
+      12,
+      20,
+      29
+    ],
+    "additional_review_pages": [
+      7,
+      11
+    ]
+  },
+  {
+    "id": 584,
+    "title": "Synthesis of evidence and lessons on country capacity strengthening from decentralized evaluations",
+    "year": 2021,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Synthesis",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000127565/download/",
+    "sheet_row": 138,
+    "member": "wfp/pdfs/WFP/2021/synthesis_of_evidence_and_lessons_on_country_capacity_strengthening_from_decentralized_evaluations_584.pdf",
+    "size": 608351,
+    "pages": 30,
+    "sha256": "33969371fdd58f47db35fc5d5b763dca700c705639df39d54edfdc2db023bd6a",
+    "split": "train",
+    "review_pages": [
+      2,
+      4,
+      10,
+      13,
+      15,
+      18,
+      21
+    ],
+    "additional_review_pages": [
+      13,
+      18
+    ]
+  },
+  {
+    "id": 425,
+    "title": "Four Evaluations of the Impact of WFP Programmes on Nutrition in Humanitarian Contexts in the Sahel: A Synthesis",
+    "year": 2017,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Synthesis",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000063326/download/",
+    "sheet_row": 13,
+    "member": "wfp/pdfs/WFP/2017/four_evaluations_of_the_impact_of_wfp_programmes_on_nutrition_in_humanitarian_contexts_in_the_sahel_a_synthesis_425.pdf",
+    "size": 801311,
+    "pages": 38,
+    "sha256": "df23e9e2ef7c4b131584c03962e825b9de2c84800d13d924f1b6834d3edf7b0f",
+    "split": "train",
+    "review_pages": [
+      3,
+      7,
+      8,
+      13,
+      17,
+      26,
+      36
+    ],
+    "additional_review_pages": [
+      8,
+      13
+    ]
+  },
+  {
+    "id": 443,
+    "title": "Evaluation Series on Emergency School Feeding in Lebanon 2015-2019",
+    "year": 2020,
+    "language": "English",
+    "commissioner": "Safety-Nets & Social Protection Unit",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000127163/download/",
+    "sheet_row": 97,
+    "member": "wfp/pdfs/WFP/2020/evaluation_series_on_emergency_school_feeding_in_lebanon_20152019_443.pdf",
+    "size": 1609229,
+    "pages": 49,
+    "sha256": "2304ffa419cf7d973dfaca2639394a3d679d0b2bddc1a665bd03bb7898d119a1",
+    "split": "train",
+    "review_pages": [
+      3,
+      10,
+      23,
+      35,
+      36,
+      39,
+      49
+    ],
+    "additional_review_pages": [
+      35,
+      39
+    ]
+  },
+  {
+    "id": 44,
+    "title": "Evaluation of the Satellite Index Insurance for Pastoralists in Ethiopia (SIIPE) Programme: Impact Evaluation of the SIIPE Pilot (2017 – 2019)",
+    "year": 2019,
+    "language": "English",
+    "commissioner": "Ethiopia, Federal Democratic Republic of (ET) Head office",
+    "type": "Impact",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000107946/download/",
+    "sheet_row": 68,
+    "member": "wfp/pdfs/WFP/2019/evaluation_of_the_satellite_index_insurance_for_pastoralists_in_ethiopia_siipe_programme_impact_evaluation_of_the_siipe_pilot_2017_2019_44.pdf",
+    "size": 942690,
+    "pages": 50,
+    "sha256": "54efb6493dcda327112d038e72e7ac8dfae9f71097db2ba4dfd721f4d7f67a6c",
+    "split": "train",
+    "review_pages": [
+      3,
+      10,
+      15,
+      23,
+      34,
+      36,
+      49
+    ],
+    "additional_review_pages": [
+      15,
+      34
+    ]
+  },
+  {
+    "id": 104,
+    "title": "Final Evaluation of USDA McGovern-Dole-funded International Food for Education and Child Nutrition Program’s Support in Liberia (2013-2016)",
+    "year": 2017,
+    "language": "English",
+    "commissioner": "Liberia, Republic of (LR) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000023073/download/",
+    "sheet_row": 12,
+    "member": "wfp/pdfs/WFP/2017/final_evaluation_of_usda_mcgoverndolefunded_international_food_for_education_and_child_nutrition_programs_support_in_liberia_20132016_104.pdf",
+    "size": 1106589,
+    "pages": 58,
+    "sha256": "bc52148330747cbeda75ffa7224f66f829bfd9fa2bcd839e7defffd843539fd4",
+    "split": "train",
+    "review_pages": [
+      3,
+      17,
+      30,
+      31,
+      44,
+      57,
+      58
+    ],
+    "additional_review_pages": [
+      30,
+      57
+    ]
+  },
+  {
+    "id": 79,
+    "title": "Evaluation of WFP’s General Food Assistance to Syrian Refugees in Jordan from 2015 to mid-2018",
+    "year": 2018,
+    "language": "English",
+    "commissioner": "Jordan, Hashemite Kingdom of (JO) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000101797/download/",
+    "sheet_row": 44,
+    "member": "wfp/pdfs/WFP/2018/evaluation_of_wfps_general_food_assistance_to_syrian_refugees_in_jordan_from_2015_to_mid2018_79.pdf",
+    "size": 1265273,
+    "pages": 58,
+    "sha256": "73d364c4b79614192331949ab270a204d333921aa5cfe5463febe11f6bc77bc8",
+    "split": "train",
+    "review_pages": [
+      3,
+      9,
+      15,
+      24,
+      36,
+      40,
+      55
+    ],
+    "additional_review_pages": [
+      15,
+      36
+    ]
+  },
+  {
+    "id": 177,
+    "title": "Emergency Social Safety Nets (ESSN) Mid-term Evaluation in Turkey",
+    "year": 2018,
+    "language": "English",
+    "commissioner": "Türkiye, Republic of (TR) Head Office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000100401/download/",
+    "sheet_row": 33,
+    "member": "wfp/pdfs/WFP/2018/emergency_social_safety_nets_essn_midterm_evaluation_in_turkey_177.pdf",
+    "size": 1595109,
+    "pages": 64,
+    "sha256": "c257d4622cd1ee1c9c01c63cce3d285ac5de281db6aa5b2c7bdd507bcfc89ad2",
+    "split": "train",
+    "review_pages": [
+      3,
+      10,
+      17,
+      27,
+      43,
+      60,
+      63
+    ],
+    "additional_review_pages": [
+      17,
+      63
+    ]
+  },
+  {
+    "id": 35,
+    "title": "Evaluation of the Nutrition Components of the Algeria PRRO 200301",
+    "year": 2018,
+    "language": "English",
+    "commissioner": "Algeria, People's Democratic Republic of (DZ) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000099834/download/",
+    "sheet_row": 40,
+    "member": "wfp/pdfs/WFP/2018/evaluation_of_the_nutrition_components_of_the_algeria_prro_200301_35.pdf",
+    "size": 1353657,
+    "pages": 64,
+    "sha256": "070087a4e97d24580248141c6a44526cf9a507d7e6c2d5db2857479d51a552d0",
+    "split": "train",
+    "review_pages": [
+      3,
+      13,
+      15,
+      30,
+      37,
+      46,
+      63
+    ],
+    "additional_review_pages": [
+      15,
+      37
+    ]
+  },
+  {
+    "id": 448,
+    "title": "Evaluation of WFP’s support to smallholder farmers and expanded portfolio across the agriculture value chain in Bhutan, 2019-2021",
+    "year": 2022,
+    "language": "English",
+    "commissioner": "Bhutan, Kingdom of (BT) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000139663/download/",
+    "sheet_row": 169,
+    "member": "wfp/pdfs/WFP/2022/evaluation_of_wfps_support_to_smallholder_farmers_and_expanded_portfolio_across_the_agriculture_value_chain_in_bhutan_20192021_448.pdf",
+    "size": 2007652,
+    "pages": 62,
+    "sha256": "c1c6f909f212f5cba8f99b4daf3ec33821b84fffd015788998630cb8a0c35637",
+    "split": "train",
+    "review_pages": [
+      4,
+      11,
+      28,
+      30,
+      34,
+      44,
+      61
+    ],
+    "additional_review_pages": [
+      30,
+      34
+    ]
+  },
+  {
+    "id": 857,
+    "title": "Mid-term Evaluation of WFP’s Private Sector Partnerships and Fundraising Strategy 2020-2025",
+    "year": 2024,
+    "language": "English",
+    "commissioner": "Private Sector Partnerships Division",
+    "type": "Thematic",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000160228/download/",
+    "sheet_row": 250,
+    "member": "wfp/pdfs/WFP/2024/midterm_evaluation_of_wfps_private_sector_partnerships_and_fundraising_strategy_20202025_857.pdf",
+    "size": 2625343,
+    "pages": 78,
+    "sha256": "bcaa8825079ef4460eeb842d45679fc3e253edb390fcb70abc92da41f0c6d783",
+    "split": "train",
+    "review_pages": [
+      4,
+      17,
+      28,
+      36,
+      56,
+      60,
+      75
+    ],
+    "additional_review_pages": [
+      28,
+      60
+    ]
+  },
+  {
+    "id": 37,
+    "title": "Evaluación final de la relevancia del rol y la respuesta del PMA para avanzar en un enfoque de asistencia alimentaria vinculado a los sistemas de protección social en Ecuador",
+    "year": 2018,
+    "language": "Spanish",
+    "commissioner": "Ecuador, Republic of (EC) Head office",
+    "type": "Thematic",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000073498/download/",
+    "sheet_row": 35,
+    "member": "wfp/pdfs/WFP/2018/evaluacion_final_de_la_relevancia_del_rol_y_la_respuesta_del_pma_para_avanzar_en_un_enfoque_de_asistencia_alimentaria_vinculado_a_los_sistemas_de_proteccion_social_en_e_37.pdf",
+    "size": 1146855,
+    "pages": 53,
+    "sha256": "3b3fbb68d268ee161dd30af7fee01122399a2c8a1a7aa9bac9fbe5fdbb1d9e55",
+    "split": "train",
+    "review_pages": [
+      3,
+      12,
+      24,
+      30,
+      37,
+      42,
+      49
+    ],
+    "additional_review_pages": [
+      30,
+      42
+    ]
+  },
+  {
+    "id": 494,
+    "title": "Contribution des cantines scolaires aux résultats de l’éducation dans le sud de Madagascar (2015 à 2019) : Une analyse de la contribution",
+    "year": 2020,
+    "language": "French",
+    "commissioner": "Madagascar, Republic of (MG) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000118909/download/",
+    "sheet_row": 82,
+    "member": "wfp/pdfs/WFP/2020/contribution_des_cantines_scolaires_aux_rsultats_de_lducation_dans_le_sud_de_madagascar_2015_2019_une_analyse_de_la_contribution_494.pdf",
+    "size": 2876123,
+    "pages": 93,
+    "sha256": "5f2ce16fc782b53af4972e47137dd9d80596600a6cbcc73b240458f262ac10ab",
+    "split": "train",
+    "review_pages": [
+      3,
+      9,
+      21,
+      33,
+      45,
+      52,
+      83
+    ],
+    "additional_review_pages": [
+      52,
+      83
+    ]
+  },
+  {
+    "id": 340,
+    "title": "Djibouti IPSR 200824 : Une évaluation d’opération à mi-parcours du PAM",
+    "year": 2017,
+    "language": "French",
+    "commissioner": "Office of Evaluation",
+    "type": "Operation",
+    "url": "https://docs.wfp.org/api/documents/72403381cf214e11925fb73b5b1968b9/download/",
+    "sheet_row": 6,
+    "member": "wfp/pdfs/WFP/2017/djibouti_ipsr_200824_une_evaluation_doperation_a_miparcours_du_pam_340.pdf",
+    "size": 1677828,
+    "pages": 96,
+    "sha256": "bfb374452d9dfdb5f706c722aad7bde26d6c8581371e556d571e0be1c14f7641",
+    "split": "train",
+    "review_pages": [
+      2,
+      27,
+      49,
+      72,
+      87,
+      90,
+      94
+    ],
+    "additional_review_pages": [
+      87,
+      90
+    ]
+  },
+  {
+    "id": 324,
+    "title": "The Impact of Humanitarian Aid on Food Insecure Populations During Conflict in Mali: An impact evaluation",
+    "year": 2017,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Impact",
+    "url": "https://www.3ieimpact.org/sites/default/files/GFR-TW6.1039-food-insecure-population-mali.pdf",
+    "sheet_row": 28,
+    "member": "wfp/pdfs/WFP/2017/the_impact_of_humanitarian_aid_on_food_insecure_populations_during_conflict_in_mali_an_impact_evaluation_324.pdf",
+    "size": 1863488,
+    "pages": 78,
+    "sha256": "a18b9a981355540efaf584b0ca26c2151602ea3159c3fdef8b131105c66e6477",
+    "split": "train",
+    "review_pages": [
+      5,
+      7,
+      25,
+      29,
+      38,
+      42,
+      60
+    ],
+    "additional_review_pages": [
+      29,
+      38
+    ]
+  },
+  {
+    "id": 103,
+    "title": "Evaluation of WFP Livelihoods and Resilience Activities in Lebanon from 2016 to 2019",
+    "year": 2020,
+    "language": "English",
+    "commissioner": "Lebanon, Republic of (LB) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000128024/download/",
+    "sheet_row": 96,
+    "member": "wfp/pdfs/WFP/2020/evaluation_of_wfp_livelihoods_and_resilience_activities_in_lebanon_from_2016_to_2019_103.pdf",
+    "size": 861392,
+    "pages": 54,
+    "sha256": "bfe466403c3f0d9e7a279961a03bfa5d5dd825ea4c7be16b08dc8f1b5ee178d2",
+    "split": "validation",
+    "review_pages": [
+      3,
+      10,
+      24,
+      39,
+      53
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 538,
+    "title": "Evaluation of School Feeding Modalities Applied in Armenia",
+    "year": 2024,
+    "language": "English",
+    "commissioner": "Armenia, Republic of (AM) Head office (Country Office)",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000164067/download/",
+    "sheet_row": 298,
+    "member": "wfp/pdfs/WFP/2024/evaluation_of_school_feeding_modalities_applied_in_armenia_538.pdf",
+    "size": 1356637,
+    "pages": 65,
+    "sha256": "dfdbd6fc093db7b55db4fb28ab7999a051732a1d2c8c76342b5b4f69eae58d49",
+    "split": "validation",
+    "review_pages": [
+      4,
+      10,
+      28,
+      46,
+      64
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 176,
+    "title": "Evaluation of WFP’s capacity strengthening activities  to develop the  School Meals Programme from 2016 to 2018 in Tunisia",
+    "year": 2019,
+    "language": "French",
+    "commissioner": "Tunisia, Tunisian Republic (TN) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000108206/download/",
+    "sheet_row": 70,
+    "member": "wfp/pdfs/WFP/2019/evaluation_of_wfps_capacity_strengthening_activities_to_develop_the_school_meals_programme_from_2016_to_2018_in_tunisia_176.pdf",
+    "size": 1406817,
+    "pages": 105,
+    "sha256": "6184ae07c271727f1de3b1a5a49abf5b1ddc45e80d549c4f3e318482a9774f39",
+    "split": "validation",
+    "review_pages": [
+      3,
+      10,
+      24,
+      37,
+      51
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 128,
+    "title": "Evaluación Intermedia del Proyecto BOOST en las zonas de Nueva Segovia, Madriz, Estelí, Matagalpa,  Jinotega y la RACCN en Nicaragua, 2018-2021",
+    "year": 2022,
+    "language": "Spanish",
+    "commissioner": "Nicaragua, Republic of (NI) Head office",
+    "type": "Activity",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000138855/download/",
+    "sheet_row": 148,
+    "member": "wfp/pdfs/WFP/2022/evaluacion_intermedia_del_proyecto_boost_en_las_zonas_de_nueva_segovia_madriz_esteli_matagalpa_jinotega_y_la_raccn_en_nicaragua_20182021_128.pdf",
+    "size": 1998088,
+    "pages": 89,
+    "sha256": "7f47b57b17dc289dcfb03b732b9ef1a585133fade1d2598ac0ccbcdf0add74b0",
+    "split": "validation",
+    "review_pages": [
+      4,
+      11,
+      27,
+      44,
+      60
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 611,
+    "title": "Evaluation of Madagascar WFP Country Strategic Plan, 2019-2023",
+    "year": 2023,
+    "language": "French",
+    "commissioner": "Office of Evaluation",
+    "type": "Country Strategic Plan",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000154968/download/",
+    "sheet_row": 211,
+    "member": "wfp/pdfs/WFP/2023/evaluation_of_madagascar_wfp_country_strategic_plan_20192023_611.pdf",
+    "size": 3450594,
+    "pages": 87,
+    "sha256": "e2a30ddfa307a435ea31280cbffd368aa385fc81b7423a1f7c406813013c00bf",
+    "split": "test",
+    "review_pages": [
+      4,
+      23,
+      44,
+      65,
+      86
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 585,
+    "title": "Evaluación del plan estratégico para El Salvador (2017-2022)",
+    "year": 2021,
+    "language": "Spanish",
+    "commissioner": "Office of Evaluation",
+    "type": "Country Strategic Plan",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000136296/download/",
+    "sheet_row": 120,
+    "member": "wfp/pdfs/WFP/2021/evaluacin_del_plan_estratgico_para_el_salvador_20172022_585.pdf",
+    "size": 4482239,
+    "pages": 100,
+    "sha256": "c23600c6e818f92efbb51012d049c898a783f4ab3d4c5e7ae4add4bf1c077556",
+    "split": "test",
+    "review_pages": [
+      4,
+      27,
+      51,
+      75,
+      99
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 815,
+    "title": "Guatemala: School-based Programmes Impact Evaluation",
+    "year": 2025,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Pilot",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000166224/download/",
+    "sheet_row": 281,
+    "member": "wfp/pdfs/WFP/2025/guatemala_school_based_programmes_impact_evaluation_815.pdf",
+    "size": 1959264,
+    "pages": 42,
+    "sha256": "570125cb41632b34fa3bd3e52ddec7b390eb05437cbd5bbaefb48de407c1b4f5",
+    "split": "test",
+    "review_pages": [
+      2,
+      7,
+      16,
+      25,
+      34
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 1037,
+    "title": "Synthesis on WFP's engagement in UN humanitarian coordination",
+    "year": 2026,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Synthesis",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000173295/download/",
+    "sheet_row": 333,
+    "member": "wfp/pdfs/WFP/2026/synthesis_on_wfps_engagement_in_un_humanitarian_coordination_1037.pdf",
+    "size": 827018,
+    "pages": 48,
+    "sha256": "7f3b6b7ee38f0444fe336d4d7cb308a8506666a5de080cdabe5a8e581d7acff6",
+    "split": "test",
+    "review_pages": [
+      4,
+      6,
+      17,
+      29,
+      40
+    ],
+    "additional_review_pages": []
+  }
+]

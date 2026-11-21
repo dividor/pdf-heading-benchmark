@@ -1,0 +1,222 @@
+{
+  "documents": [
+    {
+      "report_id": 347,
+      "pages": 31,
+      "lines": 1515,
+      "predicted_groups": 69,
+      "extract_and_feature_seconds": 0.3110519159818068,
+      "predict_seconds": 0.0981772500090301,
+      "total_seconds": 0.41042849997757
+    },
+    {
+      "report_id": 534,
+      "pages": 32,
+      "lines": 1869,
+      "predicted_groups": 23,
+      "extract_and_feature_seconds": 0.34263275004923344,
+      "predict_seconds": 0.11373170797014609,
+      "total_seconds": 0.45860629103844985
+    },
+    {
+      "report_id": 584,
+      "pages": 30,
+      "lines": 2176,
+      "predicted_groups": 31,
+      "extract_and_feature_seconds": 0.28093766601523384,
+      "predict_seconds": 0.08178495900938287,
+      "total_seconds": 0.36358754098182544
+    },
+    {
+      "report_id": 425,
+      "pages": 38,
+      "lines": 1675,
+      "predicted_groups": 30,
+      "extract_and_feature_seconds": 0.29040133400121704,
+      "predict_seconds": 0.09335183299845085,
+      "total_seconds": 0.38453833397943527
+    },
+    {
+      "report_id": 443,
+      "pages": 49,
+      "lines": 3155,
+      "predicted_groups": 67,
+      "extract_and_feature_seconds": 0.8107956669991836,
+      "predict_seconds": 0.14397816598648205,
+      "total_seconds": 0.9583069999935105
+    },
+    {
+      "report_id": 44,
+      "pages": 50,
+      "lines": 2599,
+      "predicted_groups": 69,
+      "extract_and_feature_seconds": 0.5696259579854086,
+      "predict_seconds": 0.08612212497973815,
+      "total_seconds": 0.65683995798463
+    },
+    {
+      "report_id": 104,
+      "pages": 58,
+      "lines": 2494,
+      "predicted_groups": 81,
+      "extract_and_feature_seconds": 0.6130022910074331,
+      "predict_seconds": 0.12042308395029977,
+      "total_seconds": 0.7346205409849063
+    },
+    {
+      "report_id": 79,
+      "pages": 58,
+      "lines": 2750,
+      "predicted_groups": 62,
+      "extract_and_feature_seconds": 0.6673017079592682,
+      "predict_seconds": 0.10534175002248958,
+      "total_seconds": 0.7750934999785386
+    },
+    {
+      "report_id": 177,
+      "pages": 64,
+      "lines": 3435,
+      "predicted_groups": 60,
+      "extract_and_feature_seconds": 0.7972431249800138,
+      "predict_seconds": 0.1100960000185296,
+      "total_seconds": 0.908854125009384
+    },
+    {
+      "report_id": 35,
+      "pages": 64,
+      "lines": 3394,
+      "predicted_groups": 57,
+      "extract_and_feature_seconds": 0.7138507079798728,
+      "predict_seconds": 0.13283054204657674,
+      "total_seconds": 0.8481646659784019
+    },
+    {
+      "report_id": 448,
+      "pages": 62,
+      "lines": 3255,
+      "predicted_groups": 72,
+      "extract_and_feature_seconds": 0.7973683749441989,
+      "predict_seconds": 0.1350740000489168,
+      "total_seconds": 0.9367056249757297
+    },
+    {
+      "report_id": 857,
+      "pages": 78,
+      "lines": 3986,
+      "predicted_groups": 78,
+      "extract_and_feature_seconds": 1.0149930409970693,
+      "predict_seconds": 0.17130566702689976,
+      "total_seconds": 1.1884617080213502
+    },
+    {
+      "report_id": 37,
+      "pages": 53,
+      "lines": 2343,
+      "predicted_groups": 58,
+      "extract_and_feature_seconds": 0.5927950409823097,
+      "predict_seconds": 0.09439620899502188,
+      "total_seconds": 0.688284957956057
+    },
+    {
+      "report_id": 494,
+      "pages": 93,
+      "lines": 6441,
+      "predicted_groups": 65,
+      "extract_and_feature_seconds": 1.3822171249776147,
+      "predict_seconds": 0.22114379197591916,
+      "total_seconds": 1.606135916954372
+    },
+    {
+      "report_id": 340,
+      "pages": 96,
+      "lines": 5923,
+      "predicted_groups": 54,
+      "extract_and_feature_seconds": 1.179415125050582,
+      "predict_seconds": 0.23960945795988664,
+      "total_seconds": 1.4235992910107598
+    },
+    {
+      "report_id": 324,
+      "pages": 78,
+      "lines": 5459,
+      "predicted_groups": 56,
+      "extract_and_feature_seconds": 0.9402870409539901,
+      "predict_seconds": 0.1946223340346478,
+      "total_seconds": 1.1370179999503307
+    },
+    {
+      "report_id": 103,
+      "pages": 54,
+      "lines": 2222,
+      "predicted_groups": 37,
+      "extract_and_feature_seconds": 0.6198225000407547,
+      "predict_seconds": 0.10016574995825067,
+      "total_seconds": 0.720963791012764
+    },
+    {
+      "report_id": 538,
+      "pages": 65,
+      "lines": 3643,
+      "predicted_groups": 52,
+      "extract_and_feature_seconds": 0.932727999985218,
+      "predict_seconds": 0.15008074999786913,
+      "total_seconds": 1.0845046669710428
+    },
+    {
+      "report_id": 176,
+      "pages": 105,
+      "lines": 5713,
+      "predicted_groups": 60,
+      "extract_and_feature_seconds": 0.9770191250136122,
+      "predict_seconds": 0.1741027079988271,
+      "total_seconds": 1.153018333017826
+    },
+    {
+      "report_id": 128,
+      "pages": 89,
+      "lines": 5344,
+      "predicted_groups": 47,
+      "extract_and_feature_seconds": 1.1165907079703175,
+      "predict_seconds": 0.17895758303347975,
+      "total_seconds": 1.2975763329886831
+    },
+    {
+      "report_id": 611,
+      "pages": 87,
+      "lines": 4705,
+      "predicted_groups": 87,
+      "extract_and_feature_seconds": 1.3174748750170693,
+      "predict_seconds": 0.18818012496922165,
+      "total_seconds": 1.5092332920175977
+    },
+    {
+      "report_id": 585,
+      "pages": 100,
+      "lines": 6441,
+      "predicted_groups": 139,
+      "extract_and_feature_seconds": 1.2528237500227988,
+      "predict_seconds": 0.2070900839753449,
+      "total_seconds": 1.4643228750210255
+    },
+    {
+      "report_id": 815,
+      "pages": 42,
+      "lines": 1202,
+      "predicted_groups": 38,
+      "extract_and_feature_seconds": 0.4792203750112094,
+      "predict_seconds": 0.07071191602153704,
+      "total_seconds": 0.5518097080057487
+    },
+    {
+      "report_id": 1037,
+      "pages": 48,
+      "lines": 2502,
+      "predicted_groups": 48,
+      "extract_and_feature_seconds": 0.5237509169965051,
+      "predict_seconds": 0.09680595801910385,
+      "total_seconds": 0.6216456670081243
+    }
+  ],
+  "peak_rss_platform_units": 584613888,
+  "peak_rss_note": "Bytes on macOS, KiB on Linux; whole-process high water mark"
+}

@@ -1,0 +1,4093 @@
+[
+  {
+    "report_id": 347,
+    "level": 1,
+    "line_ids": [
+      "p003b002l00"
+    ],
+    "note": "Contents title; entries are not body headings",
+    "page": 3,
+    "text": "Table of contents",
+    "bboxes": [
+      [
+        244.85000610351562,
+        69.70198059082031,
+        353.5588073730469,
+        86.1568603515625
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 1,
+    "line_ids": [
+      "p006b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 6,
+    "text": "1. INTRODUCTION",
+    "bboxes": [
+      [
+        238.72999572753906,
+        72.03598022460938,
+        359.75799560546875,
+        85.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p006b006l00"
+    ],
+    "note": "Visual/text review",
+    "page": 6,
+    "text": "1.1 Operation Evaluations",
+    "bboxes": [
+      [
+        72.02400207519531,
+        256.0159606933594,
+        232.89801025390625,
+        269.62396240234375
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p006b018l00"
+    ],
+    "note": "Visual/text review",
+    "page": 6,
+    "text": "1.2 The 15 operations",
+    "bboxes": [
+      [
+        72.02400207519531,
+        645.2259521484375,
+        204.697998046875,
+        658.833984375
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 1,
+    "line_ids": [
+      "p013b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "3. PARTNERSHIPS FOR RESULTS",
+    "bboxes": [
+      [
+        191.5399932861328,
+        78.03598022460938,
+        406.7980041503906,
+        91.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p013b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "3.1 Working in partnership",
+    "bboxes": [
+      [
+        72.02400207519531,
+        103.73599243164062,
+        245.4980010986328,
+        117.34398651123047
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p013b006l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "3.2 Results",
+    "bboxes": [
+      [
+        72.02400207519531,
+        316.5259704589844,
+        142.86801147460938,
+        330.13397216796875
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 3,
+    "line_ids": [
+      "p013b008l00"
+    ],
+    "note": "Roman subpart of 3.2",
+    "page": 13,
+    "text": "3.2. i Monitoring systems",
+    "bboxes": [
+      [
+        72.02400207519531,
+        402.8059997558594,
+        230.85800170898438,
+        416.41400146484375
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 4,
+    "line_ids": [
+      "p013b009l00"
+    ],
+    "note": "Subheading within 3.2.i",
+    "page": 13,
+    "text": "Ongoing improvements in monitoring systems",
+    "bboxes": [
+      [
+        72.02400207519531,
+        422.3659973144531,
+        366.8380126953125,
+        435.9739990234375
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 4,
+    "line_ids": [
+      "p013b013l00"
+    ],
+    "note": "Subheading within 3.2.i",
+    "page": 13,
+    "text": "Continued weaknesses in outcome data",
+    "bboxes": [
+      [
+        72.02400207519531,
+        584.385986328125,
+        321.06201171875,
+        597.9940185546875
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 4,
+    "line_ids": [
+      "p021b002l00"
+    ],
+    "note": "Under Brokering Solutions within 3.3",
+    "page": 21,
+    "text": "Evidence generation/knowledge transfer",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.03598022460938,
+        332.01800537109375,
+        85.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 4,
+    "line_ids": [
+      "p021b014l00"
+    ],
+    "note": "Under Brokering Solutions within 3.3",
+    "page": 21,
+    "text": "Testing innovations",
+    "bboxes": [
+      [
+        72.02400207519531,
+        495.94598388671875,
+        200.10800170898438,
+        509.5539855957031
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 4,
+    "line_ids": [
+      "p021b020l00"
+    ],
+    "note": "Under Brokering Solutions within 3.3",
+    "page": 21,
+    "text": "Convening power in partnerships",
+    "bboxes": [
+      [
+        72.02400207519531,
+        679.575927734375,
+        285.5780029296875,
+        693.1839599609375
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p011b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "2.2 Using evidence",
+    "bboxes": [
+      [
+        72.02400207519531,
+        174.29598999023438,
+        190.0279998779297,
+        187.90399169921875
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 3,
+    "line_ids": [
+      "p011b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "Increasingly evidence-based designs",
+    "bboxes": [
+      [
+        72.02400207519531,
+        193.97598266601562,
+        304.2980041503906,
+        207.583984375
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p011b010l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "2.3 Responding to needs",
+    "bboxes": [
+      [
+        72.02400207519531,
+        409.4059753417969,
+        225.4580078125,
+        423.01397705078125
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 3,
+    "line_ids": [
+      "p011b011l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "Appropriate ambition levels:",
+    "bboxes": [
+      [
+        72.02400207519531,
+        429.08599853515625,
+        255.81800842285156,
+        442.6940002441406
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 3,
+    "line_ids": [
+      "p011b017l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "More relevant activities",
+    "bboxes": [
+      [
+        72.02400207519531,
+        652.81591796875,
+        224.73800659179688,
+        666.4239501953125
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 1,
+    "line_ids": [
+      "p023b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "4. EXPLANATORY FACTORS",
+    "bboxes": [
+      [
+        208.3699951171875,
+        81.03598022460938,
+        390.1180114746094,
+        94.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p023b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "4.1 External factors",
+    "bboxes": [
+      [
+        72.02400207519531,
+        106.73599243164062,
+        194.947998046875,
+        120.34398651123047
+      ]
+    ]
+  },
+  {
+    "report_id": 347,
+    "level": 2,
+    "line_ids": [
+      "p023b009l00"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "4.2 Internal factors",
+    "bboxes": [
+      [
+        72.02400207519531,
+        501.2259826660156,
+        197.58799743652344,
+        514.833984375
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 1,
+    "line_ids": [
+      "p002b008l00"
+    ],
+    "note": "Visual/text review",
+    "page": 2,
+    "text": "Draft decision*",
+    "bboxes": [
+      [
+        72.02400207519531,
+        503.001953125,
+        165.739990234375,
+        518.7099609375
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 1,
+    "line_ids": [
+      "p003b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Introduction",
+    "bboxes": [
+      [
+        72.02400207519531,
+        74.052001953125,
+        150.97999572753906,
+        89.76000213623047
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 2,
+    "line_ids": [
+      "p003b006l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Context",
+    "bboxes": [
+      [
+        72.02400207519531,
+        291.4427185058594,
+        114.089599609375,
+        304.4803771972656
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 3,
+    "line_ids": [
+      "p012b007l00"
+    ],
+    "note": "Under findings question on preceding page",
+    "page": 12,
+    "text": "Supporting factors",
+    "bboxes": [
+      [
+        72.02400207519531,
+        383.24273681640625,
+        162.44960021972656,
+        396.2803955078125
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 1,
+    "line_ids": [
+      "p007b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "Findings",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.011962890625,
+        125.18000030517578,
+        87.71996307373047
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 2,
+    "line_ids": [
+      "p007b003l00",
+      "p007b003l01"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "What common themes and systemic issues arise in policy evaluations regarding policy formulation and implementation?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        94.37271881103516,
+        525.174560546875,
+        107.41035461425781
+      ],
+      [
+        72.02400207519531,
+        108.0527114868164,
+        276.839599609375,
+        121.09034729003906
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 3,
+    "line_ids": [
+      "p007b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "Policy initiation, designation and classification",
+    "bboxes": [
+      [
+        72.02400207519531,
+        221.33273315429688,
+        295.4396057128906,
+        234.37037658691406
+      ]
+    ]
+  },
+  {
+    "report_id": 534,
+    "level": 2,
+    "line_ids": [
+      "p011b008l00",
+      "p011b008l01"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "What factors have supported or constrained effective policymaking and policy implementation?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        388.042724609375,
+        525.254150390625,
+        401.08038330078125
+      ],
+      [
+        72.02400207519531,
+        401.72271728515625,
+        160.40960693359375,
+        414.7603759765625
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 1,
+    "line_ids": [
+      "p004b001l01"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Introduction",
+    "bboxes": [
+      [
+        72.0,
+        72.011962890625,
+        150.9199981689453,
+        87.71996307373047
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 2,
+    "line_ids": [
+      "p004b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Synthesis features",
+    "bboxes": [
+      [
+        72.0,
+        94.28861999511719,
+        166.96519470214844,
+        107.40480041503906
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 2,
+    "line_ids": [
+      "p004b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Context of the synthesis",
+    "bboxes": [
+      [
+        72.0,
+        221.2686004638672,
+        195.88519287109375,
+        234.38478088378906
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 3,
+    "line_ids": [
+      "p015b001l01"
+    ],
+    "note": "Subsection under synthesis question 4",
+    "page": 15,
+    "text": "Additional external factors",
+    "bboxes": [
+      [
+        72.0,
+        71.96861267089844,
+        201.9451904296875,
+        85.08479309082031
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 2,
+    "line_ids": [
+      "p015b007l00"
+    ],
+    "note": "Box labels excluded from section hierarchy",
+    "page": 15,
+    "text": "Synthesis question 5: Sustainability of country capacity strengthening interventions",
+    "bboxes": [
+      [
+        72.0,
+        230.56858825683594,
+        493.4051818847656,
+        243.6847686767578
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 2,
+    "line_ids": [
+      "p013b001l01",
+      "p013b001l02"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "Synthesis questions 3 and 4: Factors contributing to or hindering country capacity strengthening success",
+    "bboxes": [
+      [
+        72.0,
+        71.96861267089844,
+        525.9595947265625,
+        85.08479309082031
+      ],
+      [
+        72.0,
+        85.58860778808594,
+        188.1451873779297,
+        98.70478820800781
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 3,
+    "line_ids": [
+      "p013b010l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "Ownership, partnerships and trust",
+    "bboxes": [
+      [
+        72.0,
+        579.6686401367188,
+        237.4051971435547,
+        592.7847900390625
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 3,
+    "line_ids": [
+      "p018b002l00"
+    ],
+    "note": "Under Conclusions",
+    "page": 18,
+    "text": "Individual domain",
+    "bboxes": [
+      [
+        72.0,
+        132.46861267089844,
+        160.1251983642578,
+        145.5847930908203
+      ]
+    ]
+  },
+  {
+    "report_id": 584,
+    "level": 2,
+    "line_ids": [
+      "p018b006l00"
+    ],
+    "note": "Under Conclusions",
+    "page": 18,
+    "text": "Key lessons for the future",
+    "bboxes": [
+      [
+        72.0,
+        347.0885925292969,
+        203.08518981933594,
+        360.20477294921875
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 1,
+    "line_ids": [
+      "p003b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        243.77000427246094,
+        72.03598022460938,
+        354.718017578125,
+        85.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 1,
+    "line_ids": [
+      "p007b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "Introduction",
+    "bboxes": [
+      [
+        257.80999755859375,
+        72.03598022460938,
+        340.5580139160156,
+        85.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 2,
+    "line_ids": [
+      "p007b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "1.1 Background",
+    "bboxes": [
+      [
+        72.02400207519531,
+        97.73599243164062,
+        169.14801025390625,
+        111.34398651123047
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 2,
+    "line_ids": [
+      "p017b004l00"
+    ],
+    "note": "Page 36 title is a table caption",
+    "page": 17,
+    "text": "3.5 Gender impacts",
+    "bboxes": [
+      [
+        72.02400207519531,
+        220.37600708007812,
+        194.46800231933594,
+        233.9840087890625
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 2,
+    "line_ids": [
+      "p008b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 8,
+    "text": "1.2 Objectives and methodology of the synthesis",
+    "bboxes": [
+      [
+        72.02400207519531,
+        540.10595703125,
+        368.1579895019531,
+        553.7139892578125
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 1,
+    "line_ids": [
+      "p013b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "3. Findings and results",
+    "bboxes": [
+      [
+        227.4499969482422,
+        72.03598022460938,
+        371.0379943847656,
+        85.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 2,
+    "line_ids": [
+      "p013b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "3.1 Highlights",
+    "bboxes": [
+      [
+        72.02400207519531,
+        97.73599243164062,
+        159.8719940185547,
+        111.34398651123047
+      ]
+    ]
+  },
+  {
+    "report_id": 425,
+    "level": 2,
+    "line_ids": [
+      "p013b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "3.2 Targeting and uptake",
+    "bboxes": [
+      [
+        72.02400207519531,
+        450.56597900390625,
+        228.4580078125,
+        464.1739807128906
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 1,
+    "line_ids": [
+      "p003b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        70.94400024414062,
+        57.05998229980469,
+        175.55599975585938,
+        70.43997955322266
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 1,
+    "line_ids": [
+      "p010b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1 Introduction",
+    "bboxes": [
+      [
+        70.94400024414062,
+        69.0137710571289,
+        178.04312133789062,
+        84.66837310791016
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 2,
+    "line_ids": [
+      "p010b025l00",
+      "p010b025l01"
+    ],
+    "note": "Separate number and title fragments",
+    "page": 10,
+    "text": "1.1 Overview of the evaluation subject",
+    "bboxes": [
+      [
+        78.02400207519531,
+        711.5487670898438,
+        96.33312225341797,
+        723.8583984375
+      ],
+      [
+        106.81999969482422,
+        711.5487670898438,
+        290.8791198730469,
+        723.8583984375
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 4,
+    "line_ids": [
+      "p023b006l00"
+    ],
+    "note": "Visible number 2.1.1.3; number missing from extracted text",
+    "page": 23,
+    "text": "Gender & equity and protection",
+    "bboxes": [
+      [
+        104.54000091552734,
+        138.9488067626953,
+        274.4391174316406,
+        151.25840759277344
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 3,
+    "line_ids": [
+      "p023b014l00"
+    ],
+    "note": "Box repeats question; not a new subsection",
+    "page": 23,
+    "text": "2.1.2 EQ2: Coherence",
+    "bboxes": [
+      [
+        70.94400024414062,
+        486.7587585449219,
+        195.59912109375,
+        499.068359375
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 3,
+    "line_ids": [
+      "p036b008l00"
+    ],
+    "note": "Visual/text review",
+    "page": 36,
+    "text": "2.2.3 EQ5: Additional effects",
+    "bboxes": [
+      [
+        70.94400024414062,
+        409.93878173828125,
+        231.11912536621094,
+        422.2483825683594
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 4,
+    "line_ids": [
+      "p036b011l00"
+    ],
+    "note": "Visible number 2.2.3.1; number missing from extracted text",
+    "page": 36,
+    "text": "Social cohesion",
+    "bboxes": [
+      [
+        104.54000091552734,
+        678.0687866210938,
+        193.7991180419922,
+        690.37841796875
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 3,
+    "line_ids": [
+      "p049b003l00",
+      "p049b003l01"
+    ],
+    "note": "Standalone recommendation title above its table",
+    "page": 49,
+    "text": "Recommendation 6: Develop an area-based approach for school feeding to link with local economic opportunities and support women economic empowerment.",
+    "bboxes": [
+      [
+        70.94400024414062,
+        56.9687614440918,
+        527.4838256835938,
+        69.27835845947266
+      ],
+      [
+        70.94400024414062,
+        69.68879699707031,
+        469.4891357421875,
+        81.9983901977539
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 3,
+    "line_ids": [
+      "p049b009l00"
+    ],
+    "note": "Standalone recommendation title above its table",
+    "page": 49,
+    "text": "Recommendation 7: Revise the ToC",
+    "bboxes": [
+      [
+        70.94400024414062,
+        472.3587646484375,
+        264.839111328125,
+        484.6683654785156
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 4,
+    "line_ids": [
+      "p035b004l00"
+    ],
+    "note": "Visible number 2.2.2.1; number omitted by PDF extractor",
+    "page": 35,
+    "text": "Reaching most vulnerable households",
+    "bboxes": [
+      [
+        104.54000091552734,
+        56.9687614440918,
+        311.7591247558594,
+        69.27835845947266
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 4,
+    "line_ids": [
+      "p035b012l00"
+    ],
+    "note": "Visible number 2.2.2.2",
+    "page": 35,
+    "text": "Ability to cope with crises and emergencies",
+    "bboxes": [
+      [
+        104.54000091552734,
+        422.65875244140625,
+        338.65911865234375,
+        434.9683532714844
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 4,
+    "line_ids": [
+      "p035b018l00"
+    ],
+    "note": "Visible number 2.2.2.3",
+    "page": 35,
+    "text": "Inducing economic activity and women’s economic empowerment",
+    "bboxes": [
+      [
+        104.54000091552734,
+        668.3487548828125,
+        456.16912841796875,
+        680.6583862304688
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 2,
+    "line_ids": [
+      "p039b004l00",
+      "p039b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 39,
+    "text": "2.3 Area 3 – Creation of sustainable system for school feeding",
+    "bboxes": [
+      [
+        78.02400207519531,
+        94.30879211425781,
+        96.33312225341797,
+        106.6183853149414
+      ],
+      [
+        106.81999969482422,
+        94.30879211425781,
+        416.89910888671875,
+        106.6183853149414
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 3,
+    "line_ids": [
+      "p039b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 39,
+    "text": "2.3.1 EQ6: Sustainability and connectedness",
+    "bboxes": [
+      [
+        70.94400024414062,
+        119.02876281738281,
+        316.0791320800781,
+        131.33836364746094
+      ]
+    ]
+  },
+  {
+    "report_id": 443,
+    "level": 4,
+    "line_ids": [
+      "p039b008l00"
+    ],
+    "note": "Visible number 2.3.1.1",
+    "page": 39,
+    "text": "Action plan for transitioning to a nationally owned programme",
+    "bboxes": [
+      [
+        104.54000091552734,
+        610.23876953125,
+        435.859130859375,
+        622.5484008789062
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 1,
+    "line_ids": [
+      "p003b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "TABLE OF CONTENTS",
+    "bboxes": [
+      [
+        217.1300048828125,
+        97.73599243164062,
+        358.9179992675781,
+        111.34398651123047
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 1,
+    "line_ids": [
+      "p010b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1. INTRODUCTION",
+    "bboxes": [
+      [
+        236.08999633789062,
+        90.05599975585938,
+        362.27801513671875,
+        103.66399383544922
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 2,
+    "line_ids": [
+      "p010b004l00",
+      "p010b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1.1 Overview of the evaluation subject",
+    "bboxes": [
+      [
+        72.02400207519531,
+        170.09597778320312,
+        91.08000183105469,
+        183.7039794921875
+      ],
+      [
+        100.94000244140625,
+        170.09597778320312,
+        315.718017578125,
+        183.7039794921875
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 3,
+    "line_ids": [
+      "p023b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "2.1.4 Sub-EQ 1.4: Engagement in alternative income sources",
+    "bboxes": [
+      [
+        72.02400207519531,
+        267.3259582519531,
+        450.38800048828125,
+        280.9339599609375
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 4,
+    "line_ids": [
+      "p036b004l00"
+    ],
+    "note": "Under 2.3.3; italic underlined subsection",
+    "page": 36,
+    "text": "Livestock losses",
+    "bboxes": [
+      [
+        72.02400207519531,
+        206.81600952148438,
+        159.39199829101562,
+        220.42401123046875
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 3,
+    "line_ids": [
+      "p049b002l00"
+    ],
+    "note": "Under 3.2 then Operational Recommendations",
+    "page": 49,
+    "text": "R7: Foster the use of registered mobile money accounts",
+    "bboxes": [
+      [
+        127.45999908447266,
+        75.53598022460938,
+        471.02801513671875,
+        89.14397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 3,
+    "line_ids": [
+      "p015b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "1.3.1 Impact evaluation questions and evaluation criteria",
+    "bboxes": [
+      [
+        72.02400207519531,
+        111.29598999023438,
+        429.26800537109375,
+        124.90398406982422
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 3,
+    "line_ids": [
+      "p015b014l00"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "1.3.2 Mixed-methods methodology",
+    "bboxes": [
+      [
+        72.02400207519531,
+        578.6559448242188,
+        290.8580017089844,
+        592.2639770507812
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 4,
+    "line_ids": [
+      "p015b015l00"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "1.3.2.1 Quantitative methodology",
+    "bboxes": [
+      [
+        72.02400207519531,
+        604.2159423828125,
+        278.9779968261719,
+        617.823974609375
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 3,
+    "line_ids": [
+      "p034b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 34,
+    "text": "2.3.1 Sub-EQ 3.1: Planned use of SIIPE payouts",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.05599975585938,
+        368.87799072265625,
+        85.66399383544922
+      ]
+    ]
+  },
+  {
+    "report_id": 44,
+    "level": 3,
+    "line_ids": [
+      "p034b009l00"
+    ],
+    "note": "Visual/text review",
+    "page": 34,
+    "text": "2.3.2 Sub-EQ 3.2: Investments in livestock-care",
+    "bboxes": [
+      [
+        72.02400207519531,
+        603.85595703125,
+        367.5580139160156,
+        617.4639892578125
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 1,
+    "line_ids": [
+      "p003b000l01"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        261.6499938964844,
+        71.91598510742188,
+        372.5979919433594,
+        85.52397918701172
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 1,
+    "line_ids": [
+      "p017b002l00",
+      "p017b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "1 Introduction",
+    "bboxes": [
+      [
+        72.02400207519531,
+        87.89596557617188,
+        81.23999786376953,
+        101.50395965576172
+      ],
+      [
+        108.0199966430664,
+        87.89596557617188,
+        190.7480010986328,
+        101.50395965576172
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p031b002l00"
+    ],
+    "note": "Under 2.2.1 Capacity building results",
+    "page": 31,
+    "text": "To increase skills and knowledge of school administrators",
+    "bboxes": [
+      [
+        72.02400207519531,
+        71.91598510742188,
+        438.9580078125,
+        85.52397918701172
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p031b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 31,
+    "text": "To increase skills and knowledge of teachers",
+    "bboxes": [
+      [
+        72.02400207519531,
+        162.77597045898438,
+        353.27801513671875,
+        176.38397216796875
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p031b007l00",
+      "p031b007l01"
+    ],
+    "note": "Visual/text review",
+    "page": 31,
+    "text": "To increase knowledge and use of health and dietary practices (safe food preparation and storage)",
+    "bboxes": [
+      [
+        72.02400207519531,
+        503.3860168457031,
+        549.5479125976562,
+        516.9940185546875
+      ],
+      [
+        72.02400207519531,
+        517.06591796875,
+        237.93800354003906,
+        530.6739501953125
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p058b004l00",
+      "p058b004l01"
+    ],
+    "note": "Under 3.2 then Operational Recommendations",
+    "page": 58,
+    "text": "RECOMMENDATION 8: The CO, with support from the RB as necessary, and in consultation with the MoE, should strengthen monitoring in the field.",
+    "bboxes": [
+      [
+        72.02400207519531,
+        171.77597045898438,
+        549.7098999023438,
+        185.38397216796875
+      ],
+      [
+        72.02400207519531,
+        185.33596801757812,
+        519.6279907226562,
+        198.9439697265625
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p058b013l00",
+      "p058b013l01",
+      "p058b013l02"
+    ],
+    "note": "Visual/text review",
+    "page": 58,
+    "text": "RECOMMENDATION 9: The CO, with support from the RB as necessary, and in consultation with the MoE, should take steps to improve the provision of the in-school meal.",
+    "bboxes": [
+      [
+        72.02400207519531,
+        529.4259643554688,
+        549.637939453125,
+        543.0339965820312
+      ],
+      [
+        72.02400207519531,
+        542.9859619140625,
+        549.6979370117188,
+        556.593994140625
+      ],
+      [
+        72.02400207519531,
+        556.6659545898438,
+        192.30799865722656,
+        570.2739868164062
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 2,
+    "line_ids": [
+      "p030b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 30,
+    "text": "2.2 Evaluation Question 2: How effective is the operation?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        71.91598510742188,
+        441.718017578125,
+        85.52397918701172
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 3,
+    "line_ids": [
+      "p030b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 30,
+    "text": "2.2.1 Capacity building results",
+    "bboxes": [
+      [
+        72.02400207519531,
+        218.69601440429688,
+        264.218017578125,
+        232.30401611328125
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p030b006l00",
+      "p030b006l01"
+    ],
+    "note": "Visual/text review",
+    "page": 30,
+    "text": "To increase capacity of government institutions & improve the policy and regulatory framework",
+    "bboxes": [
+      [
+        72.02400207519531,
+        292.8859558105469,
+        549.8499145507812,
+        306.49395751953125
+      ],
+      [
+        72.02400207519531,
+        306.4460144042969,
+        217.05799865722656,
+        320.05401611328125
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 3,
+    "line_ids": [
+      "p057b005l00"
+    ],
+    "note": "Operational is under 3.2; timing bullet is metadata",
+    "page": 57,
+    "text": "Operational Recommendations",
+    "bboxes": [
+      [
+        72.02400207519531,
+        227.33596801757812,
+        271.1780090332031,
+        240.9439697265625
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p057b006l00",
+      "p057b006l01",
+      "p057b006l02"
+    ],
+    "note": "Under Operational Recommendations",
+    "page": 57,
+    "text": "RECOMMENDATION 5: The CO to consider expansion of the GTHR to all primary school grades in areas where there is a high gender disparity in primary school enrolment.",
+    "bboxes": [
+      [
+        72.02400207519531,
+        249.05599975585938,
+        549.6978759765625,
+        262.66400146484375
+      ],
+      [
+        72.02400207519531,
+        262.6159973144531,
+        549.9099731445312,
+        276.2239990234375
+      ],
+      [
+        72.02400207519531,
+        276.3259582519531,
+        244.17800903320312,
+        289.9339599609375
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p057b008l00",
+      "p057b008l01",
+      "p057b008l02",
+      "p057b008l03"
+    ],
+    "note": "Under Operational Recommendations",
+    "page": 57,
+    "text": "RECOMMENDATION 6: The RB must provide ongoing support to the CO to develop a more transparent and gender responsive M&E system and ensure that monitoring and evaluation activities are appropriate, systematic and as per donor agreements.",
+    "bboxes": [
+      [
+        72.02400207519531,
+        389.7259826660156,
+        549.73388671875,
+        403.333984375
+      ],
+      [
+        72.02400207519531,
+        403.4059753417969,
+        549.8740234375,
+        417.01397705078125
+      ],
+      [
+        72.02400207519531,
+        417.08599853515625,
+        549.9759521484375,
+        430.6940002441406
+      ],
+      [
+        72.02400207519531,
+        430.64599609375,
+        216.21800231933594,
+        444.2539978027344
+      ]
+    ]
+  },
+  {
+    "report_id": 104,
+    "level": 4,
+    "line_ids": [
+      "p057b013l00",
+      "p057b013l01",
+      "p057b013l02"
+    ],
+    "note": "Under Operational Recommendations",
+    "page": 57,
+    "text": "RECOMMENDATION 7: The CO should consider increasing the coverage of the programme within counties to improve multiple efficiencies including capacity building.",
+    "bboxes": [
+      [
+        72.02400207519531,
+        620.385986328125,
+        549.885986328125,
+        633.9940185546875
+      ],
+      [
+        72.02400207519531,
+        634.06591796875,
+        549.8619995117188,
+        647.6739501953125
+      ],
+      [
+        72.02400207519531,
+        647.7459716796875,
+        184.23199462890625,
+        661.35400390625
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 1,
+    "line_ids": [
+      "p003b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        249.52999877929688,
+        71.958251953125,
+        348.7803955078125,
+        86.40960693359375
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 1,
+    "line_ids": [
+      "p009b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 9,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        257.0899963378906,
+        72.15274810791016,
+        340.8196105957031,
+        85.19038391113281
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 3,
+    "line_ids": [
+      "p055b023l00"
+    ],
+    "note": "Standalone recommendation; inline bold lead-ins excluded",
+    "page": 55,
+    "text": "Recommendation 8: Knowledge sharing",
+    "bboxes": [
+      [
+        72.02400207519531,
+        437.7227478027344,
+        271.6795959472656,
+        450.7604064941406
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 1,
+    "line_ids": [
+      "p015b002l00",
+      "p015b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "2. Evaluation Findings",
+    "bboxes": [
+      [
+        234.77000427246094,
+        72.15274810791016,
+        246.05886840820312,
+        85.19038391113281
+      ],
+      [
+        263.0899963378906,
+        72.15274810791016,
+        363.13958740234375,
+        85.19038391113281
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 2,
+    "line_ids": [
+      "p015b005l00",
+      "p015b006l00"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "2.1 Evaluation Question 1: Is the design of the GFA activity relevant to the context and contributing to a larger social safety net environment?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        131.45272827148438,
+        502.69439697265625,
+        144.49037170410156
+      ],
+      [
+        72.02400207519531,
+        147.17276000976562,
+        347.53961181640625,
+        160.2104034423828
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 3,
+    "line_ids": [
+      "p015b007l00",
+      "p015b007l01"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "2.1.1 Targeting, transfer value and modality choice",
+    "bboxes": [
+      [
+        72.02400207519531,
+        168.77273559570312,
+        97.59288024902344,
+        181.8103790283203
+      ],
+      [
+        108.0199966430664,
+        168.77273559570312,
+        337.6995849609375,
+        181.8103790283203
+      ]
+    ]
+  },
+  {
+    "report_id": 79,
+    "level": 3,
+    "line_ids": [
+      "p036b014l00"
+    ],
+    "note": "Visual/text review",
+    "page": 36,
+    "text": "2.3.2 Internal and external factors affecting results",
+    "bboxes": [
+      [
+        72.02400207519531,
+        403.8827209472656,
+        331.3196105957031,
+        416.9203796386719
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 1,
+    "line_ids": [
+      "p003b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        225.77000427246094,
+        80.42467498779297,
+        373.60382080078125,
+        98.5233154296875
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 1,
+    "line_ids": [
+      "p010b002l00",
+      "p010b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1 Introduction",
+    "bboxes": [
+      [
+        236.4499969482422,
+        76.47598266601562,
+        245.66600036621094,
+        90.08397674560547
+      ],
+      [
+        279.04998779296875,
+        76.47598266601562,
+        361.7980041503906,
+        90.08397674560547
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 2,
+    "line_ids": [
+      "p010b011l00",
+      "p010b011l01"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1.1 Overview of the Evaluation Subject",
+    "bboxes": [
+      [
+        56.63999938964844,
+        510.2259826660156,
+        75.72000122070312,
+        523.833984375
+      ],
+      [
+        99.26399993896484,
+        510.2259826660156,
+        317.4980163574219,
+        523.833984375
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 2,
+    "line_ids": [
+      "p027b004l00",
+      "p027b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 27,
+    "text": "2.2 Effectiveness",
+    "bboxes": [
+      [
+        56.63999938964844,
+        438.56597900390625,
+        78.95999908447266,
+        452.1739807128906
+      ],
+      [
+        99.26399993896484,
+        438.56597900390625,
+        183.7880096435547,
+        452.1739807128906
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 3,
+    "line_ids": [
+      "p027b005l00",
+      "p027b005l01"
+    ],
+    "note": "Visual/text review",
+    "page": 27,
+    "text": "2.2.1 What Has Been the Performance in Terms of Targeting and Coverage?",
+    "bboxes": [
+      [
+        56.63999938964844,
+        462.2259826660156,
+        88.79999542236328,
+        475.833984375
+      ],
+      [
+        99.26399993896484,
+        462.2259826660156,
+        533.66796875,
+        475.833984375
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 4,
+    "line_ids": [
+      "p027b006l00"
+    ],
+    "note": "Underlined subsection; box title excluded",
+    "page": 27,
+    "text": "Scale of Coverage",
+    "bboxes": [
+      [
+        56.63999938964844,
+        485.8659973144531,
+        151.95199584960938,
+        499.4739990234375
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 1,
+    "line_ids": [
+      "p017b002l00",
+      "p017b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "2 Evaluation Findings",
+    "bboxes": [
+      [
+        214.25,
+        62.436004638671875,
+        225.14599609375,
+        76.04399871826172
+      ],
+      [
+        256.8500061035156,
+        62.436004638671875,
+        383.9980163574219,
+        76.04399871826172
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 2,
+    "line_ids": [
+      "p017b004l00",
+      "p017b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "2.1 Relevance",
+    "bboxes": [
+      [
+        56.63999938964844,
+        138.89596557617188,
+        77.27999877929688,
+        152.50396728515625
+      ],
+      [
+        99.26399993896484,
+        138.89596557617188,
+        165.18800354003906,
+        152.50396728515625
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 3,
+    "line_ids": [
+      "p017b005l00",
+      "p017b005l01"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "2.1.1 Is the ESSN Relevant to the Needs of Refugees in Turkey?",
+    "bboxes": [
+      [
+        56.63999938964844,
+        162.53598022460938,
+        87.1199951171875,
+        176.14398193359375
+      ],
+      [
+        99.26399993896484,
+        162.53598022460938,
+        454.197998046875,
+        176.14398193359375
+      ]
+    ]
+  },
+  {
+    "report_id": 177,
+    "level": 1,
+    "line_ids": [
+      "p063b002l00"
+    ],
+    "note": "Other lines are an index of annexes in another volume",
+    "page": 63,
+    "text": "Annexes (in Volume II)",
+    "bboxes": [
+      [
+        225.77000427246094,
+        62.436004638671875,
+        372.5979919433594,
+        76.04399871826172
+      ]
+    ]
+  },
+  {
+    "report_id": 35,
+    "level": 1,
+    "line_ids": [
+      "p003b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        234.77000427246094,
+        90.34529113769531,
+        364.2361755371094,
+        106.26664733886719
+      ]
+    ]
+  },
+  {
+    "report_id": 35,
+    "level": 1,
+    "line_ids": [
+      "p013b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        236.2100067138672,
+        56.48530578613281,
+        337.4761657714844,
+        72.40666198730469
+      ]
+    ]
+  },
+  {
+    "report_id": 35,
+    "level": 2,
+    "line_ids": [
+      "p013b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 13,
+    "text": "1.1. Overview of the Evaluation Subject",
+    "bboxes": [
+      [
+        56.63999938964844,
+        78.03598022460938,
+        296.4980163574219,
+        91.64397430419922
+      ]
+    ]
+  },
+  {
+    "report_id": 35,
+    "level": 3,
+    "line_ids": [
+      "p030b008l00"
+    ],
+    "note": "Under 2.3 Effectiveness",
+    "page": 30,
+    "text": "Actual beneficiaries",
+    "bboxes": [
+      [
+        56.63999938964844,
+        405.6062927246094,
+        171.90415954589844,
+        418.12567138671875
+      ]
+    ]
+  },
+  {
+    "report_id": 35,
+    "level": 2,
+    "line_ids": [
+      "p015b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 15,
+    "text": "1.3. The nutrition components of the PRRO 200301",
+    "bboxes": [
+      [
+        56.63999938964844,
+        355.0459899902344,
+        371.1579895019531,
+        368.65399169921875
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 1,
+    "line_ids": [
+      "p004b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Contents",
+    "bboxes": [
+      [
+        93.60000610351562,
+        67.75157928466797,
+        205.35455322265625,
+        98.37503814697266
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 1,
+    "line_ids": [
+      "p004b021l01"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Lists of figures, boxes and tables",
+    "bboxes": [
+      [
+        93.60000610351562,
+        460.8715515136719,
+        480.80255126953125,
+        491.4950256347656
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 1,
+    "line_ids": [
+      "p011b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        93.60000610351562,
+        67.75157928466797,
+        280.21466064453125,
+        98.37503814697266
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 2,
+    "line_ids": [
+      "p011b002l00",
+      "p011b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "1.1. EVALUATION FEATURES",
+    "bboxes": [
+      [
+        93.60000610351562,
+        115.29771423339844,
+        114.46916198730469,
+        129.384521484375
+      ],
+      [
+        127.44000244140625,
+        115.29771423339844,
+        252.4027099609375,
+        129.384521484375
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 2,
+    "line_ids": [
+      "p028b004l00",
+      "p028b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2.2. RESULTS OF WFP’S ACTIVITY PORTFOLIO IN AGRICULTURE",
+    "bboxes": [
+      [
+        93.60000610351562,
+        182.37771606445312,
+        114.46916198730469,
+        196.4645233154297
+      ],
+      [
+        127.44000244140625,
+        182.37771606445312,
+        428.0797424316406,
+        196.4645233154297
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 3,
+    "line_ids": [
+      "p028b006l00",
+      "p028b006l01"
+    ],
+    "note": "Sub-question; following boxed finding excluded",
+    "page": 28,
+    "text": "Sub-question 2.1: What results for agriculture, food and nutrition security did WFP’s programme response deliver or contribute to in Bhutan?",
+    "bboxes": [
+      [
+        93.60000610351562,
+        305.38189697265625,
+        516.3067626953125,
+        316.86566162109375
+      ],
+      [
+        93.60000610351562,
+        316.90185546875,
+        233.6669921875,
+        328.3856201171875
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 4,
+    "line_ids": [
+      "p028b008l00"
+    ],
+    "note": "Under sub-question 2.1",
+    "page": 28,
+    "text": "Farmer-school linkages",
+    "bboxes": [
+      [
+        135.47999572753906,
+        397.0618896484375,
+        230.34954833984375,
+        408.545654296875
+      ]
+    ]
+  },
+  {
+    "report_id": 448,
+    "level": 2,
+    "line_ids": [
+      "p044b014l00",
+      "p044b014l01"
+    ],
+    "note": "Visual/text review",
+    "page": 44,
+    "text": "2.5. SUSTAINABILITY OF WFP’S EMERGING AGRICULTURE PORTFOLIO",
+    "bboxes": [
+      [
+        93.60000610351562,
+        558.0977172851562,
+        114.46916198730469,
+        572.1845703125
+      ],
+      [
+        127.44000244140625,
+        558.0977172851562,
+        463.2724304199219,
+        572.1845703125
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 1,
+    "line_ids": [
+      "p004b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Contents",
+    "bboxes": [
+      [
+        72.02400207519531,
+        53.78400421142578,
+        186.88999938964844,
+        85.20000457763672
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 1,
+    "line_ids": [
+      "p017b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        72.02400207519531,
+        78.88397979736328,
+        251.2100067138672,
+        110.29998016357422
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 2,
+    "line_ids": [
+      "p017b003l00",
+      "p017b003l01"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "1.1. EVALUATION FEATURES",
+    "bboxes": [
+      [
+        72.02400207519531,
+        119.85821533203125,
+        93.93312072753906,
+        134.3095703125
+      ],
+      [
+        111.62000274658203,
+        119.85821533203125,
+        241.9604034423828,
+        134.3095703125
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 3,
+    "line_ids": [
+      "p017b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 17,
+    "text": "Evaluation rationale, scope and objectives",
+    "bboxes": [
+      [
+        72.02400207519531,
+        140.21273803710938,
+        274.3196105957031,
+        153.25038146972656
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 1,
+    "line_ids": [
+      "p028b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2. Evaluation Findings",
+    "bboxes": [
+      [
+        72.02400207519531,
+        66.88397979736328,
+        333.54998779296875,
+        98.29998016357422
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 2,
+    "line_ids": [
+      "p028b003l00",
+      "p028b003l01"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2.1. EQ1: HOW GOOD WERE THE PSPF STRATEGY AND ITS EXECUTION TO DATE?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        107.85821533203125,
+        93.93312072753906,
+        122.3095703125
+      ],
+      [
+        111.62000274658203,
+        107.85821533203125,
+        515.6104125976562,
+        122.3095703125
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 3,
+    "line_ids": [
+      "p028b004l00",
+      "p028b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2.1.1. INTRODUCTION",
+    "bboxes": [
+      [
+        72.02400207519531,
+        134.21273803710938,
+        100.47288513183594,
+        147.25038146972656
+      ],
+      [
+        133.22000122070312,
+        134.21273803710938,
+        214.19960021972656,
+        147.25038146972656
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 3,
+    "line_ids": [
+      "p028b007l00",
+      "p028b007l01",
+      "p028b007l02"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2.1.2. EXTENT TO WHICH THE PSPF STRATEGY PROVIDED CLEAR CONCEPTUAL AND STRATEGIC GUIDANCE AND SET CLEAR AND MEASURABLE EXPECTATIONS",
+    "bboxes": [
+      [
+        72.02400207519531,
+        231.89273071289062,
+        100.47288513183594,
+        244.9303741455078
+      ],
+      [
+        133.22000122070312,
+        231.89273071289062,
+        508.59100341796875,
+        244.9303741455078
+      ],
+      [
+        133.22000122070312,
+        245.57272338867188,
+        493.0096130371094,
+        258.6103820800781
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 2,
+    "line_ids": [
+      "p060b003l00",
+      "p060b003l01",
+      "p060b003l02"
+    ],
+    "note": "Visual/text review",
+    "page": 60,
+    "text": "2.3. EQ3: HOW HAVE INTERNAL AND EXTERNAL FACTORS INFLUENCED STRATEGY IMPLEMENTATION AND ACHIEVEMENTS TO DATE?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        147.8182373046875,
+        93.93312072753906,
+        162.26959228515625
+      ],
+      [
+        111.62000274658203,
+        147.8182373046875,
+        470.4740905761719,
+        162.26959228515625
+      ],
+      [
+        111.62000274658203,
+        159.8182373046875,
+        444.09039306640625,
+        174.26959228515625
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 3,
+    "line_ids": [
+      "p060b004l00",
+      "p060b004l01"
+    ],
+    "note": "Visual/text review",
+    "page": 60,
+    "text": "2.3.1. INTRODUCTION",
+    "bboxes": [
+      [
+        72.02400207519531,
+        186.17276000976562,
+        100.47288513183594,
+        199.2104034423828
+      ],
+      [
+        133.22000122070312,
+        186.17276000976562,
+        214.19960021972656,
+        199.2104034423828
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 3,
+    "line_ids": [
+      "p060b007l00",
+      "p060b007l01"
+    ],
+    "note": "Visual/text review",
+    "page": 60,
+    "text": "2.3.2. INTERNAL FACTORS",
+    "bboxes": [
+      [
+        72.02400207519531,
+        283.8827209472656,
+        100.47288513183594,
+        296.9203796386719
+      ],
+      [
+        133.22000122070312,
+        283.8827209472656,
+        233.15960693359375,
+        296.9203796386719
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 4,
+    "line_ids": [
+      "p060b010l00"
+    ],
+    "note": "Visual/text review",
+    "page": 60,
+    "text": "PPF Capacity and Structure",
+    "bboxes": [
+      [
+        72.02400207519531,
+        362.4827575683594,
+        205.31959533691406,
+        375.5204162597656
+      ]
+    ]
+  },
+  {
+    "report_id": 857,
+    "level": 5,
+    "line_ids": [
+      "p060b014l00"
+    ],
+    "note": "Under PPF Capacity and Structure",
+    "page": 60,
+    "text": "Individual Fundraising",
+    "bboxes": [
+      [
+        72.02400207519531,
+        499.8489990234375,
+        166.87998962402344,
+        511.6300048828125
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 1,
+    "line_ids": [
+      "p003b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Contenido",
+    "bboxes": [
+      [
+        249.0500030517578,
+        96.34529113769531,
+        327.63616943359375,
+        112.26664733886719
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 1,
+    "line_ids": [
+      "p012b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 12,
+    "text": "1. Introducción",
+    "bboxes": [
+      [
+        246.88999938964844,
+        70.78529357910156,
+        363.2761535644531,
+        86.70664978027344
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 2,
+    "line_ids": [
+      "p037b017l00",
+      "p037b017l01"
+    ],
+    "note": "Visual/text review",
+    "page": 37,
+    "text": "2.3. Sostenibilidad",
+    "bboxes": [
+      [
+        67.7040023803711,
+        621.0159912109375,
+        93.95999908447266,
+        634.6240234375
+      ],
+      [
+        104.05999755859375,
+        621.0159912109375,
+        196.29800415039062,
+        634.6240234375
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 3,
+    "line_ids": [
+      "p037b018l00"
+    ],
+    "note": "Visual/text review",
+    "page": 37,
+    "text": "a) Factores que explican la evolución del PCA y del IDD",
+    "bboxes": [
+      [
+        71.42400360107422,
+        648.816162109375,
+        406.43609619140625,
+        661.8798217773438
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 3,
+    "line_ids": [
+      "p049b003l00"
+    ],
+    "note": "Under 3.2 Recomendaciones",
+    "page": 49,
+    "text": "d) Recomendaciones sobre Género",
+    "bboxes": [
+      [
+        71.42400360107422,
+        128.05615234375,
+        282.93609619140625,
+        141.11984252929688
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 3,
+    "line_ids": [
+      "p030b003l00",
+      "p030b003l01"
+    ],
+    "note": "Under 2.1 Pertinencia",
+    "page": 30,
+    "text": "n) Articulación estratégica con el MAG",
+    "bboxes": [
+      [
+        68.06400299072266,
+        143.1761474609375,
+        84.3465576171875,
+        156.23983764648438
+      ],
+      [
+        96.38400268554688,
+        143.1761474609375,
+        315.5760803222656,
+        156.23983764648438
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 3,
+    "line_ids": [
+      "p030b008l00",
+      "p030b008l01"
+    ],
+    "note": "Under 2.1 Pertinencia",
+    "page": 30,
+    "text": "o) Fortalecimiento de capacidades a productores en acceso a mercados",
+    "bboxes": [
+      [
+        68.06400299072266,
+        543.7861328125,
+        83.7465591430664,
+        556.8497924804688
+      ],
+      [
+        96.38400268554688,
+        543.7861328125,
+        508.9460754394531,
+        556.8497924804688
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 2,
+    "line_ids": [
+      "p042b015l00",
+      "p042b015l01"
+    ],
+    "note": "Visual/text review",
+    "page": 42,
+    "text": "2.5. Sostenibilidad EMOP.",
+    "bboxes": [
+      [
+        67.7040023803711,
+        576.135986328125,
+        93.5999984741211,
+        589.7440185546875
+      ],
+      [
+        104.05999755859375,
+        576.135986328125,
+        245.3419952392578,
+        589.7440185546875
+      ]
+    ]
+  },
+  {
+    "report_id": 37,
+    "level": 3,
+    "line_ids": [
+      "p042b016l00"
+    ],
+    "note": "Visual/text review",
+    "page": 42,
+    "text": "Resultados de la OPSR y de la EMOP transferibles al CSP",
+    "bboxes": [
+      [
+        68.06400299072266,
+        597.9361572265625,
+        404.8760986328125,
+        610.9998168945312
+      ]
+    ]
+  },
+  {
+    "report_id": 494,
+    "level": 1,
+    "line_ids": [
+      "p003b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table des Matières",
+    "bboxes": [
+      [
+        249.1699981689453,
+        71.98780059814453,
+        351.6340026855469,
+        86.2183609008789
+      ]
+    ]
+  },
+  {
+    "report_id": 494,
+    "level": 1,
+    "line_ids": [
+      "p009b002l00",
+      "p009b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 9,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        244.1300048828125,
+        56.6519775390625,
+        268.6820068359375,
+        72.1199722290039
+      ],
+      [
+        280.1499938964844,
+        56.6519775390625,
+        354.3699951171875,
+        72.1199722290039
+      ]
+    ]
+  },
+  {
+    "report_id": 494,
+    "level": 2,
+    "line_ids": [
+      "p009b007l00",
+      "p009b007l01"
+    ],
+    "note": "Visual/text review",
+    "page": 9,
+    "text": "1.1. Vue d’ensemble du sujet de l’évaluation",
+    "bboxes": [
+      [
+        56.66400146484375,
+        516.997802734375,
+        78.33312225341797,
+        531.2283935546875
+      ],
+      [
+        92.66400146484375,
+        516.997802734375,
+        311.1570129394531,
+        531.2283935546875
+      ]
+    ]
+  },
+  {
+    "report_id": 494,
+    "level": 3,
+    "line_ids": [
+      "p033b005l00"
+    ],
+    "note": "Under 2.4 Critere de impact",
+    "page": 33,
+    "text": "Genre et protection des bénéficiaires",
+    "bboxes": [
+      [
+        92.66400146484375,
+        477.8778076171875,
+        286.0770263671875,
+        492.1083679199219
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 1,
+    "line_ids": [
+      "p002b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 2,
+    "text": "Remerciements",
+    "bboxes": [
+      [
+        248.92999267578125,
+        72.08528137207031,
+        349.9561767578125,
+        88.00663757324219
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 1,
+    "line_ids": [
+      "p002b008l00"
+    ],
+    "note": "Visual/text review",
+    "page": 2,
+    "text": "Avertissement",
+    "bboxes": [
+      [
+        253.00999450683594,
+        504.4659729003906,
+        345.3580017089844,
+        518.073974609375
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 1,
+    "line_ids": [
+      "p002b012l00"
+    ],
+    "note": "Visual/text review",
+    "page": 2,
+    "text": "Gestion de l’évaluation",
+    "bboxes": [
+      [
+        227.2100067138672,
+        664.81591796875,
+        371.27801513671875,
+        678.4239501953125
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 1,
+    "line_ids": [
+      "p027b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 27,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        257.80999755859375,
+        77.91598510742188,
+        358.5580139160156,
+        91.52397918701172
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 2,
+    "line_ids": [
+      "p027b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 27,
+    "text": "1.1. Caractéristiques de l’Évaluation",
+    "bboxes": [
+      [
+        72.02400207519531,
+        101.57595825195312,
+        294.697998046875,
+        115.18395233154297
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 4,
+    "line_ids": [
+      "p072b004l00"
+    ],
+    "note": "Under 2.3.1 Facteurs internes",
+    "page": 72,
+    "text": "Gouvernance et capacités institutionnelles",
+    "bboxes": [
+      [
+        72.02400207519531,
+        662.6559448242188,
+        298.74200439453125,
+        676.2639770507812
+      ]
+    ]
+  },
+  {
+    "report_id": 340,
+    "level": 2,
+    "line_ids": [
+      "p087b001l00"
+    ],
+    "note": "Numbered recommendations below are inline paragraph lead-ins, excluded",
+    "page": 87,
+    "text": "3.2 Recommandations",
+    "bboxes": [
+      [
+        72.02400207519531,
+        71.91598510742188,
+        216.5780029296875,
+        85.52397918701172
+      ]
+    ]
+  },
+  {
+    "report_id": 324,
+    "level": 1,
+    "line_ids": [
+      "p005b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 5,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        72.0,
+        71.96800994873047,
+        189.21600341796875,
+        91.50401306152344
+      ]
+    ]
+  },
+  {
+    "report_id": 324,
+    "level": 1,
+    "line_ids": [
+      "p007b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        72.0,
+        70.30401611328125,
+        178.01597595214844,
+        93.21601104736328
+      ]
+    ]
+  },
+  {
+    "report_id": 324,
+    "level": 2,
+    "line_ids": [
+      "p042b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 42,
+    "text": "6.9 Estimating the impact of food assistance on food security and nutrition outcomes",
+    "bboxes": [
+      [
+        72.0,
+        93.10082244873047,
+        534.8864135742188,
+        110.86722564697266
+      ]
+    ]
+  },
+  {
+    "report_id": 324,
+    "level": 3,
+    "line_ids": [
+      "p025b003l00"
+    ],
+    "note": "Italic heading",
+    "page": 25,
+    "text": "6.1.2 Trends in conflict events and fatalities in the Mopti region",
+    "bboxes": [
+      [
+        72.0,
+        383.68798828125,
+        381.8556823730469,
+        399.31201171875
+      ]
+    ]
+  },
+  {
+    "report_id": 324,
+    "level": 2,
+    "line_ids": [
+      "p029b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 29,
+    "text": "6.4 Conflict exposure at household and village level",
+    "bboxes": [
+      [
+        72.0,
+        550.7008056640625,
+        351.6927795410156,
+        568.4672241210938
+      ]
+    ]
+  },
+  {
+    "report_id": 103,
+    "level": 1,
+    "line_ids": [
+      "p003b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table of Contents",
+    "bboxes": [
+      [
+        236.57000732421875,
+        71.62196350097656,
+        339.518798828125,
+        88.07684326171875
+      ]
+    ]
+  },
+  {
+    "report_id": 103,
+    "level": 1,
+    "line_ids": [
+      "p010b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        256.25,
+        71.96784210205078,
+        342.2370300292969,
+        86.19840240478516
+      ]
+    ]
+  },
+  {
+    "report_id": 103,
+    "level": 3,
+    "line_ids": [
+      "p039b013l00"
+    ],
+    "note": "Under 2.6; inline recommendation on page 53 excluded",
+    "page": 39,
+    "text": "Market linkages",
+    "bboxes": [
+      [
+        72.02400207519531,
+        287.05780029296875,
+        157.86705017089844,
+        301.2883605957031
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 1,
+    "line_ids": [
+      "p004b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Contents",
+    "bboxes": [
+      [
+        60.98400115966797,
+        67.00397491455078,
+        180.02000427246094,
+        98.41997528076172
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 1,
+    "line_ids": [
+      "p010b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        60.98400115966797,
+        99.13072204589844,
+        273.4795837402344,
+        135.73036193847656
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 2,
+    "line_ids": [
+      "p010b006l00",
+      "p010b006l01"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1.1. EVALUATION FEATURES",
+    "bboxes": [
+      [
+        60.98400115966797,
+        225.45819091796875,
+        83.25312042236328,
+        239.9095458984375
+      ],
+      [
+        96.98400115966797,
+        225.45819091796875,
+        229.9604034423828,
+        239.9095458984375
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 1,
+    "line_ids": [
+      "p028b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2. Evaluation findings",
+    "bboxes": [
+      [
+        60.98400115966797,
+        67.21073913574219,
+        361.9396057128906,
+        103.81037902832031
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 2,
+    "line_ids": [
+      "p028b005l00",
+      "p028b005l01"
+    ],
+    "note": "Visual/text review",
+    "page": 28,
+    "text": "2.1. RELEVANCE",
+    "bboxes": [
+      [
+        70.94400024414062,
+        120.09820556640625,
+        89.04399108886719,
+        134.549560546875
+      ],
+      [
+        99.02400207519531,
+        120.09820556640625,
+        161.65040588378906,
+        134.549560546875
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 3,
+    "line_ids": [
+      "p028b006l01",
+      "p028b006l02"
+    ],
+    "note": "Standalone EQ; paragraph number excluded",
+    "page": 28,
+    "text": "Evaluation Question 1: To what extent was the SFP relevant to the needs of the schools, beneficiaries, Government, and communities served?",
+    "bboxes": [
+      [
+        96.98400115966797,
+        141.11898803710938,
+        502.6940612792969,
+        152.89999389648438
+      ],
+      [
+        60.98400115966797,
+        153.35897827148438,
+        309.5896911621094,
+        165.13998413085938
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 4,
+    "line_ids": [
+      "p028b007l01",
+      "p028b007l02"
+    ],
+    "note": "Subquestion of EQ1",
+    "page": 28,
+    "text": "1.1 As designed, how relevant was and is the programme to addressing the nutritional/ educational needs of children (girls, boys, and children with special needs) in the target communities?",
+    "bboxes": [
+      [
+        96.98400115966797,
+        171.59896850585938,
+        500.1311340332031,
+        183.37997436523438
+      ],
+      [
+        60.98400115966797,
+        183.83895874023438,
+        532.8197021484375,
+        195.61996459960938
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 4,
+    "line_ids": [
+      "p046b004l01",
+      "p046b004l02"
+    ],
+    "note": "Subquestion of EQ4",
+    "page": 46,
+    "text": "4.3 How well were human resources managed in the implementation of the school feeding programs? Were there any capacity gaps or staffing issues that affected efficiency?",
+    "bboxes": [
+      [
+        96.98400115966797,
+        66.93899536132812,
+        516.2250366210938,
+        78.72000122070312
+      ],
+      [
+        60.98400115966797,
+        79.19900512695312,
+        445.2196960449219,
+        90.98001098632812
+      ]
+    ]
+  },
+  {
+    "report_id": 538,
+    "level": 4,
+    "line_ids": [
+      "p046b017l01",
+      "p046b017l02"
+    ],
+    "note": "Subquestion of EQ4",
+    "page": 46,
+    "text": "4.4 Were the modalities (in-kind, cash, self-financing, THRs) used in the SFP cost-effective compared to other possible interventions?",
+    "bboxes": [
+      [
+        96.98400115966797,
+        733.39501953125,
+        507.75897216796875,
+        745.1759643554688
+      ],
+      [
+        60.98400115966797,
+        745.635009765625,
+        259.6496887207031,
+        757.4159545898438
+      ]
+    ]
+  },
+  {
+    "report_id": 176,
+    "level": 1,
+    "line_ids": [
+      "p003b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 3,
+    "text": "Table des Matières",
+    "bboxes": [
+      [
+        245.69000244140625,
+        74.59820556640625,
+        354.5404052734375,
+        89.049560546875
+      ]
+    ]
+  },
+  {
+    "report_id": 176,
+    "level": 1,
+    "line_ids": [
+      "p010b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        242.80999755859375,
+        56.23822021484375,
+        333.160400390625,
+        70.6895751953125
+      ]
+    ]
+  },
+  {
+    "report_id": 176,
+    "level": 2,
+    "line_ids": [
+      "p010b008l00"
+    ],
+    "note": "Visual/text review",
+    "page": 10,
+    "text": "1.1 Vue d’ensemble du sujet de l’évaluation",
+    "bboxes": [
+      [
+        49.68000030517578,
+        583.0419921875,
+        318.7699890136719,
+        598.75
+      ]
+    ]
+  },
+  {
+    "report_id": 176,
+    "level": 2,
+    "line_ids": [
+      "p037b005l00"
+    ],
+    "note": "Visual/text review",
+    "page": 37,
+    "text": "2.3 Quels sont les facteurs qui ont influencé les résultats",
+    "bboxes": [
+      [
+        50.63999938964844,
+        368.70196533203125,
+        400.75,
+        384.40997314453125
+      ]
+    ]
+  },
+  {
+    "report_id": 176,
+    "level": 3,
+    "line_ids": [
+      "p037b006l00",
+      "p037b006l01",
+      "p037b006l02"
+    ],
+    "note": "Visual/text review",
+    "page": 37,
+    "text": "2.3.1 Contribution des critères de sélection des sites des projets pilotes pour atteindre les résultats attendus de l’intervention",
+    "bboxes": [
+      [
+        50.63999938964844,
+        390.9682312011719,
+        77.49312591552734,
+        405.4195861816406
+      ],
+      [
+        86.66400146484375,
+        390.9682312011719,
+        525.98974609375,
+        405.4195861816406
+      ],
+      [
+        86.66400146484375,
+        405.9682312011719,
+        212.44041442871094,
+        420.4195861816406
+      ]
+    ]
+  },
+  {
+    "report_id": 128,
+    "level": 1,
+    "line_ids": [
+      "p004b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Índice",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.04401397705078,
+        153.74000549316406,
+        103.46001434326172
+      ]
+    ]
+  },
+  {
+    "report_id": 128,
+    "level": 1,
+    "line_ids": [
+      "p011b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "1. Introducción",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.04401397705078,
+        272.80999755859375,
+        103.46001434326172
+      ]
+    ]
+  },
+  {
+    "report_id": 128,
+    "level": 2,
+    "line_ids": [
+      "p011b002l00",
+      "p011b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "1.1. Características de la evaluación",
+    "bboxes": [
+      [
+        72.02400207519531,
+        122.61822509765625,
+        94.29312133789062,
+        137.069580078125
+      ],
+      [
+        108.0199966430664,
+        122.61822509765625,
+        291.5404052734375,
+        137.069580078125
+      ]
+    ]
+  },
+  {
+    "report_id": 128,
+    "level": 2,
+    "line_ids": [
+      "p011b009l00",
+      "p011b009l01"
+    ],
+    "note": "Visual/text review",
+    "page": 11,
+    "text": "1.2. Contexto",
+    "bboxes": [
+      [
+        72.02400207519531,
+        562.9782104492188,
+        94.29312133789062,
+        577.4295654296875
+      ],
+      [
+        108.0199966430664,
+        562.9782104492188,
+        163.2404022216797,
+        577.4295654296875
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 1,
+    "line_ids": [
+      "p004b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Table des matières",
+    "bboxes": [
+      [
+        72.02400207519531,
+        68.80396270751953,
+        296.92999267578125,
+        100.21996307373047
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 1,
+    "line_ids": [
+      "p023b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.04401397705078,
+        244.97000122070312,
+        103.46001434326172
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 2,
+    "line_ids": [
+      "p023b003l00",
+      "p023b003l01"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "1.1 CARACTERISTIQUES DE L’EVALUATION",
+    "bboxes": [
+      [
+        72.02400207519531,
+        119.25823974609375,
+        90.81312561035156,
+        133.7095947265625
+      ],
+      [
+        100.81999969482422,
+        119.25823974609375,
+        308.3204040527344,
+        133.7095947265625
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 2,
+    "line_ids": [
+      "p023b014l00",
+      "p023b014l01"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "1.2 CONTEXTE",
+    "bboxes": [
+      [
+        72.02400207519531,
+        612.148193359375,
+        90.81312561035156,
+        626.5995483398438
+      ],
+      [
+        100.81999969482422,
+        612.148193359375,
+        160.81040954589844,
+        626.5995483398438
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 3,
+    "line_ids": [
+      "p023b015l00"
+    ],
+    "note": "Visual/text review",
+    "page": 23,
+    "text": "Géographie, démographie et composition ethnique",
+    "bboxes": [
+      [
+        72.02400207519531,
+        631.3690185546875,
+        303.3500061035156,
+        643.1499633789062
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 3,
+    "line_ids": [
+      "p044b002l00",
+      "p044b002l01",
+      "p044b002l02"
+    ],
+    "note": "Under numbered question 2.1",
+    "page": 44,
+    "text": "Sous-question 1.3: Dans quelle mesure le PSP est-il cohérent et aligné sur l’ensemble des Nations Unies et inclut-il des partenariats stratégiques (ONU ou autre) appropriés basés sur l’avantage comparatif du PAM dans le pays ?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        71.97897338867188,
+        507.3819580078125,
+        83.75997924804688
+      ],
+      [
+        72.02400207519531,
+        85.19900512695312,
+        497.59368896484375,
+        96.98001098632812
+      ],
+      [
+        72.02400207519531,
+        98.39895629882812,
+        224.26998901367188,
+        110.17996215820312
+      ]
+    ]
+  },
+  {
+    "report_id": 611,
+    "level": 3,
+    "line_ids": [
+      "p065b007l00",
+      "p065b007l01"
+    ],
+    "note": "Under numbered question 2.3",
+    "page": 65,
+    "text": "Sous-question 3.3: Dans quelle mesure les activités du PAM ont-elles été livrées de manière efficiente ?",
+    "bboxes": [
+      [
+        79.10399627685547,
+        513.2890014648438,
+        489.44482421875,
+        525.0699462890625
+      ],
+      [
+        79.10399627685547,
+        526.489013671875,
+        130.39999389648438,
+        538.2699584960938
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 1,
+    "line_ids": [
+      "p004b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Contents",
+    "bboxes": [
+      [
+        72.02400207519531,
+        63.86396026611328,
+        191.0600128173828,
+        95.27996063232422
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 1,
+    "line_ids": [
+      "p004b010l01"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Lista de figuras",
+    "bboxes": [
+      [
+        72.02400207519531,
+        414.7939758300781,
+        268.489990234375,
+        446.2099914550781
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 1,
+    "line_ids": [
+      "p027b002l00"
+    ],
+    "note": "Visual/text review",
+    "page": 27,
+    "text": "1. Introducción",
+    "bboxes": [
+      [
+        56.63999938964844,
+        55.58399200439453,
+        248.3300018310547,
+        86.99999237060547
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 2,
+    "line_ids": [
+      "p027b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 27,
+    "text": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+    "bboxes": [
+      [
+        56.63999938964844,
+        100.2982177734375,
+        286.0003967285156,
+        114.74957275390625
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 3,
+    "line_ids": [
+      "p051b008l00",
+      "p051b008l01"
+    ],
+    "note": "Under 2.1",
+    "page": 51,
+    "text": "Subpregunta 1.2: ¿En qué medida el PEP abordó las necesidades de las personas más vulnerables del país para garantizar que “nadie se quede atrás”?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        596.208984375,
+        525.6280517578125,
+        607.9899291992188
+      ],
+      [
+        72.02400207519531,
+        608.448974609375,
+        262.07000732421875,
+        620.2299194335938
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 3,
+    "line_ids": [
+      "p075b002l00"
+    ],
+    "note": "Printed three-part numbering; semantic nesting warrants independent review",
+    "page": 75,
+    "text": "2.2.5 Respeto al medio ambiente",
+    "bboxes": [
+      [
+        72.02400207519531,
+        71.958251953125,
+        244.2404022216797,
+        86.40960693359375
+      ]
+    ]
+  },
+  {
+    "report_id": 585,
+    "level": 3,
+    "line_ids": [
+      "p075b005l00"
+    ],
+    "note": "Under 2.2",
+    "page": 75,
+    "text": "Subpregunta 2.3: ¿Hasta qué punto es probable que los logros del PEP sean sostenibles?",
+    "bboxes": [
+      [
+        72.02400207519531,
+        374.6689758300781,
+        448.80999755859375,
+        386.4499816894531
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 1,
+    "line_ids": [
+      "p002b003l00"
+    ],
+    "note": "Visual/text review",
+    "page": 2,
+    "text": "Acknowledgements",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.25071716308594,
+        343.9396057128906,
+        108.85035705566406
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 1,
+    "line_ids": [
+      "p002b005l20"
+    ],
+    "note": "Visual/text review",
+    "page": 2,
+    "text": "Disclaimer",
+    "bboxes": [
+      [
+        72.02400207519531,
+        449.5807189941406,
+        217.60040283203125,
+        486.18035888671875
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 1,
+    "line_ids": [
+      "p002b007l06"
+    ],
+    "note": "Contact label is metadata",
+    "page": 2,
+    "text": "Photo credits",
+    "bboxes": [
+      [
+        72.02400207519531,
+        642.4507446289062,
+        254.32040405273438,
+        679.0503540039062
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 1,
+    "line_ids": [
+      "p007b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 7,
+    "text": "1. Introduction",
+    "bboxes": [
+      [
+        72.02400207519531,
+        75.37077331542969,
+        286.9195861816406,
+        111.97041320800781
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 1,
+    "line_ids": [
+      "p016b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 16,
+    "text": "4. Results",
+    "bboxes": [
+      [
+        72.02400207519531,
+        75.37077331542969,
+        208.19960021972656,
+        111.97041320800781
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 2,
+    "line_ids": [
+      "p016b006l00"
+    ],
+    "note": "Visual/text review",
+    "page": 16,
+    "text": "4.1 Take-up and use",
+    "bboxes": [
+      [
+        72.02400207519531,
+        302.22198486328125,
+        193.3699951171875,
+        317.92999267578125
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 2,
+    "line_ids": [
+      "p034b004l00"
+    ],
+    "note": "Visual/text review",
+    "page": 34,
+    "text": "5.3 School procurement efficiency",
+    "bboxes": [
+      [
+        72.02400207519531,
+        75.3919677734375,
+        277.72998046875,
+        91.09996795654297
+      ]
+    ]
+  },
+  {
+    "report_id": 815,
+    "level": 2,
+    "line_ids": [
+      "p034b007l00"
+    ],
+    "note": "Visual/text review",
+    "page": 34,
+    "text": "5.4 Feasibility of large-scale impact evaluation",
+    "bboxes": [
+      [
+        72.02400207519531,
+        339.5419921875,
+        354.30999755859375,
+        355.25
+      ]
+    ]
+  },
+  {
+    "report_id": 1037,
+    "level": 1,
+    "line_ids": [
+      "p004b002l01"
+    ],
+    "note": "Visual/text review",
+    "page": 4,
+    "text": "Contents",
+    "bboxes": [
+      [
+        72.02400207519531,
+        90.37077331542969,
+        201.56961059570312,
+        128.45228576660156
+      ]
+    ]
+  },
+  {
+    "report_id": 1037,
+    "level": 1,
+    "line_ids": [
+      "p006b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 6,
+    "text": "Executive summary",
+    "bboxes": [
+      [
+        72.02400207519531,
+        72.13072204589844,
+        343.57958984375,
+        110.21223449707031
+      ]
+    ]
+  },
+  {
+    "report_id": 1037,
+    "level": 2,
+    "line_ids": [
+      "p006b002l00"
+    ],
+    "note": "Under executive summary",
+    "page": 6,
+    "text": "Introduction",
+    "bboxes": [
+      [
+        72.02400207519531,
+        122.19195556640625,
+        150.97999572753906,
+        138.5359649658203
+      ]
+    ]
+  },
+  {
+    "report_id": 1037,
+    "level": 3,
+    "line_ids": [
+      "p017b007l00"
+    ],
+    "note": "Under 1.2 Context",
+    "page": 17,
+    "text": "The Humanitarian Reset and the UN80 Initiative",
+    "bboxes": [
+      [
+        72.02400207519531,
+        503.3289489746094,
+        290.510009765625,
+        515.5869750976562
+      ]
+    ]
+  },
+  {
+    "report_id": 1037,
+    "level": 2,
+    "line_ids": [
+      "p040b001l00"
+    ],
+    "note": "Visual/text review",
+    "page": 40,
+    "text": "3.2. Recommendations",
+    "bboxes": [
+      [
+        72.0,
+        78.03201293945312,
+        210.97999572753906,
+        94.37601470947266
+      ]
+    ]
+  }
+]
