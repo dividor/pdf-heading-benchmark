@@ -1,0 +1,27 @@
+{
+  "selected_model_sha256": "250f7f3e457181c2bcb3e929071b094907507971da433151673c63ec6b36c79a",
+  "timings": [
+    {
+      "document": "targeting",
+      "pages": 172,
+      "seconds": 2.380915708024986
+    },
+    {
+      "document": "midterm",
+      "pages": 176,
+      "seconds": 2.363380042021163
+    },
+    {
+      "document": "indonesia",
+      "pages": 76,
+      "seconds": 1.3668466670205817
+    },
+    {
+      "document": "colombia",
+      "pages": 99,
+      "seconds": 1.6138050410081632
+    }
+  ],
+  "model_selection": "Frozen supervised-v1/run-003; no refitting or tuning on benchmark reports",
+  "timing_scope": "Full PDFs, extraction/features/inference/grouping; excludes model load and output writes"
+}

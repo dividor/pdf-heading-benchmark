@@ -69,11 +69,21 @@ All five incorrectly or incompletely levelled heading groups occurred in the Fre
 - Small learned classifiers can capture useful WFP layout patterns with very little local compute. They are a credible third technique to investigate alongside parsers and larger models.
 - The test contains only 27 heading groups and **only H1–H3 positives**. It does not establish H4–H6 reliability. Training has only one H5 line and no H6 examples.
 - We have not independently verified the assistant labels. An annotator can make consistent hierarchy mistakes that a model then learns. A separate reviewer should adjudicate ambiguous cases and a larger untouched test set.
-- These results cannot be ranked directly against the earlier league table: the reports, page sample, labels and line-based metric differ.
+- The new test-set results cannot be ranked directly against the earlier league table: the reports, page sample, labels and line-based metric differ. A subsequent unchanged-model run on the original corpus, described below, supplies a comparable row.
 - This is embedded-text PDF extraction. It performs no OCR, does not recover glyphs missing from the text layer, and does not evaluate text completeness, reading order, table reconstruction or parent links. JSON retains each extracted line; Markdown is a readable line-preserving view.
 - Nearby-line features provide limited context. Document-wide semantic hierarchy, long question headings, bold recommendations and unfamiliar layouts remain difficult. Confidence scores are uncalibrated.
 
 The next justified experiment is to expand independently reviewed H4–H6 examples and different template families, then compare this baseline with a small model that learns from text, layout and surrounding blocks. Keep a new untouched test set for that round. More assistant-labelled data is feasible; the present evidence supports proceeding, not a claim that it already works on any document.
+
+## Visual review and comparison with the original benchmark
+
+![Method diagram](../../docs/images/supervised-method.png)
+
+![Actual source page with assistant annotation overlays](../../docs/images/supervised-annotation-overlay.png)
+
+The [visual review pack](https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/annotation-review/README.md) displays collated TOCs, all 152 reviewed pages, frozen H-level boxes and optional classifier predictions. You can confirm or propose changes and export a separate review JSON. None of those actions alters the scored labels.
+
+The frozen model was subsequently tested on the original four benchmark PDFs, all excluded from training. Under the original title-matching and exact-level scoring contract, it recovered **59/77 titles (76.6%)**, with **35/77 correct levels (45.5%)** and **20 extra headings**. Full-document inference took **7.7 seconds over 523 pages**. This result appears in the [main comparison table](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md), with [frozen evidence](https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/comparison). It gives a direct comparison to the other methods; the new test set's 82.0% line F1 remains a separate result.
 
 ## Selected-report table
 

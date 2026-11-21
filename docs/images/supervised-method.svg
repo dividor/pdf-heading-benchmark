@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#647d90" /></marker><style>text{font-family:Arial,sans-serif;fill:#183247}.title{font-size:30px;font-weight:700}.heading{font-size:20px;font-weight:700}.body{font-size:17px}.small{font-size:15px;fill:#536d80}.number{font-size:15px;font-weight:700;fill:#007c82}.box{fill:white;stroke:#c4d5df;stroke-width:2}.flow{fill:none;stroke:#647d90;stroke-width:2.5}</style></defs>
+<rect width="1280" height="820" rx="20" fill="#f2f7fa" />
+<text x="40" y="52" class="title" font-family="Arial,sans-serif" fill="#183247" font-size="30" font-weight="700">Teach a small model what a heading looks like</text>
+<text x="40" y="82" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Assistant-reviewed labels + document layout features → a CPU classifier</text>
+<rect x="40" y="115" width="350" height="205" rx="12" class="box" fill="white" stroke="#c4d5df" stroke-width="2" />
+<text x="60" y="145" class="number" font-family="Arial,sans-serif" fill="#007c82" font-size="15" font-weight="700">1  SOURCE DOCUMENTS</text><text x="60" y="177" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">24 new WFP reports</text>
+<text x="60" y="210" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">1,524 pages · English / French / Spanish</text>
+<text x="60" y="242" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Verify archive member + PDF checksum</text>
+<text x="60" y="275" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">Prior benchmark reports excluded from</text><text x="60" y="297" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">training, validation and initial test.</text>
+<path d="M390 212H442" class="flow" fill="none" stroke="#647d90" stroke-width="2.5"  />
+<rect x="455" y="115" width="370" height="205" rx="12" class="box" fill="white" stroke="#c4d5df" stroke-width="2" />
+<text x="475" y="145" class="number" font-family="Arial,sans-serif" fill="#007c82" font-size="15" font-weight="700">2  VISUAL ANNOTATION</text><text x="475" y="177" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">Read source pages + TOC context</text>
+<text x="475" y="210" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">152 reviewed pages · 202 heading groups</text>
+<text x="475" y="242" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Mark H1–H6; group wrapped title lines</text>
+<text x="475" y="275" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">Other lines on reviewed pages = non-heading.</text><text x="475" y="297" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">Unreviewed pages stay unlabelled.</text>
+<path d="M825 212H877" class="flow" fill="none" stroke="#647d90" stroke-width="2.5"  />
+<rect x="890" y="115" width="350" height="205" rx="12" class="box" fill="white" stroke="#c4d5df" stroke-width="2" />
+<text x="910" y="145" class="number" font-family="Arial,sans-serif" fill="#007c82" font-size="15" font-weight="700">3  LOCAL FEATURE EXTRACTION</text><text x="910" y="177" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">PyMuPDF text + layout</text>
+<text x="910" y="210" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Font size · bold · colour · position</text>
+<text x="910" y="242" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Numbering · nearby lines · repetition</text>
+<text x="910" y="275" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">Every text line is classified.</text><text x="910" y="297" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">No report-specific correction rules.</text>
+<path d="M640 320V365" class="flow" fill="none" stroke="#647d90" stroke-width="2.5"  />
+<rect x="40" y="380" width="1200" height="155" rx="12" fill="#e2f2ef" stroke="#acd4ce" stroke-width="2" />
+<text x="60" y="413" class="number" font-family="Arial,sans-serif" fill="#007c82" font-size="15" font-weight="700">4  SPLIT BY WHOLE REPORT — NEVER BY RANDOM PAGE</text>
+<text x="60" y="450" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">TRAIN · 16 reports</text><text x="60" y="482" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Fit linear and tree classifiers</text><text x="60" y="510" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">112 reviewed pages</text>
+<text x="460" y="450" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">VALIDATE · 4 reports</text><text x="460" y="482" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Select by exact-level line F1</text><text x="460" y="510" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">20 reviewed pages</text>
+<text x="860" y="450" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">TEST · 4 reports</text><text x="860" y="482" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Score the frozen winner once</text><text x="860" y="510" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">20 reviewed pages · H1–H3 positives only</text>
+<path d="M240 535V578" class="flow" fill="none" stroke="#647d90" stroke-width="2.5"  /><path d="M1040 535V578" class="flow" fill="none" stroke="#647d90" stroke-width="2.5"  />
+<rect x="40" y="590" width="570" height="155" rx="12" class="box" fill="white" stroke="#c4d5df" stroke-width="2" />
+<text x="60" y="622" class="number" font-family="Arial,sans-serif" fill="#007c82" font-size="15" font-weight="700">5  DEPLOY THE SELECTED MODEL LOCALLY</text><text x="60" y="657" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">Extra Trees · 200 trees · 0.45 s training</text>
+<text x="60" y="691" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">New PDF → preserved text + heading groups + H levels</text>
+<text x="60" y="721" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">CPU inference; parent links are inferred, not evaluated.</text>
+<rect x="650" y="590" width="590" height="155" rx="12" class="box" fill="white" stroke="#c4d5df" stroke-width="2" />
+<text x="670" y="622" class="number" font-family="Arial,sans-serif" fill="#007c82" font-size="15" font-weight="700">6  INSPECT ERRORS, NOT JUST THE AVERAGE</text><text x="670" y="657" class="heading" font-family="Arial,sans-serif" fill="#183247" font-size="20" font-weight="700">82.0% exact-level F1 on the new test sample</text>
+<text x="670" y="691" class="body" font-family="Arial,sans-serif" fill="#183247" font-size="17">Then: 35/77 correct on the original benchmark</text>
+<text x="670" y="721" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">Different test / metric. More context and review are still needed.</text>
+<text x="40" y="787" class="small" font-family="Arial,sans-serif" fill="#536d80" font-size="15">Assistant annotations are reviewable judgments, not independently verified gold. Electricity and annotation labour were not costed.</text>
+<path d="M442 207L452 212L442 217Z M877 207L887 212L877 217Z M635 365L640 375L645 365Z M235 578L240 588L245 578Z M1035 578L1040 588L1045 578Z" fill="#647d90"/></svg>

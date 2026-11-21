@@ -340,5 +340,17 @@
         "per_document": false
       }
     ]
+  },
+  "supervised_extra_trees": {
+    "description": "Frozen 200-tree classifier trained on 16 different WFP reports; PyMuPDF line features; full PDFs. No refit on benchmark.",
+    "code": "scripts/supervised/compare.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_supervised.py",
+        "environment": "project",
+        "args": [],
+        "per_document": true
+      }
+    ]
   }
 }

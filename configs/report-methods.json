@@ -4,6 +4,7 @@
   "lighton_mlx",
   "lighton4b_mlx",
   "pdf_tags_audit_only",
+  "supervised_extra_trees",
   "mineru_basic",
   "pymupdf4llm",
   "qwen_ids_union",
