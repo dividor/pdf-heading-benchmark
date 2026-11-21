@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1410"><rect width="1100" height="1410" fill="#ffffff"/>
+<text x="30" y="48" font-family="sans-serif" font-size="32" fill="#183247" font-weight="700">Local heading accuracy and text retention</text>
+<text x="30" y="85" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">16 on-premises configurations · 77 reference headings · 32 audited pages</text>
+<rect x="20" y="110" width="1060" height="70" fill="#e5eff7"/>
+<text x="30" y="150" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">Configuration</text>
+<text x="390" y="150" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">Recovered</text>
+<text x="570" y="150" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">Correct level</text>
+<text x="790" y="150" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">Extras</text>
+<text x="900" y="150" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">Prose kept</text>
+<rect x="20" y="180" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="207" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">1. Qwen3.6-27B + visual</text>
+<text x="30" y="233" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">memory</text>
+<text x="390" y="207" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">100.0%</text>
+<text x="390" y="232" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">77/77</text>
+<text x="570" y="207" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">84.4%</text>
+<text x="570" y="232" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">65/77</text>
+<text x="790" y="207" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="207" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">—</text>
+<text x="30" y="276" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">2. Chandra OCR 2 / MLX</text>
+<text x="390" y="276" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">90.9%</text>
+<text x="390" y="301" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">70/77</text>
+<text x="570" y="276" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">68.8%</text>
+<text x="570" y="301" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">53/77</text>
+<text x="790" y="276" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="276" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.7%</text>
+<rect x="20" y="318" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="345" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">3. LightOnOCR-3-0.8B / MLX</text>
+<text x="390" y="345" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">93.5%</text>
+<text x="390" y="370" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">72/77</text>
+<text x="570" y="345" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">59.7%</text>
+<text x="570" y="370" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">46/77</text>
+<text x="790" y="345" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">8</text>
+<text x="900" y="345" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">99.5%</text>
+<text x="30" y="414" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">4. LightOnOCR-3-4B / MLX</text>
+<text x="390" y="414" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">93.5%</text>
+<text x="390" y="439" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">72/77</text>
+<text x="570" y="414" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">59.7%</text>
+<text x="570" y="439" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">46/77</text>
+<text x="790" y="414" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">8</text>
+<text x="900" y="414" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">99.3%</text>
+<rect x="20" y="456" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="483" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">5. Embedded PDF heading tags</text>
+<text x="390" y="483" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">67.5%</text>
+<text x="390" y="508" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">52/77</text>
+<text x="570" y="483" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">55.8%</text>
+<text x="570" y="508" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">43/77</text>
+<text x="790" y="483" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="483" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">—</text>
+<text x="30" y="552" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">6. MinerU 4.2.3 basic CPU</text>
+<text x="390" y="552" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">85.7%</text>
+<text x="390" y="577" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">66/77</text>
+<text x="570" y="552" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">40.3%</text>
+<text x="570" y="577" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">31/77</text>
+<text x="790" y="552" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="552" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">99.1%</text>
+<rect x="20" y="594" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="621" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">7. PyMuPDF4LLM 2.1</text>
+<text x="390" y="621" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">93.5%</text>
+<text x="390" y="646" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">72/77</text>
+<text x="570" y="621" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">36.4%</text>
+<text x="570" y="646" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">28/77</text>
+<text x="790" y="621" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="621" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.8%</text>
+<text x="30" y="690" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">8. Qwen3.5 / union</text>
+<text x="390" y="690" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">70.1%</text>
+<text x="390" y="715" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">54/77</text>
+<text x="570" y="690" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">32.5%</text>
+<text x="570" y="715" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">25/77</text>
+<text x="790" y="690" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">3</text>
+<text x="900" y="690" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">—</text>
+<rect x="20" y="732" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="759" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">9. Qwen3.5 / MinerU</text>
+<text x="390" y="759" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">85.7%</text>
+<text x="390" y="784" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">66/77</text>
+<text x="570" y="759" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">29.9%</text>
+<text x="570" y="784" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">23/77</text>
+<text x="790" y="759" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">1</text>
+<text x="900" y="759" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">—</text>
+<text x="30" y="828" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">10. Docling tolerance 0.15</text>
+<text x="390" y="828" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">88.3%</text>
+<text x="390" y="853" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">68/77</text>
+<text x="570" y="828" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">28.6%</text>
+<text x="570" y="853" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">22/77</text>
+<text x="790" y="828" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="828" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.4%</text>
+<rect x="20" y="870" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="897" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">11. Qwen3.5 / PyMuPDF</text>
+<text x="390" y="897" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">70.1%</text>
+<text x="390" y="922" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">54/77</text>
+<text x="570" y="897" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">28.6%</text>
+<text x="570" y="922" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">22/77</text>
+<text x="790" y="897" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">0</text>
+<text x="900" y="897" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">—</text>
+<text x="30" y="966" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">12. Marker 2.2 no OCR/LLM</text>
+<text x="390" y="966" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">84.4%</text>
+<text x="390" y="991" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">65/77</text>
+<text x="570" y="966" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">24.7%</text>
+<text x="570" y="991" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">19/77</text>
+<text x="790" y="966" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">9</text>
+<text x="900" y="966" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.8%</text>
+<rect x="20" y="1008" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="1035" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">13. Docling 2.151.1 default</text>
+<text x="390" y="1035" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">88.3%</text>
+<text x="390" y="1060" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">68/77</text>
+<text x="570" y="1035" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">20.8%</text>
+<text x="570" y="1060" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">16/77</text>
+<text x="790" y="1035" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="1035" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.4%</text>
+<text x="30" y="1104" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">14. Docling built-in</text>
+<text x="30" y="1130" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">hierarchy</text>
+<text x="390" y="1104" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">88.3%</text>
+<text x="390" y="1129" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">68/77</text>
+<text x="570" y="1104" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">20.8%</text>
+<text x="570" y="1129" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">16/77</text>
+<text x="790" y="1104" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="1104" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.4%</text>
+<rect x="20" y="1146" width="1060" height="69" fill="#f3f7fa"/>
+<text x="30" y="1173" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">15. Popo + Docling / MLX</text>
+<text x="30" y="1199" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">8-bit</text>
+<text x="390" y="1173" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">88.3%</text>
+<text x="390" y="1198" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">68/77</text>
+<text x="570" y="1173" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">19.5%</text>
+<text x="570" y="1198" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">15/77</text>
+<text x="790" y="1173" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">2</text>
+<text x="900" y="1173" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">98.4%</text>
+<text x="30" y="1242" font-family="sans-serif" font-size="21" fill="#183247" font-weight="400">16. MinerU Pro / direct MLX</text>
+<text x="390" y="1242" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">89.6%</text>
+<text x="390" y="1267" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">69/77</text>
+<text x="570" y="1242" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">No levels</text>
+<text x="570" y="1267" font-family="sans-serif" font-size="18" fill="#526779" font-weight="400">0/77</text>
+<text x="790" y="1242" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">3</text>
+<text x="900" y="1242" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">99.0%</text>
+<text x="30" y="1330" font-family="sans-serif" font-size="19" fill="#183247" font-weight="400">Correct level = matched title AND exact reference level, out of 77.</text>
+<text x="30" y="1362" font-family="sans-serif" font-size="19" fill="#183247" font-weight="400">Prose retention is a limited measure; a dash means unavailable / not applicable.</text>
+</svg>

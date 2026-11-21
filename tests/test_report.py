@@ -18,9 +18,9 @@ def test_report_is_reproducible_and_has_all_method_links():
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = next(t for t in tables if t.find("th").get_text() == "Configuration")
     rows = results.find("tbody").find_all("tr")
-    assert len(rows) == 18
+    assert len(rows) == 16
     for row in rows:
-        assert len(row.find_all("td")) == 10
+        assert len(row.find_all("td")) == 8
         assert (
             row.find_all("td")[1]
             .find("a")["href"]
@@ -29,3 +29,14 @@ def test_report_is_reproducible_and_has_all_method_links():
     for method in read_json(REPO / "configs/methods.json").values():
         for step in method["steps"]:
             assert (REPO / step["script"]).is_file()
+
+
+def test_report_contains_only_on_premises_methods():
+    selected = set(read_json(REPO / "configs/report-methods.json"))
+    assert len(selected) == 16
+    for filename in ("results.json", "details.json"):
+        rows = read_json(REPO / "outputs/report" / filename)
+        assert {row["method"] for row in rows} == selected
+    report = (REPO / "outputs/report/league_table.md").read_text()
+    for excluded in ("Azure", "Mistral", "azure_layout", "mistral_ocr41", "API USD"):
+        assert excluded not in report

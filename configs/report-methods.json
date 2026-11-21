@@ -1,0 +1,18 @@
+[
+  "qwen36_visual_memory",
+  "chandra2_mlx",
+  "lighton_mlx",
+  "lighton4b_mlx",
+  "pdf_tags_audit_only",
+  "mineru_basic",
+  "pymupdf4llm",
+  "qwen_ids_union",
+  "qwen_ids_mineru_basic",
+  "docling_tuned",
+  "qwen_ids_pymupdf4llm",
+  "marker",
+  "docling_default",
+  "docling_hierarchy",
+  "popo_docling",
+  "mineru_pro_mlx"
+]
