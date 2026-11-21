@@ -62,12 +62,37 @@ def table(headers, rows):
     return "\n".join(lines)
 
 
-def build_report():
+def corpus_table():
+    corpus = read_json(REPO / "configs/corpus.json")
+    audit = read_json(REPO / "configs/audit_pages.json")
+    gold = read_json(REPO / "configs/gold.json")
+    documents = [
+        [
+            f"[{r['title']}]({r['url']})",
+            {"en": "English", "es": "Spanish"}[r["language"]],
+            r["pages"],
+            ", ".join(str(page) for page in audit[r["id"]]),
+            len(gold[r["id"]]),
+        ]
+        for r in corpus
+    ]
+    return table(
+        ["WFP report / official PDF", "Language", "PDF pages", "Audited PDF pages", "Reference headings"],
+        documents,
+    )
+
+
+def results_table():
     rows = read_json(REPO / "outputs/league_table.json")
+    methods = read_json(REPO / "configs/methods.json")
+    return table(HEADERS, [cells(row, methods[row["method"]]) for row in rows])
+
+
+def build_report():
     methods = read_json(REPO / "configs/methods.json")
     intro = (REPO / "docs/report-introduction.md").read_text()
     notes = (REPO / "docs/report-notes.md").read_text()
-    corpus = read_json(REPO / "configs/corpus.json")
+    protocol = (REPO / "docs/report-protocol.md").read_text()
     details = read_json(REPO / "outputs/league_details.json")
     per_report = [
         [
@@ -79,11 +104,8 @@ def build_report():
         ]
         for r in details
     ]
-    documents = [[f"[{r['title']}]({r['url']})", r["id"], r["language"], r["pages"]] for r in corpus]
-    markdown = intro + "\n" + table(HEADERS, [cells(row, methods[row["method"]]) for row in rows])
-    markdown += (
-        "\n\n" + notes + "\n## Documents\n\n" + table(["Report", "ID", "Language", "Pages"], documents)
-    )
+    markdown = intro + "\n" + corpus_table() + "\n\n" + protocol
+    markdown += "\n" + results_table() + "\n\n" + notes
     markdown += "\n\n## Results by report\n\n" + table(
         ["Runner / configuration", "Report", "Recovered", "Correct heading + level", "False headings"],
         per_report,
