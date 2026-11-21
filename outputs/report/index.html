@@ -68,7 +68,7 @@ code { background: #e7eef4; padding: 2px 4px; }
 </ol>
 <p>This is <strong>sampled-page heading accuracy</strong>, even when a parser processed the full document. Seventeen completed configurations include variants of the same packages and models; they are not 17 independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.</p>
 <h2>Full configuration results</h2>
-<p>Sorted by correct heading plus level. Each <strong>Configuration</strong> links to the package, model or service; each <strong>Method / code</strong> links to the benchmark's GitHub implementation. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. Mistral is unrun, not a zero-scoring result. <strong>Both cost columns are API-fee projections; the 523-page column is a hypothetical full-corpus charge, not an invoice or the number of pages scored.</strong> See the notes immediately below the table for scope and licensing qualifications.</p>
+<p>Sorted by correct heading plus level. Each <strong>Configuration</strong> links to the package, model or service; each <strong>Method / code</strong> links to the benchmark's GitHub implementation. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. Mistral is unrun, not a zero-scoring result. <strong>Both cost columns are API-fee projections; the 500-page column is a standardized comparison, not an invoice or the number of pages processed or scored.</strong> See the notes immediately below the table for scope and licensing qualifications.</p>
 <table>
 <thead>
 <tr>
@@ -80,7 +80,7 @@ code { background: #e7eef4; padding: 2px 4px; }
 <th>False headings</th>
 <th>Native prose retention</th>
 <th>API USD / 1,000 pages</th>
-<th>API USD / 523 pages</th>
+<th>API USD / 500 pages</th>
 <th>Measured time</th>
 </tr>
 </thead>
@@ -93,8 +93,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>84.4% (65/77)</td>
 <td>2</td>
 <td>—</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>61.8 min / 32 pages</td>
 </tr>
 <tr>
@@ -105,8 +105,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>68.8% (53/77)</td>
 <td>2</td>
 <td>98.7%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>17.2 min / 32 pages</td>
 </tr>
 <tr>
@@ -117,8 +117,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>59.7% (46/77)</td>
 <td>8</td>
 <td>99.5%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>8.9 min / 32 pages</td>
 </tr>
 <tr>
@@ -129,8 +129,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>59.7% (46/77)</td>
 <td>8</td>
 <td>99.3%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>23.5 min / 32 pages</td>
 </tr>
 <tr>
@@ -141,8 +141,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>55.8% (43/77)</td>
 <td>2</td>
 <td>—</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>6.4 s / 32 pages</td>
 </tr>
 <tr>
@@ -154,7 +154,7 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>3</td>
 <td>99.9%</td>
 <td>$10.00 estimate</td>
-<td>$5.23</td>
+<td>$5.00 estimate</td>
 <td>1.7 min / 523 pages</td>
 </tr>
 <tr>
@@ -165,8 +165,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>40.3% (31/77)</td>
 <td>2</td>
 <td>99.1%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>11.2 min / 523 pages</td>
 </tr>
 <tr>
@@ -177,8 +177,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>36.4% (28/77)</td>
 <td>2</td>
 <td>98.8%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>51.8 s / 523 pages</td>
 </tr>
 <tr>
@@ -189,8 +189,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>32.5% (25/77)</td>
 <td>3</td>
 <td>—</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>1.7 min / hierarchy stage only</td>
 </tr>
 <tr>
@@ -201,8 +201,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>29.9% (23/77)</td>
 <td>1</td>
 <td>—</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>1.3 min / hierarchy stage only</td>
 </tr>
 <tr>
@@ -213,8 +213,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>28.6% (22/77)</td>
 <td>2</td>
 <td>98.4%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>1.7 min / 523 pages</td>
 </tr>
 <tr>
@@ -225,8 +225,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>28.6% (22/77)</td>
 <td>0</td>
 <td>—</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>1.5 min / hierarchy stage only</td>
 </tr>
 <tr>
@@ -237,8 +237,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>24.7% (19/77)</td>
 <td>9</td>
 <td>98.8%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>44.0 s / 523 pages</td>
 </tr>
 <tr>
@@ -249,8 +249,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>20.8% (16/77)</td>
 <td>2</td>
 <td>98.4%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>1.7 min / 523 pages</td>
 </tr>
 <tr>
@@ -261,8 +261,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>20.8% (16/77)</td>
 <td>2</td>
 <td>98.4%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>1.7 min / 523 pages</td>
 </tr>
 <tr>
@@ -273,8 +273,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>19.5% (15/77)</td>
 <td>2</td>
 <td>98.4%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>14.9 min / hierarchy stage only</td>
 </tr>
 <tr>
@@ -285,8 +285,8 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>Levels not supplied (0/77 complete outputs)</td>
 <td>3</td>
 <td>99.0%</td>
-<td>$0.00</td>
-<td>$0.00</td>
+<td>N/A — local</td>
+<td>N/A — local</td>
 <td>9.5 min / 32 pages</td>
 </tr>
 <tr>
@@ -298,13 +298,13 @@ code { background: #e7eef4; padding: 2px 4px; }
 <td>—</td>
 <td>—</td>
 <td>$4.00</td>
-<td>$2.09</td>
+<td>$2.00</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <h2>How to read the table</h2>
-<p><strong>Cost:</strong> USD API fees, excluding hardware, electricity, tax, engineering, manual review and commercial licenses. Local $0 is not an all-in cost. Hosted figures are projected standard charges, not invoices. Azure's $10/1,000 is a provisional regional estimate. Mistral's $4/1,000 was a published standard rate at the time of the experiment; its $2.09 projection was not spent. Check current <a href="https://docs.mistral.ai/inference/pricing?currency=usd">Mistral pricing</a> and <a href="https://azure.microsoft.com/en-us/pricing/details/document-intelligence/">Azure pricing</a> before running.</p>
+<p><strong>Cost:</strong> USD API fees, excluding hardware, electricity, tax, engineering, manual review and commercial licenses. N/A — local means no hosted API was used; local compute costs were not estimated. Hosted figures are projected standard charges, not invoices. Azure was run on all 523 pages, but its actual billed charge was not verified. Its $10/1,000 ($5/500) is a provisional regional price assumption. Mistral's $4/1,000 was a published standard rate at the time of the experiment; it was not run, and its $2/500 projection was not spent. Check current <a href="https://docs.mistral.ai/inference/pricing?currency=usd">Mistral pricing</a> and <a href="https://azure.microsoft.com/en-us/pricing/details/document-intelligence/">Azure pricing</a> before running.</p>
 <p><strong>Scopes and timing:</strong> earlier CPU parsers and Azure processed all 523 pages. New local OCR models processed the complete text on the 32 audit pages. Qwen3.6 read native page text, full-document candidate titles and author PDF tags, and current/previous sampled-page images; it does not OCR the body. Its measured time excludes those candidate-generation stages. Qwen3.5 and Popo timings cover only hierarchy inference. Hardware was a shared 48 GB Apple M4 Pro. New-model times exclude downloads, loading and aborted attempts; some earlier CPU times include setup. These are observations with different scopes, not a controlled throughput benchmark.</p>
 <p><strong>Text:</strong> native prose retention measures five-word sequences preserved from native PDF blocks of at least 50 words, on the audit pages. It is not character accuracy, reading order, semantic accuracy or table correctness. A missing score means not evaluated or not applicable. Hierarchy-only stages reuse extracted text.</p>
 <p><strong>Configuration caveats:</strong> MinerU Pro's direct interface recovered headings but supplied no hierarchy levels; its 0/77 complete outputs must not be described as zero heading detection. The Qwen3.6 implementation uses only previously processed audit pages as visual memory; it is not a reproduction of a full-document memory benchmark. The Popo result is an experimental 8-bit MLX port with 8-page chunks, not an upstream performance claim. LightOn 4B historical timing includes five single-page checkpoints followed by batch-two processing; a clean rerun uses batch two throughout. The 0.15 Docling tolerance was fixed across these reports but remains an exploratory choice, not an untuned general default.</p>
