@@ -14,7 +14,7 @@ HEADERS = [
     "False headings",
     "Native prose retention",
     "API USD / 1,000 pages",
-    "API USD / 523 pages",
+    "API USD / 500 pages",
     "Measured time",
 ]
 
@@ -42,6 +42,7 @@ def cells(row, method):
     if row["method"] == "mineru_pro_mlx":
         combined = "Levels not supplied (0/77 complete outputs)"
     estimate = " estimate" if row["method"] == "azure_layout" else ""
+    rate = row["api_usd_per_1000_pages"]
     return [
         f"[{row['name']}]({row['source_url']})",
         f"[{method['description']}]({REMOTE}{method['code']})",
@@ -50,8 +51,8 @@ def cells(row, method):
         combined,
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
-        f"${row['api_usd_per_1000_pages']:.2f}{estimate}",
-        f"${row['api_usd_for_523_pages']:.2f}",
+        f"${rate:.2f}{estimate}" if rate else "N/A — local",
+        f"${rate / 2:.2f}{estimate}" if rate else "N/A — local",
         duration(row),
     ]
 
