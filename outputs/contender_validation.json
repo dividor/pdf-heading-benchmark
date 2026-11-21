@@ -1,0 +1,103 @@
+{
+  "reference_sha256": "6cd638fb840879fd997238c599aa6e1db5ec4063852a8177f2fbf2e811a675db",
+  "methods": {
+    "mineru_pro_mlx": {
+      "pages_saved": 32,
+      "missing_pages": [],
+      "errors": [],
+      "timeouts": [],
+      "token_limits": [],
+      "empty_output": [],
+      "json_format_deviations": [],
+      "peak_mlx_memory_gb": 0,
+      "complete": true
+    },
+    "lighton4b_mlx": {
+      "pages_saved": 32,
+      "missing_pages": [],
+      "errors": [],
+      "timeouts": [],
+      "token_limits": [],
+      "empty_output": [],
+      "json_format_deviations": [],
+      "peak_mlx_memory_gb": 10.82216907,
+      "complete": true
+    },
+    "chandra2_mlx": {
+      "pages_saved": 32,
+      "missing_pages": [],
+      "errors": [],
+      "timeouts": [],
+      "token_limits": [],
+      "empty_output": [],
+      "json_format_deviations": [],
+      "peak_mlx_memory_gb": 11.576390502,
+      "complete": true
+    },
+    "qwen36_visual_memory": {
+      "pages_saved": 32,
+      "missing_pages": [],
+      "errors": [],
+      "timeouts": [],
+      "token_limits": [],
+      "empty_output": [],
+      "json_format_deviations": [
+        [
+          "targeting",
+          109,
+          "Prose around JSON or invalid JSON"
+        ],
+        [
+          "midterm",
+          10,
+          "Alternative JSON envelope"
+        ],
+        [
+          "midterm",
+          26,
+          "Alternative JSON envelope"
+        ],
+        [
+          "midterm",
+          27,
+          "Alternative JSON envelope"
+        ],
+        [
+          "midterm",
+          36,
+          "Alternative JSON envelope"
+        ],
+        [
+          "indonesia",
+          68,
+          "Alternative JSON envelope"
+        ],
+        [
+          "colombia",
+          72,
+          "Prose around JSON or invalid JSON"
+        ]
+      ],
+      "peak_mlx_memory_gb": 21.030055586,
+      "complete": true
+    }
+  },
+  "azure": [
+    {
+      "document": "targeting",
+      "pages": 172
+    },
+    {
+      "document": "midterm",
+      "pages": 176
+    },
+    {
+      "document": "indonesia",
+      "pages": 76
+    },
+    {
+      "document": "colombia",
+      "pages": 99
+    }
+  ]
+}

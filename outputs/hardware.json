@@ -1,0 +1,8 @@
+{
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "python": "3.12.3",
+  "machine": "arm64",
+  "ram_bytes": 51539607552,
+  "cpu": "Apple M4 Pro",
+  "popo_git_commit": "8b9a8bd57ef3c785b45d7ed696fdadfbe7184992"
+}

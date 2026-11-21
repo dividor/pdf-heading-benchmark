@@ -1,0 +1,11 @@
+body { font: 16px/1.55 system-ui, sans-serif; margin: 0; color: #183247; background: #f5f8fb; }
+main { padding: 32px; max-width: 1800px; margin: auto; overflow-x: auto; }
+p { max-width: 1100px; }
+a { color: #08659a; }
+h1 { line-height: 1.2; }
+table { border-collapse: collapse; background: white; font-size: 14px; width: 100%; margin: 24px 0; }
+th, td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #dce5ec; min-width: 90px; }
+th { background: #e5eff7; }
+td:nth-child(2) { min-width: 240px; }
+code { background: #e7eef4; padding: 2px 4px; }
+@media (max-width: 600px) { main { padding: 16px; } }

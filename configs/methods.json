@@ -1,0 +1,344 @@
+{
+  "docling_default": {
+    "description": "CPU, OCR and tables off; native SectionHeaderItem levels; full PDFs.",
+    "code": "scripts/runners/run_docling.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_docling.py",
+        "environment": "docling",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "docling_hierarchy": {
+    "description": "Same Docling blocks, built-in HeadingHierarchyModel enabled.",
+    "code": "scripts/runners/run_docling.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_docling.py",
+        "environment": "docling",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "docling_tuned": {
+    "description": "Same blocks, fixed style_size_tolerance=0.15 on every report; exploratory variant.",
+    "code": "scripts/runners/run_docling.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_docling.py",
+        "environment": "docling",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "pymupdf4llm": {
+    "description": "Full PDFs to page-chunk Markdown; read Markdown heading levels and page provenance.",
+    "code": "scripts/runners/run_pymupdf4llm.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "marker": {
+    "description": "Full PDFs; CPU no-OCR/no-LLM; decode SectionHeader HTML tags.",
+    "code": "scripts/runners/run_marker.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_marker.py",
+        "environment": "marker",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "mineru_basic": {
+    "description": "Full PDFs; basic ONNX CPU tier, no external LLM; native title-block levels.",
+    "code": "scripts/runners/run_mineru.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_mineru.py",
+        "environment": "mineru",
+        "args": [],
+        "per_document": false
+      }
+    ]
+  },
+  "lighton_mlx": {
+    "description": "32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.",
+    "code": "scripts/runners/run_lighton_mlx.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_lighton_mlx.py",
+        "environment": "mlx",
+        "args": [],
+        "per_document": false
+      }
+    ]
+  },
+  "popo_docling": {
+    "description": "Docling candidates + Popo MLX 8-bit; 8-page chunks, page mosaics, upstream overlap alignment; experimental port.",
+    "code": "scripts/runners/run_popo_mlx.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_docling.py",
+        "environment": "docling",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "popo"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_popo_mlx.py",
+        "environment": "mlx",
+        "args": [],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen_ids_union": {
+    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: union.",
+    "code": "scripts/runners/run_qwen_ids.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_docling.py",
+        "environment": "docling",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/build_union.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "qwen_ids"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_qwen_ids.py",
+        "environment": "mlx",
+        "args": [
+          "union"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen_ids_mineru_basic": {
+    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: mineru_basic.",
+    "code": "scripts/runners/run_qwen_ids.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_mineru.py",
+        "environment": "mineru",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "qwen_ids"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_qwen_ids.py",
+        "environment": "mlx",
+        "args": [
+          "mineru_basic"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen_ids_pymupdf4llm": {
+    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: pymupdf4llm.",
+    "code": "scripts/runners/run_qwen_ids.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "qwen_ids"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_qwen_ids.py",
+        "environment": "mlx",
+        "args": [
+          "pymupdf4llm"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "pdf_tags_audit_only": {
+    "description": "Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.",
+    "code": "scripts/runners/run_pdf_tags.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pdf_tags.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      }
+    ]
+  },
+  "mineru_pro_mlx": {
+    "description": "32 images; direct MLX two_step_extract; preserve title blocks and absent levels as null.",
+    "code": "scripts/runners/run_mineru_pro.py",
+    "steps": [
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "MinerU2.5-Pro-2605-1.2B"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_mineru_pro.py",
+        "environment": "mlx",
+        "args": [],
+        "per_document": false
+      }
+    ]
+  },
+  "lighton4b_mlx": {
+    "description": "32 images; MLX grounding prompt, 2048-pixel limit; batch 2 after 5 single-page historical checkpoints.",
+    "code": "scripts/runners/run_chandra_batch.py",
+    "steps": [
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "LightOnOCR-3-4B"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_chandra_batch.py",
+        "environment": "mlx",
+        "args": [
+          "lighton4b"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "chandra2_mlx": {
+    "description": "32 images; author OCR-layout prompt/rendering; MLX batch 4; read HTML heading levels.",
+    "code": "scripts/runners/run_chandra_batch.py",
+    "steps": [
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "chandra-ocr-2"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_chandra_batch.py",
+        "environment": "mlx",
+        "args": [
+          "chandra2"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen36_visual_memory": {
+    "description": "32 targets; Qwen3.6-27B MLX 4-bit, native text, full-document candidates/tags, prior sampled-page images.",
+    "code": "scripts/runners/run_qwen_visual_memory.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-27B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/run_qwen_visual_memory.py",
+        "environment": "mlx",
+        "args": [],
+        "per_document": false
+      }
+    ]
+  },
+  "azure_layout": {
+    "description": "All 523 pages; hosted prebuilt-layout API 2024-11-30; paragraph roles plus Markdown levels.",
+    "code": "scripts/runners/run_hosted_ocr.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_hosted_ocr.py",
+        "environment": "core",
+        "args": [
+          "azure"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "mistral_ocr41": {
+    "description": "Prepared full-PDF OCR 4.1 API runner; extract page Markdown headings. NOT RUN: API key unavailable.",
+    "code": "scripts/runners/run_hosted_ocr.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_hosted_ocr.py",
+        "environment": "core",
+        "args": [
+          "mistral"
+        ],
+        "per_document": false
+      }
+    ]
+  }
+}

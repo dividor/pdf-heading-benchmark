@@ -1,0 +1,49 @@
+{
+  "python": "3.12.3",
+  "packages": {
+    "mlx": "0.32.4",
+    "mlx-vlm": "0.8.0",
+    "transformers": "5.23.0",
+    "mineru-vl-utils": "2.0.9",
+    "huggingface-hub": "2.4.0",
+    "pymupdf": "2.1",
+    "pillow": "13.0.0",
+    "requests": "2.34.2"
+  },
+  "models": [
+    {
+      "repo": "lightonai/LightOnOCR-3-4B",
+      "revision": "b71010f095dc3735de7ee6b9969bff8f8f50b39a",
+      "download_seconds": 226.5205249786377
+    },
+    {
+      "repo": "opendatalab/MinerU2.5-Pro-2605-1.2B",
+      "revision": "08aaea840498d49ce16247b6263196cf02814885",
+      "download_seconds": 96.55122494697571
+    },
+    {
+      "repo": "mlx-community/Qwen3.6-27B-4bit",
+      "revision": "c000ac2c2057d94be3fa931000c31723aac53282",
+      "download_seconds": 228.26391410827637
+    },
+    {
+      "repo": "datalab-to/chandra-ocr-2",
+      "revision": "af93b47dba1b47b6640c86ccf487ed2260ab9a09",
+      "download_seconds": 263.1548957824707
+    }
+  ],
+  "scripts_sha256": {
+    "run_chandra_batch.py": "00ada9f620ecc47c18d2ea1855401b9e593f3747ed6156d0679a7c9d9f041f6b",
+    "run_new_ocr.py": "e40a5ff447270df59f07c460b77af3bbf0c5ae7451290c3caf4c367a8178d09b",
+    "run_qwen_visual_memory.py": "ffead8ef67112d9f0692f200dbed258e5b84f01b11999b602021a7d47faffb83",
+    "run_hosted_ocr.py": "9faee8b8f5c5f544b7a606da3000e1f58dc64568bf80b7d63c6ddd11da0486d8",
+    "extract_tag_context.py": "e6f4ce3c37b60766f70510e71e279af170ed680a7df889985fb7f039a5aeac68",
+    "evaluate_audit.py": "2a5e571a9c33c89475a3defd6c1fa278dd0b43d3de02b07e626f7266c67a46c0",
+    "evaluate_text.py": "9950ad8d07453fa20b8e3f9a6cd0b9d11e276c9c7430889cc781c7ee7076d87f",
+    "validate_contenders.py": "82310d9966c35b653a816f28b096d9a05d4e3234b92307a835599afc720771eb",
+    "build_league.py": "8004a12b0b44af7572af75b12687d359c8fe3a76cccc85e1334eeb0c1c6495b7",
+    "build_expanded_conclusion.py": "0df7bf452346817c1530e39f811b5e16a915ad5ed7f442aad51907523dc6cde8"
+  },
+  "reference_sha256": "6cd638fb840879fd997238c599aa6e1db5ec4063852a8177f2fbf2e811a675db",
+  "annotation_note": "Original reference hash predates repository JSON formatting; label values are unchanged."
+}

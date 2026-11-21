@@ -1,0 +1,12 @@
+pymupdf==2.1
+beautifulsoup4
+pdfplumber
+requests==2.34.2
+mlx==0.32.4
+mlx-vlm==0.8.0
+transformers==5.23.0
+mineru-vl-utils==2.0.9
+huggingface-hub==2.4.0
+pillow==13.0.0
+openai
+tqdm

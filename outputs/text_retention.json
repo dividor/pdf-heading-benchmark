@@ -1,0 +1,2882 @@
+[
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "docling_no_tables",
+    "native_ngrams": 339,
+    "retained": 329,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 247
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "docling_no_tables",
+    "native_ngrams": 413,
+    "retained": 388,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "docling_no_tables",
+    "native_ngrams": 575,
+    "retained": 557,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 503
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "docling_no_tables",
+    "native_ngrams": 401,
+    "retained": 346,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 219
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "docling_no_tables",
+    "native_ngrams": 505,
+    "retained": 480,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 338
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "docling_no_tables",
+    "native_ngrams": 731,
+    "retained": 701,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 689
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "docling_no_tables",
+    "native_ngrams": 628,
+    "retained": 618,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 550
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "docling_no_tables",
+    "native_ngrams": 530,
+    "retained": 515,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "marker",
+    "native_ngrams": 339,
+    "retained": 325,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 243
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "marker",
+    "native_ngrams": 413,
+    "retained": 401,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "marker",
+    "native_ngrams": 575,
+    "retained": 571,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 506
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "marker",
+    "native_ngrams": 401,
+    "retained": 373,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 221
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "marker",
+    "native_ngrams": 505,
+    "retained": 486,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "marker",
+    "native_ngrams": 731,
+    "retained": 713,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "marker",
+    "native_ngrams": 628,
+    "retained": 619,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 551
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "marker",
+    "native_ngrams": 530,
+    "retained": 521,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "pymupdf4llm",
+    "native_ngrams": 339,
+    "retained": 330,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 248
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "pymupdf4llm",
+    "native_ngrams": 413,
+    "retained": 385,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "pymupdf4llm",
+    "native_ngrams": 575,
+    "retained": 575,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 506
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "pymupdf4llm",
+    "native_ngrams": 401,
+    "retained": 379,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 221
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "pymupdf4llm",
+    "native_ngrams": 505,
+    "retained": 505,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "pymupdf4llm",
+    "native_ngrams": 731,
+    "retained": 717,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "pymupdf4llm",
+    "native_ngrams": 628,
+    "retained": 623,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 551
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "pymupdf4llm",
+    "native_ngrams": 530,
+    "retained": 525,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "lighton_mlx",
+    "native_ngrams": 339,
+    "retained": 335,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 253
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "lighton_mlx",
+    "native_ngrams": 413,
+    "retained": 377,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "lighton_mlx",
+    "native_ngrams": 575,
+    "retained": 570,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 501
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "lighton_mlx",
+    "native_ngrams": 401,
+    "retained": 349,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 226
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "lighton_mlx",
+    "native_ngrams": 505,
+    "retained": 493,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "lighton_mlx",
+    "native_ngrams": 731,
+    "retained": 717,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "lighton_mlx",
+    "native_ngrams": 628,
+    "retained": 628,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 556
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "lighton_mlx",
+    "native_ngrams": 530,
+    "retained": 530,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 339,
+    "retained": 335,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 253
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 413,
+    "retained": 377,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 575,
+    "retained": 570,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 501
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 401,
+    "retained": 348,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 221
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 505,
+    "retained": 500,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 731,
+    "retained": 717,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 628,
+    "retained": 628,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 556
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 530,
+    "retained": 530,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "chandra2_mlx",
+    "native_ngrams": 339,
+    "retained": 330,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 248
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "chandra2_mlx",
+    "native_ngrams": 413,
+    "retained": 389,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "chandra2_mlx",
+    "native_ngrams": 575,
+    "retained": 570,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 501
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "chandra2_mlx",
+    "native_ngrams": 401,
+    "retained": 342,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 221
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "chandra2_mlx",
+    "native_ngrams": 505,
+    "retained": 500,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "chandra2_mlx",
+    "native_ngrams": 731,
+    "retained": 717,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "chandra2_mlx",
+    "native_ngrams": 628,
+    "retained": 628,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 556
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "chandra2_mlx",
+    "native_ngrams": 530,
+    "retained": 525,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 223
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 339,
+    "retained": 334,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 248
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 413,
+    "retained": 371,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 575,
+    "retained": 570,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 501
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 401,
+    "retained": 342,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 221
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 505,
+    "retained": 500,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 731,
+    "retained": 717,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 628,
+    "retained": 628,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 556
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 530,
+    "retained": 530,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "azure_layout",
+    "native_ngrams": 339,
+    "retained": 331,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 253
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "azure_layout",
+    "native_ngrams": 413,
+    "retained": 385,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "azure_layout",
+    "native_ngrams": 575,
+    "retained": 571,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 506
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "azure_layout",
+    "native_ngrams": 401,
+    "retained": 372,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 226
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "azure_layout",
+    "native_ngrams": 505,
+    "retained": 501,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "azure_layout",
+    "native_ngrams": 731,
+    "retained": 713,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "azure_layout",
+    "native_ngrams": 628,
+    "retained": 619,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 551
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "azure_layout",
+    "native_ngrams": 530,
+    "retained": 526,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "mineru_basic",
+    "native_ngrams": 339,
+    "retained": 334,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 248
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "mineru_basic",
+    "native_ngrams": 413,
+    "retained": 389,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "mineru_basic",
+    "native_ngrams": 575,
+    "retained": 575,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 506
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "mineru_basic",
+    "native_ngrams": 401,
+    "retained": 342,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 221
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "mineru_basic",
+    "native_ngrams": 505,
+    "retained": 500,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 339
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "mineru_basic",
+    "native_ngrams": 731,
+    "retained": 717,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 693
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "mineru_basic",
+    "native_ngrams": 628,
+    "retained": 628,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 556
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "mineru_basic",
+    "native_ngrams": 530,
+    "retained": 530,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "targeting",
+    "page": 7,
+    "method": "docling_tables",
+    "native_ngrams": 339,
+    "retained": 329,
+    "paragraph_ngrams": 253,
+    "paragraph_retained": 247
+  },
+  {
+    "document": "targeting",
+    "page": 11,
+    "method": "docling_tables",
+    "native_ngrams": 413,
+    "retained": 381,
+    "paragraph_ngrams": 222,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "targeting",
+    "page": 24,
+    "method": "docling_tables",
+    "native_ngrams": 575,
+    "retained": 557,
+    "paragraph_ngrams": 506,
+    "paragraph_retained": 503
+  },
+  {
+    "document": "targeting",
+    "page": 27,
+    "method": "docling_tables",
+    "native_ngrams": 401,
+    "retained": 346,
+    "paragraph_ngrams": 226,
+    "paragraph_retained": 219
+  },
+  {
+    "document": "targeting",
+    "page": 33,
+    "method": "docling_tables",
+    "native_ngrams": 505,
+    "retained": 480,
+    "paragraph_ngrams": 339,
+    "paragraph_retained": 338
+  },
+  {
+    "document": "targeting",
+    "page": 67,
+    "method": "docling_tables",
+    "native_ngrams": 731,
+    "retained": 701,
+    "paragraph_ngrams": 693,
+    "paragraph_retained": 689
+  },
+  {
+    "document": "targeting",
+    "page": 96,
+    "method": "docling_tables",
+    "native_ngrams": 628,
+    "retained": 618,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 550
+  },
+  {
+    "document": "targeting",
+    "page": 109,
+    "method": "docling_tables",
+    "native_ngrams": 530,
+    "retained": 515,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "docling_no_tables",
+    "native_ngrams": 330,
+    "retained": 305,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 224
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "docling_no_tables",
+    "native_ngrams": 410,
+    "retained": 395,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 199
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "docling_no_tables",
+    "native_ngrams": 406,
+    "retained": 386,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "docling_no_tables",
+    "native_ngrams": 409,
+    "retained": 384,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "docling_no_tables",
+    "native_ngrams": 556,
+    "retained": 527,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "docling_no_tables",
+    "native_ngrams": 626,
+    "retained": 592,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "docling_no_tables",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "docling_no_tables",
+    "native_ngrams": 488,
+    "retained": 454,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "marker",
+    "native_ngrams": 330,
+    "retained": 324,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "marker",
+    "native_ngrams": 410,
+    "retained": 399,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "marker",
+    "native_ngrams": 406,
+    "retained": 397,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "marker",
+    "native_ngrams": 409,
+    "retained": 403,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "marker",
+    "native_ngrams": 556,
+    "retained": 545,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "marker",
+    "native_ngrams": 626,
+    "retained": 601,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "marker",
+    "native_ngrams": 679,
+    "retained": 673,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "marker",
+    "native_ngrams": 488,
+    "retained": 467,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "pymupdf4llm",
+    "native_ngrams": 330,
+    "retained": 330,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "pymupdf4llm",
+    "native_ngrams": 410,
+    "retained": 405,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "pymupdf4llm",
+    "native_ngrams": 406,
+    "retained": 406,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "pymupdf4llm",
+    "native_ngrams": 409,
+    "retained": 409,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "pymupdf4llm",
+    "native_ngrams": 556,
+    "retained": 551,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "pymupdf4llm",
+    "native_ngrams": 626,
+    "retained": 616,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "pymupdf4llm",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "pymupdf4llm",
+    "native_ngrams": 488,
+    "retained": 468,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "lighton_mlx",
+    "native_ngrams": 330,
+    "retained": 320,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "lighton_mlx",
+    "native_ngrams": 410,
+    "retained": 410,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "lighton_mlx",
+    "native_ngrams": 406,
+    "retained": 406,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "lighton_mlx",
+    "native_ngrams": 409,
+    "retained": 409,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "lighton_mlx",
+    "native_ngrams": 556,
+    "retained": 543,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "lighton_mlx",
+    "native_ngrams": 626,
+    "retained": 622,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "lighton_mlx",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "lighton_mlx",
+    "native_ngrams": 488,
+    "retained": 478,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 330,
+    "retained": 320,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 410,
+    "retained": 410,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 406,
+    "retained": 401,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 409,
+    "retained": 409,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 556,
+    "retained": 543,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 626,
+    "retained": 612,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 488,
+    "retained": 478,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "chandra2_mlx",
+    "native_ngrams": 330,
+    "retained": 320,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "chandra2_mlx",
+    "native_ngrams": 410,
+    "retained": 405,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "chandra2_mlx",
+    "native_ngrams": 406,
+    "retained": 406,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "chandra2_mlx",
+    "native_ngrams": 409,
+    "retained": 409,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "chandra2_mlx",
+    "native_ngrams": 556,
+    "retained": 543,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "chandra2_mlx",
+    "native_ngrams": 626,
+    "retained": 612,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "chandra2_mlx",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "chandra2_mlx",
+    "native_ngrams": 488,
+    "retained": 478,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 330,
+    "retained": 324,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 222
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 410,
+    "retained": 405,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 406,
+    "retained": 406,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 409,
+    "retained": 409,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 556,
+    "retained": 543,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 626,
+    "retained": 612,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 488,
+    "retained": 478,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "azure_layout",
+    "native_ngrams": 330,
+    "retained": 320,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "azure_layout",
+    "native_ngrams": 410,
+    "retained": 404,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "azure_layout",
+    "native_ngrams": 406,
+    "retained": 397,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "azure_layout",
+    "native_ngrams": 409,
+    "retained": 403,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "azure_layout",
+    "native_ngrams": 556,
+    "retained": 542,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "azure_layout",
+    "native_ngrams": 626,
+    "retained": 616,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "azure_layout",
+    "native_ngrams": 679,
+    "retained": 673,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "azure_layout",
+    "native_ngrams": 488,
+    "retained": 470,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "mineru_basic",
+    "native_ngrams": 330,
+    "retained": 330,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 227
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "mineru_basic",
+    "native_ngrams": 410,
+    "retained": 405,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 200
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "mineru_basic",
+    "native_ngrams": 406,
+    "retained": 406,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "mineru_basic",
+    "native_ngrams": 409,
+    "retained": 409,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "mineru_basic",
+    "native_ngrams": 556,
+    "retained": 546,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "mineru_basic",
+    "native_ngrams": 626,
+    "retained": 591,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "mineru_basic",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "mineru_basic",
+    "native_ngrams": 488,
+    "retained": 478,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 8,
+    "method": "docling_tables",
+    "native_ngrams": 330,
+    "retained": 305,
+    "paragraph_ngrams": 227,
+    "paragraph_retained": 224
+  },
+  {
+    "document": "midterm",
+    "page": 10,
+    "method": "docling_tables",
+    "native_ngrams": 410,
+    "retained": 395,
+    "paragraph_ngrams": 200,
+    "paragraph_retained": 199
+  },
+  {
+    "document": "midterm",
+    "page": 26,
+    "method": "docling_tables",
+    "native_ngrams": 406,
+    "retained": 386,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 27,
+    "method": "docling_tables",
+    "native_ngrams": 409,
+    "retained": 384,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 36,
+    "method": "docling_tables",
+    "native_ngrams": 556,
+    "retained": 527,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 61,
+    "method": "docling_tables",
+    "native_ngrams": 626,
+    "retained": 596,
+    "paragraph_ngrams": 135,
+    "paragraph_retained": 135
+  },
+  {
+    "document": "midterm",
+    "page": 87,
+    "method": "docling_tables",
+    "native_ngrams": 679,
+    "retained": 679,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "midterm",
+    "page": 98,
+    "method": "docling_tables",
+    "native_ngrams": 488,
+    "retained": 454,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "docling_no_tables",
+    "native_ngrams": 468,
+    "retained": 428,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 204
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "docling_no_tables",
+    "native_ngrams": 585,
+    "retained": 555,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 437
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "docling_no_tables",
+    "native_ngrams": 616,
+    "retained": 586,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 337
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "docling_no_tables",
+    "native_ngrams": 494,
+    "retained": 432,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 230
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "docling_no_tables",
+    "native_ngrams": 547,
+    "retained": 372,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 118
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "docling_no_tables",
+    "native_ngrams": 628,
+    "retained": 557,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 491
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "docling_no_tables",
+    "native_ngrams": 596,
+    "retained": 581,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 489
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "docling_no_tables",
+    "native_ngrams": 612,
+    "retained": 582,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 548
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "marker",
+    "native_ngrams": 468,
+    "retained": 439,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 194
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "marker",
+    "native_ngrams": 585,
+    "retained": 581,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "marker",
+    "native_ngrams": 616,
+    "retained": 612,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "marker",
+    "native_ngrams": 494,
+    "retained": 473,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "marker",
+    "native_ngrams": 547,
+    "retained": 379,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 118
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "marker",
+    "native_ngrams": 628,
+    "retained": 586,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 495
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "marker",
+    "native_ngrams": 596,
+    "retained": 592,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "marker",
+    "native_ngrams": 612,
+    "retained": 603,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 552
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "pymupdf4llm",
+    "native_ngrams": 468,
+    "retained": 458,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 206
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "pymupdf4llm",
+    "native_ngrams": 585,
+    "retained": 585,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "pymupdf4llm",
+    "native_ngrams": 616,
+    "retained": 616,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "pymupdf4llm",
+    "native_ngrams": 494,
+    "retained": 434,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "pymupdf4llm",
+    "native_ngrams": 547,
+    "retained": 303,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 90
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "pymupdf4llm",
+    "native_ngrams": 628,
+    "retained": 579,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 497
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "pymupdf4llm",
+    "native_ngrams": 596,
+    "retained": 583,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "pymupdf4llm",
+    "native_ngrams": 612,
+    "retained": 612,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 557
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "lighton_mlx",
+    "native_ngrams": 468,
+    "retained": 468,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 216
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "lighton_mlx",
+    "native_ngrams": 585,
+    "retained": 585,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "lighton_mlx",
+    "native_ngrams": 616,
+    "retained": 616,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "lighton_mlx",
+    "native_ngrams": 494,
+    "retained": 452,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "lighton_mlx",
+    "native_ngrams": 547,
+    "retained": 369,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 113
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "lighton_mlx",
+    "native_ngrams": 628,
+    "retained": 576,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 499
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "lighton_mlx",
+    "native_ngrams": 596,
+    "retained": 596,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "lighton_mlx",
+    "native_ngrams": 612,
+    "retained": 607,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 552
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 468,
+    "retained": 468,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 216
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 585,
+    "retained": 585,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 616,
+    "retained": 616,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 494,
+    "retained": 452,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 547,
+    "retained": 369,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 113
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 628,
+    "retained": 576,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 499
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 596,
+    "retained": 585,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 612,
+    "retained": 607,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 552
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "chandra2_mlx",
+    "native_ngrams": 468,
+    "retained": 458,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 206
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "chandra2_mlx",
+    "native_ngrams": 585,
+    "retained": 585,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "chandra2_mlx",
+    "native_ngrams": 616,
+    "retained": 616,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "chandra2_mlx",
+    "native_ngrams": 494,
+    "retained": 447,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 226
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "chandra2_mlx",
+    "native_ngrams": 547,
+    "retained": 388,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 118
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "chandra2_mlx",
+    "native_ngrams": 628,
+    "retained": 576,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 499
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "chandra2_mlx",
+    "native_ngrams": 596,
+    "retained": 585,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "chandra2_mlx",
+    "native_ngrams": 612,
+    "retained": 602,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 547
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 468,
+    "retained": 458,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 206
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 585,
+    "retained": 585,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 616,
+    "retained": 616,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 494,
+    "retained": 452,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 547,
+    "retained": 388,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 118
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 628,
+    "retained": 576,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 499
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 596,
+    "retained": 596,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 612,
+    "retained": 607,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 552
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "azure_layout",
+    "native_ngrams": 468,
+    "retained": 464,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 216
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "azure_layout",
+    "native_ngrams": 585,
+    "retained": 581,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "azure_layout",
+    "native_ngrams": 616,
+    "retained": 612,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "azure_layout",
+    "native_ngrams": 494,
+    "retained": 448,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "azure_layout",
+    "native_ngrams": 547,
+    "retained": 389,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 123
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "azure_layout",
+    "native_ngrams": 628,
+    "retained": 582,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 499
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "azure_layout",
+    "native_ngrams": 596,
+    "retained": 592,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "azure_layout",
+    "native_ngrams": 612,
+    "retained": 599,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 555
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "mineru_basic",
+    "native_ngrams": 468,
+    "retained": 458,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 206
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "mineru_basic",
+    "native_ngrams": 585,
+    "retained": 585,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 441
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "mineru_basic",
+    "native_ngrams": 616,
+    "retained": 616,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 341
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "mineru_basic",
+    "native_ngrams": 494,
+    "retained": 472,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 231
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "mineru_basic",
+    "native_ngrams": 547,
+    "retained": 376,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 118
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "mineru_basic",
+    "native_ngrams": 628,
+    "retained": 576,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 499
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "mineru_basic",
+    "native_ngrams": 596,
+    "retained": 596,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 492
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "mineru_basic",
+    "native_ngrams": 612,
+    "retained": 607,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 552
+  },
+  {
+    "document": "indonesia",
+    "page": 7,
+    "method": "docling_tables",
+    "native_ngrams": 468,
+    "retained": 428,
+    "paragraph_ngrams": 216,
+    "paragraph_retained": 204
+  },
+  {
+    "document": "indonesia",
+    "page": 11,
+    "method": "docling_tables",
+    "native_ngrams": 585,
+    "retained": 555,
+    "paragraph_ngrams": 441,
+    "paragraph_retained": 437
+  },
+  {
+    "document": "indonesia",
+    "page": 20,
+    "method": "docling_tables",
+    "native_ngrams": 616,
+    "retained": 586,
+    "paragraph_ngrams": 341,
+    "paragraph_retained": 337
+  },
+  {
+    "document": "indonesia",
+    "page": 33,
+    "method": "docling_tables",
+    "native_ngrams": 494,
+    "retained": 436,
+    "paragraph_ngrams": 231,
+    "paragraph_retained": 230
+  },
+  {
+    "document": "indonesia",
+    "page": 42,
+    "method": "docling_tables",
+    "native_ngrams": 547,
+    "retained": 373,
+    "paragraph_ngrams": 123,
+    "paragraph_retained": 118
+  },
+  {
+    "document": "indonesia",
+    "page": 48,
+    "method": "docling_tables",
+    "native_ngrams": 628,
+    "retained": 565,
+    "paragraph_ngrams": 499,
+    "paragraph_retained": 495
+  },
+  {
+    "document": "indonesia",
+    "page": 56,
+    "method": "docling_tables",
+    "native_ngrams": 596,
+    "retained": 581,
+    "paragraph_ngrams": 492,
+    "paragraph_retained": 489
+  },
+  {
+    "document": "indonesia",
+    "page": 68,
+    "method": "docling_tables",
+    "native_ngrams": 612,
+    "retained": 582,
+    "paragraph_ngrams": 557,
+    "paragraph_retained": 548
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "docling_no_tables",
+    "native_ngrams": 607,
+    "retained": 541,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 431
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "docling_no_tables",
+    "native_ngrams": 591,
+    "retained": 551,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 449
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "docling_no_tables",
+    "native_ngrams": 709,
+    "retained": 658,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 529
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "docling_no_tables",
+    "native_ngrams": 582,
+    "retained": 562,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 475
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "docling_no_tables",
+    "native_ngrams": 707,
+    "retained": 677,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 539
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "docling_no_tables",
+    "native_ngrams": 542,
+    "retained": 527,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "docling_no_tables",
+    "native_ngrams": 35,
+    "retained": 35,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "docling_no_tables",
+    "native_ngrams": 746,
+    "retained": 742,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "marker",
+    "native_ngrams": 607,
+    "retained": 565,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 438
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "marker",
+    "native_ngrams": 591,
+    "retained": 584,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "marker",
+    "native_ngrams": 709,
+    "retained": 672,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 534
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "marker",
+    "native_ngrams": 582,
+    "retained": 565,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "marker",
+    "native_ngrams": 707,
+    "retained": 690,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 542
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "marker",
+    "native_ngrams": 542,
+    "retained": 525,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "marker",
+    "native_ngrams": 35,
+    "retained": 28,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "marker",
+    "native_ngrams": 746,
+    "retained": 739,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "pymupdf4llm",
+    "native_ngrams": 607,
+    "retained": 572,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 438
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "pymupdf4llm",
+    "native_ngrams": 591,
+    "retained": 591,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "pymupdf4llm",
+    "native_ngrams": 709,
+    "retained": 679,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 534
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "pymupdf4llm",
+    "native_ngrams": 582,
+    "retained": 572,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "pymupdf4llm",
+    "native_ngrams": 707,
+    "retained": 697,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 542
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "pymupdf4llm",
+    "native_ngrams": 542,
+    "retained": 527,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "pymupdf4llm",
+    "native_ngrams": 35,
+    "retained": 35,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "pymupdf4llm",
+    "native_ngrams": 746,
+    "retained": 746,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "lighton_mlx",
+    "native_ngrams": 607,
+    "retained": 607,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 465
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "lighton_mlx",
+    "native_ngrams": 591,
+    "retained": 591,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "lighton_mlx",
+    "native_ngrams": 709,
+    "retained": 679,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 534
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "lighton_mlx",
+    "native_ngrams": 582,
+    "retained": 572,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "lighton_mlx",
+    "native_ngrams": 707,
+    "retained": 707,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 547
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "lighton_mlx",
+    "native_ngrams": 542,
+    "retained": 542,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 439
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "lighton_mlx",
+    "native_ngrams": 35,
+    "retained": 28,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "lighton_mlx",
+    "native_ngrams": 746,
+    "retained": 746,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 607,
+    "retained": 607,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 465
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 591,
+    "retained": 591,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 709,
+    "retained": 679,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 534
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 582,
+    "retained": 572,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 707,
+    "retained": 697,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 542
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 542,
+    "retained": 542,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 439
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 35,
+    "retained": 28,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "lighton4b_mlx",
+    "native_ngrams": 746,
+    "retained": 741,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 711
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "chandra2_mlx",
+    "native_ngrams": 607,
+    "retained": 572,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 438
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "chandra2_mlx",
+    "native_ngrams": 591,
+    "retained": 591,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "chandra2_mlx",
+    "native_ngrams": 709,
+    "retained": 674,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 529
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "chandra2_mlx",
+    "native_ngrams": 582,
+    "retained": 572,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "chandra2_mlx",
+    "native_ngrams": 707,
+    "retained": 697,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 542
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "chandra2_mlx",
+    "native_ngrams": 542,
+    "retained": 532,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "chandra2_mlx",
+    "native_ngrams": 35,
+    "retained": 28,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "chandra2_mlx",
+    "native_ngrams": 746,
+    "retained": 741,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 711
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 607,
+    "retained": 572,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 438
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 591,
+    "retained": 591,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 709,
+    "retained": 679,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 534
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 582,
+    "retained": 572,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 707,
+    "retained": 697,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 542
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 542,
+    "retained": 532,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 35,
+    "retained": 35,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "mineru_pro_mlx",
+    "native_ngrams": 746,
+    "retained": 746,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "azure_layout",
+    "native_ngrams": 607,
+    "retained": 600,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 465
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "azure_layout",
+    "native_ngrams": 591,
+    "retained": 584,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "azure_layout",
+    "native_ngrams": 709,
+    "retained": 702,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 556
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "azure_layout",
+    "native_ngrams": 582,
+    "retained": 575,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 483
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "azure_layout",
+    "native_ngrams": 707,
+    "retained": 700,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 547
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "azure_layout",
+    "native_ngrams": 542,
+    "retained": 530,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 438
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "azure_layout",
+    "native_ngrams": 35,
+    "retained": 21,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "azure_layout",
+    "native_ngrams": 746,
+    "retained": 739,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "mineru_basic",
+    "native_ngrams": 607,
+    "retained": 564,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 438
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "mineru_basic",
+    "native_ngrams": 591,
+    "retained": 591,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 456
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "mineru_basic",
+    "native_ngrams": 709,
+    "retained": 679,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 534
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "mineru_basic",
+    "native_ngrams": 582,
+    "retained": 572,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 477
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "mineru_basic",
+    "native_ngrams": 707,
+    "retained": 697,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 542
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "mineru_basic",
+    "native_ngrams": 542,
+    "retained": 532,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "mineru_basic",
+    "native_ngrams": 35,
+    "retained": 35,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "mineru_basic",
+    "native_ngrams": 746,
+    "retained": 746,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  },
+  {
+    "document": "colombia",
+    "page": 7,
+    "method": "docling_tables",
+    "native_ngrams": 607,
+    "retained": 541,
+    "paragraph_ngrams": 465,
+    "paragraph_retained": 431
+  },
+  {
+    "document": "colombia",
+    "page": 13,
+    "method": "docling_tables",
+    "native_ngrams": 591,
+    "retained": 551,
+    "paragraph_ngrams": 456,
+    "paragraph_retained": 449
+  },
+  {
+    "document": "colombia",
+    "page": 28,
+    "method": "docling_tables",
+    "native_ngrams": 709,
+    "retained": 658,
+    "paragraph_ngrams": 556,
+    "paragraph_retained": 529
+  },
+  {
+    "document": "colombia",
+    "page": 42,
+    "method": "docling_tables",
+    "native_ngrams": 582,
+    "retained": 562,
+    "paragraph_ngrams": 483,
+    "paragraph_retained": 475
+  },
+  {
+    "document": "colombia",
+    "page": 56,
+    "method": "docling_tables",
+    "native_ngrams": 707,
+    "retained": 677,
+    "paragraph_ngrams": 547,
+    "paragraph_retained": 539
+  },
+  {
+    "document": "colombia",
+    "page": 72,
+    "method": "docling_tables",
+    "native_ngrams": 542,
+    "retained": 527,
+    "paragraph_ngrams": 439,
+    "paragraph_retained": 433
+  },
+  {
+    "document": "colombia",
+    "page": 73,
+    "method": "docling_tables",
+    "native_ngrams": 35,
+    "retained": 35,
+    "paragraph_ngrams": 0,
+    "paragraph_retained": 0
+  },
+  {
+    "document": "colombia",
+    "page": 93,
+    "method": "docling_tables",
+    "native_ngrams": 746,
+    "retained": 746,
+    "paragraph_ngrams": 716,
+    "paragraph_retained": 716
+  }
+]

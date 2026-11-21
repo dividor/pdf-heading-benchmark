@@ -1,0 +1,4 @@
+pymupdf==2.1
+beautifulsoup4
+pdfplumber
+requests==2.34.2

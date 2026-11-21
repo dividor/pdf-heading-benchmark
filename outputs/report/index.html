@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PDF heading benchmark: scores, costs and methods</title><style>body { font: 16px/1.55 system-ui, sans-serif; margin: 0; color: #183247; background: #f5f8fb; }
+main { padding: 32px; max-width: 1800px; margin: auto; overflow-x: auto; }
+p { max-width: 1100px; }
+a { color: #08659a; }
+h1 { line-height: 1.2; }
+table { border-collapse: collapse; background: white; font-size: 14px; width: 100%; margin: 24px 0; }
+th, td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #dce5ec; min-width: 90px; }
+th { background: #e5eff7; }
+td:nth-child(2) { min-width: 240px; }
+code { background: #e7eef4; padding: 2px 4px; }
+@media (max-width: 600px) { main { padding: 16px; } }
+</style></head><body><main><h1>PDF heading benchmark: scores, costs and methods</h1>
+<p><strong>17 completed configurations, one prepared but unrun service.</strong> Four WFP evaluation reports contain 523 pages; heading scores cover <strong>77 frozen reference headings on 32 deliberately selected pages</strong>. This is a single-assistant-annotator pilot, not a general accuracy guarantee or an independent human-validated test set.</p>
+<p>The strongest completed configuration was Qwen3.6-27B with sampled visual memory: <strong>65/77 (84.4%)</strong> headings recovered at the correct level, all 77 titles recovered, and two false headings. These results describe the tested configurations, not every capability of each product.</p>
+<p><strong>Matching contract:</strong> same original PDF page, at least 90% normalized title similarity, one-to-one Hungarian assignment, and an exact reference level. Missing headings count against the combined score. False headings are displayed separately. This is not a character-perfect title metric. Main chapters and annexes are H1; a cover title does not shift all body levels.</p>
+<p><a href="https://github.com/dividor/pdf-heading-benchmark">Repository and runnable instructions</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md">Markdown report</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/league_table.json">Frozen results</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/league_details.json">Every original match and error</a></p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Method / code</th>
+<th>Status</th>
+<th>Headings recovered</th>
+<th>Correct heading + level</th>
+<th>False headings</th>
+<th>Native prose retention</th>
+<th>API USD / 1,000 pages</th>
+<th>API USD / 523 pages</th>
+<th>Measured time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://huggingface.co/Qwen/Qwen3.6-27B">Qwen3.6-27B / MLX 4-bit / sampled visual memory</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py">32 targets; Qwen3.6-27B MLX 4-bit, native text, full-document candidates/tags, prior sampled-page images.</a></td>
+<td>completed</td>
+<td>100.0% (77/77)</td>
+<td>84.4% (65/77)</td>
+<td>2</td>
+<td>—</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>61.8 min / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datalab-to/chandra-ocr-2">Chandra OCR 2 / MLX</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py">32 images; author OCR-layout prompt/rendering; MLX batch 4; read HTML heading levels.</a></td>
+<td>completed</td>
+<td>90.9% (70/77)</td>
+<td>68.8% (53/77)</td>
+<td>2</td>
+<td>98.7%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>17.2 min / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/lightonai/LightOnOCR-3-0.8B">LightOnOCR-3-0.8B / MLX</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py">32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.</a></td>
+<td>completed</td>
+<td>93.5% (72/77)</td>
+<td>59.7% (46/77)</td>
+<td>8</td>
+<td>99.5%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>8.9 min / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/lightonai/LightOnOCR-3-4B">LightOnOCR-3-4B / MLX grounding</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py">32 images; MLX grounding prompt, 2048-pixel limit; batch 2 after 5 single-page historical checkpoints.</a></td>
+<td>completed</td>
+<td>93.5% (72/77)</td>
+<td>59.7% (46/77)</td>
+<td>8</td>
+<td>99.3%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>23.5 min / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9">Embedded PDF heading tags</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py">Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.</a></td>
+<td>completed</td>
+<td>67.5% (52/77)</td>
+<td>55.8% (43/77)</td>
+<td>2</td>
+<td>—</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>6.4 s / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0">Azure Document Intelligence Layout</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_hosted_ocr.py">All 523 pages; hosted prebuilt-layout API 2024-11-30; paragraph roles plus Markdown levels.</a></td>
+<td>completed</td>
+<td>84.4% (65/77)</td>
+<td>41.6% (32/77)</td>
+<td>3</td>
+<td>99.9%</td>
+<td>$10.00 estimate</td>
+<td>$5.23</td>
+<td>1.7 min / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/opendatalab/MinerU">MinerU 4.2.3 basic CPU</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru.py">Full PDFs; basic ONNX CPU tier, no external LLM; native title-block levels.</a></td>
+<td>completed</td>
+<td>85.7% (66/77)</td>
+<td>40.3% (31/77)</td>
+<td>2</td>
+<td>99.1%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>11.2 min / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/pymupdf/pymupdf4llm">PyMuPDF4LLM 2.1</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pymupdf4llm.py">Full PDFs to page-chunk Markdown; read Markdown heading levels and page provenance.</a></td>
+<td>completed</td>
+<td>93.5% (72/77)</td>
+<td>36.4% (28/77)</td>
+<td>2</td>
+<td>98.8%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>51.8 s / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/Qwen/Qwen3.5-4B">Qwen3.5-4B / union candidates</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py">Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: union.</a></td>
+<td>completed</td>
+<td>70.1% (54/77)</td>
+<td>32.5% (25/77)</td>
+<td>3</td>
+<td>—</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>1.7 min / hierarchy stage only</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/Qwen/Qwen3.5-4B">Qwen3.5-4B / MinerU candidates</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py">Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: mineru_basic.</a></td>
+<td>completed</td>
+<td>85.7% (66/77)</td>
+<td>29.9% (23/77)</td>
+<td>1</td>
+<td>—</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>1.3 min / hierarchy stage only</td>
+</tr>
+<tr>
+<td><a href="https://github.com/docling-project/docling">Docling fixed tolerance 0.15</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py">Same blocks, fixed style_size_tolerance=0.15 on every report; exploratory variant.</a></td>
+<td>completed</td>
+<td>88.3% (68/77)</td>
+<td>28.6% (22/77)</td>
+<td>2</td>
+<td>98.4%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>1.7 min / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/Qwen/Qwen3.5-4B">Qwen3.5-4B / PyMuPDF candidates</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py">Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: pymupdf4llm.</a></td>
+<td>completed</td>
+<td>70.1% (54/77)</td>
+<td>28.6% (22/77)</td>
+<td>0</td>
+<td>—</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>1.5 min / hierarchy stage only</td>
+</tr>
+<tr>
+<td><a href="https://github.com/datalab-to/marker">Marker 2.2 no OCR/LLM</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_marker.py">Full PDFs; CPU no-OCR/no-LLM; decode SectionHeader HTML tags.</a></td>
+<td>completed</td>
+<td>84.4% (65/77)</td>
+<td>24.7% (19/77)</td>
+<td>9</td>
+<td>98.8%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>44.0 s / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/docling-project/docling">Docling 2.151.1 default</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py">CPU, OCR and tables off; native SectionHeaderItem levels; full PDFs.</a></td>
+<td>completed</td>
+<td>88.3% (68/77)</td>
+<td>20.8% (16/77)</td>
+<td>2</td>
+<td>98.4%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>1.7 min / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/docling-project/docling">Docling built-in hierarchy</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py">Same Docling blocks, built-in HeadingHierarchyModel enabled.</a></td>
+<td>completed</td>
+<td>88.3% (68/77)</td>
+<td>20.8% (16/77)</td>
+<td>2</td>
+<td>98.4%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>1.7 min / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/opendatalab/MinerU-Popo">Popo + Docling / experimental MLX 8-bit</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_popo_mlx.py">Docling candidates + Popo MLX 8-bit; 8-page chunks, page mosaics, upstream overlap alignment; experimental port.</a></td>
+<td>completed</td>
+<td>88.3% (68/77)</td>
+<td>19.5% (15/77)</td>
+<td>2</td>
+<td>98.4%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>14.9 min / hierarchy stage only</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B">MinerU2.5-Pro-2605-1.2B / direct MLX interface</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru_pro.py">32 images; direct MLX two_step_extract; preserve title blocks and absent levels as null.</a></td>
+<td>completed</td>
+<td>89.6% (69/77)</td>
+<td>Levels not supplied (0/77 complete outputs)</td>
+<td>3</td>
+<td>99.0%</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>9.5 min / 32 pages</td>
+</tr>
+<tr>
+<td><a href="https://docs.mistral.ai/studio/document-processing/basic_ocr">Mistral OCR 4.1</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_hosted_ocr.py">Prepared full-PDF OCR 4.1 API runner; extract page Markdown headings. NOT RUN: API key unavailable.</a></td>
+<td>credentials required</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>$4.00</td>
+<td>$2.09</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>How to read the table</h2>
+<p><strong>Cost:</strong> USD API fees, excluding hardware, electricity, tax, engineering, manual review and commercial licenses. Local $0 is not an all-in cost. Hosted figures are projected standard charges, not invoices. Azure's $10/1,000 is a provisional regional estimate. Mistral's $4/1,000 was a published standard rate at the time of the experiment; its $2.09 projection was not spent. Check current <a href="https://docs.mistral.ai/inference/pricing?currency=usd">Mistral pricing</a> and <a href="https://azure.microsoft.com/en-us/pricing/details/document-intelligence/">Azure pricing</a> before running.</p>
+<p><strong>Scopes and timing:</strong> earlier CPU parsers and Azure processed all 523 pages. New local OCR models processed the complete text on the 32 audit pages. Qwen3.6 read native page text, full-document candidate titles and author PDF tags, and current/previous sampled-page images; it does not OCR the body. Its measured time excludes those candidate-generation stages. Qwen3.5 and Popo timings cover only hierarchy inference. Hardware was a shared 48 GB Apple M4 Pro. New-model times exclude downloads, loading and aborted attempts; some earlier CPU times include setup. These are observations with different scopes, not a controlled throughput benchmark.</p>
+<p><strong>Text:</strong> native prose retention measures five-word sequences preserved from native PDF blocks of at least 50 words, on the audit pages. It is not character accuracy, reading order, semantic accuracy or table correctness. A missing score means not evaluated or not applicable. Hierarchy-only stages reuse extracted text.</p>
+<p><strong>Configuration caveats:</strong> MinerU Pro's direct interface recovered headings but supplied no hierarchy levels; its 0/77 complete outputs must not be described as zero heading detection. The Qwen3.6 implementation uses only previously processed audit pages as visual memory; it is not a reproduction of a full-document memory benchmark. The Popo result is an experimental 8-bit MLX port with 8-page chunks, not an upstream performance claim. LightOn 4B historical timing includes five single-page checkpoints followed by batch-two processing; a clean rerun uses batch two throughout. The 0.15 Docling tolerance was fixed across these reports but remains an exploratory choice, not an untuned general default.</p>
+<p><strong>Reference and uncertainty:</strong> pages were deliberately selected to span front matter, body chapters, subsections and annexes. A single assistant annotated them visually. The original 2018 resilience report was excluded after prior document-specific investigation. No per-report title/level correction rules are applied here. The sample is small, covers born-digital reports only, and has no inter-annotator agreement study. Ranking on it cannot establish robustness on arbitrary documents. No missing run is assigned a zero score.</p>
+<p><strong>Reproducibility:</strong> the repo includes the frozen audit labels, page-restricted predictions and original summary/match records. <code>uv run pdf-headings score --historical</code> recomputes all 17 scores without model downloads or credentials. Raw full-page responses remain in the original local experiment archive; they are not bundled in the public repo. Fresh runners save raw responses outside Git. Seven historical Qwen formatting deviations were accepted by a generic JSON array/wrapper/single-fence reader without changing title or level values. Refactored runners retain prompts and settings; model/GPU runs have not all been repeated after packaging. See <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md">method details</a>.</p>
+<p><strong>Licenses:</strong> the repository's MIT license covers its code, not third-party packages, model weights or WFP reports. Chandra weights have commercial-use restrictions; applicable licensing costs are additional. See each linked model/package and <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/THIRD_PARTY_NOTICES.md">third-party notices</a>.</p>
+<h2>Documents</h2>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+<th>ID</th>
+<th>Language</th>
+<th>Pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/">Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance</a></td>
+<td>targeting</td>
+<td>en</td>
+<td>172</td>
+</tr>
+<tr>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000162023/download/">Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025</a></td>
+<td>midterm</td>
+<td>en</td>
+<td>176</td>
+</tr>
+<tr>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000168942/download/">Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I</a></td>
+<td>indonesia</td>
+<td>en</td>
+<td>76</td>
+</tr>
+<tr>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000157262/download/">Evaluación del Plan estratégico para Colombia 2021–2024</a></td>
+<td>colombia</td>
+<td>es</td>
+<td>99</td>
+</tr>
+</tbody>
+</table>
+<h2>Results by report</h2>
+<table>
+<thead>
+<tr>
+<th>Runner / configuration</th>
+<th>Report</th>
+<th>Recovered</th>
+<th>Correct heading + level</th>
+<th>False headings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>run_docling.py / docling_default</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>3/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_default</td>
+<td>midterm</td>
+<td>17/18</td>
+<td>5/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_default</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>4/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_default</td>
+<td>colombia</td>
+<td>21/23</td>
+<td>4/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_hierarchy</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>0/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_hierarchy</td>
+<td>midterm</td>
+<td>17/18</td>
+<td>1/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_hierarchy</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>7/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_hierarchy</td>
+<td>colombia</td>
+<td>21/23</td>
+<td>8/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_tuned</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>0/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_tuned</td>
+<td>midterm</td>
+<td>17/18</td>
+<td>6/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_tuned</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>4/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_docling.py / docling_tuned</td>
+<td>colombia</td>
+<td>21/23</td>
+<td>12/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_pymupdf4llm.py / pymupdf4llm</td>
+<td>targeting</td>
+<td>14/15</td>
+<td>3/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_pymupdf4llm.py / pymupdf4llm</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>0/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_pymupdf4llm.py / pymupdf4llm</td>
+<td>indonesia</td>
+<td>18/21</td>
+<td>16/21</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_pymupdf4llm.py / pymupdf4llm</td>
+<td>colombia</td>
+<td>22/23</td>
+<td>9/23</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_marker.py / marker</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>6/15</td>
+<td>4</td>
+</tr>
+<tr>
+<td>run_marker.py / marker</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>6/18</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_marker.py / marker</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>4/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_marker.py / marker</td>
+<td>colombia</td>
+<td>17/23</td>
+<td>3/23</td>
+<td>3</td>
+</tr>
+<tr>
+<td>run_mineru.py / mineru_basic</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>8/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_mineru.py / mineru_basic</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>9/18</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_mineru.py / mineru_basic</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>7/21</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_mineru.py / mineru_basic</td>
+<td>colombia</td>
+<td>18/23</td>
+<td>7/23</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_lighton_mlx.py / lighton_mlx</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>8/15</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_lighton_mlx.py / lighton_mlx</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>13/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_lighton_mlx.py / lighton_mlx</td>
+<td>indonesia</td>
+<td>19/21</td>
+<td>13/21</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_lighton_mlx.py / lighton_mlx</td>
+<td>colombia</td>
+<td>22/23</td>
+<td>12/23</td>
+<td>4</td>
+</tr>
+<tr>
+<td>run_popo_mlx.py / popo_docling</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>0/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_popo_mlx.py / popo_docling</td>
+<td>midterm</td>
+<td>17/18</td>
+<td>5/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_popo_mlx.py / popo_docling</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>5/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_popo_mlx.py / popo_docling</td>
+<td>colombia</td>
+<td>21/23</td>
+<td>5/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_union</td>
+<td>targeting</td>
+<td>0/15</td>
+<td>0/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_union</td>
+<td>midterm</td>
+<td>14/18</td>
+<td>6/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_union</td>
+<td>indonesia</td>
+<td>18/21</td>
+<td>12/21</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_union</td>
+<td>colombia</td>
+<td>22/23</td>
+<td>7/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_mineru_basic</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>2/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_mineru_basic</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>10/18</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_mineru_basic</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>8/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_mineru_basic</td>
+<td>colombia</td>
+<td>18/23</td>
+<td>3/23</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_pymupdf4llm</td>
+<td>targeting</td>
+<td>14/15</td>
+<td>4/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_pymupdf4llm</td>
+<td>midterm</td>
+<td>0/18</td>
+<td>0/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_pymupdf4llm</td>
+<td>indonesia</td>
+<td>18/21</td>
+<td>6/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_ids.py / qwen_ids_pymupdf4llm</td>
+<td>colombia</td>
+<td>22/23</td>
+<td>12/23</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_pdf_tags.py / pdf_tags_audit_only</td>
+<td>targeting</td>
+<td>9/15</td>
+<td>9/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_pdf_tags.py / pdf_tags_audit_only</td>
+<td>midterm</td>
+<td>13/18</td>
+<td>13/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_pdf_tags.py / pdf_tags_audit_only</td>
+<td>indonesia</td>
+<td>14/21</td>
+<td>10/21</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_pdf_tags.py / pdf_tags_audit_only</td>
+<td>colombia</td>
+<td>16/23</td>
+<td>11/23</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_mineru_pro.py / mineru_pro_mlx</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>0/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_mineru_pro.py / mineru_pro_mlx</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>0/18</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_mineru_pro.py / mineru_pro_mlx</td>
+<td>indonesia</td>
+<td>19/21</td>
+<td>0/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_mineru_pro.py / mineru_pro_mlx</td>
+<td>colombia</td>
+<td>19/23</td>
+<td>0/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / lighton4b_mlx</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>9/15</td>
+<td>3</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / lighton4b_mlx</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>13/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / lighton4b_mlx</td>
+<td>indonesia</td>
+<td>19/21</td>
+<td>13/21</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / lighton4b_mlx</td>
+<td>colombia</td>
+<td>22/23</td>
+<td>11/23</td>
+<td>4</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / chandra2_mlx</td>
+<td>targeting</td>
+<td>13/15</td>
+<td>8/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / chandra2_mlx</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>15/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / chandra2_mlx</td>
+<td>indonesia</td>
+<td>19/21</td>
+<td>16/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_chandra_batch.py / chandra2_mlx</td>
+<td>colombia</td>
+<td>20/23</td>
+<td>14/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_qwen_visual_memory.py / qwen36_visual_memory</td>
+<td>targeting</td>
+<td>15/15</td>
+<td>12/15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_visual_memory.py / qwen36_visual_memory</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>18/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_visual_memory.py / qwen36_visual_memory</td>
+<td>indonesia</td>
+<td>21/21</td>
+<td>19/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>run_qwen_visual_memory.py / qwen36_visual_memory</td>
+<td>colombia</td>
+<td>23/23</td>
+<td>16/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>run_hosted_ocr.py / azure_layout</td>
+<td>targeting</td>
+<td>14/15</td>
+<td>7/15</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_hosted_ocr.py / azure_layout</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>8/18</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_hosted_ocr.py / azure_layout</td>
+<td>indonesia</td>
+<td>17/21</td>
+<td>15/21</td>
+<td>1</td>
+</tr>
+<tr>
+<td>run_hosted_ocr.py / azure_layout</td>
+<td>colombia</td>
+<td>16/23</td>
+<td>2/23</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</main></body></html>
