@@ -1,10 +1,10 @@
-# PDF heading benchmark: scores, costs and methods
+# On-premises PDF heading benchmark: scores, timings and methods
 
-**17 completed configurations, one prepared but unrun service.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
+**16 completed local configurations, suitable for on-premises inference.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
 
 The strongest completed configuration was Qwen3.6-27B with sampled visual memory: **65/77 (84.4%)** headings recovered at the correct level, all 77 reference titles recovered, and two false headings. These are configuration-specific results from a small pilot with one AI assistant annotator, without independent human validation.
 
-[Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md) · [Frozen results](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/league_table.json) · [Every original match and error](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/league_details.json)
+[Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md) · [Frozen results](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/results.json) · [Per-report local scores](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/details.json)
 
 ## Documents and their sources
 

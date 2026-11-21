@@ -2,13 +2,13 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible league table with scores, costs and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 16 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took about 62 minutes for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
-Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These are configuration-specific results on 32 selected pages, annotated visually by one assistant. They do not establish general document accuracy. Local $0 API cost excludes hardware, electricity, setup and review.
+Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These are configuration-specific results on 32 selected pages, annotated visually by one assistant. They do not establish general document accuracy. Hardware, electricity, setup, review and licensing costs were not measured in dollars.
 
-[Full scores, costs and methods (Markdown)](outputs/report/league_table.md) · [HTML report](outputs/report/index.html) · [Reproducibility and limitations](docs/reproducibility.md) · [Source documents](configs/corpus.json)
+[Full local scores, timings and methods (Markdown)](outputs/report/league_table.md) · [HTML report](outputs/report/index.html) · [Reproducibility and limitations](docs/reproducibility.md) · [Source documents](configs/corpus.json)
 
 ## Why heading classification matters
 
@@ -38,7 +38,7 @@ uv run pdf-headings score --historical
 uv run pdf-headings report
 ```
 
-Open `outputs/report/index.html` locally, or read the Markdown version on GitHub. GitHub's file view displays HTML source, not the rendered report. The scorer recomputes all 17 completed configurations from the bundled page-restricted predictions. Report generation uses the frozen original run summaries and never calls a paid service.
+Open `outputs/report/index.html` locally, or read the Markdown version on GitHub. GitHub's file view displays HTML source, not the rendered report. The scorer recomputes the bundled historical predictions. The report selects the 16 local configurations listed in `configs/report-methods.json`; original historical records remain unchanged. Report generation runs entirely offline.
 
 ## Run the benchmark yourself
 
@@ -56,7 +56,7 @@ uv run pdf-headings run pymupdf4llm
 uv run pdf-headings run docling_default
 ```
 
-The Docling command writes **default, hierarchy and tolerance-0.15** variants from one conversion. `run docling_hierarchy` and `run docling_tuned` invoke that same three-variant runner. Marker and MinerU basic are also available. Run `uv run pdf-headings run --help` for all 18 configuration identifiers.
+The Docling command writes **default, hierarchy and tolerance-0.15** variants from one conversion. `run docling_hierarchy` and `run docling_tuned` invoke that same three-variant runner. Marker and MinerU basic are also available. Run `uv run pdf-headings run --help` for available configuration identifiers.
 
 Each backend runs in an isolated uv environment using `configs/environments/*.txt`. Tested top-level backend versions are pinned, including **Docling 2.151.1**. The core environment is fully locked in `uv.lock`; backend transitive dependencies are resolved on installation, so these are not complete historical environment locks. Installation and model loading can take substantially longer than the table's processing times.
 
@@ -82,20 +82,6 @@ uv run pdf-headings extract pymupdf4llm /path/to/report.pdf --output /path/to/ne
 Use a **new** output directory. The output includes `results/document/<method>.headings.json`, with original PDF page numbers, and Markdown or structured text depending on the parser. Docling writes three versions. The PDF-tag baseline supplies headings only; Marker retains body text in its structured HTML JSON. Qwen preserves native page text and predicts headings separately; it is not a scanned-document OCR pipeline.
 
 For your own document, image methods process every page, including Qwen's sequential memory. The published Qwen score covers only 32 sampled pages across the WFP reports; full-document behavior has not been validated by this pilot. WFP scoring commands are specific to the frozen WFP corpus. To resume an interrupted custom run, set `PDF_BENCHMARK_DATA` to that run directory and use `run <method>`.
-
-### Hosted methods: explicit paid runs
-
-Set the appropriate credentials in your shell (see `.env.example`), then select the service explicitly:
-
-```bash
-uv run pdf-headings run azure_layout
-# Or, with MISTRAL_API_KEY configured:
-uv run pdf-headings run mistral_ocr41
-```
-
-Azure uploads each full PDF to your configured endpoint. Mistral uploads each full PDF to its OCR API. The four-report corpus contains 523 pages. Table costs are projections, not invoices: approximately $5.23 for Azure at the provisional $10/1,000 estimate, or $2.09 for Mistral at the recorded $4/1,000 standard rate. Check current provider pricing before running. No hosted method is called by `download`, `score`, `report`, unit tests or CI.
-
-Mistral has **no measured score**: the original experiment lacked a key. The runner is included, not presented as tested inference. Azure saves its operation URL outside Git and resumes that job instead of silently submitting another paid request. Completed raw responses are reused. If a submission succeeds remotely but its response is lost before saving, reconcile the job with the provider before retrying.
 
 ## What is in the repository?
 

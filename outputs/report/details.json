@@ -1,0 +1,514 @@
+[
+  {
+    "method": "docling_default",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 3,
+    "predicted": 13
+  },
+  {
+    "method": "docling_default",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 17,
+    "correct_level": 5,
+    "predicted": 17
+  },
+  {
+    "method": "docling_default",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 4,
+    "predicted": 17
+  },
+  {
+    "method": "docling_default",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 4,
+    "predicted": 23
+  },
+  {
+    "method": "docling_hierarchy",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 0,
+    "predicted": 13
+  },
+  {
+    "method": "docling_hierarchy",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 17,
+    "correct_level": 1,
+    "predicted": 17
+  },
+  {
+    "method": "docling_hierarchy",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 7,
+    "predicted": 17
+  },
+  {
+    "method": "docling_hierarchy",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 8,
+    "predicted": 23
+  },
+  {
+    "method": "docling_tuned",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 0,
+    "predicted": 13
+  },
+  {
+    "method": "docling_tuned",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 17,
+    "correct_level": 6,
+    "predicted": 17
+  },
+  {
+    "method": "docling_tuned",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 4,
+    "predicted": 17
+  },
+  {
+    "method": "docling_tuned",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 12,
+    "predicted": 23
+  },
+  {
+    "method": "pymupdf4llm",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 14,
+    "correct_level": 3,
+    "predicted": 14
+  },
+  {
+    "method": "pymupdf4llm",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 0,
+    "predicted": 18
+  },
+  {
+    "method": "pymupdf4llm",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 18,
+    "correct_level": 16,
+    "predicted": 20
+  },
+  {
+    "method": "pymupdf4llm",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 9,
+    "predicted": 22
+  },
+  {
+    "method": "marker",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 6,
+    "predicted": 17
+  },
+  {
+    "method": "marker",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 6,
+    "predicted": 20
+  },
+  {
+    "method": "marker",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 4,
+    "predicted": 17
+  },
+  {
+    "method": "marker",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 17,
+    "correct_level": 3,
+    "predicted": 20
+  },
+  {
+    "method": "mineru_basic",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 8,
+    "predicted": 13
+  },
+  {
+    "method": "mineru_basic",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 9,
+    "predicted": 19
+  },
+  {
+    "method": "mineru_basic",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 7,
+    "predicted": 18
+  },
+  {
+    "method": "mineru_basic",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 18,
+    "correct_level": 7,
+    "predicted": 18
+  },
+  {
+    "method": "lighton_mlx",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 8,
+    "predicted": 15
+  },
+  {
+    "method": "lighton_mlx",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 13,
+    "predicted": 18
+  },
+  {
+    "method": "lighton_mlx",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 19,
+    "correct_level": 13,
+    "predicted": 21
+  },
+  {
+    "method": "lighton_mlx",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 12,
+    "predicted": 26
+  },
+  {
+    "method": "popo_docling",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 0,
+    "predicted": 13
+  },
+  {
+    "method": "popo_docling",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 17,
+    "correct_level": 5,
+    "predicted": 17
+  },
+  {
+    "method": "popo_docling",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 5,
+    "predicted": 17
+  },
+  {
+    "method": "popo_docling",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 5,
+    "predicted": 23
+  },
+  {
+    "method": "qwen_ids_union",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 0,
+    "correct_level": 0,
+    "predicted": 0
+  },
+  {
+    "method": "qwen_ids_union",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 14,
+    "correct_level": 6,
+    "predicted": 14
+  },
+  {
+    "method": "qwen_ids_union",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 18,
+    "correct_level": 12,
+    "predicted": 19
+  },
+  {
+    "method": "qwen_ids_union",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 7,
+    "predicted": 24
+  },
+  {
+    "method": "qwen_ids_mineru_basic",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 2,
+    "predicted": 13
+  },
+  {
+    "method": "qwen_ids_mineru_basic",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 10,
+    "predicted": 19
+  },
+  {
+    "method": "qwen_ids_mineru_basic",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 8,
+    "predicted": 17
+  },
+  {
+    "method": "qwen_ids_mineru_basic",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 18,
+    "correct_level": 3,
+    "predicted": 18
+  },
+  {
+    "method": "qwen_ids_pymupdf4llm",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 14,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "qwen_ids_pymupdf4llm",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 0,
+    "correct_level": 0,
+    "predicted": 0
+  },
+  {
+    "method": "qwen_ids_pymupdf4llm",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 18,
+    "correct_level": 6,
+    "predicted": 18
+  },
+  {
+    "method": "qwen_ids_pymupdf4llm",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 12,
+    "predicted": 22
+  },
+  {
+    "method": "pdf_tags_audit_only",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 9,
+    "correct_level": 9,
+    "predicted": 9
+  },
+  {
+    "method": "pdf_tags_audit_only",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 13,
+    "correct_level": 13,
+    "predicted": 13
+  },
+  {
+    "method": "pdf_tags_audit_only",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 14,
+    "correct_level": 10,
+    "predicted": 16
+  },
+  {
+    "method": "pdf_tags_audit_only",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 16,
+    "correct_level": 11,
+    "predicted": 16
+  },
+  {
+    "method": "mineru_pro_mlx",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 0,
+    "predicted": 13
+  },
+  {
+    "method": "mineru_pro_mlx",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 0,
+    "predicted": 19
+  },
+  {
+    "method": "mineru_pro_mlx",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 19,
+    "correct_level": 0,
+    "predicted": 19
+  },
+  {
+    "method": "mineru_pro_mlx",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 19,
+    "correct_level": 0,
+    "predicted": 21
+  },
+  {
+    "method": "lighton4b_mlx",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 9,
+    "predicted": 16
+  },
+  {
+    "method": "lighton4b_mlx",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 13,
+    "predicted": 18
+  },
+  {
+    "method": "lighton4b_mlx",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 19,
+    "correct_level": 13,
+    "predicted": 20
+  },
+  {
+    "method": "lighton4b_mlx",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 11,
+    "predicted": 26
+  },
+  {
+    "method": "chandra2_mlx",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 8,
+    "predicted": 13
+  },
+  {
+    "method": "chandra2_mlx",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 15,
+    "predicted": 18
+  },
+  {
+    "method": "chandra2_mlx",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 19,
+    "correct_level": 16,
+    "predicted": 19
+  },
+  {
+    "method": "chandra2_mlx",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 14,
+    "predicted": 22
+  },
+  {
+    "method": "qwen36_visual_memory",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 12,
+    "predicted": 15
+  },
+  {
+    "method": "qwen36_visual_memory",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 18,
+    "predicted": 18
+  },
+  {
+    "method": "qwen36_visual_memory",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 21,
+    "correct_level": 19,
+    "predicted": 21
+  },
+  {
+    "method": "qwen36_visual_memory",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 23,
+    "correct_level": 16,
+    "predicted": 25
+  }
+]

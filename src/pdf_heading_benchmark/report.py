@@ -2,7 +2,7 @@
 
 from markdown_it import MarkdownIt
 
-from pdf_heading_benchmark.io import REPO, read_json
+from pdf_heading_benchmark.io import REPO, read_json, write_json
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
@@ -13,8 +13,6 @@ HEADERS = [
     "Correct heading + level",
     "False headings",
     "Native prose retention",
-    "API USD / 1,000 pages",
-    "API USD / 500 pages",
     "Measured time",
 ]
 
@@ -41,8 +39,6 @@ def cells(row, method):
         recall += f" ({row['matched']}/77)"
     if row["method"] == "mineru_pro_mlx":
         combined = "Levels not supplied (0/77 complete outputs)"
-    estimate = " estimate" if row["method"] == "azure_layout" else ""
-    rate = row["api_usd_per_1000_pages"]
     return [
         f"[{row['name']}]({row['source_url']})",
         f"[{method['description']}]({REMOTE}{method['code']})",
@@ -51,8 +47,6 @@ def cells(row, method):
         combined,
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
-        f"${rate:.2f}{estimate}" if rate else "N/A — local",
-        f"${rate / 2:.2f}{estimate}" if rate else "N/A — local",
         duration(row),
     ]
 
@@ -83,8 +77,17 @@ def corpus_table():
     )
 
 
+def report_rows(filename):
+    selected = set(read_json(REPO / "configs/report-methods.json"))
+    return [
+        {key: value for key, value in row.items() if not key.startswith("api_")}
+        for row in read_json(REPO / "outputs" / filename)
+        if row["method"] in selected
+    ]
+
+
 def results_table():
-    rows = read_json(REPO / "outputs/league_table.json")
+    rows = report_rows("league_table.json")
     methods = read_json(REPO / "configs/methods.json")
     return table(HEADERS, [cells(row, methods[row["method"]]) for row in rows])
 
@@ -94,7 +97,7 @@ def build_report():
     intro = (REPO / "docs/report-introduction.md").read_text()
     notes = (REPO / "docs/report-notes.md").read_text()
     protocol = (REPO / "docs/report-protocol.md").read_text()
-    details = read_json(REPO / "outputs/league_details.json")
+    details = report_rows("league_details.json")
     per_report = [
         [
             methods[r["method"]]["code"].split("/")[-1] + " / " + r["method"],
@@ -114,13 +117,18 @@ def build_report():
     markdown += "\n"
     output = REPO / "outputs/report"
     output.mkdir(exist_ok=True)
+    write_json(output / "results.json", report_rows("league_table.json"))
+    summary_keys = ("method", "document", "gold", "matched", "correct_level", "predicted")
+    write_json(output / "details.json", [{key: row[key] for key in summary_keys} for row in details])
     (output / "league_table.md").write_text(markdown)
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
     css = (REPO / "docs/report.css").read_text()
     html = (
         '<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        "<title>PDF heading benchmark: scores, costs and methods</title><style>" + css + "</style></head>"
+        "<title>On-premises PDF heading benchmark: scores, timings and methods</title><style>"
+        + css
+        + "</style></head>"
         "<body><main>" + rendered + "</main></body></html>\n"
     )
     (output / "index.html").write_text(html)
