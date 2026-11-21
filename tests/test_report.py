@@ -12,7 +12,12 @@ def test_report_is_reproducible_and_has_all_method_links():
     build_report()
     assert [p.read_bytes() for p in paths] == before
     soup = BeautifulSoup(paths[0].read_text(), "html.parser")
-    rows = soup.find("table").find("tbody").find_all("tr")
+    tables = soup.find_all("table")
+    corpus_rows = tables[0].find("tbody").find_all("tr")
+    corpus = read_json(REPO / "configs/corpus.json")
+    assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
+    results = next(t for t in tables if t.find("th").get_text() == "Configuration")
+    rows = results.find("tbody").find_all("tr")
     assert len(rows) == 18
     for row in rows:
         assert len(row.find_all("td")) == 10

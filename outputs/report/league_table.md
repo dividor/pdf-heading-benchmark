@@ -1,12 +1,38 @@
 # PDF heading benchmark: scores, costs and methods
 
-**17 completed configurations, one prepared but unrun service.** Four WFP evaluation reports contain 523 pages; heading scores cover **77 frozen reference headings on 32 deliberately selected pages**. This is a single-assistant-annotator pilot, not a general accuracy guarantee or an independent human-validated test set.
+**17 completed configurations, one prepared but unrun service.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
 
-The strongest completed configuration was Qwen3.6-27B with sampled visual memory: **65/77 (84.4%)** headings recovered at the correct level, all 77 titles recovered, and two false headings. These results describe the tested configurations, not every capability of each product.
-
-**Matching contract:** same original PDF page, at least 90% normalized title similarity, one-to-one Hungarian assignment, and an exact reference level. Missing headings count against the combined score. False headings are displayed separately. This is not a character-perfect title metric. Main chapters and annexes are H1; a cover title does not shift all body levels.
+The strongest completed configuration was Qwen3.6-27B with sampled visual memory: **65/77 (84.4%)** headings recovered at the correct level, all 77 reference titles recovered, and two false headings. These are configuration-specific results from a small pilot with one AI assistant annotator, without independent human validation.
 
 [Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md) · [Frozen results](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/league_table.json) · [Every original match and error](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/league_details.json)
+
+## Documents and their sources
+
+All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The [corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json) records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.
+
+The corpus contains **523 pages: three English reports and one Spanish report**. All four contain native digital text. None has PDF outline bookmarks, although embedded structure tags provide another possible source of headings. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.
+
+The audit covers **eight selected pages per report, 32 pages and 77 reference headings in total**. Page numbers below are **one-based physical PDF pages**, including covers and front matter, rather than printed page labels. These are the exact pages scored for every completed configuration.
+
+| WFP report / official PDF | Language | PDF pages | Audited PDF pages | Reference headings |
+| --- | --- | --- | --- | --- |
+| [Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/) | English | 172 | 7, 11, 24, 27, 33, 67, 96, 109 | 15 |
+| [Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/) | English | 176 | 8, 10, 26, 27, 36, 61, 87, 98 | 18 |
+| [Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/) | English | 76 | 7, 11, 20, 33, 42, 48, 56, 68 | 21 |
+| [Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/) | Spanish | 99 | 7, 13, 28, 42, 56, 72, 73, 93 | 23 |
+
+## What was tested and how
+
+1. **Select and annotate pages.** Pages were deliberately selected across front matter, chapters, subsections and annexes. A single AI assistant visually annotated heading titles and levels. The [page selection](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/audit_pages.json) and [frozen reference labels](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/gold.json) are public. They have not been independently reviewed by a human, and the selection is not random.
+2. **Run the configured extractor or hierarchy stage.** CPU parsers and Azure processed all 523 pages; the later local OCR models processed the 32 audit pages. Hierarchy stages consumed extracted candidates and, for some configurations, PDF tags or page images. No reference titles or reference levels were supplied to inference. The table links to each runner; [method configuration steps](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/methods.json), [model revisions](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/models.json) and [reproducibility notes](https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md) give dependencies, prompts and settings. No per-report heading correction rules are applied.
+3. **Score the same audit pages.** The [scorer](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py) matches titles on the same original PDF page, using normalized text similarity of at least 90% after one-to-one Hungarian assignment. A combined success requires the exact reference H level too. Main chapters and annexes are H1; the cover title does not shift the body hierarchy. Missing headings remain in the denominator of 77. Extra predictions are counted separately, so the combined score is not precision or F1 and does not penalize false headings directly.
+4. **Check prose and record resources.** Native prose retention measures preserved five-word sequences from native PDF blocks of at least 50 words on the audit pages. It does not measure character accuracy, reading order or table extraction. Processing times were observed on a shared 48 GB Apple M4 Pro and have different scopes. API cost projections exclude local hardware, labor and licensing.
+
+This is **sampled-page heading accuracy**, even when a parser processed the full document. Seventeen completed configurations include variants of the same packages and models; they are not 17 independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.
+
+## Full configuration results
+
+Sorted by correct heading plus level. Each **Configuration** links to the package, model or service; each **Method / code** links to the benchmark's GitHub implementation. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. Mistral is unrun, not a zero-scoring result. **Both cost columns are API-fee projections; the 523-page column is a hypothetical full-corpus charge, not an invoice or the number of pages scored.** See the notes immediately below the table for scope and licensing qualifications.
 
 | Configuration | Method / code | Status | Headings recovered | Correct heading + level | False headings | Native prose retention | API USD / 1,000 pages | API USD / 523 pages | Measured time |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -45,14 +71,6 @@ The strongest completed configuration was Qwen3.6-27B with sampled visual memory
 
 **Licenses:** the repository's MIT license covers its code, not third-party packages, model weights or WFP reports. Chandra weights have commercial-use restrictions; applicable licensing costs are additional. See each linked model/package and [third-party notices](https://github.com/dividor/pdf-heading-benchmark/blob/main/THIRD_PARTY_NOTICES.md).
 
-## Documents
-
-| Report | ID | Language | Pages |
-| --- | --- | --- | --- |
-| [Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/) | targeting | en | 172 |
-| [Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/) | midterm | en | 176 |
-| [Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/) | indonesia | en | 76 |
-| [Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/) | colombia | es | 99 |
 
 ## Results by report
 
