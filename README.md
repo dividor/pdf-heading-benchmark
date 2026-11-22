@@ -4,7 +4,7 @@ How well do PDF parsers recover **heading text, page numbers and hierarchy level
 
 This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 26 completed local configurations with scores, processing times and links to the exact method code.
 
-**TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took about 62 minutes for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
+**TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took **54.0 minutes in the sequential rerun**, versus 61.8 minutes originally, for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
 Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These are configuration-specific results on 32 selected pages, annotated visually by one assistant. They do not establish general document accuracy. Hardware, electricity, setup, review and licensing costs were not measured in dollars.
 
@@ -12,11 +12,11 @@ Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These 
 
 ## Consistent timing and sequential GPU reruns
 
-The league table reports **seconds per page** for every measured page rate, retaining total seconds and actual processed pages. Stages without a recorded page denominator show no invented page rate. [Sequential GPU reruns](outputs/sequential-repeat/report.md) compare fresh one-model-at-a-time executions with the frozen results, including accuracy, whole-process time, GPU activity and paging. [Protocol and limitations](docs/sequential-repeat.md).
+The league table reports **seconds per page** for every measured page rate, retaining total seconds and actual processed pages. Verified rerun timings are marked “rerun”; the original measurements remain in the comparison. Stages without a recorded page denominator show no invented page rate. [Sequential GPU reruns](outputs/sequential-repeat/report.md) compare fresh one-model-at-a-time executions with the frozen results, including accuracy, whole-process time, GPU activity and paging. [Protocol and limitations](docs/sequential-repeat.md).
 
-## Measured Qwen speed trials
+## Original Qwen speed trials
 
-The same 27B 4-bit model with one smaller image takes **34.0 minutes**, but drops to **60/77 correct heading-level pairs** (77.1% joint F0.5; one extra heading). The sparse **Qwen3.6-35B-A3B 4-bit** takes **5.2 minutes**, but gets **53/77 levels right** (68.8% F0.5), despite recovering all titles with no extras. Restoring visual memory to that sparse model takes **8.7 minutes** and gets **52/77 right**, with two titles missed and no extras. None improves the original 27B result’s joint F0.5. These are three local regression trials on the same 32 pages, not an independent test.
+The same 27B 4-bit model with one smaller image took **34.0 minutes**, but drops to **60/77 correct heading-level pairs** (77.1% joint F0.5; one extra heading). The sparse **Qwen3.6-35B-A3B 4-bit** took **5.2 minutes**, but gets **53/77 levels right** (68.8% F0.5), despite recovering all titles with no extras. Restoring visual memory to that sparse model took **8.7 minutes** and gets **52/77 right**, with two titles missed and no extras. None improves the original 27B result’s joint F0.5. These are three local regression trials on the same 32 pages, not an independent test.
 
 [Full speed/quality comparison, telemetry and reproduction](outputs/qwen-compact/report.md). Each new method has its own diagram, parameters, sources and complete prediction-versus-reference tables in the main HTML report.
 

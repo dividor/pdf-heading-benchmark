@@ -9,14 +9,14 @@
 <text x="1130" y="150" font-family="sans-serif" font-size="20" fill="#183247" font-weight="700">Prose kept</text>
 <rect x="20" y="180" width="1260" height="74" fill="#f1f6f9"/>
 <text x="30" y="208" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">1. Qwen3.6-27B + visual memory</text>
-<text x="570" y="209" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">115.834</text>
-<text x="570" y="235" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">3706.7 s total</text>
+<text x="570" y="209" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">101.326</text>
+<text x="570" y="235" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">3242.4 s total</text>
 <text x="790" y="209" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="209" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="254" width="1260" height="74" fill="white"/>
 <text x="30" y="282" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">2. Qwen3.6-27B / single image</text>
-<text x="570" y="283" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">63.703</text>
-<text x="570" y="309" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">2038.5 s total</text>
+<text x="570" y="283" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">66.667</text>
+<text x="570" y="309" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">2133.3 s total</text>
 <text x="790" y="283" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="283" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="328" width="1260" height="74" fill="#f1f6f9"/>
@@ -27,8 +27,8 @@
 <text x="1130" y="357" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="402" width="1260" height="74" fill="white"/>
 <text x="30" y="430" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">4. Chandra OCR 2 / MLX</text>
-<text x="570" y="431" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">32.258</text>
-<text x="570" y="457" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">1032.2 s total</text>
+<text x="570" y="431" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">27.701</text>
+<text x="570" y="457" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">886.4 s total</text>
 <text x="790" y="431" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="431" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">98.7%</text>
 <rect x="20" y="476" width="1260" height="74" fill="#fff2bd"/>
@@ -39,14 +39,14 @@
 <text x="1130" y="505" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="550" width="1260" height="74" fill="white"/>
 <text x="30" y="578" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">6. Qwen3.6-35B-A3B + visual memory</text>
-<text x="570" y="579" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">16.256</text>
-<text x="570" y="605" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">520.2 s total</text>
+<text x="570" y="579" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">15.580</text>
+<text x="570" y="605" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">498.6 s total</text>
 <text x="790" y="579" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="579" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="624" width="1260" height="74" fill="#f1f6f9"/>
 <text x="30" y="652" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">7. Qwen3.6-35B-A3B / single image</text>
-<text x="570" y="653" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">9.772</text>
-<text x="570" y="679" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">312.7 s total</text>
+<text x="570" y="653" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">10.701</text>
+<text x="570" y="679" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">342.4 s total</text>
 <text x="790" y="653" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="653" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="698" width="1260" height="74" fill="white"/>
@@ -69,14 +69,14 @@
 <text x="1130" y="875" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">—</text>
 <rect x="20" y="920" width="1260" height="74" fill="#f1f6f9"/>
 <text x="30" y="948" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">11. LightOnOCR-3-0.8B / MLX</text>
-<text x="570" y="949" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">16.606</text>
-<text x="570" y="975" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">531.4 s total</text>
+<text x="570" y="949" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">11.542</text>
+<text x="570" y="975" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">369.3 s total</text>
 <text x="790" y="949" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="949" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">99.5%</text>
 <rect x="20" y="994" width="1260" height="74" fill="white"/>
 <text x="30" y="1022" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">12. LightOnOCR-3-4B / MLX grounding</text>
-<text x="570" y="1023" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">44.145</text>
-<text x="570" y="1049" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">1412.7 s total</text>
+<text x="570" y="1023" font-family="sans-serif" font-size="22" fill="#183247" font-weight="700">32.988</text>
+<text x="570" y="1049" font-family="sans-serif" font-size="17" fill="#183247" font-weight="400">1055.6 s total</text>
 <text x="790" y="1023" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">32 pages</text>
 <text x="1130" y="1023" font-family="sans-serif" font-size="20" fill="#183247" font-weight="400">99.3%</text>
 <rect x="20" y="1068" width="1260" height="74" fill="#f1f6f9"/>

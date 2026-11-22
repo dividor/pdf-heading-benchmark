@@ -62,6 +62,6 @@ uv run python scripts/repeat_report.py --run /path/to/new-sequential-run
 uv run pdf-headings report
 ```
 
-The import rejects changed source/input hashes and incomplete audit scopes. Only successfully completed configurations are scored. Raw responses and system telemetry stay outside Git; compact predictions, page timings and aggregate telemetry are sufficient to regenerate the public comparison offline using `uv run python scripts/repeat_report.py`. The main league remains the original frozen experiment. [Timing definitions and batching caveat](sequential-repeat.md).
+The import rejects changed source/input hashes and incomplete audit scopes. Only successfully completed configurations are scored. Raw responses and system telemetry stay outside Git; compact predictions, page timings and aggregate telemetry are sufficient to regenerate the public comparison offline using `uv run python scripts/repeat_report.py`. The main league retains the frozen heading predictions and scores; its timing column adopts a completed rerun only after exact equality of page/title/level predictions is verified. Earlier measurements remain in the repeat comparison. [Timing definitions and batching caveat](sequential-repeat.md).
 
 To refresh the local HTML report as each configuration completes, run the importer in a second terminal with `--run /path/to/new-sequential-run --watch`. It stops when the queue finishes or a completed process reports failure. It does not commit or push results.

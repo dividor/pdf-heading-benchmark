@@ -2,7 +2,14 @@
 
 ## Sequential GPU reruns
 
-These are fresh runs on the same four PDFs and 32 audit pages, using the existing 77 reference headings. Each configuration runs in a separate process, with only one benchmark model loaded at a time. The runner checks that MLX selects the Metal GPU and refuses a CPU fallback. It records model/package versions, source and input hashes, raw page responses, process wall time, GPU activity and virtual-memory counters. The original league results above remain frozen; this table compares the reruns explicitly rather than silently replacing the historical measurements.
+Seven selected MLX configurations were rerun one at a time on the same four PDFs, 32 audit pages and 77 reference headings. Every rerun reproduced the original heading titles, pages and levels exactly, with no parse errors, timeouts or token-limit truncations. The main table now uses these new timings, marked “rerun”; this comparison preserves the original measurements.
+
+Chandra and the two LightOn runs took **14–31% less processing time**. Qwen results were mixed: visual-memory 27B improved **12.5%**, while single-image 27B took **4.7% longer**. Median system GPU utilization ranged from **92% to 100%**, with the Metal GPU independently verified inside each inference process. These observations confirm GPU execution; they do not establish optimal kernel efficiency or isolate the effect of background load.
+
+<details>
+<summary>How these reruns were measured: protocol, settings and hardware</summary>
+
+**Execution and provenance:** each configuration ran in a fresh process and output directory, with only one benchmark model loaded at a time. The runner checked the default MLX device and Metal availability before model loading. It retained model/package versions, source and input hashes, raw page responses, process wall time, GPU activity and virtual-memory counters. The main timing column accepts only error-free, untruncated reruns with the same page scope and exactly matching heading predictions; the historical source evidence remains unchanged.
 
 **Timing:** all rates below use seconds per page. Earlier and rerun processing rates use the original runners' measurement boundaries, excluding model loading and upstream candidate extraction. Whole-process rates include interpreter imports, model loading, image preparation, generation and output writes; they still exclude previously prepared candidate extraction and downloads. OCR batch time is divided by the number of pages, so it measures average throughput rather than single-page latency. Smaller values are faster. This is one repeat per configuration, not a statistical estimate of typical performance.
 
@@ -12,8 +19,10 @@ These are fresh runs on the same four PDFs and 32 audit pages, using the existin
 
 [Sequential runner](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/repeat_models.py) · [Importer and scorer](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/repeat_report.py) · [Rerun predictions versus reference](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/sequential-repeat/report.md) · [Compact evidence](https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/sequential-repeat)
 
+</details>
 
-**Completed: 5/7 configurations.**
+
+**Completed: 7/7 configurations.**
 
 | Repeated configuration | Earlier s/page | Rerun s/page | Whole-process s/page | Correct heading + level | Joint F0.5: earlier → rerun | Rerun extras | Errors | Timeouts |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -22,6 +31,8 @@ These are fresh runs on the same four PDFs and 32 audit pages, using the existin
 | Chandra OCR 2 / MLX | 32.258 | 27.701 | 28.198 | 53/77 → 53/77 | 72.6% → 72.6% | 2 | 0 | 0 |
 | LightOnOCR-3-4B / MLX grounding | 44.145 | 32.988 | 33.530 | 46/77 → 46/77 | 57.9% → 57.9% | 8 | 0 | 0 |
 | LightOnOCR-3-0.8B / MLX | 16.606 | 11.542 | 11.772 | 46/77 → 46/77 | 57.9% → 57.9% | 8 | 0 | 0 |
+| Qwen3.6-27B 4-bit — single image | 63.703 | 66.667 | 67.392 | 60/77 → 60/77 | 77.1% → 77.1% | 1 | 0 | 0 |
+| Qwen3.6-27B / MLX 4-bit / sampled visual memory | 115.834 | 101.326 | 102.132 | 65/77 → 65/77 | 82.7% → 82.7% | 2 | 0 | 0 |
 
 ### GPU and memory observations
 
@@ -32,5 +43,7 @@ These are fresh runs on the same four PDFs and 32 audit pages, using the existin
 | Chandra OCR 2 / MLX | 90 | 99.0 | 100 | 0.099 | 0.000 |
 | LightOnOCR-3-4B / MLX grounding | 107 | 99 | 100 | 0.143 | 0.000 |
 | LightOnOCR-3-0.8B / MLX | 38 | 92.0 | 100 | 0.201 | 0.000 |
+| Qwen3.6-27B 4-bit — single image | 215 | 100 | 100 | 0.537 | 0.238 |
+| Qwen3.6-27B / MLX 4-bit / sampled visual memory | 326 | 100.0 | 100 | 0.758 | 1.513 |
 
 GPU and swap measurements are system-wide; they include other applications and model loading. A high GPU percentage confirms activity but does not prove optimal inference or identify a bottleneck.

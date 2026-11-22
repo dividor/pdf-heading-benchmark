@@ -96,6 +96,11 @@ COLUMN_DESCRIPTIONS = {
     ],
     "Seconds per page": [
         (
+            "Entries marked rerun use the newest completed sequential measurement whose heading titles, "
+            "pages and levels exactly reproduce the original predictions. The comparison below retains "
+            "the earlier measurements. Other entries retain their historical timing."
+        ),
+        (
             "Measured seconds divided by the number of pages actually processed, always in s/page. "
             "The total seconds and page count are retained beside the rate. This is average throughput, "
             "not individual-page latency. Hierarchy-only runs without a recorded page denominator "

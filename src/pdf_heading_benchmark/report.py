@@ -5,6 +5,7 @@ from markdown_it import MarkdownIt
 from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix
+from pdf_heading_benchmark.timing_updates import latest_timings
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
@@ -31,7 +32,12 @@ def duration(row):
         return "—"
     if not pages:
         return f"— (hierarchy stage: {seconds:.1f} s total; page rate unavailable)"
-    return f"{seconds / pages:.3f} s/page ({seconds:.1f} s total; {pages} pages)"
+    source = ""
+    if row.get("timing_source"):
+        source = (
+            "; rerun" if row["timing_source"] == "sequential rerun" else "; historical; see rerun comparison"
+        )
+    return f"{seconds / pages:.3f} s/page ({seconds:.1f} s total; {pages} pages{source})"
 
 
 def cells(row, method):
@@ -110,6 +116,7 @@ def report_rows(filename):
     ]
     if filename == "league_table.json":
         rows = [scored_counts(row) if row["status"] == "completed" else row for row in rows]
+        rows = latest_timings(rows)
         rows.sort(key=lambda row: row.get("joint_f05", -1), reverse=True)
     return rows
 
