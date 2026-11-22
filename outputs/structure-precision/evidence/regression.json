@@ -1,0 +1,154 @@
+{
+  "settings": {
+    "variant": "context_relations",
+    "body_weight": 1.0,
+    "min_heading_score": 0.7,
+    "relation_weight": 1.0
+  },
+  "results": {
+    "baseline": {
+      "gold": 38,
+      "predicted": 46,
+      "matched": 38,
+      "correct_level": 36,
+      "joint_precision": 0.782608695652174,
+      "joint_recall": 0.9473684210526315,
+      "joint_f1": 0.8571428571428571,
+      "joint_f05": 0.8108108108108109,
+      "heading_precision": 0.8260869565217391,
+      "precision_gate_pass": false,
+      "joint_false_positives": 10,
+      "joint_false_negatives": 2,
+      "per_document": {
+        "321": {
+          "gold": 10,
+          "predicted": 12,
+          "matched": 10,
+          "correct_level": 10,
+          "joint_precision": 0.8333333333333334,
+          "joint_recall": 1.0,
+          "joint_f1": 0.9090909090909091,
+          "joint_f05": 0.8620689655172413,
+          "heading_precision": 0.8333333333333334,
+          "precision_gate_pass": false,
+          "joint_false_positives": 2,
+          "joint_false_negatives": 0
+        },
+        "844": {
+          "gold": 8,
+          "predicted": 8,
+          "matched": 8,
+          "correct_level": 8,
+          "joint_precision": 1.0,
+          "joint_recall": 1.0,
+          "joint_f1": 1.0,
+          "joint_f05": 1.0,
+          "heading_precision": 1.0,
+          "precision_gate_pass": true,
+          "joint_false_positives": 0,
+          "joint_false_negatives": 0
+        },
+        "560": {
+          "gold": 10,
+          "predicted": 15,
+          "matched": 10,
+          "correct_level": 8,
+          "joint_precision": 0.5333333333333333,
+          "joint_recall": 0.8,
+          "joint_f1": 0.64,
+          "joint_f05": 0.5714285714285714,
+          "heading_precision": 0.6666666666666666,
+          "precision_gate_pass": false,
+          "joint_false_positives": 7,
+          "joint_false_negatives": 2
+        },
+        "394": {
+          "gold": 10,
+          "predicted": 11,
+          "matched": 10,
+          "correct_level": 10,
+          "joint_precision": 0.9090909090909091,
+          "joint_recall": 1.0,
+          "joint_f1": 0.9523809523809523,
+          "joint_f05": 0.9259259259259259,
+          "heading_precision": 0.9090909090909091,
+          "precision_gate_pass": false,
+          "joint_false_positives": 1,
+          "joint_false_negatives": 0
+        }
+      }
+    },
+    "selected": {
+      "gold": 38,
+      "predicted": 28,
+      "matched": 28,
+      "correct_level": 28,
+      "joint_precision": 1.0,
+      "joint_recall": 0.7368421052631579,
+      "joint_f1": 0.8484848484848485,
+      "joint_f05": 0.9333333333333333,
+      "heading_precision": 1.0,
+      "precision_gate_pass": true,
+      "joint_false_positives": 0,
+      "joint_false_negatives": 10,
+      "per_document": {
+        "321": {
+          "gold": 10,
+          "predicted": 10,
+          "matched": 10,
+          "correct_level": 10,
+          "joint_precision": 1.0,
+          "joint_recall": 1.0,
+          "joint_f1": 1.0,
+          "joint_f05": 1.0,
+          "heading_precision": 1.0,
+          "precision_gate_pass": true,
+          "joint_false_positives": 0,
+          "joint_false_negatives": 0
+        },
+        "844": {
+          "gold": 8,
+          "predicted": 8,
+          "matched": 8,
+          "correct_level": 8,
+          "joint_precision": 1.0,
+          "joint_recall": 1.0,
+          "joint_f1": 1.0,
+          "joint_f05": 1.0,
+          "heading_precision": 1.0,
+          "precision_gate_pass": true,
+          "joint_false_positives": 0,
+          "joint_false_negatives": 0
+        },
+        "560": {
+          "gold": 10,
+          "predicted": 6,
+          "matched": 6,
+          "correct_level": 6,
+          "joint_precision": 1.0,
+          "joint_recall": 0.6,
+          "joint_f1": 0.75,
+          "joint_f05": 0.8823529411764706,
+          "heading_precision": 1.0,
+          "precision_gate_pass": true,
+          "joint_false_positives": 0,
+          "joint_false_negatives": 4
+        },
+        "394": {
+          "gold": 10,
+          "predicted": 4,
+          "matched": 4,
+          "correct_level": 4,
+          "joint_precision": 1.0,
+          "joint_recall": 0.4,
+          "joint_f1": 0.5714285714285714,
+          "joint_f05": 0.7692307692307693,
+          "heading_precision": 1.0,
+          "precision_gate_pass": true,
+          "joint_false_positives": 0,
+          "joint_false_negatives": 6
+        }
+      }
+    }
+  }
+}

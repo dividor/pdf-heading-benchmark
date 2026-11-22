@@ -1,5 +1,7 @@
 # Training a small local heading model: second experiment
 
+**Current comparison metric:** the league now ranks by joint heading-and-level F0.5 with a ≥95% heading-detection precision requirement. [Definitions and worked example](../../docs/joint-metric.md) · [New precision experiment](../structure-precision/report.md). The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.
+
 The selected model improved exact heading-group-and-level F1 from **71.6% to 85.7%** on 32 fully reviewed pages from four fresh WFP reports. It recovered all 38 reference groups, assigned 36 the correct level, and emitted eight extra groups. This is a small pilot using one assistant's labels, without independent human adjudication.
 
 ![Training and evaluation pipeline](../../docs/structure-v2-method.svg)

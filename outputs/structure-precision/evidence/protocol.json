@@ -1,0 +1,254 @@
+{
+  "objective": "Maximum validation joint heading+level F0.5 among candidates with heading precision >=0.95; no predictions fails the gate; no eligible candidate means no selection.",
+  "matching": "Same physical page, normalized title similarity >=0.90 using frozen Hungarian assignment; exact level. Same contract as the league table.",
+  "tie_break": "Grid order: learned_groups before context_relations, lower body weight and threshold first; context relation weight 1 before 0.",
+  "grid": [
+    {
+      "variant": "learned_groups",
+      "body_weight": 1.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 1.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 1.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 1.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 2.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 2.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 2.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 2.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 4.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 4.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 4.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "learned_groups",
+      "body_weight": 4.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 2.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.7,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 4.0,
+      "min_heading_score": 0.85,
+      "relation_weight": 0.0
+    }
+  ],
+  "config_hashes": {
+    "annotation-changes.json": "f5e835462177ed3eac38e0e562ee0b40f6e8dd1837da0ce684cb814d346f2da5",
+    "annotations.json": "c07ca112f2172b09d32cbefaea21dcddbf4d2cf9da2862b707d12e401a8c59ce",
+    "corpus.json": "38672ddf59b5f281f9fa6b319f53eae4e95f0303440886bba6e9b0f68c2f8379",
+    "decisions.json": "d305d5bed01044c17b5063b3b8016e125744c4a3bdee3fc1fff33d7306200a6c",
+    "excluded.json": "e16f2fa4c0830cdf70d1e6576e8dbd770002e893d410a0400e14adaf556b53c9",
+    "protocol.json": "b3e363c05431fe7fdb7137a3eabcb33c676d0c18bc5a99f0d91f531c64478684",
+    "test-decisions.json": "1485064574970125625f55ff2b2fff35a96bd3a5c855011424a5a4207b6dc65a"
+  },
+  "model_hashes": {
+    "line": "70c904def2b5a8f5a23a0333e8ed6c7113bd1102c4486beb9800804cec9ef517",
+    "join": "dfaa15f128243fa17aea3c26b9c451279d71bce2f05f95f966fcba6da07a18ea",
+    "group": "09f5a467dc0c64b1872ac59a1720dab2f0f0b107fda452d575617aa53738b3be",
+    "context": "1666290d9e5b2e74a2c7be79efa998297dc784f4b17ec2a11ab4945f0d3c1c47",
+    "relation": "82b359ffc0c64093f57b85b4c8fb28d0055ef331c37bbf281acf852e4a1b0196"
+  },
+  "source_hashes": {
+    "scripts/structure/optimize_precision.py": "ef33871b05c79fb650d120db509a46a4c212bec9f90d5d7288ebbc63ef975b32",
+    "src/pdf_heading_benchmark/precision_experiment.py": "4868c25fe26630f56f39ac799277dc5fe6cbe2c7c32dcd116510f8b42065b2e5",
+    "src/pdf_heading_benchmark/precision_inference.py": "3dc40911dcc17f5e49d6b156bf9cf308aba929e06bd80277329a6361488bd4d8",
+    "src/pdf_heading_benchmark/joint_metrics.py": "3bfa52d4219fdf5db1e4fbc8d996cb569800ad9bc05e3e57e12947c5cddc067d",
+    "src/pdf_heading_benchmark/evaluation.py": "25670f60a77dc721fa91e15114f8bc31c78f33f285561f25bb6c7f9457123957",
+    "src/pdf_heading_benchmark/structure_features.py": "565764ccda2903b34f74b1bd38be02ca9b5720cd59394a896938796fd0721d45",
+    "src/pdf_heading_benchmark/structure_inference.py": "dacc66da00736ebc6abb44580bc66e45b439cbf66a77decd8dd1ff190fd2ca9d",
+    "src/pdf_heading_benchmark/supervised_models.py": "a2d97bf830b9e863c89a2f3c4087c355ff0e630b2efbeebb82398d2ddf14cbf5",
+    "src/pdf_heading_benchmark/supervised_features.py": "5fe5ff15b3eb3eeedd61fd655b6c50f63959c52aa33ff868e7fc7f1f5ad4bc37"
+  },
+  "test_status": "Both the v2 test and original league PDFs are previously inspected regression sets. Neither selects this run. No new independent test.",
+  "python": "3.12.3",
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "training": "No new fitting: frozen v2 Extra Trees. Model scores are not calibrated probabilities."
+}

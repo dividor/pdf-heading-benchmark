@@ -2141,7 +2141,7 @@
         "detail": "81.1% validation group F1; assess inspected regression set and historical table separately."
       }
     ],
-    "summary": "This candidate reuses the selected v2 pipeline’s three frozen Extra Trees models. It changes the body-versus-heading decision after a nine-setting validation search; it does not train new trees. On the primary correct-heading-and-level score, it regresses from 50/77 to 47/77; it is not an improvement on this objective.",
+    "summary": "This earlier candidate reuses the v2 models with body weight 2, selected using validation F1. Its historical joint F0.5 is 59.2%, but heading precision is only 73.8%, so it fails the new 95% gate.",
     "parameters": [
       [
         "Estimator",
@@ -2229,7 +2229,7 @@
         "title": "Regression outcome and why this is not promoted",
         "paragraphs": [
           "On the previously inspected 38-heading set, F1 rises from 85.7% to 94.7%: 36 groups remain correctly leveled, false groups fall from 8 to 1, and one genuine group is now missed. This is regression evidence, not a new independent test.",
-          "On the historical main-table 77 headings, correct title-plus-level matches fall from 50 to 47; matched titles fall from 64 to 59 and false headings from 23 to 21. The candidate therefore remains separate from the highlighted original model."
+          "On the historical main-table 77 headings, correct title-plus-level matches fall from 50 to 47; matched titles fall from 64 to 59 and false headings from 23 to 21. The candidate therefore remains a separate historical candidate; the current highlighted method is selected using joint F0.5 and the precision gate."
         ]
       },
       {
@@ -2238,6 +2238,206 @@
           "Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full native text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.",
           "The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer.",
           "The runner accepts a separate calibration file and verifies frozen model/configuration provenance. No score or inference output is changed by this documentation update."
+        ]
+      }
+    ]
+  },
+  "structure_precision": {
+    "family": "Our supervised model · CPU",
+    "stages": [
+      {
+        "title": "Join model · 200 trees",
+        "detail": "100 adjacent-line features → joined groups. Same frozen model as v2."
+      },
+      {
+        "title": "Context model · 200 trees",
+        "detail": "47 features → body/H1–H5 scores. Require heading argmax and largest heading score ≥0.70."
+      },
+      {
+        "title": "Relation model · 200 trees",
+        "detail": "142 pair features on retained groups → shallower/same/deeper probabilities."
+      },
+      {
+        "title": "Viterbi → fewer headings",
+        "detail": "Relation weight 1; preserve native text. Historical: 41 emitted, 39 real, 34 correctly leveled."
+      }
+    ],
+    "limitation": "The precision target is met on these samples by abstaining: historical joint recall is 44.2%. Reused small validation and regression sets do not establish production robustness or a guaranteed 95% precision.",
+    "sources": [
+      {
+        "label": "Extra Trees implementation",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
+      },
+      {
+        "label": "Extra Trees algorithm paper (2006)",
+        "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      },
+      {
+        "label": "Exact estimator constructor and JSON export",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+      },
+      {
+        "label": "Native line features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+      },
+      {
+        "label": "Group/context/pair features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+      },
+      {
+        "label": "Training components and variant selection",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+      },
+      {
+        "label": "PDF sources and report splits",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Reviewable heading annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Inference, grouping and Viterbi",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+      },
+      {
+        "label": "Precision filter and sequence inference",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/precision_inference.py"
+      },
+      {
+        "label": "36-setting search and frozen protocol",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py"
+      },
+      {
+        "label": "Joint metric implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/joint_metrics.py"
+      },
+      {
+        "label": "All validation results",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/evidence/selection.json"
+      },
+      {
+        "label": "Experiment, trade-offs and reproduction",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md"
+      },
+      {
+        "label": "Run on a new PDF",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_precision.py"
+      }
+    ],
+    "training": [
+      {
+        "title": "Reuse frozen v2 trees",
+        "detail": "20 training reports; 887 heading groups; no new fitting or label changes."
+      },
+      {
+        "title": "Search 36 validation settings",
+        "detail": "Two grouped variants; body weights 1/2/4; heading score thresholds 0/.5/.7/.85; contextual relation weights 1/0."
+      },
+      {
+        "title": "Gate then maximize F0.5",
+        "detail": "Require ≥95% heading precision, then select highest joint F0.5. Chosen: context, threshold .70, body 1, relation 1."
+      }
+    ],
+    "summary": "Our F0.5-selected candidate uses the same three frozen Extra Trees models, with a new heading-confidence filter selected on validation. It reaches 95.1% heading precision and 70.5% joint F0.5 on the historical table, with 2 extras and 34/77 correct title-and-level pairs. The lower recall is deliberate and remains visible.",
+    "parameters": [
+      [
+        "Estimator",
+        "sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3"
+      ],
+      [
+        "Trees per classifier",
+        "n_estimators=200"
+      ],
+      [
+        "Tree limits",
+        "max_depth=16; min_samples_leaf=2"
+      ],
+      [
+        "Feature sampling / weighting",
+        "max_features=0.8; class_weight=\"balanced\""
+      ],
+      [
+        "Reproducibility / parallelism",
+        "random_state=42; n_jobs=4"
+      ],
+      [
+        "Other estimator options",
+        "Library defaults; no tree hyperparameter search was run"
+      ],
+      [
+        "Join classifier",
+        "ExtraTreesClassifier: 100 features; 6,267 pairs; 200 trees; separate/join"
+      ],
+      [
+        "Context classifier",
+        "ExtraTreesClassifier: 47 features; 6,736 groups; 200 trees; body/H1–H5"
+      ],
+      [
+        "Relation classifier",
+        "ExtraTreesClassifier: 142 features; 867 heading pairs; 200 trees; shallower/same/deeper"
+      ],
+      [
+        "Total deployed trees",
+        "3 ×200 =600; join + context + relation"
+      ],
+      [
+        "Decision filter",
+        "body_weight=1.0; min_heading_score=0.70; relation_weight=1.0"
+      ],
+      [
+        "Selection objective",
+        "Maximum validation joint F0.5 among candidates with heading precision ≥0.95; empty output fails"
+      ],
+      [
+        "Grid",
+        "36 settings: learned_groups/context_relations × body {1,2,4} × score {0,.5,.7,.85}; contextual relation {1,0}"
+      ],
+      [
+        "Matching",
+        "Same physical page; normalized title similarity ≥0.90; exact H level; pooled counts before scoring"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Training data and teacher provenance",
+        "paragraphs": [
+          "A single assistant reviewed source text, layout/page snippets and TOC context and supplied explicit line groups and H levels. The annotation provenance does not record a precise teacher-model checkpoint, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate ground truth. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.",
+          "The training split contains 20 WFP reports, 887 heading groups and 7,039 labeled lines. Line classes: body=5,849; H1=238; H2=391; H3=432; H4=128; H5=1; H6=0. Negative examples come from 112 fully reviewed training pages. Unmarked lines on positive-only annotation pages are not automatically negatives. The H5/H6 coverage is a material limitation.",
+          "Validation uses reports 103, 538, 176 and 128: 21 reference groups on 20 reviewed pages. The original v2 test uses reports 321, 844, 560 and 394: 38 groups on 32 reviewed pages. Splits are by report, not random lines; report-template families are not held out. Those test pages have now been inspected and are regression evidence for subsequent changes."
+        ]
+      },
+      {
+        "title": "What each model learns",
+        "paragraphs": [
+          "The 33 native-line features cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model.",
+          "The context classifier uses 47 features: the 43 group features plus style_numbered_count, style_mean_depth, style_max_depth and toc_exact_title. Style statistics group lines by rounded font size, bold/italic and color, then summarize numeric-prefix depth. TOC matching normalizes title text, strips its numeric prefix and dot leaders, and checks exact membership among dot-leader lines. This is a learned input feature, not a hard TOC level override.",
+          "The relationship classifier uses 142 features: two 47-feature groups, their differences and page delta. Its 867 training pairs are consecutive annotated headings. Target −1 means the next H number is smaller (shallower), 0 means equal and +1 means larger (deeper). It learns direction, not the number of levels skipped."
+        ]
+      },
+      {
+        "title": "Filter and validation selection",
+        "paragraphs": [
+          "The largest heading-class score must be at least 0.70 and a heading must beat the weighted body score. Scores are not calibrated probabilities. Filtering precedes relationship inference and Viterbi, so rejected groups cannot return.",
+          "The fixed 36-setting grid was evaluated only on the four validation reports (21 headings). Twenty-three settings met the 95% detection-precision gate. The selected configuration emitted 14 headings, all correctly leveled, and missed seven: joint F0.5 90.9%. Exact ties retain fixed grid order. No eligible candidate would mean no selection."
+        ]
+      },
+      {
+        "title": "Measured result and lost recall",
+        "paragraphs": [
+          "On the historical 77-heading benchmark, joint F0.5 rises from 58.8% to 70.5%, extras fall from 23 to 2, and heading precision rises to 95.1%. Correct heading-level pairs fall from 50 to 34. Of 41 predictions, 39 are real headings and five of those have incorrect levels; 38 reference titles are missed.",
+          "On the previously inspected 38-heading regression set, the candidate emits 28 headings, all correctly leveled, misses ten and scores 93.3% joint F0.5. These are regression results, not independent new test evidence. The 95.1% historical precision is a narrow sample pass."
+        ]
+      },
+      {
+        "title": "Runtime and reproducibility",
+        "paragraphs": [
+          "Measured full-PDF runtime is 11.66 seconds across all 523 pages on the shared 48 GB Apple M4 Pro. It includes extraction, features and inference; model loading and writes are excluded. The 600 frozen trees and data-only JSON deployment are unchanged.",
+          "Selection caches probabilities for speed and reads no test documents. The protocol freezes the grid and source/model/configuration hashes. Regression checks those hashes. Full text and raw outputs remain external; compact audit predictions and all grid scores are committed."
         ]
       }
     ]

@@ -2,7 +2,7 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 21 completed local configurations with scores, processing times and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 22 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took about 62 minutes for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
@@ -10,7 +10,15 @@ Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These 
 
 [Full local scores, timings and methods (Markdown)](outputs/report/league_table.md) · [HTML report](outputs/report/index.html) · [Reproducibility and limitations](docs/reproducibility.md) · [Source documents](configs/corpus.json)
 
-## Improved trained model (v2)
+## Current objective and precision-selected method
+
+Rank by **joint heading-and-level F0.5 = 1.25C / (P + 0.25G)**, where C is the number of correctly matched heading-level pairs, P all predictions and G all reference headings. A wrong level is both a joint false positive and false negative. Require **heading-detection precision M/P ≥95%**, where M counts real title/page matches irrespective of level. Empty predictions fail the gate. This is an observed sample threshold, not a deployment guarantee. [Definitions and worked example](docs/joint-metric.md).
+
+The new validation-selected filter keeps groups only when the highest heading score is at least **0.70**. On the 77-heading historical benchmark, extra headings fall **23 →2**, heading precision rises to **95.1%**, and joint F0.5 rises **58.8% →70.5%**. Correct heading-level pairs fall **50 →34**: this precision gain sacrifices recall. Full 523-page CPU parsing takes **11.66 seconds**, excluding model loading and writes. On the inspected 38-heading set, 28 predictions are all correctly leveled, ten headings are missed and F0.5 is 93.3%.
+
+Selection searched 36 fixed settings on four validation reports; the regression sets did not select the threshold. Trees and labels are unchanged. [Full precision experiment](outputs/structure-precision/report.md) · [Run on a new PDF](scripts/runners/run_precision.py) · [All validation scores](outputs/structure-precision/evidence/selection.json).
+
+## Earlier v2 experiment (selected using F1)
 
 Expanded assistant-reviewed training from **154 to 887 heading groups**, then compared extra data, learned line grouping, and document context/level relationships. On four fresh WFP reports (32 fully reviewed pages, 38 headings), exact group-and-level F1 rose from **71.6% to 85.7%**. The selected model recovered all 38 groups, got 36 levels right, and produced eight false headings. These are assistant labels, not independently adjudicated gold; the split holds out reports, not template families.
 

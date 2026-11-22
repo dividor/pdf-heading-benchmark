@@ -206,7 +206,7 @@
     ]
   },
   "pdf_tags_audit_only": {
-    "description": "Read author H1\u2013H6 structure-tree tags on 32 audit pages; no inferred repairs.",
+    "description": "Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.",
     "code": "scripts/runners/run_pdf_tags.py",
     "steps": [
       {
@@ -342,7 +342,7 @@
     ]
   },
   "supervised_extra_trees": {
-    "description": "LLM-assisted visual annotations \u2192 200-tree Extra Trees classifier trained on 16 different WFP reports \u2192 local CPU inference using PyMuPDF line features. Full PDFs; no refit on benchmark.",
+    "description": "LLM-assisted visual annotations → 200-tree Extra Trees classifier trained on 16 different WFP reports → local CPU inference using PyMuPDF line features. Full PDFs; no refit on benchmark.",
     "code": "scripts/supervised/compare.py",
     "steps": [
       {
@@ -354,7 +354,7 @@
     ]
   },
   "structure_expanded_line": {
-    "description": "LLM annotations \u2192 Extra Trees v2: 887 heading groups on 20 training reports; original line classifier and grouping. CPU; historical diagnostic.",
+    "description": "LLM annotations → Extra Trees v2: 887 heading groups on 20 training reports; original line classifier and grouping. CPU; historical diagnostic.",
     "code": "scripts/structure/train.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
     "steps": [
@@ -370,7 +370,7 @@
     ]
   },
   "structure_learned_groups": {
-    "description": "LLM annotations \u2192 learned line joining across PDF blocks \u2192 group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.",
+    "description": "LLM annotations → learned line joining across PDF blocks → group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.",
     "code": "scripts/structure/train.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
     "steps": [
@@ -402,7 +402,7 @@
     ]
   },
   "structure_calibrated": {
-    "description": "OUR METHOD v2 + validation-selected decoding: body score \u00d72; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.",
+    "description": "OUR METHOD v2 + validation-selected decoding: body score ×2; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.",
     "code": "scripts/structure/calibrate.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
     "steps": [
@@ -414,6 +414,19 @@
           "context_relations",
           "--calibrated"
         ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_precision": {
+    "description": "OUR METHOD — frozen v2 trees; validation-selected heading score ≥0.70, body weight 1, relation weight 1. Optimize joint F0.5 subject to ≥95% heading precision. CPU; regression evidence.",
+    "code": "scripts/structure/optimize_precision.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_precision.py",
+        "environment": "project",
+        "args": [],
         "per_document": true
       }
     ]

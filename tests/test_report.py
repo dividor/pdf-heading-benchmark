@@ -19,14 +19,14 @@ def test_report_is_reproducible_and_has_all_method_links():
     corpus = read_json(REPO / "configs/corpus.json")
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = next(t for t in tables if t.find("th").get_text() == "Configuration")
-    assert results.find_all("th")[3].get_text() == "Primary score: correct heading + level"
+    assert results.find_all("th")[3].get_text() == "Primary score: joint F0.5"
     scores = read_json(REPO / "outputs/report/results.json")
-    combined_scores = [r["correct_heading_and_level"] for r in scores]
+    combined_scores = [r["joint_f05"] for r in scores]
     assert combined_scores == sorted(combined_scores, reverse=True)
     rows = results.find("tbody").find_all("tr")
-    assert len(rows) == 21
+    assert len(rows) == len(read_json(REPO / "configs/report-methods.json"))
     for row in rows:
-        assert len(row.find_all("td")) == 8
+        assert len(row.find_all("td")) == 10
         assert (
             row.find_all("td")[1]
             .find("a")["href"]
@@ -39,7 +39,7 @@ def test_report_is_reproducible_and_has_all_method_links():
 
 def test_report_contains_only_on_premises_methods():
     selected = set(read_json(REPO / "configs/report-methods.json"))
-    assert len(selected) == 21
+    assert len(selected) >= 21
     for filename in ("results.json", "details.json"):
         rows = read_json(REPO / "outputs/report" / filename)
         assert {row["method"] for row in rows} == selected

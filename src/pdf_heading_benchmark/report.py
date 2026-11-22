@@ -3,6 +3,7 @@
 from markdown_it import MarkdownIt
 
 from pdf_heading_benchmark.io import REPO, read_json, write_json
+from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
@@ -10,7 +11,9 @@ HEADERS = [
     "Configuration",
     "Method / code",
     "Status",
-    "Primary score: correct heading + level",
+    "Primary score: joint F0.5",
+    "Heading precision / 95% gate",
+    "Correct heading + level",
     "Headings recovered",
     "False headings",
     "Native prose retention",
@@ -45,8 +48,13 @@ def cells(row, method):
         configuration = f"[LLM annotations → Extra Trees v1 (CPU)]({row['source_url']})"
     if row["method"] == "structure_context_relations":
         configuration = (
+            '<span id="our-original-model"></span>'
+            f"[OUR METHOD — grouped context v2 (previous selection)]({row['source_url']})"
+        )
+    if row["method"] == "structure_precision":
+        configuration = (
             '<span id="our-trained-model"></span>'
-            f"[**OUR METHOD — LLM annotations → grouped context model v2 (CPU)**]({row['source_url']})"
+            f"[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**]({row['source_url']})"
         )
     if row["method"] == "structure_calibrated":
         configuration = (
@@ -57,7 +65,14 @@ def cells(row, method):
         configuration,
         f"[{method['description']}]({method.get('code_url', REMOTE + method['code'])})",
         row["status"],
-        f"**{combined}**",
+        f"**{percent(row.get('joint_f05'))}**",
+        (
+            f"{percent(row.get('heading_precision'))} · "
+            + ("PASS" if row.get("precision_gate_pass") else "FAIL")
+            if completed
+            else "—"
+        ),
+        combined,
         recall,
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
@@ -93,11 +108,15 @@ def corpus_table():
 
 def report_rows(filename):
     selected = set(read_json(REPO / "configs/report-methods.json"))
-    return [
+    rows = [
         {key: value for key, value in row.items() if not key.startswith("api_")}
         for row in read_json(REPO / "outputs" / filename)
         if row["method"] in selected
     ]
+    if filename == "league_table.json":
+        rows = [scored_counts(row) if row["status"] == "completed" else row for row in rows]
+        rows.sort(key=lambda row: row.get("joint_f05", -1), reverse=True)
+    return rows
 
 
 def results_table():
@@ -123,7 +142,8 @@ def build_report():
         for r in details
     ]
     markdown = intro + "\n" + corpus_table() + "\n\n" + protocol
-    markdown += "\n" + results_table() + "\n\n" + notes
+    metric = (REPO / "docs/joint-metric.md").read_text()
+    markdown += "\n" + results_table() + "\n\n" + metric + "\n\n" + notes
     markdown += "\n\n## Results by report\n\n" + table(
         ["Runner / configuration", "Report", "Recovered", "Correct heading + level", "False headings"],
         per_report,

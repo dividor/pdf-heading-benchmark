@@ -1,5 +1,7 @@
 # Can stricter heading decisions improve the model?
 
+**Current comparison metric:** the league now ranks by joint heading-and-level F0.5 with a ≥95% heading-detection precision requirement. [Definitions and worked example](../../docs/joint-metric.md) · [New precision experiment](../structure-precision/report.md). The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.
+
 **Yes on one regression set, but not consistently across report styles. This candidate does not replace the selected v2 model.** The existing models, training labels and native text extraction are unchanged. This experiment tunes two global decoding weights using only the four validation reports, then measures the chosen setting on previously inspected reports.
 
 ## Experiment and documents
