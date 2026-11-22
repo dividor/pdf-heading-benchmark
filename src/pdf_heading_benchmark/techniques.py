@@ -6,6 +6,11 @@ from bs4 import BeautifulSoup
 
 from pdf_heading_benchmark.io import REPO, read_json
 from pdf_heading_benchmark.method_terms import explained_terms, linked_text
+from pdf_heading_benchmark.prediction_comparison import (
+    comparison_html,
+    comparison_markdown,
+    comparisons,
+)
 from pdf_heading_benchmark.report_help import column_help, info_button
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
@@ -55,7 +60,7 @@ def run_details(technique: dict) -> str:
     )
 
 
-def dialog(row: dict, method: dict, technique: dict) -> str:
+def dialog(row: dict, method: dict, technique: dict, documents: list[dict]) -> str:
     key = escape(row["method"], quote=True)
     training = (
         flow(technique["training"], "01 · Training or setting selection", technique)
@@ -76,7 +81,7 @@ def dialog(row: dict, method: dict, technique: dict) -> str:
         '<button type="button" class="technique-close" aria-label="Close technique diagram">'
         'Close <span aria-hidden="true">&times;</span></button></header>'
         f'<p class="technique-description">{linked_text(technique["summary"], technique)}</p>'
-        f"{training}{flow(technique['stages'], label, technique)}"
+        f"{comparison_html(documents)}{training}{flow(technique['stages'], label, technique)}"
         f"{explained_terms(technique)}{run_details(technique)}"
         '<aside class="technique-limit"><strong>Interpretation</strong>'
         f"<p>{escape(technique['limitation'])}</p>"
@@ -123,22 +128,27 @@ def enhance_html(rendered: str, rows: list[dict], methods: dict) -> str:
     hint = soup.new_tag("p", attrs={"class": "technique-hint"})
     hint.string = (
         "Select an i button beside a column heading for its definition, or beside a configuration "
-        "for its diagram, exact parameters, tuning, measured scope, code and sources."
+        "for predicted versus reference headings, its diagram, exact parameters, tuning, code and sources."
     )
     results.insert_before(hint)
     help_panels = column_help(soup, results)
-    panels = "".join(dialog(r, methods[r["method"]], techniques[r["method"]]) for r in rows)
+    audits = comparisons([r["method"] for r in rows])
+    panels = "".join(
+        dialog(r, methods[r["method"]], techniques[r["method"]], audits[r["method"]]) for r in rows
+    )
     script = (REPO / "docs/techniques.js").read_text()
     return str(soup) + help_panels + panels + f"<script>{script}</script>"
 
 
 def markdown_appendix(rows: list[dict], methods: dict) -> str:
     techniques = read_json(REPO / "configs/techniques.json")
+    audits = comparisons([r["method"] for r in rows])
     parts = ["\n## Technique diagrams and sources\n", "The HTML report opens these diagrams in a modal.\n"]
     for row in rows:
         technique = techniques[row["method"]]
         parts += [f"\n### {row['name']}\n", f"{technique['family']}\n"]
         parts.append(technique["summary"] + "\n")
+        parts.append(comparison_markdown(audits[row["method"]]))
         for label, stages in [("Training", technique["training"]), ("Inference", technique["stages"])]:
             if stages:
                 parts.append(f"\n**{label}:** " + " → ".join(s["title"] for s in stages) + "\n")

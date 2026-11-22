@@ -75,3 +75,20 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .method-terms dt { font-weight: 700; margin-top: 16px; }
 .method-terms dd { margin: 4px 0 16px; font-size: 15px; }
 .technique-flow a { text-underline-offset: 3px; }
+
+.prediction-comparison { margin: 24px 0; padding: 18px; background: white; border: 1px solid #b8ccd9; border-radius: 12px; }
+.prediction-comparison h3 { margin-top: 0; }
+.comparison-counts { font-weight: 750; }
+.comparison-document { border-top: 1px solid #dce5ec; padding: 12px 0; }
+.comparison-document summary { cursor: pointer; font-weight: 650; }
+.comparison-document summary span { display: block; margin: 5px 0 0 20px; font-size: 13px; font-weight: 400; }
+.comparison-scroll { overflow-x: auto; }
+.comparison-scroll table { table-layout: fixed; min-width: 640px; }
+.comparison-scroll th, .comparison-scroll td { min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.comparison-scroll th:first-child { width: 6%; }
+.comparison-scroll th:nth-child(2), .comparison-scroll th:nth-child(3) { width: 35%; }
+.comparison-scroll caption { text-align: left; font-size: 13px; }
+.comparison-correct { background: #edf8f2; }
+.comparison-wrong { background: #fff4d9; }
+.comparison-missing { background: #fff0f0; }
+.comparison-extra { background: #f5edff; }

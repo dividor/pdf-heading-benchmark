@@ -38,7 +38,7 @@ This is **sampled-page heading accuracy**, even when a parser processed the full
 
 ## Full configuration results
 
-**Ranked by joint heading-and-level F0.5**, with **joint precision and joint recall** next to it. The first score column is highlighted. There are no PASS/FAIL labels; heading-only precision appears in the detailed results as a diagnostic. See the definitions and worked example below the table. In HTML, select the **i** beside a configuration, or its **Method / code** for its diagram, parameters and sources. Markdown retains those links and the detailed technique appendix. All configurations ran locally. Missing measurements remain unavailable rather than being assigned zero.
+**Ranked by joint heading-and-level F0.5**, with **joint precision and joint recall** next to it. The first score column is highlighted. There are no PASS/FAIL labels; heading-only precision appears in the detailed results as a diagnostic. See the definitions and worked example below the table. In HTML, select the **i** beside a configuration, or its **Method / code** for its predicted-versus-reference heading comparison, diagram, parameters and sources. Markdown retains those links and the detailed technique appendix. All configurations ran locally. Missing measurements remain unavailable rather than being assigned zero.
 
 | Configuration | Primary score: joint F0.5 | Joint precision | Joint recall | Method / code | Status | Headings recovered | False headings | Native prose retention | Measured time |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -218,6 +218,121 @@ Vision + document context · local MLX
 Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images. This supplies more context to an already trained model; we did not train it on WFP labels.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+65 correct · 12 wrong/absent level · 0 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+12 correct · 3 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H2 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H2 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Wrong or absent level |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+18 correct · 0 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+19 correct · 2 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — Insight 1. CSP architecture | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — Insight 2. Country capacity strengthening | Correct heading + level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | Correct heading + level |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | Correct heading + level |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H3 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H3 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Correct heading + level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+16 correct · 7 wrong/absent level · 0 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| 42 | — | H4 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H4 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H4 — Resultados | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H4 — Productos y logros | Correct heading + level |
+| 72 | — | H4 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Inference:** Collect document-wide clues → Show the current and earlier pages → Generate heading decisions locally → Carry selected images forward
 
 - **Collect document-wide clues:** Supply possible titles and page numbers from PyMuPDF4LLM, plus any author-supplied heading tags. Omit the parser’s predicted levels.
@@ -278,6 +393,121 @@ Author metadata · CPU
 Read PDF heading tags—the heading labels already embedded by the PDF’s author. This baseline uses no trained model: an H2 structure tag is taken to mean H2, even when the author’s tagging is incomplete or wrong.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+43 correct · 9 wrong/absent level · 25 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+9 correct · 0 wrong/absent level · 6 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 11 | H4 — Appropriateness | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | — | Missed heading |
+| 109 | H2 — Evaluation questions | — | Missed heading |
+| 109 | H2 — Methodology and ethical considerations | — | Missed heading |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+13 correct · 0 wrong/absent level · 5 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 8 | H3 — What was evaluated? | — | Missed heading |
+| 8 | H3 — Why was the evaluation conducted and in which context? | — | Missed heading |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 10 | H2 — FINDINGS | — | Missed heading |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | — | Missed heading |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+10 correct · 4 wrong/absent level · 7 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased strategic engagement in an array of humanitarian and development sectors, particularly with regard to strengthening national systems for humanitarian response and food security. The CSP structure has allowed operational flexibility and responsiveness to emerging opportunities and changes in circumstances; however, while CSP activities are aligned with the priorities of government partners, they do not address some issues affecting women, older people, persons with disabilities, people living in remote areas, and children – groups identified in the common country analysis as those most at risk of being left behind. The absence of a framework for assessing emerging opportunities prevented coherent engagement. | Extra prediction |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | — | Missed heading |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | — | Missed heading |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | — | Missed heading |
+| 48 | H5 — SO1: Evidence and Data | — | Missed heading |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+11 correct · 5 wrong/absent level · 7 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | — | Missed heading |
+| 7 | H3 — Características de la evaluación | — | Missed heading |
+| 7 | H3 — Contexto | — | Missed heading |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H4 — Pertinencia con respecto a las necesidades | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Inference:** Read accessibility structure → Find heading tags → Recover the associated text → Export the author’s labels
 
 - **Read accessibility structure:** Inspect the PDF structure tree, which describes tagged content. This is different from the outline bookmarks shown in a PDF reader’s navigation panel.
@@ -322,6 +552,121 @@ Works only to the extent that the PDF author supplied correct structural tags.
 Page vision model · local MLX
 
 Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation. We derive heading levels from the HTML it generates. The local MLX run processes four independent pages together with bf16 weights.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+53 correct · 17 wrong/absent level · 7 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+8 correct · 5 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H5 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+15 correct · 3 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+16 correct · 3 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — Insight 1. CSP architecture | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — Insight 2. Country capacity strengthening | Correct heading + level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H3 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H3 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Level not supplied — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+14 correct · 6 wrong/absent level · 3 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H2 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H3 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H4 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H2 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H4 — Productos y logros | Correct heading + level |
+| 72 | — | H4 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
 
 
 **Inference:** Prepare images as the authors specify → Use the supplied layout prompt → Read four pages per batch → Read HTML heading tags
@@ -375,6 +720,121 @@ The measured run uses MLX on the benchmark Mac. Model-card GPU benchmarks use di
 Learned classifiers · local CPU
 
 OUR METHOD uses three Extra Trees classifiers that we trained from scratch for this benchmark in structure-v2/run-001, on the local M4 Pro CPU. They learn line joining, body/heading levels and relationships between headings from assistant annotations of 20 WFP reports. The later experiment keeps these models unchanged and selects a confidence filter. See the model provenance page for training code, source reports, versions and model hashes. The filter reduced extra headings from 23 to two, while correct heading-level pairs fell from 50/77 to 34/77.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+34 correct · 5 wrong/absent level · 38 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+6 correct · 1 wrong/absent level · 8 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | — | Missed heading |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | — | Missed heading |
+| 33 | — | H4 — EQ4.1 | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | — | Missed heading |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | — | Missed heading |
+| 109 | H2 — Evaluation questions | — | Missed heading |
+| 109 | H2 — Methodology and ethical considerations | — | Missed heading |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+12 correct · 0 wrong/absent level · 6 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 8 | H3 — What was evaluated? | — | Missed heading |
+| 8 | H3 — Why was the evaluation conducted and in which context? | — | Missed heading |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 10 | H2 — FINDINGS | — | Missed heading |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | — | Missed heading |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | — | Missed heading |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+7 correct · 0 wrong/absent level · 14 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | — | Missed heading |
+| 7 | H3 — Evaluation features | — | Missed heading |
+| 7 | H3 — Context | — | Missed heading |
+| 11 | H2 — Evaluation key insights and conclusions | — | Missed heading |
+| 11 | H3 — Insight 1. CSP architecture | — | Missed heading |
+| 11 | H3 — Insight 2. Country capacity strengthening | — | Missed heading |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | — | Missed heading |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | — | Missed heading |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | — | Missed heading |
+| 48 | H5 — SO1: Evidence and Data | — | Missed heading |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+9 correct · 4 wrong/absent level · 10 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | — | Missed heading |
+| 7 | H3 — Características de la evaluación | — | Missed heading |
+| 7 | H3 — Contexto | — | Missed heading |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | — | Missed heading |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 56 | H4 — Dimensión 2: Entorno político | — | Missed heading |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 72 | H4 — Productos y logros | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
 
 
 **Training:** Train our three classifiers locally → Try 36 ways to reject uncertain headings → Choose the best qualifying setting
@@ -485,6 +945,140 @@ The 95% gate checks whether predicted titles are real headings; it does not chec
 Learned classifiers · local CPU
 
 Use the three Extra Trees classifiers we trained locally in structure-v2/run-001, then multiply their body-text score by two before choosing a class. Only this decision rule was selected on validation reports; the fitted models are unchanged. The model provenance page documents their original training.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+47 correct · 12 wrong/absent level · 18 missed · 21 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+9 correct · 6 wrong/absent level · 0 missed · 9 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H4 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H4 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | — | H2 — TABLE 1: OVERVIEW OF TARGETING AND PRIORITIZATION APPROACHES USED | Extra prediction |
+| 11 | — | H3 — Programme type Targeting and prioritization approaches (summary) | Extra prediction |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H2 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 33 | — | H3 — EQ1 | Extra prediction |
+| 33 | — | H4 — EQ4.1 | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H2 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | H3 — EQ2.1 | Extra prediction |
+| 67 | — | H3 — EQ3.1 | Extra prediction |
+| 67 | — | H3 — EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H3 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+15 correct · 1 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 8 | H3 — What was evaluated? | — | Missed heading |
+| 8 | — | H3 — INTRODUCTION What was evaluated? | Extra prediction |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+| 98 | — | H5 — implementation. | Extra prediction |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+11 correct · 1 wrong/absent level · 9 missed · 10 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | — | Missed heading |
+| 11 | H3 — Insight 2. Country capacity strengthening | — | Missed heading |
+| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased | Extra prediction |
+| 11 | — | H3 — strategic engagement in an array of humanitarian and development sectors, particularly with regard to | Extra prediction |
+| 11 | — | H3 — strengthening national systems for humanitarian response and food security. The CSP structure has | Extra prediction |
+| 11 | — | H3 — allowed operational flexibility and responsiveness to emerging opportunities and changes in | Extra prediction |
+| 11 | — | H3 — circumstances; however, while CSP activities are aligned with the priorities of government partners, they | Extra prediction |
+| 11 | — | H3 — do not address some issues affecting women, older people, persons with disabilities, people living in | Extra prediction |
+| 11 | — | H3 — remote areas, and children – groups identified in the common country analysis as those most at risk of | Extra prediction |
+| 11 | — | H3 — being left behind. The absence of a framework for assessing emerging opportunities prevented coherent | Extra prediction |
+| 11 | — | H3 — engagement. | Extra prediction |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | — | Missed heading |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | — | Missed heading |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | — | Missed heading |
+| 48 | H5 — SO1: Evidence and Data | — | Missed heading |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+12 correct · 4 wrong/absent level · 7 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | — | Missed heading |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 56 | H4 — Dimensión 2: Entorno político | — | Missed heading |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 72 | H4 — Productos y logros | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
 
 
 **Training:** Train our three classifiers locally → Try nine decision settings → Keep the validation choice
@@ -601,6 +1195,142 @@ Learned classifiers · local CPU
 Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings. A Viterbi search then chooses a consistent sequence. This was the second experiment’s selected design, with 600 trees in total.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+50 correct · 14 wrong/absent level · 13 missed · 23 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+9 correct · 6 wrong/absent level · 0 missed · 10 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H4 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H4 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | — | H2 — TABLE 1: OVERVIEW OF TARGETING AND PRIORITIZATION APPROACHES USED | Extra prediction |
+| 11 | — | H3 — Programme type Targeting and prioritization approaches (summary) | Extra prediction |
+| 11 | — | H4 — Unconditional resource transfers | Extra prediction |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H2 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 33 | — | H3 — EQ1 | Extra prediction |
+| 33 | — | H4 — EQ4.1 | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H2 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | H3 — EQ2.1 | Extra prediction |
+| 67 | — | H3 — EQ3.1 | Extra prediction |
+| 67 | — | H3 — EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H3 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+15 correct · 1 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 8 | H3 — What was evaluated? | — | Missed heading |
+| 8 | — | H3 — INTRODUCTION What was evaluated? | Extra prediction |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+| 98 | — | H5 — implementation. | Extra prediction |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+13 correct · 1 wrong/absent level · 7 missed · 11 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | — | Missed heading |
+| 11 | H3 — Insight 2. Country capacity strengthening | — | Missed heading |
+| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased | Extra prediction |
+| 11 | — | H3 — strategic engagement in an array of humanitarian and development sectors, particularly with regard to | Extra prediction |
+| 11 | — | H3 — strengthening national systems for humanitarian response and food security. The CSP structure has | Extra prediction |
+| 11 | — | H3 — allowed operational flexibility and responsiveness to emerging opportunities and changes in | Extra prediction |
+| 11 | — | H3 — circumstances; however, while CSP activities are aligned with the priorities of government partners, they | Extra prediction |
+| 11 | — | H3 — do not address some issues affecting women, older people, persons with disabilities, people living in | Extra prediction |
+| 11 | — | H3 — remote areas, and children – groups identified in the common country analysis as those most at risk of | Extra prediction |
+| 11 | — | H3 — being left behind. The absence of a framework for assessing emerging opportunities prevented coherent | Extra prediction |
+| 11 | — | H3 — engagement. | Extra prediction |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | — | Missed heading |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | — | Missed heading |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | Correct heading + level |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | — | Missed heading |
+| 48 | H5 — SO1: Evidence and Data | — | Missed heading |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Correct heading + level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+| 68 | — | H3 — Conclusion 1 (CSP structure/architecture):  The second edition of the CSP has facilitated WFP’s continued strategic positioning, and in supporting the Government to achieve its SDG targets. The CSP has contributed to increased strategic engagement across an array of sectors within humanitarian and development fields, particularly with respect to strengthening national systems for humanitarian response and food security. The CSP structure has allowed operational flexibility and responsiveness to emergent opportunities or changes in context; CSP interventions are aligned with Government partner priorities but do not address issues highlighted by the CCA; the absence of a framework for assessing emergent opportunities prevented coherent engagement. | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+13 correct · 6 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | — | Missed heading |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 56 | H4 — Dimensión 2: Entorno político | — | Missed heading |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 72 | H4 — Productos y logros | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Training:** Train our three classifiers locally → Train Extra Trees classifiers → Compare designs on validation reports
 
 - **Train our three classifiers locally:** The structure-v2/run-001 training program fits Extra Trees on assistant annotations from 20 WFP reports, on the local M4 Pro CPU. See the model provenance page and training run record. Later decision-setting experiments reuse these fitted models. No further model training occurs in those experiments.
@@ -707,6 +1437,127 @@ Page vision model · local MLX
 LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page. We extract its title blocks and use any Markdown heading markers to determine the level.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+46 correct · 26 wrong/absent level · 5 missed · 8 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+8 correct · 5 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H1 — Figure 1: Global humanitarian requirements and resources (2019-2025) | Extra prediction |
+| 11 | H4 — Appropriateness | Level not supplied — **Appropriateness** | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H1 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — **EQ1** 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — **EQ4.1** 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Level not supplied — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H1 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H1 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H1 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+13 correct · 5 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H1 — 1.2 CONTEXT | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H2 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H1 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+13 correct · 6 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 33 | — | H3 — Table 9: Strategic Review Gaps and CSP Interventions | Extra prediction |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H1 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 42 | — | H2 — Table 15: Output Indicators Annual Achievements Against Targets | Extra prediction |
+| 48 | H5 — SO1: Evidence and Data | Level not supplied — **SO1: Evidence and Data** | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Level not supplied — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+12 correct · 10 wrong/absent level · 1 missed · 4 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Level not supplied — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H3 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H1 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H2 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H2 — Resultados⁹² | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H1 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H2 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 72 | — | H3 — Resumen | Extra prediction |
+| 73 | — | H1 — Figura 11: Total de dólares anuales en transferencias de efectivo ejecutadas | Extra prediction |
+| 73 | — | H1 — Figura 12: Total de dólares anuales en transferencias de alimentos ejecutadas | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Inference:** Make images of the 32 audit pages → Request text with locations → Read the reported title blocks → Join wrapped titles and read levels
 
 - **Make images of the 32 audit pages:** Render at 400 dots per inch, then shrink each image so its longest side is at most 2048 pixels.
@@ -758,6 +1609,127 @@ Page-local recognition has less document-wide hierarchy context. These are local
 Page vision model · local MLX
 
 LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model. This run processes two independent pages together using bf16 weights, with five saved outputs from an earlier single-page run.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+46 correct · 26 wrong/absent level · 5 missed · 8 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+9 correct · 4 wrong/absent level · 2 missed · 3 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H1 — Figure 1: Global humanitarian requirements and resources (2019-2025) | Extra prediction |
+| 11 | H4 — Appropriateness | Level not supplied — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H1 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — EQ1 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H2 — EQ4.1 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H3 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Level not supplied — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | Level not supplied — EQ2.1 EQ3.1 EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+13 correct · 5 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H1 — 1.2 CONTEXT | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H2 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H1 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+13 correct · 6 wrong/absent level · 2 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H1 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 42 | — | H2 — Table 15: Output Indicators Annual Achievements Against Targets | Extra prediction |
+| 48 | H5 — SO1: Evidence and Data | Level not supplied — **SO1: Evidence and Data** | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Level not supplied — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+11 correct · 11 wrong/absent level · 1 missed · 4 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Level not supplied — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H3 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H1 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H2 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H2 — Resultados $^{92}$ | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H1 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H2 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 72 | — | H3 — Resumen | Extra prediction |
+| 73 | — | H1 — Figura 11: Total de dólares anuales en transferencias de efectivo ejecutadas | Extra prediction |
+| 73 | — | H1 — Figura 12: Total de dólares anuales en transferencias de alimentos ejecutadas | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
 
 
 **Inference:** Render each audit page → Process two pages together → Include five earlier outputs → Extract titles and their levels
@@ -812,6 +1784,140 @@ Page-local recognition has less document-wide hierarchy context. These are local
 Learned classifiers · local CPU
 
 Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5. This tests whether learning how to join wrapped titles helps; it uses 400 trees in total.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+51 correct · 23 wrong/absent level · 3 missed · 21 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+12 correct · 3 wrong/absent level · 0 missed · 7 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H4 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Correct heading + level |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H4 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 33 | — | H3 — EQ1 | Extra prediction |
+| 33 | — | H3 — EQ4.1 | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 67 | — | H3 — EQ2.1 | Extra prediction |
+| 67 | — | H3 — EQ3.1 | Extra prediction |
+| 67 | — | H3 — EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+14 correct · 2 wrong/absent level · 2 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H1 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 8 | H3 — What was evaluated? | — | Missed heading |
+| 8 | — | H1 — INTRODUCTION What was evaluated? | Extra prediction |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+12 correct · 9 wrong/absent level · 0 missed · 11 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H1 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H4 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased | Extra prediction |
+| 11 | — | H3 — strategic engagement in an array of humanitarian and development sectors, particularly with regard to | Extra prediction |
+| 11 | — | H3 — strengthening national systems for humanitarian response and food security. The CSP structure has | Extra prediction |
+| 11 | — | H3 — allowed operational flexibility and responsiveness to emerging opportunities and changes in | Extra prediction |
+| 11 | — | H3 — circumstances; however, while CSP activities are aligned with the priorities of government partners, they | Extra prediction |
+| 11 | — | H3 — do not address some issues affecting women, older people, persons with disabilities, people living in | Extra prediction |
+| 11 | — | H3 — remote areas, and children – groups identified in the common country analysis as those most at risk of | Extra prediction |
+| 11 | — | H3 — being left behind. The absence of a framework for assessing emerging opportunities prevented coherent | Extra prediction |
+| 11 | — | H3 — engagement. | Extra prediction |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | Correct heading + level |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | H4 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? 51 | Wrong or absent level |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Correct heading + level |
+| 48 | H5 — SO1: Evidence and Data | H3 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H2 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+| 68 | — | H3 — Conclusion 1 (CSP structure/architecture):  The second edition of the CSP has facilitated WFP’s continued strategic positioning, and in supporting the Government to achieve its SDG targets. The CSP has contributed to increased strategic engagement across an array of sectors within humanitarian and development fields, particularly with respect to strengthening national systems for humanitarian response and food security. The CSP structure has allowed operational flexibility and responsiveness to emergent opportunities or changes in context; CSP interventions are aligned with Government partner priorities but do not address issues highlighted by the CCA; the absence of a framework for assessing emergent opportunities prevented coherent engagement. | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+13 correct · 9 wrong/absent level · 1 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H1 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Correct heading + level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H2 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 56 | H4 — Dimensión 2: Entorno político | — | Missed heading |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 73 | — | H4 — Figura 11: Total de dólares anuales en transferencias de efectivo ejecutadas | Extra prediction |
+| 73 | — | H4 — Figura 12: Total de dólares anuales en transferencias de alimentos ejecutadas | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
 
 
 **Training:** Annotate examples in other WFP reports → Train Extra Trees classifiers → Compare designs on validation reports
@@ -890,6 +1996,145 @@ Learned classifiers · local CPU
 Test whether more labeled examples improve the original single-classifier design. The same Extra Trees approach now learns from 887 heading groups in 20 reports; heading lines are still joined using their PDF text blocks.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+41 correct · 28 wrong/absent level · 8 missed · 26 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+7 correct · 5 wrong/absent level · 3 missed · 11 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H4 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 11 | — | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting | Extra prediction |
+| 11 | — | H3 — programmes | Extra prediction |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H4 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H3 — WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | — | Missed heading |
+| 33 | — | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and | Extra prediction |
+| 33 | — | H1 — prioritization? | Extra prediction |
+| 33 | — | H4 — 2.1.1.1 | Extra prediction |
+| 33 | — | H3 — EQ1 | Extra prediction |
+| 33 | — | H3 — EQ4.1 | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H3 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | H3 — EQ2.1 EQ3.1 EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 96 | — | H3 — have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Extra prediction |
+| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+14 correct · 4 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H1 — INTRODUCTION | Wrong or absent level |
+| 8 | H3 — What was evaluated? | H1 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H1 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+10 correct · 8 wrong/absent level · 3 missed · 13 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H1 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H4 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased strategic engagement in an array of humanitarian and development sectors, particularly with regard to strengthening national systems for humanitarian response and food security. The CSP structure has allowed operational flexibility and responsiveness to emerging opportunities and changes in circumstances; however, while CSP activities are aligned with the priorities of government partners, they do not address some issues affecting women, older people, persons with disabilities, people living in remote areas, and children – groups identified in the common country analysis as those most at risk of being left behind. The absence of a framework for assessing emerging opportunities prevented coherent engagement. | Extra prediction |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 33 | — | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and | Extra prediction |
+| 33 | — | H1 — strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Extra prediction |
+| 33 | — | H3 — the food security, nutrition, and emergency preparedness institutional capacity needs of the | Extra prediction |
+| 33 | — | H2 — Government? | Extra prediction |
+| 33 | — | H4 — Table 9: Strategic Review Gaps and CSP Interventions | Extra prediction |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 42 | — | H3 — Annual output targets for the three SO vary significantly from year to year but with a | Extra prediction |
+| 42 | — | H4 — Table 15: Output Indicators Annual Achievements Against Targets | Extra prediction |
+| 48 | H5 — SO1: Evidence and Data | H3 — SO1: Evidence and Data | Wrong or absent level |
+| 48 | — | H4 — Table 21: SO1 Progress, Challenges and Next Steps | Extra prediction |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Correct heading + level |
+| 56 | — | H4 — Table 25: Sustainability Ratings by Workstream | Extra prediction |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+| 68 | — | H3 — a framework for assessing emergent opportunities prevented coherent engagement. | Extra prediction |
+| 68 | — | H3 — support to government via the CCS pathways. | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+10 correct · 11 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H1 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Correct heading + level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H2 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H3 — interculturalidad? | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H2 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 73 | — | H3 — Figura 11: Total de dólares anuales en transferencias de efectivo ejecutadas | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Training:** Annotate examples in other WFP reports → Train Extra Trees classifiers → Compare designs on validation reports
 
 - **Annotate examples in other WFP reports:** An assistant labels heading text, levels and ordinary body text. The expanded training set contains 887 heading groups in 20 reports; validation and test reports are separate.
@@ -963,6 +2208,139 @@ Learned classifiers · local CPU
 Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level. Extra Trees combines votes from many randomized decision trees. An assistant supplied training labels; no language model runs when a new PDF is parsed.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+35 correct · 24 wrong/absent level · 18 missed · 20 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+4 correct · 6 wrong/absent level · 5 missed · 10 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H3 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 27 | — | H4 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | — | Missed heading |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | — | Missed heading |
+| 33 | — | H3 — 2.1.1 | Extra prediction |
+| 33 | — | H3 — 2.1.1.1 | Extra prediction |
+| 33 | — | H3 — EQ1 | Extra prediction |
+| 33 | — | H3 — EQ4.1 | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H3 — Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | H1 — 2.2.1.4 | Extra prediction |
+| 96 | H2 — 3.1 Conclusions | H1 — Conclusions | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | — | Missed heading |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 96 | — | H1 — 3 Conclusions and | Extra prediction |
+| 96 | — | H2 — recommendations | Extra prediction |
+| 96 | — | H2 — 3.1 | Extra prediction |
+| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H3 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+13 correct · 3 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H3 — What was evaluated? | H2 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | — | Missed heading |
+| 27 | — | H1 — 1.2 | Extra prediction |
+| 27 | — | H2 — CONTEXT | Extra prediction |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H2 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+9 correct · 5 wrong/absent level · 7 missed · 6 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H1 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | — | Missed heading |
+| 11 | H3 — Insight 2. Country capacity strengthening | — | Missed heading |
+| 11 | — | H3 — engagement. | Extra prediction |
+| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 33 | — | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and | Extra prediction |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Correct heading + level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 56 | — | H2 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness | Extra prediction |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+| 68 | H1 — Conclusions and recommendations | — | Missed heading |
+| 68 | — | H1 — Conclusions and | Extra prediction |
+| 68 | — | H2 — recommendations | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+9 correct · 10 wrong/absent level · 4 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H1 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 13 | — | H2 — plan estratégico para Colombia? | Extra prediction |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | — | Missed heading |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H1 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 73 | — | H4 — Figura 11: Total de dólares anuales en transferencias de efectivo ejecutadas | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Training:** Label training examples → Compare two classifiers → Choose the validation winner
 
 - **Label training examples:** An assistant annotated 154 heading groups from 16 training reports. Separate reports were reserved for validation and testing.
@@ -1032,6 +2410,121 @@ Layout parser · CPU
 MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime. We keep the titles and levels it returns without asking another model to repair them. This is a different implementation from the MinerU Pro image model.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+31 correct · 35 wrong/absent level · 11 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+8 correct · 5 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H2 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H2 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H2 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+9 correct · 9 wrong/absent level · 0 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H2 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H2 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 26 | — | H2 — 3. The MTE’s key features are: | Extra prediction |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H2 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H2 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H2 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+7 correct · 10 wrong/absent level · 4 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 11 | — | H2 — OEV/2024/006 | Extra prediction |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H2 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H2 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+7 correct · 11 wrong/absent level · 5 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H2 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H2 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H2 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H2 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H2 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H2 — Resultados92 | Wrong or absent level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | — | Missed heading |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H2 — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Inference:** Run the basic CPU parser → Process every PDF page → Collect detected titles → Keep the supplied hierarchy
 
 - **Run the basic CPU parser:** Set small_backend="onnx" and onnx_device="cpu". ONNX Runtime executes the parser’s model on the CPU.
@@ -1079,6 +2572,122 @@ This CPU tier is different from the MinerU Pro vision model below.
 Text-only LLM refinement · local MLX
 
 Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM. The model receives titles and page numbers for the whole document, but no page images or parser-supplied levels. It runs locally through MLX using 4-bit weights.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+25 correct · 29 wrong/absent level · 23 missed · 3 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+0 correct · 0 wrong/absent level · 15 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 11 | H4 — Appropriateness | — | Missed heading |
+| 24 | H1 — 1 Introduction | — | Missed heading |
+| 24 | H2 — 1.1 Evaluation features | — | Missed heading |
+| 33 | H1 — 2 Evaluation findings | — | Missed heading |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | — | Missed heading |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | — | Missed heading |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | — | Missed heading |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | — | Missed heading |
+| 96 | H1 — 3 Conclusions and recommendations | — | Missed heading |
+| 96 | H2 — 3.1 Conclusions | — | Missed heading |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | — | Missed heading |
+| 109 | H2 — Evaluation questions | — | Missed heading |
+| 109 | H2 — Methodology and ethical considerations | — | Missed heading |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+6 correct · 8 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | H3 — **1.2 CONTEXT** | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H4 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | — | Missed heading |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | — | Missed heading |
+| 98 | H1 — Annex III. Methodology | — | Missed heading |
+| 98 | H2 — Overall approach | — | Missed heading |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+12 correct · 6 wrong/absent level · 3 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H4 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — Insight 1. CSP architecture | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — Insight 2. Country capacity strengthening | Correct heading + level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H3 — **2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?** | Wrong or absent level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Correct heading + level |
+| 48 | H5 — SO1: Evidence and Data | H4 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H2 — Conclusions and recommendations | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | H3 — 3.1. Conclusions | Wrong or absent level |
+| 68 | — | H3 — 142. **Conclusion 2 (CCS): There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence of emergent support to government via the CCS pathways.** | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+7 correct · 15 wrong/absent level · 1 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H2 — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H3 — **¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?** | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Correct heading + level |
+| 28 | H1 — 1. Introducción | H2 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H3 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H3 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H4 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H2 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H3 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H3 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 72 | — | H3 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H2 — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | H3 — 3.1. CONCLUSIONES | Wrong or absent level |
 
 
 **Inference:** Collect possible headings → Give each title a reference ID → Ask Qwen to assign levels → Validate the reply
@@ -1139,6 +2748,119 @@ Text-only LLM refinement · local MLX
 Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM. The model receives titles and page numbers for the whole document, but no page images or parser-supplied levels. It runs locally through MLX using 4-bit weights.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+22 correct · 32 wrong/absent level · 23 missed · 0 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+4 correct · 10 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H2 — **Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.** | Wrong or absent level |
+| 11 | H4 — Appropriateness | H2 — **_Appropriateness_** | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — **1 Introduction** | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — **1.1 Evaluation features** | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H2 — **2 Evaluation findings** | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — **2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?** | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — **2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process** | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | — | Missed heading |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — **2.2.1.4 Good practices in reducing targeting errors are unevenly applied** | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H2 — **3 Conclusions and recommendations** | Wrong or absent level |
+| 96 | H2 — 3.1 Conclusions | H1 — **3.1 Conclusions** | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H2 — **Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.** | Wrong or absent level |
+| 109 | H2 — Objectives and users of the evaluation | H1 — **Objectives and users of the evaluation** | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H1 — **Evaluation questions** | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H1 — **Methodology and ethical considerations** | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+0 correct · 0 wrong/absent level · 18 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | — | Missed heading |
+| 8 | H2 — INTRODUCTION | — | Missed heading |
+| 8 | H3 — What was evaluated? | — | Missed heading |
+| 8 | H3 — Why was the evaluation conducted and in which context? | — | Missed heading |
+| 10 | H2 — FINDINGS | — | Missed heading |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | — | Missed heading |
+| 26 | H1 — 1. Introduction | — | Missed heading |
+| 26 | H2 — 1.1 EVALUATION FEATURES | — | Missed heading |
+| 27 | H2 — 1.2 CONTEXT | — | Missed heading |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | — | Missed heading |
+| 36 | H1 — 2. Evaluation findings | — | Missed heading |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | — | Missed heading |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | — | Missed heading |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | — | Missed heading |
+| 87 | H1 — 3. Conclusions and recommendations | — | Missed heading |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | — | Missed heading |
+| 98 | H1 — Annex III. Methodology | — | Missed heading |
+| 98 | H2 — Overall approach | — | Missed heading |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+6 correct · 12 wrong/absent level · 3 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — **Executive summary** | Correct heading + level |
+| 7 | H2 — Introduction | H2 — **Introduction** | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — **Evaluation features** | Wrong or absent level |
+| 7 | H3 — Context | H2 — **Context** | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — **Evaluation key insights and conclusions** | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — **Insight 1. CSP architecture** | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — **Insight 2. Country capacity strengthening** | Correct heading + level |
+| 20 | H1 — Introduction | H2 — **Introduction** | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H3 — **1.1. Evaluation features** | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H3 — **1.2. Context** | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H4 — **Geography, Demography, and Government** | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H4 — **National policies and Sustainable Development Goals (SDG)** | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H2 — **Evaluation findings** | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H3 — **2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?** | Wrong or absent level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H4 — **EQ2.1a: CSP Output Achievements and Contributions to Outcomes** | Correct heading + level |
+| 48 | H5 — SO1: Evidence and Data | H4 — **SO1: Evidence and Data** | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H2 — **Conclusions and recommendations** | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | H3 — **3.1. Conclusions** | Wrong or absent level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+12 correct · 10 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — **Resumen ejecutivo** | Correct heading + level |
+| 7 | H2 — Introducción | H1 — **Introducción** | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H1 — **Características de la evaluación** | Wrong or absent level |
+| 7 | H3 — Contexto | H1 — **Contexto** | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — **Hallazgos derivados de la evaluación** | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H1 — **¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?** | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — **_Pertinencia con respecto a las necesidades_** | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H1 — **¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?** | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — **1. Introducción** | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — **1.1. CARACTERÍSTICAS DE LA EVALUACIÓN** | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — **1.2. CONTEXTO** | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — **Contexto general** | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — **2. Resultados de la evaluación** | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — **2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?** | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — **Dimensión 2: Entorno político** | Wrong or absent level |
+| 56 | H5 — Productos | H4 — **_Productos_** | Wrong or absent level |
+| 56 | H5 — Resultados | H4 — **_Resultados_**&lt;sup&gt;**_92_**&lt;/sup&gt; | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — **2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?** | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — **PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?** | Correct heading + level |
+| 72 | H4 — Productos y logros | H4 — **Productos y logros** | Correct heading + level |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — **3. Conclusiones y recomendaciones** | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — **3.1. CONCLUSIONES** | Correct heading + level |
+
+
 **Inference:** Collect possible headings → Give each title a reference ID → Ask Qwen to assign levels → Validate the reply
 
 - **Collect possible headings:** Use the headings marked in PyMuPDF4LLM’s Markdown for the full PDF.
@@ -1197,6 +2919,121 @@ Native PDF parser · CPU
 PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown. We treat its #, ## and subsequent heading markers as H1, H2 and deeper levels; no language model makes a second decision.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+28 correct · 44 wrong/absent level · 5 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+3 correct · 11 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H6 — **Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.** | Wrong or absent level |
+| 11 | H4 — Appropriateness | H6 — **_Appropriateness_** | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — **1 Introduction** | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H4 — **1.1 Evaluation features** | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H1 — **2 Evaluation findings** | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H4 — **2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?** | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H6 — **2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process** | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | — | Missed heading |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H6 — **2.2.1.4 Good practices in reducing targeting errors are unevenly applied** | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — **3 Conclusions and recommendations** | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H4 — **3.1 Conclusions** | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H6 — **Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.** | Wrong or absent level |
+| 109 | H2 — Objectives and users of the evaluation | H4 — **Objectives and users of the evaluation** | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H4 — **Evaluation questions** | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H4 — **Methodology and ethical considerations** | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+0 correct · 18 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H2 — **Executive summary** | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | H4 — **INTRODUCTION** | Wrong or absent level |
+| 8 | H3 — What was evaluated? | H4 — **What was evaluated?** | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H4 — **Why was the evaluation conducted and in which context?** | Wrong or absent level |
+| 10 | H2 — FINDINGS | H4 — **FINDINGS** | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H5 — **_Relevance and strategic focus of the design of the strategic plan_** | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H2 — **1. Introduction** | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H4 — **1.1 EVALUATION FEATURES** | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | H4 — **1.2 CONTEXT** | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H5 — **_Global economic, climate, conflict and inequality trends_** | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H2 — **2. Evaluation findings** | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H4 — **2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN** | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H5 — **_2.1.1 Did the SP in its design clearly articulate its intended changes?_** | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H5 — **_2.2.3 How does the ambition of the SP compare to the evolving reality of funding?_** | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — **3. Conclusions and recommendations** | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H4 — **2.3 3.1 CONCLUSIONS** | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H2 — **Annex III. Methodology** | Wrong or absent level |
+| 98 | H2 — Overall approach | H5 — **Overall approach** | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+16 correct · 2 wrong/absent level · 3 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — **Executive summary** | Correct heading + level |
+| 7 | H2 — Introduction | H2 — **Introduction** | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — **Evaluation features** | Correct heading + level |
+| 7 | H3 — Context | H3 — **Context** | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — **Evaluation key insights and conclusions** | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — **Insight 1. CSP architecture** | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — **Insight 2. Country capacity strengthening** | Correct heading + level |
+| 11 | — | H3 — **_There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways._** | Extra prediction |
+| 20 | H1 — Introduction | H1 — **Introduction** | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — **1.1. Evaluation features** | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — **1.2. Context** | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — **Geography, Demography, and Government** | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — **National policies and Sustainable Development Goals (SDG)** | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — **Evaluation findings** | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — **2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?** | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H3 — **EQ2.1a: CSP Output Achievements and Contributions to Outcomes** | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H3 — **SO1: Evidence and Data** | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — **Conclusions and recommendations** | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — **3.1. Conclusions** | Correct heading + level |
+| 68 | — | H3 — 142. **Conclusion 2 (CCS): There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence of emergent support to government via the CCS pathways.** | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+9 correct · 13 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — **Resumen ejecutivo** | Correct heading + level |
+| 7 | H2 — Introducción | H2 — **Introducción** | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H4 — **Características de la evaluación** | Wrong or absent level |
+| 7 | H3 — Contexto | H4 — **Contexto** | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — **Hallazgos derivados de la evaluación** | Correct heading + level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H4 — **¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?** | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H4 — **_Pertinencia con respecto a las necesidades_** | Correct heading + level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H4 — **¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?** | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — **1. Introducción** | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H3 — **1.1. CARACTERÍSTICAS DE LA EVALUACIÓN** | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H3 — **1.2. CONTEXTO** | Wrong or absent level |
+| 28 | H3 — Contexto general | H5 — **Contexto general** | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — **2. Resultados de la evaluación** | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H3 — **2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?** | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H5 — **Dimensión 2: Entorno político** | Wrong or absent level |
+| 56 | H5 — Productos | H5 — **_Productos_** | Correct heading + level |
+| 56 | H5 — Resultados | H5 — **_Resultados_**&lt;sup&gt;**_92_**&lt;/sup&gt; | Correct heading + level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H3 — **2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?** | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H5 — **PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?** | Wrong or absent level |
+| 72 | H4 — Productos y logros | H5 — **Productos y logros** | Wrong or absent level |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — **3. Conclusiones y recomendaciones** | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H3 — **3.1. CONCLUSIONES** | Wrong or absent level |
+
+
 **Inference:** Read the complete PDF → Convert one page at a time → Read Markdown headings → Keep text and page numbers
 
 - **Read the complete PDF:** Use the PDF’s selectable text, fonts and layout rather than recognizing text from images.
@@ -1242,6 +3079,120 @@ Typography-driven Markdown can confuse display text with section headings.
 Text-only LLM refinement · local MLX
 
 Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser. The model receives titles and page numbers for the whole document, but no page images or parser-supplied levels. It runs locally through MLX using 4-bit weights.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+23 correct · 43 wrong/absent level · 11 missed · 1 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+2 correct · 11 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H3 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H4 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H4 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H5 — 3 Conclusions and recommendations | Wrong or absent level |
+| 96 | H2 — 3.1 Conclusions | H5 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H5 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H5 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H5 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+10 correct · 8 wrong/absent level · 0 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H1 — INTRODUCTION | Wrong or absent level |
+| 8 | H3 — What was evaluated? | H2 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H2 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 26 | — | H2 — 3. The MTE’s key features are: | Extra prediction |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+8 correct · 9 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 7 | H2 — Introduction | H3 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — Insight 1. CSP architecture | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — Insight 2. Country capacity strengthening | Correct heading + level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H3 — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H3 — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Correct heading + level |
+| 48 | H5 — SO1: Evidence and Data | H4 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H2 — Conclusions and recommendations | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | H3 — 3.1. Conclusions | Wrong or absent level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+3 correct · 15 wrong/absent level · 5 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H2 — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H2 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H3 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H3 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H4 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H2 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H3 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H4 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H4 — Resultados92 | Wrong or absent level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | — | Missed heading |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H2 — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | H3 — 3.1. CONCLUSIONES | Wrong or absent level |
 
 
 **Inference:** Collect possible headings → Give each title a reference ID → Ask Qwen to assign levels → Validate the reply
@@ -1302,6 +3253,121 @@ Layout parser · CPU
 Use Docling 2.151.1 with a fixed font-style tolerance of 0.15 in its hierarchy step. This setting was applied to every report; it was an exploratory choice, not a demonstrated best setting.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+22 correct · 46 wrong/absent level · 9 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+0 correct · 13 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H6 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H2 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H5 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H5 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H2 — 3 Conclusions and recommendations | Wrong or absent level |
+| 96 | H2 — 3.1 Conclusions | H3 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H4 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H4 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H4 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+6 correct · 11 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H4 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H4 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | — | Missed heading |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H4 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H3 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H3 — Overall approach | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+4 correct · 13 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 7 | H2 — Introduction | H3 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H5 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H5 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H3 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H5 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H5 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H5 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H5 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H5 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H5 — SO1: Evidence and Data | Correct heading + level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H2 — Conclusions and recommendations | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+12 correct · 9 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H2 — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | H4 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H4 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H4 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H4 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H5 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H4 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H4 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H4 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H4 — Dimensión 2: Entorno político | Correct heading + level |
+| 56 | H5 — Productos | H5 — Productos | Correct heading + level |
+| 56 | H5 — Resultados | H5 — Resultados 92 | Correct heading + level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H4 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H4 — Productos y logros | Correct heading + level |
+| 72 | — | H4 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Inference:** Read the text and page layout → Keep each item’s location → Change the style tolerance → Export headings and levels
 
 - **Read the text and page layout:** Process the full PDF on the CPU with eight threads. Optical character recognition (OCR) and table reconstruction are disabled because these PDFs already contain selectable text.
@@ -1352,6 +3418,128 @@ Layout parser · CPU
 Marker 2.2 parses the complete PDF locally on the CPU. We read the levels from HTML heading tags in the blocks Marker identifies as section headings; OCR and language-model assistance are disabled.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+19 correct · 46 wrong/absent level · 12 missed · 9 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+6 correct · 7 wrong/absent level · 2 missed · 4 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | — | H4 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
+| 11 | H4 — Appropriateness | H4 — Appropriateness | Correct heading + level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 11 | — | H4 — TABLE 1: OVERVIEW OF TARGETING AND PRIORITIZATION APPROACHES USED | Extra prediction |
+| 11 | — | H4 — Programme type Targeting and prioritization approaches (summary) | Extra prediction |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the | Correct heading + level |
+| 33 | — | H4 — process | Extra prediction |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H3 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H3 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+6 correct · 12 wrong/absent level · 0 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | H3 — INTRODUCTION | Wrong or absent level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H3 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 26 | — | Level not supplied —  | Extra prediction |
+| 26 | — | H3 — 3. The MTE&#x27;s key features are: | Extra prediction |
+| 27 | H2 — 1.2 CONTEXT | H3 — 1.2 CONTEXT | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H3 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H2 — Annex III. Methodology | Wrong or absent level |
+| 98 | H2 — Overall approach | H3 — Overall approach | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+4 correct · 13 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H3 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H4 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H4 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H3 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H4 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H4 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H3 — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H3 — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H4 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H4 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Correct heading + level |
+| 48 | H5 — SO1: Evidence and Data | H4 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H2 — Conclusions and recommendations | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | H3 — 3.1. Conclusions | Wrong or absent level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+3 correct · 14 wrong/absent level · 6 missed · 3 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H2 — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | H3 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H4 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H4 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H3 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H4 — Pertinencia con respecto a las necesidades | Correct heading + level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H2 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H3 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H3 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H4 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H2 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | — | Missed heading |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H4 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H4 — Dimensión 2: Entorno político | Correct heading + level |
+| 56 | H5 — Productos | H4 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H4 — Resultados 92 | Wrong or absent level |
+| 72 | H4 — Productos y logros | H4 — Productos y logros | Correct heading + level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | — | Missed heading |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 72 | — | H3 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Extra prediction |
+| 72 | — | H4 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H2 — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | H3 — 3.1. CONCLUSIONES | Wrong or absent level |
+
+
 **Inference:** Load Marker’s local models → Read the PDF’s existing text → Find section-heading blocks → Preserve unknown levels
 
 - **Load Marker’s local models:** Use create_model_dict(device="cpu", no_server=True). Model inference runs on this machine.
@@ -1398,6 +3586,121 @@ This benchmark is the local no-OCR/no-LLM configuration, not Marker with generat
 Layout parser · CPU
 
 Use the heading levels returned by Docling 2.151.1 when it first reads the PDF. No additional step changes the hierarchy.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+16 correct · 52 wrong/absent level · 9 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+3 correct · 10 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H1 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H1 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H1 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H1 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H1 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H1 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H1 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H1 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H1 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H1 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+5 correct · 12 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H1 — INTRODUCTION | Wrong or absent level |
+| 8 | H3 — What was evaluated? | H1 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H1 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H1 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H1 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H1 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | — | Missed heading |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H1 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H1 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H1 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H1 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H1 — Overall approach | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+4 correct · 13 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H1 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H1 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H1 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H1 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H1 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H1 — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H1 — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H1 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H1 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H1 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H1 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H1 — 3.1. Conclusions | Wrong or absent level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+4 correct · 17 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H1 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H1 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H1 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H1 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H1 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H1 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H1 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H1 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H1 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H1 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H1 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H1 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H1 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H1 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H1 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H1 — Productos y logros | Wrong or absent level |
+| 72 | — | H1 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H1 — 3.1. CONCLUSIONES | Wrong or absent level |
 
 
 **Inference:** Read the text and page layout → Keep each item’s location → Keep Docling’s original levels → Export headings and levels
@@ -1450,6 +3753,121 @@ Layout parser · CPU
 Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels. This tests whether Docling’s extra hierarchy step improves the same detected headings.
 
 
+**Predicted headings versus reference (all scored pages)**
+
+16 correct · 52 wrong/absent level · 9 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+0 correct · 13 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H6 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H2 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H5 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H5 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H2 — 3 Conclusions and recommendations | Wrong or absent level |
+| 96 | H2 — 3.1 Conclusions | H3 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H5 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H5 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H5 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+1 correct · 16 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | H4 — INTRODUCTION | Wrong or absent level |
+| 8 | H3 — What was evaluated? | H5 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H5 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H4 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H6 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H6 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | — | Missed heading |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H4 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H3 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H6 — Overall approach | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+7 correct · 10 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H4 — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | H6 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H6 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H4 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H6 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H6 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H6 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H6 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H6 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H6 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+8 correct · 13 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H2 — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | H4 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H6 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H6 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H4 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H6 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H6 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H6 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H6 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H6 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H6 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H6 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H6 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H6 — Productos y logros | Wrong or absent level |
+| 72 | — | H6 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
 **Inference:** Read the text and page layout → Keep each item’s location → Assign levels in a second pass → Export headings and levels
 
 - **Read the text and page layout:** Process the full PDF on the CPU with eight threads. Optical character recognition (OCR) and table reconstruction are disabled because these PDFs already contain selectable text.
@@ -1498,6 +3916,121 @@ These variants share detected blocks. A hierarchy stage cannot recover a heading
 Visual hierarchy post-processing · local MLX
 
 Use MinerU-Popo to assign levels to headings first detected by Docling. This is an experimental local adaptation: model weights were converted to 8-bit MLX, and predictions from overlapping groups of page images were reconciled.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+15 correct · 53 wrong/absent level · 9 missed · 2 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+0 correct · 13 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H2 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H5 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H5 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H3 — 3 Conclusions and recommendations | Wrong or absent level |
+| 96 | H2 — 3.1 Conclusions | H4 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H5 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H5 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H5 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+5 correct · 12 wrong/absent level · 1 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H4 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | — | Missed heading |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H5 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H5 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H6 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H5 — Annex III. Methodology | Wrong or absent level |
+| 98 | H2 — Overall approach | H6 — Overall approach | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+5 correct · 12 wrong/absent level · 4 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H3 — Insight 1. CSP architecture | Correct heading + level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H3 — Insight 2. Country capacity strengthening | Correct heading + level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H3 — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H3 — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H4 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H4 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H3 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H5 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H6 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H5 — Conclusions and recommendations | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | H6 — 3.1. Conclusions | Wrong or absent level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+5 correct · 16 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H2 — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Correct heading + level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H3 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H4 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H4 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H5 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H5 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H6 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H7 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H8 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H9 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H9 — Resultados 92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H8 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H9 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H10 — Productos y logros | Wrong or absent level |
+| 72 | — | H10 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H9 — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | H10 — 3.1. CONCLUSIONES | Wrong or absent level |
 
 
 **Inference:** Find possible titles with Docling → Arrange eight pages for the model → Ask MinerU-Popo for heading levels → Reconcile the repeated page
@@ -1553,6 +4086,122 @@ This is our experimental Docling + MLX adapter, not the authors’ standard end-
 Page vision model · local MLX
 
 MinerU2.5-Pro-2605-1.2B reads the layout and text of page images. Its tested two_step_extract interface found title blocks but supplied no heading levels, so it earns no credit for complete title-and-level answers.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+0 correct · 69 wrong/absent level · 8 missed · 3 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+0 correct · 13 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | Level not supplied — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | Level not supplied — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | Level not supplied — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | Level not supplied — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Level not supplied — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Level not supplied — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Level not supplied — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Level not supplied — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | Level not supplied — 3 Conclusions and recommendations | Wrong or absent level |
+| 96 | H2 — 3.1 Conclusions | Level not supplied — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | Level not supplied — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | Level not supplied — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | Level not supplied — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+0 correct · 18 wrong/absent level · 0 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | Level not supplied — Executive summary | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | Level not supplied — INTRODUCTION | Wrong or absent level |
+| 8 | H3 — What was evaluated? | Level not supplied — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | Level not supplied — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | Level not supplied — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | Level not supplied — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | Level not supplied — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | Level not supplied — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 27 | H2 — 1.2 CONTEXT | Level not supplied — 1.2 CONTEXT | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | Level not supplied — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | Level not supplied — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Level not supplied — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Level not supplied — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Level not supplied — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 61 | — | Level not supplied — 111. The ambitions of the SP were realistic about the funding landscape when it was adopted. | Extra prediction |
+| 87 | H1 — 3. Conclusions and recommendations | Level not supplied — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | Level not supplied — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | Level not supplied — Annex III. Methodology | Wrong or absent level |
+| 98 | H2 — Overall approach | Level not supplied — Overall approach | Wrong or absent level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+0 correct · 19 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | Level not supplied — Executive summary | Wrong or absent level |
+| 7 | H2 — Introduction | Level not supplied — Introduction | Wrong or absent level |
+| 7 | H3 — Evaluation features | Level not supplied — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | Level not supplied — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | Level not supplied — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | Level not supplied — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | Level not supplied — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | Level not supplied — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | Level not supplied — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | Level not supplied — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | Level not supplied — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | Level not supplied — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | Level not supplied — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Level not supplied — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Wrong or absent level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Level not supplied — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | Level not supplied — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Level not supplied — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | Level not supplied — Conclusions and recommendations | Wrong or absent level |
+| 68 | H2 — 3.1. Conclusions | Level not supplied — 3.1. Conclusions | Wrong or absent level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+0 correct · 19 wrong/absent level · 4 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | Level not supplied — Resumen ejecutivo | Wrong or absent level |
+| 7 | H2 — Introducción | Level not supplied — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | Level not supplied — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | Level not supplied — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | Level not supplied — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | Level not supplied — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
+| 28 | H1 — 1. Introducción | Level not supplied — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Level not supplied — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | Level not supplied — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | Level not supplied — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | Level not supplied — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Level not supplied — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | Level not supplied — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | Level not supplied — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | Level not supplied — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | Level not supplied — Resultados \( ^{92} \) | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Level not supplied — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H4 — Productos y logros | Level not supplied — Productos y logros | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 72 | — | Level not supplied — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | Level not supplied — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | Level not supplied — 3.1. CONCLUSIONES | Wrong or absent level |
 
 
 **Inference:** Render the 32 audit pages → Process one image at a time → Read layout, then content → Record the missing hierarchy
