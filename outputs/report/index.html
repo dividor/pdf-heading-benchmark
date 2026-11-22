@@ -15,10 +15,11 @@ tr:has(#our-trained-model) > td { background: #fff2bd; border-top: 2px solid #b8
 tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; min-width: 210px; }
 #our-trained-model { scroll-margin-top: 32px; }
 </style></head><body><main><h1>On-premises PDF heading benchmark: scores, timings and methods</h1>
-<p><strong>17 completed local configurations, suitable for on-premises inference.</strong> This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.</p>
+<p><strong>20 completed local configurations, suitable for on-premises inference.</strong> This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.</p>
 <p>The strongest completed configuration was Qwen3.6-27B with sampled visual memory: <strong>65/77 (84.4%)</strong> headings recovered at the correct level, all 77 reference titles recovered, and two false headings. These are configuration-specific results from a small pilot with one AI assistant annotator, without independent human validation.</p>
 <p><a href="https://github.com/dividor/pdf-heading-benchmark">Repository and runnable instructions</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md">Markdown report</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/results.json">Frozen results</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/details.json">Per-report local scores</a></p>
-<p><strong>Looking for our trained model?</strong> <a href="#our-trained-model">Jump to the highlighted <strong>OUR METHOD</strong> row</a>: LLM-assisted visual annotations → a small Extra Trees classifier trained on those labels → local CPU inference. The LLM creates training labels; the deployed model is the tree classifier. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/report.md">Training protocol and diagrams</a>.</p>
+<p><strong>Looking for our trained model?</strong> <a href="#our-trained-model">Jump to the highlighted <strong>OUR METHOD</strong> row</a>: LLM-assisted visual annotations → learned line grouping, heading levels and document context → local CPU inference. The LLM creates labels; deployed inference uses small tree models. <strong>v2: 50/77 correct on this historical diagnostic, up from 35/77 for v1.</strong> On 32 pages from four fresh reports, exact group-and-level F1 improved from <strong>71.6% to 85.7%</strong>. The denominators and matching rules differ: do not compare these two percentages directly. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md">Ablation results, sources, costs and reproduction</a>.</p>
+<p><strong>v2 development status:</strong> errors on these original four reports informed the new approach. Its rows are diagnostic results, not fresh held-out validation. All three v2 ablations are shown, including learned grouping, which scored 51/77 here; the context model was selected using separate validation reports before the fresh test.</p>
 <h2>Documents and their sources</h2>
 <p>All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json">corpus manifest</a> records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.</p>
 <p>The corpus contains <strong>523 pages: three English reports and one Spanish report</strong>. All four contain native digital text. None has PDF outline bookmarks, although embedded structure tags provide another possible source of headings. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.</p>
@@ -109,6 +110,26 @@ tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; mi
 <td>17.2 min / 32 pages</td>
 </tr>
 <tr>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md">v2: learned grouping</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py">LLM annotations → learned line joining across PDF blocks → group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.</a></td>
+<td>completed</td>
+<td>96.1% (74/77)</td>
+<td>66.2% (51/77)</td>
+<td>21</td>
+<td>—</td>
+<td>12.0 s / 523 pages</td>
+</tr>
+<tr>
+<td><span id="our-trained-model"></span><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md"><strong>OUR METHOD — LLM annotations → grouped context model v2 (CPU)</strong></a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py">OUR TRAINED MODEL v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.</a></td>
+<td>completed</td>
+<td>83.1% (64/77)</td>
+<td>64.9% (50/77)</td>
+<td>23</td>
+<td>—</td>
+<td>12.6 s / 523 pages</td>
+</tr>
+<tr>
 <td><a href="https://huggingface.co/lightonai/LightOnOCR-3-0.8B">LightOnOCR-3-0.8B / MLX</a></td>
 <td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py">32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.</a></td>
 <td>completed</td>
@@ -139,7 +160,17 @@ tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; mi
 <td>6.4 s / 32 pages</td>
 </tr>
 <tr>
-<td><span id="our-trained-model"></span><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py"><strong>OUR METHOD — LLM annotations → trained Extra Trees (CPU)</strong></a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md">v2: more annotations</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py">LLM annotations → Extra Trees v2: 887 heading groups on 20 training reports; original line classifier and grouping. CPU; historical diagnostic.</a></td>
+<td>completed</td>
+<td>89.6% (69/77)</td>
+<td>53.2% (41/77)</td>
+<td>26</td>
+<td>—</td>
+<td>9.3 s / 523 pages</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py">LLM annotations → Extra Trees v1 (CPU)</a></td>
 <td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py">LLM-assisted visual annotations → 200-tree Extra Trees classifier trained on 16 different WFP reports → local CPU inference using PyMuPDF line features. Full PDFs; no refit on benchmark.</a></td>
 <td>completed</td>
 <td>76.6% (59/77)</td>
@@ -756,6 +787,90 @@ tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; mi
 <td>19/23</td>
 <td>9/23</td>
 <td>2</td>
+</tr>
+<tr>
+<td>train.py / structure_expanded_line</td>
+<td>targeting</td>
+<td>12/15</td>
+<td>7/15</td>
+<td>11</td>
+</tr>
+<tr>
+<td>train.py / structure_expanded_line</td>
+<td>midterm</td>
+<td>18/18</td>
+<td>14/18</td>
+<td>0</td>
+</tr>
+<tr>
+<td>train.py / structure_expanded_line</td>
+<td>indonesia</td>
+<td>18/21</td>
+<td>10/21</td>
+<td>13</td>
+</tr>
+<tr>
+<td>train.py / structure_expanded_line</td>
+<td>colombia</td>
+<td>21/23</td>
+<td>10/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>train.py / structure_learned_groups</td>
+<td>targeting</td>
+<td>15/15</td>
+<td>12/15</td>
+<td>7</td>
+</tr>
+<tr>
+<td>train.py / structure_learned_groups</td>
+<td>midterm</td>
+<td>16/18</td>
+<td>14/18</td>
+<td>1</td>
+</tr>
+<tr>
+<td>train.py / structure_learned_groups</td>
+<td>indonesia</td>
+<td>21/21</td>
+<td>12/21</td>
+<td>11</td>
+</tr>
+<tr>
+<td>train.py / structure_learned_groups</td>
+<td>colombia</td>
+<td>22/23</td>
+<td>13/23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>train.py / structure_context_relations</td>
+<td>targeting</td>
+<td>15/15</td>
+<td>9/15</td>
+<td>10</td>
+</tr>
+<tr>
+<td>train.py / structure_context_relations</td>
+<td>midterm</td>
+<td>16/18</td>
+<td>15/18</td>
+<td>2</td>
+</tr>
+<tr>
+<td>train.py / structure_context_relations</td>
+<td>indonesia</td>
+<td>14/21</td>
+<td>13/21</td>
+<td>11</td>
+</tr>
+<tr>
+<td>train.py / structure_context_relations</td>
+<td>colombia</td>
+<td>19/23</td>
+<td>13/23</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>

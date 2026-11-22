@@ -41,13 +41,15 @@ def cells(row, method):
         combined = "Levels not supplied (0/77 complete outputs)"
     configuration = f"[{row['name']}]({row['source_url']})"
     if row["method"] == "supervised_extra_trees":
+        configuration = f"[LLM annotations → Extra Trees v1 (CPU)]({row['source_url']})"
+    if row["method"] == "structure_context_relations":
         configuration = (
             '<span id="our-trained-model"></span>'
-            f"[**OUR METHOD — LLM annotations → trained Extra Trees (CPU)**]({row['source_url']})"
+            f"[**OUR METHOD — LLM annotations → grouped context model v2 (CPU)**]({row['source_url']})"
         )
     return [
         configuration,
-        f"[{method['description']}]({REMOTE}{method['code']})",
+        f"[{method['description']}]({method.get('code_url', REMOTE + method['code'])})",
         row["status"],
         recall,
         combined,

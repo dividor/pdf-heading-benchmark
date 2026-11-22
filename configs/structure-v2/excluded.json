@@ -1,0 +1,183 @@
+[
+  {
+    "id": 112,
+    "title": "FAO/WFP Joint Evaluation of DEVCO-funded resilience activity in northern Mali",
+    "sha256": "73f58901146e11491b718b6e84812248ee79e4e85c849e348f2a855112b53223",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000172405/download/",
+    "reason": "Prior benchmark or conservative resilience exclusion"
+  },
+  {
+    "id": 344,
+    "title": "Strategic Evaluation of WFP's Support for Enhanced Resilience",
+    "sha256": "b9c5374420cad2c87f4ba37234dd308d33c1f85c2f201aebfb367832c9554f88",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000102462/download/",
+    "reason": "Prior benchmark or conservative resilience exclusion"
+  },
+  {
+    "id": 727,
+    "title": "Evaluación del Plan estratégico para Colombia 2021-2024 ",
+    "sha256": "fd250c0dff68adb278dc88701991ba0c80231ad84a89871a2702cbf656727119",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000157262/download/",
+    "reason": "Prior benchmark or conservative resilience exclusion"
+  },
+  {
+    "id": 779,
+    "title": "Mid-term evaluation of the WFP Strategic Plan (2022-2025)",
+    "sha256": "e36acd375d2f8cc5e7500e1ec9c19bf4088938795fd94830d33abaf7f185733e",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000162023/download/?_ga=2.150868086.1572714128.1747122969-1660177980.1674680269",
+    "reason": "Prior benchmark or conservative resilience exclusion"
+  },
+  {
+    "id": 737,
+    "title": "Evaluation of Indonesia WFP country strategic plan, 2021-2025",
+    "sha256": "b04cd150e43f3fd79b80d914c4d27bb910ddeb4dee308f13819a70a2a67fa4e2",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000168942/download/",
+    "reason": "Prior benchmark or conservative resilience exclusion"
+  },
+  {
+    "id": 962,
+    "title": "Global Agriculture and Food Security Program (GAFSP)",
+    "sha256": "c63decfaa9738842b6e85120084061e2978e25b65cdd82ad698787f67a4c733a",
+    "url": "https://www.gafspfund.org/sites/default/files/2025-05/Merged.pdf",
+    "reason": "Not a WFP evaluation; removed during source review before model fitting"
+  },
+  {
+    "id": 801,
+    "title": "Strategic evaluation of WFPs’ approaches to Targeting and Prioritization",
+    "sha256": "b6a9ff1f0ca656b5650173f81e10865e2298ca7ee14c4c46538623196ef12463",
+    "url": "https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/",
+    "reason": "Prior benchmark or conservative resilience exclusion"
+  },
+  {
+    "id": "targeting",
+    "url": "https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/",
+    "language": "en",
+    "pages": 172,
+    "sha256": "b6a9ff1f0ca656b5650173f81e10865e2298ca7ee14c4c46538623196ef12463",
+    "bookmarks": 0,
+    "characters": 516622,
+    "title": "Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance"
+  },
+  {
+    "id": "midterm",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000162023/download/",
+    "language": "en",
+    "pages": 176,
+    "sha256": "e36acd375d2f8cc5e7500e1ec9c19bf4088938795fd94830d33abaf7f185733e",
+    "bookmarks": 0,
+    "characters": 438652,
+    "title": "Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025"
+  },
+  {
+    "id": "indonesia",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000168942/download/",
+    "language": "en",
+    "pages": 76,
+    "sha256": "0f501994181b443b86524bd069ecdabb37c7cdd57afb42481c141d7ed86ee853",
+    "bookmarks": 0,
+    "characters": 264205,
+    "title": "Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I"
+  },
+  {
+    "id": "colombia",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000157262/download/",
+    "language": "es",
+    "pages": 99,
+    "sha256": "fd250c0dff68adb278dc88701991ba0c80231ad84a89871a2702cbf656727119",
+    "bookmarks": 0,
+    "characters": 323159,
+    "title": "Evaluación del Plan estratégico para Colombia 2021–2024"
+  },
+  {
+    "id": 611,
+    "title": "Evaluation of Madagascar WFP Country Strategic Plan, 2019-2023",
+    "year": 2023,
+    "language": "French",
+    "commissioner": "Office of Evaluation",
+    "type": "Country Strategic Plan",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000154968/download/",
+    "sheet_row": 211,
+    "member": "wfp/pdfs/WFP/2023/evaluation_of_madagascar_wfp_country_strategic_plan_20192023_611.pdf",
+    "size": 3450594,
+    "pages": 87,
+    "sha256": "e2a30ddfa307a435ea31280cbffd368aa385fc81b7423a1f7c406813013c00bf",
+    "split": "test",
+    "review_pages": [
+      4,
+      23,
+      44,
+      65,
+      86
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 585,
+    "title": "Evaluación del plan estratégico para El Salvador (2017-2022)",
+    "year": 2021,
+    "language": "Spanish",
+    "commissioner": "Office of Evaluation",
+    "type": "Country Strategic Plan",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000136296/download/",
+    "sheet_row": 120,
+    "member": "wfp/pdfs/WFP/2021/evaluacin_del_plan_estratgico_para_el_salvador_20172022_585.pdf",
+    "size": 4482239,
+    "pages": 100,
+    "sha256": "c23600c6e818f92efbb51012d049c898a783f4ab3d4c5e7ae4add4bf1c077556",
+    "split": "test",
+    "review_pages": [
+      4,
+      27,
+      51,
+      75,
+      99
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 815,
+    "title": "Guatemala: School-based Programmes Impact Evaluation",
+    "year": 2025,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Pilot",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000166224/download/",
+    "sheet_row": 281,
+    "member": "wfp/pdfs/WFP/2025/guatemala_school_based_programmes_impact_evaluation_815.pdf",
+    "size": 1959264,
+    "pages": 42,
+    "sha256": "570125cb41632b34fa3bd3e52ddec7b390eb05437cbd5bbaefb48de407c1b4f5",
+    "split": "test",
+    "review_pages": [
+      2,
+      7,
+      16,
+      25,
+      34
+    ],
+    "additional_review_pages": []
+  },
+  {
+    "id": 1037,
+    "title": "Synthesis on WFP's engagement in UN humanitarian coordination",
+    "year": 2026,
+    "language": "English",
+    "commissioner": "Office of Evaluation",
+    "type": "Synthesis",
+    "url": "https://docs.wfp.org/api/documents/WFP-0000173295/download/",
+    "sheet_row": 333,
+    "member": "wfp/pdfs/WFP/2026/synthesis_on_wfps_engagement_in_un_humanitarian_coordination_1037.pdf",
+    "size": 827018,
+    "pages": 48,
+    "sha256": "7f3b6b7ee38f0444fe336d4d7cb308a8506666a5de080cdabe5a8e581d7acff6",
+    "split": "test",
+    "review_pages": [
+      4,
+      6,
+      17,
+      29,
+      40
+    ],
+    "additional_review_pages": []
+  }
+]

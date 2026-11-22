@@ -15,5 +15,8 @@
   "docling_default",
   "docling_hierarchy",
   "popo_docling",
-  "mineru_pro_mlx"
+  "mineru_pro_mlx",
+  "structure_expanded_line",
+  "structure_learned_groups",
+  "structure_context_relations"
 ]
