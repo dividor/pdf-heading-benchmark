@@ -65,6 +65,11 @@ body:has(.technique-dialog[open]) { overflow: hidden; }
 
 tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
 #our-calibrated-model { scroll-margin-top: 32px; }
+
+.info-button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 4px; border: 1px solid #527b88; border-radius: 50%; background: white; color: #075868; font: bold 14px Georgia, serif; cursor: pointer; vertical-align: middle; flex-shrink: 0; }
+.info-button:hover { background: #075868; color: white; }
+.column-dialog { max-width: 680px; }
+.column-dialog h2 { font-size: 24px; margin: 0; }
 </style></head><body><main><h1>Optimizing heading-and-level quality with few false headings</h1>
 <p>The new candidate raises joint F0.5 from <strong>58.8% to 70.5%</strong> on the historical four-report benchmark and reduces extra headings from <strong>23 to 2</strong>. Heading-detection precision is <strong>95.1%</strong>, just above the agreed 95% gate. It does so by emitting fewer headings: <strong>34/77 correct title-and-level pairs</strong>, down from 50/77. This is a precision/recall trade-off, not an improvement in every measure.</p>
 <h2>What changed</h2>

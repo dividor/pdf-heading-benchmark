@@ -65,6 +65,11 @@ body:has(.technique-dialog[open]) { overflow: hidden; }
 
 tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
 #our-calibrated-model { scroll-margin-top: 32px; }
+
+.info-button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 4px; border: 1px solid #527b88; border-radius: 50%; background: white; color: #075868; font: bold 14px Georgia, serif; cursor: pointer; vertical-align: middle; flex-shrink: 0; }
+.info-button:hover { background: #075868; color: white; }
+.column-dialog { max-width: 680px; }
+.column-dialog h2 { font-size: 24px; margin: 0; }
 img{max-width:100%}</style></head><body><main><h1>Training a small local heading model: second experiment</h1>
 <p><strong>Current comparison metric:</strong> the league now ranks by joint heading-and-level F0.5 with a ≥95% heading-detection precision requirement. <a href="../../docs/joint-metric.md">Definitions and worked example</a> · <a href="../structure-precision/report.md">New precision experiment</a>. The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.</p>
 <p>The selected model improved exact heading-group-and-level F1 from <strong>71.6% to 85.7%</strong> on 32 fully reviewed pages from four fresh WFP reports. It recovered all 38 reference groups, assigned 36 the correct level, and emitted eight extra groups. This is a small pilot using one assistant's labels, without independent human adjudication.</p>

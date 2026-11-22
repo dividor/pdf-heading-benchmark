@@ -18,8 +18,8 @@ def test_report_is_reproducible_and_has_all_method_links():
     corpus_rows = tables[0].find("tbody").find_all("tr")
     corpus = read_json(REPO / "configs/corpus.json")
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
-    results = next(t for t in tables if t.find("th").get_text() == "Configuration")
-    assert results.find_all("th")[1].get_text() == "Primary score: joint F0.5"
+    results = soup.select_one("table.league-table")
+    assert results.find_all("th")[1].contents[0].strip() == "Primary score: joint F0.5"
     scores = read_json(REPO / "outputs/report/results.json")
     combined_scores = [r["joint_f05"] for r in scores]
     assert combined_scores == sorted(combined_scores, reverse=True)
@@ -51,8 +51,8 @@ def test_report_contains_only_on_premises_methods():
 def test_every_configuration_has_an_accessible_diagram_and_markdown_sources():
     soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
     configs = read_json(REPO / "configs/report-methods.json")
-    assert len(soup.select("a[data-technique]")) == 2 * len(configs)
-    assert len(soup.find_all("dialog")) == len(configs)
+    assert len(soup.select("a[data-technique]")) == len(configs)
+    assert len(soup.select("dialog:not(.column-dialog)")) == len(configs)
     identifiers = [element["id"] for element in soup.select("[id]")]
     assert len(identifiers) == len(set(identifiers))
     markdown = (REPO / "outputs/report/league_table.md").read_text()
@@ -91,3 +91,23 @@ def test_every_method_exposes_its_run_settings_in_both_formats():
                 assert paragraph in markdown
         diagrams.append(tuple((s["title"], s["detail"]) for s in technique["stages"]))
     assert len(set(diagrams)) == len(diagrams)
+
+
+def test_information_buttons_resolve_to_named_dialogs():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    table = soup.select_one("table.league-table")
+    assert len(table.select("th button.info-button")) == 10
+    for row in table.select("tbody tr"):
+        name_cell = row.find("td")
+        assert name_cell.find("a") is None
+        assert name_cell.select_one("button.info-button")
+    for button in table.select("button.info-button"):
+        panel = soup.find("dialog", id=button["aria-controls"])
+        assert panel is not None
+        assert panel.find(id=panel["aria-labelledby"])
+        assert button["type"] == "button"
+        assert button["aria-haspopup"] == "dialog"
+        assert button["aria-label"].startswith("About ")
+    score_help = soup.find("dialog", id="column-help-1")
+    assert "1.25C / (P + 0.25G)" in score_help.get_text()
+    assert "95%" in score_help.get_text()

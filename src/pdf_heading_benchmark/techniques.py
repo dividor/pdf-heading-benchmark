@@ -5,6 +5,7 @@ from html import escape
 from bs4 import BeautifulSoup
 
 from pdf_heading_benchmark.io import REPO, read_json
+from pdf_heading_benchmark.report_help import column_help, info_button
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 
@@ -99,22 +100,30 @@ def enhance_html(rendered: str, rows: list[dict], methods: dict) -> str:
     ]
     for tr, row in zip(body.find_all("tr"), rows, strict=True):
         for index in link_columns:
-            anchor = tr.find_all("td")[index].find("a")
+            cell = tr.find_all("td")[index]
+            anchor = cell.find("a")
             if anchor is None:
                 raise ValueError("Missing configuration or method link")
+            if index == 0:
+                label = anchor.get_text()
+                anchor.unwrap()
+                cell.append(" ")
+                cell.append(info_button(soup, "technique-" + row["method"], label))
+                continue
             anchor["data-technique"] = "technique-" + row["method"]
             anchor["aria-haspopup"] = "dialog"
             anchor["aria-controls"] = "technique-" + row["method"]
             anchor["title"] = "Open technique diagram and source links"
     hint = soup.new_tag("p", attrs={"class": "technique-hint"})
     hint.string = (
-        "Explore a technique: select a configuration or method for its diagram, exact parameters, "
-        "tuning, measured scope, code and sources."
+        "Select an i button beside a column heading for its definition, or beside a configuration "
+        "for its diagram, exact parameters, tuning, measured scope, code and sources."
     )
     results.insert_before(hint)
+    help_panels = column_help(soup, results)
     panels = "".join(dialog(r, methods[r["method"]], techniques[r["method"]]) for r in rows)
     script = (REPO / "docs/techniques.js").read_text()
-    return str(soup) + panels + f"<script>{script}</script>"
+    return str(soup) + help_panels + panels + f"<script>{script}</script>"
 
 
 def markdown_appendix(rows: list[dict], methods: dict) -> str:

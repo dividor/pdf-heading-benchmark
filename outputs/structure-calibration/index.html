@@ -65,6 +65,11 @@ body:has(.technique-dialog[open]) { overflow: hidden; }
 
 tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
 #our-calibrated-model { scroll-margin-top: 32px; }
+
+.info-button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 4px; border: 1px solid #527b88; border-radius: 50%; background: white; color: #075868; font: bold 14px Georgia, serif; cursor: pointer; vertical-align: middle; flex-shrink: 0; }
+.info-button:hover { background: #075868; color: white; }
+.column-dialog { max-width: 680px; }
+.column-dialog h2 { font-size: 24px; margin: 0; }
 </style></head><body><main><h1>Can stricter heading decisions improve the model?</h1>
 <p><strong>Current comparison metric:</strong> the league now ranks by joint heading-and-level F0.5 with a ≥95% heading-detection precision requirement. <a href="../../docs/joint-metric.md">Definitions and worked example</a> · <a href="../structure-precision/report.md">New precision experiment</a>. The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.</p>
 <p><strong>Yes on one regression set, but not consistently across report styles. This candidate does not replace the selected v2 model.</strong> The existing models, training labels and native text extraction are unchanged. This experiment tunes two global decoding weights using only the four validation reports, then measures the chosen setting on previously inspected reports.</p>

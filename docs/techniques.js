@@ -2,7 +2,7 @@
 (() => {
   let opener = null;
   document.addEventListener('click', (event) => {
-    const link = event.target.closest('a[data-technique]');
+    const link = event.target.closest('[data-technique]');
     if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const panel = document.getElementById(link.dataset.technique);
     if (!panel || typeof panel.showModal !== 'function') return;
