@@ -2141,7 +2141,7 @@
         "detail": "81.1% validation group F1; assess inspected regression set and historical table separately."
       }
     ],
-    "summary": "This candidate reuses the selected v2 pipeline’s three frozen Extra Trees models. It changes the body-versus-heading decision after a nine-setting validation search; it does not train new trees.",
+    "summary": "This candidate reuses the selected v2 pipeline’s three frozen Extra Trees models. It changes the body-versus-heading decision after a nine-setting validation search; it does not train new trees. On the primary correct-heading-and-level score, it regresses from 50/77 to 47/77; it is not an improvement on this objective.",
     "parameters": [
       [
         "Estimator",

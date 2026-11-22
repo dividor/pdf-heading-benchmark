@@ -19,6 +19,10 @@ def test_report_is_reproducible_and_has_all_method_links():
     corpus = read_json(REPO / "configs/corpus.json")
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = next(t for t in tables if t.find("th").get_text() == "Configuration")
+    assert results.find_all("th")[3].get_text() == "Primary score: correct heading + level"
+    scores = read_json(REPO / "outputs/report/results.json")
+    combined_scores = [r["correct_heading_and_level"] for r in scores]
+    assert combined_scores == sorted(combined_scores, reverse=True)
     rows = results.find("tbody").find_all("tr")
     assert len(rows) == 21
     for row in rows:

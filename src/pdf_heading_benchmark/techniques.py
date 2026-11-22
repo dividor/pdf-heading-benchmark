@@ -91,6 +91,7 @@ def enhance_html(rendered: str, rows: list[dict], methods: dict) -> str:
     body = results.find("tbody")
     if body is None:
         raise ValueError("Missing configuration table body")
+    results["class"] = "league-table"
     for tr, row in zip(body.find_all("tr"), rows, strict=True):
         for td in tr.find_all("td")[:2]:
             anchor = td.find("a")
