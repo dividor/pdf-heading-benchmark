@@ -39,8 +39,14 @@ def cells(row, method):
         recall += f" ({row['matched']}/77)"
     if row["method"] == "mineru_pro_mlx":
         combined = "Levels not supplied (0/77 complete outputs)"
+    configuration = f"[{row['name']}]({row['source_url']})"
+    if row["method"] == "supervised_extra_trees":
+        configuration = (
+            '<span id="our-trained-model"></span>'
+            f"[**OUR METHOD — LLM annotations → trained Extra Trees (CPU)**]({row['source_url']})"
+        )
     return [
-        f"[{row['name']}]({row['source_url']})",
+        configuration,
         f"[{method['description']}]({REMOTE}{method['code']})",
         row["status"],
         recall,

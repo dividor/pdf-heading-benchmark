@@ -9,3 +9,7 @@ th { background: #e5eff7; }
 td:nth-child(2) { min-width: 240px; }
 code { background: #e7eef4; padding: 2px 4px; }
 @media (max-width: 600px) { main { padding: 16px; } }
+
+tr:has(#our-trained-model) > td { background: #fff2bd; border-top: 2px solid #b87a00; border-bottom: 2px solid #b87a00; }
+tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; min-width: 210px; }
+#our-trained-model { scroll-margin-top: 32px; }
