@@ -16,8 +16,14 @@ if __name__ == "__main__":
     )
     parser.add_argument("pdf", type=Path)
     parser.add_argument("--calibration", type=Path, help="Frozen calibration run directory (optional)")
+    parser.add_argument("--calibrated", action="store_true", help="Require PDF_HEADING_CALIBRATION or a path")
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
+    if args.calibrated and not args.calibration:
+        directory = os.environ.get("PDF_HEADING_CALIBRATION")
+        if not directory:
+            parser.error("Set PDF_HEADING_CALIBRATION to your calibration run, or pass --calibration")
+        args.calibration = Path(directory)
     run = os.environ.get("PDF_HEADING_STRUCTURE_RUN")
     if not run:
         parser.error("Set PDF_HEADING_STRUCTURE_RUN; see scripts/structure/train.py")

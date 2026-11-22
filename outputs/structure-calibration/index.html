@@ -251,7 +251,8 @@ uv run python scripts/structure/predict.py \
   --calibration &quot;$PDF_HEADING_DATA/structure-calibration/my-run&quot; \
   --output /path/to/new-output.json
 </code></pre>
-<p>Omit <code>--calibration</code> to retain the original v2 behavior. The optional calibrated runner rejects settings from a different model bundle. These parameters change heading decisions only; full native text remains available in JSON and Markdown.</p>
+<p>For the common benchmark runner, set <code>PDF_HEADING_STRUCTURE_RUN</code> to your trained model directory and <code>PDF_HEADING_CALIBRATION</code> to your own calibration run directory, then run <code>uv run pdf-headings run structure_calibrated</code>. This uses your generated files rather than requiring the original author’s model hashes.</p>
+<p>Omit <code>--calibration</code> from the prediction command to retain the original v2 behavior. The optional calibrated runner rejects settings from a different model bundle. These parameters change heading decisions only; full native text remains available in JSON and Markdown.</p>
 <h2>What would improve reliability next?</h2>
 <ol>
 <li>Add fully reviewed training pages with boxed findings, captions, table headings and emphasized prose. Label all non-headings on those pages, so the model learns their distinction from headings.</li>

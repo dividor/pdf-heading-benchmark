@@ -412,8 +412,7 @@
         "args": [
           "--variant",
           "context_relations",
-          "--calibration",
-          "outputs/structure-calibration/evidence"
+          "--calibrated"
         ],
         "per_document": true
       }
