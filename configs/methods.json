@@ -430,5 +430,18 @@
         "per_document": true
       }
     ]
+  },
+  "structure_recall": {
+    "description": "Refit Extra Trees on the same 20 training reports; compare 64 validation settings for precision and coverage. No setting met both 80% targets; this is the predeclared diagnostic fallback.",
+    "code": "scripts/structure/retrain_recall.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/retrain_recall.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_recall.py",
+        "environment": "project",
+        "args": [],
+        "per_document": true
+      }
+    ]
   }
 }

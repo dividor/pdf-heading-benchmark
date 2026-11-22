@@ -1,0 +1,142 @@
+{
+  "objective": "Maximum validation joint F0.5 with joint precision AND joint recall >=0.80. If none qualifies, diagnostic fallback maximizes min(joint precision, joint recall), then joint F0.5. Exact ties retain grid order. Floors are pilot targets, not deployment guarantees.",
+  "tree_grid": [
+    {
+      "max_depth": 16,
+      "min_samples_leaf": 1,
+      "max_features": 0.8
+    },
+    {
+      "max_depth": 16,
+      "min_samples_leaf": 1,
+      "max_features": 1.0
+    },
+    {
+      "max_depth": 16,
+      "min_samples_leaf": 2,
+      "max_features": 0.8
+    },
+    {
+      "max_depth": 16,
+      "min_samples_leaf": 2,
+      "max_features": 1.0
+    },
+    {
+      "max_depth": null,
+      "min_samples_leaf": 1,
+      "max_features": 0.8
+    },
+    {
+      "max_depth": null,
+      "min_samples_leaf": 1,
+      "max_features": 1.0
+    },
+    {
+      "max_depth": null,
+      "min_samples_leaf": 2,
+      "max_features": 0.8
+    },
+    {
+      "max_depth": null,
+      "min_samples_leaf": 2,
+      "max_features": 1.0
+    }
+  ],
+  "decision_grid": [
+    {
+      "variant": "context_relations",
+      "body_weight": 0.75,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 0.75,
+      "min_heading_score": 0.0,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 0.75,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 0.75,
+      "min_heading_score": 0.5,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.0,
+      "relation_weight": 1.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 0.0
+    },
+    {
+      "variant": "context_relations",
+      "body_weight": 1.0,
+      "min_heading_score": 0.5,
+      "relation_weight": 1.0
+    }
+  ],
+  "fixed_tree_settings": {
+    "n_estimators": 200,
+    "class_weight": "balanced",
+    "random_state": 42,
+    "n_jobs": 4
+  },
+  "config_hashes": {
+    "annotation-changes.json": "f5e835462177ed3eac38e0e562ee0b40f6e8dd1837da0ce684cb814d346f2da5",
+    "annotations.json": "c07ca112f2172b09d32cbefaea21dcddbf4d2cf9da2862b707d12e401a8c59ce",
+    "corpus.json": "38672ddf59b5f281f9fa6b319f53eae4e95f0303440886bba6e9b0f68c2f8379",
+    "decisions.json": "d305d5bed01044c17b5063b3b8016e125744c4a3bdee3fc1fff33d7306200a6c",
+    "excluded.json": "e16f2fa4c0830cdf70d1e6576e8dbd770002e893d410a0400e14adaf556b53c9",
+    "protocol.json": "b3e363c05431fe7fdb7137a3eabcb33c676d0c18bc5a99f0d91f531c64478684",
+    "test-decisions.json": "1485064574970125625f55ff2b2fff35a96bd3a5c855011424a5a4207b6dc65a"
+  },
+  "source_hashes": {
+    "scripts/structure/retrain_recall.py": "59fe9ae71121da8724a3282c556e11429e987146d60668092570580d71091917",
+    "src/pdf_heading_benchmark/supervised_inference.py": "1aa7054a1d763f8e2e27c93231c8bd57798addf6345613d034e68c58f2b3e95f",
+    "src/pdf_heading_benchmark/structure_features.py": "565764ccda2903b34f74b1bd38be02ca9b5720cd59394a896938796fd0721d45",
+    "src/pdf_heading_benchmark/visual_review.py": "ca927e086f35c45108fda43b70614b48277827238964c5d35836e15b32b60d73",
+    "src/pdf_heading_benchmark/recall_training.py": "8799034e07e9caaa0287fe6b313ad45f05126c765d39144b5921e8dfcb4fc1af",
+    "src/pdf_heading_benchmark/method_terms.py": "7bc98bab7f83af6b86271e1e236c088861799090b80b9575f47d557184009e15",
+    "src/pdf_heading_benchmark/supervised_data.py": "575f4387414cfffc9cb3f49f39d330e6a3448cf9ed3f87f6de607aabec8c1e98",
+    "src/pdf_heading_benchmark/techniques.py": "0f1634674747f61d24483f8c6894296047edd6efd322ee2d99dc9880d71b7dc3",
+    "src/pdf_heading_benchmark/precision_inference.py": "3dc40911dcc17f5e49d6b156bf9cf308aba929e06bd80277329a6361488bd4d8",
+    "src/pdf_heading_benchmark/supervised_features.py": "5fe5ff15b3eb3eeedd61fd655b6c50f63959c52aa33ff868e7fc7f1f5ad4bc37",
+    "src/pdf_heading_benchmark/prediction_comparison.py": "ddcc37736331351bbd66dda0cdd945102e592a14c8e6b690f7263d2331ff0f04",
+    "src/pdf_heading_benchmark/precision_experiment.py": "4868c25fe26630f56f39ac799277dc5fe6cbe2c7c32dcd116510f8b42065b2e5",
+    "src/pdf_heading_benchmark/structure_inference.py": "dacc66da00736ebc6abb44580bc66e45b439cbf66a77decd8dd1ff190fd2ca9d",
+    "src/pdf_heading_benchmark/evaluation.py": "25670f60a77dc721fa91e15114f8bc31c78f33f285561f25bb6c7f9457123957",
+    "src/pdf_heading_benchmark/io.py": "db35dd6a1e3d47b057096eca834d4e295182ea4786677560dee8c2601d2aac9d",
+    "src/pdf_heading_benchmark/recall_inference.py": "03d76a9fd0067b9e8d96a6df8b50c8fe3ea534cf026c1d210c4d8722794126df",
+    "src/pdf_heading_benchmark/__init__.py": "60062b39a305e5ce7b8e2f8f8de8857aaf451d76e120e3900336a9e15d267452",
+    "src/pdf_heading_benchmark/report_help.py": "e411d5b13b1bea751156a2c13cec0693a831acfb857cb0327685fcbd557affc9",
+    "src/pdf_heading_benchmark/structure_evaluation.py": "92bda01824b81958753ba70ec7697a44b1d14421c9b39ccddba97f3814a0ddf3",
+    "src/pdf_heading_benchmark/cli.py": "ce4877490381bf213f5e1a8acdf88c83c30c268e86a6cbb6dd0e1148c1aabbad",
+    "src/pdf_heading_benchmark/extraction.py": "e2d23940fbc26a429d4e888567c2e76584af2ee34abef8f2ff35ee4d74f00bd5",
+    "src/pdf_heading_benchmark/supervised_models.py": "a2d97bf830b9e863c89a2f3c4087c355ff0e630b2efbeebb82398d2ddf14cbf5",
+    "src/pdf_heading_benchmark/joint_metrics.py": "3bfa52d4219fdf5db1e4fbc8d996cb569800ad9bc05e3e57e12947c5cddc067d",
+    "src/pdf_heading_benchmark/structure_data.py": "0bf367cb4a18ef144210cc75ca98c601aa005cd5ce943f121d13518ca81319a3",
+    "src/pdf_heading_benchmark/report.py": "be8ca6cfcc893cbe2214b9654722a0241a5bda239409fe006060bd0753c2759e",
+    "src/pdf_heading_benchmark/corpus.py": "d1716c19491a3b1cf2fe064e30d226e6163b904356695cb10a66bc5586911f4f"
+  },
+  "python": "3.12.3",
+  "sklearn": "1.9.1",
+  "platform": "macOS-26.1-arm64-arm-64bit",
+  "scope": "Same 20 training and four validation reports as v2. No new labels. Original league and inspected v2 test are regression only; never select settings."
+}

@@ -1070,6 +1070,10 @@
       {
         "label": "Main-table scoring implementation",
         "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+      },
+      {
+        "label": "Qwen quantization and speed options",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/qwen-speed-options.md"
       }
     ],
     "training": [],
@@ -1121,6 +1125,12 @@
           "Only the 32 audited page images were processed. Scores use their 77 reference headings. Runs used local MLX on an Apple M4 Pro with 48 GB memory. A per-500-page time is an extrapolation, not a 500-page image run.",
           "The table reports target generation time, excluding model loading and context extraction. This configuration has substantial context and generation overhead.",
           "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      },
+      {
+        "title": "Quantization and speed",
+        "paragraphs": [
+          "This measured configuration already uses MLX 4-bit weights and disables thinking. It repeatedly sends the full candidate outline, author tags and earlier page images. Reducing repeated context or testing the Qwen3.6-35B-A3B mixture-of-experts sibling are speed experiments, not measured improvements in this table. See the linked Qwen speed options for available quantizations and limitations."
         ]
       }
     ],
@@ -3184,6 +3194,144 @@
         "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json",
         "aliases": [
           "later filter protocol"
+        ]
+      }
+    ]
+  },
+  "structure_recall": {
+    "family": "Learned classifiers · local CPU",
+    "summary": "OUR METHOD refits Extra Trees on the same assistant annotations from 20 WFP reports. Eight tree configurations and eight decision settings give 64 validation comparisons. None reached both 80% joint precision and 80% joint recall. The documented fallback recovers more headings than the confidence filter but produces too many false predictions; it is not a validated replacement.",
+    "limitation": "Original league: 66/77 titles recovered, 50/77 correct heading-level pairs, 21 extra headings and 16 wrong levels. Same correct-pair count as the older unfiltered model. Small reused validation and inspected regression sets; no independent new test or new annotations.",
+    "training": [
+      {
+        "title": "Reuse reviewed training examples",
+        "detail": "Use the unchanged 20-report fitting split: 6,267 adjacent-line pairs, 6,736 text groups and 867 heading pairs. Validation and regression reports do not contribute labels to fitting."
+      },
+      {
+        "title": "Fit eight Extra Trees bundles",
+        "detail": "Cross max_depth 16/unlimited, min_samples_leaf 1/2 and max_features 0.8/1.0. Fit join, context and relation models with 200 trees each, balanced class weights and seed 42."
+      },
+      {
+        "title": "Select using coverage and precision",
+        "detail": "Evaluate 64 configurations on four validation reports. None meets both 80% joint precision and recall. The predeclared fallback maximizes the smaller metric, then joint F0.5; it reaches 84.2% precision and 76.2% recall."
+      }
+    ],
+    "stages": [
+      {
+        "title": "Join wrapped heading lines",
+        "detail": "The newly fitted 200-tree join classifier groups adjacent lines, using 100 features. PDF text is extracted locally."
+      },
+      {
+        "title": "Assign body or heading level",
+        "detail": "The newly fitted context classifier uses 47 features. Its unlimited-depth trees allow one training sample per leaf and consider all features at each split."
+      },
+      {
+        "title": "Use the selected direct decision",
+        "detail": "Choose the largest class score with body multiplier 1 and no confidence cutoff. Relationship weight is 0, so the fitted relation model and Viterbi are not used."
+      },
+      {
+        "title": "Retain text and score recorded predictions",
+        "detail": "Keep all native text. On the original 77-heading regression sample: 87 predictions, 66 genuine titles, 50 correct heading-level pairs. This is the same matching contract as every other row."
+      }
+    ],
+    "parameters": [
+      [
+        "Estimator",
+        "scikit-learn 1.9.1 ExtraTreesClassifier; Python 3.12.3"
+      ],
+      [
+        "Trees",
+        "200 per classifier; three fitted, two used by selected inference"
+      ],
+      [
+        "Selected tree settings",
+        "max_depth=None; min_samples_leaf=1; max_features=1.0"
+      ],
+      [
+        "Fixed settings",
+        "class_weight=balanced; random_state=42; n_jobs=4"
+      ],
+      [
+        "Selected decision settings",
+        "body_weight=1.0; min_heading_score=0.0; relation_weight=0.0"
+      ],
+      [
+        "Validation search",
+        "8 tree bundles × 8 decision configurations = 64"
+      ],
+      [
+        "Selection result",
+        "No eligible candidate; predeclared diagnostic fallback"
+      ],
+      [
+        "Measured time",
+        "16.42 seconds / 523 pages; excludes model loading and writes"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Training provenance",
+        "paragraphs": [
+          "Trained locally on the M4 Pro CPU in structure-recall/run-002. The same 887 assistant-annotated heading groups and fully reviewed body examples were used as in structure-v2. No new labels were added. The source/configuration hashes were recorded before fitting; the selected model hashes and all validation results are committed. Model files and full extracted text remain outside Git."
+        ]
+      },
+      {
+        "title": "Why the result is not an improvement in usable quality",
+        "paragraphs": [
+          "Title recovery rises from 39/77 to 66/77 relative to the confidence filter, but extras rise from two to 21. Correct heading-level pairs are 50/77, exactly the older unfiltered context model’s count. On the inspected 38-heading set, joint recall is 94.7% and joint precision 81.8%. The large difference between sets limits any generalization claim."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Full trial and reproduction",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/report.md"
+      },
+      {
+        "label": "Predeclared protocol",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/evidence/protocol.json"
+      },
+      {
+        "label": "All validation scores and model hashes",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/evidence/selection.json"
+      },
+      {
+        "label": "Fitting code",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/recall_training.py"
+      },
+      {
+        "label": "Original training labels and source reports",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+      },
+      {
+        "label": "Run on a new PDF",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_recall.py"
+      }
+    ],
+    "terms": [
+      {
+        "name": "Extra Trees",
+        "description": "A classifier that averages predictions from many randomized decision trees. A tree makes a sequence of decisions about input measurements. This benchmark uses scikit-learn’s ExtraTreesClassifier, with 200 trees per component.",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html",
+        "aliases": [
+          "ExtraTreesClassifier",
+          "Extra Trees"
+        ]
+      },
+      {
+        "name": "Features",
+        "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "aliases": [
+          "features"
+        ]
+      },
+      {
+        "name": "Validation reports",
+        "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "aliases": [
+          "validation reports"
         ]
       }
     ]

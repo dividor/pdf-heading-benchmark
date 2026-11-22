@@ -8,6 +8,7 @@ import pymupdf
 from pdf_heading_benchmark.io import REPO, read_json
 
 NAMES = {
+    "structure_recall": "OUR METHOD: coverage retraining",
     "structure_precision": "OUR METHOD: confidence filter v2",
     "structure_context_relations": "OUR METHOD: context + relations v2",
     "structure_calibrated": "OUR METHOD: earlier calibration",

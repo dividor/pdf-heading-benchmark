@@ -2,7 +2,7 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 22 completed local configurations with scores, processing times and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 23 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took about 62 minutes for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
@@ -19,6 +19,10 @@ The new validation-selected filter keeps groups only when the highest heading sc
 Historical selection maximized validation joint F0.5 subject to at least 95% heading-only precision. That original constraint remains in the recorded experiment, but no longer qualifies configurations in the main table. Selection searched 36 fixed settings on four validation reports; the regression sets did not select the threshold. Trees and labels are unchanged. [Full precision experiment](outputs/structure-precision/report.md) · [Run on a new PDF](scripts/runners/run_precision.py) · [All validation scores](outputs/structure-precision/evidence/selection.json).
 
 [Where our three classifiers were trained: data, code, versions, model hashes and reproduction](docs/model-provenance.md). They were fitted from scratch locally for this benchmark; the later filter reuses those models.
+
+## Coverage retraining trial
+
+A fresh 64-configuration validation search recovered 66/77 titles on the historical benchmark, with 50 correct levels and 21 extras. None met both 80% validation joint precision and recall. This restores coverage but does not solve the quality problem. [Full trial](outputs/structure-recall/report.md) · [Qwen quantization and speed options](docs/qwen-speed-options.md).
 
 ## Earlier v2 experiment (selected using F1)
 

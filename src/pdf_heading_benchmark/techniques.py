@@ -121,6 +121,9 @@ def enhance_html(rendered: str, rows: list[dict], methods: dict) -> str:
                 cell.append(" ")
                 cell.append(info_button(soup, "technique-" + row["method"], label))
                 continue
+            comparison_label = soup.new_tag("strong")
+            comparison_label.string = "Predictions vs reference · "
+            anchor.insert(0, comparison_label)
             anchor["data-technique"] = "technique-" + row["method"]
             anchor["aria-haspopup"] = "dialog"
             anchor["aria-controls"] = "technique-" + row["method"]

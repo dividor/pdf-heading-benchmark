@@ -9,7 +9,7 @@ th { background: #e5eff7; }
 td:nth-child(2) { min-width: 240px; }
 .league-table th:nth-child(2), .league-table td:nth-child(2) { background: #dceff1; border-left: 2px solid #087e88; border-right: 2px solid #087e88; }
 .league-table td:nth-child(2) { min-width: 110px; font-size: 20px; color: #074851; }
-.league-table td:nth-child(4) { min-width: 240px; }
+.league-table td:nth-child(5) { min-width: 240px; }
 code { background: #e7eef4; padding: 2px 4px; }
 @media (max-width: 600px) { main { padding: 16px; } }
 
@@ -75,6 +75,23 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .method-terms dt { font-weight: 700; margin-top: 16px; }
 .method-terms dd { margin: 4px 0 16px; font-size: 15px; }
 .technique-flow a { text-underline-offset: 3px; }
+
+.prediction-comparison { margin: 24px 0; padding: 18px; background: white; border: 1px solid #b8ccd9; border-radius: 12px; }
+.prediction-comparison h3 { margin-top: 0; }
+.comparison-counts { font-weight: 750; }
+.comparison-document { border-top: 1px solid #dce5ec; padding: 12px 0; }
+.comparison-document summary { cursor: pointer; font-weight: 650; }
+.comparison-document summary span { display: block; margin: 5px 0 0 20px; font-size: 13px; font-weight: 400; }
+.comparison-scroll { overflow-x: auto; }
+.comparison-scroll table { table-layout: fixed; min-width: 640px; }
+.comparison-scroll th, .comparison-scroll td { min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.comparison-scroll th:first-child { width: 6%; }
+.comparison-scroll th:nth-child(2), .comparison-scroll th:nth-child(3) { width: 35%; }
+.comparison-scroll caption { text-align: left; font-size: 13px; }
+.comparison-correct { background: #edf8f2; }
+.comparison-wrong { background: #fff4d9; }
+.comparison-missing { background: #fff0f0; }
+.comparison-extra { background: #f5edff; }
 </style></head><body><main><h1>Optimizing heading-and-level quality with few false headings</h1>
 <p>The new candidate raises joint F0.5 from <strong>58.8% to 70.5%</strong> on the historical four-report benchmark and reduces extra headings from <strong>23 to 2</strong>. Heading-detection precision is <strong>95.1%</strong>, just above the agreed 95% gate. It does so by emitting fewer headings: <strong>34/77 correct title-and-level pairs</strong>, down from 50/77. This is a precision/recall trade-off, not an improvement in every measure.</p>
 <h2>What changed</h2>
@@ -156,7 +173,7 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 <p>The measured historical parse time is <strong>11.66 seconds for all 523 pages</strong>, including native extraction, features, grouping, filtering and sequence inference. Model loading and file writes are excluded. The validation grid reused cached feature/probability calculations; those selection timings are not deployment speed measurements. Runs were local on the shared 48 GB Apple M4 Pro.</p>
 <p>The next improvement should recover more genuine headings while preserving this precision floor. That needs more fully reviewed training/validation reports and a new untouched test set, rather than choosing a different cutoff from errors on these inspected pages.</p>
 <h2>Primary metric: heading-and-level F0.5</h2>
-<p>A useful output must identify a real heading, put it on the correct PDF page and assign the correct level. Invented headings also matter. We therefore rank by <strong>joint heading-and-level F0.5</strong>, and require <strong>at least 95% heading-detection precision</strong> for a configuration to qualify on the evaluated sample. A high score with a FAIL label does not qualify.</p>
+<p>A useful output must identify a real heading, put it on the correct PDF page and assign the correct level. Invented headings also matter. We therefore rank by <strong>joint heading-and-level F0.5</strong>, supported by <strong>joint precision</strong> and <strong>joint recall</strong>. All three require the heading and its level to be correct. There is no separate PASS/FAIL qualification gate.</p>
 <p>Let <strong>G</strong> be the number of reference headings, <strong>P</strong> all predicted headings, <strong>M</strong> the one-to-one title/page matches and <strong>C</strong> those matches with the exact reference level. Matching uses the unchanged same-page, normalized-title similarity ≥0.90 contract. Counts are pooled across reports before calculating metrics (micro averaging).</p>
 <table>
 <thead>
@@ -190,18 +207,15 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 <tr>
 <td>Heading-detection precision</td>
 <td>M / P</td>
-<td>Fraction of predictions that are real headings, regardless of level</td>
-</tr>
-<tr>
-<td><strong>95% precision gate</strong></td>
-<td><strong>P &gt; 0 and M / P ≥ 0.95</strong></td>
-<td>At most 5% of emitted headings are spurious on this sample</td>
+<td>Diagnostic only: real headings regardless of level; shown in detailed results</td>
 </tr>
 </tbody>
 </table>
-<p>Joint true positives are <strong>C</strong>, false positives are <strong>P − C</strong>, and false negatives are <strong>G − C</strong>. A wrong-level heading is both a joint false positive and a joint false negative. A missing heading contributes a false negative; an extra heading contributes a false positive. No predictions gives a zero score and fails the gate. Unknown levels earn no joint credit. The gate concerns real-heading detection; it does <strong>not</strong> mean 95% of levels are correct, and it is an observed sample threshold, not a confidence bound or deployment guarantee.</p>
-<p>For example, 10 reference headings, 12 predictions, 10 title matches and 9 correct levels give joint precision 75%, recall 90%, F1 81.8% and F0.5 77.6%. Heading precision is only 83.3%, so this configuration fails the gate despite recovering every title.</p>
-<p>For optimization, select the highest validation joint F0.5 <strong>among candidates passing the gate</strong>, then freeze the configuration before evaluation elsewhere. If none qualifies, report no qualifying candidate. Do not choose settings using the main league or inspected regression pages. Existing F1-selected runs retain their original provenance; recomputing these metrics does not retrain them.</p>
+<p>Joint true positives are <strong>C</strong>, false positives are <strong>P − C</strong>, and false negatives are <strong>G − C</strong>. A wrong-level heading is both a joint false positive and a joint false negative. A missing heading contributes a false negative; an extra heading contributes a false positive. No predictions gives a zero score. Unknown levels earn no joint credit. Heading-only precision ignores wrong levels, so it is a diagnostic rather than a quality requirement.</p>
+<p>For example, 10 reference headings, 12 predictions, 10 title matches and 9 correct levels give joint precision 75%, recall 90%, F1 81.8% and F0.5 77.6%. Recovering every title does not imply correct hierarchy.</p>
+<p>MinerU basic illustrates why the distinction matters: 66 of its 68 predictions match real titles, but only 31 have the correct level. Its joint precision is <strong>45.6% (31/68)</strong>, joint recall <strong>40.3% (31/77)</strong> and joint F0.5 <strong>44.4%</strong>. The 97.1% heading-only precision ignores 35 wrong levels. OUR METHOD's confidence-filtered configuration has <strong>82.9% joint precision (34/41)</strong> and <strong>44.2% joint recall (34/77)</strong>, yielding <strong>70.5% joint F0.5</strong>. Its two extra headings are separate from its five wrong-level headings.</p>
+<p>For future optimization, select using validation joint F0.5, report joint precision and recall alongside it, then freeze the configuration before evaluation elsewhere. Do not choose settings using the main league or inspected regression pages.</p>
+<p><strong>Historical selection remains unchanged:</strong> the published 36-setting confidence-filter experiment selected the highest validation joint F0.5 among candidates with at least 95% heading-only precision. That was its actual selection rule, and its protocol and results remain available. We have removed this gate from the league table because it ignores level errors. Recomputing or presenting joint metrics does not retrain models or retroactively change how any configuration was selected.</p>
 <h2>Every validation setting</h2>
 <table>
 <thead>
