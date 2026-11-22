@@ -10,10 +10,10 @@ REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
     "Configuration",
     "Primary score: joint F0.5",
-    "Heading precision / 95% gate",
+    "Joint precision",
+    "Joint recall",
     "Method / code",
     "Status",
-    "Correct heading + level",
     "Headings recovered",
     "False headings",
     "Native prose retention",
@@ -36,13 +36,13 @@ def duration(row):
 
 def cells(row, method):
     completed = row["status"] == "completed"
-    combined = percent(row["correct_heading_and_level"])
-    recall = percent(row["heading_recall"])
+    precision = percent(row.get("joint_precision"))
+    recall = percent(row.get("joint_recall"))
+    recovered = percent(row["heading_recall"])
     if completed:
-        combined += f" ({row['correct_level']}/77)"
-        recall += f" ({row['matched']}/77)"
-    if row["method"] == "mineru_pro_mlx":
-        combined = "Levels not supplied (0/77 complete outputs)"
+        precision += f" ({row['correct_level']}/{row['predicted']})"
+        recall += f" ({row['correct_level']}/{row['gold']})"
+        recovered += f" ({row['matched']}/{row['gold']})"
     configuration = f"[{row['name']}]({row['source_url']})"
     if row["method"] == "supervised_extra_trees":
         configuration = f"[LLM annotations → Extra Trees v1 (CPU)]({row['source_url']})"
@@ -64,16 +64,11 @@ def cells(row, method):
     return [
         configuration,
         f"**{percent(row.get('joint_f05'))}**",
-        (
-            f"{percent(row.get('heading_precision'))} · "
-            + ("PASS" if row.get("precision_gate_pass") else "FAIL")
-            if completed
-            else "—"
-        ),
+        precision,
+        recall,
         f"[{method['description']}]({method.get('code_url', REMOTE + method['code'])})",
         row["status"],
-        combined,
-        recall,
+        recovered,
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
         duration(row),
@@ -138,6 +133,7 @@ def build_report():
             f"{r['matched']}/{r['gold']}",
             f"{r['correct_level']}/{r['gold']}",
             r["predicted"] - r["matched"],
+            percent(r["matched"] / r["predicted"] if r["predicted"] else 0),
         ]
         for r in details
     ]
@@ -145,7 +141,14 @@ def build_report():
     metric = (REPO / "docs/joint-metric.md").read_text()
     markdown += "\n" + results_table() + "\n\n" + metric + "\n\n" + notes
     markdown += "\n\n## Results by report\n\n" + table(
-        ["Runner / configuration", "Report", "Recovered", "Correct heading + level", "False headings"],
+        [
+            "Runner / configuration",
+            "Report",
+            "Recovered",
+            "Correct heading + level",
+            "False headings",
+            "Heading-only precision (diagnostic)",
+        ],
         per_report,
     )
     markdown += "\n"

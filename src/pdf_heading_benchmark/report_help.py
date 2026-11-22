@@ -24,25 +24,15 @@ COLUMN_DESCRIPTIONS = {
             "Extra headings and wrong levels reduce the score; missing headings also count against "
             "it. Empty output scores zero."
         ),
-        (
-            "The table is sorted by this score. A configuration must also pass the separate 95% "
-            "heading-precision gate to qualify. A high score with FAIL does not qualify."
-        ),
+        "The table is sorted by this score. There is no separate PASS/FAIL qualification gate.",
     ],
-    "Heading precision / 95% gate": [
-        (
-            "The percentage of emitted headings that match genuine reference titles on the correct "
-            "page, regardless of level: M / P, where M is matched titles and P all predictions."
-        ),
-        (
-            "PASS requires at least 95% heading precision and at least one prediction. FAIL means too "
-            "many spurious headings, or no output. This does not mean 95% of levels are correct; "
-            "level errors are penalized by joint F0.5."
-        ),
-        (
-            "The gate is measured on this small audited sample. It is not a confidence bound or a "
-            "production guarantee."
-        ),
+    "Joint precision": [
+        "The fraction of all emitted headings with the correct title, PDF page and exact H level: "
+        "C / P. A wrong level, an absent level or an extra heading counts against precision.",
+        "For MinerU basic, 31 of 68 predictions have the correct heading and level: 45.6%. "
+        "Matching 66 genuine titles is insufficient because 35 have the wrong level.",
+        "The count beside the percentage is correct heading-level pairs / all predictions. "
+        "No predictions gives zero precision by this benchmark's convention.",
     ],
     "Method / code": [
         (
@@ -57,12 +47,9 @@ COLUMN_DESCRIPTIONS = {
     ],
     "Status": [
         "Whether the benchmark run completed. This table includes completed local configurations only.",
-        (
-            "Completed does not mean that the configuration passes the quality gate or supplies every "
-            "required output."
-        ),
+        ("Completed does not mean that the configuration is accurate or supplies every required output."),
     ],
-    "Correct heading + level": [
+    "Joint recall": [
         (
             "The count and percentage of all 77 reference headings recovered on the correct page with "
             "the exact H level: C / G. This is joint recall, not the primary score."

@@ -2,13 +2,13 @@
 
 **22 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
 
-**Primary metric: joint heading-and-level F0.5, with a 95% heading-detection precision requirement.** Both incorrect levels and extra headings reduce the joint score. The precision gate separately requires at most 5% spurious headings among predictions on this sample. FAIL rows remain visible but do not qualify. Definitions and a worked example follow the table.
+**Primary metric: joint heading-and-level F0.5**, with joint precision and joint recall alongside it. A correct prediction must match the heading title, PDF page and exact level. Wrong levels and extra headings reduce precision; missed or incorrectly leveled headings reduce recall. There is no separate PASS/FAIL gate. Definitions and worked examples follow the table.
 
-Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **97.5% heading precision**, 65/77 correct heading-level pairs and two extras. Embedded PDF tags score **73.4% F0.5**, with 96.3% heading precision and 43/77 correct pairs. Chandra scores **72.6% F0.5**, 97.2% heading precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
+Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **82.3% joint precision**, 65/77 correct heading-level pairs and two extras. Embedded PDF tags score **73.4% F0.5**, with 79.6% joint precision and 43/77 correct pairs. Chandra scores **72.6% F0.5**, 73.6% joint precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
 
-**Our new precision-selected method:** [jump to the highlighted row](#our-trained-model). A validation-selected confidence filter raises historical joint F0.5 from **58.8% to 70.5%** and reduces extra headings from **23 to 2**, reaching **95.1% heading precision**. It emits fewer headings: correct title-and-level pairs fall from **50/77 to 34/77**, with 38 titles missed. This is an explicit precision/recall trade-off. The three small CPU classifiers are unchanged; the LLM supplied training annotations and is not used at inference.
+**Our new precision-selected method:** [jump to the highlighted row](#our-trained-model). A validation-selected confidence filter raises historical joint F0.5 from **58.8% to 70.5%** and reduces extra headings from **23 to 2**, reaching **82.9% joint precision (34/41)** and **44.2% joint recall (34/77)**. It emits fewer headings: correct title-and-level pairs fall from **50/77 to 34/77**, with 38 titles missed. This is an explicit precision/recall trade-off. The three small CPU classifiers are unchanged; the LLM supplied training annotations and is not used at inference.
 
-The candidate was selected from a fixed 36-setting grid on four separate validation reports. The original league and the previously inspected 38-heading set were scored only after selection. Both are regression evidence, not new independent tests. The precision gate is an observed sample threshold, not a statistical confidence bound or production guarantee. [Experiment, every setting and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
+The candidate was selected from a fixed 36-setting grid on four separate validation reports. The original league and the previously inspected 38-heading set were scored only after selection. Both are regression evidence, not new independent tests. The historical selection rule included a 95% heading-only precision constraint; that rule remains documented in the experiment but is no longer a league-table qualification gate. [Experiment, every setting and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
 
 [Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/league_table.md) · [Score exports](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/results.json)
 
@@ -31,43 +31,43 @@ The audit covers **eight selected pages per report, 32 pages and 77 reference he
 
 1. **Select and annotate pages.** Pages were deliberately selected across front matter, chapters, subsections and annexes. A single AI assistant visually annotated heading titles and levels. The [page selection](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/audit_pages.json) and [frozen reference labels](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/gold.json) are public. They have not been independently reviewed by a human, and the selection is not random.
 2. **Run the configured extractor or hierarchy stage.** CPU parsers processed all 523 pages; the later local OCR models processed the 32 audit pages. Hierarchy stages consumed extracted candidates and, for some configurations, PDF tags or page images. No reference titles or reference levels were supplied to inference. The table links to each runner; [method configuration steps](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/methods.json), [model revisions](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/models.json) and [reproducibility notes](https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md) give dependencies, prompts and settings. No per-report heading correction rules are applied.
-3. **Score the same audit pages.** The [scorer](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py) matches titles on the same original PDF page, using normalized text similarity of at least 90% after one-to-one Hungarian assignment. A combined success requires the exact reference H level too. Main chapters and annexes are H1; the cover title does not shift the body hierarchy. Missing headings remain in the denominator of 77. Extra predictions are counted separately, so the combined score is not precision or F1 and does not penalize false headings directly.
+3. **Score the same audit pages.** The [scorer](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py) matches titles on the same original PDF page, using normalized text similarity of at least 90% after one-to-one Hungarian assignment. A combined success requires the exact reference H level too. Main chapters and annexes are H1; the cover title does not shift the body hierarchy. Joint precision divides correct heading-level pairs by all predictions; joint recall divides them by the 77 references. Joint F0.5 combines these with more emphasis on precision, penalizing extra predictions and wrong levels as well as missed headings.
 4. **Check prose and record resources.** Native prose retention measures preserved five-word sequences from native PDF blocks of at least 50 words on the audit pages. It does not measure character accuracy, reading order or table extraction. Processing times were observed on a shared 48 GB Apple M4 Pro and have different scopes. Hardware, electricity, engineering, review and licensing costs were not measured in dollars.
 
 This is **sampled-page heading accuracy**, even when a parser processed the full document. The completed configurations include variants of the same packages and models; they are not independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.
 
 ## Full configuration results
 
-**Ranked by joint heading-and-level F0.5**, with a separate **95% heading-detection precision gate**. Only PASS rows qualify on this sample. The first score column is highlighted; FAIL rows remain visible for comparison. See the definitions and worked example below the table. In HTML, select the **i** beside a configuration, or its **Method / code** for its diagram, parameters and sources. Markdown retains those links and the detailed technique appendix. All configurations ran locally. Missing measurements remain unavailable rather than being assigned zero.
+**Ranked by joint heading-and-level F0.5**, with **joint precision and joint recall** next to it. The first score column is highlighted. There are no PASS/FAIL labels; heading-only precision appears in the detailed results as a diagnostic. See the definitions and worked example below the table. In HTML, select the **i** beside a configuration, or its **Method / code** for its diagram, parameters and sources. Markdown retains those links and the detailed technique appendix. All configurations ran locally. Missing measurements remain unavailable rather than being assigned zero.
 
-| Configuration | Primary score: joint F0.5 | Heading precision / 95% gate | Method / code | Status | Correct heading + level | Headings recovered | False headings | Native prose retention | Measured time |
+| Configuration | Primary score: joint F0.5 | Joint precision | Joint recall | Method / code | Status | Headings recovered | False headings | Native prose retention | Measured time |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Qwen3.6-27B / MLX 4-bit / sampled visual memory](https://huggingface.co/Qwen/Qwen3.6-27B) | **82.7%** | 97.5% · PASS | [Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) | completed | 84.4% (65/77) | 100.0% (77/77) | 2 | — | 61.8 min / 32 pages |
-| [Embedded PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) | **73.4%** | 96.3% · PASS | [Read PDF heading tags—the heading labels already embedded by the PDF’s author.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) | completed | 55.8% (43/77) | 67.5% (52/77) | 2 | — | 6.4 s / 32 pages |
-| [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | **72.6%** | 97.2% · PASS | [Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 68.8% (53/77) | 90.9% (70/77) | 2 | 98.7% | 17.2 min / 32 pages |
-| <span id="our-trained-model"></span>[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md) | **70.5%** | 95.1% · PASS | [Three trained Extra Trees classifiers join text lines, recognize headings and compare levels. Reject headings below score 0.70, selected on separate validation reports to reduce false headings; no additional model training.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py) | completed | 44.2% (34/77) | 50.6% (39/77) | 2 | — | 11.7 s / 523 pages |
-| <span id="our-calibrated-model"></span>[**OUR METHOD — calibrated decoding (experimental)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md) | **59.2%** | 73.8% · FAIL | [Make the previously trained three-classifier design less likely to label body text as a heading.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py) | completed | 61.0% (47/77) | 76.6% (59/77) | 21 | — | 14.5 s / 523 pages |
-| <span id="our-original-model"></span>[OUR METHOD — grouped context v2 (previous selection)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **58.8%** | 73.6% · FAIL | [Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 64.9% (50/77) | 83.1% (64/77) | 23 | — | 12.6 s / 523 pages |
-| [LightOnOCR-3-0.8B / MLX](https://huggingface.co/lightonai/LightOnOCR-3-0.8B) | **57.9%** | 90.0% · FAIL | [LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py) | completed | 59.7% (46/77) | 93.5% (72/77) | 8 | 99.5% | 8.9 min / 32 pages |
-| [LightOnOCR-3-4B / MLX grounding](https://huggingface.co/lightonai/LightOnOCR-3-4B) | **57.9%** | 90.0% · FAIL | [LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 59.7% (46/77) | 93.5% (72/77) | 8 | 99.3% | 23.5 min / 32 pages |
-| [v2: learned grouping](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **55.8%** | 77.9% · FAIL | [Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 66.2% (51/77) | 96.1% (74/77) | 21 | — | 12.0 s / 523 pages |
-| [v2: more annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **44.9%** | 72.6% · FAIL | [Test whether more labeled examples improve the original single-classifier design.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 53.2% (41/77) | 89.6% (69/77) | 26 | — | 9.3 s / 523 pages |
-| [LLM annotations → Extra Trees v1 (CPU)](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py) | **44.5%** | 74.7% · FAIL | [Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py) | completed | 45.5% (35/77) | 76.6% (59/77) | 20 | — | 7.7 s / 523 pages |
-| [MinerU 4.2.3 basic CPU](https://github.com/opendatalab/MinerU) | **44.4%** | 97.1% · PASS | [MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru.py) | completed | 40.3% (31/77) | 85.7% (66/77) | 2 | 99.1% | 11.2 min / 523 pages |
-| [Qwen3.5-4B / union candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **41.0%** | 94.7% · FAIL | [Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 32.5% (25/77) | 70.1% (54/77) | 3 | — | 1.7 min / hierarchy stage only |
-| [Qwen3.5-4B / PyMuPDF candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **37.5%** | 100.0% · PASS | [Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 28.6% (22/77) | 70.1% (54/77) | 0 | — | 1.5 min / hierarchy stage only |
-| [PyMuPDF4LLM 2.1](https://github.com/pymupdf/pymupdf4llm) | **37.5%** | 97.3% · PASS | [PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pymupdf4llm.py) | completed | 36.4% (28/77) | 93.5% (72/77) | 2 | 98.8% | 51.8 s / 523 pages |
-| [Qwen3.5-4B / MinerU candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **33.3%** | 98.5% · PASS | [Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 29.9% (23/77) | 85.7% (66/77) | 1 | — | 1.3 min / hierarchy stage only |
-| [Docling fixed tolerance 0.15](https://github.com/docling-project/docling) | **30.8%** | 97.1% · PASS | [Use Docling 2.151.1 with a fixed font-style tolerance of 0.15 in its hierarchy step.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 28.6% (22/77) | 88.3% (68/77) | 2 | 98.4% | 1.7 min / 523 pages |
-| [Marker 2.2 no OCR/LLM](https://github.com/datalab-to/marker) | **25.5%** | 87.8% · FAIL | [Marker 2.2 parses the complete PDF locally on the CPU.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_marker.py) | completed | 24.7% (19/77) | 84.4% (65/77) | 9 | 98.8% | 44.0 s / 523 pages |
-| [Docling 2.151.1 default](https://github.com/docling-project/docling) | **22.4%** | 97.1% · PASS | [Use the heading levels returned by Docling 2.151.1 when it first reads the PDF.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 20.8% (16/77) | 88.3% (68/77) | 2 | 98.4% | 1.7 min / 523 pages |
-| [Docling built-in hierarchy](https://github.com/docling-project/docling) | **22.4%** | 97.1% · PASS | [Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 20.8% (16/77) | 88.3% (68/77) | 2 | 98.4% | 1.7 min / 523 pages |
-| [Popo + Docling / experimental MLX 8-bit](https://github.com/opendatalab/MinerU-Popo) | **21.0%** | 97.1% · PASS | [Use MinerU-Popo to assign levels to headings first detected by Docling.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_popo_mlx.py) | completed | 19.5% (15/77) | 88.3% (68/77) | 2 | 98.4% | 14.9 min / hierarchy stage only |
-| [MinerU2.5-Pro-2605-1.2B / direct MLX interface](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B) | **0.0%** | 95.8% · PASS | [MinerU2.5-Pro-2605-1.2B reads the layout and text of page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru_pro.py) | completed | Levels not supplied (0/77 complete outputs) | 89.6% (69/77) | 3 | 99.0% | 9.5 min / 32 pages |
+| [Qwen3.6-27B / MLX 4-bit / sampled visual memory](https://huggingface.co/Qwen/Qwen3.6-27B) | **82.7%** | 82.3% (65/79) | 84.4% (65/77) | [Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) | completed | 100.0% (77/77) | 2 | — | 61.8 min / 32 pages |
+| [Embedded PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) | **73.4%** | 79.6% (43/54) | 55.8% (43/77) | [Read PDF heading tags—the heading labels already embedded by the PDF’s author.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) | completed | 67.5% (52/77) | 2 | — | 6.4 s / 32 pages |
+| [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | **72.6%** | 73.6% (53/72) | 68.8% (53/77) | [Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 90.9% (70/77) | 2 | 98.7% | 17.2 min / 32 pages |
+| <span id="our-trained-model"></span>[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md) | **70.5%** | 82.9% (34/41) | 44.2% (34/77) | [Three trained Extra Trees classifiers join text lines, recognize headings and compare levels. Reject headings below score 0.70, selected on separate validation reports to reduce false headings; no additional model training.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py) | completed | 50.6% (39/77) | 2 | — | 11.7 s / 523 pages |
+| <span id="our-calibrated-model"></span>[**OUR METHOD — calibrated decoding (experimental)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md) | **59.2%** | 58.8% (47/80) | 61.0% (47/77) | [Make the previously trained three-classifier design less likely to label body text as a heading.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py) | completed | 76.6% (59/77) | 21 | — | 14.5 s / 523 pages |
+| <span id="our-original-model"></span>[OUR METHOD — grouped context v2 (previous selection)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **58.8%** | 57.5% (50/87) | 64.9% (50/77) | [Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 83.1% (64/77) | 23 | — | 12.6 s / 523 pages |
+| [LightOnOCR-3-0.8B / MLX](https://huggingface.co/lightonai/LightOnOCR-3-0.8B) | **57.9%** | 57.5% (46/80) | 59.7% (46/77) | [LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py) | completed | 93.5% (72/77) | 8 | 99.5% | 8.9 min / 32 pages |
+| [LightOnOCR-3-4B / MLX grounding](https://huggingface.co/lightonai/LightOnOCR-3-4B) | **57.9%** | 57.5% (46/80) | 59.7% (46/77) | [LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 93.5% (72/77) | 8 | 99.3% | 23.5 min / 32 pages |
+| [v2: learned grouping](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **55.8%** | 53.7% (51/95) | 66.2% (51/77) | [Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 96.1% (74/77) | 21 | — | 12.0 s / 523 pages |
+| [v2: more annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **44.9%** | 43.2% (41/95) | 53.2% (41/77) | [Test whether more labeled examples improve the original single-classifier design.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 89.6% (69/77) | 26 | — | 9.3 s / 523 pages |
+| [LLM annotations → Extra Trees v1 (CPU)](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py) | **44.5%** | 44.3% (35/79) | 45.5% (35/77) | [Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py) | completed | 76.6% (59/77) | 20 | — | 7.7 s / 523 pages |
+| [MinerU 4.2.3 basic CPU](https://github.com/opendatalab/MinerU) | **44.4%** | 45.6% (31/68) | 40.3% (31/77) | [MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru.py) | completed | 85.7% (66/77) | 2 | 99.1% | 11.2 min / 523 pages |
+| [Qwen3.5-4B / union candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **41.0%** | 43.9% (25/57) | 32.5% (25/77) | [Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 70.1% (54/77) | 3 | — | 1.7 min / hierarchy stage only |
+| [Qwen3.5-4B / PyMuPDF candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **37.5%** | 40.7% (22/54) | 28.6% (22/77) | [Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 70.1% (54/77) | 0 | — | 1.5 min / hierarchy stage only |
+| [PyMuPDF4LLM 2.1](https://github.com/pymupdf/pymupdf4llm) | **37.5%** | 37.8% (28/74) | 36.4% (28/77) | [PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pymupdf4llm.py) | completed | 93.5% (72/77) | 2 | 98.8% | 51.8 s / 523 pages |
+| [Qwen3.5-4B / MinerU candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **33.3%** | 34.3% (23/67) | 29.9% (23/77) | [Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 85.7% (66/77) | 1 | — | 1.3 min / hierarchy stage only |
+| [Docling fixed tolerance 0.15](https://github.com/docling-project/docling) | **30.8%** | 31.4% (22/70) | 28.6% (22/77) | [Use Docling 2.151.1 with a fixed font-style tolerance of 0.15 in its hierarchy step.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 88.3% (68/77) | 2 | 98.4% | 1.7 min / 523 pages |
+| [Marker 2.2 no OCR/LLM](https://github.com/datalab-to/marker) | **25.5%** | 25.7% (19/74) | 24.7% (19/77) | [Marker 2.2 parses the complete PDF locally on the CPU.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_marker.py) | completed | 84.4% (65/77) | 9 | 98.8% | 44.0 s / 523 pages |
+| [Docling 2.151.1 default](https://github.com/docling-project/docling) | **22.4%** | 22.9% (16/70) | 20.8% (16/77) | [Use the heading levels returned by Docling 2.151.1 when it first reads the PDF.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 88.3% (68/77) | 2 | 98.4% | 1.7 min / 523 pages |
+| [Docling built-in hierarchy](https://github.com/docling-project/docling) | **22.4%** | 22.9% (16/70) | 20.8% (16/77) | [Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 88.3% (68/77) | 2 | 98.4% | 1.7 min / 523 pages |
+| [Popo + Docling / experimental MLX 8-bit](https://github.com/opendatalab/MinerU-Popo) | **21.0%** | 21.4% (15/70) | 19.5% (15/77) | [Use MinerU-Popo to assign levels to headings first detected by Docling.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_popo_mlx.py) | completed | 88.3% (68/77) | 2 | 98.4% | 14.9 min / hierarchy stage only |
+| [MinerU2.5-Pro-2605-1.2B / direct MLX interface](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B) | **0.0%** | 0.0% (0/72) | 0.0% (0/77) | [MinerU2.5-Pro-2605-1.2B reads the layout and text of page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru_pro.py) | completed | 89.6% (69/77) | 3 | 99.0% | 9.5 min / 32 pages |
 
 ## Primary metric: heading-and-level F0.5
 
-A useful output must identify a real heading, put it on the correct PDF page and assign the correct level. Invented headings also matter. We therefore rank by **joint heading-and-level F0.5**, and require **at least 95% heading-detection precision** for a configuration to qualify on the evaluated sample. A high score with a FAIL label does not qualify.
+A useful output must identify a real heading, put it on the correct PDF page and assign the correct level. Invented headings also matter. We therefore rank by **joint heading-and-level F0.5**, supported by **joint precision** and **joint recall**. All three require the heading and its level to be correct. There is no separate PASS/FAIL qualification gate.
 
 Let **G** be the number of reference headings, **P** all predicted headings, **M** the one-to-one title/page matches and **C** those matches with the exact reference level. Matching uses the unchanged same-page, normalized-title similarity ≥0.90 contract. Counts are pooled across reports before calculating metrics (micro averaging).
 
@@ -77,14 +77,17 @@ Let **G** be the number of reference headings, **P** all predicted headings, **M
 | Joint recall | C / G | Fraction of reference headings recovered at the correct level |
 | Joint F1 | 2C / (P + G) | Equal precision/recall emphasis |
 | **Joint F0.5** | **1.25C / (P + 0.25G)** | Primary score; emphasizes precision more than recall |
-| Heading-detection precision | M / P | Fraction of predictions that are real headings, regardless of level |
-| **95% precision gate** | **P > 0 and M / P ≥ 0.95** | At most 5% of emitted headings are spurious on this sample |
+| Heading-detection precision | M / P | Diagnostic only: real headings regardless of level; shown in detailed results |
 
-Joint true positives are **C**, false positives are **P − C**, and false negatives are **G − C**. A wrong-level heading is both a joint false positive and a joint false negative. A missing heading contributes a false negative; an extra heading contributes a false positive. No predictions gives a zero score and fails the gate. Unknown levels earn no joint credit. The gate concerns real-heading detection; it does **not** mean 95% of levels are correct, and it is an observed sample threshold, not a confidence bound or deployment guarantee.
+Joint true positives are **C**, false positives are **P − C**, and false negatives are **G − C**. A wrong-level heading is both a joint false positive and a joint false negative. A missing heading contributes a false negative; an extra heading contributes a false positive. No predictions gives a zero score. Unknown levels earn no joint credit. Heading-only precision ignores wrong levels, so it is a diagnostic rather than a quality requirement.
 
-For example, 10 reference headings, 12 predictions, 10 title matches and 9 correct levels give joint precision 75%, recall 90%, F1 81.8% and F0.5 77.6%. Heading precision is only 83.3%, so this configuration fails the gate despite recovering every title.
+For example, 10 reference headings, 12 predictions, 10 title matches and 9 correct levels give joint precision 75%, recall 90%, F1 81.8% and F0.5 77.6%. Recovering every title does not imply correct hierarchy.
 
-For optimization, select the highest validation joint F0.5 **among candidates passing the gate**, then freeze the configuration before evaluation elsewhere. If none qualifies, report no qualifying candidate. Do not choose settings using the main league or inspected regression pages. Existing F1-selected runs retain their original provenance; recomputing these metrics does not retrain them.
+MinerU basic illustrates why the distinction matters: 66 of its 68 predictions match real titles, but only 31 have the correct level. Its joint precision is **45.6% (31/68)**, joint recall **40.3% (31/77)** and joint F0.5 **44.4%**. The 97.1% heading-only precision ignores 35 wrong levels. OUR METHOD's confidence-filtered configuration has **82.9% joint precision (34/41)** and **44.2% joint recall (34/77)**, yielding **70.5% joint F0.5**. Its two extra headings are separate from its five wrong-level headings.
+
+For future optimization, select using validation joint F0.5, report joint precision and recall alongside it, then freeze the configuration before evaluation elsewhere. Do not choose settings using the main league or inspected regression pages.
+
+**Historical selection remains unchanged:** the published 36-setting confidence-filter experiment selected the highest validation joint F0.5 among candidates with at least 95% heading-only precision. That was its actual selection rule, and its protocol and results remain available. We have removed this gate from the league table because it ignores level errors. Recomputing or presenting joint metrics does not retrain models or retroactively change how any configuration was selected.
 
 
 ## How to read the table
@@ -105,103 +108,103 @@ For optimization, select the highest validation joint F0.5 **among candidates pa
 
 **Supervised Extra Trees:** the frozen classifier was trained on 16 different WFP reports, selected using four validation reports, and first evaluated on four new test reports. It was then applied without refitting to the original four benchmark PDFs and scored with the same 77-heading matching contract as every row above: **59/77 recovered, 35/77 at the correct level, 20 extra headings**. The 7.7-second measurement covers all 523 pages, including extraction and classification but excluding model loading and output writes. Native prose retention was not evaluated. Its separate 82.0% exact-level line F1 on the new test set uses a different corpus and metric and is not the number ranked here. [Comparison runner and evidence](https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/comparison) · [Training protocol](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/report.md).
 
-**Earlier calibration experiment:** body-weight calibration was selected using validation F1. On the historical table its joint F0.5 is 59.2%, versus 58.8% for the original context model; heading precision is only 73.8%, so it fails the new 95% gate. On the inspected 38-heading set, both configurations still have 36 correct heading-level pairs; higher F1 came from fewer extras. Those original results and selection criteria remain frozen.
+**Earlier calibration experiment:** body-weight calibration was selected using validation F1. On the historical table its joint F0.5 is 59.2%, versus 58.8% for the original context model; joint precision is 58.8% (47/80). On the inspected 38-heading set, both configurations still have 36 correct heading-level pairs; higher F1 came from fewer extras. Those original results and selection criteria remain frozen.
 
-**New precision optimization:** the threshold-0.70 candidate was selected on validation joint F0.5 subject to the 95% heading-precision gate. It passes on the historical sample with 39/41 genuine headings (95.1%), including 34 correctly leveled, and two extras. Joint F0.5 is 70.5%; joint recall is 44.2%. On the inspected 38-heading set it emits 28 correctly leveled headings, no extras, and misses ten. Reused small validation and regression sets limit the result; a fresh independent evaluation remains necessary. [Settings, all validation scores and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
+**New precision optimization:** the threshold-0.70 candidate was selected on validation joint F0.5 subject to the 95% heading-precision gate. This was the experiment’s historical selection rule, not a current league-table quality gate. On the historical sample, joint precision is 82.9% (34/41), joint recall is 44.2% (34/77), and joint F0.5 is 70.5%. It has two extra headings and five genuine headings with wrong levels. On the inspected 38-heading set it emits 28 correctly leveled headings, no extras, and misses ten. Reused small validation and regression sets limit the result; a fresh independent evaluation remains necessary. [Settings, all validation scores and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
 
 
 ## Results by report
 
-| Runner / configuration | Report | Recovered | Correct heading + level | False headings |
-| --- | --- | --- | --- | --- |
-| run_docling.py / docling_default | targeting | 13/15 | 3/15 | 0 |
-| run_docling.py / docling_default | midterm | 17/18 | 5/18 | 0 |
-| run_docling.py / docling_default | indonesia | 17/21 | 4/21 | 0 |
-| run_docling.py / docling_default | colombia | 21/23 | 4/23 | 2 |
-| run_docling.py / docling_hierarchy | targeting | 13/15 | 0/15 | 0 |
-| run_docling.py / docling_hierarchy | midterm | 17/18 | 1/18 | 0 |
-| run_docling.py / docling_hierarchy | indonesia | 17/21 | 7/21 | 0 |
-| run_docling.py / docling_hierarchy | colombia | 21/23 | 8/23 | 2 |
-| run_docling.py / docling_tuned | targeting | 13/15 | 0/15 | 0 |
-| run_docling.py / docling_tuned | midterm | 17/18 | 6/18 | 0 |
-| run_docling.py / docling_tuned | indonesia | 17/21 | 4/21 | 0 |
-| run_docling.py / docling_tuned | colombia | 21/23 | 12/23 | 2 |
-| run_pymupdf4llm.py / pymupdf4llm | targeting | 14/15 | 3/15 | 0 |
-| run_pymupdf4llm.py / pymupdf4llm | midterm | 18/18 | 0/18 | 0 |
-| run_pymupdf4llm.py / pymupdf4llm | indonesia | 18/21 | 16/21 | 2 |
-| run_pymupdf4llm.py / pymupdf4llm | colombia | 22/23 | 9/23 | 0 |
-| run_marker.py / marker | targeting | 13/15 | 6/15 | 4 |
-| run_marker.py / marker | midterm | 18/18 | 6/18 | 2 |
-| run_marker.py / marker | indonesia | 17/21 | 4/21 | 0 |
-| run_marker.py / marker | colombia | 17/23 | 3/23 | 3 |
-| run_mineru.py / mineru_basic | targeting | 13/15 | 8/15 | 0 |
-| run_mineru.py / mineru_basic | midterm | 18/18 | 9/18 | 1 |
-| run_mineru.py / mineru_basic | indonesia | 17/21 | 7/21 | 1 |
-| run_mineru.py / mineru_basic | colombia | 18/23 | 7/23 | 0 |
-| run_lighton_mlx.py / lighton_mlx | targeting | 13/15 | 8/15 | 2 |
-| run_lighton_mlx.py / lighton_mlx | midterm | 18/18 | 13/18 | 0 |
-| run_lighton_mlx.py / lighton_mlx | indonesia | 19/21 | 13/21 | 2 |
-| run_lighton_mlx.py / lighton_mlx | colombia | 22/23 | 12/23 | 4 |
-| run_popo_mlx.py / popo_docling | targeting | 13/15 | 0/15 | 0 |
-| run_popo_mlx.py / popo_docling | midterm | 17/18 | 5/18 | 0 |
-| run_popo_mlx.py / popo_docling | indonesia | 17/21 | 5/21 | 0 |
-| run_popo_mlx.py / popo_docling | colombia | 21/23 | 5/23 | 2 |
-| run_qwen_ids.py / qwen_ids_union | targeting | 0/15 | 0/15 | 0 |
-| run_qwen_ids.py / qwen_ids_union | midterm | 14/18 | 6/18 | 0 |
-| run_qwen_ids.py / qwen_ids_union | indonesia | 18/21 | 12/21 | 1 |
-| run_qwen_ids.py / qwen_ids_union | colombia | 22/23 | 7/23 | 2 |
-| run_qwen_ids.py / qwen_ids_mineru_basic | targeting | 13/15 | 2/15 | 0 |
-| run_qwen_ids.py / qwen_ids_mineru_basic | midterm | 18/18 | 10/18 | 1 |
-| run_qwen_ids.py / qwen_ids_mineru_basic | indonesia | 17/21 | 8/21 | 0 |
-| run_qwen_ids.py / qwen_ids_mineru_basic | colombia | 18/23 | 3/23 | 0 |
-| run_qwen_ids.py / qwen_ids_pymupdf4llm | targeting | 14/15 | 4/15 | 0 |
-| run_qwen_ids.py / qwen_ids_pymupdf4llm | midterm | 0/18 | 0/18 | 0 |
-| run_qwen_ids.py / qwen_ids_pymupdf4llm | indonesia | 18/21 | 6/21 | 0 |
-| run_qwen_ids.py / qwen_ids_pymupdf4llm | colombia | 22/23 | 12/23 | 0 |
-| run_pdf_tags.py / pdf_tags_audit_only | targeting | 9/15 | 9/15 | 0 |
-| run_pdf_tags.py / pdf_tags_audit_only | midterm | 13/18 | 13/18 | 0 |
-| run_pdf_tags.py / pdf_tags_audit_only | indonesia | 14/21 | 10/21 | 2 |
-| run_pdf_tags.py / pdf_tags_audit_only | colombia | 16/23 | 11/23 | 0 |
-| run_mineru_pro.py / mineru_pro_mlx | targeting | 13/15 | 0/15 | 0 |
-| run_mineru_pro.py / mineru_pro_mlx | midterm | 18/18 | 0/18 | 1 |
-| run_mineru_pro.py / mineru_pro_mlx | indonesia | 19/21 | 0/21 | 0 |
-| run_mineru_pro.py / mineru_pro_mlx | colombia | 19/23 | 0/23 | 2 |
-| run_chandra_batch.py / lighton4b_mlx | targeting | 13/15 | 9/15 | 3 |
-| run_chandra_batch.py / lighton4b_mlx | midterm | 18/18 | 13/18 | 0 |
-| run_chandra_batch.py / lighton4b_mlx | indonesia | 19/21 | 13/21 | 1 |
-| run_chandra_batch.py / lighton4b_mlx | colombia | 22/23 | 11/23 | 4 |
-| run_chandra_batch.py / chandra2_mlx | targeting | 13/15 | 8/15 | 0 |
-| run_chandra_batch.py / chandra2_mlx | midterm | 18/18 | 15/18 | 0 |
-| run_chandra_batch.py / chandra2_mlx | indonesia | 19/21 | 16/21 | 0 |
-| run_chandra_batch.py / chandra2_mlx | colombia | 20/23 | 14/23 | 2 |
-| run_qwen_visual_memory.py / qwen36_visual_memory | targeting | 15/15 | 12/15 | 0 |
-| run_qwen_visual_memory.py / qwen36_visual_memory | midterm | 18/18 | 18/18 | 0 |
-| run_qwen_visual_memory.py / qwen36_visual_memory | indonesia | 21/21 | 19/21 | 0 |
-| run_qwen_visual_memory.py / qwen36_visual_memory | colombia | 23/23 | 16/23 | 2 |
-| compare.py / supervised_extra_trees | targeting | 10/15 | 4/15 | 10 |
-| compare.py / supervised_extra_trees | midterm | 16/18 | 13/18 | 2 |
-| compare.py / supervised_extra_trees | indonesia | 14/21 | 9/21 | 6 |
-| compare.py / supervised_extra_trees | colombia | 19/23 | 9/23 | 2 |
-| train.py / structure_expanded_line | targeting | 12/15 | 7/15 | 11 |
-| train.py / structure_expanded_line | midterm | 18/18 | 14/18 | 0 |
-| train.py / structure_expanded_line | indonesia | 18/21 | 10/21 | 13 |
-| train.py / structure_expanded_line | colombia | 21/23 | 10/23 | 2 |
-| train.py / structure_learned_groups | targeting | 15/15 | 12/15 | 7 |
-| train.py / structure_learned_groups | midterm | 16/18 | 14/18 | 1 |
-| train.py / structure_learned_groups | indonesia | 21/21 | 12/21 | 11 |
-| train.py / structure_learned_groups | colombia | 22/23 | 13/23 | 2 |
-| train.py / structure_context_relations | targeting | 15/15 | 9/15 | 10 |
-| train.py / structure_context_relations | midterm | 16/18 | 15/18 | 2 |
-| train.py / structure_context_relations | indonesia | 14/21 | 13/21 | 11 |
-| train.py / structure_context_relations | colombia | 19/23 | 13/23 | 0 |
-| calibrate.py / structure_calibrated | targeting | 15/15 | 9/15 | 9 |
-| calibrate.py / structure_calibrated | midterm | 16/18 | 15/18 | 2 |
-| calibrate.py / structure_calibrated | indonesia | 12/21 | 11/21 | 10 |
-| calibrate.py / structure_calibrated | colombia | 16/23 | 12/23 | 0 |
-| optimize_precision.py / structure_precision | targeting | 7/15 | 6/15 | 1 |
-| optimize_precision.py / structure_precision | midterm | 12/18 | 12/18 | 0 |
-| optimize_precision.py / structure_precision | indonesia | 7/21 | 7/21 | 1 |
-| optimize_precision.py / structure_precision | colombia | 13/23 | 9/23 | 0 |
+| Runner / configuration | Report | Recovered | Correct heading + level | False headings | Heading-only precision (diagnostic) |
+| --- | --- | --- | --- | --- | --- |
+| run_docling.py / docling_default | targeting | 13/15 | 3/15 | 0 | 100.0% |
+| run_docling.py / docling_default | midterm | 17/18 | 5/18 | 0 | 100.0% |
+| run_docling.py / docling_default | indonesia | 17/21 | 4/21 | 0 | 100.0% |
+| run_docling.py / docling_default | colombia | 21/23 | 4/23 | 2 | 91.3% |
+| run_docling.py / docling_hierarchy | targeting | 13/15 | 0/15 | 0 | 100.0% |
+| run_docling.py / docling_hierarchy | midterm | 17/18 | 1/18 | 0 | 100.0% |
+| run_docling.py / docling_hierarchy | indonesia | 17/21 | 7/21 | 0 | 100.0% |
+| run_docling.py / docling_hierarchy | colombia | 21/23 | 8/23 | 2 | 91.3% |
+| run_docling.py / docling_tuned | targeting | 13/15 | 0/15 | 0 | 100.0% |
+| run_docling.py / docling_tuned | midterm | 17/18 | 6/18 | 0 | 100.0% |
+| run_docling.py / docling_tuned | indonesia | 17/21 | 4/21 | 0 | 100.0% |
+| run_docling.py / docling_tuned | colombia | 21/23 | 12/23 | 2 | 91.3% |
+| run_pymupdf4llm.py / pymupdf4llm | targeting | 14/15 | 3/15 | 0 | 100.0% |
+| run_pymupdf4llm.py / pymupdf4llm | midterm | 18/18 | 0/18 | 0 | 100.0% |
+| run_pymupdf4llm.py / pymupdf4llm | indonesia | 18/21 | 16/21 | 2 | 90.0% |
+| run_pymupdf4llm.py / pymupdf4llm | colombia | 22/23 | 9/23 | 0 | 100.0% |
+| run_marker.py / marker | targeting | 13/15 | 6/15 | 4 | 76.5% |
+| run_marker.py / marker | midterm | 18/18 | 6/18 | 2 | 90.0% |
+| run_marker.py / marker | indonesia | 17/21 | 4/21 | 0 | 100.0% |
+| run_marker.py / marker | colombia | 17/23 | 3/23 | 3 | 85.0% |
+| run_mineru.py / mineru_basic | targeting | 13/15 | 8/15 | 0 | 100.0% |
+| run_mineru.py / mineru_basic | midterm | 18/18 | 9/18 | 1 | 94.7% |
+| run_mineru.py / mineru_basic | indonesia | 17/21 | 7/21 | 1 | 94.4% |
+| run_mineru.py / mineru_basic | colombia | 18/23 | 7/23 | 0 | 100.0% |
+| run_lighton_mlx.py / lighton_mlx | targeting | 13/15 | 8/15 | 2 | 86.7% |
+| run_lighton_mlx.py / lighton_mlx | midterm | 18/18 | 13/18 | 0 | 100.0% |
+| run_lighton_mlx.py / lighton_mlx | indonesia | 19/21 | 13/21 | 2 | 90.5% |
+| run_lighton_mlx.py / lighton_mlx | colombia | 22/23 | 12/23 | 4 | 84.6% |
+| run_popo_mlx.py / popo_docling | targeting | 13/15 | 0/15 | 0 | 100.0% |
+| run_popo_mlx.py / popo_docling | midterm | 17/18 | 5/18 | 0 | 100.0% |
+| run_popo_mlx.py / popo_docling | indonesia | 17/21 | 5/21 | 0 | 100.0% |
+| run_popo_mlx.py / popo_docling | colombia | 21/23 | 5/23 | 2 | 91.3% |
+| run_qwen_ids.py / qwen_ids_union | targeting | 0/15 | 0/15 | 0 | 0.0% |
+| run_qwen_ids.py / qwen_ids_union | midterm | 14/18 | 6/18 | 0 | 100.0% |
+| run_qwen_ids.py / qwen_ids_union | indonesia | 18/21 | 12/21 | 1 | 94.7% |
+| run_qwen_ids.py / qwen_ids_union | colombia | 22/23 | 7/23 | 2 | 91.7% |
+| run_qwen_ids.py / qwen_ids_mineru_basic | targeting | 13/15 | 2/15 | 0 | 100.0% |
+| run_qwen_ids.py / qwen_ids_mineru_basic | midterm | 18/18 | 10/18 | 1 | 94.7% |
+| run_qwen_ids.py / qwen_ids_mineru_basic | indonesia | 17/21 | 8/21 | 0 | 100.0% |
+| run_qwen_ids.py / qwen_ids_mineru_basic | colombia | 18/23 | 3/23 | 0 | 100.0% |
+| run_qwen_ids.py / qwen_ids_pymupdf4llm | targeting | 14/15 | 4/15 | 0 | 100.0% |
+| run_qwen_ids.py / qwen_ids_pymupdf4llm | midterm | 0/18 | 0/18 | 0 | 0.0% |
+| run_qwen_ids.py / qwen_ids_pymupdf4llm | indonesia | 18/21 | 6/21 | 0 | 100.0% |
+| run_qwen_ids.py / qwen_ids_pymupdf4llm | colombia | 22/23 | 12/23 | 0 | 100.0% |
+| run_pdf_tags.py / pdf_tags_audit_only | targeting | 9/15 | 9/15 | 0 | 100.0% |
+| run_pdf_tags.py / pdf_tags_audit_only | midterm | 13/18 | 13/18 | 0 | 100.0% |
+| run_pdf_tags.py / pdf_tags_audit_only | indonesia | 14/21 | 10/21 | 2 | 87.5% |
+| run_pdf_tags.py / pdf_tags_audit_only | colombia | 16/23 | 11/23 | 0 | 100.0% |
+| run_mineru_pro.py / mineru_pro_mlx | targeting | 13/15 | 0/15 | 0 | 100.0% |
+| run_mineru_pro.py / mineru_pro_mlx | midterm | 18/18 | 0/18 | 1 | 94.7% |
+| run_mineru_pro.py / mineru_pro_mlx | indonesia | 19/21 | 0/21 | 0 | 100.0% |
+| run_mineru_pro.py / mineru_pro_mlx | colombia | 19/23 | 0/23 | 2 | 90.5% |
+| run_chandra_batch.py / lighton4b_mlx | targeting | 13/15 | 9/15 | 3 | 81.2% |
+| run_chandra_batch.py / lighton4b_mlx | midterm | 18/18 | 13/18 | 0 | 100.0% |
+| run_chandra_batch.py / lighton4b_mlx | indonesia | 19/21 | 13/21 | 1 | 95.0% |
+| run_chandra_batch.py / lighton4b_mlx | colombia | 22/23 | 11/23 | 4 | 84.6% |
+| run_chandra_batch.py / chandra2_mlx | targeting | 13/15 | 8/15 | 0 | 100.0% |
+| run_chandra_batch.py / chandra2_mlx | midterm | 18/18 | 15/18 | 0 | 100.0% |
+| run_chandra_batch.py / chandra2_mlx | indonesia | 19/21 | 16/21 | 0 | 100.0% |
+| run_chandra_batch.py / chandra2_mlx | colombia | 20/23 | 14/23 | 2 | 90.9% |
+| run_qwen_visual_memory.py / qwen36_visual_memory | targeting | 15/15 | 12/15 | 0 | 100.0% |
+| run_qwen_visual_memory.py / qwen36_visual_memory | midterm | 18/18 | 18/18 | 0 | 100.0% |
+| run_qwen_visual_memory.py / qwen36_visual_memory | indonesia | 21/21 | 19/21 | 0 | 100.0% |
+| run_qwen_visual_memory.py / qwen36_visual_memory | colombia | 23/23 | 16/23 | 2 | 92.0% |
+| compare.py / supervised_extra_trees | targeting | 10/15 | 4/15 | 10 | 50.0% |
+| compare.py / supervised_extra_trees | midterm | 16/18 | 13/18 | 2 | 88.9% |
+| compare.py / supervised_extra_trees | indonesia | 14/21 | 9/21 | 6 | 70.0% |
+| compare.py / supervised_extra_trees | colombia | 19/23 | 9/23 | 2 | 90.5% |
+| train.py / structure_expanded_line | targeting | 12/15 | 7/15 | 11 | 52.2% |
+| train.py / structure_expanded_line | midterm | 18/18 | 14/18 | 0 | 100.0% |
+| train.py / structure_expanded_line | indonesia | 18/21 | 10/21 | 13 | 58.1% |
+| train.py / structure_expanded_line | colombia | 21/23 | 10/23 | 2 | 91.3% |
+| train.py / structure_learned_groups | targeting | 15/15 | 12/15 | 7 | 68.2% |
+| train.py / structure_learned_groups | midterm | 16/18 | 14/18 | 1 | 94.1% |
+| train.py / structure_learned_groups | indonesia | 21/21 | 12/21 | 11 | 65.6% |
+| train.py / structure_learned_groups | colombia | 22/23 | 13/23 | 2 | 91.7% |
+| train.py / structure_context_relations | targeting | 15/15 | 9/15 | 10 | 60.0% |
+| train.py / structure_context_relations | midterm | 16/18 | 15/18 | 2 | 88.9% |
+| train.py / structure_context_relations | indonesia | 14/21 | 13/21 | 11 | 56.0% |
+| train.py / structure_context_relations | colombia | 19/23 | 13/23 | 0 | 100.0% |
+| calibrate.py / structure_calibrated | targeting | 15/15 | 9/15 | 9 | 62.5% |
+| calibrate.py / structure_calibrated | midterm | 16/18 | 15/18 | 2 | 88.9% |
+| calibrate.py / structure_calibrated | indonesia | 12/21 | 11/21 | 10 | 54.5% |
+| calibrate.py / structure_calibrated | colombia | 16/23 | 12/23 | 0 | 100.0% |
+| optimize_precision.py / structure_precision | targeting | 7/15 | 6/15 | 1 | 87.5% |
+| optimize_precision.py / structure_precision | midterm | 12/18 | 12/18 | 0 | 100.0% |
+| optimize_precision.py / structure_precision | indonesia | 7/21 | 7/21 | 1 | 87.5% |
+| optimize_precision.py / structure_precision | colombia | 13/23 | 9/23 | 0 | 100.0% |
 
 ## Technique diagrams and sources
 

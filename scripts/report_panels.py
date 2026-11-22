@@ -32,15 +32,10 @@ def text(x: int, y: int, value, size: int = 20, bold: bool = False, color: str =
 def score_cells(row: dict, y: int) -> list[str]:
     return [
         text(490, y + 29, f"{row['joint_f05']:.1%}", 23, True),
-        text(660, y + 29, f"{row['heading_precision']:.1%}", 23, True),
-        text(
-            660,
-            y + 55,
-            "PASS" if row["precision_gate_pass"] else "FAIL",
-            17,
-            color="#086653" if row["precision_gate_pass"] else "#9e3931",
-        ),
-        text(865, y + 29, f"{row['correct_level']}/{row['gold']}", 22, True),
+        text(660, y + 29, f"{row['joint_precision']:.1%}", 23, True),
+        text(660, y + 55, f"{row['correct_level']}/{row['predicted']}", 17),
+        text(865, y + 29, f"{row['joint_recall']:.1%}", 22, True),
+        text(865, y + 55, f"{row['correct_level']}/{row['gold']}", 17),
         text(1020, y + 29, row["false_headings"], 22, True),
         text(1130, y + 29, row["gold"] - row["matched"], 22, True),
     ]
@@ -77,8 +72,8 @@ def panel(kind: str, rows: list[dict]) -> str:
     columns = [
         (30, "Configuration"),
         (490, "Joint F0.5"),
-        (660, "Heading precision"),
-        (865, "Correct + level"),
+        (660, "Joint precision"),
+        (865, "Joint recall"),
         (1020, "Extras"),
         (1130, "Missed titles"),
     ]
@@ -106,7 +101,7 @@ def panel(kind: str, rows: list[dict]) -> str:
         parts += score_cells(row, y) if kind == "quality" else time_cells(row, y)
     notes = [
         "Joint F0.5 = 1.25C / (P + 0.25G). Wrong levels and extra headings both reduce the score.",
-        "PASS requires ≥95% genuine headings among predictions. It does not mean 95% correct levels.",
+        "Joint precision = correct pairs / predictions. Joint recall = correct pairs / reference headings.",
         "Frozen sample; single assistant annotator. The new filter trades recall for fewer false headings.",
     ]
     if kind == "timings":

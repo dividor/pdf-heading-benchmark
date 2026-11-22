@@ -28,7 +28,7 @@ def test_report_is_reproducible_and_has_all_method_links():
     for row in rows:
         assert len(row.find_all("td")) == 10
         assert (
-            row.find_all("td")[3]
+            row.find_all("td")[4]
             .find("a")["href"]
             .startswith("https://github.com/dividor/pdf-heading-benchmark/blob/")
         )
@@ -110,7 +110,7 @@ def test_information_buttons_resolve_to_named_dialogs():
         assert button["aria-label"].startswith("About ")
     score_help = soup.find("dialog", id="column-help-1")
     assert "1.25C / (P + 0.25G)" in score_help.get_text()
-    assert "95%" in score_help.get_text()
+    assert "no separate PASS/FAIL" in score_help.get_text()
 
 
 def test_methods_explain_terms_and_link_them_in_context():
@@ -129,3 +129,20 @@ def test_methods_explain_terms_and_link_them_in_context():
     chosen = soup.find("dialog", id="technique-structure_precision")
     assert "Reuse frozen v2 trees" not in chosen.get_text()
     assert "No further model training" in chosen.get_text()
+
+
+def test_league_shows_joint_precision_and_recall_without_detection_gate():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    table = soup.select_one("table.league-table")
+    headers = [th.contents[0].strip() for th in table.find_all("th")]
+    assert headers[1:4] == ["Primary score: joint F0.5", "Joint precision", "Joint recall"]
+    assert "PASS" not in table.get_text() and "FAIL" not in table.get_text()
+    rows = {row["method"]: row for row in read_json(REPO / "outputs/report/results.json")}
+    for key in ("mineru_basic", "structure_precision"):
+        cell = table.select_one(f'button[data-technique="technique-{key}"]').find_parent("tr")
+        values = [td.get_text() for td in cell.find_all("td")]
+        row = rows[key]
+        expected = f"{row['correct_level'] / row['predicted']:.1%}"
+        assert values[2].startswith(expected)
+        assert values[3].startswith(f"{row['correct_level'] / row['gold']:.1%}")
+    assert "Heading-only precision (diagnostic)" in soup.get_text()
