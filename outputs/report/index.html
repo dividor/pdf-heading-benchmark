@@ -547,10 +547,10 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 <h2>Sequential GPU reruns</h2>
 <p>These are fresh runs on the same four PDFs and 32 audit pages, using the existing 77 reference headings. Each configuration runs in a separate process, with only one benchmark model loaded at a time. The runner checks that MLX selects the Metal GPU and refuses a CPU fallback. It records model/package versions, source and input hashes, raw page responses, process wall time, GPU activity and virtual-memory counters. The original league results above remain frozen; this table compares the reruns explicitly rather than silently replacing the historical measurements.</p>
 <p><strong>Timing:</strong> all rates below use seconds per page. Earlier and rerun processing rates use the original runners' measurement boundaries, excluding model loading and upstream candidate extraction. Whole-process rates include interpreter imports, model loading, image preparation, generation and output writes; they still exclude previously prepared candidate extraction and downloads. OCR batch time is divided by the number of pages, so it measures average throughput rather than single-page latency. Smaller values are faster. This is one repeat per configuration, not a statistical estimate of typical performance.</p>
-<p><strong>Settings:</strong> Qwen models retain their pinned MLX 4-bit weights, greedy decoding, seed 42, non-thinking prompts and 4,096-token limit. Single-image runs use a 1,280-pixel image; visual-memory runs use a 1,792-pixel current image plus up to six earlier 1,280-pixel images. Chandra retains batch four and a 12,384-token limit. LightOn 4B uses batch two throughout and a 12,384-token limit; its historical run mixed five single-page checkpoints with batching, so that comparison includes a batching change. LightOn 0.8B remains one image at a time with an 8,192-token limit. No headings or levels are repaired after generation.</p>
+<p><strong>Settings:</strong> Qwen models retain their pinned MLX 4-bit weights, greedy decoding, seed 42, non-thinking prompts and 4,096-token limit. Single-image runs use a 1,280-pixel image; visual-memory runs use a 1,792-pixel current image plus up to six earlier 1,280-pixel images. Chandra retains batch four and a 12,384-token limit. LightOn 4B uses batch two throughout and a 12,384-token limit; its historical run mixed five single-page checkpoints (12,288-token limit) with batching, so that comparison includes a batching and token-limit change. LightOn 0.8B remains one image at a time with an 8,192-token limit. No headings or levels are repaired after generation.</p>
 <p><strong>Hardware and limits:</strong> this Mac has an Apple M4 Pro with a 20-core GPU and 48 GiB unified memory. GPU inference is active, but other applications still share memory and GPU resources. In the initial rerun, loading the sparse Qwen model increased total system swap usage from approximately 15 GB to 20 GB. The reruns therefore must not be described as measurements on an idle or memory-pressure-free machine. Swap-counter differences below show actual activity during each run, rather than treating existing swap allocation as proof of ongoing paging. PDF rendering, tokenization and JSON handling also use the CPU. <a href="https://ml-explore.github.io/mlx/build/html/usage/unified_memory.html">MLX's unified-memory and device documentation</a> explains how CPU and GPU execution share memory; the recorded device selection and telemetry establish what happened in these runs.</p>
 <p><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/repeat_models.py">Sequential runner</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/repeat_report.py">Importer and scorer</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/sequential-repeat/report.md">Rerun predictions versus reference</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/sequential-repeat">Compact evidence</a></p>
-<p><strong>Completed: 1/7 configurations.</strong></p>
+<p><strong>Completed: 5/7 configurations.</strong></p>
 <table>
 <thead>
 <tr>
@@ -577,6 +577,50 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 <td>0</td>
 <td>0</td>
 </tr>
+<tr>
+<td>Qwen3.6-35B-A3B 4-bit — visual memory</td>
+<td>16.256</td>
+<td>15.580</td>
+<td>16.497</td>
+<td>52/77 → 52/77</td>
+<td>69.0% → 69.0%</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Chandra OCR 2 / MLX</td>
+<td>32.258</td>
+<td>27.701</td>
+<td>28.198</td>
+<td>53/77 → 53/77</td>
+<td>72.6% → 72.6%</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>LightOnOCR-3-4B / MLX grounding</td>
+<td>44.145</td>
+<td>32.988</td>
+<td>33.530</td>
+<td>46/77 → 46/77</td>
+<td>57.9% → 57.9%</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>LightOnOCR-3-0.8B / MLX</td>
+<td>16.606</td>
+<td>11.542</td>
+<td>11.772</td>
+<td>46/77 → 46/77</td>
+<td>57.9% → 57.9%</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+</tr>
 </tbody>
 </table>
 <h3>GPU and memory observations</h3>
@@ -599,6 +643,38 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 <td>100</td>
 <td>0.492</td>
 <td>4.719</td>
+</tr>
+<tr>
+<td>Qwen3.6-35B-A3B 4-bit — visual memory</td>
+<td>53</td>
+<td>99</td>
+<td>100</td>
+<td>0.098</td>
+<td>0.029</td>
+</tr>
+<tr>
+<td>Chandra OCR 2 / MLX</td>
+<td>90</td>
+<td>99.0</td>
+<td>100</td>
+<td>0.099</td>
+<td>0.000</td>
+</tr>
+<tr>
+<td>LightOnOCR-3-4B / MLX grounding</td>
+<td>107</td>
+<td>99</td>
+<td>100</td>
+<td>0.143</td>
+<td>0.000</td>
+</tr>
+<tr>
+<td>LightOnOCR-3-0.8B / MLX</td>
+<td>38</td>
+<td>92.0</td>
+<td>100</td>
+<td>0.201</td>
+<td>0.000</td>
 </tr>
 </tbody>
 </table>

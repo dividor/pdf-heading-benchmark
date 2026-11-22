@@ -9,13 +9,14 @@ import hashlib
 import json
 import re
 import statistics
+import time
 from pathlib import Path
 
 from pdf_heading_benchmark.evaluation import evaluate
 from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.prediction_comparison import LABELS, comparison_rows, heading_text
-from pdf_heading_benchmark.report import table
+from pdf_heading_benchmark.report import build_report, table
 
 OUT = REPO / "outputs/sequential-repeat"
 FIELDS = ("gold", "predicted", "matched", "correct_level")
@@ -237,10 +238,33 @@ def build() -> None:
     write_json(OUT / "results.json", results)
 
 
+def watch(root: Path) -> None:
+    seen = set()
+    while True:
+        completed = set(root.glob("*/execution.json"))
+        if completed != seen:
+            import_run(root)
+            build()
+            build_report()
+            print(f"Published {len(completed)} completed reruns", flush=True)
+            seen = completed
+        if (root / "completed.json").exists():
+            return
+        time.sleep(10)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path)
+    parser.add_argument(
+        "--watch", action="store_true", help="Publish each completed run until the queue finishes"
+    )
     args = parser.parse_args()
+    if args.watch:
+        if args.run is None:
+            parser.error("--watch requires --run")
+        watch(args.run)
+        return
     if args.run:
         import_run(args.run)
     build()
