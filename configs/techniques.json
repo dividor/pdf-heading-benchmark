@@ -2294,6 +2294,30 @@
     "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
     "sources": [
       {
+        "label": "Model provenance page",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+      },
+      {
+        "label": "Training run record",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "Training program",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py"
+      },
+      {
+        "label": "Training data manifest",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Materialized training annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Later filter protocol",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json"
+      },
+      {
         "label": "Extra Trees implementation",
         "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
       },
@@ -2340,8 +2364,8 @@
     ],
     "training": [
       {
-        "title": "Annotate examples in other WFP reports",
-        "detail": "An assistant labels heading text, levels and ordinary body text. The expanded training set contains 887 heading groups in 20 reports; validation and test reports are separate."
+        "title": "Train our three classifiers locally",
+        "detail": "The structure-v2/run-001 training program fits Extra Trees on assistant annotations from 20 WFP reports, on the local M4 Pro CPU. See the model provenance page and training run record. Later decision-setting experiments reuse these fitted models. No further model training occurs in those experiments."
       },
       {
         "title": "Train Extra Trees classifiers",
@@ -2404,6 +2428,15 @@
       ]
     ],
     "sections": [
+      {
+        "title": "Where these three classifiers were trained",
+        "paragraphs": [
+          "These are our own classifiers, trained from scratch in the structure-v2/run-001 experiment on the local Apple M4 Pro with 48 GB RAM, using CPU. The training run record identifies Python 3.12.3, scikit-learn 1.9.1 and macOS 26.1 arm64. The training program fitted the models from assistant-labeled WFP examples; they were not obtained from a pretrained-model repository.",
+          "The deployed files are join.json (200 trees; 6,267 line pairs; 100 features), context.json (200 trees; 6,736 heading/body groups; 47 features), and relation.json (200 trees; 867 heading pairs; 142 features). All use max_depth=16, min_samples_leaf=2, max_features=0.8, class_weight=balanced, random_state=42 and n_jobs=4. Five classifiers were fitted for the comparison variants, but this pipeline uses only these three.",
+          "The training data manifest identifies the 20 fitting reports, their official PDF URLs, SHA-256 hashes and reviewed pages. Materialized training annotations contain explicit line groups and levels. Four separate validation reports selected the context-and-relationships pipeline; four further reports were evaluated after selection. No training labels came from the four original league-table PDFs.",
+          "The model provenance page lists all reports, the exact reproduction command and the three full model hashes. The hashes agree between the original training run record, the later filter protocol and the local saved files. Model files are stored outside Git. The source records do not capture a precise training timestamp or the annotating assistant model version."
+        ]
+      },
       {
         "title": "Training data and annotation source",
         "paragraphs": [
@@ -2474,6 +2507,54 @@
         "aliases": [
           "Viterbi"
         ]
+      },
+      {
+        "name": "model provenance page",
+        "description": "Complete training lineage, report list, model identities and reproduction command.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md",
+        "aliases": [
+          "model provenance page"
+        ]
+      },
+      {
+        "name": "training run record",
+        "description": "Original structure-v2 training output: counts, versions, selection and saved model hashes.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json",
+        "aliases": [
+          "training run record"
+        ]
+      },
+      {
+        "name": "training program",
+        "description": "Code that constructs training examples and fits the five comparison classifiers.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py",
+        "aliases": [
+          "training program"
+        ]
+      },
+      {
+        "name": "training data manifest",
+        "description": "Exact source reports, PDF hashes, report splits and annotation coverage.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json",
+        "aliases": [
+          "training data manifest"
+        ]
+      },
+      {
+        "name": "Materialized training annotations",
+        "description": "Explicit heading line groups and levels reviewed by the assistant.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json",
+        "aliases": [
+          "Materialized training annotations"
+        ]
+      },
+      {
+        "name": "later filter protocol",
+        "description": "Records the same model hashes before the subsequent confidence-filter search.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json",
+        "aliases": [
+          "later filter protocol"
+        ]
       }
     ]
   },
@@ -2499,6 +2580,30 @@
     ],
     "limitation": "The models and labels are unchanged. Validation selects a stricter heading decision. Regression on previously inspected pages improves F1 but misses one genuine heading. It is not new independent test evidence.",
     "sources": [
+      {
+        "label": "Model provenance page",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+      },
+      {
+        "label": "Training run record",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "Training program",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py"
+      },
+      {
+        "label": "Training data manifest",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Materialized training annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Later filter protocol",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json"
+      },
       {
         "label": "Extra Trees implementation",
         "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
@@ -2562,8 +2667,8 @@
     ],
     "training": [
       {
-        "title": "Start with the trained models",
-        "detail": "Use the line-joining, heading-classification and relationship classifiers trained on 887 heading groups in 20 WFP reports. Do not train them again or change the labels."
+        "title": "Train our three classifiers locally",
+        "detail": "The structure-v2/run-001 training program fits Extra Trees on assistant annotations from 20 WFP reports, on the local M4 Pro CPU. See the model provenance page and training run record. Later decision-setting experiments reuse these fitted models. No further model training occurs in those experiments."
       },
       {
         "title": "Try nine decision settings",
@@ -2574,7 +2679,7 @@
         "detail": "Body multiplier 2 and relationship weight 1 scored 81.1% exact group-and-level F1. The original benchmark was evaluated afterwards; it did not choose these settings."
       }
     ],
-    "summary": "Make the previously trained three-classifier design less likely to label body text as a heading. Multiply its body-text score by two before choosing a class. The models themselves are unchanged; only this decision rule was selected on validation reports.",
+    "summary": "Use the three Extra Trees classifiers we trained locally in structure-v2/run-001, then multiply their body-text score by two before choosing a class. Only this decision rule was selected on validation reports; the fitted models are unchanged. The model provenance page documents their original training.",
     "parameters": [
       [
         "Estimator",
@@ -2634,6 +2739,15 @@
       ]
     ],
     "sections": [
+      {
+        "title": "Where these three classifiers were trained",
+        "paragraphs": [
+          "These are our own classifiers, trained from scratch in the structure-v2/run-001 experiment on the local Apple M4 Pro with 48 GB RAM, using CPU. The training run record identifies Python 3.12.3, scikit-learn 1.9.1 and macOS 26.1 arm64. The training program fitted the models from assistant-labeled WFP examples; they were not obtained from a pretrained-model repository.",
+          "The deployed files are join.json (200 trees; 6,267 line pairs; 100 features), context.json (200 trees; 6,736 heading/body groups; 47 features), and relation.json (200 trees; 867 heading pairs; 142 features). All use max_depth=16, min_samples_leaf=2, max_features=0.8, class_weight=balanced, random_state=42 and n_jobs=4. Five classifiers were fitted for the comparison variants, but this pipeline uses only these three.",
+          "The training data manifest identifies the 20 fitting reports, their official PDF URLs, SHA-256 hashes and reviewed pages. Materialized training annotations contain explicit line groups and levels. Four separate validation reports selected the context-and-relationships pipeline; four further reports were evaluated after selection. No training labels came from the four original league-table PDFs.",
+          "The model provenance page lists all reports, the exact reproduction command and the three full model hashes. The hashes agree between the original training run record, the later filter protocol and the local saved files. Model files are stored outside Git. The source records do not capture a precise training timestamp or the annotating assistant model version."
+        ]
+      },
       {
         "title": "Previously trained models and their examples",
         "paragraphs": [
@@ -2707,6 +2821,54 @@
         "aliases": [
           "Viterbi"
         ]
+      },
+      {
+        "name": "model provenance page",
+        "description": "Complete training lineage, report list, model identities and reproduction command.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md",
+        "aliases": [
+          "model provenance page"
+        ]
+      },
+      {
+        "name": "training run record",
+        "description": "Original structure-v2 training output: counts, versions, selection and saved model hashes.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json",
+        "aliases": [
+          "training run record"
+        ]
+      },
+      {
+        "name": "training program",
+        "description": "Code that constructs training examples and fits the five comparison classifiers.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py",
+        "aliases": [
+          "training program"
+        ]
+      },
+      {
+        "name": "training data manifest",
+        "description": "Exact source reports, PDF hashes, report splits and annotation coverage.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json",
+        "aliases": [
+          "training data manifest"
+        ]
+      },
+      {
+        "name": "Materialized training annotations",
+        "description": "Explicit heading line groups and levels reviewed by the assistant.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json",
+        "aliases": [
+          "Materialized training annotations"
+        ]
+      },
+      {
+        "name": "later filter protocol",
+        "description": "Records the same model hashes before the subsequent confidence-filter search.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json",
+        "aliases": [
+          "later filter protocol"
+        ]
       }
     ]
   },
@@ -2732,6 +2894,30 @@
     ],
     "limitation": "The 95% gate checks whether predicted titles are real headings; it does not check their levels. Here 39/41 titles are real (95.1%), but only 34/41 have correct levels (82.9%), and 38 reference titles are missed. These small, previously inspected datasets do not establish production robustness.",
     "sources": [
+      {
+        "label": "Model provenance page",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+      },
+      {
+        "label": "Training run record",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "Training program",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py"
+      },
+      {
+        "label": "Training data manifest",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Materialized training annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Later filter protocol",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json"
+      },
       {
         "label": "Extra Trees implementation",
         "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
@@ -2799,8 +2985,8 @@
     ],
     "training": [
       {
-        "title": "Start with three trained classifiers",
-        "detail": "Use the Extra Trees models that learned line joining, heading recognition and level relationships from 887 annotated heading groups in 20 WFP reports. No further model training is done in this experiment."
+        "title": "Train our three classifiers locally",
+        "detail": "The structure-v2/run-001 training program fits Extra Trees on assistant annotations from 20 WFP reports, on the local M4 Pro CPU. See the model provenance page and training run record. Later decision-setting experiments reuse these fitted models. No further model training occurs in those experiments."
       },
       {
         "title": "Try 36 ways to reject uncertain headings",
@@ -2811,7 +2997,7 @@
         "detail": "First require at least 95% of emitted titles to be genuine headings, regardless of level. Among qualifying settings, choose the highest joint F0.5. The selected design uses document context, a 0.70 cutoff, body multiplier 1 and relationship weight 1."
       }
     ],
-    "summary": "OUR METHOD uses three previously trained Extra Trees classifiers and adds a rule that rejects uncertain heading predictions. Extra Trees is a machine-learning algorithm that combines many decision trees; “previously trained” means their learned rules were kept unchanged while we tested rejection settings. This reduced invented headings from 23 to two, but correct title-and-level answers also fell from 50/77 to 34/77.",
+    "summary": "OUR METHOD uses three Extra Trees classifiers that we trained from scratch for this benchmark in structure-v2/run-001, on the local M4 Pro CPU. They learn line joining, body/heading levels and relationships between headings from assistant annotations of 20 WFP reports. The later experiment keeps these models unchanged and selects a confidence filter. See the model provenance page for training code, source reports, versions and model hashes. The filter reduced extra headings from 23 to two, while correct heading-level pairs fell from 50/77 to 34/77.",
     "parameters": [
       [
         "Estimator",
@@ -2871,6 +3057,15 @@
       ]
     ],
     "sections": [
+      {
+        "title": "Where these three classifiers were trained",
+        "paragraphs": [
+          "These are our own classifiers, trained from scratch in the structure-v2/run-001 experiment on the local Apple M4 Pro with 48 GB RAM, using CPU. The training run record identifies Python 3.12.3, scikit-learn 1.9.1 and macOS 26.1 arm64. The training program fitted the models from assistant-labeled WFP examples; they were not obtained from a pretrained-model repository.",
+          "The deployed files are join.json (200 trees; 6,267 line pairs; 100 features), context.json (200 trees; 6,736 heading/body groups; 47 features), and relation.json (200 trees; 867 heading pairs; 142 features). All use max_depth=16, min_samples_leaf=2, max_features=0.8, class_weight=balanced, random_state=42 and n_jobs=4. Five classifiers were fitted for the comparison variants, but this pipeline uses only these three.",
+          "The training data manifest identifies the 20 fitting reports, their official PDF URLs, SHA-256 hashes and reviewed pages. Materialized training annotations contain explicit line groups and levels. Four separate validation reports selected the context-and-relationships pipeline; four further reports were evaluated after selection. No training labels came from the four original league-table PDFs.",
+          "The model provenance page lists all reports, the exact reproduction command and the three full model hashes. The hashes agree between the original training run record, the later filter protocol and the local saved files. Model files are stored outside Git. The source records do not capture a precise training timestamp or the annotating assistant model version."
+        ]
+      },
       {
         "title": "Training data and annotation source",
         "paragraphs": [
@@ -2941,6 +3136,54 @@
         "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py",
         "aliases": [
           "Viterbi"
+        ]
+      },
+      {
+        "name": "model provenance page",
+        "description": "Complete training lineage, report list, model identities and reproduction command.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md",
+        "aliases": [
+          "model provenance page"
+        ]
+      },
+      {
+        "name": "training run record",
+        "description": "Original structure-v2 training output: counts, versions, selection and saved model hashes.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json",
+        "aliases": [
+          "training run record"
+        ]
+      },
+      {
+        "name": "training program",
+        "description": "Code that constructs training examples and fits the five comparison classifiers.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py",
+        "aliases": [
+          "training program"
+        ]
+      },
+      {
+        "name": "training data manifest",
+        "description": "Exact source reports, PDF hashes, report splits and annotation coverage.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json",
+        "aliases": [
+          "training data manifest"
+        ]
+      },
+      {
+        "name": "Materialized training annotations",
+        "description": "Explicit heading line groups and levels reviewed by the assistant.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json",
+        "aliases": [
+          "Materialized training annotations"
+        ]
+      },
+      {
+        "name": "later filter protocol",
+        "description": "Records the same model hashes before the subsequent confidence-filter search.",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json",
+        "aliases": [
+          "later filter protocol"
         ]
       }
     ]

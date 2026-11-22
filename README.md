@@ -18,6 +18,8 @@ The new validation-selected filter keeps groups only when the highest heading sc
 
 Historical selection maximized validation joint F0.5 subject to at least 95% heading-only precision. That original constraint remains in the recorded experiment, but no longer qualifies configurations in the main table. Selection searched 36 fixed settings on four validation reports; the regression sets did not select the threshold. Trees and labels are unchanged. [Full precision experiment](outputs/structure-precision/report.md) · [Run on a new PDF](scripts/runners/run_precision.py) · [All validation scores](outputs/structure-precision/evidence/selection.json).
 
+[Where our three classifiers were trained: data, code, versions, model hashes and reproduction](docs/model-provenance.md). They were fitted from scratch locally for this benchmark; the later filter reuses those models.
+
 ## Earlier v2 experiment (selected using F1)
 
 Expanded assistant-reviewed training from **154 to 887 heading groups**, then compared extra data, learned line grouping, and document context/level relationships. On four fresh WFP reports (32 fully reviewed pages, 38 headings), exact group-and-level F1 rose from **71.6% to 85.7%**. The selected model recovered all 38 groups, got 36 levels right, and produced eight false headings. These are assistant labels, not independently adjudicated gold; the split holds out reports, not template families.

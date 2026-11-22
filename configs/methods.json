@@ -402,7 +402,7 @@
     ]
   },
   "structure_calibrated": {
-    "description": "Make the previously trained three-classifier design less likely to label body text as a heading.",
+    "description": "Reuse our three Extra Trees classifiers trained locally on 20 WFP reports; apply a validation-selected body-score multiplier of two.",
     "code": "scripts/structure/calibrate.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
     "steps": [
@@ -419,7 +419,7 @@
     ]
   },
   "structure_precision": {
-    "description": "Three trained Extra Trees classifiers join text lines, recognize headings and compare levels. Reject headings below score 0.70, selected on separate validation reports to reduce false headings; no additional model training.",
+    "description": "Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.",
     "code": "scripts/structure/optimize_precision.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py",
     "steps": [
