@@ -206,7 +206,7 @@
     ]
   },
   "pdf_tags_audit_only": {
-    "description": "Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.",
+    "description": "Read author H1\u2013H6 structure-tree tags on 32 audit pages; no inferred repairs.",
     "code": "scripts/runners/run_pdf_tags.py",
     "steps": [
       {
@@ -342,13 +342,61 @@
     ]
   },
   "supervised_extra_trees": {
-    "description": "Frozen 200-tree classifier trained on 16 different WFP reports; PyMuPDF line features; full PDFs. No refit on benchmark.",
+    "description": "LLM-assisted visual annotations \u2192 200-tree Extra Trees classifier trained on 16 different WFP reports \u2192 local CPU inference using PyMuPDF line features. Full PDFs; no refit on benchmark.",
     "code": "scripts/supervised/compare.py",
     "steps": [
       {
         "script": "scripts/runners/run_supervised.py",
         "environment": "project",
         "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_expanded_line": {
+    "description": "LLM annotations \u2192 Extra Trees v2: 887 heading groups on 20 training reports; original line classifier and grouping. CPU; historical diagnostic.",
+    "code": "scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "expanded_line"
+        ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_learned_groups": {
+    "description": "LLM annotations \u2192 learned line joining across PDF blocks \u2192 group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.",
+    "code": "scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "learned_groups"
+        ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_context_relations": {
+    "description": "OUR TRAINED MODEL v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.",
+    "code": "scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "context_relations"
+        ],
         "per_document": true
       }
     ]

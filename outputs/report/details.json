@@ -542,5 +542,101 @@
     "matched": 19,
     "correct_level": 9,
     "predicted": 21
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 12,
+    "correct_level": 7,
+    "predicted": 23
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 14,
+    "predicted": 18
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 18,
+    "correct_level": 10,
+    "predicted": 31
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 10,
+    "predicted": 23
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 12,
+    "predicted": 22
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 16,
+    "correct_level": 14,
+    "predicted": 17
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 21,
+    "correct_level": 12,
+    "predicted": 32
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 13,
+    "predicted": 24
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 9,
+    "predicted": 25
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 16,
+    "correct_level": 15,
+    "predicted": 18
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 14,
+    "correct_level": 13,
+    "predicted": 25
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 19,
+    "correct_level": 13,
+    "predicted": 19
   }
 ]

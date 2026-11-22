@@ -1,0 +1,25 @@
+{
+  "versions": {
+    "pymupdf": "2.1",
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "source_hashes_at_publication": {
+    "scripts/structure/active_review.py": "8bb2d12cebf61f5b332faec80e025b341f738c977e4cd2b795741bb2ea310547",
+    "scripts/structure/compile_annotations.py": "2625742952d6935a6d29695241ef602304c6303aa3886b3fda5d6618e4449217",
+    "scripts/structure/evaluate.py": "a1c86b9e41b024dc134beee770fad06981b867953687536d967e76e1f8b2b0c2",
+    "scripts/structure/predict.py": "a8a7dd8ed21b266426bfbfb02ff90a5ae954db6cc93d4950453489172b0b2805",
+    "scripts/structure/prepare.py": "5e31d81d83c768ecdddeaa231fe595cb4698c2ee5a7e6983de405d0d9b9fcdf4",
+    "scripts/structure/report.py": "975b3bfcf7271f91abcfa7409d6ae284a7f6d7964879a727fad3bd9523415961",
+    "scripts/structure/review.py": "4e00b51dbaaca773e805cd722404b993ec946b6e6b66a81a272fd4ea6f7d9b91",
+    "scripts/structure/train.py": "dd9842aa426c95069dc7be22c37999890190e7b541314c6cbc014622565f0cd7",
+    "src/pdf_heading_benchmark/structure_data.py": "94088675422791bf8beec532e037bfd7ac8a16170b43a66a1f662a9a7393932b",
+    "src/pdf_heading_benchmark/structure_evaluation.py": "13e55560442c981dfbd63165e43ca509435f33fd6dc0ed5dcf2e6aee0afa967b",
+    "src/pdf_heading_benchmark/structure_features.py": "565764ccda2903b34f74b1bd38be02ca9b5720cd59394a896938796fd0721d45",
+    "src/pdf_heading_benchmark/structure_inference.py": "555bf46cb711ef0e842398114c4ecec639b35f7cae7dc14e076398bb7f9d5cf4"
+  },
+  "weights": "External data-only JSON, not committed. Hashes and sizes in selection.json.",
+  "annotation_source": "Single assistant reviewed source text, layout snippets/pages and TOC context; no independent human adjudication.",
+  "full_text": "External; no raw PDF text committed beyond compact annotation/prediction audit excerpts."
+}

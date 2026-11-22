@@ -55,9 +55,10 @@ jobs:
       # come out byte for byte the same.
       - name: Check the report and README match the committed results
         run: |
+          uv run python scripts/structure/report.py
           uv run pdf-headings report
           uv run python scripts/supervised/report.py
-          git diff --exit-code outputs/report outputs/supervised
+          git diff --exit-code outputs/report outputs/supervised outputs/structure-v2 outputs/league_table.json outputs/league_details.json
 
   security-scan:
     runs-on: ubuntu-latest

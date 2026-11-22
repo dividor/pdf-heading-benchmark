@@ -18,13 +18,13 @@ def test_report_is_reproducible_and_has_all_method_links():
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = next(t for t in tables if t.find("th").get_text() == "Configuration")
     rows = results.find("tbody").find_all("tr")
-    assert len(rows) == 17
+    assert len(rows) == 20
     for row in rows:
         assert len(row.find_all("td")) == 8
         assert (
             row.find_all("td")[1]
             .find("a")["href"]
-            .startswith("https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/")
+            .startswith("https://github.com/dividor/pdf-heading-benchmark/blob/")
         )
     for method in read_json(REPO / "configs/methods.json").values():
         for step in method["steps"]:
@@ -33,7 +33,7 @@ def test_report_is_reproducible_and_has_all_method_links():
 
 def test_report_contains_only_on_premises_methods():
     selected = set(read_json(REPO / "configs/report-methods.json"))
-    assert len(selected) == 17
+    assert len(selected) == 20
     for filename in ("results.json", "details.json"):
         rows = read_json(REPO / "outputs/report" / filename)
         assert {row["method"] for row in rows} == selected

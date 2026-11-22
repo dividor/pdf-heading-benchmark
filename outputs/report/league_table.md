@@ -1,10 +1,14 @@
 # On-premises PDF heading benchmark: scores, timings and methods
 
-**17 completed local configurations, suitable for on-premises inference.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
+**20 completed local configurations, suitable for on-premises inference.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
 
 The strongest completed configuration was Qwen3.6-27B with sampled visual memory: **65/77 (84.4%)** headings recovered at the correct level, all 77 reference titles recovered, and two false headings. These are configuration-specific results from a small pilot with one AI assistant annotator, without independent human validation.
 
 [Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md) · [Frozen results](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/results.json) · [Per-report local scores](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/details.json)
+
+**Looking for our trained model?** [Jump to the highlighted **OUR METHOD** row](#our-trained-model): LLM-assisted visual annotations → learned line grouping, heading levels and document context → local CPU inference. The LLM creates labels; deployed inference uses small tree models. **v2: 50/77 correct on this historical diagnostic, up from 35/77 for v1.** On 32 pages from four fresh reports, exact group-and-level F1 improved from **71.6% to 85.7%**. The denominators and matching rules differ: do not compare these two percentages directly. [Ablation results, sources, costs and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md).
+
+**v2 development status:** errors on these original four reports informed the new approach. Its rows are diagnostic results, not fresh held-out validation. All three v2 ablations are shown, including learned grouping, which scored 51/77 here; the context model was selected using separate validation reports before the fresh test.
 
 ## Documents and their sources
 
@@ -38,10 +42,13 @@ Sorted by correct heading plus level. Each **Configuration** links to the packag
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Qwen3.6-27B / MLX 4-bit / sampled visual memory](https://huggingface.co/Qwen/Qwen3.6-27B) | [32 targets; Qwen3.6-27B MLX 4-bit, native text, full-document candidates/tags, prior sampled-page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) | completed | 100.0% (77/77) | 84.4% (65/77) | 2 | — | 61.8 min / 32 pages |
 | [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | [32 images; author OCR-layout prompt/rendering; MLX batch 4; read HTML heading levels.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 90.9% (70/77) | 68.8% (53/77) | 2 | 98.7% | 17.2 min / 32 pages |
+| [v2: learned grouping](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | [LLM annotations → learned line joining across PDF blocks → group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 96.1% (74/77) | 66.2% (51/77) | 21 | — | 12.0 s / 523 pages |
+| <span id="our-trained-model"></span>[**OUR METHOD — LLM annotations → grouped context model v2 (CPU)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | [OUR TRAINED MODEL v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 83.1% (64/77) | 64.9% (50/77) | 23 | — | 12.6 s / 523 pages |
 | [LightOnOCR-3-0.8B / MLX](https://huggingface.co/lightonai/LightOnOCR-3-0.8B) | [32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py) | completed | 93.5% (72/77) | 59.7% (46/77) | 8 | 99.5% | 8.9 min / 32 pages |
 | [LightOnOCR-3-4B / MLX grounding](https://huggingface.co/lightonai/LightOnOCR-3-4B) | [32 images; MLX grounding prompt, 2048-pixel limit; batch 2 after 5 single-page historical checkpoints.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 93.5% (72/77) | 59.7% (46/77) | 8 | 99.3% | 23.5 min / 32 pages |
 | [Embedded PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) | [Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) | completed | 67.5% (52/77) | 55.8% (43/77) | 2 | — | 6.4 s / 32 pages |
-| [Supervised Extra Trees / CPU / assistant labels](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py) | [Frozen 200-tree classifier trained on 16 different WFP reports; PyMuPDF line features; full PDFs. No refit on benchmark.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py) | completed | 76.6% (59/77) | 45.5% (35/77) | 20 | — | 7.7 s / 523 pages |
+| [v2: more annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | [LLM annotations → Extra Trees v2: 887 heading groups on 20 training reports; original line classifier and grouping. CPU; historical diagnostic.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 89.6% (69/77) | 53.2% (41/77) | 26 | — | 9.3 s / 523 pages |
+| [LLM annotations → Extra Trees v1 (CPU)](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py) | [LLM-assisted visual annotations → 200-tree Extra Trees classifier trained on 16 different WFP reports → local CPU inference using PyMuPDF line features. Full PDFs; no refit on benchmark.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py) | completed | 76.6% (59/77) | 45.5% (35/77) | 20 | — | 7.7 s / 523 pages |
 | [MinerU 4.2.3 basic CPU](https://github.com/opendatalab/MinerU) | [Full PDFs; basic ONNX CPU tier, no external LLM; native title-block levels.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru.py) | completed | 85.7% (66/77) | 40.3% (31/77) | 2 | 99.1% | 11.2 min / 523 pages |
 | [PyMuPDF4LLM 2.1](https://github.com/pymupdf/pymupdf4llm) | [Full PDFs to page-chunk Markdown; read Markdown heading levels and page provenance.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pymupdf4llm.py) | completed | 93.5% (72/77) | 36.4% (28/77) | 2 | 98.8% | 51.8 s / 523 pages |
 | [Qwen3.5-4B / union candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | [Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: union.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 70.1% (54/77) | 32.5% (25/77) | 3 | — | 1.7 min / hierarchy stage only |
@@ -145,3 +152,15 @@ Sorted by correct heading plus level. Each **Configuration** links to the packag
 | compare.py / supervised_extra_trees | midterm | 16/18 | 13/18 | 2 |
 | compare.py / supervised_extra_trees | indonesia | 14/21 | 9/21 | 6 |
 | compare.py / supervised_extra_trees | colombia | 19/23 | 9/23 | 2 |
+| train.py / structure_expanded_line | targeting | 12/15 | 7/15 | 11 |
+| train.py / structure_expanded_line | midterm | 18/18 | 14/18 | 0 |
+| train.py / structure_expanded_line | indonesia | 18/21 | 10/21 | 13 |
+| train.py / structure_expanded_line | colombia | 21/23 | 10/23 | 2 |
+| train.py / structure_learned_groups | targeting | 15/15 | 12/15 | 7 |
+| train.py / structure_learned_groups | midterm | 16/18 | 14/18 | 1 |
+| train.py / structure_learned_groups | indonesia | 21/21 | 12/21 | 11 |
+| train.py / structure_learned_groups | colombia | 22/23 | 13/23 | 2 |
+| train.py / structure_context_relations | targeting | 15/15 | 9/15 | 10 |
+| train.py / structure_context_relations | midterm | 16/18 | 15/18 | 2 |
+| train.py / structure_context_relations | indonesia | 14/21 | 13/21 | 11 |
+| train.py / structure_context_relations | colombia | 19/23 | 13/23 | 0 |

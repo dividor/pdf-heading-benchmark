@@ -1,0 +1,122 @@
+[
+  {
+    "before": {
+      "report_id": 584,
+      "level": 2,
+      "line_ids": [
+        "p018b006l00"
+      ],
+      "note": "Under Conclusions",
+      "page": 18,
+      "text": "Key lessons for the future",
+      "bboxes": [
+        [
+          72.0,
+          347.0885925292969,
+          203.08518981933594,
+          360.20477294921875
+        ]
+      ]
+    },
+    "after": [
+      {
+        "report_id": 584,
+        "level": 3,
+        "line_ids": [
+          "p018b006l00"
+        ],
+        "page": 18,
+        "text": "Key lessons for the future",
+        "bboxes": [
+          [
+            72.0,
+            347.0885925292969,
+            203.08518981933594,
+            360.20477294921875
+          ]
+        ],
+        "note": "Explicit LLM review v2; source text and rendered layout"
+      }
+    ]
+  },
+  {
+    "before": {
+      "report_id": 44,
+      "level": 3,
+      "line_ids": [
+        "p049b002l00"
+      ],
+      "note": "Under 3.2 then Operational Recommendations",
+      "page": 49,
+      "text": "R7: Foster the use of registered mobile money accounts",
+      "bboxes": [
+        [
+          127.45999908447266,
+          75.53598022460938,
+          471.02801513671875,
+          89.14397430419922
+        ]
+      ]
+    },
+    "after": [
+      {
+        "report_id": 44,
+        "level": 4,
+        "line_ids": [
+          "p049b002l00"
+        ],
+        "page": 49,
+        "text": "R7: Foster the use of registered mobile money accounts",
+        "bboxes": [
+          [
+            127.45999908447266,
+            75.53598022460938,
+            471.02801513671875,
+            89.14397430419922
+          ]
+        ],
+        "note": "Explicit LLM review v2; source text and rendered layout"
+      }
+    ]
+  },
+  {
+    "before": {
+      "report_id": 79,
+      "level": 3,
+      "line_ids": [
+        "p055b023l00"
+      ],
+      "note": "Standalone recommendation; inline bold lead-ins excluded",
+      "page": 55,
+      "text": "Recommendation 8: Knowledge sharing",
+      "bboxes": [
+        [
+          72.02400207519531,
+          437.7227478027344,
+          271.6795959472656,
+          450.7604064941406
+        ]
+      ]
+    },
+    "after": [
+      {
+        "report_id": 79,
+        "level": 4,
+        "line_ids": [
+          "p055b023l00"
+        ],
+        "page": 55,
+        "text": "Recommendation 8: Knowledge sharing",
+        "bboxes": [
+          [
+            72.02400207519531,
+            437.7227478027344,
+            271.6795959472656,
+            450.7604064941406
+          ]
+        ],
+        "note": "Explicit LLM review v2; source text and rendered layout"
+      }
+    ]
+  }
+]
