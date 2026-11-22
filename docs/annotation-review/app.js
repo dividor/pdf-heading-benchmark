@@ -90,7 +90,22 @@ function renderPage() {
     ? `Reviewed page · ${annotations.length} heading groups · H1 blue / H2 green / H3 purple / H4 amber / H5 pink. M labels are model predictions.`
     : 'TOC context only — this page was not in the labelled training/evaluation sample.';
 }
+function renderCoverage() {
+  el('coverage-summary').textContent = `Sample only: ${current.review_pages.length} of ${current.total_pages} PDF pages reviewed · ${current.annotations.length} annotated heading groups`;
+  const pages = el('coverage-pages'); pages.replaceChildren();
+  current.review_pages.forEach(number => {
+    const count = current.annotations.filter(a => a.page === number).length;
+    const button = node('button', {}, `p${number} · ${count} heading${count === 1 ? '' : 's'}`);
+    button.onclick = () => {
+      pageNumber = number; el('editor').hidden = true; renderPage();
+      el('page').scrollIntoView({block: 'start', behavior: 'smooth'});
+    };
+    pages.append(button);
+  });
+  el('outline-end').textContent = `End of all ${current.annotations.length} annotations on the sampled pages. This is not the end of the document's headings.`;
+}
 function renderDocument() {
+  renderCoverage();
   el('doc-title').textContent = `${current.id} · ${current.title}`;
   el('doc-meta').replaceChildren(node('span', {class: 'badge'}, current.split),
     document.createTextNode(` · ${current.language} · ${current.year} · ${current.total_pages} pages · `),
@@ -128,6 +143,11 @@ el('report-select').onchange = event => {
   pageNumber = current.review_pages[0]; renderDocument();
 };
 el('split-select').onchange = populateReports;
+el('expand-outline').onclick = () => {
+  const expanded = el('sidebar').classList.toggle('expanded');
+  el('expand-outline').setAttribute('aria-expanded', expanded);
+  el('expand-outline').textContent = expanded ? 'Use compact scrolling list' : 'Expand list without internal scrolling';
+};
 el('page-select').onchange = event => {pageNumber = Number(event.target.value); renderPage();};
 ['annotations-toggle', 'predictions-toggle', 'other-toggle'].forEach(id => el(id).onchange = renderPage);
 function stepPage(delta) {
