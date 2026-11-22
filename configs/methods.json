@@ -443,5 +443,111 @@
         "per_document": true
       }
     ]
+  },
+  "qwen36_27b_compact": {
+    "description": "Qwen3.6-27B MLX 4-bit; one 1280-pixel image and text-only heading memory.",
+    "code": "scripts/runners/run_qwen_compact.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-27B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/benchmark_qwen_compact.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-27B-4bit"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen36_35b_compact": {
+    "description": "Qwen3.6-35B-A3B MLX 4-bit; one 1280-pixel image and text-only heading memory.",
+    "code": "scripts/runners/run_qwen_compact.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/benchmark_qwen_compact.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen36_35b_visual_memory": {
+    "description": "Qwen3.6-35B-A3B MLX 4-bit; original prompt, larger current image and up to six previous page images.",
+    "code": "scripts/runners/run_qwen_sparse_memory.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/benchmark_qwen_compact.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit",
+          "--visual-memory"
+        ],
+        "per_document": false
+      }
+    ]
   }
 }

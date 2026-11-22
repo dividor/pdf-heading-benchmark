@@ -8,6 +8,9 @@ import pymupdf
 from pdf_heading_benchmark.io import REPO, read_json
 
 NAMES = {
+    "qwen36_35b_visual_memory": "Qwen3.6-35B-A3B + visual memory",
+    "qwen36_27b_compact": "Qwen3.6-27B / single image",
+    "qwen36_35b_compact": "Qwen3.6-35B-A3B / single image",
     "structure_recall": "OUR METHOD: coverage retraining",
     "structure_precision": "OUR METHOD: confidence filter v2",
     "structure_context_relations": "OUR METHOD: context + relations v2",

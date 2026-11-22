@@ -1074,6 +1074,10 @@
       {
         "label": "Qwen quantization and speed options",
         "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/qwen-speed-options.md"
+      },
+      {
+        "label": "Measured single-image speed trials",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
       }
     ],
     "training": [],
@@ -1130,7 +1134,7 @@
       {
         "title": "Quantization and speed",
         "paragraphs": [
-          "This measured configuration already uses MLX 4-bit weights and disables thinking. It repeatedly sends the full candidate outline, author tags and earlier page images. Reducing repeated context or testing the Qwen3.6-35B-A3B mixture-of-experts sibling are speed experiments, not measured improvements in this table. See the linked Qwen speed options for available quantizations and limitations."
+          "This measured configuration already uses MLX 4-bit weights and disables thinking. It repeatedly sends the full candidate outline, author tags and earlier page images. New single-image runs of the same 27B model and the Qwen3.6-35B-A3B mixture-of-experts sibling appear as separate configurations in this table. See the linked experiment for the measured speed and accuracy trade-offs."
         ]
       }
     ],
@@ -3332,6 +3336,444 @@
         "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
+        ]
+      }
+    ]
+  },
+  "qwen36_27b_compact": {
+    "family": "Single-image vision + document context · local MLX",
+    "summary": "Ask Qwen3.6-27B to identify complete heading titles and H1–H6 levels from one current-page image, native text, the full candidate outline, PDF heading tags and previous predictions as text. This is the same dense 27B model as the earlier multi-image run; image size and history changed.",
+    "training": [],
+    "stages": [
+      {
+        "title": "Keep the document context",
+        "detail": "Reuse the full PyMuPDF4LLM title/page outline (without its predicted levels) and author-provided PDF heading tags. No reference labels are supplied."
+      },
+      {
+        "title": "Render only the current page",
+        "detail": "Extract sorted native text; render with PyMuPDF Matrix(2,2) and thumbnail to a maximum 1280-pixel edge. Earlier page images are omitted."
+      },
+      {
+        "title": "Run Qwen3.6-27B with 4-bit weights",
+        "detail": "Use the dense 27B model, retaining its pinned weights so the comparison tests the reduced image inputs. MLX-VLM 0.8.0; thinking disabled; temperature 0; seed 42; 4096-token cap."
+      },
+      {
+        "title": "Carry predictions forward as text",
+        "detail": "Keep the last predicted heading at each H1–H6 level. Reset memory per report. Save raw JSON replies and native page text; validate schema without changing titles or levels."
+      },
+      {
+        "title": "Score the historical audit pages",
+        "detail": "Compare saved predictions on 32 pages against 77 reference headings using same-page, one-to-one title matching and exact H levels. Retain both speed-trial configurations."
+      }
+    ],
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.6-27B-4bit; revision c000ac2c2057"
+      ],
+      [
+        "Architecture",
+        "Dense 27B; 64 text layers; hidden width 5120"
+      ],
+      [
+        "Weight quantization",
+        "Affine quantization; 4 bits; group size 64 (from the pinned model configuration)"
+      ],
+      [
+        "Runtime",
+        "MLX 0.32.4; mlx-vlm 0.8.0; Apple M4 Pro, 48 GB shared memory"
+      ],
+      [
+        "Images",
+        "Exactly one current-page image; aspect-preserving thumbnail ≤1280 pixels; Matrix(2,2) render"
+      ],
+      [
+        "Context",
+        "Full candidate titles/pages; full PDF heading tags; current native text; latest prediction per H level as text"
+      ],
+      [
+        "Generation",
+        "enable_thinking=False; temperature=0; seed=42; max_tokens=4096"
+      ],
+      [
+        "Timeout",
+        "Soft 600-second limit checked between streamed chunks"
+      ],
+      [
+        "Scope",
+        "32 sampled images, not 523-page visual inference; ascending pages; memory resets per document"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What the model sees",
+        "paragraphs": [
+          "The current page image and native text can recover headings absent from the noisy candidate outline. Tags and previous predictions are explicitly described as fallible. Previous page images are absent, but the full document outline and tags are still repeated on each request.",
+          "The prompt treats instructions printed in the document as content. The output decoder validates complete heading strings and integer levels 1–6; it does not repair semantic errors."
+        ]
+      },
+      {
+        "title": "Training and selection",
+        "paragraphs": [
+          "These are pretrained, quantized weights. We did not train or fine-tune this Qwen model on WFP annotations. Both model variants and the shared input settings were fixed before scoring their outputs.",
+          "The four-report audit has already been inspected during earlier experiments. This is regression evidence, not a new independent test or evidence of generalization to arbitrary PDFs."
+        ]
+      },
+      {
+        "title": "Measurement and provenance",
+        "paragraphs": [
+          "The table sums generation-call times, including input processing. Model download/loading and earlier candidate/tag extraction are excluded. Per-page rendering/preparation, time to first chunk, tokens, errors and peak MLX allocation are stored separately in the linked compact evidence.",
+          "Both runs share an M4 Pro with other workloads. Single-run speed ratios are observational; no controlled repeated hardware benchmark was performed. Model revisions, source/input hashes and package versions were recorded before loading."
+        ]
+      }
+    ],
+    "limitation": "Removing visual history and shrinking the target image may lose typography clues. Correct title-and-level recall and false headings must be considered together. Only the original 32 sampled pages were scored.",
+    "sources": [
+      {
+        "label": "Official base model",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+      },
+      {
+        "label": "Tested MLX 4-bit weights",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-27B-4bit"
+      },
+      {
+        "label": "Exact inference runner",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py"
+      },
+      {
+        "label": "Exact prompt",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py"
+      },
+      {
+        "label": "Protocol, predictions and page telemetry",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_27b_compact.json"
+      },
+      {
+        "label": "Experiment and reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+      },
+      {
+        "label": "Pinned architecture and quantization configuration",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-27B-4bit/blob/c000ac2c2057d94be3fa931000c31723aac53282/config.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "Qwen3.6-27B",
+        "description": "A pretrained dense vision-language model used to read a page image together with document text context.",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+        "aliases": [
+          "Qwen3.6-27B"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework for local Apple Silicon inference; it is the runtime, not the heading model.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      },
+      {
+        "name": "4-bit",
+        "description": "Quantized model weights use reduced numerical precision to lower memory requirements. This does not specify heading depth or guarantee a speedup.",
+        "url": "https://github.com/ml-explore/mlx-lm",
+        "aliases": [
+          "4-bit"
+        ]
+      }
+    ]
+  },
+  "qwen36_35b_compact": {
+    "family": "Single-image vision + document context · local MLX",
+    "summary": "Ask Qwen3.6-35B-A3B to identify complete heading titles and H1–H6 levels from one current-page image, native text, the full candidate outline, PDF heading tags and previous predictions as text. Its mixture-of-experts architecture activates approximately 3B of 35B parameters per token.",
+    "training": [],
+    "stages": [
+      {
+        "title": "Keep the document context",
+        "detail": "Reuse the full PyMuPDF4LLM title/page outline (without its predicted levels) and author-provided PDF heading tags. No reference labels are supplied."
+      },
+      {
+        "title": "Render only the current page",
+        "detail": "Extract sorted native text; render with PyMuPDF Matrix(2,2) and thumbnail to a maximum 1280-pixel edge. Earlier page images are omitted."
+      },
+      {
+        "title": "Run Qwen3.6-35B-A3B with 4-bit weights",
+        "detail": "Use the sparse mixture-of-experts model: 35B total / approximately 3B active parameters per token; all weights still occupy memory. MLX-VLM 0.8.0; thinking disabled; temperature 0; seed 42; 4096-token cap."
+      },
+      {
+        "title": "Carry predictions forward as text",
+        "detail": "Keep the last predicted heading at each H1–H6 level. Reset memory per report. Save raw JSON replies and native page text; validate schema without changing titles or levels."
+      },
+      {
+        "title": "Score the historical audit pages",
+        "detail": "Compare saved predictions on 32 pages against 77 reference headings using same-page, one-to-one title matching and exact H levels. Retain both speed-trial configurations."
+      }
+    ],
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.6-35B-A3B-4bit; revision 38740b847e4c"
+      ],
+      [
+        "Architecture",
+        "MoE 35B total / approximately 3B active; 40 text layers; width 2048; 256 routed experts, 8 selected per token"
+      ],
+      [
+        "Weight quantization",
+        "Affine quantization; 4 bits; group size 64 (from the pinned model configuration)"
+      ],
+      [
+        "Runtime",
+        "MLX 0.32.4; mlx-vlm 0.8.0; Apple M4 Pro, 48 GB shared memory"
+      ],
+      [
+        "Images",
+        "Exactly one current-page image; aspect-preserving thumbnail ≤1280 pixels; Matrix(2,2) render"
+      ],
+      [
+        "Context",
+        "Full candidate titles/pages; full PDF heading tags; current native text; latest prediction per H level as text"
+      ],
+      [
+        "Generation",
+        "enable_thinking=False; temperature=0; seed=42; max_tokens=4096"
+      ],
+      [
+        "Timeout",
+        "Soft 600-second limit checked between streamed chunks"
+      ],
+      [
+        "Scope",
+        "32 sampled images, not 523-page visual inference; ascending pages; memory resets per document"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What the model sees",
+        "paragraphs": [
+          "The current page image and native text can recover headings absent from the noisy candidate outline. Tags and previous predictions are explicitly described as fallible. Previous page images are absent, but the full document outline and tags are still repeated on each request.",
+          "The prompt treats instructions printed in the document as content. The output decoder validates complete heading strings and integer levels 1–6; it does not repair semantic errors."
+        ]
+      },
+      {
+        "title": "Training and selection",
+        "paragraphs": [
+          "These are pretrained, quantized weights. We did not train or fine-tune this Qwen model on WFP annotations. Both model variants and the shared input settings were fixed before scoring their outputs.",
+          "The four-report audit has already been inspected during earlier experiments. This is regression evidence, not a new independent test or evidence of generalization to arbitrary PDFs."
+        ]
+      },
+      {
+        "title": "Measurement and provenance",
+        "paragraphs": [
+          "The table sums generation-call times, including input processing. Model download/loading and earlier candidate/tag extraction are excluded. Per-page rendering/preparation, time to first chunk, tokens, errors and peak MLX allocation are stored separately in the linked compact evidence.",
+          "Both runs share an M4 Pro with other workloads. Single-run speed ratios are observational; no controlled repeated hardware benchmark was performed. Model revisions, source/input hashes and package versions were recorded before loading."
+        ]
+      }
+    ],
+    "limitation": "Removing visual history and shrinking the target image may lose typography clues. Correct title-and-level recall and false headings must be considered together. Only the original 32 sampled pages were scored.",
+    "sources": [
+      {
+        "label": "Official base model",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+      },
+      {
+        "label": "Tested MLX 4-bit weights",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit"
+      },
+      {
+        "label": "Exact inference runner",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py"
+      },
+      {
+        "label": "Exact prompt",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py"
+      },
+      {
+        "label": "Protocol, predictions and page telemetry",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_35b_compact.json"
+      },
+      {
+        "label": "Experiment and reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+      },
+      {
+        "label": "Pinned architecture and quantization configuration",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit/blob/38740b847e4cb78f352aba30aa41c76e08e6eb46/config.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "Qwen3.6-35B-A3B",
+        "description": "A pretrained sparse vision-language model; only a subset of its expert parameters is active per token, although all weights are stored.",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+        "aliases": [
+          "Qwen3.6-35B-A3B"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework for local Apple Silicon inference; it is the runtime, not the heading model.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      },
+      {
+        "name": "4-bit",
+        "description": "Quantized model weights use reduced numerical precision to lower memory requirements. This does not specify heading depth or guarantee a speedup.",
+        "url": "https://github.com/ml-explore/mlx-lm",
+        "aliases": [
+          "4-bit"
+        ]
+      }
+    ]
+  },
+  "qwen36_35b_visual_memory": {
+    "family": "Sparse vision model + sampled visual memory · local MLX",
+    "summary": "Run Qwen3.6-35B-A3B with the exact instruction and multi-image memory procedure from the original 27B experiment. This follow-up was chosen after the sparse single-image run found all titles but assigned only 53/77 levels correctly. Restore visual typography examples while retaining the faster sparse model.",
+    "training": [],
+    "stages": [
+      {
+        "title": "Keep the original document clues",
+        "detail": "Supply the full-document PyMuPDF4LLM candidate titles/pages, author PDF heading tags and current native text. Reference labels are not supplied."
+      },
+      {
+        "title": "Restore current and earlier page images",
+        "detail": "Use a current-page thumbnail up to 1792 pixels and up to six earlier sampled images at 1280 pixels. Memory pages contain the latest predicted heading at each H1–H6 level."
+      },
+      {
+        "title": "Run the sparse Qwen3.6-35B-A3B model",
+        "detail": "Use the same pinned 4-bit weights as the single-image sparse trial. Keep the original instruction from run_qwen_visual_memory.py; temperature 0, seed 42, thinking disabled, 4096-token cap."
+      },
+      {
+        "title": "Update visual memory from predictions",
+        "detail": "Call the unchanged original generate_page function. Retain the latest prediction at each level, deduplicate and sort earlier pages, and reset memory between reports. Save every raw reply without semantic repair."
+      },
+      {
+        "title": "Measure the hierarchy trade-off",
+        "detail": "Score all 32 audit pages against the same 77 references. Retain both earlier speed trials and this follow-up so its selection after observing their results remains visible."
+      }
+    ],
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.6-35B-A3B-4bit; revision 38740b847e4c"
+      ],
+      [
+        "Architecture",
+        "MoE 35B total / approximately 3B active; 40 text layers; width 2048; 256 routed experts, 8 selected per token"
+      ],
+      [
+        "Weight quantization",
+        "Affine quantization; 4 bits; group size 64 (from the pinned model configuration)"
+      ],
+      [
+        "Runtime",
+        "MLX 0.32.4; mlx-vlm 0.8.0; Apple M4 Pro, 48 GB shared memory"
+      ],
+      [
+        "Images",
+        "Current thumbnail ≤1792 pixels plus up to six prior sampled-page thumbnails ≤1280 pixels; Matrix(2,2) render"
+      ],
+      [
+        "Context",
+        "Full candidate titles/pages, PDF tags, native target text and earlier sampled images with predicted headings"
+      ],
+      [
+        "Generation",
+        "enable_thinking=False; temperature=0; seed=42; max_tokens=4096"
+      ],
+      [
+        "Timeout",
+        "Soft 600-second limit checked between streamed chunks"
+      ],
+      [
+        "Scope",
+        "32 sampled images, not 523-page visual inference; ascending pages; memory resets per document"
+      ],
+      [
+        "Experiment sequence",
+        "Follow-up chosen after the two single-image scores; no claim of independent test-set selection"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Why this follow-up was run",
+        "paragraphs": [
+          "The sparse single-image model recovered all 77 titles without extra headings, but only 53 levels were correct. This trial tests whether restoring earlier typography examples helps hierarchy decisions. It changes image size, visual memory and the associated instruction back to the original configuration; it does not identify their separate effects."
+        ]
+      },
+      {
+        "title": "Exact implementation and training",
+        "paragraphs": [
+          "The wrapper calls the original generate_page function in run_qwen_visual_memory.py, including its instruction, image construction, strict decoder and soft 600-second limit. The only model substitution relative to the original vision-memory experiment is the pinned Qwen3.6-35B-A3B 4-bit model. No weights were trained or fine-tuned.",
+          "Earlier images come only from previously processed audit pages. Intervening pages are not silently read. Previous predictions can be wrong, so memory may propagate errors."
+        ]
+      },
+      {
+        "title": "Timing, provenance and limitations",
+        "paragraphs": [
+          "Generation time uses the original runner’s boundary. Model loading and work outside generation are recorded separately. The reused function does not record time to first token, so that measurement is explicitly unavailable for this variant.",
+          "The protocol records source and input checksums before loading. This is an exploratory follow-up on the already inspected historical corpus, selected after observing the two single-image trials; it is not an independent generalization test."
+        ]
+      }
+    ],
+    "limitation": "This follow-up was motivated by errors on the historical audit set. Visual memory may propagate earlier level mistakes. A new report/template holdout is needed to establish generalization.",
+    "sources": [
+      {
+        "label": "Official base model",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+      },
+      {
+        "label": "Tested MLX 4-bit weights",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit"
+      },
+      {
+        "label": "Experiment and reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+      },
+      {
+        "label": "Pinned architecture and quantization configuration",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit/blob/38740b847e4cb78f352aba30aa41c76e08e6eb46/config.json"
+      },
+      {
+        "label": "Follow-up wrapper",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py"
+      },
+      {
+        "label": "Unchanged original instruction and generation function",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py"
+      },
+      {
+        "label": "Protocol, predictions and page telemetry",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_35b_visual_memory.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "Qwen3.6-35B-A3B",
+        "description": "A pretrained sparse vision-language model; only a subset of its expert parameters is active per token, although all weights are stored.",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+        "aliases": [
+          "Qwen3.6-35B-A3B"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework for local Apple Silicon inference; it is the runtime, not the heading model.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      },
+      {
+        "name": "4-bit",
+        "description": "Quantized model weights use reduced numerical precision to lower memory requirements. This does not specify heading depth or guarantee a speedup.",
+        "url": "https://github.com/ml-explore/mlx-lm",
+        "aliases": [
+          "4-bit"
         ]
       }
     ]

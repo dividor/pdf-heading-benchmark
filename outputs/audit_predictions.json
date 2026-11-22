@@ -8951,5 +8951,1185 @@
         "level": 2
       }
     ]
+  },
+  "qwen36_27b_compact": {
+    "targeting": [
+      {
+        "page": 11,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Appropriateness",
+        "level": 3
+      },
+      {
+        "page": 24,
+        "title": "1 Introduction",
+        "level": 1
+      },
+      {
+        "page": 24,
+        "title": "1.1 Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2 Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 4
+      },
+      {
+        "page": 67,
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4
+      },
+      {
+        "page": 96,
+        "title": "3 Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 96,
+        "title": "3.1 Conclusions",
+        "level": 2
+      },
+      {
+        "page": 96,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.",
+        "level": 3
+      },
+      {
+        "page": 109,
+        "title": "Objectives and users of the evaluation",
+        "level": 2
+      },
+      {
+        "page": 109,
+        "title": "Evaluation questions",
+        "level": 2
+      },
+      {
+        "page": 109,
+        "title": "Methodology and ethical considerations",
+        "level": 2
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 8,
+        "title": "INTRODUCTION",
+        "level": 2
+      },
+      {
+        "page": 8,
+        "title": "What was evaluated?",
+        "level": 3
+      },
+      {
+        "page": 8,
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3
+      },
+      {
+        "page": 10,
+        "title": "FINDINGS",
+        "level": 1
+      },
+      {
+        "page": 10,
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "1. Introduction",
+        "level": 1
+      },
+      {
+        "page": 26,
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "1.2 CONTEXT",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 3
+      },
+      {
+        "page": 36,
+        "title": "2. Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 36,
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 2
+      },
+      {
+        "page": 36,
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 3
+      },
+      {
+        "page": 61,
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 3
+      },
+      {
+        "page": 87,
+        "title": "3. Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 87,
+        "title": "3.1 CONCLUSIONS",
+        "level": 2
+      },
+      {
+        "page": 98,
+        "title": "Annex III. Methodology",
+        "level": 1
+      },
+      {
+        "page": 98,
+        "title": "Overall approach",
+        "level": 2
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Evaluation features",
+        "level": 3
+      },
+      {
+        "page": 7,
+        "title": "Context",
+        "level": 3
+      },
+      {
+        "page": 11,
+        "title": "Evaluation key insights and conclusions",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Insight 1. CSP architecture",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Introduction",
+        "level": 1
+      },
+      {
+        "page": 20,
+        "title": "1.1. Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.2. Context",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Geography, Demography, and Government",
+        "level": 3
+      },
+      {
+        "page": 20,
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government?",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs?",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 3
+      },
+      {
+        "page": 48,
+        "title": "SO1: Evidence and Data",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?",
+        "level": 3
+      },
+      {
+        "page": 68,
+        "title": "Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 68,
+        "title": "3.1. Conclusions",
+        "level": 2
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "title": "Resumen ejecutivo",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introducción",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Características de la evaluación",
+        "level": 3
+      },
+      {
+        "page": 7,
+        "title": "Contexto",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 13,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?",
+        "level": 2
+      },
+      {
+        "page": 13,
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1. Introducción",
+        "level": 1
+      },
+      {
+        "page": 28,
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1.2. CONTEXTO",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "Contexto general",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "2. Resultados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 42,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?",
+        "level": 2
+      },
+      {
+        "page": 42,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "Resumen",
+        "level": 4
+      },
+      {
+        "page": 56,
+        "title": "Dimensión 2: Entorno político",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Productos",
+        "level": 4
+      },
+      {
+        "page": 56,
+        "title": "Resultados",
+        "level": 4
+      },
+      {
+        "page": 72,
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2
+      },
+      {
+        "page": 72,
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "Productos y logros",
+        "level": 3
+      },
+      {
+        "page": 93,
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1
+      },
+      {
+        "page": 93,
+        "title": "3.1. CONCLUSIONES",
+        "level": 2
+      }
+    ]
+  },
+  "qwen36_35b_compact": {
+    "targeting": [
+      {
+        "page": 11,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Appropriateness",
+        "level": 2
+      },
+      {
+        "page": 24,
+        "title": "1 Introduction",
+        "level": 1
+      },
+      {
+        "page": 24,
+        "title": "1.1 Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2 Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 4
+      },
+      {
+        "page": 67,
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4
+      },
+      {
+        "page": 96,
+        "title": "3 Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 96,
+        "title": "3.1 Conclusions",
+        "level": 2
+      },
+      {
+        "page": 96,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.",
+        "level": 3
+      },
+      {
+        "page": 109,
+        "title": "Objectives and users of the evaluation",
+        "level": 1
+      },
+      {
+        "page": 109,
+        "title": "Evaluation questions",
+        "level": 1
+      },
+      {
+        "page": 109,
+        "title": "Methodology and ethical considerations",
+        "level": 1
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 8,
+        "title": "INTRODUCTION",
+        "level": 2
+      },
+      {
+        "page": 8,
+        "title": "What was evaluated?",
+        "level": 3
+      },
+      {
+        "page": 8,
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3
+      },
+      {
+        "page": 10,
+        "title": "FINDINGS",
+        "level": 1
+      },
+      {
+        "page": 10,
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "1. Introduction",
+        "level": 1
+      },
+      {
+        "page": 26,
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "1.2 CONTEXT",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 3
+      },
+      {
+        "page": 36,
+        "title": "2. Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 36,
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 2
+      },
+      {
+        "page": 36,
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 3
+      },
+      {
+        "page": 61,
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 3
+      },
+      {
+        "page": 87,
+        "title": "3. Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 87,
+        "title": "3.1 CONCLUSIONS",
+        "level": 2
+      },
+      {
+        "page": 98,
+        "title": "Annex III. Methodology",
+        "level": 1
+      },
+      {
+        "page": 98,
+        "title": "Overall approach",
+        "level": 2
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Context",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Evaluation key insights and conclusions",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Insight 1. CSP architecture",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.1. Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.2. Context",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Geography, Demography, and Government",
+        "level": 3
+      },
+      {
+        "page": 20,
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government?",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs?",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 2
+      },
+      {
+        "page": 48,
+        "title": "SO1: Evidence and Data",
+        "level": 2
+      },
+      {
+        "page": 56,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?",
+        "level": 2
+      },
+      {
+        "page": 68,
+        "title": "Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 68,
+        "title": "3.1. Conclusions",
+        "level": 2
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "title": "Resumen ejecutivo",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introducción",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Características de la evaluación",
+        "level": 3
+      },
+      {
+        "page": 7,
+        "title": "Contexto",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 13,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?",
+        "level": 2
+      },
+      {
+        "page": 13,
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1. Introducción",
+        "level": 1
+      },
+      {
+        "page": 28,
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1.2. CONTEXTO",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "Contexto general",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "2. Resultados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 42,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?",
+        "level": 2
+      },
+      {
+        "page": 42,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Dimensión 2: Entorno político",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Productos",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Resultados92",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2
+      },
+      {
+        "page": 72,
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "Productos y logros",
+        "level": 3
+      },
+      {
+        "page": 93,
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1
+      },
+      {
+        "page": 93,
+        "title": "3.1. CONCLUSIONES",
+        "level": 2
+      }
+    ]
+  },
+  "qwen36_35b_visual_memory": {
+    "targeting": [
+      {
+        "page": 11,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Appropriateness",
+        "level": 2
+      },
+      {
+        "page": 24,
+        "title": "1 Introduction",
+        "level": 1
+      },
+      {
+        "page": 24,
+        "title": "1.1 Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2 Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 4
+      },
+      {
+        "page": 67,
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4
+      },
+      {
+        "page": 96,
+        "title": "3 Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 96,
+        "title": "3.1 Conclusions",
+        "level": 2
+      },
+      {
+        "page": 96,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.",
+        "level": 3
+      },
+      {
+        "page": 109,
+        "title": "Objectives and users of the evaluation",
+        "level": 2
+      },
+      {
+        "page": 109,
+        "title": "Evaluation questions",
+        "level": 2
+      },
+      {
+        "page": 109,
+        "title": "Methodology and ethical considerations",
+        "level": 2
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 8,
+        "title": "INTRODUCTION",
+        "level": 2
+      },
+      {
+        "page": 8,
+        "title": "What was evaluated?",
+        "level": 3
+      },
+      {
+        "page": 8,
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3
+      },
+      {
+        "page": 10,
+        "title": "FINDINGS",
+        "level": 1
+      },
+      {
+        "page": 10,
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "1. Introduction",
+        "level": 1
+      },
+      {
+        "page": 26,
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "1.2 CONTEXT",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 3
+      },
+      {
+        "page": 36,
+        "title": "2. Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 36,
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 2
+      },
+      {
+        "page": 36,
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 3
+      },
+      {
+        "page": 61,
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 3
+      },
+      {
+        "page": 87,
+        "title": "3. Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 87,
+        "title": "3.1 CONCLUSIONS",
+        "level": 2
+      },
+      {
+        "page": 98,
+        "title": "Annex III. Methodology",
+        "level": 1
+      },
+      {
+        "page": 98,
+        "title": "Overall approach",
+        "level": 2
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Context",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Evaluation key insights and conclusions",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Insight 1. CSP architecture",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Introduction",
+        "level": 1
+      },
+      {
+        "page": 20,
+        "title": "1.1. Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.2. Context",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Geography, Demography, and Government",
+        "level": 3
+      },
+      {
+        "page": 20,
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?",
+        "level": 2
+      },
+      {
+        "page": 42,
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 2
+      },
+      {
+        "page": 48,
+        "title": "SO1: Evidence and Data",
+        "level": 2
+      },
+      {
+        "page": 56,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?",
+        "level": 2
+      },
+      {
+        "page": 68,
+        "title": "Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 68,
+        "title": "3.1. Conclusions",
+        "level": 2
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "title": "Resumen ejecutivo",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introducción",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Características de la evaluación",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Contexto",
+        "level": 2
+      },
+      {
+        "page": 13,
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 13,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?",
+        "level": 2
+      },
+      {
+        "page": 13,
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1. Introducción",
+        "level": 1
+      },
+      {
+        "page": 28,
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1.2. CONTEXTO",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "Contexto general",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "2. Resultados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 42,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?",
+        "level": 2
+      },
+      {
+        "page": 42,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Dimensión 2: Entorno político",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Productos",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Resultados",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2
+      },
+      {
+        "page": 72,
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "Productos y logros",
+        "level": 3
+      },
+      {
+        "page": 93,
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1
+      },
+      {
+        "page": 93,
+        "title": "3.1. CONCLUSIONES",
+        "level": 2
+      }
+    ]
   }
 }

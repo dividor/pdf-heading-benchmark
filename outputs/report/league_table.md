@@ -1,10 +1,12 @@
 # On-premises PDF heading benchmark: scores, timings and methods
 
-**23 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
+**26 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
 
 **Primary metric: joint heading-and-level F0.5**, with joint precision and joint recall alongside it. A correct prediction must match the heading title, PDF page and exact level. Wrong levels and extra headings reduce precision; missed or incorrectly leveled headings reduce recall. There is no separate PASS/FAIL gate. Definitions and worked examples follow the table.
 
 Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **82.3% joint precision**, 65/77 correct heading-level pairs and two extras. Embedded PDF tags score **73.4% F0.5**, with 79.6% joint precision and 43/77 correct pairs. Chandra scores **72.6% F0.5**, 73.6% joint precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
+
+**New Qwen speed trials:** single-image 27B takes **34.0 minutes** with **60/77 correct levels**, one extra heading and **77.1% joint F0.5**. Single-image 35B-A3B takes **5.2 minutes** with **53/77 correct levels**, no extras and **68.8% F0.5**. Restoring visual memory to 35B-A3B takes **8.7 minutes** with **52/77 correct levels**, two missing titles, no extras and **69.0% F0.5**. All times cover 32 pages. These reduce runtime but do not improve the original 27B configuration’s accuracy. [Experiment and provenance](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md).
 
 **Our new precision-selected method:** [jump to the highlighted row](#our-trained-model). A validation-selected confidence filter raises historical joint F0.5 from **58.8% to 70.5%** and reduces extra headings from **23 to 2**, reaching **82.9% joint precision (34/41)** and **44.2% joint recall (34/77)**. It emits fewer headings: correct title-and-level pairs fall from **50/77 to 34/77**, with 38 titles missed. This is an explicit precision/recall trade-off. The three small CPU classifiers are unchanged; the LLM supplied training annotations and is not used at inference.
 
@@ -45,9 +47,12 @@ This is **sampled-page heading accuracy**, even when a parser processed the full
 | Configuration | Primary score: joint F0.5 | Joint precision | Joint recall | Method / code | Status | Headings recovered | False headings | Native prose retention | Measured time |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Qwen3.6-27B / MLX 4-bit / sampled visual memory](https://huggingface.co/Qwen/Qwen3.6-27B) | **82.7%** | 82.3% (65/79) | 84.4% (65/77) | [Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) | completed | 100.0% (77/77) | 2 | — | 61.8 min / 32 pages |
+| [Qwen3.6-27B 4-bit — single image](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) | **77.1%** | 76.9% (60/78) | 77.9% (60/77) | [Qwen3.6-27B MLX 4-bit; one 1280-pixel image and text-only heading memory.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) | completed | 100.0% (77/77) | 1 | — | 34.0 min / 32 pages |
 | [Embedded PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) | **73.4%** | 79.6% (43/54) | 55.8% (43/77) | [Read PDF heading tags—the heading labels already embedded by the PDF’s author.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) | completed | 67.5% (52/77) | 2 | — | 6.4 s / 32 pages |
 | [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | **72.6%** | 73.6% (53/72) | 68.8% (53/77) | [Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 90.9% (70/77) | 2 | 98.7% | 17.2 min / 32 pages |
 | <span id="our-trained-model"></span>[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md) | **70.5%** | 82.9% (34/41) | 44.2% (34/77) | [Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py) | completed | 50.6% (39/77) | 2 | — | 11.7 s / 523 pages |
+| [Qwen3.6-35B-A3B 4-bit — visual memory](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) | **69.0%** | 69.3% (52/75) | 67.5% (52/77) | [Qwen3.6-35B-A3B MLX 4-bit; original prompt, larger current image and up to six previous page images.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py) | completed | 97.4% (75/77) | 0 | — | 8.7 min / 32 pages |
+| [Qwen3.6-35B-A3B 4-bit — single image](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) | **68.8%** | 68.8% (53/77) | 68.8% (53/77) | [Qwen3.6-35B-A3B MLX 4-bit; one 1280-pixel image and text-only heading memory.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) | completed | 100.0% (77/77) | 0 | — | 5.2 min / 32 pages |
 | <span id="our-calibrated-model"></span>[**OUR METHOD — calibrated decoding (experimental)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md) | **59.2%** | 58.8% (47/80) | 61.0% (47/77) | [Reuse our three Extra Trees classifiers trained locally on 20 WFP reports; apply a validation-selected body-score multiplier of two.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py) | completed | 76.6% (59/77) | 21 | — | 14.5 s / 523 pages |
 | <span id="our-original-model"></span>[OUR METHOD — grouped context v2 (previous selection)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | **58.8%** | 57.5% (50/87) | 64.9% (50/77) | [Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 83.1% (64/77) | 23 | — | 12.6 s / 523 pages |
 | [OUR METHOD — retrained trees (coverage trial; target not met)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/report.md) | **58.8%** | 57.5% (50/87) | 64.9% (50/77) | [Refit Extra Trees on the same 20 training reports; compare 64 validation settings for precision and coverage. No setting met both 80% targets; this is the predeclared diagnostic fallback.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/retrain_recall.py) | completed | 85.7% (66/77) | 21 | — | 16.4 s / 523 pages |
@@ -97,11 +102,11 @@ For future optimization, select using validation joint F0.5, report joint precis
 
 **Local resources and cost:** all configurations in this report ran locally on a shared 48 GB Apple M4 Pro. Hardware, electricity, setup, engineering, manual review and commercial licensing costs were not measured in dollars. Observed processing times are reported with their actual scope; local inference is not cost-free.
 
-**Scopes and timing:** earlier CPU parsers processed all 523 pages. New local OCR models processed the complete text on the 32 audit pages. Qwen3.6 read native page text, full-document candidate titles and author PDF tags, and current/previous sampled-page images; it does not OCR the body. Its measured time excludes those candidate-generation stages. Qwen3.5 and Popo timings cover only hierarchy inference. Hardware was a shared 48 GB Apple M4 Pro. New-model times exclude downloads, loading and aborted attempts; some earlier CPU times include setup. These are observations with different scopes, not a controlled throughput benchmark.
+**Scopes and timing:** earlier CPU parsers processed all 523 pages. New local OCR models processed the complete text on the 32 audit pages. Qwen3.6 reads native page text, full-document candidate titles and author PDF tags. The original visual-memory variant adds current/previous sampled-page images; the single-image variants use only the current image and text-only prediction memory. These methods reuse native body text. Their measured times exclude candidate-generation stages. Qwen3.5 and Popo timings cover only hierarchy inference. Hardware was a shared 48 GB Apple M4 Pro. New-model times exclude downloads, loading and aborted attempts; some earlier CPU times include setup. These are observations with different scopes, not a controlled throughput benchmark.
 
 **Text:** native prose retention measures five-word sequences preserved from native PDF blocks of at least 50 words, on the audit pages. It is not character accuracy, reading order, semantic accuracy or table correctness. A missing score means not evaluated or not applicable. Hierarchy-only stages reuse extracted text.
 
-**Configuration caveats:** MinerU Pro's direct interface recovered headings but supplied no hierarchy levels; its 0/77 complete outputs must not be described as zero heading detection. The Qwen3.6 implementation uses only previously processed audit pages as visual memory; it is not a reproduction of a full-document memory benchmark. The Popo result is an experimental 8-bit MLX port with 8-page chunks, not an upstream performance claim. LightOn 4B historical timing includes five single-page checkpoints followed by batch-two processing; a clean rerun uses batch two throughout. The 0.15 Docling tolerance was fixed across these reports but remains an exploratory choice, not an untuned general default.
+**Configuration caveats:** MinerU Pro's direct interface recovered headings but supplied no hierarchy levels; its 0/77 complete outputs must not be described as zero heading detection. The original Qwen3.6 visual-memory implementation uses only previously processed audit pages as visual memory; the new single-image variants omit earlier images. Neither is a reproduction of a full-document memory benchmark. The Popo result is an experimental 8-bit MLX port with 8-page chunks, not an upstream performance claim. LightOn 4B historical timing includes five single-page checkpoints followed by batch-two processing; a clean rerun uses batch two throughout. The 0.15 Docling tolerance was fixed across these reports but remains an exploratory choice, not an untuned general default.
 
 **Reference and uncertainty:** pages were deliberately selected to span front matter, body chapters, subsections and annexes. A single assistant annotated them visually. The original 2018 resilience report was excluded after prior document-specific investigation. No per-report title/level correction rules are applied here. The sample is small, covers born-digital reports only, and has no inter-annotator agreement study. Ranking on it cannot establish robustness on arbitrary documents. No missing run is assigned a zero score.
 
@@ -212,6 +217,18 @@ For future optimization, select using validation joint F0.5, report joint precis
 | retrain_recall.py / structure_recall | midterm | 18/18 | 16/18 | 0 | 100.0% |
 | retrain_recall.py / structure_recall | indonesia | 14/21 | 12/21 | 11 | 56.0% |
 | retrain_recall.py / structure_recall | colombia | 19/23 | 12/23 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_27b_compact | targeting | 15/15 | 13/15 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_27b_compact | midterm | 18/18 | 16/18 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_27b_compact | indonesia | 21/21 | 16/21 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_27b_compact | colombia | 23/23 | 15/23 | 1 | 95.8% |
+| run_qwen_compact.py / qwen36_35b_compact | targeting | 15/15 | 10/15 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_35b_compact | midterm | 18/18 | 16/18 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_35b_compact | indonesia | 21/21 | 12/21 | 0 | 100.0% |
+| run_qwen_compact.py / qwen36_35b_compact | colombia | 23/23 | 15/23 | 0 | 100.0% |
+| run_qwen_sparse_memory.py / qwen36_35b_visual_memory | targeting | 15/15 | 13/15 | 0 | 100.0% |
+| run_qwen_sparse_memory.py / qwen36_35b_visual_memory | midterm | 18/18 | 16/18 | 0 | 100.0% |
+| run_qwen_sparse_memory.py / qwen36_35b_visual_memory | indonesia | 19/21 | 11/21 | 0 | 100.0% |
+| run_qwen_sparse_memory.py / qwen36_35b_visual_memory | colombia | 23/23 | 12/23 | 0 | 100.0% |
 
 ## Technique diagrams and sources
 
@@ -391,11 +408,187 @@ The main table matches titles on the same physical PDF page at normalized simila
 
 **Quantization and speed**
 
-This measured configuration already uses MLX 4-bit weights and disables thinking. It repeatedly sends the full candidate outline, author tags and earlier page images. Reducing repeated context or testing the Qwen3.6-35B-A3B mixture-of-experts sibling are speed experiments, not measured improvements in this table. See the linked Qwen speed options for available quantizations and limitations.
+This measured configuration already uses MLX 4-bit weights and disables thinking. It repeatedly sends the full candidate outline, author tags and earlier page images. New single-image runs of the same 27B model and the Qwen3.6-35B-A3B mixture-of-experts sibling appear as separate configurations in this table. See the linked experiment for the measured speed and accuracy trade-offs.
 
 The model saw sampled page images, not every page image. Generation overhead is substantial; measured results apply to this prompt and memory configuration.
 
-[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.6-27B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit) · [Full instruction and memory update](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py) · [Structured reply decoder](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/decode_qwen.py) · [Model revision](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py) · [Qwen quantization and speed options](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/qwen-speed-options.md)
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.6-27B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit) · [Full instruction and memory update](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py) · [Structured reply decoder](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/decode_qwen.py) · [Model revision](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py) · [Qwen quantization and speed options](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/qwen-speed-options.md) · [Measured single-image speed trials](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md)
+
+
+### Qwen3.6-27B 4-bit — single image
+
+Single-image vision + document context · local MLX
+
+Ask Qwen3.6-27B to identify complete heading titles and H1–H6 levels from one current-page image, native text, the full candidate outline, PDF heading tags and previous predictions as text. This is the same dense 27B model as the earlier multi-image run; image size and history changed.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+60 correct · 17 wrong/absent level · 0 missed · 1 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+13 correct · 2 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H2 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+16 correct · 2 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+16 correct · 5 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
+| 7 | H3 — Context | H3 — Context | Correct heading + level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | Correct heading + level |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | Correct heading + level |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H3 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H3 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Correct heading + level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+15 correct · 8 wrong/absent level · 0 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| 42 | — | H4 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H4 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H4 — Resultados | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
+**Inference:** Keep the document context → Render only the current page → Run Qwen3.6-27B with 4-bit weights → Carry predictions forward as text → Score the historical audit pages
+
+- **Keep the document context:** Reuse the full PyMuPDF4LLM title/page outline (without its predicted levels) and author-provided PDF heading tags. No reference labels are supplied.
+- **Render only the current page:** Extract sorted native text; render with PyMuPDF Matrix(2,2) and thumbnail to a maximum 1280-pixel edge. Earlier page images are omitted.
+- **Run Qwen3.6-27B with 4-bit weights:** Use the dense 27B model, retaining its pinned weights so the comparison tests the reduced image inputs. MLX-VLM 0.8.0; thinking disabled; temperature 0; seed 42; 4096-token cap.
+- **Carry predictions forward as text:** Keep the last predicted heading at each H1–H6 level. Reset memory per report. Save raw JSON replies and native page text; validate schema without changing titles or levels.
+- **Score the historical audit pages:** Compare saved predictions on 32 pages against 77 reference headings using same-page, one-to-one title matching and exact H levels. Retain both speed-trial configurations.
+
+
+
+**Models and terms explained**
+
+- [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B): A pretrained dense vision-language model used to read a page image together with document text context.
+- [MLX](https://github.com/ml-explore/mlx): Apple’s machine-learning framework for local Apple Silicon inference; it is the runtime, not the heading model.
+- [4-bit](https://github.com/ml-explore/mlx-lm): Quantized model weights use reduced numerical precision to lower memory requirements. This does not specify heading depth or guarantee a speedup.
+
+**Parameters used in this run**
+
+| Parameter | Recorded value |
+| --- | --- |
+| Model | mlx-community/Qwen3.6-27B-4bit; revision c000ac2c2057 |
+| Architecture | Dense 27B; 64 text layers; hidden width 5120 |
+| Weight quantization | Affine quantization; 4 bits; group size 64 (from the pinned model configuration) |
+| Runtime | MLX 0.32.4; mlx-vlm 0.8.0; Apple M4 Pro, 48 GB shared memory |
+| Images | Exactly one current-page image; aspect-preserving thumbnail ≤1280 pixels; Matrix(2,2) render |
+| Context | Full candidate titles/pages; full PDF heading tags; current native text; latest prediction per H level as text |
+| Generation | enable_thinking=False; temperature=0; seed=42; max_tokens=4096 |
+| Timeout | Soft 600-second limit checked between streamed chunks |
+| Scope | 32 sampled images, not 523-page visual inference; ascending pages; memory resets per document |
+
+**What the model sees**
+
+The current page image and native text can recover headings absent from the noisy candidate outline. Tags and previous predictions are explicitly described as fallible. Previous page images are absent, but the full document outline and tags are still repeated on each request.
+
+The prompt treats instructions printed in the document as content. The output decoder validates complete heading strings and integer levels 1–6; it does not repair semantic errors.
+
+
+**Training and selection**
+
+These are pretrained, quantized weights. We did not train or fine-tune this Qwen model on WFP annotations. Both model variants and the shared input settings were fixed before scoring their outputs.
+
+The four-report audit has already been inspected during earlier experiments. This is regression evidence, not a new independent test or evidence of generalization to arbitrary PDFs.
+
+
+**Measurement and provenance**
+
+The table sums generation-call times, including input processing. Model download/loading and earlier candidate/tag extraction are excluded. Per-page rendering/preparation, time to first chunk, tokens, errors and peak MLX allocation are stored separately in the linked compact evidence.
+
+Both runs share an M4 Pro with other workloads. Single-run speed ratios are observational; no controlled repeated hardware benchmark was performed. Model revisions, source/input hashes and package versions were recorded before loading.
+
+Removing visual history and shrinking the target image may lose typography clues. Correct title-and-level recall and false headings must be considered together. Only the original 32 sampled pages were scored.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) · [Official base model](https://huggingface.co/Qwen/Qwen3.6-27B) · [Tested MLX 4-bit weights](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit) · [Exact prompt](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py) · [Protocol, predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_27b_compact.json) · [Experiment and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) · [Pinned architecture and quantization configuration](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit/blob/c000ac2c2057d94be3fa931000c31723aac53282/config.json)
 
 
 ### Embedded PDF heading tags
@@ -950,6 +1143,355 @@ Selection saves model scores for reuse for speed and reads no test documents. Th
 The 95% gate checks whether predicted titles are real headings; it does not check their levels. Here 39/41 titles are real (95.1%), but only 34/41 have correct levels (82.9%), and 38 reference titles are missed. These small, previously inspected datasets do not establish production robustness.
 
 [Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py) · [Model provenance page](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md) · [Training run record](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json) · [Training program](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py) · [Training data manifest](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json) · [Materialized training annotations](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json) · [Later filter protocol](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Exact estimator constructor and JSON export](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py) · [Native line features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py) · [Group/context/pair features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py) · [Training components and variant selection](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py) · [PDF sources and report splits](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json) · [Reviewable heading annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json) · [Inference, grouping and Viterbi](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py) · [Precision filter and sequence inference](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/precision_inference.py) · [Joint metric implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/joint_metrics.py) · [All validation results](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/evidence/selection.json) · [Experiment, trade-offs and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md) · [Run on a new PDF](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_precision.py)
+
+
+### Qwen3.6-35B-A3B 4-bit — visual memory
+
+Sparse vision model + sampled visual memory · local MLX
+
+Run Qwen3.6-35B-A3B with the exact instruction and multi-image memory procedure from the original 27B experiment. This follow-up was chosen after the sparse single-image run found all titles but assigned only 53/77 levels correctly. Restore visual typography examples while retaining the faster sparse model.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+52 correct · 23 wrong/absent level · 2 missed · 0 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+13 correct · 2 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H1 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+16 correct · 2 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+11 correct · 8 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H2 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+12 correct · 11 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H1 — Introducción | Wrong or absent level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
+**Inference:** Keep the original document clues → Restore current and earlier page images → Run the sparse Qwen3.6-35B-A3B model → Update visual memory from predictions → Measure the hierarchy trade-off
+
+- **Keep the original document clues:** Supply the full-document PyMuPDF4LLM candidate titles/pages, author PDF heading tags and current native text. Reference labels are not supplied.
+- **Restore current and earlier page images:** Use a current-page thumbnail up to 1792 pixels and up to six earlier sampled images at 1280 pixels. Memory pages contain the latest predicted heading at each H1–H6 level.
+- **Run the sparse Qwen3.6-35B-A3B model:** Use the same pinned 4-bit weights as the single-image sparse trial. Keep the original instruction from run_qwen_visual_memory.py; temperature 0, seed 42, thinking disabled, 4096-token cap.
+- **Update visual memory from predictions:** Call the unchanged original generate_page function. Retain the latest prediction at each level, deduplicate and sort earlier pages, and reset memory between reports. Save every raw reply without semantic repair.
+- **Measure the hierarchy trade-off:** Score all 32 audit pages against the same 77 references. Retain both earlier speed trials and this follow-up so its selection after observing their results remains visible.
+
+
+
+**Models and terms explained**
+
+- [Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B): A pretrained sparse vision-language model; only a subset of its expert parameters is active per token, although all weights are stored.
+- [MLX](https://github.com/ml-explore/mlx): Apple’s machine-learning framework for local Apple Silicon inference; it is the runtime, not the heading model.
+- [4-bit](https://github.com/ml-explore/mlx-lm): Quantized model weights use reduced numerical precision to lower memory requirements. This does not specify heading depth or guarantee a speedup.
+
+**Parameters used in this run**
+
+| Parameter | Recorded value |
+| --- | --- |
+| Model | mlx-community/Qwen3.6-35B-A3B-4bit; revision 38740b847e4c |
+| Architecture | MoE 35B total / approximately 3B active; 40 text layers; width 2048; 256 routed experts, 8 selected per token |
+| Weight quantization | Affine quantization; 4 bits; group size 64 (from the pinned model configuration) |
+| Runtime | MLX 0.32.4; mlx-vlm 0.8.0; Apple M4 Pro, 48 GB shared memory |
+| Images | Current thumbnail ≤1792 pixels plus up to six prior sampled-page thumbnails ≤1280 pixels; Matrix(2,2) render |
+| Context | Full candidate titles/pages, PDF tags, native target text and earlier sampled images with predicted headings |
+| Generation | enable_thinking=False; temperature=0; seed=42; max_tokens=4096 |
+| Timeout | Soft 600-second limit checked between streamed chunks |
+| Scope | 32 sampled images, not 523-page visual inference; ascending pages; memory resets per document |
+| Experiment sequence | Follow-up chosen after the two single-image scores; no claim of independent test-set selection |
+
+**Why this follow-up was run**
+
+The sparse single-image model recovered all 77 titles without extra headings, but only 53 levels were correct. This trial tests whether restoring earlier typography examples helps hierarchy decisions. It changes image size, visual memory and the associated instruction back to the original configuration; it does not identify their separate effects.
+
+
+**Exact implementation and training**
+
+The wrapper calls the original generate_page function in run_qwen_visual_memory.py, including its instruction, image construction, strict decoder and soft 600-second limit. The only model substitution relative to the original vision-memory experiment is the pinned Qwen3.6-35B-A3B 4-bit model. No weights were trained or fine-tuned.
+
+Earlier images come only from previously processed audit pages. Intervening pages are not silently read. Previous predictions can be wrong, so memory may propagate errors.
+
+
+**Timing, provenance and limitations**
+
+Generation time uses the original runner’s boundary. Model loading and work outside generation are recorded separately. The reused function does not record time to first token, so that measurement is explicitly unavailable for this variant.
+
+The protocol records source and input checksums before loading. This is an exploratory follow-up on the already inspected historical corpus, selected after observing the two single-image trials; it is not an independent generalization test.
+
+This follow-up was motivated by errors on the historical audit set. Visual memory may propagate earlier level mistakes. A new report/template holdout is needed to establish generalization.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py) · [Official base model](https://huggingface.co/Qwen/Qwen3.6-35B-A3B) · [Tested MLX 4-bit weights](https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit) · [Experiment and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) · [Pinned architecture and quantization configuration](https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit/blob/38740b847e4cb78f352aba30aa41c76e08e6eb46/config.json) · [Unchanged original instruction and generation function](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py) · [Protocol, predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_35b_visual_memory.json)
+
+
+### Qwen3.6-35B-A3B 4-bit — single image
+
+Single-image vision + document context · local MLX
+
+Ask Qwen3.6-35B-A3B to identify complete heading titles and H1–H6 levels from one current-page image, native text, the full candidate outline, PDF heading tags and previous predictions as text. Its mixture-of-experts architecture activates approximately 3B of 35B parameters per token.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+53 correct · 24 wrong/absent level · 0 missed · 0 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+10 correct · 5 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H1 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| 109 | H2 — Objectives and users of the evaluation | H1 — Objectives and users of the evaluation | Wrong or absent level |
+| 109 | H2 — Evaluation questions | H1 — Evaluation questions | Wrong or absent level |
+| 109 | H2 — Methodology and ethical considerations | H1 — Methodology and ethical considerations | Wrong or absent level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+16 correct · 2 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+12 correct · 9 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | Correct heading + level |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | Correct heading + level |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H2 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+15 correct · 8 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H3 — Resultados92 | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
+**Inference:** Keep the document context → Render only the current page → Run Qwen3.6-35B-A3B with 4-bit weights → Carry predictions forward as text → Score the historical audit pages
+
+- **Keep the document context:** Reuse the full PyMuPDF4LLM title/page outline (without its predicted levels) and author-provided PDF heading tags. No reference labels are supplied.
+- **Render only the current page:** Extract sorted native text; render with PyMuPDF Matrix(2,2) and thumbnail to a maximum 1280-pixel edge. Earlier page images are omitted.
+- **Run Qwen3.6-35B-A3B with 4-bit weights:** Use the sparse mixture-of-experts model: 35B total / approximately 3B active parameters per token; all weights still occupy memory. MLX-VLM 0.8.0; thinking disabled; temperature 0; seed 42; 4096-token cap.
+- **Carry predictions forward as text:** Keep the last predicted heading at each H1–H6 level. Reset memory per report. Save raw JSON replies and native page text; validate schema without changing titles or levels.
+- **Score the historical audit pages:** Compare saved predictions on 32 pages against 77 reference headings using same-page, one-to-one title matching and exact H levels. Retain both speed-trial configurations.
+
+
+
+**Models and terms explained**
+
+- [Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B): A pretrained sparse vision-language model; only a subset of its expert parameters is active per token, although all weights are stored.
+- [MLX](https://github.com/ml-explore/mlx): Apple’s machine-learning framework for local Apple Silicon inference; it is the runtime, not the heading model.
+- [4-bit](https://github.com/ml-explore/mlx-lm): Quantized model weights use reduced numerical precision to lower memory requirements. This does not specify heading depth or guarantee a speedup.
+
+**Parameters used in this run**
+
+| Parameter | Recorded value |
+| --- | --- |
+| Model | mlx-community/Qwen3.6-35B-A3B-4bit; revision 38740b847e4c |
+| Architecture | MoE 35B total / approximately 3B active; 40 text layers; width 2048; 256 routed experts, 8 selected per token |
+| Weight quantization | Affine quantization; 4 bits; group size 64 (from the pinned model configuration) |
+| Runtime | MLX 0.32.4; mlx-vlm 0.8.0; Apple M4 Pro, 48 GB shared memory |
+| Images | Exactly one current-page image; aspect-preserving thumbnail ≤1280 pixels; Matrix(2,2) render |
+| Context | Full candidate titles/pages; full PDF heading tags; current native text; latest prediction per H level as text |
+| Generation | enable_thinking=False; temperature=0; seed=42; max_tokens=4096 |
+| Timeout | Soft 600-second limit checked between streamed chunks |
+| Scope | 32 sampled images, not 523-page visual inference; ascending pages; memory resets per document |
+
+**What the model sees**
+
+The current page image and native text can recover headings absent from the noisy candidate outline. Tags and previous predictions are explicitly described as fallible. Previous page images are absent, but the full document outline and tags are still repeated on each request.
+
+The prompt treats instructions printed in the document as content. The output decoder validates complete heading strings and integer levels 1–6; it does not repair semantic errors.
+
+
+**Training and selection**
+
+These are pretrained, quantized weights. We did not train or fine-tune this Qwen model on WFP annotations. Both model variants and the shared input settings were fixed before scoring their outputs.
+
+The four-report audit has already been inspected during earlier experiments. This is regression evidence, not a new independent test or evidence of generalization to arbitrary PDFs.
+
+
+**Measurement and provenance**
+
+The table sums generation-call times, including input processing. Model download/loading and earlier candidate/tag extraction are excluded. Per-page rendering/preparation, time to first chunk, tokens, errors and peak MLX allocation are stored separately in the linked compact evidence.
+
+Both runs share an M4 Pro with other workloads. Single-run speed ratios are observational; no controlled repeated hardware benchmark was performed. Model revisions, source/input hashes and package versions were recorded before loading.
+
+Removing visual history and shrinking the target image may lose typography clues. Correct title-and-level recall and false headings must be considered together. Only the original 32 sampled pages were scored.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) · [Official base model](https://huggingface.co/Qwen/Qwen3.6-35B-A3B) · [Tested MLX 4-bit weights](https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit) · [Exact prompt](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py) · [Protocol, predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_35b_compact.json) · [Experiment and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) · [Pinned architecture and quantization configuration](https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit/blob/38740b847e4cb78f352aba30aa41c76e08e6eb46/config.json)
 
 
 ### OUR METHOD v2 + calibrated decoding (CPU)

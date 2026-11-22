@@ -21,5 +21,8 @@
   "structure_context_relations",
   "structure_calibrated",
   "structure_precision",
-  "structure_recall"
+  "structure_recall",
+  "qwen36_27b_compact",
+  "qwen36_35b_compact",
+  "qwen36_35b_visual_memory"
 ]
