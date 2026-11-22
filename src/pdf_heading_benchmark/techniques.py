@@ -92,9 +92,14 @@ def enhance_html(rendered: str, rows: list[dict], methods: dict) -> str:
     if body is None:
         raise ValueError("Missing configuration table body")
     results["class"] = "league-table"
+    link_columns = [
+        index
+        for index, header in enumerate(results.find_all("th"))
+        if header.get_text() in {"Configuration", "Method / code"}
+    ]
     for tr, row in zip(body.find_all("tr"), rows, strict=True):
-        for td in tr.find_all("td")[:2]:
-            anchor = td.find("a")
+        for index in link_columns:
+            anchor = tr.find_all("td")[index].find("a")
             if anchor is None:
                 raise ValueError("Missing configuration or method link")
             anchor["data-technique"] = "technique-" + row["method"]

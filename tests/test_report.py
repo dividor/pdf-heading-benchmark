@@ -19,7 +19,7 @@ def test_report_is_reproducible_and_has_all_method_links():
     corpus = read_json(REPO / "configs/corpus.json")
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = next(t for t in tables if t.find("th").get_text() == "Configuration")
-    assert results.find_all("th")[3].get_text() == "Primary score: joint F0.5"
+    assert results.find_all("th")[1].get_text() == "Primary score: joint F0.5"
     scores = read_json(REPO / "outputs/report/results.json")
     combined_scores = [r["joint_f05"] for r in scores]
     assert combined_scores == sorted(combined_scores, reverse=True)
@@ -28,7 +28,7 @@ def test_report_is_reproducible_and_has_all_method_links():
     for row in rows:
         assert len(row.find_all("td")) == 10
         assert (
-            row.find_all("td")[1]
+            row.find_all("td")[3]
             .find("a")["href"]
             .startswith("https://github.com/dividor/pdf-heading-benchmark/blob/")
         )

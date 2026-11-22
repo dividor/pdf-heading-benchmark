@@ -9,10 +9,10 @@ from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
     "Configuration",
-    "Method / code",
-    "Status",
     "Primary score: joint F0.5",
     "Heading precision / 95% gate",
+    "Method / code",
+    "Status",
     "Correct heading + level",
     "Headings recovered",
     "False headings",
@@ -63,8 +63,6 @@ def cells(row, method):
         )
     return [
         configuration,
-        f"[{method['description']}]({method.get('code_url', REMOTE + method['code'])})",
-        row["status"],
         f"**{percent(row.get('joint_f05'))}**",
         (
             f"{percent(row.get('heading_precision'))} · "
@@ -72,6 +70,8 @@ def cells(row, method):
             if completed
             else "—"
         ),
+        f"[{method['description']}]({method.get('code_url', REMOTE + method['code'])})",
+        row["status"],
         combined,
         recall,
         str(row["false_headings"]) if completed else "—",
