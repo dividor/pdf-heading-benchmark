@@ -386,7 +386,7 @@
     ]
   },
   "structure_context_relations": {
-    "description": "OUR TRAINED MODEL v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.",
+    "description": "OUR METHOD v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.",
     "code": "scripts/structure/train.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
     "steps": [
@@ -402,7 +402,7 @@
     ]
   },
   "structure_calibrated": {
-    "description": "OUR MODEL v2 + validation-selected decoding: body score \u00d72; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.",
+    "description": "OUR METHOD v2 + validation-selected decoding: body score \u00d72; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.",
     "code": "scripts/structure/calibrate.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
     "steps": [

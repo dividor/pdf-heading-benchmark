@@ -15,7 +15,7 @@ def update_league(result: dict) -> None:
     counts = {k: sum(s[k] for s in scores) for k in ["gold", "predicted", "matched", "correct_level"]}
     row = {
         "method": KEY,
-        "name": "OUR MODEL v2 + calibrated decoding (CPU)",
+        "name": "OUR METHOD v2 + calibrated decoding (CPU)",
         "source_url": REMOTE + "outputs/structure-calibration/report.md",
         "status": "completed",
         "documents_scored": 4,

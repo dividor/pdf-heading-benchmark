@@ -51,7 +51,7 @@ def cells(row, method):
     if row["method"] == "structure_calibrated":
         configuration = (
             '<span id="our-calibrated-model"></span>'
-            f"[**OUR MODEL — calibrated decoding (experimental)**]({row['source_url']})"
+            f"[**OUR METHOD — calibrated decoding (experimental)**]({row['source_url']})"
         )
     return [
         configuration,
