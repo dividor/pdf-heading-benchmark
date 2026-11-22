@@ -1,5 +1,7 @@
 """The complete report must stay deterministic and its code links must resolve locally."""
 
+from html import escape
+
 from bs4 import BeautifulSoup
 
 from pdf_heading_benchmark.io import REPO, read_json
@@ -63,3 +65,25 @@ def test_every_configuration_has_an_accessible_diagram_and_markdown_sources():
             assert link["aria-controls"] == panel["id"]
             assert link["aria-haspopup"] == "dialog"
             assert link["href"].startswith("https://")
+
+
+def test_every_method_exposes_its_run_settings_in_both_formats():
+    techniques = read_json(REPO / "configs/techniques.json")
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    markdown = (REPO / "outputs/report/league_table.md").read_text()
+    diagrams = []
+    for key in read_json(REPO / "configs/report-methods.json"):
+        technique = techniques[key]
+        panel = soup.find("dialog", id="technique-" + key)
+        settings = panel.select(".technique-details tr")
+        assert len(settings) == len(technique["parameters"])
+        for row, (name, value) in zip(settings, technique["parameters"], strict=True):
+            assert row.find("th", scope="row").get_text() == name
+            assert row.find("td").get_text() == value
+            assert escape(value, quote=False).replace("|", "&#124;") in markdown
+        for section in technique["sections"]:
+            for paragraph in section["paragraphs"]:
+                assert paragraph in panel.get_text()
+                assert paragraph in markdown
+        diagrams.append(tuple((s["title"], s["detail"]) for s in technique["stages"]))
+    assert len(set(diagrams)) == len(diagrams)

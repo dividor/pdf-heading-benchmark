@@ -3,20 +3,20 @@
     "family": "Layout parser · CPU",
     "stages": [
       {
-        "title": "Full PDFs",
-        "detail": "Read native PDF text and page geometry."
+        "title": "Native PDF → layout",
+        "detail": "Docling 2.151.1; CPU, 8 threads; OCR and table structure disabled."
       },
       {
-        "title": "Docling layout",
-        "detail": "Detect document blocks; OCR and table extraction disabled."
+        "title": "Retain parsed pages",
+        "detail": "generate_parsed_pages=True preserves geometry required by the later hierarchy stage."
       },
       {
-        "title": "Native section headers",
-        "detail": "Keep SectionHeaderItem levels supplied by the parser."
+        "title": "Native SectionHeaderItem.level",
+        "detail": "Read the conversion output directly; no explicit post-conversion hierarchy pass."
       },
       {
-        "title": "Heading records",
-        "detail": "Export title, page and supplied level for scoring."
+        "title": "Export section headers",
+        "detail": "Keep text, native level, first provenance page, box and item reference."
       }
     ],
     "limitation": "These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.",
@@ -28,28 +28,80 @@
       {
         "label": "Docling technical report (2024)",
         "url": "https://arxiv.org/abs/2408.09869"
+      },
+      {
+        "label": "Conversion and both hierarchy passes",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py"
+      },
+      {
+        "label": "Pinned environment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Docling 2.151.1 detects section-header blocks; this row scores their native levels without our applying a separate hierarchy stage.",
+    "parameters": [
+      [
+        "Package",
+        "docling==2.151.1"
+      ],
+      [
+        "Device / parallelism",
+        "CPU; num_threads=8"
+      ],
+      [
+        "Conversion",
+        "do_ocr=False; do_table_structure=False; generate_parsed_pages=True"
+      ],
+      [
+        "Hierarchy",
+        "No explicit HeadingHierarchyModel pass"
+      ],
+      [
+        "Model provenance",
+        "Package-managed layout models; the runner does not explicitly pin individual layout-model revisions."
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What changed and how it was selected",
+        "paragraphs": [
+          "Docling 2.151.1 detects section-header blocks; this row scores their native levels without our applying a separate hierarchy stage.",
+          "These are fixed configurations, not a learned WFP-specific correction or a recorded hyperparameter search. The tolerance variant is exploratory; “tuned” in its historical row name should not be read as a validated optimum."
+        ]
+      },
+      {
+        "title": "Output and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "The variants share one base conversion. Its recorded time includes first model load/download. The ordinary hierarchy pass has a separate timer; the tolerance pass was not separately timed. Their table times therefore do not represent three independent end-to-end conversions.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "docling_hierarchy": {
     "family": "Layout parser · CPU",
     "stages": [
       {
-        "title": "Full PDFs",
-        "detail": "Read native PDF text and page geometry."
+        "title": "Native PDF → layout",
+        "detail": "Docling 2.151.1; CPU, 8 threads; OCR and table structure disabled."
       },
       {
-        "title": "Docling layout",
-        "detail": "Detect document blocks; OCR and table extraction disabled."
+        "title": "Retain parsed pages",
+        "detail": "generate_parsed_pages=True preserves geometry required by the later hierarchy stage."
       },
       {
-        "title": "Built-in hierarchy",
-        "detail": "Run Docling HeadingHierarchyModel on its detected headers."
+        "title": "HeadingHierarchyModel",
+        "detail": "Apply HeadingHierarchyOptions(enabled=True) to the same detected blocks."
       },
       {
-        "title": "Heading records",
-        "detail": "Export title, page and supplied level for scoring."
+        "title": "Export section headers",
+        "detail": "Keep text, native level, first provenance page, box and item reference."
       }
     ],
     "limitation": "These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.",
@@ -61,28 +113,80 @@
       {
         "label": "Docling technical report (2024)",
         "url": "https://arxiv.org/abs/2408.09869"
+      },
+      {
+        "label": "Conversion and both hierarchy passes",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py"
+      },
+      {
+        "label": "Pinned environment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Docling 2.151.1 plus its built-in HeadingHierarchyModel: the candidates are unchanged, but levels are inferred in an explicit second stage.",
+    "parameters": [
+      [
+        "Package",
+        "docling==2.151.1"
+      ],
+      [
+        "Device / parallelism",
+        "CPU; num_threads=8"
+      ],
+      [
+        "Conversion",
+        "do_ocr=False; do_table_structure=False; generate_parsed_pages=True"
+      ],
+      [
+        "Hierarchy",
+        "HeadingHierarchyOptions(enabled=True); other hierarchy settings use library defaults"
+      ],
+      [
+        "Model provenance",
+        "Package-managed layout models; the runner does not explicitly pin individual layout-model revisions."
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What changed and how it was selected",
+        "paragraphs": [
+          "Docling 2.151.1 plus its built-in HeadingHierarchyModel: the candidates are unchanged, but levels are inferred in an explicit second stage.",
+          "These are fixed configurations, not a learned WFP-specific correction or a recorded hyperparameter search. The tolerance variant is exploratory; “tuned” in its historical row name should not be read as a validated optimum."
+        ]
+      },
+      {
+        "title": "Output and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "The variants share one base conversion. Its recorded time includes first model load/download. The ordinary hierarchy pass has a separate timer; the tolerance pass was not separately timed. Their table times therefore do not represent three independent end-to-end conversions.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "docling_tuned": {
     "family": "Layout parser · CPU",
     "stages": [
       {
-        "title": "Full PDFs",
-        "detail": "Read native PDF text and page geometry."
+        "title": "Native PDF → layout",
+        "detail": "Docling 2.151.1; CPU, 8 threads; OCR and table structure disabled."
       },
       {
-        "title": "Docling layout",
-        "detail": "Detect document blocks; OCR and table extraction disabled."
+        "title": "Retain parsed pages",
+        "detail": "generate_parsed_pages=True preserves geometry required by the later hierarchy stage."
       },
       {
-        "title": "Fixed style tolerance",
-        "detail": "HeadingHierarchyModel with style_size_tolerance=0.15 across all four reports."
+        "title": "Style tolerance = 0.15",
+        "detail": "Reset to a copy of the original blocks, then enable hierarchy with the fixed tolerance."
       },
       {
-        "title": "Heading records",
-        "detail": "Export title, page and supplied level for scoring."
+        "title": "Export section headers",
+        "detail": "Keep text, native level, first provenance page, box and item reference."
       }
     ],
     "limitation": "These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.",
@@ -94,28 +198,80 @@
       {
         "label": "Docling technical report (2024)",
         "url": "https://arxiv.org/abs/2408.09869"
+      },
+      {
+        "label": "Conversion and both hierarchy passes",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py"
+      },
+      {
+        "label": "Pinned environment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "The exploratory Docling variant changes one hierarchy setting: style_size_tolerance=0.15. It starts from the same flat document as the other variants, not from the already-refined output.",
+    "parameters": [
+      [
+        "Package",
+        "docling==2.151.1"
+      ],
+      [
+        "Device / parallelism",
+        "CPU; num_threads=8"
+      ],
+      [
+        "Conversion",
+        "do_ocr=False; do_table_structure=False; generate_parsed_pages=True"
+      ],
+      [
+        "Hierarchy",
+        "enabled=True; style_size_tolerance=0.15; other settings use library defaults"
+      ],
+      [
+        "Model provenance",
+        "Package-managed layout models; the runner does not explicitly pin individual layout-model revisions."
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What changed and how it was selected",
+        "paragraphs": [
+          "The exploratory Docling variant changes one hierarchy setting: style_size_tolerance=0.15. It starts from the same flat document as the other variants, not from the already-refined output.",
+          "These are fixed configurations, not a learned WFP-specific correction or a recorded hyperparameter search. The tolerance variant is exploratory; “tuned” in its historical row name should not be read as a validated optimum."
+        ]
+      },
+      {
+        "title": "Output and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "The variants share one base conversion. Its recorded time includes first model load/download. The ordinary hierarchy pass has a separate timer; the tolerance pass was not separately timed. Their table times therefore do not represent three independent end-to-end conversions.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "pymupdf4llm": {
     "family": "Native PDF parser · CPU",
     "stages": [
       {
-        "title": "Full PDFs",
-        "detail": "Read text, fonts and page layout."
+        "title": "Native PDF text + fonts",
+        "detail": "Use PyMuPDF4LLM 2.1 on the entire PDF."
       },
       {
-        "title": "PyMuPDF4LLM",
-        "detail": "Convert every page to Markdown chunks."
+        "title": "to_markdown",
+        "detail": "page_chunks=True; use_ocr=False; no custom font-size threshold."
       },
       {
-        "title": "Markdown headings",
-        "detail": "Read # through ###### as levels and retain page provenance."
+        "title": "Parse # through ######",
+        "detail": "Only Markdown heading lines become headings; count the leading # characters."
       },
       {
-        "title": "Heading records",
-        "detail": "Score extracted titles and their Markdown levels."
+        "title": "Page-tagged headings",
+        "detail": "Take page_number from each chunk; preserve the extracted title."
       }
     ],
     "limitation": "Typography-driven Markdown can confuse display text with section headings.",
@@ -127,28 +283,75 @@
       {
         "label": "Documentation",
         "url": "https://pymupdf.readthedocs.io/en/latest/pymupdf4llm/"
+      },
+      {
+        "label": "Markdown conversion and heading regex",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pymupdf4llm.py"
+      },
+      {
+        "label": "Pinned environment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/pymupdf.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "PyMuPDF4LLM 2.1 converts native PDF text and layout to page-chunk Markdown. We score the heading markers it emits; no generative model is used.",
+    "parameters": [
+      [
+        "Package",
+        "pymupdf4llm==2.1"
+      ],
+      [
+        "Call",
+        "to_markdown(pdf, page_chunks=True, use_ocr=False)"
+      ],
+      [
+        "Heading parser",
+        "Start-of-line #{1,6}, followed by whitespace and nonempty text"
+      ],
+      [
+        "Tuning / prompt",
+        "No benchmark fitting, prompt or manual font-threshold override; other options use package defaults"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Extraction and decoding",
+        "paragraphs": [
+          "Markdown determines both heading membership and H level. The adapter does not repair typography-driven mistakes or infer hierarchy from section numbers. Full text is retained in page chunks and Markdown."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "Timing covers the conversion call; JSON/Markdown heading decoding is a separate adapter step.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "marker": {
     "family": "Layout parser · CPU",
     "stages": [
       {
-        "title": "Full PDFs",
-        "detail": "Read the native text layer."
+        "title": "Load Marker models",
+        "detail": "create_model_dict(device=\"cpu\", no_server=True)."
       },
       {
-        "title": "Marker conversion",
-        "detail": "Run with OCR and LLM assistance disabled."
+        "title": "Full-PDF JSON conversion",
+        "detail": "JSONRenderer; no_ocr mode; use_llm=False."
       },
       {
-        "title": "SectionHeader HTML",
-        "detail": "Decode the header tag supplied for each detected section."
+        "title": "Walk SectionHeader blocks",
+        "detail": "Recurse through the JSON and read h1–h6 from each block’s HTML."
       },
       {
-        "title": "Heading records",
-        "detail": "Map tags to levels and retain page provenance."
+        "title": "Retain missing levels",
+        "detail": "Keep a detected title with level=null if it has no HTML heading tag."
       }
     ],
     "limitation": "This benchmark is the local no-OCR/no-LLM configuration, not Marker with generative assistance.",
@@ -156,28 +359,79 @@
       {
         "label": "Project / GitHub",
         "url": "https://github.com/datalab-to/marker"
+      },
+      {
+        "label": "Model construction and JSON decoding",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_marker.py"
+      },
+      {
+        "label": "Pinned environment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/marker.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Marker 2.2 runs its local CPU document pipeline with both OCR and LLM assistance disabled. The scored hierarchy comes from HTML heading tags inside SectionHeader blocks.",
+    "parameters": [
+      [
+        "Package",
+        "marker-pdf==2.2"
+      ],
+      [
+        "Models",
+        "create_model_dict(device=\"cpu\", no_server=True); internal checkpoints not explicitly pinned by this runner"
+      ],
+      [
+        "Renderer",
+        "marker.renderers.json.JSONRenderer"
+      ],
+      [
+        "Configuration",
+        "mode=\"no_ocr\"; disable_ocr=True; use_llm=False; disable_image_extraction=True; disable_tqdm=True"
+      ],
+      [
+        "Tuning",
+        "No benchmark fine-tuning or prompt; remaining options use package defaults"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Output adapter",
+        "paragraphs": [
+          "The adapter enumerates output pages from 1, visits nested SectionHeader blocks and uses BeautifulSoup to identify h1–h6 tags. A title without such a tag remains a heading candidate with an unknown level."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "The timer starts before create_model_dict, so model loading/download and shutdown are included. This timing boundary differs from the vision-model generation-only measurements.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "mineru_basic": {
     "family": "Layout parser · CPU",
     "stages": [
       {
-        "title": "Full PDFs",
-        "detail": "Process all four complete reports."
+        "title": "ONNX on CPU",
+        "detail": "small_backend=\"onnx\"; onnx_device=\"cpu\"."
       },
       {
-        "title": "MinerU basic",
-        "detail": "Use the ONNX CPU pipeline without an external LLM."
+        "title": "MinerUParser basic tier",
+        "detail": "parse_mode=\"auto\"; page_range=\"all\"; image_analysis=False."
       },
       {
-        "title": "Title blocks",
-        "detail": "Read native title blocks and their supplied levels."
+        "title": "Native title blocks",
+        "detail": "Read ParagraphTitleBlock and DocTitleBlock content, level and box."
       },
       {
-        "title": "Heading records",
-        "detail": "Preserve native titles and levels for the audit."
+        "title": "Export parser levels",
+        "detail": "Use inline_plain_text and b.level directly; no secondary hierarchy model."
       }
     ],
     "limitation": "This CPU tier is different from the MinerU Pro vision model below.",
@@ -185,28 +439,79 @@
       {
         "label": "Project / GitHub",
         "url": "https://github.com/opendatalab/MinerU"
+      },
+      {
+        "label": "ONNX configuration and block extraction",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_mineru.py"
+      },
+      {
+        "label": "Pinned environment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mineru.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "MinerU 4.2.3 uses its basic ONNX CPU parser. This is the native title-block pipeline, separate from the MinerU Pro vision model.",
+    "parameters": [
+      [
+        "Package",
+        "mineru==4.2.3"
+      ],
+      [
+        "Backend",
+        "small_backend=\"onnx\"; onnx_device=\"cpu\""
+      ],
+      [
+        "Parser",
+        "tier=\"basic\"; parse_mode=\"auto\"; image_analysis=False; page_range=\"all\""
+      ],
+      [
+        "External assistance",
+        "Empty VLM server URL; runner rejects enabled LLM title leveling or cross-page table-cell merging"
+      ],
+      [
+        "Tuning",
+        "No benchmark training; individual parser model revisions are not explicitly pinned by this runner"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Native extraction",
+        "paragraphs": [
+          "Heading text, level, box and page are taken from the parser’s title objects. The runner does not add a title hierarchy prompt or rewrite missing levels."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "The parse call is timed; parser construction happens before that timer.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "pdf_tags_audit_only": {
     "family": "Author metadata · CPU",
     "stages": [
       {
-        "title": "Tagged PDF",
-        "detail": "Read the document structure tree."
+        "title": "PDFStructTree",
+        "detail": "Read embedded document structure, not outline bookmarks."
       },
       {
-        "title": "H1–H6 tags",
-        "detail": "Collect author-supplied heading elements."
+        "title": "Find H1–H6 elements",
+        "detail": "Filter structure-tree types with the exact H[1-6] pattern."
       },
       {
-        "title": "Page mapping",
-        "detail": "Associate elements with the 32 audited pages."
+        "title": "Join marked-content IDs",
+        "detail": "Map all_mcids() to characters on the 32 audited pages."
       },
       {
-        "title": "Heading records",
-        "detail": "Keep the original levels without inferred repairs."
+        "title": "Author text + level",
+        "detail": "extract_text recovers the title; tag suffix supplies level; no inferred repair."
       }
     ],
     "limitation": "Works only to the extent that the PDF author supplied correct structural tags.",
@@ -214,28 +519,74 @@
       {
         "label": "W3C PDF heading technique",
         "url": "https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9"
+      },
+      {
+        "label": "Structure tree and MCID recovery",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pdf_tags.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "This baseline reads author-supplied PDF H1–H6 structure tags and reconstructs their text through marked-content IDs. There is no model.",
+    "parameters": [
+      [
+        "Library",
+        "pdfplumber.PDFStructTree; exact historical pdfplumber version not recorded"
+      ],
+      [
+        "Tag filter",
+        "^H[1-6]$"
+      ],
+      [
+        "Text mapping",
+        "Structure element all_mcids() → page characters → extract_text"
+      ],
+      [
+        "Page assignment",
+        "Minimum page number among the element’s mapped locations"
+      ],
+      [
+        "Tuning / weights",
+        "None: metadata baseline, no trained parameters or prompt"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Why this differs from visual parsing",
+        "paragraphs": [
+          "Correct text styling does not guarantee correct PDF structure tags. Missing or incorrect author tags remain missing or incorrect in this result. The method does not fall back to font-size inference."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "Structure-tree traversal and character recovery target the 32 audited pages. Timing includes PDF opening, traversal and text reconstruction. Hardware: Apple M4 Pro, 48 GB.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "qwen_ids_union": {
     "family": "Text-only LLM refinement · local MLX",
     "stages": [
       {
-        "title": "Candidate extraction",
-        "detail": "Docling + PyMuPDF4LLM union supplies page-tagged title candidates."
+        "title": "Docling + PyMuPDF4LLM candidates",
+        "detail": "Union both full-document candidate streams; same-page fuzzy deduplication ≥0.90."
       },
       {
-        "title": "Document-wide IDs",
-        "detail": "Give each candidate an ID; send the full list without page images."
+        "title": "IDs, page and title only",
+        "detail": "Assign h0000-style IDs; omit source H levels; send one list per document."
       },
       {
         "title": "Qwen3.5-4B · 4-bit",
-        "detail": "Ask for a JSON level or null for each candidate ID."
+        "detail": "temperature=0; max_tokens=4096; seed=42; thinking disabled."
       },
       {
-        "title": "Join by ID",
-        "detail": "Map accepted IDs back to source titles and pages."
+        "title": "Strict ID → level JSON",
+        "detail": "Every ID must map to an integer 1–20 or null; rejected output is not repaired."
       }
     ],
     "limitation": "A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.",
@@ -247,28 +598,94 @@
       {
         "label": "Tested 4-bit model / HF",
         "url": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit"
+      },
+      {
+        "label": "Exact PROMPT, sampling and validation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py"
+      },
+      {
+        "label": "Model revision pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Candidate union and order preservation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/build_union.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Qwen3.5-4B in local 4-bit MLX refines Docling + PyMuPDF4LLM candidates. It receives the entire document’s candidate list as text, with no page images and no upstream levels.",
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.5-4B-MLX-4bit; revision 32f3e8ecf654 (full pin in configs/models.json)"
+      ],
+      [
+        "Input",
+        "One full-document text candidate list; num_images=0; enable_thinking=False"
+      ],
+      [
+        "Generation",
+        "temperature=0; max_tokens=4096; prefill_step_size=256; MLX seed=42"
+      ],
+      [
+        "Candidate source",
+        "Docling + PyMuPDF4LLM"
+      ],
+      [
+        "Output contract",
+        "Exact input-ID key set; integer level 1–20 or null; invalid response produces null levels for that document"
+      ],
+      [
+        "Tuning",
+        "Fixed prompt and pretrained quantized weights; no fine-tuning or recorded prompt search"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Candidate construction",
+        "paragraphs": [
+          "The union uses same-page greedy one-to-one matching at normalized title similarity ≥0.90. It strips HTML, normalizes Unicode and alphanumeric text, and uses SequenceMatcher with autojunk=False. Matched source candidates are deduplicated; unmatched candidates are merged while preserving relative order. This operates on parser outputs, not gold labels."
+        ]
+      },
+      {
+        "title": "Prompt and decoding",
+        "paragraphs": [
+          "The frozen PROMPT asks for logical hierarchy, treats executive summaries/main sections/annexes as top level, rejects captions, table cells, running headers, emphasis and TOC entries, and requires consistent parallel sections. Cover text must not shift body levels; absolute page number must not determine level. The complete prompt is linked in the runner.",
+          "The decoder strips a code-fence wrapper, then validates every ID and value. Accepted IDs are joined back to their original titles and pages; null rejects a candidate. A missing source title cannot be created by this method. Invalid responses are recorded as errors and yield no accepted headings for that document."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "Reported time covers the hierarchy-generation stage only. Candidate extraction and model loading/download are excluded; end-to-end deployment must also pay for the source parser.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "qwen_ids_mineru_basic": {
     "family": "Text-only LLM refinement · local MLX",
     "stages": [
       {
-        "title": "Candidate extraction",
-        "detail": "MinerU basic supplies page-tagged title candidates."
+        "title": "MinerU basic candidates",
+        "detail": "Use native ONNX ParagraphTitleBlock / DocTitleBlock candidates from the full PDF."
       },
       {
-        "title": "Document-wide IDs",
-        "detail": "Give each candidate an ID; send the full list without page images."
+        "title": "IDs, page and title only",
+        "detail": "Assign h0000-style IDs; omit source H levels; send one list per document."
       },
       {
         "title": "Qwen3.5-4B · 4-bit",
-        "detail": "Ask for a JSON level or null for each candidate ID."
+        "detail": "temperature=0; max_tokens=4096; seed=42; thinking disabled."
       },
       {
-        "title": "Join by ID",
-        "detail": "Map accepted IDs back to source titles and pages."
+        "title": "Strict ID → level JSON",
+        "detail": "Every ID must map to an integer 1–20 or null; rejected output is not repaired."
       }
     ],
     "limitation": "A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.",
@@ -280,28 +697,94 @@
       {
         "label": "Tested 4-bit model / HF",
         "url": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit"
+      },
+      {
+        "label": "Exact PROMPT, sampling and validation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py"
+      },
+      {
+        "label": "Model revision pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Candidate parser",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_mineru.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Qwen3.5-4B in local 4-bit MLX refines MinerU basic candidates. It receives the entire document’s candidate list as text, with no page images and no upstream levels.",
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.5-4B-MLX-4bit; revision 32f3e8ecf654 (full pin in configs/models.json)"
+      ],
+      [
+        "Input",
+        "One full-document text candidate list; num_images=0; enable_thinking=False"
+      ],
+      [
+        "Generation",
+        "temperature=0; max_tokens=4096; prefill_step_size=256; MLX seed=42"
+      ],
+      [
+        "Candidate source",
+        "MinerU basic"
+      ],
+      [
+        "Output contract",
+        "Exact input-ID key set; integer level 1–20 or null; invalid response produces null levels for that document"
+      ],
+      [
+        "Tuning",
+        "Fixed prompt and pretrained quantized weights; no fine-tuning or recorded prompt search"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Candidate construction",
+        "paragraphs": [
+          "Only MinerU basic supplies candidates. This variant changes the candidate source, while keeping the Qwen model, prompt and generation settings the same as the other ID-refinement rows."
+        ]
+      },
+      {
+        "title": "Prompt and decoding",
+        "paragraphs": [
+          "The frozen PROMPT asks for logical hierarchy, treats executive summaries/main sections/annexes as top level, rejects captions, table cells, running headers, emphasis and TOC entries, and requires consistent parallel sections. Cover text must not shift body levels; absolute page number must not determine level. The complete prompt is linked in the runner.",
+          "The decoder strips a code-fence wrapper, then validates every ID and value. Accepted IDs are joined back to their original titles and pages; null rejects a candidate. A missing source title cannot be created by this method. Invalid responses are recorded as errors and yield no accepted headings for that document."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "Reported time covers the hierarchy-generation stage only. Candidate extraction and model loading/download are excluded; end-to-end deployment must also pay for the source parser.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "qwen_ids_pymupdf4llm": {
     "family": "Text-only LLM refinement · local MLX",
     "stages": [
       {
-        "title": "Candidate extraction",
-        "detail": "PyMuPDF4LLM supplies page-tagged title candidates."
+        "title": "PyMuPDF4LLM candidates",
+        "detail": "Use the full PDF’s Markdown heading candidates and page provenance."
       },
       {
-        "title": "Document-wide IDs",
-        "detail": "Give each candidate an ID; send the full list without page images."
+        "title": "IDs, page and title only",
+        "detail": "Assign h0000-style IDs; omit source H levels; send one list per document."
       },
       {
         "title": "Qwen3.5-4B · 4-bit",
-        "detail": "Ask for a JSON level or null for each candidate ID."
+        "detail": "temperature=0; max_tokens=4096; seed=42; thinking disabled."
       },
       {
-        "title": "Join by ID",
-        "detail": "Map accepted IDs back to source titles and pages."
+        "title": "Strict ID → level JSON",
+        "detail": "Every ID must map to an integer 1–20 or null; rejected output is not repaired."
       }
     ],
     "limitation": "A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.",
@@ -313,28 +796,94 @@
       {
         "label": "Tested 4-bit model / HF",
         "url": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit"
+      },
+      {
+        "label": "Exact PROMPT, sampling and validation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py"
+      },
+      {
+        "label": "Model revision pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Candidate parser",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pymupdf4llm.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Qwen3.5-4B in local 4-bit MLX refines PyMuPDF4LLM candidates. It receives the entire document’s candidate list as text, with no page images and no upstream levels.",
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.5-4B-MLX-4bit; revision 32f3e8ecf654 (full pin in configs/models.json)"
+      ],
+      [
+        "Input",
+        "One full-document text candidate list; num_images=0; enable_thinking=False"
+      ],
+      [
+        "Generation",
+        "temperature=0; max_tokens=4096; prefill_step_size=256; MLX seed=42"
+      ],
+      [
+        "Candidate source",
+        "PyMuPDF4LLM"
+      ],
+      [
+        "Output contract",
+        "Exact input-ID key set; integer level 1–20 or null; invalid response produces null levels for that document"
+      ],
+      [
+        "Tuning",
+        "Fixed prompt and pretrained quantized weights; no fine-tuning or recorded prompt search"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Candidate construction",
+        "paragraphs": [
+          "Only PyMuPDF4LLM supplies candidates. This variant changes the candidate source, while keeping the Qwen model, prompt and generation settings the same as the other ID-refinement rows."
+        ]
+      },
+      {
+        "title": "Prompt and decoding",
+        "paragraphs": [
+          "The frozen PROMPT asks for logical hierarchy, treats executive summaries/main sections/annexes as top level, rejects captions, table cells, running headers, emphasis and TOC entries, and requires consistent parallel sections. Cover text must not shift body levels; absolute page number must not determine level. The complete prompt is linked in the runner.",
+          "The decoder strips a code-fence wrapper, then validates every ID and value. Accepted IDs are joined back to their original titles and pages; null rejects a candidate. A missing source title cannot be created by this method. Invalid responses are recorded as errors and yield no accepted headings for that document."
+        ]
+      },
+      {
+        "title": "Measured scope and timing",
+        "paragraphs": [
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "Reported time covers the hierarchy-generation stage only. Candidate extraction and model loading/download are excluded; end-to-end deployment must also pay for the source parser.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "qwen36_visual_memory": {
     "family": "Vision + document context · local MLX",
     "stages": [
       {
-        "title": "Document context",
-        "detail": "Extract native text, full-document candidates and PDF tags."
+        "title": "Full-document text context",
+        "detail": "PyMuPDF4LLM candidate titles/pages without levels, plus author heading tags."
       },
       {
-        "title": "32 target pages",
-        "detail": "Render audited page images with earlier sampled-page images as memory."
+        "title": "Current + memory images",
+        "detail": "Current target ≤1792 px; up to six prior sampled pages ≤1280 px."
       },
       {
         "title": "Qwen3.6-27B · 4-bit",
-        "detail": "Infer headings and levels using visual and document context."
+        "detail": "Native target text + context; thinking off; temperature=0; max_tokens=4096."
       },
       {
-        "title": "Validated records",
-        "detail": "Decode structured output with original page provenance."
+        "title": "JSON headings → memory",
+        "detail": "Decode target headings; retain latest predicted page at each H1–H6 for later targets."
       }
     ],
     "limitation": "The model saw sampled page images, not every page image. Generation overhead is substantial; measured results apply to this prompt and memory configuration.",
@@ -346,28 +895,95 @@
       {
         "label": "Tested 4-bit model / HF",
         "url": "https://huggingface.co/mlx-community/Qwen3.6-27B-4bit"
+      },
+      {
+        "label": "Full instruction and memory update",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py"
+      },
+      {
+        "label": "Structured reply decoder",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/decode_qwen.py"
+      },
+      {
+        "label": "Model revision",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "Qwen3.6-27B in 4-bit MLX receives a target page image, its native text, a document-wide candidate outline and author tags, plus selected earlier page images. This is our inference context design, with no weight training.",
+    "parameters": [
+      [
+        "Model",
+        "mlx-community/Qwen3.6-27B-4bit; revision c000ac2c2057"
+      ],
+      [
+        "Page ordering",
+        "Audit targets processed in ascending order within each report; memory resets between reports"
+      ],
+      [
+        "Rendering",
+        "PyMuPDF Matrix(2,2), nominal 144 dpi; target thumbnail ≤1792; memory thumbnails ≤1280 pixels"
+      ],
+      [
+        "Memory",
+        "Latest predicted heading page at each of H1–H6; deduplicate pages, sort; at most six earlier sampled images"
+      ],
+      [
+        "Generation",
+        "enable_thinking=False; temperature=0; max_tokens=4096; seed=42"
+      ],
+      [
+        "Timeout",
+        "Soft 600-second limit, checked between streamed chunks"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Prompt and memory update",
+        "paragraphs": [
+          "INSTRUCTION asks for genuine headings on the current page, their complete text and levels H1–H6. It excludes running headers/footers, captions, sidebars and TOC entries, treats document instructions as content, and permits recovery of titles missing from the outline. Tags and previous predictions are described as possibly wrong.",
+          "The full-document outline contains candidate titles and pages but omits the parser’s levels. Only earlier sampled pages can become image memory; unseen intervening pages are not silently supplied. Native target-page text is extracted in sorted order."
+        ]
+      },
+      {
+        "title": "Structured output",
+        "paragraphs": [
+          "The decoder accepts the documented array, headings-wrapper and single-fenced-JSON forms, then validates fields and levels. It does not rewrite semantic heading mistakes. The exact accepted formats are defined in the linked decoder."
+        ]
+      },
+      {
+        "title": "Tuning and measured scope",
+        "paragraphs": [
+          "Fixed prompt and pretrained 4-bit weights; no benchmark fine-tuning.",
+          "Only the 32 audited page images were processed. Scores use their 77 reference headings. Runs used local MLX on an Apple M4 Pro with 48 GB memory. A per-500-page time is an extrapolation, not a 500-page image run.",
+          "The table reports target generation time, excluding model loading and context extraction. This configuration has substantial context and generation overhead.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "lighton_mlx": {
     "family": "Page vision model · local MLX",
     "stages": [
       {
-        "title": "32 page images",
-        "detail": "Render only the audited pages."
+        "title": "Render 32 pages",
+        "detail": "400 dpi, then thumbnail to a maximum 2048-pixel side."
       },
       {
-        "title": "LightOnOCR-3-0.8B",
-        "detail": "Use the grounding prompt. Greedy generation; up to 8192 tokens."
+        "title": "0.8B + “grounding”",
+        "detail": "Single image; thinking off; temperature=0; at most 8192 generated tokens."
       },
       {
-        "title": "Grounded blocks",
-        "detail": "Decode title and continuation blocks from the model response."
+        "title": "Decode grounded titles",
+        "detail": "Read title / title+ blocks and normalized boxes from model text."
       },
       {
-        "title": "Heading records",
-        "detail": "Export inferred titles, levels and page positions."
+        "title": "Join continuations",
+        "detail": "title+ extends a preceding title; # count gives H level, otherwise null."
       }
     ],
     "limitation": "Page-local recognition has less document-wide hierarchy context. These are local MLX measurements, not vendor throughput claims.",
@@ -383,28 +999,84 @@
       {
         "label": "Earlier LightOnOCR research paper",
         "url": "https://arxiv.org/abs/2601.14251"
+      },
+      {
+        "label": "Grounding prompt, image sizing and decoder",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_lighton_mlx.py"
+      },
+      {
+        "label": "MLX package pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mlx.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "LightOnOCR-3-0.8B runs one audited page at a time in MLX. Its grounding response supplies title blocks, their boxes and any Markdown heading levels.",
+    "parameters": [
+      [
+        "Model",
+        "lightonai/LightOnOCR-3-0.8B; revision 36d863692532 (pin in runner)"
+      ],
+      [
+        "Runtime",
+        "MLX native checkpoint; no quantization conversion in the runner; one page per call"
+      ],
+      [
+        "Image",
+        "400 dpi → longest side ≤2048 pixels"
+      ],
+      [
+        "Prompt",
+        "Literal “grounding”; num_images=1; enable_thinking=False"
+      ],
+      [
+        "Generation",
+        "temperature=0; max_tokens=8192; MLX seed=42"
+      ],
+      [
+        "Timeout",
+        "Soft 300-second limit, checked between streamed chunks; not a hard interrupt"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Grounding decoder",
+        "paragraphs": [
+          "Grounded title blocks include bounding boxes on a 0–1000 coordinate scale, normalized by the adapter. A title+ block is appended only when the preceding block is title/title+. Markdown # through ###### supplies level; an unmarked title retains level=null. Raw text, token counts and limit/timeout status are saved."
+        ]
+      },
+      {
+        "title": "Tuning and measured scope",
+        "paragraphs": [
+          "Pretrained weights and a fixed grounding prompt; no benchmark fine-tuning. The linked 2026 LightOnOCR paper is earlier research, not a claim that this benchmark replicates a LightOnOCR-3 paper.",
+          "Only the 32 audited page images were processed. Scores use their 77 reference headings. Runs used local MLX on an Apple M4 Pro with 48 GB memory. A per-500-page time is an extrapolation, not a 500-page image run.",
+          "The reported time sums page generation; model loading is excluded. Cached completed pages support resumption.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "lighton4b_mlx": {
     "family": "Page vision model · local MLX",
     "stages": [
       {
-        "title": "32 page images",
-        "detail": "Render only the audited pages."
+        "title": "2048-pixel page images",
+        "detail": "Render at 400 dpi, then shrink; each page remains an independent input."
       },
       {
-        "title": "LightOnOCR-3-4B",
-        "detail": "Use the grounding prompt. 2048-pixel limit; batch 2 after five single-page checkpoints."
+        "title": "4B bf16 · batch 2",
+        "detail": "“grounding”; temperature=0; 12,384-token ceiling in the batch runner."
       },
       {
-        "title": "Grounded blocks",
-        "detail": "Decode title and continuation blocks from the model response."
+        "title": "Historical checkpoint merge",
+        "detail": "Five earlier single-page outputs used a 12,288-token ceiling."
       },
       {
-        "title": "Heading records",
-        "detail": "Export inferred titles, levels and page positions."
+        "title": "Grounded heading decode",
+        "detail": "Join title+ continuations; retain # levels and page/box provenance."
       }
     ],
     "limitation": "Page-local recognition has less document-wide hierarchy context. These are local MLX measurements, not vendor throughput claims.",
@@ -420,28 +1092,88 @@
       {
         "label": "Earlier LightOnOCR research paper",
         "url": "https://arxiv.org/abs/2601.14251"
+      },
+      {
+        "label": "Batch settings and prompt verification",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_chandra_batch.py"
+      },
+      {
+        "label": "Grounded title decoder",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_lighton_mlx.py"
+      },
+      {
+        "label": "Checkpoint revisions",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "LightOnOCR-3-4B uses the same grounding-output idea as the 0.8B model, but runs bf16 MLX batches of two with a larger generation allowance. The published run also retains five earlier single-page checkpoints.",
+    "parameters": [
+      [
+        "Model",
+        "lightonai/LightOnOCR-3-4B; revision b71010f095dc"
+      ],
+      [
+        "Runtime",
+        "MLX bf16; MlxVlmClient; batch_size=2; no quantization conversion"
+      ],
+      [
+        "Image",
+        "400 dpi → longest side ≤2048 pixels"
+      ],
+      [
+        "Prompt",
+        "Literal “grounding”; empty system prompt; wrapper checked against template with enable_thinking=False"
+      ],
+      [
+        "Sampling",
+        "temperature=0; top_p=1; top_k=0; max_new_tokens=12384; seed=42"
+      ],
+      [
+        "Historical exception",
+        "Five cached single-page outputs use max_tokens=12288; fresh packaged runs batch all 32 pages"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Output and provenance",
+        "paragraphs": [
+          "The grounded title/title+ decoder is shared with the 0.8B path. It retains unknown levels rather than inferring them. The table’s measured result combines the five earlier checkpoints with the subsequent batch outputs; it is not a claim that all 32 historical pages used an identical batching configuration."
+        ]
+      },
+      {
+        "title": "Tuning and measured scope",
+        "paragraphs": [
+          "No benchmark fine-tuning or parameter search. Batch size and token limits are fixed runtime choices.",
+          "Only the 32 audited page images were processed. Scores use their 77 reference headings. Runs used local MLX on an Apple M4 Pro with 48 GB memory. A per-500-page time is an extrapolation, not a 500-page image run.",
+          "Timing sums recorded generation, excludes model loading, and allocates a batch’s wall time equally across its pages. Allocated per-page times are not individual-page latency measurements.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "chandra2_mlx": {
     "family": "Page vision model · local MLX",
     "stages": [
       {
-        "title": "32 page images",
-        "detail": "Use the author rendering and OCR-layout prompt."
+        "title": "Author image preparation",
+        "detail": "At least 192 dpi / 1024-pixel short side, then upstream scale_to_fit."
       },
       {
-        "title": "Chandra OCR 2",
-        "detail": "Run locally through MLX in batches of four."
+        "title": "OCR_LAYOUT_PROMPT",
+        "detail": "Use the author prompt; verify chat-template compatibility with thinking off."
       },
       {
-        "title": "Structured HTML",
-        "detail": "Read generated heading tags from the response."
+        "title": "Chandra 2 · bf16 · batch 4",
+        "detail": "16,000,000-pixel batch budget; temperature=0; max_new_tokens=12384."
       },
       {
-        "title": "Heading records",
-        "detail": "Convert HTML headings to levels with page provenance."
+        "title": "HTML → H1–H6",
+        "detail": "Decode h1–h6; preserve Section-Header blocks without tags as level=null."
       }
     ],
     "limitation": "The measured run uses MLX on the benchmark Mac. Model-card GPU benchmarks use different hardware and datasets.",
@@ -453,28 +1185,88 @@
       {
         "label": "Project / GitHub",
         "url": "https://github.com/datalab-to/chandra"
+      },
+      {
+        "label": "Rendering, batch parameters and HTML decoder",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_chandra_batch.py"
+      },
+      {
+        "label": "Author-code download pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/prepare_model.py"
+      },
+      {
+        "label": "Model revision",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "datalab-to/chandra-ocr-2 uses the author’s OCR_LAYOUT_PROMPT and image preparation, with local bf16 MLX batches of four. Generated HTML tags determine heading levels.",
+    "parameters": [
+      [
+        "Model",
+        "datalab-to/chandra-ocr-2; revision af93b47dba1b"
+      ],
+      [
+        "Author code",
+        "datalab-to/chandra revision 9c3a195573be; OCR_LAYOUT_PROMPT and scale_to_fit"
+      ],
+      [
+        "Runtime",
+        "MLX bf16; batch_size=4; MLX_BATCH_PIXEL_BUDGET=16000000"
+      ],
+      [
+        "Rendering",
+        "dpi=max(192, 1024/min(page width, page height in points) ×72), then author scale_to_fit"
+      ],
+      [
+        "Prompt",
+        "OCR_LAYOUT_PROMPT; empty system prompt; template checked against enable_thinking=False"
+      ],
+      [
+        "Sampling",
+        "temperature=0; top_p=1; top_k=0; max_new_tokens=12384; seed=42"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "HTML adapter",
+        "paragraphs": [
+          "BeautifulSoup reads h1–h6 text and levels. A data-label=\"Section-Header\" block without a child heading tag is retained with an unknown level. The runner does not apply document-wide hierarchy correction to those outputs."
+        ]
+      },
+      {
+        "title": "Tuning and measured scope",
+        "paragraphs": [
+          "Pretrained checkpoint and fixed author prompt; no benchmark fine-tuning. Batching is a local MLX deployment choice, not the model-card GPU setup.",
+          "Only the 32 audited page images were processed. Scores use their 77 reference headings. Runs used local MLX on an Apple M4 Pro with 48 GB memory. A per-500-page time is an extrapolation, not a 500-page image run.",
+          "Generation time excludes model loading. Batch wall time is divided among its pages, so the reported per-page allocation is not a single-page latency test.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "mineru_pro_mlx": {
     "family": "Page vision model · local MLX",
     "stages": [
       {
-        "title": "32 page images",
-        "detail": "Render the audited pages."
+        "title": "400 dpi → 2048 pixels",
+        "detail": "Render only the 32 audit pages; one image per call."
       },
       {
-        "title": "MinerU2.5 Pro · 1.2B",
-        "detail": "Call the direct MLX two_step_extract interface."
+        "title": "two_step_extract",
+        "detail": "MinerUClient: mlx-engine, batch_size=1, max_concurrency=1."
       },
       {
-        "title": "Layout → content",
-        "detail": "Extract title blocks from the returned content."
+        "title": "Layout then content",
+        "detail": "Convert returned blocks with json2md; accept title/doc_title/paragraph_title."
       },
       {
-        "title": "Titles; null levels",
-        "detail": "Keep absent hierarchy levels as null; do not invent them."
+        "title": "No supplied H levels",
+        "detail": "Keep title text and box; absent # hierarchy stays null, with no added classifier."
       }
     ],
     "limitation": "This direct interface did not supply heading levels. Title detection alone is not a complete heading-and-level output.",
@@ -490,28 +1282,84 @@
       {
         "label": "Research paper linked by model card",
         "url": "https://arxiv.org/abs/2604.04771"
+      },
+      {
+        "label": "Two-step interface and null-level handling",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_mineru_pro.py"
+      },
+      {
+        "label": "Model revision",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Library pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mlx.txt"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "MinerU2.5-Pro-2605-1.2B runs its direct two_step_extract interface in MLX. The tested interface detected title blocks but did not supply their hierarchy levels.",
+    "parameters": [
+      [
+        "Model",
+        "opendatalab/MinerU2.5-Pro-2605-1.2B; revision 08aaea840498"
+      ],
+      [
+        "Runtime",
+        "MLX bf16; mineru-vl-utils==2.0.9; backend=\"mlx-engine\""
+      ],
+      [
+        "Parallelism",
+        "batch_size=1; max_concurrency=1; use_tqdm=False"
+      ],
+      [
+        "Image / seed",
+        "400 dpi → longest side ≤2048 pixels; MLX seed=42; image_analysis=False"
+      ],
+      [
+        "Prompt / sampling",
+        "Internal two_step_extract library defaults; prompt, temperature and token ceiling are not explicitly overridden or individually recorded by this runner"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What the score means",
+        "paragraphs": [
+          "The adapter checks the Markdown rendering of each title block for # through ######. When those markers are absent, level remains null. The historical result recovered 69 of 77 reference titles but no complete title-plus-level matches. Zero complete matches is not zero title detection."
+        ]
+      },
+      {
+        "title": "Tuning and measured scope",
+        "paragraphs": [
+          "No benchmark training and no additional title-leveling stage. This configuration should not be generalized to every MinerU deployment.",
+          "Only the 32 audited page images were processed. Scores use their 77 reference headings. Runs used local MLX on an Apple M4 Pro with 48 GB memory. A per-500-page time is an extrapolation, not a 500-page image run.",
+          "Timing surrounds two_step_extract and excludes model/client loading.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "popo_docling": {
     "family": "Visual hierarchy post-processing · local MLX",
     "stages": [
       {
-        "title": "Docling candidates",
-        "detail": "Extract section headers and their page boxes."
+        "title": "Docling title candidates",
+        "detail": "Traverse section_header nodes; retain text and normalized boxes; skip picture/table subtrees."
       },
       {
-        "title": "8-page chunks",
-        "detail": "Build page mosaics with candidate text and overlapping chunks."
+        "title": "8-page visual chunks",
+        "detail": "Author adaptive_chunk and bordered page mosaics; one-page overlap."
       },
       {
-        "title": "Popo · 8-bit",
-        "detail": "Run the title task in an experimental MLX port."
+        "title": "MinerU-Popo · 8-bit",
+        "detail": "“Title Level Analysis” prompt + IDs, pages, boxes, text; max_tokens=8192."
       },
       {
-        "title": "Overlap alignment",
-        "detail": "Use upstream alignment and map results to source candidates."
+        "title": "Align overlaps → source IDs",
+        "detail": "Author label decoder and overlap level offsets; reject negative labels, preserve accepted values."
       }
     ],
     "limitation": "This is our experimental Docling + MLX adapter, not the authors’ standard end-to-end deployment. No summary task was run.",
@@ -527,31 +1375,92 @@
       {
         "label": "MinerU-Popo paper",
         "url": "https://arxiv.org/abs/2605.24973"
+      },
+      {
+        "label": "Mosaic prompt and overlap alignment",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_popo_mlx.py"
+      },
+      {
+        "label": "Quantization and author-code preparation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/prepare_model.py"
+      },
+      {
+        "label": "Model revision",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
-    "training": []
+    "training": [],
+    "summary": "An experimental adapter combines Docling’s detected section headers with MinerU-Popo’s visual title-level task. We converted the pinned weights to 8-bit MLX, built page mosaics and aligned predictions across overlapping chunks.",
+    "parameters": [
+      [
+        "Model",
+        "DreamEternal/MinerU-Popo; revision af75342abdc5"
+      ],
+      [
+        "Author code",
+        "opendatalab/MinerU-Popo revision 8b9a8bd57ef3"
+      ],
+      [
+        "Quantization",
+        "mlx_vlm.convert; affine 8-bit; group_size=64"
+      ],
+      [
+        "Chunking",
+        "adaptive_chunk(..., chunk_size=8); recorded one-page overlap; author concatenate_pdf_pages_with_border"
+      ],
+      [
+        "Prompt",
+        "<image> then “Title Level Analysis: ” and candidate ID/page/box/content fields"
+      ],
+      [
+        "Generation",
+        "temperature=0; max_tokens=8192; prefill_step_size=256; seed=42; thinking not explicitly overridden"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Candidate and overlap processing",
+        "paragraphs": [
+          "The adapter reads Docling’s default body hierarchy, excludes picture/table subtrees, and converts boxes to normalized page coordinates with the proper origin. Author preprocessing functions prepare title candidates and visual chunks.",
+          "extract_label2 decodes the response. Overlap disagreements involving a negative label reject both copies; otherwise the rounded mean level difference supplies an offset for new positive labels. Repeated IDs retain existing assignments. Nonnegative output labels are accepted as emitted, including 0; negative or missing labels are demoted to text. No hidden +1 shift is applied."
+        ]
+      },
+      {
+        "title": "Tuning and measured scope",
+        "paragraphs": [
+          "No fine-tuning or parameter search; fixed conversion and inference settings. Only the title-level task was run, not summary generation or other Popo tasks.",
+          "All four complete PDFs (523 pages) were parsed. Scores use only the shared 32 audited pages / 77 reference headings; they are not full-document accuracy. Runs used an Apple M4 Pro with 48 GB memory.",
+          "The reported hierarchy-stage time excludes base Docling extraction and model loading. This MLX adapter is experimental and is not an end-to-end replication of the authors’ benchmark.",
+          "The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection."
+        ]
+      }
+    ]
   },
   "supervised_extra_trees": {
     "family": "Our supervised model · CPU",
     "stages": [
       {
-        "title": "New PDF → lines",
-        "detail": "PyMuPDF extracts text, font, position and spacing features."
+        "title": "PyMuPDF → 33 features",
+        "detail": "Extract every native line; fonts, geometry, spacing and generic text indicators."
       },
       {
-        "title": "Line classification",
-        "detail": "200-tree classifier predicts body or heading level per line."
+        "title": "One ExtraTreesClassifier",
+        "detail": "200 trees; depth ≤16; minimum leaf 2; body or H level per line."
       },
       {
         "title": "Same-block grouping",
-        "detail": "Combine adjacent predicted heading lines within PDF blocks."
+        "detail": "Merge adjacent same-level heading lines only within a PDF block."
       },
       {
-        "title": "Text + hierarchy",
-        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+        "title": "Native text + headings",
+        "detail": "Keep source lines; export heading groups, levels and inferred parents."
       }
     ],
-    "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
+    "limitation": "Assistant-produced labels lack independent adjudication. V1 selection uses line F1, not v2 group F1. Same-block grouping can split multi-block headings; parent edges are inferred and unscored.",
     "sources": [
       {
         "label": "Extra Trees implementation",
@@ -560,20 +1469,110 @@
       {
         "label": "Extra Trees algorithm paper (2006)",
         "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      },
+      {
+        "label": "Estimator definitions",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+      },
+      {
+        "label": "Line features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+      },
+      {
+        "label": "V1 training and selection",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/supervised/train.py"
+      },
+      {
+        "label": "V1 validation evidence",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/supervised/evidence/selection.json"
+      },
+      {
+        "label": "V1 corpus and source URLs",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/supervised/corpus.json"
+      },
+      {
+        "label": "Grouping and parent inference",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_inference.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
       {
-        "title": "Visual source review",
-        "detail": "Assistant labels headings and levels on separate WFP reports."
+        "title": "Assistant annotations",
+        "detail": "154 heading groups on 16 training reports; report-level validation/test splits."
       },
       {
-        "title": "Training data",
-        "detail": "154 headings / 16 reports."
+        "title": "Fit two estimator families",
+        "detail": "StandardScaler + LogisticRegression(C=1), versus 200-tree Extra Trees; fixed settings."
       },
       {
-        "title": "Small learned models",
-        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+        "title": "Select Extra Trees",
+        "detail": "Validation exact-level line F1 69.1% versus 47.6%; freeze the winning model."
+      }
+    ],
+    "summary": "Our first supervised baseline is one 200-tree ExtraTreesClassifier over native PDF lines. It was selected against scaled logistic regression on separate validation reports; no LLM runs during inference.",
+    "parameters": [
+      [
+        "Estimator",
+        "sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3"
+      ],
+      [
+        "Trees per classifier",
+        "n_estimators=200"
+      ],
+      [
+        "Tree limits",
+        "max_depth=16; min_samples_leaf=2"
+      ],
+      [
+        "Feature sampling / weighting",
+        "max_features=0.8; class_weight=\"balanced\""
+      ],
+      [
+        "Reproducibility / parallelism",
+        "random_state=42; n_jobs=4"
+      ],
+      [
+        "Other estimator options",
+        "Library defaults; no tree hyperparameter search was run"
+      ],
+      [
+        "Training set",
+        "154 heading groups / 16 WFP reports"
+      ],
+      [
+        "Alternative estimator",
+        "StandardScaler + LogisticRegression(C=1, class_weight=\"balanced\", max_iter=3000, random_state=42)"
+      ],
+      [
+        "Selected artifact",
+        "200-tree JSON model, 9.97 MiB; recorded fit time ≈0.455 s, excluding preparation"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Labels and features",
+        "paragraphs": [
+          "A single assistant reviewed source text, layout/page snippets and TOC context and supplied explicit line groups and H levels. The annotation provenance does not record a precise teacher-model checkpoint, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate ground truth. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.",
+          "The 33 native-line features cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model."
+        ]
+      },
+      {
+        "title": "What was actually tuned",
+        "paragraphs": [
+          "Two estimator families were compared using validation exact-level LINE F1: logistic regression 47.6%, Extra Trees 69.1%. Tree parameters and logistic C were fixed, not searched. Validation contains 21 heading groups across four reports; the separate v1 test contains 27 groups across four reports.",
+          "The v1 test scored 82.0% exact-level line F1 and 22/27 complete heading groups at the right level. This differs from the v2 group-F1 metric. The v1 training set was expanded with additional reviewed training pages before the reported selection/test; it is smaller than the later 887-group v2 set."
+        ]
+      },
+      {
+        "title": "Export and measured scope",
+        "paragraphs": [
+          "Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full native text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.",
+          "The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer."
+        ]
       }
     ]
   },
@@ -581,20 +1580,20 @@
     "family": "Our supervised model · CPU",
     "stages": [
       {
-        "title": "New PDF → lines",
-        "detail": "PyMuPDF extracts text, font, position and spacing features."
+        "title": "Expanded labels → line model",
+        "detail": "Fit 200 trees on 7,039 labeled lines with 33 features."
       },
       {
-        "title": "Line classification",
-        "detail": "200-tree classifier predicts body or heading level per line."
+        "title": "Full PDF → line probabilities",
+        "detail": "Each line gets body/H1–H5 scores; choose argmax."
       },
       {
-        "title": "Same-block grouping",
-        "detail": "Combine adjacent predicted heading lines within PDF blocks."
+        "title": "Original block grouping",
+        "detail": "Join adjacent equal-level heading lines in the same PDF block; no join classifier."
       },
       {
-        "title": "Text + hierarchy",
-        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+        "title": "Line-only result",
+        "detail": "No TOC context model or relationship decoder; validation group F1 55.3%."
       }
     ],
     "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
@@ -606,20 +1605,120 @@
       {
         "label": "Extra Trees algorithm paper (2006)",
         "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      },
+      {
+        "label": "Exact estimator constructor and JSON export",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+      },
+      {
+        "label": "Native line features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+      },
+      {
+        "label": "Group/context/pair features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+      },
+      {
+        "label": "Training components and variant selection",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+      },
+      {
+        "label": "Frozen validation scores and fit metadata",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "PDF sources and report splits",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Reviewable heading annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Inference, grouping and Viterbi",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
       {
-        "title": "Visual source review",
-        "detail": "Assistant labels headings and levels on separate WFP reports."
+        "title": "Assistant → explicit labels",
+        "detail": "20 reports: 887 heading groups; reviewed body negatives; train/validation/test reports separated."
       },
       {
-        "title": "Training data",
-        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+        "title": "Fit fixed Extra Trees",
+        "detail": "200 trees per component; depth ≤16; leaf ≥2; balanced classes; seed 42."
       },
       {
-        "title": "Small learned models",
-        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+        "title": "Select pipeline on validation",
+        "detail": "21 groups / 4 reports; exact group+level F1: line 55.3%, groups 63.6%, context+relations 69.8%."
+      }
+    ],
+    "summary": "The v2 line-only ablation keeps the original one-classifier architecture but expands training to 887 heading groups across 20 reports. It isolates the effect of more labels before introducing learned grouping.",
+    "parameters": [
+      [
+        "Estimator",
+        "sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3"
+      ],
+      [
+        "Trees per classifier",
+        "n_estimators=200"
+      ],
+      [
+        "Tree limits",
+        "max_depth=16; min_samples_leaf=2"
+      ],
+      [
+        "Feature sampling / weighting",
+        "max_features=0.8; class_weight=\"balanced\""
+      ],
+      [
+        "Reproducibility / parallelism",
+        "random_state=42; n_jobs=4"
+      ],
+      [
+        "Other estimator options",
+        "Library defaults; no tree hyperparameter search was run"
+      ],
+      [
+        "Deployed components",
+        "line: 33 features, 7,039 examples, 200 trees"
+      ],
+      [
+        "Observed target classes",
+        "0=body, 1–5=heading level; no H6 training examples"
+      ],
+      [
+        "Artifact / fit",
+        "line.json: 22,737,104 bytes; fit ≈1.007 s; excludes extraction/export/validation"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Training set and annotation source",
+        "paragraphs": [
+          "A single assistant reviewed source text, layout/page snippets and TOC context and supplied explicit line groups and H levels. The annotation provenance does not record a precise teacher-model checkpoint, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate ground truth. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.",
+          "The training split contains 20 WFP reports, 887 heading groups and 7,039 labeled lines. Line classes: body=5,849; H1=238; H2=391; H3=432; H4=128; H5=1; H6=0. Negative examples come from 112 fully reviewed training pages. Unmarked lines on positive-only annotation pages are not automatically negatives. The H5/H6 coverage is a material limitation.",
+          "Validation uses reports 103, 538, 176 and 128: 21 reference groups on 20 reviewed pages. The original v2 test uses reports 321, 844, 560 and 394: 38 groups on 32 reviewed pages. Splits are by report, not random lines; report-template families are not held out. Those test pages have now been inspected and are regression evidence for subsequent changes."
+        ]
+      },
+      {
+        "title": "Features and grouping",
+        "paragraphs": [
+          "The 33 native-line features cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model.",
+          "Line classification uses the largest class probability. The original grouping combines adjacent heading lines only when their PDF block and predicted level agree. There is no learned line-joining model, group classifier or Viterbi stage in this ablation."
+        ]
+      },
+      {
+        "title": "Selection and deployment",
+        "paragraphs": [
+          "We compared three pipeline variants, with identical fixed tree settings. Validation exact group-and-level F1 was 55.3% for expanded_line, 63.6% for learned_groups and 69.8% for context_relations. The highest validation F1 selected context_relations before the original v2 test. Selection did not use the historical main-table results. F1 = 2 × exact group-and-level matches / (gold groups + predicted groups); group matching requires identical source-line membership.",
+          "Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full native text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.",
+          "The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer."
+        ]
       }
     ]
   },
@@ -627,20 +1726,20 @@
     "family": "Our supervised model · CPU",
     "stages": [
       {
-        "title": "New PDF → lines",
-        "detail": "PyMuPDF extracts text, font, position and spacing features."
+        "title": "Adjacent line pairs → join",
+        "detail": "100 features = line A + line B + differences + page delta; binary Extra Trees."
       },
       {
-        "title": "Learned line joining",
-        "detail": "Predict which adjacent lines belong to one heading, across PDF blocks."
+        "title": "Connected heading spans",
+        "detail": "Join predicted continuations across PDF block boundaries; retain separate source line IDs."
       },
       {
-        "title": "Group classification",
-        "detail": "Classify each joined group as body or a heading level."
+        "title": "43-feature group classifier",
+        "detail": "200 more trees predict body or H1–H5 from merged text and style summaries."
       },
       {
-        "title": "Text + hierarchy",
-        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+        "title": "Independent group levels",
+        "detail": "Argmax per group; no TOC/style-context features or relation/Viterbi stage."
       }
     ],
     "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
@@ -652,20 +1751,125 @@
       {
         "label": "Extra Trees algorithm paper (2006)",
         "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      },
+      {
+        "label": "Exact estimator constructor and JSON export",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+      },
+      {
+        "label": "Native line features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+      },
+      {
+        "label": "Group/context/pair features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+      },
+      {
+        "label": "Training components and variant selection",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+      },
+      {
+        "label": "Frozen validation scores and fit metadata",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "PDF sources and report splits",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Reviewable heading annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Inference, grouping and Viterbi",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
       {
-        "title": "Visual source review",
-        "detail": "Assistant labels headings and levels on separate WFP reports."
+        "title": "Assistant → explicit labels",
+        "detail": "20 reports: 887 heading groups; reviewed body negatives; train/validation/test reports separated."
       },
       {
-        "title": "Training data",
-        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+        "title": "Fit fixed Extra Trees",
+        "detail": "200 trees per component; depth ≤16; leaf ≥2; balanced classes; seed 42."
       },
       {
-        "title": "Small learned models",
-        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+        "title": "Select pipeline on validation",
+        "detail": "21 groups / 4 reports; exact group+level F1: line 55.3%, groups 63.6%, context+relations 69.8%."
+      }
+    ],
+    "summary": "This v2 ablation uses two ExtraTreesClassifier models: a binary line-join model and a group-level body/heading classifier, 400 trees total. It tests learned heading spans before adding document context and level relationships.",
+    "parameters": [
+      [
+        "Estimator",
+        "sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3"
+      ],
+      [
+        "Trees per classifier",
+        "n_estimators=200"
+      ],
+      [
+        "Tree limits",
+        "max_depth=16; min_samples_leaf=2"
+      ],
+      [
+        "Feature sampling / weighting",
+        "max_features=0.8; class_weight=\"balanced\""
+      ],
+      [
+        "Reproducibility / parallelism",
+        "random_state=42; n_jobs=4"
+      ],
+      [
+        "Other estimator options",
+        "Library defaults; no tree hyperparameter search was run"
+      ],
+      [
+        "Join classifier",
+        "100 features; 6,267 labeled adjacent-line pairs; classes 0=separate, 1=join"
+      ],
+      [
+        "Group classifier",
+        "43 features; 6,736 examples; classes body/H1–H5"
+      ],
+      [
+        "Total deployed trees",
+        "2 ×200 =400"
+      ],
+      [
+        "Artifact sizes / fit",
+        "join.json 1,958,200 bytes / ≈0.816 s; group.json 17,519,049 bytes / ≈0.995 s"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Training set and annotation source",
+        "paragraphs": [
+          "A single assistant reviewed source text, layout/page snippets and TOC context and supplied explicit line groups and H levels. The annotation provenance does not record a precise teacher-model checkpoint, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate ground truth. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.",
+          "The training split contains 20 WFP reports, 887 heading groups and 7,039 labeled lines. Line classes: body=5,849; H1=238; H2=391; H3=432; H4=128; H5=1; H6=0. Negative examples come from 112 fully reviewed training pages. Unmarked lines on positive-only annotation pages are not automatically negatives. The H5/H6 coverage is a material limitation.",
+          "Validation uses reports 103, 538, 176 and 128: 21 reference groups on 20 reviewed pages. The original v2 test uses reports 321, 844, 560 and 394: 38 groups on 32 reviewed pages. Splits are by report, not random lines; report-template families are not held out. Those test pages have now been inspected and are regression evidence for subsequent changes."
+        ]
+      },
+      {
+        "title": "Join and group targets",
+        "paragraphs": [
+          "The 33 native-line features cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model.",
+          "An adjacent pair is positive only if both lines belong to the same explicit annotated heading. Only pairs with known labels on both lines are trained. Pair features concatenate A, B, B−A and page difference: 3×33+1=100.",
+          "The group classifier trains on 887 annotated heading groups plus 5,849 reviewed singleton body lines. Its 43 features start from the 33 line features, recompute text indicators on the joined title, use the last line’s following gap, and add group length/page span plus mean/max size, bold, italic and width. Inference uses predicted groups, so join errors can propagate into classification."
+        ]
+      },
+      {
+        "title": "Selection and deployment",
+        "paragraphs": [
+          "We compared three pipeline variants, with identical fixed tree settings. Validation exact group-and-level F1 was 55.3% for expanded_line, 63.6% for learned_groups and 69.8% for context_relations. The highest validation F1 selected context_relations before the original v2 test. Selection did not use the historical main-table results. F1 = 2 × exact group-and-level matches / (gold groups + predicted groups); group matching requires identical source-line membership.",
+          "Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full native text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.",
+          "The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer."
+        ]
       }
     ]
   },
@@ -673,20 +1877,20 @@
     "family": "Our supervised model · CPU",
     "stages": [
       {
-        "title": "New PDF → lines",
-        "detail": "PyMuPDF extracts text, font, position and spacing features."
+        "title": "Join model · 200 trees",
+        "detail": "100 pair features → binary continuation → line groups, including across PDF blocks."
       },
       {
-        "title": "Learned line joining",
-        "detail": "Predict heading spans across PDF blocks."
+        "title": "Context model · 200 trees",
+        "detail": "47 features = group style/text + document numbering/TOC context → body/H1–H5 probabilities."
       },
       {
-        "title": "Context + relationships",
-        "detail": "Use style / TOC features and learned level transitions; decode the sequence."
+        "title": "Relation model · 200 trees",
+        "detail": "142 features between retained groups → shallower / same / deeper transition probabilities."
       },
       {
-        "title": "Text + hierarchy",
-        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+        "title": "Viterbi level sequence",
+        "detail": "Relation weight=1; maximize class + transition log probabilities; export source text and parents."
       }
     ],
     "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
@@ -698,20 +1902,145 @@
       {
         "label": "Extra Trees algorithm paper (2006)",
         "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      },
+      {
+        "label": "Exact estimator constructor and JSON export",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+      },
+      {
+        "label": "Native line features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+      },
+      {
+        "label": "Group/context/pair features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+      },
+      {
+        "label": "Training components and variant selection",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+      },
+      {
+        "label": "Frozen validation scores and fit metadata",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "PDF sources and report splits",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Reviewable heading annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Inference, grouping and Viterbi",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
       {
-        "title": "Visual source review",
-        "detail": "Assistant labels headings and levels on separate WFP reports."
+        "title": "Assistant → explicit labels",
+        "detail": "20 reports: 887 heading groups; reviewed body negatives; train/validation/test reports separated."
       },
       {
-        "title": "Training data",
-        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+        "title": "Fit fixed Extra Trees",
+        "detail": "200 trees per component; depth ≤16; leaf ≥2; balanced classes; seed 42."
       },
       {
-        "title": "Small learned models",
-        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+        "title": "Select pipeline on validation",
+        "detail": "21 groups / 4 reports; exact group+level F1: line 55.3%, groups 63.6%, context+relations 69.8%."
+      }
+    ],
+    "summary": "Our selected v2 pipeline is three scikit-learn ExtraTreesClassifier models (600 trees total) plus a Viterbi decoder. They learn line joining, contextual heading classification and relative level transitions. Tree settings are fixed; validation selects the pipeline architecture.",
+    "parameters": [
+      [
+        "Estimator",
+        "sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3"
+      ],
+      [
+        "Trees per classifier",
+        "n_estimators=200"
+      ],
+      [
+        "Tree limits",
+        "max_depth=16; min_samples_leaf=2"
+      ],
+      [
+        "Feature sampling / weighting",
+        "max_features=0.8; class_weight=\"balanced\""
+      ],
+      [
+        "Reproducibility / parallelism",
+        "random_state=42; n_jobs=4"
+      ],
+      [
+        "Other estimator options",
+        "Library defaults; no tree hyperparameter search was run"
+      ],
+      [
+        "Join classifier",
+        "ExtraTreesClassifier: 100 features; 6,267 pairs; 200 trees; separate/join"
+      ],
+      [
+        "Context classifier",
+        "ExtraTreesClassifier: 47 features; 6,736 groups; 200 trees; body/H1–H5"
+      ],
+      [
+        "Relation classifier",
+        "ExtraTreesClassifier: 142 features; 867 heading pairs; 200 trees; shallower/same/deeper"
+      ],
+      [
+        "Total deployed trees",
+        "3 ×200 =600; join + context + relation"
+      ],
+      [
+        "Decoding",
+        "body_weight=1.0; relation_weight=1.0; Viterbi over retained H1–H5 candidates"
+      ],
+      [
+        "Artifacts / fitting",
+        "23.2 MiB combined JSON; ≈2.09 s summed classifier fitting, excluding extraction/export/validation"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Training data and teacher provenance",
+        "paragraphs": [
+          "A single assistant reviewed source text, layout/page snippets and TOC context and supplied explicit line groups and H levels. The annotation provenance does not record a precise teacher-model checkpoint, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate ground truth. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.",
+          "The training split contains 20 WFP reports, 887 heading groups and 7,039 labeled lines. Line classes: body=5,849; H1=238; H2=391; H3=432; H4=128; H5=1; H6=0. Negative examples come from 112 fully reviewed training pages. Unmarked lines on positive-only annotation pages are not automatically negatives. The H5/H6 coverage is a material limitation.",
+          "Validation uses reports 103, 538, 176 and 128: 21 reference groups on 20 reviewed pages. The original v2 test uses reports 321, 844, 560 and 394: 38 groups on 32 reviewed pages. Splits are by report, not random lines; report-template families are not held out. Those test pages have now been inspected and are regression evidence for subsequent changes."
+        ]
+      },
+      {
+        "title": "What each model learns",
+        "paragraphs": [
+          "The 33 native-line features cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model.",
+          "The context classifier uses 47 features: the 43 group features plus style_numbered_count, style_mean_depth, style_max_depth and toc_exact_title. Style statistics group lines by rounded font size, bold/italic and color, then summarize numeric-prefix depth. TOC matching normalizes title text, strips its numeric prefix and dot leaders, and checks exact membership among dot-leader lines. This is a learned input feature, not a hard TOC level override.",
+          "The relationship classifier uses 142 features: two 47-feature groups, their differences and page delta. Its 867 training pairs are consecutive annotated headings. Target −1 means the next H number is smaller (shallower), 0 means equal and +1 means larger (deeper). It learns direction, not the number of levels skipped."
+        ]
+      },
+      {
+        "title": "Sequence decoding",
+        "paragraphs": [
+          "First, body/heading argmax decides which predicted groups survive. Viterbi then maximizes the sum of log heading-class probabilities and weighted log relationship probabilities for transitions between retained groups. Transition class is sign(next H − previous H); probabilities are clipped below at 1e-12. Default relation weight is 1.0. This decoder is an algorithm, not a fourth trained model, and cannot recover a group already rejected as body."
+        ]
+      },
+      {
+        "title": "Selection, not a tree-parameter search",
+        "paragraphs": [
+          "We compared three pipeline variants, with identical fixed tree settings. Validation exact group-and-level F1 was 55.3% for expanded_line, 63.6% for learned_groups and 69.8% for context_relations. The highest validation F1 selected context_relations before the original v2 test. Selection did not use the historical main-table results. F1 = 2 × exact group-and-level matches / (gold groups + predicted groups); group matching requires identical source-line membership.",
+          "The original separate 38-heading v2 test achieved 85.7% exact group-and-level F1: 38 matched groups, 36 correctly leveled and 8 additional false groups. That small test is distinct from the historical 77-heading table."
+        ]
+      },
+      {
+        "title": "Deployment and timing",
+        "paragraphs": [
+          "Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full native text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.",
+          "The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer."
+        ]
       }
     ]
   },
@@ -719,20 +2048,20 @@
     "family": "Our supervised model · CPU",
     "stages": [
       {
-        "title": "New PDF → lines",
-        "detail": "PyMuPDF extracts text, font, position and spacing features."
+        "title": "Frozen join model",
+        "detail": "Same 200 trees / 100 features; no changes to labels or predicted joining rules."
       },
       {
-        "title": "Learned line joining",
-        "detail": "Predict heading spans across PDF blocks."
+        "title": "Frozen context model",
+        "detail": "Same 200 trees / 47 features; multiply only the body decision score by 2 before argmax."
       },
       {
-        "title": "Context + relationships",
-        "detail": "Double the body decision score before retaining headings, then decode level relationships with weight 1."
+        "title": "Frozen relation model",
+        "detail": "Same 200 trees / 142 features; predict shallower/same/deeper on retained headings."
       },
       {
-        "title": "Text + hierarchy",
-        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+        "title": "Viterbi with weight 1",
+        "detail": "Selected relationship weight stays 1; stricter heading filtering can also remove true headings."
       }
     ],
     "limitation": "The models and labels are unchanged. Validation selects a stricter heading decision. Regression on previously inspected pages improves F1 but misses one genuine heading. It is not new independent test evidence.",
@@ -748,24 +2077,168 @@
       {
         "label": "Calibration protocol and regression evidence",
         "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md"
+      },
+      {
+        "label": "Exact estimator constructor and JSON export",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+      },
+      {
+        "label": "Native line features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+      },
+      {
+        "label": "Group/context/pair features",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+      },
+      {
+        "label": "Training components and variant selection",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+      },
+      {
+        "label": "Frozen validation scores and fit metadata",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+      },
+      {
+        "label": "PDF sources and report splits",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+      },
+      {
+        "label": "Reviewable heading annotations",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+      },
+      {
+        "label": "Inference, grouping and Viterbi",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+      },
+      {
+        "label": "Nine-setting search implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py"
+      },
+      {
+        "label": "Frozen grid scores and selected decoding",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/evidence/selection.json"
+      },
+      {
+        "label": "Calibration runner and artifact input",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_structure.py"
+      },
+      {
+        "label": "Main-table scoring implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
       {
-        "title": "Visual source review",
-        "detail": "Assistant labels headings and levels on separate WFP reports."
+        "title": "Reuse v2 labels and weights",
+        "detail": "887 training groups; same join/context/relation JSON models and hashes."
       },
       {
-        "title": "Training data",
-        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+        "title": "Evaluate nine decoding settings",
+        "detail": "Body weights 1 /1.5 /2 × relation weights 1 /0.5 /0; 4 validation reports."
       },
       {
-        "title": "Small learned models",
-        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+        "title": "Freeze body=2, relation=1",
+        "detail": "81.1% validation group F1; assess inspected regression set and historical table separately."
+      }
+    ],
+    "summary": "This candidate reuses the selected v2 pipeline’s three frozen Extra Trees models. It changes the body-versus-heading decision after a nine-setting validation search; it does not train new trees.",
+    "parameters": [
+      [
+        "Estimator",
+        "sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3"
+      ],
+      [
+        "Trees per classifier",
+        "n_estimators=200"
+      ],
+      [
+        "Tree limits",
+        "max_depth=16; min_samples_leaf=2"
+      ],
+      [
+        "Feature sampling / weighting",
+        "max_features=0.8; class_weight=\"balanced\""
+      ],
+      [
+        "Reproducibility / parallelism",
+        "random_state=42; n_jobs=4"
+      ],
+      [
+        "Other estimator options",
+        "Library defaults; no tree hyperparameter search was run"
+      ],
+      [
+        "Join classifier",
+        "ExtraTreesClassifier: 100 features; 6,267 pairs; 200 trees; separate/join"
+      ],
+      [
+        "Context classifier",
+        "ExtraTreesClassifier: 47 features; 6,736 groups; 200 trees; body/H1–H5"
+      ],
+      [
+        "Relation classifier",
+        "ExtraTreesClassifier: 142 features; 867 heading pairs; 200 trees; shallower/same/deeper"
+      ],
+      [
+        "Total deployed trees",
+        "3 ×200 =600; join + context + relation"
+      ],
+      [
+        "Grid actually searched",
+        "body_weight ∈ {1.0, 1.5, 2.0}; relation_weight ∈ {1.0, 0.5, 0.0}; 9 combinations"
+      ],
+      [
+        "Selected decoding",
+        "body_weight=2.0; relation_weight=1.0"
+      ],
+      [
+        "Selection metric / ties",
+        "Validation exact group-and-level F1; first grid entry wins ties, with baseline settings ordered first"
+      ],
+      [
+        "Model integrity",
+        "Same JSON model hashes as v2; no refitting or label changes"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Frozen training data and components",
+        "paragraphs": [
+          "A single assistant reviewed source text, layout/page snippets and TOC context and supplied explicit line groups and H levels. The annotation provenance does not record a precise teacher-model checkpoint, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate ground truth. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.",
+          "The training split contains 20 WFP reports, 887 heading groups and 7,039 labeled lines. Line classes: body=5,849; H1=238; H2=391; H3=432; H4=128; H5=1; H6=0. Negative examples come from 112 fully reviewed training pages. Unmarked lines on positive-only annotation pages are not automatically negatives. The H5/H6 coverage is a material limitation.",
+          "Validation uses reports 103, 538, 176 and 128: 21 reference groups on 20 reviewed pages. The original v2 test uses reports 321, 844, 560 and 394: 38 groups on 32 reviewed pages. Splits are by report, not random lines; report-template families are not held out. Those test pages have now been inspected and are regression evidence for subsequent changes."
+        ]
       },
       {
-        "title": "Validation selection",
-        "detail": "Test nine fixed decoding settings on four validation reports; freeze the best exact F1."
+        "title": "Features and sequence decoding",
+        "paragraphs": [
+          "The 33 native-line features cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model.",
+          "The context classifier uses 47 features: the 43 group features plus style_numbered_count, style_mean_depth, style_max_depth and toc_exact_title. Style statistics group lines by rounded font size, bold/italic and color, then summarize numeric-prefix depth. TOC matching normalizes title text, strips its numeric prefix and dot leaders, and checks exact membership among dot-leader lines. This is a learned input feature, not a hard TOC level override.",
+          "The relationship classifier uses 142 features: two 47-feature groups, their differences and page delta. Its 867 training pairs are consecutive annotated headings. Target −1 means the next H number is smaller (shallower), 0 means equal and +1 means larger (deeper). It learns direction, not the number of levels skipped.",
+          "First, body/heading argmax decides which predicted groups survive. Viterbi then maximizes the sum of log heading-class probabilities and weighted log relationship probabilities for transitions between retained groups. Transition class is sign(next H − previous H); probabilities are clipped below at 1e-12. Default relation weight is 1.0. This decoder is an algorithm, not a fourth trained model, and cannot recover a group already rejected as body."
+        ]
+      },
+      {
+        "title": "What calibration changes",
+        "paragraphs": [
+          "Only the body column of a copy of the group-probability array is multiplied by body_weight before argmax. Surviving headings still use the original probabilities in Viterbi. This is decision weighting, not statistical probability calibration.",
+          "On the four validation reports, body weights 1.0, 1.5 and 2.0 yield group-and-level F1 of 69.8%, 76.9% and 81.1%. All three relationship weights tie at each body weight, so the ordered grid retains relation_weight=1.0. There is no evidence from this grid that a relationship-weight change helped."
+        ]
+      },
+      {
+        "title": "Regression outcome and why this is not promoted",
+        "paragraphs": [
+          "On the previously inspected 38-heading set, F1 rises from 85.7% to 94.7%: 36 groups remain correctly leveled, false groups fall from 8 to 1, and one genuine group is now missed. This is regression evidence, not a new independent test.",
+          "On the historical main-table 77 headings, correct title-plus-level matches fall from 50 to 47; matched titles fall from 64 to 59 and false headings from 23 to 21. The candidate therefore remains separate from the highlighted original model."
+        ]
+      },
+      {
+        "title": "Deployment and measured scope",
+        "paragraphs": [
+          "Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full native text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.",
+          "The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer.",
+          "The runner accepts a separate calibration file and verifies frozen model/configuration provenance. No score or inference output is changed by this documentation update."
+        ]
       }
     ]
   }
