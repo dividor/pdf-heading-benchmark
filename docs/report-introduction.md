@@ -6,6 +6,8 @@ The strongest completed configuration was Qwen3.6-27B with sampled visual memory
 
 [Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md) · [Frozen results](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/results.json) · [Per-report local scores](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/details.json)
 
+**Looking for our trained model?** [Jump to the highlighted **OUR METHOD** row](#our-trained-model): LLM-assisted visual annotations → a small Extra Trees classifier trained on those labels → local CPU inference. The LLM creates training labels; the deployed model is the tree classifier. [Training protocol and diagrams](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/report.md).
+
 ## Documents and their sources
 
 All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The [corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json) records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.
