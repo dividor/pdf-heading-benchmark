@@ -638,5 +638,37 @@
     "matched": 19,
     "correct_level": 13,
     "predicted": 19
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 9,
+    "predicted": 24
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 16,
+    "correct_level": 15,
+    "predicted": 18
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 12,
+    "correct_level": 11,
+    "predicted": 22
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 16,
+    "correct_level": 12,
+    "predicted": 16
   }
 ]

@@ -3,6 +3,7 @@
 from markdown_it import MarkdownIt
 
 from pdf_heading_benchmark.io import REPO, read_json, write_json
+from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
@@ -46,6 +47,11 @@ def cells(row, method):
         configuration = (
             '<span id="our-trained-model"></span>'
             f"[**OUR METHOD — LLM annotations → grouped context model v2 (CPU)**]({row['source_url']})"
+        )
+    if row["method"] == "structure_calibrated":
+        configuration = (
+            '<span id="our-calibrated-model"></span>'
+            f"[**OUR MODEL — calibrated decoding (experimental)**]({row['source_url']})"
         )
     return [
         configuration,
@@ -128,8 +134,10 @@ def build_report():
     write_json(output / "results.json", report_rows("league_table.json"))
     summary_keys = ("method", "document", "gold", "matched", "correct_level", "predicted")
     write_json(output / "details.json", [{key: row[key] for key in summary_keys} for row in details])
-    (output / "league_table.md").write_text(markdown)
+    rows = report_rows("league_table.json")
+    (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
+    rendered = enhance_html(rendered, rows, methods)
     css = (REPO / "docs/report.css").read_text()
     html = (
         '<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'

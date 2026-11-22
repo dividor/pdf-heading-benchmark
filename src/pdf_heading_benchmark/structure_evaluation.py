@@ -26,14 +26,16 @@ def summarize_counts(counts: dict) -> dict:
     }
 
 
-def evaluate_documents(documents: list[dict], models: dict, variant: str) -> tuple[dict, list]:
+def evaluate_documents(
+    documents: list[dict], models: dict, variant: str, decoding: dict | None = None
+) -> tuple[dict, list]:
     counts = dict.fromkeys(("gold", "predicted", "matched", "correct"), 0)
     all_gold, all_predicted, audits, per_document = [], [], [], {}
     start = time.perf_counter()
     for doc in documents:
         if not doc["record"]["review_pages"]:
             raise ValueError("Cannot score positive-only annotations as a complete reference")
-        groups = infer_lines(doc["lines"], doc["rows"], models, variant)
+        groups = infer_lines(doc["lines"], doc["rows"], models, variant, decoding)
         pages = set(doc["record"]["review_pages"])
         groups = [g for g in groups if g["page"] in pages]
         found = group_counts(doc["groups"], groups)

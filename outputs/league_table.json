@@ -74,6 +74,23 @@
     "processed_pages": 523
   },
   {
+    "method": "structure_calibrated",
+    "name": "OUR MODEL v2 + calibrated decoding (CPU)",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md",
+    "status": "completed",
+    "documents_scored": 4,
+    "gold": 77,
+    "predicted": 80,
+    "matched": 59,
+    "correct_level": 47,
+    "heading_recall": 0.7662337662337663,
+    "correct_heading_and_level": 0.6103896103896104,
+    "false_headings": 21,
+    "native_prose_retention": null,
+    "measured_seconds": 14.465749875933398,
+    "processed_pages": 523
+  },
+  {
     "method": "lighton_mlx",
     "name": "LightOnOCR-3-0.8B / MLX",
     "source_url": "https://huggingface.co/lightonai/LightOnOCR-3-0.8B",

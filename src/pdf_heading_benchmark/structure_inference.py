@@ -67,7 +67,10 @@ def attach_parents(groups: list[dict]) -> None:
         stack.append(group)
 
 
-def grouped_predictions(lines: list[dict], rows: list[dict], models: dict, variant: str) -> list[dict]:
+def grouped_predictions(
+    lines: list[dict], rows: list[dict], models: dict, variant: str, decoding: dict | None = None
+) -> list[dict]:
+    decoding = decoding or {}
     components = learned_components(rows, models["join"])
     context = context_index(lines)
     grouped = [group_features(g, lines, rows, context) for g in components]
@@ -75,7 +78,9 @@ def grouped_predictions(lines: list[dict], rows: list[dict], models: dict, varia
     inputs = [with_context(r) for r in grouped] if contextual else grouped
     model = models["context" if contextual else "group"]
     probabilities = predict_proba(model, matrix(inputs, model["features"]))
-    levels = np.asarray(model["classes"])[probabilities.argmax(axis=1)]
+    decision = probabilities.copy()
+    decision[:, model["classes"].index(0)] *= decoding.get("body_weight", 1.0)
+    levels = np.asarray(model["classes"])[decision.argmax(axis=1)]
     selected = np.flatnonzero(levels > 0)
     if contextual and len(selected) > 1:
         pairs = [pair_features(inputs[a], inputs[b]) for a, b in pairwise(selected)]
@@ -87,6 +92,7 @@ def grouped_predictions(lines: list[dict], rows: list[dict], models: dict, varia
             [model["classes"][i] for i in columns],
             relations,
             relation_model["classes"],
+            weight=decoding.get("relation_weight", 1.0),
         )
         levels[selected] = refined
     output = []
@@ -106,7 +112,9 @@ def grouped_predictions(lines: list[dict], rows: list[dict], models: dict, varia
     return output
 
 
-def infer_lines(lines: list[dict], rows: list[dict], models: dict, variant: str) -> list[dict]:
+def infer_lines(
+    lines: list[dict], rows: list[dict], models: dict, variant: str, decoding: dict | None = None
+) -> list[dict]:
     if variant == "expanded_line":
         model = models["line"]
         levels = predict(model, matrix(rows, model["features"]))
@@ -115,14 +123,14 @@ def infer_lines(lines: list[dict], rows: list[dict], models: dict, variant: str)
         )
     if variant not in {"learned_groups", "context_relations"}:
         raise ValueError("Unknown structure variant")
-    return grouped_predictions(lines, rows, models, variant)
+    return grouped_predictions(lines, rows, models, variant, decoding)
 
 
-def parse_structure(pdf: Path, models: dict, variant: str) -> dict:
+def parse_structure(pdf: Path, models: dict, variant: str, decoding: dict | None = None) -> dict:
     start = time.perf_counter()
     lines = extract_lines(pdf)
     rows, _ = feature_rows(lines)
-    groups = infer_lines(lines, rows, models, variant)
+    groups = infer_lines(lines, rows, models, variant, decoding)
     return {
         "lines": lines,
         "headings": groups,

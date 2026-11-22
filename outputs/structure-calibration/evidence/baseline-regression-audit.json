@@ -1,0 +1,1057 @@
+[
+  {
+    "report_id": 321,
+    "headings": [
+      {
+        "id": "p013b001l00",
+        "page": 13,
+        "level": 1,
+        "line_ids": [
+          "p013b001l00"
+        ],
+        "text": "1. Introduction",
+        "bboxes": [
+          [
+            90.0,
+            69.77361297607422,
+            191.1160888671875,
+            89.87889099121094
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p013b002l00",
+        "page": 13,
+        "level": 2,
+        "line_ids": [
+          "p013b002l00"
+        ],
+        "text": "1.1 Motivation",
+        "bboxes": [
+          [
+            90.0,
+            98.69470977783203,
+            173.58767700195312,
+            115.70687103271484
+          ]
+        ],
+        "parent_id": "p013b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p014b001l00",
+        "page": 14,
+        "level": 2,
+        "line_ids": [
+          "p014b001l00"
+        ],
+        "text": "1.2 Malnutrition in Niger",
+        "bboxes": [
+          [
+            90.0,
+            70.25458526611328,
+            230.10084533691406,
+            87.2667465209961
+          ]
+        ],
+        "parent_id": "p013b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p015b002l00",
+        "page": 15,
+        "level": 2,
+        "line_ids": [
+          "p015b002l00"
+        ],
+        "text": "1.3 Knowledge gaps",
+        "bboxes": [
+          [
+            90.0,
+            153.0545654296875,
+            208.85940551757812,
+            170.0667266845703
+          ]
+        ],
+        "parent_id": "p013b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p016b002l00",
+        "page": 16,
+        "level": 2,
+        "line_ids": [
+          "p016b002l00"
+        ],
+        "text": "1.4 Derivation of the final empirical research strategy",
+        "bboxes": [
+          [
+            90.0,
+            254.9345703125,
+            395.3397521972656,
+            271.9467468261719
+          ]
+        ],
+        "parent_id": "p013b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p034b001l00",
+        "page": 34,
+        "level": 1,
+        "line_ids": [
+          "p034b001l00"
+        ],
+        "text": "7. Impact analysis and results of the key evaluation questions",
+        "bboxes": [
+          [
+            90.0,
+            69.77361297607422,
+            504.6713562011719,
+            89.87889099121094
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p034b002l00",
+        "page": 34,
+        "level": 2,
+        "line_ids": [
+          "p034b002l00"
+        ],
+        "text": "7.1 Group definitions",
+        "bboxes": [
+          [
+            90.0,
+            98.69470977783203,
+            213.54013061523438,
+            115.70687103271484
+          ]
+        ],
+        "parent_id": "p034b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p034b005l01",
+        "page": 34,
+        "level": 3,
+        "line_ids": [
+          "p034b005l01"
+        ],
+        "text": "Endline status",
+        "bboxes": [
+          [
+            212.75999450683594,
+            339.93499755859375,
+            291.10247802734375,
+            355.9161376953125
+          ]
+        ],
+        "parent_id": "p034b002l00",
+        "level_jump": false
+      },
+      {
+        "id": "p034b013l00",
+        "page": 34,
+        "level": 2,
+        "line_ids": [
+          "p034b013l00"
+        ],
+        "text": "7.2 Key outcome variables",
+        "bboxes": [
+          [
+            90.0,
+            519.8946533203125,
+            244.14300537109375,
+            536.9067993164062
+          ]
+        ],
+        "parent_id": "p034b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p035b001l00",
+        "page": 35,
+        "level": 1,
+        "line_ids": [
+          "p035b001l00"
+        ],
+        "text": "Figure 4: Distribution of MUAC and WAZ",
+        "bboxes": [
+          [
+            90.0,
+            70.29499816894531,
+            304.42822265625,
+            86.27611541748047
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p035b003l00",
+        "page": 35,
+        "level": 2,
+        "line_ids": [
+          "p035b003l00"
+        ],
+        "text": "7.3 Empirical specification",
+        "bboxes": [
+          [
+            90.0,
+            273.29461669921875,
+            244.14300537109375,
+            290.3067932128906
+          ]
+        ],
+        "parent_id": "p035b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p037b005l00",
+        "page": 37,
+        "level": 2,
+        "line_ids": [
+          "p037b005l00"
+        ],
+        "text": "7.4 Qualitative specification",
+        "bboxes": [
+          [
+            90.0,
+            478.49468994140625,
+            251.34228515625,
+            495.5068664550781
+          ]
+        ],
+        "parent_id": "p035b001l00",
+        "level_jump": false
+      }
+    ]
+  },
+  {
+    "report_id": 844,
+    "headings": [
+      {
+        "id": "p010b004l00",
+        "page": 10,
+        "level": 1,
+        "line_ids": [
+          "p010b004l00"
+        ],
+        "text": "1. Introduction",
+        "bboxes": [
+          [
+            72.02400207519531,
+            75.25071716308594,
+            287.0395812988281,
+            113.33222961425781
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p011b004l00",
+        "page": 11,
+        "level": 1,
+        "line_ids": [
+          "p011b004l00"
+        ],
+        "text": "2. Programme description",
+        "bboxes": [
+          [
+            72.02400207519531,
+            75.25071716308594,
+            429.6195983886719,
+            113.33222961425781
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p011b005l00",
+        "page": 11,
+        "level": 2,
+        "line_ids": [
+          "p011b005l00"
+        ],
+        "text": "2.1 Nepal’s anticipatory action programme",
+        "bboxes": [
+          [
+            72.02400207519531,
+            127.70001220703125,
+            288.00201416015625,
+            139.70001220703125
+          ]
+        ],
+        "parent_id": "p011b004l00",
+        "level_jump": false
+      },
+      {
+        "id": "p012b005l00",
+        "page": 12,
+        "level": 2,
+        "line_ids": [
+          "p012b005l00"
+        ],
+        "text": "2.2 Anticipatory action activation",
+        "bboxes": [
+          [
+            72.02400207519531,
+            114.13995361328125,
+            240.4820098876953,
+            126.13995361328125
+          ]
+        ],
+        "parent_id": "p011b004l00",
+        "level_jump": false
+      },
+      {
+        "id": "p019b004l00",
+        "page": 19,
+        "level": 1,
+        "line_ids": [
+          "p019b004l00"
+        ],
+        "text": "4. Main findings",
+        "bboxes": [
+          [
+            72.02400207519531,
+            75.25071716308594,
+            293.15960693359375,
+            113.33222961425781
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p019b006l00",
+        "page": 19,
+        "level": 2,
+        "line_ids": [
+          "p019b006l00"
+        ],
+        "text": "4.1 Flood damage",
+        "bboxes": [
+          [
+            72.02400207519531,
+            172.5799560546875,
+            163.052001953125,
+            184.5799560546875
+          ]
+        ],
+        "parent_id": "p019b004l00",
+        "level_jump": false
+      },
+      {
+        "id": "p021b004l00",
+        "page": 21,
+        "level": 2,
+        "line_ids": [
+          "p021b004l00"
+        ],
+        "text": "4.2 Transfer timing and use",
+        "bboxes": [
+          [
+            72.02400207519531,
+            77.63995361328125,
+            210.4820098876953,
+            89.63995361328125
+          ]
+        ],
+        "parent_id": "p019b004l00",
+        "level_jump": false
+      },
+      {
+        "id": "p022b021l00",
+        "page": 22,
+        "level": 2,
+        "line_ids": [
+          "p022b021l00"
+        ],
+        "text": "4.3 Food security",
+        "bboxes": [
+          [
+            72.02400207519531,
+            410.2099914550781,
+            159.69200134277344,
+            422.2099914550781
+          ]
+        ],
+        "parent_id": "p019b004l00",
+        "level_jump": false
+      }
+    ]
+  },
+  {
+    "report_id": 560,
+    "headings": [
+      {
+        "id": "p021b002l00",
+        "page": 21,
+        "level": 1,
+        "line_ids": [
+          "p021b002l00"
+        ],
+        "text": "1. Introduction",
+        "bboxes": [
+          [
+            54.0,
+            63.88397979736328,
+            243.77000427246094,
+            95.29998016357422
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p021b009l00",
+        "page": 21,
+        "level": 3,
+        "line_ids": [
+          "p021b009l00"
+        ],
+        "text": "1.1. CARACTERISTIQUES DE L’EVALUATION",
+        "bboxes": [
+          [
+            54.0,
+            585.7482299804688,
+            288.2803955078125,
+            600.1995849609375
+          ]
+        ],
+        "parent_id": "p021b002l00",
+        "level_jump": true
+      },
+      {
+        "id": "p022b008l00",
+        "page": 22,
+        "level": 2,
+        "line_ids": [
+          "p022b008l00"
+        ],
+        "text": "1.2. CONTEXTE",
+        "bboxes": [
+          [
+            54.0,
+            498.0282287597656,
+            137.05039978027344,
+            512.4796142578125
+          ]
+        ],
+        "parent_id": "p021b002l00",
+        "level_jump": false
+      },
+      {
+        "id": "p023b004l00",
+        "page": 23,
+        "level": 3,
+        "line_ids": [
+          "p023b004l00"
+        ],
+        "text": "Secteur agrosylvopastoral et changement climatique",
+        "bboxes": [
+          [
+            54.0,
+            186.09820556640625,
+            331.4803771972656,
+            200.549560546875
+          ]
+        ],
+        "parent_id": "p022b008l00",
+        "level_jump": false
+      },
+      {
+        "id": "p023b007l00",
+        "page": 23,
+        "level": 3,
+        "line_ids": [
+          "p023b007l00"
+        ],
+        "text": "Évolution de la situation humanitaire",
+        "bboxes": [
+          [
+            54.0,
+            476.5482177734375,
+            251.44041442871094,
+            490.99957275390625
+          ]
+        ],
+        "parent_id": "p022b008l00",
+        "level_jump": false
+      },
+      {
+        "id": "p024b007l00",
+        "page": 24,
+        "level": 3,
+        "line_ids": [
+          "p024b007l00"
+        ],
+        "text": "Sécurité alimentaire et impact de la pandémie de COVID-19",
+        "bboxes": [
+          [
+            54.0,
+            551.0682373046875,
+            367.5003967285156,
+            565.5195922851562
+          ]
+        ],
+        "parent_id": "p022b008l00",
+        "level_jump": false
+      },
+      {
+        "id": "p036b002l00",
+        "page": 36,
+        "level": 1,
+        "line_ids": [
+          "p036b002l00"
+        ],
+        "text": "2. Constats de l’évaluation",
+        "bboxes": [
+          [
+            72.02400207519531,
+            63.88397979736328,
+            403.0299987792969,
+            95.29998016357422
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p036b003l00",
+        "page": 36,
+        "level": 2,
+        "line_ids": [
+          "p036b003l00",
+          "p036b003l01",
+          "p036b003l02",
+          "p036b003l03"
+        ],
+        "text": "2.1. DANS QUELLE MESURE LA POSITION STRATEGIQUE, LE ROLE, ET LA CONTRIBUTION SPECIFIQUE DU PAM AU TCHAD SONT-ILS FONDES SUR LES PRIORITES DU PAYS ET LES BESOINS DES POPULATIONS AINSI QUE SUR LES ATOUTS DU PAM?",
+        "bboxes": [
+          [
+            72.02400207519531,
+            108.458251953125,
+            460.256591796875,
+            122.90960693359375
+          ],
+          [
+            72.02400207519531,
+            123.458251953125,
+            483.2562561035156,
+            137.90960693359375
+          ],
+          [
+            72.02400207519531,
+            138.458251953125,
+            483.5795593261719,
+            152.90960693359375
+          ],
+          [
+            72.02400207519531,
+            153.458251953125,
+            172.57040405273438,
+            167.90960693359375
+          ]
+        ],
+        "parent_id": "p036b002l00",
+        "level_jump": false
+      },
+      {
+        "id": "p036b004l00",
+        "page": 36,
+        "level": 3,
+        "line_ids": [
+          "p036b004l00",
+          "p036b004l01"
+        ],
+        "text": "2.1.1 Dans quelle mesure le PSP est-il adapté aux politiques, plans, stratégies et objectifs nationaux, y compris la réalisation des Objectifs de développement durable?",
+        "bboxes": [
+          [
+            72.02400207519531,
+            174.33819580078125,
+            488.74609375,
+            188.78955078125
+          ],
+          [
+            72.02400207519531,
+            189.33819580078125,
+            520.5303955078125,
+            203.78955078125
+          ]
+        ],
+        "parent_id": "p036b003l00",
+        "level_jump": false
+      },
+      {
+        "id": "p036b005l00",
+        "page": 36,
+        "level": 3,
+        "line_ids": [
+          "p036b005l00",
+          "p036b005l01",
+          "p036b005l02",
+          "p036b005l03"
+        ],
+        "text": "Le PSP s’aligne sur un cadre d’action stratégique national, qui s’est étoffé au cours des deux dernières années. Celui-ci a été développé de manière participative et inclusive, notamment avec le Gouvernement. La dynamique de concertation interne n’a toutefois pas suffisamment intégré l’ensemble du personnel du Bureau de pays, notamment au niveau des sous-bureaux.",
+        "bboxes": [
+          [
+            77.42400360107422,
+            216.35897827148438,
+            519.8590087890625,
+            228.13998413085938
+          ],
+          [
+            77.42400360107422,
+            228.59896850585938,
+            519.8740234375,
+            240.37997436523438
+          ],
+          [
+            77.42400360107422,
+            240.83895874023438,
+            519.8800048828125,
+            252.61996459960938
+          ],
+          [
+            77.42400360107422,
+            253.07901000976562,
+            463.69000244140625,
+            264.8600158691406
+          ]
+        ],
+        "parent_id": "p036b003l00",
+        "level_jump": false
+      },
+      {
+        "id": "p037b005l00",
+        "page": 37,
+        "level": 3,
+        "line_ids": [
+          "p037b005l00",
+          "p037b005l01",
+          "p037b005l02",
+          "p037b005l03"
+        ],
+        "text": "Le PSP contribue à l’ODD2 via un appui à la réponse et à la prévention des crises ainsi qu’au renforcement des capacités selon une approche NHDP. Ayant contribué à mieux structurer le dialogue avec le Gouvernement, il s’aligne sur le PND, qui souligne la dimension sécuritaire des crises humanitaires.",
+        "bboxes": [
+          [
+            77.42400360107422,
+            222.59896850585938,
+            519.8740234375,
+            234.37997436523438
+          ],
+          [
+            77.42400360107422,
+            234.83895874023438,
+            519.72705078125,
+            246.61996459960938
+          ],
+          [
+            77.42400360107422,
+            247.07901000976562,
+            519.6857299804688,
+            258.8600158691406
+          ],
+          [
+            77.42400360107422,
+            259.4389953613281,
+            171.0800018310547,
+            271.2200012207031
+          ]
+        ],
+        "parent_id": "p036b003l00",
+        "level_jump": false
+      },
+      {
+        "id": "p037b008l00",
+        "page": 37,
+        "level": 3,
+        "line_ids": [
+          "p037b008l00",
+          "p037b008l01",
+          "p037b008l02"
+        ],
+        "text": "Le PSP s’aligne sur les orientations du Plan stratégique du PAM (2017-2022) et de ses politiques. Cet alignement est toutefois moins clair par rapport aux politiques du PAM relatives au renforcement de la résilience, à la lutte contre le changement climatique et au NHDP.",
+        "bboxes": [
+          [
+            77.42400360107422,
+            485.5689697265625,
+            519.7659912109375,
+            497.3499755859375
+          ],
+          [
+            77.42400360107422,
+            498.76898193359375,
+            519.682861328125,
+            510.54998779296875
+          ],
+          [
+            77.42400360107422,
+            511.9689636230469,
+            399.8500061035156,
+            523.7499389648438
+          ]
+        ],
+        "parent_id": "p036b003l00",
+        "level_jump": false
+      },
+      {
+        "id": "p038b005l00",
+        "page": 38,
+        "level": 2,
+        "line_ids": [
+          "p038b005l00",
+          "p038b005l01"
+        ],
+        "text": "2.1.2 Dans quelle mesure le PSP a-t-il répondu aux besoins des populations les plus vulnérables pour s’assurer que personne ne soit laissé de côté?",
+        "bboxes": [
+          [
+            72.02400207519531,
+            253.2982177734375,
+            503.87548828125,
+            267.74957275390625
+          ],
+          [
+            72.02400207519531,
+            268.3282470703125,
+            404.58038330078125,
+            282.77960205078125
+          ]
+        ],
+        "parent_id": "p036b002l00",
+        "level_jump": false
+      },
+      {
+        "id": "p038b007l00",
+        "page": 38,
+        "level": 3,
+        "line_ids": [
+          "p038b007l00",
+          "p038b007l01",
+          "p038b007l02",
+          "p038b007l03"
+        ],
+        "text": "Les volumes des financements reçus ont été relativement faibles au regard des besoins, et leur réception souvent tardive a impacté négativement l’assistance intégrée (activité 1) et l’assistance saisonnière (activité 2). Les transferts monétaires destinés aux réfugiés et aux retournés n’ont été mis en place que très progressivement.",
+        "bboxes": [
+          [
+            77.42400360107422,
+            341.0689697265625,
+            519.8590087890625,
+            352.8499755859375
+          ],
+          [
+            77.42400360107422,
+            354.26898193359375,
+            519.5958862304688,
+            366.04998779296875
+          ],
+          [
+            77.42400360107422,
+            367.468994140625,
+            519.8469848632812,
+            379.25
+          ],
+          [
+            77.42400360107422,
+            380.7889709472656,
+            258.1100158691406,
+            392.5699768066406
+          ]
+        ],
+        "parent_id": "p038b005l00",
+        "level_jump": false
+      },
+      {
+        "id": "p038b008l00",
+        "page": 38,
+        "level": 3,
+        "line_ids": [
+          "p038b008l00",
+          "p038b008l01",
+          "p038b008l02",
+          "p038b008l03"
+        ],
+        "text": "Ces déficits ont conduit à des transferts significativement réduits. Le PAM n’a pas pu assister le nombre de personnes déplacées ciblées dans la province du Lac. De surcroît, l'assistance intégrée aux retournés a dû être temporairement suspendue en 2020, avant de cesser complètement en juin 2021.",
+        "bboxes": [
+          [
+            77.42400360107422,
+            399.9889831542969,
+            519.7748413085938,
+            411.7699890136719
+          ],
+          [
+            77.42400360107422,
+            413.1889953613281,
+            519.4048461914062,
+            424.9700012207031
+          ],
+          [
+            77.42400360107422,
+            426.38897705078125,
+            519.8829956054688,
+            438.16998291015625
+          ],
+          [
+            77.42400360107422,
+            437.4082336425781,
+            125.89039611816406,
+            451.8595886230469
+          ]
+        ],
+        "parent_id": "p038b005l00",
+        "level_jump": false
+      }
+    ]
+  },
+  {
+    "report_id": 394,
+    "headings": [
+      {
+        "id": "p027b002l01",
+        "page": 27,
+        "level": 1,
+        "line_ids": [
+          "p027b002l01"
+        ],
+        "text": "1. Introducción",
+        "bboxes": [
+          [
+            54.0,
+            92.68396759033203,
+            245.69000244140625,
+            124.09996795654297
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p027b005l00",
+        "page": 27,
+        "level": 2,
+        "line_ids": [
+          "p027b005l00"
+        ],
+        "text": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "bboxes": [
+          [
+            54.0,
+            222.6982421875,
+            289.1203918457031,
+            237.14959716796875
+          ]
+        ],
+        "parent_id": "p027b002l01",
+        "level_jump": false
+      },
+      {
+        "id": "p027b011l00",
+        "page": 27,
+        "level": 2,
+        "line_ids": [
+          "p027b011l00"
+        ],
+        "text": "1.2. CONTEXTO",
+        "bboxes": [
+          [
+            54.0,
+            622.8282470703125,
+            139.81040954589844,
+            637.2796020507812
+          ]
+        ],
+        "parent_id": "p027b002l01",
+        "level_jump": false
+      },
+      {
+        "id": "p028b003l00",
+        "page": 28,
+        "level": 3,
+        "line_ids": [
+          "p028b003l00"
+        ],
+        "text": "Políticas nacionales y Objetivos de Desarrollo Sostenible (ODS)",
+        "bboxes": [
+          [
+            54.0,
+            139.2982177734375,
+            381.3003845214844,
+            153.74957275390625
+          ]
+        ],
+        "parent_id": "p027b011l00",
+        "level_jump": false
+      },
+      {
+        "id": "p030b004l00",
+        "page": 30,
+        "level": 3,
+        "line_ids": [
+          "p030b004l00"
+        ],
+        "text": "Indicadores macroeconómicos y de pobreza y desigualdad",
+        "bboxes": [
+          [
+            54.0,
+            231.09820556640625,
+            357.900390625,
+            245.549560546875
+          ]
+        ],
+        "parent_id": "p027b011l00",
+        "level_jump": false
+      },
+      {
+        "id": "p030b009l00",
+        "page": 30,
+        "level": 3,
+        "line_ids": [
+          "p030b009l00"
+        ],
+        "text": "Desastres y vulnerabilidad climática",
+        "bboxes": [
+          [
+            54.0,
+            630.2681884765625,
+            245.56040954589844,
+            644.7195434570312
+          ]
+        ],
+        "parent_id": "p027b011l00",
+        "level_jump": false
+      },
+      {
+        "id": "p046b002l00",
+        "page": 46,
+        "level": 1,
+        "line_ids": [
+          "p046b002l00"
+        ],
+        "text": "2. Hallazgos de la evaluación",
+        "bboxes": [
+          [
+            54.0,
+            72.04401397705078,
+            412.6300048828125,
+            103.46001434326172
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p046b004l00",
+        "page": 46,
+        "level": 2,
+        "line_ids": [
+          "p046b004l00",
+          "p046b004l01",
+          "p046b004l02"
+        ],
+        "text": "2.1. PE1: ¿EN QUÉ MEDIDA LA POSICIÓN ESTRATÉGICA, LA FUNCIÓN Y LA CONTRIBUCIÓN ESPECÍFICA DEL PMA SE BASAN EN LAS PRIORIDADES DEL PAÍS, LAS NECESIDADES DE LAS PERSONAS, ASÍ COMO EN LAS FORTALEZAS DEL PMA?",
+        "bboxes": [
+          [
+            54.0,
+            171.458251953125,
+            543.8035278320312,
+            185.90960693359375
+          ],
+          [
+            54.0,
+            186.33819580078125,
+            543.08447265625,
+            200.78955078125
+          ],
+          [
+            54.0,
+            201.33819580078125,
+            350.58038330078125,
+            215.78955078125
+          ]
+        ],
+        "parent_id": "p046b002l00",
+        "level_jump": false
+      },
+      {
+        "id": "p046b005l00",
+        "page": 46,
+        "level": 3,
+        "line_ids": [
+          "p046b005l00",
+          "p046b005l01",
+          "p046b005l02"
+        ],
+        "text": "2.1.1 ¿En qué medida el PEP es pertinente en relación con las políticas, los planes, las estrategias y los objetivos nacionales, incluso para el logro de los Objetivos de Desarrollo Sostenible priorizados por el Ecuador?",
+        "bboxes": [
+          [
+            54.0,
+            222.33819580078125,
+            497.9516906738281,
+            236.78955078125
+          ],
+          [
+            54.0,
+            237.33819580078125,
+            520.2350463867188,
+            251.78955078125
+          ],
+          [
+            54.0,
+            252.33819580078125,
+            254.92041015625,
+            266.78955078125
+          ]
+        ],
+        "parent_id": "p046b004l00",
+        "level_jump": false
+      },
+      {
+        "id": "p048b005l00",
+        "page": 48,
+        "level": 4,
+        "line_ids": [
+          "p048b005l00"
+        ],
+        "text": "Alineación con los ODS",
+        "bboxes": [
+          [
+            54.0,
+            337.6099853515625,
+            165.45201110839844,
+            349.6099853515625
+          ]
+        ],
+        "parent_id": "p046b005l00",
+        "level_jump": false
+      },
+      {
+        "id": "p049b002l00",
+        "page": 49,
+        "level": 1,
+        "line_ids": [
+          "p049b002l00"
+        ],
+        "text": "Figura 12: Alineación con los ODS",
+        "bboxes": [
+          [
+            54.0,
+            71.97897338867188,
+            203.989990234375,
+            83.75997924804688
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      }
+    ]
+  }
+]

@@ -18,7 +18,7 @@ def test_report_is_reproducible_and_has_all_method_links():
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = next(t for t in tables if t.find("th").get_text() == "Configuration")
     rows = results.find("tbody").find_all("tr")
-    assert len(rows) == 20
+    assert len(rows) == 21
     for row in rows:
         assert len(row.find_all("td")) == 8
         assert (
@@ -33,10 +33,33 @@ def test_report_is_reproducible_and_has_all_method_links():
 
 def test_report_contains_only_on_premises_methods():
     selected = set(read_json(REPO / "configs/report-methods.json"))
-    assert len(selected) == 20
+    assert len(selected) == 21
     for filename in ("results.json", "details.json"):
         rows = read_json(REPO / "outputs/report" / filename)
         assert {row["method"] for row in rows} == selected
     report = (REPO / "outputs/report/league_table.md").read_text()
     for excluded in ("Azure", "Mistral", "azure_layout", "mistral_ocr41", "API USD"):
         assert excluded not in report
+
+
+def test_every_configuration_has_an_accessible_diagram_and_markdown_sources():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    configs = read_json(REPO / "configs/report-methods.json")
+    assert len(soup.select("a[data-technique]")) == 2 * len(configs)
+    assert len(soup.find_all("dialog")) == len(configs)
+    identifiers = [element["id"] for element in soup.select("[id]")]
+    assert len(identifiers) == len(set(identifiers))
+    markdown = (REPO / "outputs/report/league_table.md").read_text()
+    for key in configs:
+        panel = soup.find("dialog", id="technique-" + key)
+        assert panel.find(id=panel["aria-labelledby"])
+        assert panel.select_one('button[aria-label="Close technique diagram"]')
+        assert len(panel.select(".technique-flow li")) >= 4
+        for link in panel.select(".technique-links a"):
+            assert link["href"].startswith("https://")
+            assert link["href"] in markdown
+            assert "noopener" in link["rel"]
+        for link in soup.select(f'a[data-technique="technique-{key}"]'):
+            assert link["aria-controls"] == panel["id"]
+            assert link["aria-haspopup"] == "dialog"
+            assert link["href"].startswith("https://")

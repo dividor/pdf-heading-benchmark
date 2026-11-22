@@ -13,6 +13,47 @@ code { background: #e7eef4; padding: 2px 4px; }
 tr:has(#our-trained-model) > td { background: #fff2bd; border-top: 2px solid #b87a00; border-bottom: 2px solid #b87a00; }
 tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; min-width: 210px; }
 #our-trained-model { scroll-margin-top: 32px; }
+
+.technique-hint { border-left: 4px solid #087e88; padding: 10px 16px; background: #e5f5f3; }
+a[data-technique] { text-underline-offset: 3px; }
+a[data-technique]:hover { color: #074851; text-decoration-thickness: 2px; }
+.technique-dialog { border: 0; border-radius: 18px; padding: 0; width: min(1050px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); color: #183247; background: #f9fbfd; box-shadow: 0 24px 100px #001d4055; }
+.technique-dialog::backdrop { background: #10273fbb; backdrop-filter: blur(3px); }
+.technique-shell { padding: 28px; }
+.technique-header { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; }
+.technique-header h2 { margin: 4px 0 12px; line-height: 1.2; font-size: clamp(22px, 3vw, 30px); }
+.technique-family { color: #067078; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; font-weight: 750; margin: 0; }
+.technique-close { flex-shrink: 0; cursor: pointer; background: white; color: #183247; border: 1px solid #adbfce; border-radius: 8px; padding: 8px 12px; font: inherit; }
+.technique-description { margin-bottom: 24px; }
+.technique-flow { margin: 24px 0; }
+.technique-flow figcaption { font-weight: 750; margin-bottom: 12px; }
+.technique-flow ol { display: flex; gap: 22px; list-style: none; padding: 0; margin: 0; }
+.technique-flow li { position: relative; flex: 1; min-width: 0; padding: 18px 16px; border: 1px solid #bfd8df; border-radius: 12px; background: white; }
+.technique-flow li:last-child { background: #e6f4f0; border-color: #8dc9ba; }
+.technique-flow li:not(:last-child)::after { content: '→'; position: absolute; right: -20px; top: 44%; color: #14737d; font-size: 22px; }
+.step-number { display: block; color: #087581; font-size: 12px; font-weight: 800; margin-bottom: 10px; }
+.technique-flow strong { display: block; line-height: 1.25; }
+.technique-flow p { font-size: 14px; line-height: 1.45; margin: 10px 0 0; }
+.technique-limit { background: #fff4d9; border-left: 3px solid #cba348; border-radius: 6px; padding: 14px 18px; }
+.technique-limit p { font-size: 14px; margin: 4px 0 0; }
+.technique-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.technique-links a { background: white; border: 1px solid #b8ccd9; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
+.technique-footnote { font-size: 12px; color: #4a6273; margin-top: 20px; }
+:focus-visible { outline: 3px solid #bf6a00; outline-offset: 4px; }
+body:has(.technique-dialog[open]) { overflow: hidden; }
+@media (max-width: 650px) {
+  .technique-shell { padding: 20px; }
+  .technique-flow ol { flex-direction: column; }
+  .technique-flow li:not(:last-child)::after { content: '↓'; top: auto; bottom: -24px; right: 50%; }
+  .technique-header { gap: 8px; }
+}
+@media print {
+  .technique-dialog[open] { position: static; max-height: none; width: auto; box-shadow: none; }
+  .technique-close { display: none; }
+}
+
+tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
+#our-calibrated-model { scroll-margin-top: 32px; }
 img{max-width:100%}</style></head><body><main><h1>Training a small local heading model: second experiment</h1>
 <p>The selected model improved exact heading-group-and-level F1 from <strong>71.6% to 85.7%</strong> on 32 fully reviewed pages from four fresh WFP reports. It recovered all 38 reference groups, assigned 36 the correct level, and emitted eight extra groups. This is a small pilot using one assistant's labels, without independent human adjudication.</p>
 <p><img src="../../docs/structure-v2-method.svg" alt="Training and evaluation pipeline" /></p>

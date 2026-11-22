@@ -1,0 +1,263 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Heading decision calibration</title><style>body { font: 16px/1.55 system-ui, sans-serif; margin: 0; color: #183247; background: #f5f8fb; }
+main { padding: 32px; max-width: 1800px; margin: auto; overflow-x: auto; }
+p { max-width: 1100px; }
+a { color: #08659a; }
+h1 { line-height: 1.2; }
+table { border-collapse: collapse; background: white; font-size: 14px; width: 100%; margin: 24px 0; }
+th, td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #dce5ec; min-width: 90px; }
+th { background: #e5eff7; }
+td:nth-child(2) { min-width: 240px; }
+code { background: #e7eef4; padding: 2px 4px; }
+@media (max-width: 600px) { main { padding: 16px; } }
+
+tr:has(#our-trained-model) > td { background: #fff2bd; border-top: 2px solid #b87a00; border-bottom: 2px solid #b87a00; }
+tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; min-width: 210px; }
+#our-trained-model { scroll-margin-top: 32px; }
+
+.technique-hint { border-left: 4px solid #087e88; padding: 10px 16px; background: #e5f5f3; }
+a[data-technique] { text-underline-offset: 3px; }
+a[data-technique]:hover { color: #074851; text-decoration-thickness: 2px; }
+.technique-dialog { border: 0; border-radius: 18px; padding: 0; width: min(1050px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); color: #183247; background: #f9fbfd; box-shadow: 0 24px 100px #001d4055; }
+.technique-dialog::backdrop { background: #10273fbb; backdrop-filter: blur(3px); }
+.technique-shell { padding: 28px; }
+.technique-header { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; }
+.technique-header h2 { margin: 4px 0 12px; line-height: 1.2; font-size: clamp(22px, 3vw, 30px); }
+.technique-family { color: #067078; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; font-weight: 750; margin: 0; }
+.technique-close { flex-shrink: 0; cursor: pointer; background: white; color: #183247; border: 1px solid #adbfce; border-radius: 8px; padding: 8px 12px; font: inherit; }
+.technique-description { margin-bottom: 24px; }
+.technique-flow { margin: 24px 0; }
+.technique-flow figcaption { font-weight: 750; margin-bottom: 12px; }
+.technique-flow ol { display: flex; gap: 22px; list-style: none; padding: 0; margin: 0; }
+.technique-flow li { position: relative; flex: 1; min-width: 0; padding: 18px 16px; border: 1px solid #bfd8df; border-radius: 12px; background: white; }
+.technique-flow li:last-child { background: #e6f4f0; border-color: #8dc9ba; }
+.technique-flow li:not(:last-child)::after { content: '→'; position: absolute; right: -20px; top: 44%; color: #14737d; font-size: 22px; }
+.step-number { display: block; color: #087581; font-size: 12px; font-weight: 800; margin-bottom: 10px; }
+.technique-flow strong { display: block; line-height: 1.25; }
+.technique-flow p { font-size: 14px; line-height: 1.45; margin: 10px 0 0; }
+.technique-limit { background: #fff4d9; border-left: 3px solid #cba348; border-radius: 6px; padding: 14px 18px; }
+.technique-limit p { font-size: 14px; margin: 4px 0 0; }
+.technique-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.technique-links a { background: white; border: 1px solid #b8ccd9; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
+.technique-footnote { font-size: 12px; color: #4a6273; margin-top: 20px; }
+:focus-visible { outline: 3px solid #bf6a00; outline-offset: 4px; }
+body:has(.technique-dialog[open]) { overflow: hidden; }
+@media (max-width: 650px) {
+  .technique-shell { padding: 20px; }
+  .technique-flow ol { flex-direction: column; }
+  .technique-flow li:not(:last-child)::after { content: '↓'; top: auto; bottom: -24px; right: 50%; }
+  .technique-header { gap: 8px; }
+}
+@media print {
+  .technique-dialog[open] { position: static; max-height: none; width: auto; box-shadow: none; }
+  .technique-close { display: none; }
+}
+
+tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
+#our-calibrated-model { scroll-margin-top: 32px; }
+</style></head><body><main><h1>Can stricter heading decisions improve the model?</h1>
+<p><strong>Yes on one regression set, but not consistently across report styles. This candidate does not replace the selected v2 model.</strong> The existing models, training labels and native text extraction are unchanged. This experiment tunes two global decoding weights using only the four validation reports, then measures the chosen setting on previously inspected reports.</p>
+<h2>Experiment and documents</h2>
+<p>The original v2 corpus has 20 training reports (887 heading groups), four validation reports (21 groups on 20 fully reviewed pages) and four test reports (38 groups on 32 fully reviewed pages). The four test reports were already inspected during v2 analysis, so they are now a <strong>regression set</strong>, not a fresh test. There is no template-family holdout or independent human annotation audit.</p>
+<p>The regression reports are WFP malnutrition interventions in Niger (321, English), anticipatory action in Nepal (844, English), the Chad country strategic plan (560, French) and the Ecuador strategic plan (394, Spanish). The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/configs/structure-v2/corpus.json">corpus manifest with public source URLs and exact physical PDF pages</a> records all training, validation and regression documents. These are separate from the four historical PDFs in the main league table.</p>
+<p>Each candidate multiplies the classifier's <strong>body-class decision score</strong> by 1, 1.5 or 2 before choosing body versus a heading level. This is decision-weight tuning, not a claim that tree probabilities are calibrated. The level relationship decoder has weight 1, 0.5 or 0. All nine combinations were specified before the validation search. Exact group-and-level F1 selects the winner; ties retain the first setting, with the original baseline first. Selection chose <strong>body weight 2, relationship weight 1</strong>. No title strings, report IDs or language-specific correction rules are used at inference.</p>
+<p>A preliminary run confirmed the same grid result. The recorded second run repeats that fixed grid and includes the full historical comparison. No fresh-test claim is made for either run. Frozen model/config/code hashes and all nine validation scores are in <a href="https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/structure-calibration/evidence">the evidence directory</a>.</p>
+<h2>Results on the previously inspected 38-heading set</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Validation F1</th>
+<th>Regression F1</th>
+<th>Recovered</th>
+<th>Correct + level</th>
+<th>False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td>69.8%</td>
+<td>85.7%</td>
+<td>38/38</td>
+<td>36/38</td>
+<td>8</td>
+</tr>
+<tr>
+<td>selected</td>
+<td>81.1%</td>
+<td>94.7%</td>
+<td>37/38</td>
+<td>36/38</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Exact group-and-level F1 is <code>2 × correct groups with levels / (reference groups + predicted groups)</code>. A match requires identical source-line membership and the correct level. It rewards removing false headings and penalizes missed headings. <strong>36/38 correct remains unchanged:</strong> seven false headings disappear, one real heading is missed, and one previously wrong level becomes correct. The stricter heading selection also changes which headings are adjacent for the sequence decoder.</p>
+<table>
+<thead>
+<tr>
+<th>Report ID</th>
+<th>Exact F1</th>
+<th>Recovered</th>
+<th>Correct + level</th>
+<th>False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>321</td>
+<td>100.0%</td>
+<td>10/10</td>
+<td>10/10</td>
+<td>0</td>
+</tr>
+<tr>
+<td>844</td>
+<td>100.0%</td>
+<td>8/8</td>
+<td>8/8</td>
+<td>0</td>
+</tr>
+<tr>
+<td>560</td>
+<td>85.7%</td>
+<td>10/10</td>
+<td>9/10</td>
+<td>1</td>
+</tr>
+<tr>
+<td>394</td>
+<td>94.7%</td>
+<td>9/10</td>
+<td>9/10</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2>Historical four-report comparison</h2>
+<p>The main table uses a different contract: 77 reference headings, same-page normalized title matching, then an exact level check. It reports recall and false headings separately, not F1. Both configurations processed all 523 pages; only the same 32 historical audit pages were scored.</p>
+<p><strong>Original v2: 64/77 recovered, 50/77 correct with levels, 23 false headings. Calibrated candidate: 59/77 recovered, 47/77 correct with levels, 21 false headings.</strong> Correct-level recall falls from 64.9% to 61.0%. This is why the candidate is not promoted as a general improvement.</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+<th>Recovered</th>
+<th>Correct + level</th>
+<th>False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>targeting</td>
+<td>15/15</td>
+<td>9/15</td>
+<td>9</td>
+</tr>
+<tr>
+<td>midterm</td>
+<td>16/18</td>
+<td>15/18</td>
+<td>2</td>
+</tr>
+<tr>
+<td>indonesia</td>
+<td>12/21</td>
+<td>11/21</td>
+<td>10</td>
+</tr>
+<tr>
+<td>colombia</td>
+<td>16/23</td>
+<td>12/23</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Measured calibrated CPU time: <strong>14.47 seconds / actual 523 pages; 13.83 seconds normalized to 500 pages.</strong> This includes PDF extraction, features, grouping and decoding; excludes model loading and output writes. Hardware: shared Apple M4 Pro, 48 GB. The same 23.2 MiB of deployed JSON model components are reused. No additional model training or paid inference was performed. Hardware ownership, electricity and annotation work are not priced here.</p>
+<h2>Validation search</h2>
+<table>
+<thead>
+<tr>
+<th>Body weight</th>
+<th>Relationship weight</th>
+<th>Validation exact F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>1.0</td>
+<td>69.8%</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>0.5</td>
+<td>69.8%</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>0.0</td>
+<td>69.8%</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>1.0</td>
+<td>76.9%</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>0.5</td>
+<td>76.9%</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>0.0</td>
+<td>76.9%</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>1.0</td>
+<td>81.1%</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>0.5</td>
+<td>81.1%</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>0.0</td>
+<td>81.1%</td>
+</tr>
+</tbody>
+</table>
+<p>Only 21 validation headings support this choice, and relationship weight makes no difference to this sample's F1. More representative validation pages are needed before choosing a production threshold.</p>
+<h2>Reproduce and use</h2>
+<p>Run from the repository root after preparing and training v2 as described in <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md">the v2 instructions</a>. Keep PDF data and model files outside Git. Choose a new calibration directory for each search.</p>
+<pre><code class="language-bash">uv run python scripts/structure/calibrate.py select \
+  --data &quot;$PDF_HEADING_DATA/structure-v2&quot; \
+  --run &quot;$PDF_HEADING_DATA/structure-v2/run-001&quot; \
+  --output &quot;$PDF_HEADING_DATA/structure-calibration/my-run&quot;
+
+uv run python scripts/structure/calibrate.py regression \
+  --data &quot;$PDF_HEADING_DATA/structure-v2&quot; \
+  --run &quot;$PDF_HEADING_DATA/structure-v2/run-001&quot; \
+  --output &quot;$PDF_HEADING_DATA/structure-calibration/my-run&quot;
+
+uv run python scripts/structure/predict.py \
+  --pdf /path/to/new-report.pdf \
+  --run &quot;$PDF_HEADING_DATA/structure-v2/run-001&quot; \
+  --variant context_relations \
+  --calibration &quot;$PDF_HEADING_DATA/structure-calibration/my-run&quot; \
+  --output /path/to/new-output.json
+</code></pre>
+<p>Omit <code>--calibration</code> to retain the original v2 behavior. The optional calibrated runner rejects settings from a different model bundle. These parameters change heading decisions only; full native text remains available in JSON and Markdown.</p>
+<h2>What would improve reliability next?</h2>
+<ol>
+<li>Add fully reviewed training pages with boxed findings, captions, table headings and emphasized prose. Label all non-headings on those pages, so the model learns their distinction from headings.</li>
+<li>Expand complete heading sequences across languages and report templates, including rare deeper levels. More positive-only headings will not address the false-positive problem by themselves.</li>
+<li>Reserve untouched report families before further tuning; keep this regression set and the original league corpus for diagnostics. Choose global settings on larger validation samples.</li>
+<li>Review uncertain predictions rather than automatically accepting classifier scores as calibrated confidence. Audit the source annotations independently.</li>
+</ol>
+<p>These steps are proposed follow-up work; this experiment measures decoding calibration only.</p>
+</main></body></html>

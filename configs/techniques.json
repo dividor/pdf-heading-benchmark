@@ -1,0 +1,772 @@
+{
+  "docling_default": {
+    "family": "Layout parser · CPU",
+    "stages": [
+      {
+        "title": "Full PDFs",
+        "detail": "Read native PDF text and page geometry."
+      },
+      {
+        "title": "Docling layout",
+        "detail": "Detect document blocks; OCR and table extraction disabled."
+      },
+      {
+        "title": "Native section headers",
+        "detail": "Keep SectionHeaderItem levels supplied by the parser."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Export title, page and supplied level for scoring."
+      }
+    ],
+    "limitation": "These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/docling-project/docling"
+      },
+      {
+        "label": "Docling technical report (2024)",
+        "url": "https://arxiv.org/abs/2408.09869"
+      }
+    ],
+    "training": []
+  },
+  "docling_hierarchy": {
+    "family": "Layout parser · CPU",
+    "stages": [
+      {
+        "title": "Full PDFs",
+        "detail": "Read native PDF text and page geometry."
+      },
+      {
+        "title": "Docling layout",
+        "detail": "Detect document blocks; OCR and table extraction disabled."
+      },
+      {
+        "title": "Built-in hierarchy",
+        "detail": "Run Docling HeadingHierarchyModel on its detected headers."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Export title, page and supplied level for scoring."
+      }
+    ],
+    "limitation": "These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/docling-project/docling"
+      },
+      {
+        "label": "Docling technical report (2024)",
+        "url": "https://arxiv.org/abs/2408.09869"
+      }
+    ],
+    "training": []
+  },
+  "docling_tuned": {
+    "family": "Layout parser · CPU",
+    "stages": [
+      {
+        "title": "Full PDFs",
+        "detail": "Read native PDF text and page geometry."
+      },
+      {
+        "title": "Docling layout",
+        "detail": "Detect document blocks; OCR and table extraction disabled."
+      },
+      {
+        "title": "Fixed style tolerance",
+        "detail": "HeadingHierarchyModel with style_size_tolerance=0.15 across all four reports."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Export title, page and supplied level for scoring."
+      }
+    ],
+    "limitation": "These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/docling-project/docling"
+      },
+      {
+        "label": "Docling technical report (2024)",
+        "url": "https://arxiv.org/abs/2408.09869"
+      }
+    ],
+    "training": []
+  },
+  "pymupdf4llm": {
+    "family": "Native PDF parser · CPU",
+    "stages": [
+      {
+        "title": "Full PDFs",
+        "detail": "Read text, fonts and page layout."
+      },
+      {
+        "title": "PyMuPDF4LLM",
+        "detail": "Convert every page to Markdown chunks."
+      },
+      {
+        "title": "Markdown headings",
+        "detail": "Read # through ###### as levels and retain page provenance."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Score extracted titles and their Markdown levels."
+      }
+    ],
+    "limitation": "Typography-driven Markdown can confuse display text with section headings.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/pymupdf/pymupdf4llm"
+      },
+      {
+        "label": "Documentation",
+        "url": "https://pymupdf.readthedocs.io/en/latest/pymupdf4llm/"
+      }
+    ],
+    "training": []
+  },
+  "marker": {
+    "family": "Layout parser · CPU",
+    "stages": [
+      {
+        "title": "Full PDFs",
+        "detail": "Read the native text layer."
+      },
+      {
+        "title": "Marker conversion",
+        "detail": "Run with OCR and LLM assistance disabled."
+      },
+      {
+        "title": "SectionHeader HTML",
+        "detail": "Decode the header tag supplied for each detected section."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Map tags to levels and retain page provenance."
+      }
+    ],
+    "limitation": "This benchmark is the local no-OCR/no-LLM configuration, not Marker with generative assistance.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/datalab-to/marker"
+      }
+    ],
+    "training": []
+  },
+  "mineru_basic": {
+    "family": "Layout parser · CPU",
+    "stages": [
+      {
+        "title": "Full PDFs",
+        "detail": "Process all four complete reports."
+      },
+      {
+        "title": "MinerU basic",
+        "detail": "Use the ONNX CPU pipeline without an external LLM."
+      },
+      {
+        "title": "Title blocks",
+        "detail": "Read native title blocks and their supplied levels."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Preserve native titles and levels for the audit."
+      }
+    ],
+    "limitation": "This CPU tier is different from the MinerU Pro vision model below.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/opendatalab/MinerU"
+      }
+    ],
+    "training": []
+  },
+  "pdf_tags_audit_only": {
+    "family": "Author metadata · CPU",
+    "stages": [
+      {
+        "title": "Tagged PDF",
+        "detail": "Read the document structure tree."
+      },
+      {
+        "title": "H1–H6 tags",
+        "detail": "Collect author-supplied heading elements."
+      },
+      {
+        "title": "Page mapping",
+        "detail": "Associate elements with the 32 audited pages."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Keep the original levels without inferred repairs."
+      }
+    ],
+    "limitation": "Works only to the extent that the PDF author supplied correct structural tags.",
+    "sources": [
+      {
+        "label": "W3C PDF heading technique",
+        "url": "https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9"
+      }
+    ],
+    "training": []
+  },
+  "qwen_ids_union": {
+    "family": "Text-only LLM refinement · local MLX",
+    "stages": [
+      {
+        "title": "Candidate extraction",
+        "detail": "Docling + PyMuPDF4LLM union supplies page-tagged title candidates."
+      },
+      {
+        "title": "Document-wide IDs",
+        "detail": "Give each candidate an ID; send the full list without page images."
+      },
+      {
+        "title": "Qwen3.5-4B · 4-bit",
+        "detail": "Ask for a JSON level or null for each candidate ID."
+      },
+      {
+        "title": "Join by ID",
+        "detail": "Map accepted IDs back to source titles and pages."
+      }
+    ],
+    "limitation": "A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.",
+    "sources": [
+      {
+        "label": "Base model / Hugging Face",
+        "url": "https://huggingface.co/Qwen/Qwen3.5-4B"
+      },
+      {
+        "label": "Tested 4-bit model / HF",
+        "url": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit"
+      }
+    ],
+    "training": []
+  },
+  "qwen_ids_mineru_basic": {
+    "family": "Text-only LLM refinement · local MLX",
+    "stages": [
+      {
+        "title": "Candidate extraction",
+        "detail": "MinerU basic supplies page-tagged title candidates."
+      },
+      {
+        "title": "Document-wide IDs",
+        "detail": "Give each candidate an ID; send the full list without page images."
+      },
+      {
+        "title": "Qwen3.5-4B · 4-bit",
+        "detail": "Ask for a JSON level or null for each candidate ID."
+      },
+      {
+        "title": "Join by ID",
+        "detail": "Map accepted IDs back to source titles and pages."
+      }
+    ],
+    "limitation": "A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.",
+    "sources": [
+      {
+        "label": "Base model / Hugging Face",
+        "url": "https://huggingface.co/Qwen/Qwen3.5-4B"
+      },
+      {
+        "label": "Tested 4-bit model / HF",
+        "url": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit"
+      }
+    ],
+    "training": []
+  },
+  "qwen_ids_pymupdf4llm": {
+    "family": "Text-only LLM refinement · local MLX",
+    "stages": [
+      {
+        "title": "Candidate extraction",
+        "detail": "PyMuPDF4LLM supplies page-tagged title candidates."
+      },
+      {
+        "title": "Document-wide IDs",
+        "detail": "Give each candidate an ID; send the full list without page images."
+      },
+      {
+        "title": "Qwen3.5-4B · 4-bit",
+        "detail": "Ask for a JSON level or null for each candidate ID."
+      },
+      {
+        "title": "Join by ID",
+        "detail": "Map accepted IDs back to source titles and pages."
+      }
+    ],
+    "limitation": "A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.",
+    "sources": [
+      {
+        "label": "Base model / Hugging Face",
+        "url": "https://huggingface.co/Qwen/Qwen3.5-4B"
+      },
+      {
+        "label": "Tested 4-bit model / HF",
+        "url": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit"
+      }
+    ],
+    "training": []
+  },
+  "qwen36_visual_memory": {
+    "family": "Vision + document context · local MLX",
+    "stages": [
+      {
+        "title": "Document context",
+        "detail": "Extract native text, full-document candidates and PDF tags."
+      },
+      {
+        "title": "32 target pages",
+        "detail": "Render audited page images with earlier sampled-page images as memory."
+      },
+      {
+        "title": "Qwen3.6-27B · 4-bit",
+        "detail": "Infer headings and levels using visual and document context."
+      },
+      {
+        "title": "Validated records",
+        "detail": "Decode structured output with original page provenance."
+      }
+    ],
+    "limitation": "The model saw sampled page images, not every page image. Generation overhead is substantial; measured results apply to this prompt and memory configuration.",
+    "sources": [
+      {
+        "label": "Base model / Hugging Face",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+      },
+      {
+        "label": "Tested 4-bit model / HF",
+        "url": "https://huggingface.co/mlx-community/Qwen3.6-27B-4bit"
+      }
+    ],
+    "training": []
+  },
+  "lighton_mlx": {
+    "family": "Page vision model · local MLX",
+    "stages": [
+      {
+        "title": "32 page images",
+        "detail": "Render only the audited pages."
+      },
+      {
+        "title": "LightOnOCR-3-0.8B",
+        "detail": "Use the grounding prompt. Greedy generation; up to 8192 tokens."
+      },
+      {
+        "title": "Grounded blocks",
+        "detail": "Decode title and continuation blocks from the model response."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Export inferred titles, levels and page positions."
+      }
+    ],
+    "limitation": "Page-local recognition has less document-wide hierarchy context. These are local MLX measurements, not vendor throughput claims.",
+    "sources": [
+      {
+        "label": "Model / Hugging Face",
+        "url": "https://huggingface.co/lightonai/LightOnOCR-3-0.8B"
+      },
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/lightonai/LightOnOCR"
+      },
+      {
+        "label": "Earlier LightOnOCR research paper",
+        "url": "https://arxiv.org/abs/2601.14251"
+      }
+    ],
+    "training": []
+  },
+  "lighton4b_mlx": {
+    "family": "Page vision model · local MLX",
+    "stages": [
+      {
+        "title": "32 page images",
+        "detail": "Render only the audited pages."
+      },
+      {
+        "title": "LightOnOCR-3-4B",
+        "detail": "Use the grounding prompt. 2048-pixel limit; batch 2 after five single-page checkpoints."
+      },
+      {
+        "title": "Grounded blocks",
+        "detail": "Decode title and continuation blocks from the model response."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Export inferred titles, levels and page positions."
+      }
+    ],
+    "limitation": "Page-local recognition has less document-wide hierarchy context. These are local MLX measurements, not vendor throughput claims.",
+    "sources": [
+      {
+        "label": "Model / Hugging Face",
+        "url": "https://huggingface.co/lightonai/LightOnOCR-3-4B"
+      },
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/lightonai/LightOnOCR"
+      },
+      {
+        "label": "Earlier LightOnOCR research paper",
+        "url": "https://arxiv.org/abs/2601.14251"
+      }
+    ],
+    "training": []
+  },
+  "chandra2_mlx": {
+    "family": "Page vision model · local MLX",
+    "stages": [
+      {
+        "title": "32 page images",
+        "detail": "Use the author rendering and OCR-layout prompt."
+      },
+      {
+        "title": "Chandra OCR 2",
+        "detail": "Run locally through MLX in batches of four."
+      },
+      {
+        "title": "Structured HTML",
+        "detail": "Read generated heading tags from the response."
+      },
+      {
+        "title": "Heading records",
+        "detail": "Convert HTML headings to levels with page provenance."
+      }
+    ],
+    "limitation": "The measured run uses MLX on the benchmark Mac. Model-card GPU benchmarks use different hardware and datasets.",
+    "sources": [
+      {
+        "label": "Model / Hugging Face",
+        "url": "https://huggingface.co/datalab-to/chandra-ocr-2"
+      },
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/datalab-to/chandra"
+      }
+    ],
+    "training": []
+  },
+  "mineru_pro_mlx": {
+    "family": "Page vision model · local MLX",
+    "stages": [
+      {
+        "title": "32 page images",
+        "detail": "Render the audited pages."
+      },
+      {
+        "title": "MinerU2.5 Pro · 1.2B",
+        "detail": "Call the direct MLX two_step_extract interface."
+      },
+      {
+        "title": "Layout → content",
+        "detail": "Extract title blocks from the returned content."
+      },
+      {
+        "title": "Titles; null levels",
+        "detail": "Keep absent hierarchy levels as null; do not invent them."
+      }
+    ],
+    "limitation": "This direct interface did not supply heading levels. Title detection alone is not a complete heading-and-level output.",
+    "sources": [
+      {
+        "label": "Model / Hugging Face",
+        "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B"
+      },
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/opendatalab/MinerU"
+      },
+      {
+        "label": "Research paper linked by model card",
+        "url": "https://arxiv.org/abs/2604.04771"
+      }
+    ],
+    "training": []
+  },
+  "popo_docling": {
+    "family": "Visual hierarchy post-processing · local MLX",
+    "stages": [
+      {
+        "title": "Docling candidates",
+        "detail": "Extract section headers and their page boxes."
+      },
+      {
+        "title": "8-page chunks",
+        "detail": "Build page mosaics with candidate text and overlapping chunks."
+      },
+      {
+        "title": "Popo · 8-bit",
+        "detail": "Run the title task in an experimental MLX port."
+      },
+      {
+        "title": "Overlap alignment",
+        "detail": "Use upstream alignment and map results to source candidates."
+      }
+    ],
+    "limitation": "This is our experimental Docling + MLX adapter, not the authors’ standard end-to-end deployment. No summary task was run.",
+    "sources": [
+      {
+        "label": "Project / GitHub",
+        "url": "https://github.com/opendatalab/MinerU-Popo"
+      },
+      {
+        "label": "Model / Hugging Face",
+        "url": "https://huggingface.co/DreamEternal/MinerU-Popo"
+      },
+      {
+        "label": "MinerU-Popo paper",
+        "url": "https://arxiv.org/abs/2605.24973"
+      }
+    ],
+    "training": []
+  },
+  "supervised_extra_trees": {
+    "family": "Our supervised model · CPU",
+    "stages": [
+      {
+        "title": "New PDF → lines",
+        "detail": "PyMuPDF extracts text, font, position and spacing features."
+      },
+      {
+        "title": "Line classification",
+        "detail": "200-tree classifier predicts body or heading level per line."
+      },
+      {
+        "title": "Same-block grouping",
+        "detail": "Combine adjacent predicted heading lines within PDF blocks."
+      },
+      {
+        "title": "Text + hierarchy",
+        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+      }
+    ],
+    "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
+    "sources": [
+      {
+        "label": "Extra Trees implementation",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
+      },
+      {
+        "label": "Extra Trees algorithm paper (2006)",
+        "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      }
+    ],
+    "training": [
+      {
+        "title": "Visual source review",
+        "detail": "Assistant labels headings and levels on separate WFP reports."
+      },
+      {
+        "title": "Training data",
+        "detail": "154 headings / 16 reports."
+      },
+      {
+        "title": "Small learned models",
+        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+      }
+    ]
+  },
+  "structure_expanded_line": {
+    "family": "Our supervised model · CPU",
+    "stages": [
+      {
+        "title": "New PDF → lines",
+        "detail": "PyMuPDF extracts text, font, position and spacing features."
+      },
+      {
+        "title": "Line classification",
+        "detail": "200-tree classifier predicts body or heading level per line."
+      },
+      {
+        "title": "Same-block grouping",
+        "detail": "Combine adjacent predicted heading lines within PDF blocks."
+      },
+      {
+        "title": "Text + hierarchy",
+        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+      }
+    ],
+    "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
+    "sources": [
+      {
+        "label": "Extra Trees implementation",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
+      },
+      {
+        "label": "Extra Trees algorithm paper (2006)",
+        "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      }
+    ],
+    "training": [
+      {
+        "title": "Visual source review",
+        "detail": "Assistant labels headings and levels on separate WFP reports."
+      },
+      {
+        "title": "Training data",
+        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+      },
+      {
+        "title": "Small learned models",
+        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+      }
+    ]
+  },
+  "structure_learned_groups": {
+    "family": "Our supervised model · CPU",
+    "stages": [
+      {
+        "title": "New PDF → lines",
+        "detail": "PyMuPDF extracts text, font, position and spacing features."
+      },
+      {
+        "title": "Learned line joining",
+        "detail": "Predict which adjacent lines belong to one heading, across PDF blocks."
+      },
+      {
+        "title": "Group classification",
+        "detail": "Classify each joined group as body or a heading level."
+      },
+      {
+        "title": "Text + hierarchy",
+        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+      }
+    ],
+    "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
+    "sources": [
+      {
+        "label": "Extra Trees implementation",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
+      },
+      {
+        "label": "Extra Trees algorithm paper (2006)",
+        "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      }
+    ],
+    "training": [
+      {
+        "title": "Visual source review",
+        "detail": "Assistant labels headings and levels on separate WFP reports."
+      },
+      {
+        "title": "Training data",
+        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+      },
+      {
+        "title": "Small learned models",
+        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+      }
+    ]
+  },
+  "structure_context_relations": {
+    "family": "Our supervised model · CPU",
+    "stages": [
+      {
+        "title": "New PDF → lines",
+        "detail": "PyMuPDF extracts text, font, position and spacing features."
+      },
+      {
+        "title": "Learned line joining",
+        "detail": "Predict heading spans across PDF blocks."
+      },
+      {
+        "title": "Context + relationships",
+        "detail": "Use style / TOC features and learned level transitions; decode the sequence."
+      },
+      {
+        "title": "Text + hierarchy",
+        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+      }
+    ],
+    "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
+    "sources": [
+      {
+        "label": "Extra Trees implementation",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
+      },
+      {
+        "label": "Extra Trees algorithm paper (2006)",
+        "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      }
+    ],
+    "training": [
+      {
+        "title": "Visual source review",
+        "detail": "Assistant labels headings and levels on separate WFP reports."
+      },
+      {
+        "title": "Training data",
+        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+      },
+      {
+        "title": "Small learned models",
+        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+      }
+    ]
+  },
+  "structure_calibrated": {
+    "family": "Our supervised model · CPU",
+    "stages": [
+      {
+        "title": "New PDF → lines",
+        "detail": "PyMuPDF extracts text, font, position and spacing features."
+      },
+      {
+        "title": "Learned line joining",
+        "detail": "Predict heading spans across PDF blocks."
+      },
+      {
+        "title": "Context + relationships",
+        "detail": "Double the body decision score before retaining headings, then decode level relationships with weight 1."
+      },
+      {
+        "title": "Text + hierarchy",
+        "detail": "Retain all native text; attach heading groups, levels and inferred parents."
+      }
+    ],
+    "limitation": "The models and labels are unchanged. Validation selects a stricter heading decision. Regression on previously inspected pages improves F1 but misses one genuine heading. It is not new independent test evidence.",
+    "sources": [
+      {
+        "label": "Extra Trees implementation",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html"
+      },
+      {
+        "label": "Extra Trees algorithm paper (2006)",
+        "url": "https://doi.org/10.1007/s10994-006-6226-1"
+      },
+      {
+        "label": "Calibration protocol and regression evidence",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md"
+      }
+    ],
+    "training": [
+      {
+        "title": "Visual source review",
+        "detail": "Assistant labels headings and levels on separate WFP reports."
+      },
+      {
+        "title": "Training data",
+        "detail": "887 heading groups / 20 reports; reviewed negatives retained."
+      },
+      {
+        "title": "Small learned models",
+        "detail": "Fit Extra Trees on training reports; select on separate validation reports."
+      },
+      {
+        "title": "Validation selection",
+        "detail": "Test nine fixed decoding settings on four validation reports; freeze the best exact F1."
+      }
+    ]
+  }
+}

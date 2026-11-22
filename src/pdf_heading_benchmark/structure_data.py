@@ -11,6 +11,18 @@ def checksum(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def load_calibration(calibration: Path, run: Path) -> dict:
+    """Apply selected decoding settings only to their original model bundle."""
+    protocol = read_json(calibration / "protocol.json")
+    frozen = read_json(run / "selection.json")
+    if protocol["model_hashes"] != frozen["model_hashes"]:
+        raise ValueError("Calibration belongs to a different model bundle")
+    settings = read_json(calibration / "selection.json")["selected"]["decoding"]
+    if settings not in protocol["grid"]:
+        raise ValueError("Decoding settings outside frozen grid")
+    return settings
+
+
 def config_hashes(config: Path) -> dict:
     return {p.name: checksum(p) for p in sorted(config.glob("*.json"))}
 

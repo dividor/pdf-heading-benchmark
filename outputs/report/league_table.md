@@ -1,6 +1,6 @@
 # On-premises PDF heading benchmark: scores, timings and methods
 
-**20 completed local configurations, suitable for on-premises inference.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
+**21 completed local configurations, suitable for on-premises inference.** This experiment asks whether inexpensive parsers and local models can recover heading titles, original PDF page numbers and hierarchy levels while retaining the text of long World Food Programme (WFP) evaluation reports.
 
 The strongest completed configuration was Qwen3.6-27B with sampled visual memory: **65/77 (84.4%)** headings recovered at the correct level, all 77 reference titles recovered, and two false headings. These are configuration-specific results from a small pilot with one AI assistant annotator, without independent human validation.
 
@@ -32,11 +32,11 @@ The audit covers **eight selected pages per report, 32 pages and 77 reference he
 3. **Score the same audit pages.** The [scorer](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py) matches titles on the same original PDF page, using normalized text similarity of at least 90% after one-to-one Hungarian assignment. A combined success requires the exact reference H level too. Main chapters and annexes are H1; the cover title does not shift the body hierarchy. Missing headings remain in the denominator of 77. Extra predictions are counted separately, so the combined score is not precision or F1 and does not penalize false headings directly.
 4. **Check prose and record resources.** Native prose retention measures preserved five-word sequences from native PDF blocks of at least 50 words on the audit pages. It does not measure character accuracy, reading order or table extraction. Processing times were observed on a shared 48 GB Apple M4 Pro and have different scopes. Hardware, electricity, engineering, review and licensing costs were not measured in dollars.
 
-This is **sampled-page heading accuracy**, even when a parser processed the full document. Seventeen completed configurations include variants of the same packages and models; they are not 17 independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.
+This is **sampled-page heading accuracy**, even when a parser processed the full document. The completed configurations include variants of the same packages and models; they are not independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.
 
 ## Full configuration results
 
-Sorted by correct heading plus level. Each **Configuration** links to the package or model; each **Method / code** links to the benchmark's GitHub implementation. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. All 17 configurations ran locally; no hosted inference service is included. See the notes immediately below the table for scope and licensing qualifications.
+Sorted by correct heading plus level. In HTML, select a **Configuration** or **Method / code** to open its technique diagram and source links. The Markdown version retains direct links and includes a technique appendix. Both heading percentages use the same 77-reference denominator. A dash means unavailable or not applicable. All configurations ran locally; no hosted inference service is included. See the notes immediately below the table for scope and licensing qualifications.
 
 | Configuration | Method / code | Status | Headings recovered | Correct heading + level | False headings | Native prose retention | Measured time |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -44,6 +44,7 @@ Sorted by correct heading plus level. Each **Configuration** links to the packag
 | [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | [32 images; author OCR-layout prompt/rendering; MLX batch 4; read HTML heading levels.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 90.9% (70/77) | 68.8% (53/77) | 2 | 98.7% | 17.2 min / 32 pages |
 | [v2: learned grouping](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | [LLM annotations → learned line joining across PDF blocks → group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 96.1% (74/77) | 66.2% (51/77) | 21 | — | 12.0 s / 523 pages |
 | <span id="our-trained-model"></span>[**OUR METHOD — LLM annotations → grouped context model v2 (CPU)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md) | [OUR TRAINED MODEL v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) | completed | 83.1% (64/77) | 64.9% (50/77) | 23 | — | 12.6 s / 523 pages |
+| <span id="our-calibrated-model"></span>[**OUR MODEL — calibrated decoding (experimental)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md) | [OUR MODEL v2 + validation-selected decoding: body score ×2; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py) | completed | 76.6% (59/77) | 61.0% (47/77) | 21 | — | 14.5 s / 523 pages |
 | [LightOnOCR-3-0.8B / MLX](https://huggingface.co/lightonai/LightOnOCR-3-0.8B) | [32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py) | completed | 93.5% (72/77) | 59.7% (46/77) | 8 | 99.5% | 8.9 min / 32 pages |
 | [LightOnOCR-3-4B / MLX grounding](https://huggingface.co/lightonai/LightOnOCR-3-4B) | [32 images; MLX grounding prompt, 2048-pixel limit; batch 2 after 5 single-page historical checkpoints.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 93.5% (72/77) | 59.7% (46/77) | 8 | 99.3% | 23.5 min / 32 pages |
 | [Embedded PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) | [Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) | completed | 67.5% (52/77) | 55.8% (43/77) | 2 | — | 6.4 s / 32 pages |
@@ -73,11 +74,13 @@ Sorted by correct heading plus level. Each **Configuration** links to the packag
 
 **Reference and uncertainty:** pages were deliberately selected to span front matter, body chapters, subsections and annexes. A single assistant annotated them visually. The original 2018 resilience report was excluded after prior document-specific investigation. No per-report title/level correction rules are applied here. The sample is small, covers born-digital reports only, and has no inter-annotator agreement study. Ranking on it cannot establish robustness on arbitrary documents. No missing run is assigned a zero score.
 
-**Reproducibility:** the repo includes the frozen audit labels, page-restricted predictions and original summary/match records. `uv run pdf-headings score --historical` recomputes the bundled historical predictions, including the 17 local configurations selected for this report, without model downloads or credentials. Raw full-page responses remain in the original local experiment archive; they are not bundled in the public repo. Fresh runners save raw responses outside Git. Seven historical Qwen formatting deviations were accepted by a generic JSON array/wrapper/single-fence reader without changing title or level values. Refactored runners retain prompts and settings; model/GPU runs have not all been repeated after packaging. See [method details](https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md).
+**Reproducibility:** the repo includes the frozen audit labels, page-restricted predictions and original summary/match records. `uv run pdf-headings score --historical` recomputes the bundled historical predictions, including the local configurations selected for this report, without model downloads or credentials. Raw full-page responses remain in the original local experiment archive; they are not bundled in the public repo. Fresh runners save raw responses outside Git. Seven historical Qwen formatting deviations were accepted by a generic JSON array/wrapper/single-fence reader without changing title or level values. Refactored runners retain prompts and settings; model/GPU runs have not all been repeated after packaging. See [method details](https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md).
 
 **Licenses:** the repository's MIT license covers its code, not third-party packages, model weights or WFP reports. Chandra weights have commercial-use restrictions; applicable licensing costs are additional. See each linked model/package and [third-party notices](https://github.com/dividor/pdf-heading-benchmark/blob/main/THIRD_PARTY_NOTICES.md).
 
 **Supervised Extra Trees:** the frozen classifier was trained on 16 different WFP reports, selected using four validation reports, and first evaluated on four new test reports. It was then applied without refitting to the original four benchmark PDFs and scored with the same 77-heading matching contract as every row above: **59/77 recovered, 35/77 at the correct level, 20 extra headings**. The 7.7-second measurement covers all 523 pages, including extraction and classification but excluding model loading and output writes. Native prose retention was not evaluated. Its separate 82.0% exact-level line F1 on the new test set uses a different corpus and metric and is not the number ranked here. [Comparison runner and evidence](https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/comparison) · [Training protocol](https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/report.md).
+
+**Calibration follow-up:** a validation-selected stricter decision raises exact group-and-level F1 from 85.7% to 94.7% on the previously inspected 38-heading regression set (eight false headings reduced to one; 36 correct remains unchanged; one genuine heading now missed). It regresses on this historical table: 47/77 correct, versus 50/77 for selected v2. The separate calibrated row is experimental and does not replace the highlighted model. [Protocol, all grid scores, report sources and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md).
 
 
 ## Results by report
@@ -164,3 +167,430 @@ Sorted by correct heading plus level. Each **Configuration** links to the packag
 | train.py / structure_context_relations | midterm | 16/18 | 15/18 | 2 |
 | train.py / structure_context_relations | indonesia | 14/21 | 13/21 | 11 |
 | train.py / structure_context_relations | colombia | 19/23 | 13/23 | 0 |
+| calibrate.py / structure_calibrated | targeting | 15/15 | 9/15 | 9 |
+| calibrate.py / structure_calibrated | midterm | 16/18 | 15/18 | 2 |
+| calibrate.py / structure_calibrated | indonesia | 12/21 | 11/21 | 10 |
+| calibrate.py / structure_calibrated | colombia | 16/23 | 12/23 | 0 |
+
+## Technique diagrams and sources
+
+The HTML report opens these diagrams in a modal.
+
+
+### Qwen3.6-27B / MLX 4-bit / sampled visual memory
+
+Vision + document context · local MLX
+
+
+**Inference:** Document context → 32 target pages → Qwen3.6-27B · 4-bit → Validated records
+
+- **Document context:** Extract native text, full-document candidates and PDF tags.
+- **32 target pages:** Render audited page images with earlier sampled-page images as memory.
+- **Qwen3.6-27B · 4-bit:** Infer headings and levels using visual and document context.
+- **Validated records:** Decode structured output with original page provenance.
+
+
+The model saw sampled page images, not every page image. Generation overhead is substantial; measured results apply to this prompt and memory configuration.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.6-27B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit)
+
+
+### Chandra OCR 2 / MLX
+
+Page vision model · local MLX
+
+
+**Inference:** 32 page images → Chandra OCR 2 → Structured HTML → Heading records
+
+- **32 page images:** Use the author rendering and OCR-layout prompt.
+- **Chandra OCR 2:** Run locally through MLX in batches of four.
+- **Structured HTML:** Read generated heading tags from the response.
+- **Heading records:** Convert HTML headings to levels with page provenance.
+
+
+The measured run uses MLX on the benchmark Mac. Model-card GPU benchmarks use different hardware and datasets.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) · [Model / Hugging Face](https://huggingface.co/datalab-to/chandra-ocr-2) · [Project / GitHub](https://github.com/datalab-to/chandra)
+
+
+### v2: learned grouping
+
+Our supervised model · CPU
+
+
+**Training:** Visual source review → Training data → Small learned models
+
+- **Visual source review:** Assistant labels headings and levels on separate WFP reports.
+- **Training data:** 887 heading groups / 20 reports; reviewed negatives retained.
+- **Small learned models:** Fit Extra Trees on training reports; select on separate validation reports.
+
+
+
+**Inference:** New PDF → lines → Learned line joining → Group classification → Text + hierarchy
+
+- **New PDF → lines:** PyMuPDF extracts text, font, position and spacing features.
+- **Learned line joining:** Predict which adjacent lines belong to one heading, across PDF blocks.
+- **Group classification:** Classify each joined group as body or a heading level.
+- **Text + hierarchy:** Retain all native text; attach heading groups, levels and inferred parents.
+
+
+No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Configuration source / evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md)
+
+
+### v2: context + relationships (selected)
+
+Our supervised model · CPU
+
+
+**Training:** Visual source review → Training data → Small learned models
+
+- **Visual source review:** Assistant labels headings and levels on separate WFP reports.
+- **Training data:** 887 heading groups / 20 reports; reviewed negatives retained.
+- **Small learned models:** Fit Extra Trees on training reports; select on separate validation reports.
+
+
+
+**Inference:** New PDF → lines → Learned line joining → Context + relationships → Text + hierarchy
+
+- **New PDF → lines:** PyMuPDF extracts text, font, position and spacing features.
+- **Learned line joining:** Predict heading spans across PDF blocks.
+- **Context + relationships:** Use style / TOC features and learned level transitions; decode the sequence.
+- **Text + hierarchy:** Retain all native text; attach heading groups, levels and inferred parents.
+
+
+No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Configuration source / evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md)
+
+
+### OUR MODEL v2 + calibrated decoding (CPU)
+
+Our supervised model · CPU
+
+
+**Training:** Visual source review → Training data → Small learned models → Validation selection
+
+- **Visual source review:** Assistant labels headings and levels on separate WFP reports.
+- **Training data:** 887 heading groups / 20 reports; reviewed negatives retained.
+- **Small learned models:** Fit Extra Trees on training reports; select on separate validation reports.
+- **Validation selection:** Test nine fixed decoding settings on four validation reports; freeze the best exact F1.
+
+
+
+**Inference:** New PDF → lines → Learned line joining → Context + relationships → Text + hierarchy
+
+- **New PDF → lines:** PyMuPDF extracts text, font, position and spacing features.
+- **Learned line joining:** Predict heading spans across PDF blocks.
+- **Context + relationships:** Double the body decision score before retaining headings, then decode level relationships with weight 1.
+- **Text + hierarchy:** Retain all native text; attach heading groups, levels and inferred parents.
+
+
+The models and labels are unchanged. Validation selects a stricter heading decision. Regression on previously inspected pages improves F1 but misses one genuine heading. It is not new independent test evidence.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Calibration protocol and regression evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md)
+
+
+### LightOnOCR-3-0.8B / MLX
+
+Page vision model · local MLX
+
+
+**Inference:** 32 page images → LightOnOCR-3-0.8B → Grounded blocks → Heading records
+
+- **32 page images:** Render only the audited pages.
+- **LightOnOCR-3-0.8B:** Use the grounding prompt. Greedy generation; up to 8192 tokens.
+- **Grounded blocks:** Decode title and continuation blocks from the model response.
+- **Heading records:** Export inferred titles, levels and page positions.
+
+
+Page-local recognition has less document-wide hierarchy context. These are local MLX measurements, not vendor throughput claims.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_lighton_mlx.py) · [Model / Hugging Face](https://huggingface.co/lightonai/LightOnOCR-3-0.8B) · [Project / GitHub](https://github.com/lightonai/LightOnOCR) · [Earlier LightOnOCR research paper](https://arxiv.org/abs/2601.14251)
+
+
+### LightOnOCR-3-4B / MLX grounding
+
+Page vision model · local MLX
+
+
+**Inference:** 32 page images → LightOnOCR-3-4B → Grounded blocks → Heading records
+
+- **32 page images:** Render only the audited pages.
+- **LightOnOCR-3-4B:** Use the grounding prompt. 2048-pixel limit; batch 2 after five single-page checkpoints.
+- **Grounded blocks:** Decode title and continuation blocks from the model response.
+- **Heading records:** Export inferred titles, levels and page positions.
+
+
+Page-local recognition has less document-wide hierarchy context. These are local MLX measurements, not vendor throughput claims.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) · [Model / Hugging Face](https://huggingface.co/lightonai/LightOnOCR-3-4B) · [Project / GitHub](https://github.com/lightonai/LightOnOCR) · [Earlier LightOnOCR research paper](https://arxiv.org/abs/2601.14251)
+
+
+### Embedded PDF heading tags
+
+Author metadata · CPU
+
+
+**Inference:** Tagged PDF → H1–H6 tags → Page mapping → Heading records
+
+- **Tagged PDF:** Read the document structure tree.
+- **H1–H6 tags:** Collect author-supplied heading elements.
+- **Page mapping:** Associate elements with the 32 audited pages.
+- **Heading records:** Keep the original levels without inferred repairs.
+
+
+Works only to the extent that the PDF author supplied correct structural tags.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) · [W3C PDF heading technique](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9)
+
+
+### v2: more annotations
+
+Our supervised model · CPU
+
+
+**Training:** Visual source review → Training data → Small learned models
+
+- **Visual source review:** Assistant labels headings and levels on separate WFP reports.
+- **Training data:** 887 heading groups / 20 reports; reviewed negatives retained.
+- **Small learned models:** Fit Extra Trees on training reports; select on separate validation reports.
+
+
+
+**Inference:** New PDF → lines → Line classification → Same-block grouping → Text + hierarchy
+
+- **New PDF → lines:** PyMuPDF extracts text, font, position and spacing features.
+- **Line classification:** 200-tree classifier predicts body or heading level per line.
+- **Same-block grouping:** Combine adjacent predicted heading lines within PDF blocks.
+- **Text + hierarchy:** Retain all native text; attach heading groups, levels and inferred parents.
+
+
+No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Configuration source / evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md)
+
+
+### Supervised Extra Trees / CPU / assistant labels
+
+Our supervised model · CPU
+
+
+**Training:** Visual source review → Training data → Small learned models
+
+- **Visual source review:** Assistant labels headings and levels on separate WFP reports.
+- **Training data:** 154 headings / 16 reports.
+- **Small learned models:** Fit Extra Trees on training reports; select on separate validation reports.
+
+
+
+**Inference:** New PDF → lines → Line classification → Same-block grouping → Text + hierarchy
+
+- **New PDF → lines:** PyMuPDF extracts text, font, position and spacing features.
+- **Line classification:** 200-tree classifier predicts body or heading level per line.
+- **Same-block grouping:** Combine adjacent predicted heading lines within PDF blocks.
+- **Text + hierarchy:** Retain all native text; attach heading groups, levels and inferred parents.
+
+
+No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Configuration source / evidence](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py)
+
+
+### MinerU 4.2.3 basic CPU
+
+Layout parser · CPU
+
+
+**Inference:** Full PDFs → MinerU basic → Title blocks → Heading records
+
+- **Full PDFs:** Process all four complete reports.
+- **MinerU basic:** Use the ONNX CPU pipeline without an external LLM.
+- **Title blocks:** Read native title blocks and their supplied levels.
+- **Heading records:** Preserve native titles and levels for the audit.
+
+
+This CPU tier is different from the MinerU Pro vision model below.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru.py) · [Project / GitHub](https://github.com/opendatalab/MinerU)
+
+
+### PyMuPDF4LLM 2.1
+
+Native PDF parser · CPU
+
+
+**Inference:** Full PDFs → PyMuPDF4LLM → Markdown headings → Heading records
+
+- **Full PDFs:** Read text, fonts and page layout.
+- **PyMuPDF4LLM:** Convert every page to Markdown chunks.
+- **Markdown headings:** Read # through ###### as levels and retain page provenance.
+- **Heading records:** Score extracted titles and their Markdown levels.
+
+
+Typography-driven Markdown can confuse display text with section headings.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pymupdf4llm.py) · [Project / GitHub](https://github.com/pymupdf/pymupdf4llm) · [Documentation](https://pymupdf.readthedocs.io/en/latest/pymupdf4llm/)
+
+
+### Qwen3.5-4B / union candidates
+
+Text-only LLM refinement · local MLX
+
+
+**Inference:** Candidate extraction → Document-wide IDs → Qwen3.5-4B · 4-bit → Join by ID
+
+- **Candidate extraction:** Docling + PyMuPDF4LLM union supplies page-tagged title candidates.
+- **Document-wide IDs:** Give each candidate an ID; send the full list without page images.
+- **Qwen3.5-4B · 4-bit:** Ask for a JSON level or null for each candidate ID.
+- **Join by ID:** Map accepted IDs back to source titles and pages.
+
+
+A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.5-4B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit)
+
+
+### Qwen3.5-4B / MinerU candidates
+
+Text-only LLM refinement · local MLX
+
+
+**Inference:** Candidate extraction → Document-wide IDs → Qwen3.5-4B · 4-bit → Join by ID
+
+- **Candidate extraction:** MinerU basic supplies page-tagged title candidates.
+- **Document-wide IDs:** Give each candidate an ID; send the full list without page images.
+- **Qwen3.5-4B · 4-bit:** Ask for a JSON level or null for each candidate ID.
+- **Join by ID:** Map accepted IDs back to source titles and pages.
+
+
+A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.5-4B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit)
+
+
+### Docling fixed tolerance 0.15
+
+Layout parser · CPU
+
+
+**Inference:** Full PDFs → Docling layout → Fixed style tolerance → Heading records
+
+- **Full PDFs:** Read native PDF text and page geometry.
+- **Docling layout:** Detect document blocks; OCR and table extraction disabled.
+- **Fixed style tolerance:** HeadingHierarchyModel with style_size_tolerance=0.15 across all four reports.
+- **Heading records:** Export title, page and supplied level for scoring.
+
+
+These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) · [Project / GitHub](https://github.com/docling-project/docling) · [Docling technical report (2024)](https://arxiv.org/abs/2408.09869)
+
+
+### Qwen3.5-4B / PyMuPDF candidates
+
+Text-only LLM refinement · local MLX
+
+
+**Inference:** Candidate extraction → Document-wide IDs → Qwen3.5-4B · 4-bit → Join by ID
+
+- **Candidate extraction:** PyMuPDF4LLM supplies page-tagged title candidates.
+- **Document-wide IDs:** Give each candidate an ID; send the full list without page images.
+- **Qwen3.5-4B · 4-bit:** Ask for a JSON level or null for each candidate ID.
+- **Join by ID:** Map accepted IDs back to source titles and pages.
+
+
+A missing candidate cannot be recovered by this refinement. JSON is validated; invalid replies are not silently repaired.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.5-4B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit)
+
+
+### Marker 2.2 no OCR/LLM
+
+Layout parser · CPU
+
+
+**Inference:** Full PDFs → Marker conversion → SectionHeader HTML → Heading records
+
+- **Full PDFs:** Read the native text layer.
+- **Marker conversion:** Run with OCR and LLM assistance disabled.
+- **SectionHeader HTML:** Decode the header tag supplied for each detected section.
+- **Heading records:** Map tags to levels and retain page provenance.
+
+
+This benchmark is the local no-OCR/no-LLM configuration, not Marker with generative assistance.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_marker.py) · [Project / GitHub](https://github.com/datalab-to/marker)
+
+
+### Docling 2.151.1 default
+
+Layout parser · CPU
+
+
+**Inference:** Full PDFs → Docling layout → Native section headers → Heading records
+
+- **Full PDFs:** Read native PDF text and page geometry.
+- **Docling layout:** Detect document blocks; OCR and table extraction disabled.
+- **Native section headers:** Keep SectionHeaderItem levels supplied by the parser.
+- **Heading records:** Export title, page and supplied level for scoring.
+
+
+These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) · [Project / GitHub](https://github.com/docling-project/docling) · [Docling technical report (2024)](https://arxiv.org/abs/2408.09869)
+
+
+### Docling built-in hierarchy
+
+Layout parser · CPU
+
+
+**Inference:** Full PDFs → Docling layout → Built-in hierarchy → Heading records
+
+- **Full PDFs:** Read native PDF text and page geometry.
+- **Docling layout:** Detect document blocks; OCR and table extraction disabled.
+- **Built-in hierarchy:** Run Docling HeadingHierarchyModel on its detected headers.
+- **Heading records:** Export title, page and supplied level for scoring.
+
+
+These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) · [Project / GitHub](https://github.com/docling-project/docling) · [Docling technical report (2024)](https://arxiv.org/abs/2408.09869)
+
+
+### Popo + Docling / experimental MLX 8-bit
+
+Visual hierarchy post-processing · local MLX
+
+
+**Inference:** Docling candidates → 8-page chunks → Popo · 8-bit → Overlap alignment
+
+- **Docling candidates:** Extract section headers and their page boxes.
+- **8-page chunks:** Build page mosaics with candidate text and overlapping chunks.
+- **Popo · 8-bit:** Run the title task in an experimental MLX port.
+- **Overlap alignment:** Use upstream alignment and map results to source candidates.
+
+
+This is our experimental Docling + MLX adapter, not the authors’ standard end-to-end deployment. No summary task was run.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_popo_mlx.py) · [Project / GitHub](https://github.com/opendatalab/MinerU-Popo) · [Model / Hugging Face](https://huggingface.co/DreamEternal/MinerU-Popo) · [MinerU-Popo paper](https://arxiv.org/abs/2605.24973)
+
+
+### MinerU2.5-Pro-2605-1.2B / direct MLX interface
+
+Page vision model · local MLX
+
+
+**Inference:** 32 page images → MinerU2.5 Pro · 1.2B → Layout → content → Titles; null levels
+
+- **32 page images:** Render the audited pages.
+- **MinerU2.5 Pro · 1.2B:** Call the direct MLX two_step_extract interface.
+- **Layout → content:** Extract title blocks from the returned content.
+- **Titles; null levels:** Keep absent hierarchy levels as null; do not invent them.
+
+
+This direct interface did not supply heading levels. Title detection alone is not a complete heading-and-level output.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru_pro.py) · [Model / Hugging Face](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B) · [Project / GitHub](https://github.com/opendatalab/MinerU) · [Research paper linked by model card](https://arxiv.org/abs/2604.04771)

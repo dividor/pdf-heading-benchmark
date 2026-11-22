@@ -400,5 +400,23 @@
         "per_document": true
       }
     ]
+  },
+  "structure_calibrated": {
+    "description": "OUR MODEL v2 + validation-selected decoding: body score \u00d72; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.",
+    "code": "scripts/structure/calibrate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "context_relations",
+          "--calibration",
+          "outputs/structure-calibration/evidence"
+        ],
+        "per_document": true
+      }
+    ]
   }
 }

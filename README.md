@@ -2,7 +2,7 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 20 completed local configurations with scores, processing times and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 21 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took about 62 minutes for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
@@ -134,3 +134,11 @@ uv run pytest -q
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Code is MIT licensed. Models, parsers and source documents retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+### Explore each technique and the calibration follow-up
+
+The [HTML league table](outputs/report/index.html) opens a diagram modal when you select a configuration or method. Every local configuration has its own pipeline, interpretation notes, benchmark code and relevant project, paper or Hugging Face links. Our methods show training separately from CPU inference. The [Markdown report](outputs/report/league_table.md) includes equivalent text diagrams and direct source links. The HTML is self-contained and works from a local file or web server.
+
+The [decoding-calibration experiment](outputs/structure-calibration/report.md) improves exact F1 from **85.7% to 94.7%** on the **previously inspected** 38-heading regression set: eight false headings fall to one, 36 correct heading-and-level predictions remain, and one genuine heading is newly missed. It regresses on the original league corpus, from **50/77 to 47/77** correct heading-and-level matches. This is a separate experimental row; the original v2 model remains highlighted. No new independent test score is claimed.
+
+The report includes the nine-setting validation search, all report sources, frozen audit predictions, measured timings and runnable commands. Pass `--calibration /path/to/calibration-run` to `scripts/structure/predict.py` to try the selected setting; omit it for original v2 behavior. More varied fully reviewed negatives and untouched report-family evaluation are the next priorities.

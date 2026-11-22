@@ -26,14 +26,16 @@ def frozen_models(config: Path, run: Path) -> tuple[dict, dict]:
     return models, selection
 
 
-def historical(config: Path, root: Path, models: dict, variant: str, output: Path) -> dict:
+def historical(
+    config: Path, root: Path, models: dict, variant: str, output: Path, decoding: dict | None = None
+) -> dict:
     corpus = read_json(config.parent / "corpus.json")
     all_predictions, timings = {}, []
     for record in corpus:
         pdf = root / "corpus" / f"{record['id']}.pdf"
         if checksum(pdf) != record["sha256"]:
             raise ValueError("Wrong historical PDF")
-        result = parse_structure(pdf, models, variant)
+        result = parse_structure(pdf, models, variant, decoding)
         all_predictions[record["id"]] = [
             {"page": h["page"], "level": h["level"], "title": h["text"]} for h in result["headings"]
         ]

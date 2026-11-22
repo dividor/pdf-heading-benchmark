@@ -1,0 +1,1434 @@
+{
+  "selected": {
+    "decoding": {
+      "body_weight": 2.0,
+      "relation_weight": 1.0
+    },
+    "score": {
+      "gold": 21,
+      "predicted": 16,
+      "matched": 15,
+      "correct": 15,
+      "group_detection_f1": 0.8108108108108109,
+      "group_level_f1": 0.8108108108108109,
+      "correct_group_recall": 0.7142857142857143,
+      "line_metrics": {
+        "lines": 1028,
+        "heading_lines": 31,
+        "predicted_heading_lines": 19,
+        "detected_heading_lines": 18,
+        "correct_level_lines": 18,
+        "detection_precision": 0.9473684210526315,
+        "detection_recall": 0.5806451612903226,
+        "detection_f1": 0.72,
+        "exact_level_precision": 0.9473684210526315,
+        "exact_level_recall": 0.5806451612903226,
+        "exact_level_f1": 0.72,
+        "level_accuracy_given_detected": 1.0,
+        "confusion_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "confusion": [
+          [
+            996,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "per_document": {
+        "103": {
+          "gold": 3,
+          "predicted": 3,
+          "matched": 3,
+          "correct": 3,
+          "group_detection_f1": 1.0,
+          "group_level_f1": 1.0,
+          "correct_group_recall": 1.0
+        },
+        "538": {
+          "gold": 9,
+          "predicted": 4,
+          "matched": 4,
+          "correct": 4,
+          "group_detection_f1": 0.6153846153846154,
+          "group_level_f1": 0.6153846153846154,
+          "correct_group_recall": 0.4444444444444444
+        },
+        "176": {
+          "gold": 5,
+          "predicted": 5,
+          "matched": 4,
+          "correct": 4,
+          "group_detection_f1": 0.8,
+          "group_level_f1": 0.8,
+          "correct_group_recall": 0.8
+        },
+        "128": {
+          "gold": 4,
+          "predicted": 4,
+          "matched": 4,
+          "correct": 4,
+          "group_detection_f1": 1.0,
+          "group_level_f1": 1.0,
+          "correct_group_recall": 1.0
+        }
+      },
+      "predict_seconds": 3.750798708992079,
+      "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+    }
+  },
+  "validation": [
+    {
+      "decoding": {
+        "body_weight": 1.0,
+        "relation_weight": 1.0
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 22,
+        "matched": 18,
+        "correct": 15,
+        "group_detection_f1": 0.8372093023255814,
+        "group_level_f1": 0.6976744186046512,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 28,
+          "detected_heading_lines": 26,
+          "correct_level_lines": 20,
+          "detection_precision": 0.9285714285714286,
+          "detection_recall": 0.8387096774193549,
+          "detection_f1": 0.8813559322033899,
+          "exact_level_precision": 0.7142857142857143,
+          "exact_level_recall": 0.6451612903225806,
+          "exact_level_f1": 0.6779661016949152,
+          "level_accuracy_given_detected": 0.7692307692307693,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              995,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              9,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 4,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 0.8571428571428571,
+            "group_level_f1": 0.8571428571428571,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 8,
+            "matched": 7,
+            "correct": 4,
+            "group_detection_f1": 0.8235294117647058,
+            "group_level_f1": 0.47058823529411764,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 6,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.7272727272727273,
+            "group_level_f1": 0.7272727272727273,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.4841979580232874,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 1.0,
+        "relation_weight": 0.5
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 22,
+        "matched": 18,
+        "correct": 15,
+        "group_detection_f1": 0.8372093023255814,
+        "group_level_f1": 0.6976744186046512,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 28,
+          "detected_heading_lines": 26,
+          "correct_level_lines": 20,
+          "detection_precision": 0.9285714285714286,
+          "detection_recall": 0.8387096774193549,
+          "detection_f1": 0.8813559322033899,
+          "exact_level_precision": 0.7142857142857143,
+          "exact_level_recall": 0.6451612903225806,
+          "exact_level_f1": 0.6779661016949152,
+          "level_accuracy_given_detected": 0.7692307692307693,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              995,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              9,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 4,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 0.8571428571428571,
+            "group_level_f1": 0.8571428571428571,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 8,
+            "matched": 7,
+            "correct": 4,
+            "group_detection_f1": 0.8235294117647058,
+            "group_level_f1": 0.47058823529411764,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 6,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.7272727272727273,
+            "group_level_f1": 0.7272727272727273,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.483647832996212,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 1.0,
+        "relation_weight": 0.0
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 22,
+        "matched": 18,
+        "correct": 15,
+        "group_detection_f1": 0.8372093023255814,
+        "group_level_f1": 0.6976744186046512,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 28,
+          "detected_heading_lines": 26,
+          "correct_level_lines": 20,
+          "detection_precision": 0.9285714285714286,
+          "detection_recall": 0.8387096774193549,
+          "detection_f1": 0.8813559322033899,
+          "exact_level_precision": 0.7142857142857143,
+          "exact_level_recall": 0.6451612903225806,
+          "exact_level_f1": 0.6779661016949152,
+          "level_accuracy_given_detected": 0.7692307692307693,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              995,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              9,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 4,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 0.8571428571428571,
+            "group_level_f1": 0.8571428571428571,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 8,
+            "matched": 7,
+            "correct": 4,
+            "group_detection_f1": 0.8235294117647058,
+            "group_level_f1": 0.47058823529411764,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 6,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.7272727272727273,
+            "group_level_f1": 0.7272727272727273,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.3095295420498587,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 1.5,
+        "relation_weight": 1.0
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 18,
+        "matched": 15,
+        "correct": 15,
+        "group_detection_f1": 0.7692307692307693,
+        "group_level_f1": 0.7692307692307693,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 21,
+          "detected_heading_lines": 19,
+          "correct_level_lines": 19,
+          "detection_precision": 0.9047619047619048,
+          "detection_recall": 0.6129032258064516,
+          "detection_f1": 0.7307692307692307,
+          "exact_level_precision": 0.9047619047619048,
+          "exact_level_recall": 0.6129032258064516,
+          "exact_level_f1": 0.7307692307692307,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              995,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 4,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 0.8571428571428571,
+            "group_level_f1": 0.8571428571428571,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.6153846153846154,
+            "group_level_f1": 0.6153846153846154,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 6,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.7272727272727273,
+            "group_level_f1": 0.7272727272727273,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.6143722090055235,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 1.5,
+        "relation_weight": 0.5
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 18,
+        "matched": 15,
+        "correct": 15,
+        "group_detection_f1": 0.7692307692307693,
+        "group_level_f1": 0.7692307692307693,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 21,
+          "detected_heading_lines": 19,
+          "correct_level_lines": 19,
+          "detection_precision": 0.9047619047619048,
+          "detection_recall": 0.6129032258064516,
+          "detection_f1": 0.7307692307692307,
+          "exact_level_precision": 0.9047619047619048,
+          "exact_level_recall": 0.6129032258064516,
+          "exact_level_f1": 0.7307692307692307,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              995,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 4,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 0.8571428571428571,
+            "group_level_f1": 0.8571428571428571,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.6153846153846154,
+            "group_level_f1": 0.6153846153846154,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 6,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.7272727272727273,
+            "group_level_f1": 0.7272727272727273,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.573966875032056,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 1.5,
+        "relation_weight": 0.0
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 18,
+        "matched": 15,
+        "correct": 15,
+        "group_detection_f1": 0.7692307692307693,
+        "group_level_f1": 0.7692307692307693,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 21,
+          "detected_heading_lines": 19,
+          "correct_level_lines": 19,
+          "detection_precision": 0.9047619047619048,
+          "detection_recall": 0.6129032258064516,
+          "detection_f1": 0.7307692307692307,
+          "exact_level_precision": 0.9047619047619048,
+          "exact_level_recall": 0.6129032258064516,
+          "exact_level_f1": 0.7307692307692307,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              995,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 4,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 0.8571428571428571,
+            "group_level_f1": 0.8571428571428571,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.6153846153846154,
+            "group_level_f1": 0.6153846153846154,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 6,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.7272727272727273,
+            "group_level_f1": 0.7272727272727273,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.585502000001725,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 2.0,
+        "relation_weight": 1.0
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 16,
+        "matched": 15,
+        "correct": 15,
+        "group_detection_f1": 0.8108108108108109,
+        "group_level_f1": 0.8108108108108109,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 19,
+          "detected_heading_lines": 18,
+          "correct_level_lines": 18,
+          "detection_precision": 0.9473684210526315,
+          "detection_recall": 0.5806451612903226,
+          "detection_f1": 0.72,
+          "exact_level_precision": 0.9473684210526315,
+          "exact_level_recall": 0.5806451612903226,
+          "exact_level_f1": 0.72,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              996,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 3,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.6153846153846154,
+            "group_level_f1": 0.6153846153846154,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 5,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.8,
+            "group_level_f1": 0.8,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.750798708992079,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 2.0,
+        "relation_weight": 0.5
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 16,
+        "matched": 15,
+        "correct": 15,
+        "group_detection_f1": 0.8108108108108109,
+        "group_level_f1": 0.8108108108108109,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 19,
+          "detected_heading_lines": 18,
+          "correct_level_lines": 18,
+          "detection_precision": 0.9473684210526315,
+          "detection_recall": 0.5806451612903226,
+          "detection_f1": 0.72,
+          "exact_level_precision": 0.9473684210526315,
+          "exact_level_recall": 0.5806451612903226,
+          "exact_level_f1": 0.72,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              996,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 3,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.6153846153846154,
+            "group_level_f1": 0.6153846153846154,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 5,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.8,
+            "group_level_f1": 0.8,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.556167499977164,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    },
+    {
+      "decoding": {
+        "body_weight": 2.0,
+        "relation_weight": 0.0
+      },
+      "score": {
+        "gold": 21,
+        "predicted": 16,
+        "matched": 15,
+        "correct": 15,
+        "group_detection_f1": 0.8108108108108109,
+        "group_level_f1": 0.8108108108108109,
+        "correct_group_recall": 0.7142857142857143,
+        "line_metrics": {
+          "lines": 1028,
+          "heading_lines": 31,
+          "predicted_heading_lines": 19,
+          "detected_heading_lines": 18,
+          "correct_level_lines": 18,
+          "detection_precision": 0.9473684210526315,
+          "detection_recall": 0.5806451612903226,
+          "detection_f1": 0.72,
+          "exact_level_precision": 0.9473684210526315,
+          "exact_level_recall": 0.5806451612903226,
+          "exact_level_f1": 0.72,
+          "level_accuracy_given_detected": 1.0,
+          "confusion_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "confusion": [
+            [
+              996,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "per_document": {
+          "103": {
+            "gold": 3,
+            "predicted": 3,
+            "matched": 3,
+            "correct": 3,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          },
+          "538": {
+            "gold": 9,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.6153846153846154,
+            "group_level_f1": 0.6153846153846154,
+            "correct_group_recall": 0.4444444444444444
+          },
+          "176": {
+            "gold": 5,
+            "predicted": 5,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 0.8,
+            "group_level_f1": 0.8,
+            "correct_group_recall": 0.8
+          },
+          "128": {
+            "gold": 4,
+            "predicted": 4,
+            "matched": 4,
+            "correct": 4,
+            "group_detection_f1": 1.0,
+            "group_level_f1": 1.0,
+            "correct_group_recall": 1.0
+          }
+        },
+        "predict_seconds": 3.3037354170228355,
+        "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+      }
+    }
+  ]
+}
