@@ -94,10 +94,12 @@ COLUMN_DESCRIPTIONS = {
             "zero."
         ),
     ],
-    "Measured time": [
+    "Seconds per page": [
         (
-            "Observed processing time and the scope of that run. Some methods processed all 523 "
-            "pages; others processed the 32 audit pages or only a hierarchy stage."
+            "Measured seconds divided by the number of pages actually processed, always in s/page. "
+            "The total seconds and page count are retained beside the rate. This is average throughput, "
+            "not individual-page latency. Hierarchy-only runs without a recorded page denominator "
+            "show a dash for the rate and retain their total seconds; no denominator is invented."
         ),
         (
             "Timings were recorded on a shared 48 GB Apple M4 Pro and are not a controlled speed "

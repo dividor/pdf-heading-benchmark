@@ -12,7 +12,7 @@ The original gold file SHA256 was `6cd638fb840879fd997238c599aa6e1db5ec4063852a8
 
 `src/pdf_heading_benchmark/evaluation.py` preserves the original evaluation contract. Titles are stripped of HTML tags, Unicode NFKC-normalized, case-folded and reduced to alphanumeric characters. Similarities are `SequenceMatcher(..., autojunk=False)` ratios on the same original PDF page. Hungarian assignment maximizes total similarity, then matches below 0.90 are discarded. This assignment-before-threshold detail is intentional historical behavior, not a claim that it is the only reasonable matching algorithm.
 
-A recovered heading counts toward the main score only if its integer level equals the reference. The denominator is all 77 reference headings. False headings do not reduce that denominator-based score, so their separate column is essential. Null levels cannot earn a correct-level point. Missing runs remain unscored. Original records also include exploratory shift/order diagnostics; these are not used for ranking, and no gold-tuned shift is applied.
+A recovered heading counts as a correct pair only if its integer level equals the reference. The primary score is joint F0.5 = 1.25C / (P + 0.25G), where C counts correct pairs, P all predictions and G all 77 reference headings. Wrong levels and extra predictions both reduce this score. Joint recall C/G and joint precision C/P are shown separately. Null levels cannot earn a correct-level point. Missing runs remain unscored. Original records also include exploratory shift/order diagnostics; these are not used for ranking, and no gold-tuned shift is applied.
 
 `outputs/audit_predictions.json` holds every completed configuration's predictions on the audited pages. `score --historical` reproduces the table counts. `outputs/league_details.json` preserves the original per-report matches and errors, including those additional diagnostics. `outputs/text_retention.json` retains page-level text numerator/denominator counts. Published summaries remain frozen when you run new experiments; fresh scores are written to the external data directory instead of overwriting the published evidence.
 
@@ -48,3 +48,18 @@ The original experiment scripts were reorganized for portable paths, external da
 Offline tests recalculate all published heading scores and check decoding, page provenance, missing levels, one-to-one matching, paid-job resumption, missing credentials, and deterministic reports. The PDF download/hash path and complete PDF-tag and PyMuPDF CPU runs are smoke-tested separately. The packaged Qwen, Chandra and LightOn decoders were also replayed against 128 saved raw page responses, and the Azure decoder against four full-document responses; their final heading exports match the historical exports. Refactored model adapters have not all been re-executed through full inference; these are historical measured results accompanied by packaged runners, not a claim of a second complete benchmark.
 
 Use a fresh external run directory when changing prompts, revisions or documents. Resuming assumes unchanged inputs and configuration. A full-document run on your own PDF is useful experimentation, but requires its own reference labels to establish accuracy.
+
+## Repeat the GPU configurations sequentially
+
+Use the pinned MLX environment, with models and original candidate/tag inputs already prepared. The output directory must be new. The queue runs seven configurations in separate processes and stops on a failed process; it never fills missing predictions with historical output. GPU selection is checked inside each inference process.
+
+```bash
+PYTHONPATH=src /path/to/mlx-env/bin/python scripts/runners/repeat_models.py \
+  --input-data /path/to/prepared-benchmark-data \
+  --extra-models /path/to/additional-model-download-records \
+  --output /path/to/new-sequential-run
+uv run python scripts/repeat_report.py --run /path/to/new-sequential-run
+uv run pdf-headings report
+```
+
+The import rejects changed source/input hashes and incomplete audit scopes. Only successfully completed configurations are scored. Raw responses and system telemetry stay outside Git; compact predictions, page timings and aggregate telemetry are sufficient to regenerate the public comparison offline using `uv run python scripts/repeat_report.py`. The main league remains the original frozen experiment. [Timing definitions and batching caveat](sequential-repeat.md).

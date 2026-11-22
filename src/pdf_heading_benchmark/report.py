@@ -17,7 +17,7 @@ HEADERS = [
     "Headings recovered",
     "False headings",
     "Native prose retention",
-    "Measured time",
+    "Seconds per page",
 ]
 
 
@@ -26,12 +26,12 @@ def percent(value):
 
 
 def duration(row):
-    seconds = row["measured_seconds"]
-    if not seconds:
+    seconds, pages = row["measured_seconds"], row["processed_pages"]
+    if seconds is None:
         return "—"
-    label = f"{seconds / 60:.1f} min" if seconds >= 60 else f"{seconds:.1f} s"
-    scope = f"{row['processed_pages']} pages" if row["processed_pages"] else "hierarchy stage only"
-    return f"{label} / {scope}"
+    if not pages:
+        return f"— (hierarchy stage: {seconds:.1f} s total; page rate unavailable)"
+    return f"{seconds / pages:.3f} s/page ({seconds:.1f} s total; {pages} pages)"
 
 
 def cells(row, method):
@@ -140,6 +140,9 @@ def build_report():
     markdown = intro + "\n" + corpus_table() + "\n\n" + protocol
     metric = (REPO / "docs/joint-metric.md").read_text()
     markdown += "\n" + results_table() + "\n\n" + metric + "\n\n" + notes
+    repeat = REPO / "outputs/sequential-repeat/summary.md"
+    if repeat.exists():
+        markdown += "\n\n" + repeat.read_text()
     markdown += "\n\n## Results by report\n\n" + table(
         [
             "Runner / configuration",

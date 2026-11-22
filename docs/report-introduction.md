@@ -23,3 +23,5 @@ All four PDFs were obtained from WFP's public document servers. Each title below
 The corpus contains **523 pages: three English reports and one Spanish report**. All four contain native digital text. None has PDF outline bookmarks, although embedded structure tags provide another possible source of headings. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.
 
 The audit covers **eight selected pages per report, 32 pages and 77 reference headings in total**. Page numbers below are **one-based physical PDF pages**, including covers and front matter, rather than printed page labels. These are the exact pages scored for every completed configuration.
+
+[Sequential GPU reruns: before/after timing, accuracy and GPU activity](#sequential-gpu-reruns). The original configuration results remain frozen.

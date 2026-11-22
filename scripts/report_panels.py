@@ -47,11 +47,12 @@ def score_cells(row: dict, y: int) -> list[str]:
 
 def time_cells(row: dict, y: int) -> list[str]:
     seconds = row["measured_seconds"]
-    duration = f"{seconds / 60:.1f} min" if seconds >= 60 else f"{seconds:.2f} s"
+    duration = f"{seconds / row['processed_pages']:.3f}" if row["processed_pages"] else "—"
     scope = f"{row['processed_pages']} pages" if row["processed_pages"] else "Hierarchy stage only"
     prose = row["native_prose_retention"]
     return [
         text(570, y + 29, duration, 22, True),
+        text(570, y + 55, f"{seconds:.1f} s total", 17),
         text(790, y + 29, scope),
         text(1130, y + 29, "—" if prose is None else f"{prose:.1%}"),
     ]
@@ -66,7 +67,7 @@ def panel(kind: str, rows: list[dict]) -> str:
     title = (
         "Heading + level quality: precision matters"
         if kind == "quality"
-        else "Local processing time and scope"
+        else "Local processing: seconds per page"
     )
     parts += [
         text(30, 48, title, 32, True),
@@ -84,7 +85,7 @@ def panel(kind: str, rows: list[dict]) -> str:
     if kind == "timings":
         columns = [
             (30, "Configuration"),
-            (570, "Measured time"),
+            (570, "Seconds/page"),
             (790, "Processing scope"),
             (1130, "Prose kept"),
         ]

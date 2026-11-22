@@ -1,0 +1,22 @@
+[
+  {
+    "method": "qwen36_35b_compact",
+    "gold": 77,
+    "predicted": 77,
+    "matched": 77,
+    "correct_level": 53,
+    "joint_precision": 0.6883116883116883,
+    "joint_recall": 0.6883116883116883,
+    "joint_f1": 0.6883116883116883,
+    "joint_f05": 0.6883116883116883,
+    "heading_precision": 1.0,
+    "precision_gate_pass": true,
+    "joint_false_positives": 24,
+    "joint_false_negatives": 24,
+    "seconds": 342.4386877940051,
+    "processed_pages": 32,
+    "errors": 0,
+    "timeouts": 0,
+    "token_caps": 0
+  }
+]

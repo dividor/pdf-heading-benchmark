@@ -1,0 +1,111 @@
+<span id="sequential-gpu-reruns"></span>
+
+## Sequential GPU reruns
+
+These are fresh runs on the same four PDFs and 32 audit pages, using the existing 77 reference headings. Each configuration runs in a separate process, with only one benchmark model loaded at a time. The runner checks that MLX selects the Metal GPU and refuses a CPU fallback. It records model/package versions, source and input hashes, raw page responses, process wall time, GPU activity and virtual-memory counters. The original league results above remain frozen; this table compares the reruns explicitly rather than silently replacing the historical measurements.
+
+**Timing:** all rates below use seconds per page. Earlier and rerun processing rates use the original runners' measurement boundaries, excluding model loading and upstream candidate extraction. Whole-process rates include interpreter imports, model loading, image preparation, generation and output writes; they still exclude previously prepared candidate extraction and downloads. OCR batch time is divided by the number of pages, so it measures average throughput rather than single-page latency. Smaller values are faster. This is one repeat per configuration, not a statistical estimate of typical performance.
+
+**Settings:** Qwen models retain their pinned MLX 4-bit weights, greedy decoding, seed 42, non-thinking prompts and 4,096-token limit. Single-image runs use a 1,280-pixel image; visual-memory runs use a 1,792-pixel current image plus up to six earlier 1,280-pixel images. Chandra retains batch four and a 12,384-token limit. LightOn 4B uses batch two throughout and a 12,384-token limit; its historical run mixed five single-page checkpoints with batching, so that comparison includes a batching change. LightOn 0.8B remains one image at a time with an 8,192-token limit. No headings or levels are repaired after generation.
+
+**Hardware and limits:** this Mac has an Apple M4 Pro with a 20-core GPU and 48 GiB unified memory. GPU inference is active, but other applications still share memory and GPU resources. In the initial rerun, loading the sparse Qwen model increased total system swap usage from approximately 15 GB to 20 GB. The reruns therefore must not be described as measurements on an idle or memory-pressure-free machine. Swap-counter differences below show actual activity during each run, rather than treating existing swap allocation as proof of ongoing paging. PDF rendering, tokenization and JSON handling also use the CPU. [MLX's unified-memory and device documentation](https://ml-explore.github.io/mlx/build/html/usage/unified_memory.html) explains how CPU and GPU execution share memory; the recorded device selection and telemetry establish what happened in these runs.
+
+[Sequential runner](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/repeat_models.py) · [Importer and scorer](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/repeat_report.py) · [Rerun predictions versus reference](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/sequential-repeat/report.md) · [Compact evidence](https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/sequential-repeat)
+
+
+**Completed: 1/7 configurations.**
+
+| Repeated configuration | Earlier s/page | Rerun s/page | Whole-process s/page | Correct heading + level | Joint F0.5: earlier → rerun | Rerun extras | Errors | Timeouts |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.6-35B-A3B 4-bit — single image | 9.772 | 10.701 | 11.632 | 53/77 → 53/77 | 68.8% → 68.8% | 0 | 0 | 0 |
+
+### GPU and memory observations
+
+| Repeated configuration | Samples | Median GPU % | Maximum GPU % | Swap read GB | Swap written GB |
+| --- | --- | --- | --- | --- | --- |
+| Qwen3.6-35B-A3B 4-bit — single image | 38 | 99.0 | 100 | 0.492 | 4.719 |
+
+GPU and swap measurements are system-wide; they include other applications and model loading. A high GPU percentage confirms activity but does not prove optimal inference or identify a bottleneck.
+
+
+### Qwen3.6-35B-A3B 4-bit — single image: rerun predictions versus reference
+
+| Report | PDF page | Reference | Rerun prediction | Outcome |
+| --- | --- | --- | --- | --- |
+| targeting | 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H1 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
+| targeting | 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| targeting | 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
+| targeting | 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| targeting | 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
+| targeting | 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
+| targeting | 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
+| targeting | 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
+| targeting | 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
+| targeting | 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| targeting | 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| targeting | 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
+| targeting | 109 | H2 — Objectives and users of the evaluation | H1 — Objectives and users of the evaluation | Wrong or absent level |
+| targeting | 109 | H2 — Evaluation questions | H1 — Evaluation questions | Wrong or absent level |
+| targeting | 109 | H2 — Methodology and ethical considerations | H1 — Methodology and ethical considerations | Wrong or absent level |
+| midterm | 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| midterm | 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| midterm | 8 | H3 — What was evaluated? | H3 — What was evaluated? | Correct heading + level |
+| midterm | 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
+| midterm | 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
+| midterm | 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| midterm | 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
+| midterm | 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| midterm | 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| midterm | 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
+| midterm | 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
+| midterm | 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| midterm | 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
+| midterm | 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
+| midterm | 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
+| midterm | 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 3.1 CONCLUSIONS | Correct heading + level |
+| midterm | 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| midterm | 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+| indonesia | 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| indonesia | 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| indonesia | 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| indonesia | 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| indonesia | 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| indonesia | 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| indonesia | 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| indonesia | 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| indonesia | 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| indonesia | 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| indonesia | 20 | H3 — Geography, Demography, and Government | H3 — Geography, Demography, and Government | Correct heading + level |
+| indonesia | 20 | H3 — National policies and Sustainable Development Goals (SDG) | H3 — National policies and Sustainable Development Goals (SDG) | Correct heading + level |
+| indonesia | 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
+| indonesia | 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
+| indonesia | 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | Correct heading + level |
+| indonesia | 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | Correct heading + level |
+| indonesia | 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| indonesia | 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| indonesia | 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | H2 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | Wrong or absent level |
+| indonesia | 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| indonesia | 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+| colombia | 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| colombia | 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| colombia | 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
+| colombia | 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
+| colombia | 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
+| colombia | 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| colombia | 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| colombia | 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| colombia | 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
+| colombia | 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| colombia | 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| colombia | 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
+| colombia | 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
+| colombia | 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| colombia | 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | Correct heading + level |
+| colombia | 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
+| colombia | 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
+| colombia | 56 | H5 — Resultados | H3 — Resultados92 | Wrong or absent level |
+| colombia | 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| colombia | 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
+| colombia | 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
+| colombia | 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| colombia | 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |

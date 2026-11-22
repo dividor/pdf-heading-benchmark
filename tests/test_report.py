@@ -146,3 +146,14 @@ def test_league_shows_joint_precision_and_recall_without_detection_gate():
         assert values[2].startswith(expected)
         assert values[3].startswith(f"{row['correct_level'] / row['gold']:.1%}")
     assert "Heading-only precision (diagnostic)" in soup.get_text()
+
+
+def test_timing_uses_seconds_per_page_without_inventing_a_scope():
+    from pdf_heading_benchmark.report import duration
+
+    assert duration(dict(measured_seconds=11.662223, processed_pages=523)).startswith("0.022 s/page")
+    assert duration(dict(measured_seconds=3706.6876, processed_pages=32)).startswith("115.834 s/page")
+    assert duration(dict(measured_seconds=0, processed_pages=32)).startswith("0.000 s/page")
+    assert duration(dict(measured_seconds=None, processed_pages=32)) == "—"
+    unknown = duration(dict(measured_seconds=100.0, processed_pages=None))
+    assert unknown.startswith("—") and "page rate unavailable" in unknown and "100.0 s total" in unknown
