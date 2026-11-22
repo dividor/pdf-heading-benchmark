@@ -70,3 +70,8 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .info-button:hover { background: #075868; color: white; }
 .column-dialog { max-width: 680px; }
 .column-dialog h2 { font-size: 24px; margin: 0; }
+
+.method-terms { background: #eaf3f5; border-radius: 12px; padding: 8px 20px; margin-top: 24px; }
+.method-terms dt { font-weight: 700; margin-top: 16px; }
+.method-terms dd { margin: 4px 0 16px; font-size: 15px; }
+.technique-flow a { text-underline-offset: 3px; }

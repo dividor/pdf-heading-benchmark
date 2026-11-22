@@ -111,3 +111,21 @@ def test_information_buttons_resolve_to_named_dialogs():
     score_help = soup.find("dialog", id="column-help-1")
     assert "1.25C / (P + 0.25G)" in score_help.get_text()
     assert "95%" in score_help.get_text()
+
+
+def test_methods_explain_terms_and_link_them_in_context():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    techniques = read_json(REPO / "configs/techniques.json")
+    markdown = (REPO / "outputs/report/league_table.md").read_text()
+    for key in read_json(REPO / "configs/report-methods.json"):
+        panel = soup.find("dialog", id="technique-" + key)
+        assert panel.select_one(".method-terms")
+        assert techniques[key]["terms"]
+        for term in techniques[key]["terms"]:
+            assert term["description"] in panel.get_text()
+            assert term["description"] in markdown
+            assert any(a["href"] == term["url"] for a in panel.select(".method-terms a"))
+        assert panel.select_one(".technique-description a, .technique-flow a")
+    chosen = soup.find("dialog", id="technique-structure_precision")
+    assert "Reuse frozen v2 trees" not in chosen.get_text()
+    assert "No further model training" in chosen.get_text()

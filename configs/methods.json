@@ -1,6 +1,6 @@
 {
   "docling_default": {
-    "description": "CPU, OCR and tables off; native SectionHeaderItem levels; full PDFs.",
+    "description": "Use the heading levels returned by Docling 2.151.1 when it first reads the PDF.",
     "code": "scripts/runners/run_docling.py",
     "steps": [
       {
@@ -12,7 +12,7 @@
     ]
   },
   "docling_hierarchy": {
-    "description": "Same Docling blocks, built-in HeadingHierarchyModel enabled.",
+    "description": "Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels.",
     "code": "scripts/runners/run_docling.py",
     "steps": [
       {
@@ -24,7 +24,7 @@
     ]
   },
   "docling_tuned": {
-    "description": "Same blocks, fixed style_size_tolerance=0.15 on every report; exploratory variant.",
+    "description": "Use Docling 2.151.1 with a fixed font-style tolerance of 0.15 in its hierarchy step.",
     "code": "scripts/runners/run_docling.py",
     "steps": [
       {
@@ -36,7 +36,7 @@
     ]
   },
   "pymupdf4llm": {
-    "description": "Full PDFs to page-chunk Markdown; read Markdown heading levels and page provenance.",
+    "description": "PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown.",
     "code": "scripts/runners/run_pymupdf4llm.py",
     "steps": [
       {
@@ -48,7 +48,7 @@
     ]
   },
   "marker": {
-    "description": "Full PDFs; CPU no-OCR/no-LLM; decode SectionHeader HTML tags.",
+    "description": "Marker 2.2 parses the complete PDF locally on the CPU.",
     "code": "scripts/runners/run_marker.py",
     "steps": [
       {
@@ -60,7 +60,7 @@
     ]
   },
   "mineru_basic": {
-    "description": "Full PDFs; basic ONNX CPU tier, no external LLM; native title-block levels.",
+    "description": "MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime.",
     "code": "scripts/runners/run_mineru.py",
     "steps": [
       {
@@ -72,7 +72,7 @@
     ]
   },
   "lighton_mlx": {
-    "description": "32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.",
+    "description": "LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page.",
     "code": "scripts/runners/run_lighton_mlx.py",
     "steps": [
       {
@@ -84,7 +84,7 @@
     ]
   },
   "popo_docling": {
-    "description": "Docling candidates + Popo MLX 8-bit; 8-page chunks, page mosaics, upstream overlap alignment; experimental port.",
+    "description": "Use MinerU-Popo to assign levels to headings first detected by Docling.",
     "code": "scripts/runners/run_popo_mlx.py",
     "steps": [
       {
@@ -110,7 +110,7 @@
     ]
   },
   "qwen_ids_union": {
-    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: union.",
+    "description": "Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM.",
     "code": "scripts/runners/run_qwen_ids.py",
     "steps": [
       {
@@ -150,7 +150,7 @@
     ]
   },
   "qwen_ids_mineru_basic": {
-    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: mineru_basic.",
+    "description": "Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser.",
     "code": "scripts/runners/run_qwen_ids.py",
     "steps": [
       {
@@ -178,7 +178,7 @@
     ]
   },
   "qwen_ids_pymupdf4llm": {
-    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: pymupdf4llm.",
+    "description": "Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM.",
     "code": "scripts/runners/run_qwen_ids.py",
     "steps": [
       {
@@ -206,7 +206,7 @@
     ]
   },
   "pdf_tags_audit_only": {
-    "description": "Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.",
+    "description": "Read PDF heading tags—the heading labels already embedded by the PDF’s author.",
     "code": "scripts/runners/run_pdf_tags.py",
     "steps": [
       {
@@ -218,7 +218,7 @@
     ]
   },
   "mineru_pro_mlx": {
-    "description": "32 images; direct MLX two_step_extract; preserve title blocks and absent levels as null.",
+    "description": "MinerU2.5-Pro-2605-1.2B reads the layout and text of page images.",
     "code": "scripts/runners/run_mineru_pro.py",
     "steps": [
       {
@@ -238,7 +238,7 @@
     ]
   },
   "lighton4b_mlx": {
-    "description": "32 images; MLX grounding prompt, 2048-pixel limit; batch 2 after 5 single-page historical checkpoints.",
+    "description": "LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model.",
     "code": "scripts/runners/run_chandra_batch.py",
     "steps": [
       {
@@ -260,7 +260,7 @@
     ]
   },
   "chandra2_mlx": {
-    "description": "32 images; author OCR-layout prompt/rendering; MLX batch 4; read HTML heading levels.",
+    "description": "Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.",
     "code": "scripts/runners/run_chandra_batch.py",
     "steps": [
       {
@@ -282,7 +282,7 @@
     ]
   },
   "qwen36_visual_memory": {
-    "description": "32 targets; Qwen3.6-27B MLX 4-bit, native text, full-document candidates/tags, prior sampled-page images.",
+    "description": "Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.",
     "code": "scripts/runners/run_qwen_visual_memory.py",
     "steps": [
       {
@@ -342,7 +342,7 @@
     ]
   },
   "supervised_extra_trees": {
-    "description": "LLM-assisted visual annotations → 200-tree Extra Trees classifier trained on 16 different WFP reports → local CPU inference using PyMuPDF line features. Full PDFs; no refit on benchmark.",
+    "description": "Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level.",
     "code": "scripts/supervised/compare.py",
     "steps": [
       {
@@ -354,7 +354,7 @@
     ]
   },
   "structure_expanded_line": {
-    "description": "LLM annotations → Extra Trees v2: 887 heading groups on 20 training reports; original line classifier and grouping. CPU; historical diagnostic.",
+    "description": "Test whether more labeled examples improve the original single-classifier design.",
     "code": "scripts/structure/train.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
     "steps": [
@@ -370,7 +370,7 @@
     ]
   },
   "structure_learned_groups": {
-    "description": "LLM annotations → learned line joining across PDF blocks → group-level Extra Trees. Same expanded training set; CPU; historical diagnostic.",
+    "description": "Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5.",
     "code": "scripts/structure/train.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
     "steps": [
@@ -386,7 +386,7 @@
     ]
   },
   "structure_context_relations": {
-    "description": "OUR METHOD v2: learned grouping + document style/TOC features + learned level relationships. Selected on separate validation reports; CPU. Historical diagnostic.",
+    "description": "Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.",
     "code": "scripts/structure/train.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
     "steps": [
@@ -402,7 +402,7 @@
     ]
   },
   "structure_calibrated": {
-    "description": "OUR METHOD v2 + validation-selected decoding: body score ×2; relation weight 1. Same frozen trees and annotations. CPU; historical diagnostic, not a fresh test.",
+    "description": "Make the previously trained three-classifier design less likely to label body text as a heading.",
     "code": "scripts/structure/calibrate.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
     "steps": [
@@ -419,7 +419,7 @@
     ]
   },
   "structure_precision": {
-    "description": "OUR METHOD — frozen v2 trees; validation-selected heading score ≥0.70, body weight 1, relation weight 1. Optimize joint F0.5 subject to ≥95% heading precision. CPU; regression evidence.",
+    "description": "Three trained Extra Trees classifiers join text lines, recognize headings and compare levels. Reject headings below score 0.70, selected on separate validation reports to reduce false headings; no additional model training.",
     "code": "scripts/structure/optimize_precision.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py",
     "steps": [

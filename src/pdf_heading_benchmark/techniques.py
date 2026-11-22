@@ -5,6 +5,7 @@ from html import escape
 from bs4 import BeautifulSoup
 
 from pdf_heading_benchmark.io import REPO, read_json
+from pdf_heading_benchmark.method_terms import explained_terms, linked_text
 from pdf_heading_benchmark.report_help import column_help, info_button
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
@@ -25,10 +26,11 @@ def resources(row: dict, method: dict, technique: dict) -> list[dict]:
     return unique
 
 
-def flow(stages: list[dict], label: str) -> str:
+def flow(stages: list[dict], label: str, technique: dict) -> str:
     cards = "".join(
         f'<li><span class="step-number" aria-hidden="true">{i:02}</span>'
-        f"<strong>{escape(s['title'])}</strong><p>{escape(s['detail'])}</p></li>"
+        f"<strong>{linked_text(s['title'], technique)}</strong>"
+        f"<p>{linked_text(s['detail'], technique)}</p></li>"
         for i, s in enumerate(stages, 1)
     )
     return f'<figure class="technique-flow"><figcaption>{escape(label)}</figcaption><ol>{cards}</ol></figure>'
@@ -42,7 +44,7 @@ def run_details(technique: dict) -> str:
     )
     sections = "".join(
         f"<section><h3>{escape(section['title'])}</h3>"
-        + "".join(f"<p>{escape(p)}</p>" for p in section["paragraphs"])
+        + "".join(f"<p>{linked_text(p, technique)}</p>" for p in section["paragraphs"])
         + "</section>"
         for section in technique["sections"]
     )
@@ -55,8 +57,12 @@ def run_details(technique: dict) -> str:
 
 def dialog(row: dict, method: dict, technique: dict) -> str:
     key = escape(row["method"], quote=True)
-    training = flow(technique["training"], "01 · Training — done once") if technique["training"] else ""
-    label = "02 · Inference — each new document" if training else "How the measured run works"
+    training = (
+        flow(technique["training"], "01 · Training or setting selection", technique)
+        if technique["training"]
+        else ""
+    )
+    label = "02 · Processing a new document" if training else "How the measured run works"
     links = "".join(
         f'<a href="{escape(link["url"], quote=True)}" target="_blank" rel="noopener noreferrer">'
         f'{escape(link["label"])} <span aria-hidden="true">↗</span></a>'
@@ -69,9 +75,9 @@ def dialog(row: dict, method: dict, technique: dict) -> str:
         f'<h2 id="title-{key}" tabindex="-1">{escape(row["name"])}</h2></div>'
         '<button type="button" class="technique-close" aria-label="Close technique diagram">'
         'Close <span aria-hidden="true">&times;</span></button></header>'
-        f'<p class="technique-description">{escape(technique["summary"])}</p>'
-        f"{training}{flow(technique['stages'], label)}"
-        f"{run_details(technique)}"
+        f'<p class="technique-description">{linked_text(technique["summary"], technique)}</p>'
+        f"{training}{flow(technique['stages'], label, technique)}"
+        f"{explained_terms(technique)}{run_details(technique)}"
         '<aside class="technique-limit"><strong>Interpretation</strong>'
         f"<p>{escape(technique['limitation'])}</p>"
         '</aside><h3>Code and sources</h3><nav class="technique-links" aria-label="Technique resources">'
@@ -138,6 +144,10 @@ def markdown_appendix(rows: list[dict], methods: dict) -> str:
                 parts.append(f"\n**{label}:** " + " → ".join(s["title"] for s in stages) + "\n")
                 parts += [f"- **{s['title']}:** {s['detail']}" for s in stages]
                 parts.append("\n")
+        parts.append("\n**Models and terms explained**\n")
+        parts += [
+            f"- [{term['name']}]({term['url']}): {term['description']}" for term in technique.get("terms", [])
+        ]
         parts += ["\n**Parameters used in this run**\n", "| Parameter | Recorded value |", "| --- | --- |"]
         parts += [
             f"| {name} | {escape(value, quote=False).replace('|', '&#124;')} |"

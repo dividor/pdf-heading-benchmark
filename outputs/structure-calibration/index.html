@@ -70,6 +70,11 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .info-button:hover { background: #075868; color: white; }
 .column-dialog { max-width: 680px; }
 .column-dialog h2 { font-size: 24px; margin: 0; }
+
+.method-terms { background: #eaf3f5; border-radius: 12px; padding: 8px 20px; margin-top: 24px; }
+.method-terms dt { font-weight: 700; margin-top: 16px; }
+.method-terms dd { margin: 4px 0 16px; font-size: 15px; }
+.technique-flow a { text-underline-offset: 3px; }
 </style></head><body><main><h1>Can stricter heading decisions improve the model?</h1>
 <p><strong>Current comparison metric:</strong> the league now ranks by joint heading-and-level F0.5 with a ≥95% heading-detection precision requirement. <a href="../../docs/joint-metric.md">Definitions and worked example</a> · <a href="../structure-precision/report.md">New precision experiment</a>. The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.</p>
 <p><strong>Yes on one regression set, but not consistently across report styles. This candidate does not replace the selected v2 model.</strong> The existing models, training labels and native text extraction are unchanged. This experiment tunes two global decoding weights using only the four validation reports, then measures the chosen setting on previously inspected reports.</p>
