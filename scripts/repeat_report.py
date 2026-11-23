@@ -17,6 +17,7 @@ from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.prediction_comparison import LABELS, comparison_rows, heading_text
 from pdf_heading_benchmark.report import build_report, table
+from pdf_heading_benchmark.timing_format import readable_time
 
 OUT = REPO / "outputs/sequential-repeat"
 FIELDS = ("gold", "predicted", "matched", "correct_level")
@@ -144,9 +145,9 @@ def score(evidence: dict) -> tuple[dict, list[dict]]:
 def result_row(name: str, previous: dict, evidence: dict, counts: dict) -> list:
     return [
         name,
-        f"{previous['measured_seconds'] / previous['processed_pages']:.3f}",
-        f"{counts['seconds'] / counts['processed_pages']:.3f}",
-        f"{evidence['process_wall_seconds'] / counts['processed_pages']:.3f}",
+        readable_time(previous["measured_seconds"] / previous["processed_pages"]),
+        readable_time(counts["seconds"] / counts["processed_pages"]),
+        readable_time(evidence["process_wall_seconds"] / counts["processed_pages"]),
         f"{previous['correct_level']}/{previous['gold']} → {counts['correct_level']}/{counts['gold']}",
         f"{scored_counts(previous)['joint_f05']:.1%} → {counts['joint_f05']:.1%}",
         counts["predicted"] - counts["matched"],
@@ -204,9 +205,9 @@ def build() -> None:
     summary += table(
         [
             "Repeated configuration",
-            "Earlier s/page",
-            "Rerun s/page",
-            "Whole-process s/page",
+            "Original time per page",
+            "Latest time per page",
+            "Including startup, per page",
             "Correct heading + level",
             "Joint F0.5: earlier → rerun",
             "Rerun extras",

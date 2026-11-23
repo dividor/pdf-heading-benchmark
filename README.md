@@ -12,7 +12,7 @@ Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These 
 
 ## Consistent timing and sequential GPU reruns
 
-The league table reports **seconds per page** for every measured page rate, retaining total seconds and actual processed pages. Verified rerun timings are marked “rerun”; the original measurements remain in the comparison. Stages without a recorded page denominator show no invented page rate. [Sequential GPU reruns](outputs/sequential-repeat/report.md) compare fresh one-model-at-a-time executions with the frozen results, including accuracy, whole-process time, GPU activity and paging. [Protocol and limitations](docs/sequential-repeat.md).
+The league table reports **average time per page** in readable minutes and seconds, retaining total time and actual processed pages. Verified repeat timings are marked “Latest sequential run”; the original measurements remain in the comparison. Stages without a recorded page denominator show no invented page rate. [Sequential GPU reruns](outputs/sequential-repeat/report.md) compare fresh one-model-at-a-time executions with the frozen results, including accuracy, whole-process time, GPU activity and paging. [Protocol and limitations](docs/sequential-repeat.md).
 
 ## Original Qwen speed trials
 

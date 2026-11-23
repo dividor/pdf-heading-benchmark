@@ -2,7 +2,7 @@
 
 ## Sequential GPU reruns
 
-Seven selected MLX configurations were rerun one at a time on the same four PDFs, 32 audit pages and 77 reference headings. Every rerun reproduced the original heading titles, pages and levels exactly, with no parse errors, timeouts or token-limit truncations. The main table now uses these new timings, marked “rerun”; this comparison preserves the original measurements.
+Seven selected MLX configurations were rerun one at a time on the same four PDFs, 32 audit pages and 77 reference headings. Every rerun reproduced the original heading titles, pages and levels exactly, with no parse errors, timeouts or token-limit truncations. The main table now uses these new timings, marked “Latest sequential run”; this comparison preserves the original measurements.
 
 Chandra and the two LightOn runs took **14–31% less processing time**. Qwen results were mixed: visual-memory 27B improved **12.5%**, while single-image 27B took **4.7% longer**. Median system GPU utilization ranged from **92% to 100%**, with the Metal GPU independently verified inside each inference process. These observations confirm GPU execution; they do not establish optimal kernel efficiency or isolate the effect of background load.
 
@@ -24,15 +24,15 @@ Chandra and the two LightOn runs took **14–31% less processing time**. Qwen re
 
 **Completed: 7/7 configurations.**
 
-| Repeated configuration | Earlier s/page | Rerun s/page | Whole-process s/page | Correct heading + level | Joint F0.5: earlier → rerun | Rerun extras | Errors | Timeouts |
+| Repeated configuration | Original time per page | Latest time per page | Including startup, per page | Correct heading + level | Joint F0.5: earlier → rerun | Rerun extras | Errors | Timeouts |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Qwen3.6-35B-A3B 4-bit — single image | 9.772 | 10.701 | 11.632 | 53/77 → 53/77 | 68.8% → 68.8% | 0 | 0 | 0 |
-| Qwen3.6-35B-A3B 4-bit — visual memory | 16.256 | 15.580 | 16.497 | 52/77 → 52/77 | 69.0% → 69.0% | 0 | 0 | 0 |
-| Chandra OCR 2 / MLX | 32.258 | 27.701 | 28.198 | 53/77 → 53/77 | 72.6% → 72.6% | 2 | 0 | 0 |
-| LightOnOCR-3-4B / MLX grounding | 44.145 | 32.988 | 33.530 | 46/77 → 46/77 | 57.9% → 57.9% | 8 | 0 | 0 |
-| LightOnOCR-3-0.8B / MLX | 16.606 | 11.542 | 11.772 | 46/77 → 46/77 | 57.9% → 57.9% | 8 | 0 | 0 |
-| Qwen3.6-27B 4-bit — single image | 63.703 | 66.667 | 67.392 | 60/77 → 60/77 | 77.1% → 77.1% | 1 | 0 | 0 |
-| Qwen3.6-27B / MLX 4-bit / sampled visual memory | 115.834 | 101.326 | 102.132 | 65/77 → 65/77 | 82.7% → 82.7% | 2 | 0 | 0 |
+| Qwen3.6-35B-A3B 4-bit — single image | 9.8 sec | 10.7 sec | 11.6 sec | 53/77 → 53/77 | 68.8% → 68.8% | 0 | 0 | 0 |
+| Qwen3.6-35B-A3B 4-bit — visual memory | 16.3 sec | 15.6 sec | 16.5 sec | 52/77 → 52/77 | 69.0% → 69.0% | 0 | 0 | 0 |
+| Chandra OCR 2 / MLX | 32.3 sec | 27.7 sec | 28.2 sec | 53/77 → 53/77 | 72.6% → 72.6% | 2 | 0 | 0 |
+| LightOnOCR-3-4B / MLX grounding | 44.1 sec | 33 sec | 33.5 sec | 46/77 → 46/77 | 57.9% → 57.9% | 8 | 0 | 0 |
+| LightOnOCR-3-0.8B / MLX | 16.6 sec | 11.5 sec | 11.8 sec | 46/77 → 46/77 | 57.9% → 57.9% | 8 | 0 | 0 |
+| Qwen3.6-27B 4-bit — single image | 1 min 4 sec | 1 min 7 sec | 1 min 7 sec | 60/77 → 60/77 | 77.1% → 77.1% | 1 | 0 | 0 |
+| Qwen3.6-27B / MLX 4-bit / sampled visual memory | 1 min 56 sec | 1 min 41 sec | 1 min 42 sec | 65/77 → 65/77 | 82.7% → 82.7% | 2 | 0 | 0 |
 
 ### GPU and memory observations
 

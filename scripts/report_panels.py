@@ -6,6 +6,7 @@ from html import escape
 import pymupdf
 
 from pdf_heading_benchmark.io import REPO, read_json
+from pdf_heading_benchmark.timing_format import readable_time
 
 NAMES = {
     "qwen36_35b_visual_memory": "Qwen3.6-35B-A3B + visual memory",
@@ -47,12 +48,12 @@ def score_cells(row: dict, y: int) -> list[str]:
 
 def time_cells(row: dict, y: int) -> list[str]:
     seconds = row["measured_seconds"]
-    duration = f"{seconds / row['processed_pages']:.3f}" if row["processed_pages"] else "—"
+    duration = readable_time(seconds / row["processed_pages"]) if row["processed_pages"] else "—"
     scope = f"{row['processed_pages']} pages" if row["processed_pages"] else "Hierarchy stage only"
     prose = row["native_prose_retention"]
     return [
         text(570, y + 29, duration, 22, True),
-        text(570, y + 55, f"{seconds:.1f} s total", 17),
+        text(570, y + 55, f"{readable_time(seconds)} total", 17),
         text(790, y + 29, scope),
         text(1130, y + 29, "—" if prose is None else f"{prose:.1%}"),
     ]
@@ -67,7 +68,7 @@ def panel(kind: str, rows: list[dict]) -> str:
     title = (
         "Heading + level quality: precision matters"
         if kind == "quality"
-        else "Local processing: seconds per page"
+        else "Local processing: average time per page"
     )
     parts += [
         text(30, 48, title, 32, True),
@@ -85,7 +86,7 @@ def panel(kind: str, rows: list[dict]) -> str:
     if kind == "timings":
         columns = [
             (30, "Configuration"),
-            (570, "Seconds/page"),
+            (570, "Time per page"),
             (790, "Processing scope"),
             (1130, "Prose kept"),
         ]

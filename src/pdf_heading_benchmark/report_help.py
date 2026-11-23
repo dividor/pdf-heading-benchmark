@@ -94,17 +94,19 @@ COLUMN_DESCRIPTIONS = {
             "zero."
         ),
     ],
-    "Seconds per page": [
+    "Average time per page": [
         (
-            "Entries marked rerun use the newest completed sequential measurement whose heading titles, "
+            "Entries marked Latest sequential run use the newest completed sequential measurement whose "
+            "heading titles, "
             "pages and levels exactly reproduce the original predictions. The comparison below retains "
             "the earlier measurements. Other entries retain their historical timing."
         ),
         (
-            "Measured seconds divided by the number of pages actually processed, always in s/page. "
-            "The total seconds and page count are retained beside the rate. This is average throughput, "
+            "Total processing time divided by the number of pages actually processed. "
+            "Durations use minutes and seconds, with decimals for short runs. The total time and page "
+            "count appear below the average. This is average throughput, "
             "not individual-page latency. Hierarchy-only runs without a recorded page denominator "
-            "show a dash for the rate and retain their total seconds; no denominator is invented."
+            "show an unavailable average and retain their total time; no denominator is invented."
         ),
         (
             "Timings were recorded on a shared 48 GB Apple M4 Pro and are not a controlled speed "
