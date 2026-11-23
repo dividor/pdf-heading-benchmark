@@ -146,7 +146,9 @@ def result_row(name: str, previous: dict, evidence: dict, counts: dict) -> list:
     return [
         name,
         readable_time(previous["measured_seconds"] / previous["processed_pages"]),
+        readable_time(previous["measured_seconds"]),
         readable_time(counts["seconds"] / counts["processed_pages"]),
+        readable_time(counts["seconds"]),
         readable_time(evidence["process_wall_seconds"] / counts["processed_pages"]),
         f"{previous['correct_level']}/{previous['gold']} → {counts['correct_level']}/{counts['gold']}",
         f"{scored_counts(previous)['joint_f05']:.1%} → {counts['joint_f05']:.1%}",
@@ -206,7 +208,9 @@ def build() -> None:
         [
             "Repeated configuration",
             "Original time per page",
+            "Original time for 32 pages",
             "Latest time per page",
+            "Latest time for 32 pages",
             "Including startup, per page",
             "Correct heading + level",
             "Joint F0.5: earlier → rerun",

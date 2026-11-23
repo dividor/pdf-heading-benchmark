@@ -94,7 +94,7 @@ COLUMN_DESCRIPTIONS = {
             "zero."
         ),
     ],
-    "Average time per page": [
+    "Time per page": [
         (
             "Entries marked Latest sequential run use the newest completed sequential measurement whose "
             "heading titles, "
@@ -103,8 +103,8 @@ COLUMN_DESCRIPTIONS = {
         ),
         (
             "Total processing time divided by the number of pages actually processed. "
-            "Durations use minutes and seconds, with decimals for short runs. The total time and page "
-            "count appear below the average. This is average throughput, "
+            "Durations use hours, minutes and seconds, with decimals for short runs. "
+            "This is average throughput, "
             "not individual-page latency. Hierarchy-only runs without a recorded page denominator "
             "show an unavailable average and retain their total time; no denominator is invented."
         ),
@@ -116,6 +116,19 @@ COLUMN_DESCRIPTIONS = {
         (
             "These are local runs. Hardware, electricity, setup, review and licensing costs were not "
             "measured in dollars."
+        ),
+    ],
+    "Time for 32 pages": [
+        "Measured means the recorded processing time for the 32 audit pages.",
+        (
+            "Estimated means the recorded average time per page multiplied by 32. These methods "
+            "were timed over a different page count, shown alongside their actual measured total. "
+            "This is a linear projection, not a separate 32-page run or an exact time for the audit pages. "
+            "Page complexity and fixed setup costs can change the result."
+        ),
+        (
+            "Unavailable means no processing time or page denominator was recorded. All times retain "
+            "the original measurement scope; see each method for included and excluded stages."
         ),
     ],
 }

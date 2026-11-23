@@ -19,7 +19,8 @@ HEADERS = [
     "Headings recovered",
     "False headings",
     "Native prose retention",
-    "Average time per page",
+    "Time per page",
+    "Time for 32 pages",
 ]
 
 
@@ -40,8 +41,18 @@ def duration(row):
             if row["timing_source"] == "sequential rerun"
             else "<br>Original run; see timing comparison"
         )
+    return f"**{readable_time(seconds / pages)}**{source}"
+
+
+def time_for_32_pages(row):
+    seconds, pages = row["measured_seconds"], row["processed_pages"]
+    if seconds is None or not pages:
+        return "Unavailable"
+    if pages == 32:
+        return f"**{readable_time(seconds)}**<br>Measured"
     return (
-        f"**{readable_time(seconds / pages)} per page**<br>{readable_time(seconds)} for {pages} pages{source}"
+        f"**{readable_time(seconds / pages * 32)}**<br>Estimated from "
+        f"{readable_time(seconds)} measured over {pages} pages"
     )
 
 
@@ -83,6 +94,7 @@ def cells(row, method):
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
         duration(row),
+        time_for_32_pages(row),
     ]
 
 

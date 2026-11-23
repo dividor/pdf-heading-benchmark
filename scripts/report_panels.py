@@ -49,12 +49,14 @@ def score_cells(row: dict, y: int) -> list[str]:
 def time_cells(row: dict, y: int) -> list[str]:
     seconds = row["measured_seconds"]
     duration = readable_time(seconds / row["processed_pages"]) if row["processed_pages"] else "—"
-    scope = f"{row['processed_pages']} pages" if row["processed_pages"] else "Hierarchy stage only"
+    pages = row["processed_pages"]
+    total = readable_time(seconds / pages * 32) if pages else "Unavailable"
+    scope = "Measured" if pages == 32 else (f"Estimated from {pages} pages" if pages else "No page count")
     prose = row["native_prose_retention"]
     return [
         text(570, y + 29, duration, 22, True),
-        text(570, y + 55, f"{readable_time(seconds)} total", 17),
-        text(790, y + 29, scope),
+        text(790, y + 29, total, 22, True),
+        text(790, y + 55, scope, 17),
         text(1130, y + 29, "—" if prose is None else f"{prose:.1%}"),
     ]
 
@@ -68,7 +70,7 @@ def panel(kind: str, rows: list[dict]) -> str:
     title = (
         "Heading + level quality: precision matters"
         if kind == "quality"
-        else "Local processing: average time per page"
+        else "Local processing: per page and 32 pages"
     )
     parts += [
         text(30, 48, title, 32, True),
@@ -87,7 +89,7 @@ def panel(kind: str, rows: list[dict]) -> str:
         columns = [
             (30, "Configuration"),
             (570, "Time per page"),
-            (790, "Processing scope"),
+            (790, "Time for 32 pages"),
             (1130, "Prose kept"),
         ]
     parts += [text(x, 150, label, 20, True) for x, label in columns]

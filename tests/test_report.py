@@ -26,7 +26,7 @@ def test_report_is_reproducible_and_has_all_method_links():
     rows = results.find("tbody").find_all("tr")
     assert len(rows) == len(read_json(REPO / "configs/report-methods.json"))
     for row in rows:
-        assert len(row.find_all("td")) == 10
+        assert len(row.find_all("td")) == 11
         assert (
             row.find_all("td")[4]
             .find("a")["href"]
@@ -96,7 +96,7 @@ def test_every_method_exposes_its_run_settings_in_both_formats():
 def test_information_buttons_resolve_to_named_dialogs():
     soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
     table = soup.select_one("table.league-table")
-    assert len(table.select("th button.info-button")) == 10
+    assert len(table.select("th button.info-button")) == 11
     for row in table.select("tbody tr"):
         name_cell = row.find("td")
         assert name_cell.find("a") is None
@@ -151,13 +151,21 @@ def test_league_shows_joint_precision_and_recall_without_detection_gate():
 def test_timing_is_readable_without_inventing_a_scope():
     from pdf_heading_benchmark.report import duration
 
-    assert duration(dict(measured_seconds=11.662223, processed_pages=523)).startswith(
-        "**0.022 sec per page**"
-    )
-    assert duration(dict(measured_seconds=3706.6876, processed_pages=32)).startswith(
-        "**1 min 56 sec per page**"
-    )
-    assert duration(dict(measured_seconds=0, processed_pages=32)).startswith("**0.000 sec per page**")
+    assert duration(dict(measured_seconds=11.662223, processed_pages=523)).startswith("**0.022 sec**")
+    assert duration(dict(measured_seconds=3706.6876, processed_pages=32)).startswith("**1 min 56 sec**")
+    assert duration(dict(measured_seconds=0, processed_pages=32)).startswith("**0.000 sec**")
     assert duration(dict(measured_seconds=None, processed_pages=32)) == "—"
     unknown = duration(dict(measured_seconds=100.0, processed_pages=None))
     assert unknown == "Page average unavailable<br>1 min 40 sec for the hierarchy stage"
+
+
+def test_32_page_time_distinguishes_measurements_from_projections():
+    from pdf_heading_benchmark.report import time_for_32_pages
+
+    assert time_for_32_pages(dict(measured_seconds=3242.4, processed_pages=32)) == (
+        "**54 min 2 sec**<br>Measured"
+    )
+    estimate = time_for_32_pages(dict(measured_seconds=523.0, processed_pages=523))
+    assert estimate == "**32 sec**<br>Estimated from 8 min 43 sec measured over 523 pages"
+    assert time_for_32_pages(dict(measured_seconds=100, processed_pages=None)) == "Unavailable"
+    assert time_for_32_pages(dict(measured_seconds=None, processed_pages=32)) == "Unavailable"
