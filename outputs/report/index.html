@@ -5,6 +5,7 @@ p { max-width: 1100px; }
 a { color: #08659a; }
 h1 { line-height: 1.2; }
 table { border-collapse: collapse; background: white; font-size: 14px; width: 100%; margin: 24px 0; }
+main > p > a > img, main > p > img { max-width: 100%; height: auto; }
 th, td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #dce5ec; min-width: 90px; }
 th { background: #e5eff7; }
 td:nth-child(2) { min-width: 240px; }
@@ -102,6 +103,7 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 <p>The candidate was selected from a fixed 36-setting grid on four separate validation reports. The original league and the previously inspected 38-heading set were scored only after selection. Both are regression evidence, not new independent tests. The historical selection rule included a 95% heading-only precision constraint; that rule remains documented in the experiment but is no longer a league-table qualification gate. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md">Experiment, every setting and reproduction</a>.</p>
 <p><strong>Coverage retraining trial:</strong> the additional OUR METHOD row refits the trees and restores title recovery to 66/77 (85.7%), but has only 50 correct heading-level pairs and 21 extras. None of the 64 validation configurations met both 80% joint precision and recall. It is a diagnostic fallback, not a recommended replacement. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/report.md">Experiment and complete evidence</a>.</p>
 <p><a href="https://github.com/dividor/pdf-heading-benchmark">Repository and runnable instructions</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/league_table.md">Markdown report</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/results.json">Score exports</a></p>
+<p><a href="#published-comparison">Can newer models beat Chandra 2? Published comparison, diagram and sources</a>. These external scores are separate from our WFP results.</p>
 <h2>Documents and their sources</h2>
 <p>All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json">corpus manifest</a> records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.</p>
 <p>The corpus contains <strong>523 pages: three English reports and one Spanish report</strong>. All four contain native digital text. None has PDF outline bookmarks. The standalone PDF-tag baseline is excluded from this comparison because it relies on structure already supplied by the PDF author. The recorded Qwen3.6 runs still use available author tags as input alongside text and images; their scores do not establish performance on untagged PDFs. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.</p>
@@ -753,6 +755,61 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 </tbody>
 </table>
 <p>GPU and swap measurements are system-wide; they include other applications and model loading. A high GPU percentage confirms activity but does not prove optimal inference or identify a bottleneck.</p>
+<h2 id="published-comparison">Published comparison</h2>
+<p><strong>Can newer models beat Chandra 2?</strong> MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 score higher on three parsing benchmarks in OpenBMB's published comparison. Chandra leads these candidates on olmOCR. This is evidence for a shortlist, not a universal winner.</p>
+<p><a href="https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/ocr-benchmarks.png">Open the original comparison table</a> · <a href="https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation">Author's evaluation and methodology</a>.</p>
+<p><a href="https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/ocr-benchmarks.png"><img alt="Four comparisons: MiniCPM, Xiaomi and Paddle exceed Chandra on OmniDocBench, Real5 and Wild; Chandra leads these candidates on olmOCR. These are external parsing scores, not WFP heading-and-level results." src="published-comparison.png"/></a></p>
+<p><em>Original diagram of reported values. Click the diagram for the source table. Higher is better within each column; scores from different benchmarks must not be compared directly.</em></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align:right">OmniDocBench 1.6</th>
+<th style="text-align:right">Real5</th>
+<th style="text-align:right">Wild</th>
+<th style="text-align:right">olmOCR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://huggingface.co/datalab-to/chandra-ocr-2">Chandra 2</a></td>
+<td style="text-align:right">92.27</td>
+<td style="text-align:right">88.74</td>
+<td style="text-align:right">89.08</td>
+<td style="text-align:right"><strong>85.8</strong></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/openbmb/MiniCPM-OCR-1.0">MiniCPM-OCR 1.0</a></td>
+<td style="text-align:right">96.51</td>
+<td style="text-align:right"><strong>93.68</strong></td>
+<td style="text-align:right"><strong>92.39</strong></td>
+<td style="text-align:right">82.7</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/xiaomi-research/Xiaomi-OCR-0">Xiaomi-OCR-0</a></td>
+<td style="text-align:right"><strong>96.83</strong></td>
+<td style="text-align:right">92.73</td>
+<td style="text-align:right">92.06</td>
+<td style="text-align:right">82.1</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6">PaddleOCR-VL-1.6</a></td>
+<td style="text-align:right">96.34</td>
+<td style="text-align:right">93.19</td>
+<td style="text-align:right">91.49</td>
+<td style="text-align:right">80.2</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/baidu/Unlimited-OCR-2">Unlimited-OCR-2</a></td>
+<td style="text-align:right">94.02</td>
+<td style="text-align:right">87.93</td>
+<td style="text-align:right">87.79</td>
+<td style="text-align:right">79.5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Source and scope:</strong> OpenBMB's MiniCPM-OCR 1.0 comparison, checked November 23, 2026; links pin the source revision. Bold marks the highest score among these five candidates. These are results reported by a competing model's authors, not independent measurements by this project. Values preserve that comparison's configurations; later model-card updates can differ. Datalab's own Chandra 2 release announcement reports 85.9 on olmOCR, whereas this comparison reports 85.8. <a href="https://www.datalab.to/blog/chandra-2">Chandra release report</a>.</p>
+<p>These benchmarks evaluate broader document parsing. They do not establish performance on our WFP titles, pages and exact heading levels. None of these external scores enters our ranking or changes our joint F0.5 results. The next comparison would run candidate pipelines on the same WFP pages and record both joint heading-and-level quality and processing time on the Mac.</p>
 <h2>Results by report</h2>
 <table>
 <thead>

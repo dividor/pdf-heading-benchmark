@@ -16,6 +16,8 @@ The candidate was selected from a fixed 36-setting grid on four separate validat
 
 [Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/league_table.md) · [Score exports](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/results.json)
 
+[Can newer models beat Chandra 2? Published comparison, diagram and sources](#published-comparison). These external scores are separate from our WFP results.
+
 ## Documents and their sources
 
 All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The [corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json) records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.

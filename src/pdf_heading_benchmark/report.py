@@ -167,6 +167,7 @@ def build_report():
     repeat = REPO / "outputs/sequential-repeat/summary.md"
     if repeat.exists():
         markdown += "\n\n" + repeat.read_text()
+    markdown += "\n\n" + (REPO / "docs/published-comparison.md").read_text()
     markdown += "\n\n## Results by report\n\n" + table(
         [
             "Runner / configuration",
@@ -187,6 +188,12 @@ def build_report():
     rows = report_rows("league_table.json")
     (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
+    diagram = "published-comparison.png"
+    (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
+    rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
+    rendered = rendered.replace(
+        "<h2>Published comparison</h2>", '<h2 id="published-comparison">Published comparison</h2>'
+    )
     rendered = enhance_html(rendered, rows, methods)
     css = (REPO / "docs/report.css").read_text()
     html = (
