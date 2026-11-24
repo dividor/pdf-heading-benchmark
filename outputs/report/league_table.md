@@ -1,10 +1,10 @@
 # On-premises PDF heading benchmark: scores, timings and methods
 
-**26 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
+**25 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
 
 **Primary metric: joint heading-and-level F0.5**, with joint precision and joint recall alongside it. A correct prediction must match the heading title, PDF page and exact level. Wrong levels and extra headings reduce precision; missed or incorrectly leveled headings reduce recall. There is no separate PASS/FAIL gate. Definitions and worked examples follow the table.
 
-Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **82.3% joint precision**, 65/77 correct heading-level pairs and two extras. Embedded PDF tags score **73.4% F0.5**, with 79.6% joint precision and 43/77 correct pairs. Chandra scores **72.6% F0.5**, 73.6% joint precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
+Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **82.3% joint precision**, 65/77 correct heading-level pairs and two extras. Chandra scores **72.6% F0.5**, 73.6% joint precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
 
 **Sequential GPU reruns:** seven selected MLX configurations were repeated one at a time on all 32 audit pages. Every heading title, page and level was reproduced exactly, with no parse errors, timeouts or truncations. The main table uses the new **average time per page** measurements, marked “Latest sequential run”. Chandra and LightOn were faster in these repeats; Qwen timings were mixed. [Original versus repeated timings, GPU observations and protocol](#sequential-gpu-reruns).
 
@@ -20,7 +20,7 @@ The candidate was selected from a fixed 36-setting grid on four separate validat
 
 All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The [corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json) records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.
 
-The corpus contains **523 pages: three English reports and one Spanish report**. All four contain native digital text. None has PDF outline bookmarks, although embedded structure tags provide another possible source of headings. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.
+The corpus contains **523 pages: three English reports and one Spanish report**. All four contain native digital text. None has PDF outline bookmarks. The standalone PDF-tag baseline is excluded from this comparison because it relies on structure already supplied by the PDF author. The recorded Qwen3.6 runs still use available author tags as input alongside text and images; their scores do not establish performance on untagged PDFs. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.
 
 The audit covers **eight selected pages per report, 32 pages and 77 reference headings in total**. Page numbers below are **one-based physical PDF pages**, including covers and front matter, rather than printed page labels. These are the exact pages scored for every completed configuration.
 
@@ -50,7 +50,6 @@ This is **sampled-page heading accuracy**, even when a parser processed the full
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Qwen3.6-27B / MLX 4-bit / sampled visual memory](https://huggingface.co/Qwen/Qwen3.6-27B) | **82.7%** | 82.3% (65/79) | 84.4% (65/77) | [Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_visual_memory.py) | completed | 100.0% (77/77) | 2 | — | **1 min 41 sec**<br>Latest sequential run | **54 min 2 sec**<br>Measured |
 | [Qwen3.6-27B 4-bit — single image](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) | **77.1%** | 76.9% (60/78) | 77.9% (60/77) | [Qwen3.6-27B MLX 4-bit; one 1280-pixel image and text-only heading memory.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) | completed | 100.0% (77/77) | 1 | — | **1 min 7 sec**<br>Latest sequential run | **35 min 33 sec**<br>Measured |
-| [Embedded PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) | **73.4%** | 79.6% (43/54) | 55.8% (43/77) | [Read PDF heading tags—the heading labels already embedded by the PDF’s author.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) | completed | 67.5% (52/77) | 2 | — | **0.200 sec** | **6.4 sec**<br>Measured |
 | [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | **72.6%** | 73.6% (53/72) | 68.8% (53/77) | [Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_chandra_batch.py) | completed | 90.9% (70/77) | 2 | 98.7% | **27.7 sec**<br>Latest sequential run | **14 min 46 sec**<br>Measured |
 | <span id="our-trained-model"></span>[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md) | **70.5%** | 82.9% (34/41) | 44.2% (34/77) | [Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py) | completed | 50.6% (39/77) | 2 | — | **0.022 sec** | **0.714 sec**<br>Estimated from 11.7 sec measured over 523 pages |
 | [Qwen3.6-35B-A3B 4-bit — visual memory](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) | **69.0%** | 69.3% (52/75) | 67.5% (52/77) | [Qwen3.6-35B-A3B MLX 4-bit; original prompt, larger current image and up to six previous page images.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py) | completed | 97.4% (75/77) | 0 | — | **15.6 sec**<br>Latest sequential run | **8 min 19 sec**<br>Measured |
@@ -224,10 +223,6 @@ GPU and swap measurements are system-wide; they include other applications and m
 | run_qwen_ids.py / qwen_ids_pymupdf4llm | midterm | 0/18 | 0/18 | 0 | 0.0% |
 | run_qwen_ids.py / qwen_ids_pymupdf4llm | indonesia | 18/21 | 6/21 | 0 | 100.0% |
 | run_qwen_ids.py / qwen_ids_pymupdf4llm | colombia | 22/23 | 12/23 | 0 | 100.0% |
-| run_pdf_tags.py / pdf_tags_audit_only | targeting | 9/15 | 9/15 | 0 | 100.0% |
-| run_pdf_tags.py / pdf_tags_audit_only | midterm | 13/18 | 13/18 | 0 | 100.0% |
-| run_pdf_tags.py / pdf_tags_audit_only | indonesia | 14/21 | 10/21 | 2 | 87.5% |
-| run_pdf_tags.py / pdf_tags_audit_only | colombia | 16/23 | 11/23 | 0 | 100.0% |
 | run_mineru_pro.py / mineru_pro_mlx | targeting | 13/15 | 0/15 | 0 | 100.0% |
 | run_mineru_pro.py / mineru_pro_mlx | midterm | 18/18 | 0/18 | 1 | 94.7% |
 | run_mineru_pro.py / mineru_pro_mlx | indonesia | 19/21 | 0/21 | 0 | 100.0% |
@@ -644,167 +639,6 @@ Both runs share an M4 Pro with other workloads. Single-run speed ratios are obse
 Removing visual history and shrinking the target image may lose typography clues. Correct title-and-level recall and false headings must be considered together. Only the original 32 sampled pages were scored.
 
 [Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) · [Official base model](https://huggingface.co/Qwen/Qwen3.6-27B) · [Tested MLX 4-bit weights](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit) · [Exact prompt](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py) · [Protocol, predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_27b_compact.json) · [Experiment and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md) · [Pinned architecture and quantization configuration](https://huggingface.co/mlx-community/Qwen3.6-27B-4bit/blob/c000ac2c2057d94be3fa931000c31723aac53282/config.json)
-
-
-### Embedded PDF heading tags
-
-Author metadata · CPU
-
-Read PDF heading tags—the heading labels already embedded by the PDF’s author. This baseline uses no trained model: an H2 structure tag is taken to mean H2, even when the author’s tagging is incomplete or wrong.
-
-
-**Predicted headings versus reference (all scored pages)**
-
-43 correct · 9 wrong/absent level · 25 missed · 2 extra
-
-Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
-
-
-**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
-
-9 correct · 0 wrong/absent level · 6 missed · 0 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
-| 11 | H4 — Appropriateness | — | Missed heading |
-| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
-| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
-| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
-| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
-| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
-| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
-| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Correct heading + level |
-| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
-| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
-| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
-| 109 | H2 — Objectives and users of the evaluation | — | Missed heading |
-| 109 | H2 — Evaluation questions | — | Missed heading |
-| 109 | H2 — Methodology and ethical considerations | — | Missed heading |
-
-**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
-
-13 correct · 0 wrong/absent level · 5 missed · 0 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
-| 8 | H2 — INTRODUCTION | — | Missed heading |
-| 8 | H3 — What was evaluated? | — | Missed heading |
-| 8 | H3 — Why was the evaluation conducted and in which context? | — | Missed heading |
-| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
-| 10 | H2 — FINDINGS | — | Missed heading |
-| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
-| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
-| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
-| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
-| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
-| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
-| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
-| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
-| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
-| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
-| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
-| 98 | H2 — Overall approach | — | Missed heading |
-
-**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
-
-10 correct · 4 wrong/absent level · 7 missed · 2 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
-| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
-| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
-| 7 | H3 — Context | H2 — Context | Wrong or absent level |
-| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
-| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
-| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
-| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased strategic engagement in an array of humanitarian and development sectors, particularly with regard to strengthening national systems for humanitarian response and food security. The CSP structure has allowed operational flexibility and responsiveness to emerging opportunities and changes in circumstances; however, while CSP activities are aligned with the priorities of government partners, they do not address some issues affecting women, older people, persons with disabilities, people living in remote areas, and children – groups identified in the common country analysis as those most at risk of being left behind. The absence of a framework for assessing emerging opportunities prevented coherent engagement. | Extra prediction |
-| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
-| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
-| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
-| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
-| 20 | H3 — Geography, Demography, and Government | — | Missed heading |
-| 20 | H3 — National policies and Sustainable Development Goals (SDG) | — | Missed heading |
-| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
-| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
-| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
-| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
-| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | — | Missed heading |
-| 48 | H5 — SO1: Evidence and Data | — | Missed heading |
-| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
-| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
-| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
-
-**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
-
-11 correct · 5 wrong/absent level · 7 missed · 0 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
-| 7 | H2 — Introducción | — | Missed heading |
-| 7 | H3 — Características de la evaluación | — | Missed heading |
-| 7 | H3 — Contexto | — | Missed heading |
-| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
-| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
-| 13 | H4 — Pertinencia con respecto a las necesidades | — | Missed heading |
-| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
-| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
-| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
-| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
-| 28 | H3 — Contexto general | H3 — Contexto general | Correct heading + level |
-| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
-| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
-| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
-| 56 | H4 — Dimensión 2: Entorno político | H3 — Dimensión 2: Entorno político | Wrong or absent level |
-| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
-| 56 | H5 — Resultados | H3 — Resultados92 | Wrong or absent level |
-| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
-| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | Correct heading + level |
-| 72 | H4 — Productos y logros | H3 — Productos y logros | Wrong or absent level |
-| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
-| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
-
-
-**Inference:** Read accessibility structure → Find heading tags → Recover the associated text → Export the author’s labels
-
-- **Read accessibility structure:** Inspect the PDF structure tree, which describes tagged content. This is different from the outline bookmarks shown in a PDF reader’s navigation panel.
-- **Find heading tags:** Select structure elements named H1 through H6.
-- **Recover the associated text:** Use marked-content IDs—the PDF’s internal references connecting a tag to page content—to find characters on the 32 audit pages.
-- **Export the author’s labels:** Join those characters into titles and use each tag’s number as its level. Do not infer missing tags or repair levels.
-
-
-
-**Models and terms explained**
-
-- [PDF heading tags](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9): H1–H6 labels embedded in the PDF’s accessibility structure by its author. They can be absent, incomplete or incorrect.
-
-**Parameters used in this run**
-
-| Parameter | Recorded value |
-| --- | --- |
-| Library | pdfplumber.PDFStructTree; exact historical pdfplumber version not recorded |
-| Tag filter | ^H[1-6]$ |
-| Text mapping | Structure element all_mcids() → page characters → extract_text |
-| Page assignment | Minimum page number among the element’s mapped locations |
-| Tuning / weights | None: metadata baseline, no trained parameters or prompt |
-
-**Why this differs from visual parsing**
-
-Correct text styling does not guarantee correct PDF structure tags. Missing or incorrect author tags remain missing or incorrect in this result. The method does not fall back to font-size inference.
-
-
-**Measured scope and timing**
-
-Structure-tree traversal and character recovery target the 32 audited pages. Timing includes PDF opening, traversal and text reconstruction. Hardware: Apple M4 Pro, 48 GB.
-
-The main table matches titles on the same physical PDF page at normalized similarity ≥0.90, with one-to-one assignment, then checks exact H level. False headings are reported separately. This is different from the supervised group-and-level F1 used for model selection.
-
-Works only to the extent that the PDF author supplied correct structural tags.
-
-[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pdf_tags.py) · [W3C PDF heading technique](https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF9) · [Structure tree and MCID recovery](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pdf_tags.py) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py)
 
 
 ### Chandra OCR 2 / MLX

@@ -3,7 +3,6 @@
   "chandra2_mlx",
   "lighton_mlx",
   "lighton4b_mlx",
-  "pdf_tags_audit_only",
   "supervised_extra_trees",
   "mineru_basic",
   "pymupdf4llm",

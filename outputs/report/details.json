@@ -352,38 +352,6 @@
     "predicted": 22
   },
   {
-    "method": "pdf_tags_audit_only",
-    "document": "targeting",
-    "gold": 15,
-    "matched": 9,
-    "correct_level": 9,
-    "predicted": 9
-  },
-  {
-    "method": "pdf_tags_audit_only",
-    "document": "midterm",
-    "gold": 18,
-    "matched": 13,
-    "correct_level": 13,
-    "predicted": 13
-  },
-  {
-    "method": "pdf_tags_audit_only",
-    "document": "indonesia",
-    "gold": 21,
-    "matched": 14,
-    "correct_level": 10,
-    "predicted": 16
-  },
-  {
-    "method": "pdf_tags_audit_only",
-    "document": "colombia",
-    "gold": 23,
-    "matched": 16,
-    "correct_level": 11,
-    "predicted": 16
-  },
-  {
     "method": "mineru_pro_mlx",
     "document": "targeting",
     "gold": 15,

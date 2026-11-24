@@ -2,7 +2,7 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 26 completed local configurations with scores, processing times and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 25 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took **54.0 minutes in the sequential rerun**, versus 61.8 minutes originally, for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
@@ -86,7 +86,7 @@ uv run pdf-headings score --historical
 uv run pdf-headings report
 ```
 
-Open `outputs/report/index.html` locally, or read the Markdown version on GitHub. GitHub's file view displays HTML source, not the rendered report. The scorer recomputes the bundled historical predictions. The report selects the 26 local configurations listed in `configs/report-methods.json`; original historical records remain unchanged. Report generation runs entirely offline.
+Open `outputs/report/index.html` locally, or read the Markdown version on GitHub. GitHub's file view displays HTML source, not the rendered report. The scorer recomputes the bundled historical predictions. The report selects the 25 local configurations listed in `configs/report-methods.json`; original historical records remain unchanged. Report generation runs entirely offline.
 
 ## Run the benchmark yourself
 
@@ -95,13 +95,10 @@ Open `outputs/report/index.html` locally, or read the Markdown version on GitHub
 export PDF_BENCHMARK_DATA="$PWD/../pdf-heading-benchmark-data"
 uv run pdf-headings download
 
-# Small CPU baseline, with no model downloads:
-uv run pdf-headings run pdf_tags_audit_only
-uv run pdf-headings score
-
-# Other CPU parsers (may download layout models on first use):
+# CPU parsers (may download layout models on first use):
 uv run pdf-headings run pymupdf4llm
 uv run pdf-headings run docling_default
+uv run pdf-headings score
 ```
 
 The Docling command writes **default, hierarchy and tolerance-0.15** variants from one conversion. `run docling_hierarchy` and `run docling_tuned` invoke that same three-variant runner. Marker and MinerU basic are also available. Run `uv run pdf-headings run --help` for available configuration identifiers.
