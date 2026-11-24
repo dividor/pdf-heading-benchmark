@@ -798,5 +798,101 @@
     "matched": 23,
     "correct_level": 12,
     "predicted": 23
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 19
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 3,
+    "predicted": 18
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 4,
+    "predicted": 20
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 7,
+    "predicted": 13
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 7,
+    "predicted": 18
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 7,
+    "predicted": 18
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 8,
+    "predicted": 23
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 19
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 3,
+    "predicted": 18
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 4,
+    "predicted": 20
   }
 ]

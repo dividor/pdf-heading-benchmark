@@ -1,0 +1,27 @@
+{
+  "created": "2026-11-23",
+  "models": {
+    "minicpm_ocr10": {
+      "repo": "openbmb/MiniCPM-OCR-1.0",
+      "revision": "883ca368d17335b9ce5aa6fef4d000ef0684fcaa"
+    },
+    "xiaomi_ocr0": {
+      "repo": "xiaomi-research/Xiaomi-OCR-0",
+      "revision": "bbd8cf8d21f256b3644b44cb860f3a7cecb93c30"
+    },
+    "paddleocr_vl16": {
+      "repo": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "revision": "132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd"
+    },
+    "layout": {
+      "repo": "PaddlePaddle/PP-DocLayoutV3_safetensors",
+      "revision": "e4f489dc536556fc1be02b973ba06756e0d4a2ac"
+    }
+  },
+  "order": [
+    "minicpm_ocr10",
+    "xiaomi_ocr0",
+    "paddleocr_vl16"
+  ],
+  "protocol": "32 fixed audit pages, native output levels, no PDF tags or text inputs, no hierarchy repairs. Recognition on MLX Metal; region layout on CPU. One candidate at a time. Greedy decoding. No selection using benchmark labels."
+}

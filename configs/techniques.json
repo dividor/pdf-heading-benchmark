@@ -3777,5 +3777,432 @@
         ]
       }
     ]
+  },
+  "minicpm_ocr10": {
+    "family": "Layout detection plus regional vision-language OCR",
+    "summary": "PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "stages": [
+      {
+        "title": "Render the fixed WFP sample",
+        "detail": "Render all 32 audit pages at 200 DPI for MiniCPM-OCR 1.0. Supply pixels only: no native PDF text, tags, reference headings or earlier-page memory."
+      },
+      {
+        "title": "Locate and crop document regions",
+        "detail": "Run PP-DocLayoutV3 on CPU with four Torch threads, detection threshold 0.3 and non-maximum suppression. MiniCPM SDK 1.0.5 provides the layout detector, ordered crops and block labels."
+      },
+      {
+        "title": "Recognize each crop with MiniCPM-OCR 1.0",
+        "detail": "Load original BF16 weights in MLX on Metal. Use class-specific instructions: Text Recognition:, Table Recognition:, Formula Recognition:, Chart to Table:, Seal Recognition: Decode one region at a time, temperature 0; retain the raw response and region metadata."
+      },
+      {
+        "title": "Assemble the native Markdown outline",
+        "detail": "MiniCPM SDK 1.0.5 assigns document titles H1. Its default numbered paragraph-title formatter makes “2” H2, “2.1” H3 and unnumbered section titles H2. Headers, footers and footnotes are excluded by the upstream assembly defaults. We retain this hierarchy even when it disagrees with the reference."
+      },
+      {
+        "title": "Score titles and levels together",
+        "detail": "Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time."
+      }
+    ],
+    "parameters": [
+      [
+        "Model",
+        "openbmb/MiniCPM-OCR-1.0; revision 883ca368d17335b9ce5aa6fef4d000ef0684fcaa"
+      ],
+      [
+        "Model size / weights",
+        "1.3B parameters; original BF16 weights, no weight quantization or fine-tuning"
+      ],
+      [
+        "Runtime",
+        "MLX 0.32.4; mlx-vlm 0.8.0; Transformers 5.23.0; Apple M4 Pro, 48 GB unified memory"
+      ],
+      [
+        "Input",
+        "32 fixed physical PDF pages; PyMuPDF render at 200 DPI; pixels only"
+      ],
+      [
+        "Decoding",
+        "temperature=0; seed=42; enable_thinking=False"
+      ],
+      [
+        "Concurrency",
+        "One model and one page at a time; region recognition sequential; Metal kernels internally parallel"
+      ],
+      [
+        "Limits",
+        "Soft 600-second timeout per recognition request, checked between streamed chunks"
+      ],
+      [
+        "Timing",
+        "Includes rendering, CPU layout when used, recognition and assembly; model loading recorded separately"
+      ],
+      [
+        "Layout model",
+        "PaddlePaddle/PP-DocLayoutV3_safetensors; revision e4f489dc536556fc1be02b973ba06756e0d4a2ac"
+      ],
+      [
+        "Layout settings",
+        "CPU; torch.set_num_threads(4); threshold=0.3; nms=True; chart and seal recognition enabled; image-block OCR disabled"
+      ],
+      [
+        "SDK",
+        "minicpm-ocr==1.0.5; direct detector/crop/assemble_markdown components"
+      ],
+      [
+        "Output budgets",
+        "Upstream class recipes: titles 512; body text 4096; tables 8192; display formulas 2048; charts 4096; seals 256 tokens"
+      ],
+      [
+        "Hierarchy",
+        "SDK title_style=numbered; no offset correction or WFP-specific rules"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What was trained, and by whom",
+        "paragraphs": [
+          "We use the published MiniCPM-OCR 1.0 weights at the pinned revision. We do not train, fine-tune or select checkpoints on these four WFP reports. The model card documents the upstream training; our contribution here is the Apple Silicon evaluation adapter."
+        ]
+      },
+      {
+        "title": "What this row establishes",
+        "paragraphs": [
+          "This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.",
+          "Broad OCR benchmark quality does not establish correct heading depth. This row scores the headings the pipeline actually emits, without document-specific corrections. Native prose retention measures overlapping five-word sequences from PDF paragraphs of at least 50 words; it does not measure table accuracy or reading order."
+        ]
+      }
+    ],
+    "limitation": "This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.",
+    "sources": [
+      {
+        "label": "Official model and model card",
+        "url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0"
+      },
+      {
+        "label": "Upstream implementation and documentation",
+        "url": "https://github.com/OpenBMB/MiniCPM-OCR"
+      },
+      {
+        "label": "Exact local runner and prompts",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py"
+      },
+      {
+        "label": "Download pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json"
+      },
+      {
+        "label": "Protocol and reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md"
+      },
+      {
+        "label": "Measured predictions and page telemetry",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/minicpm_ocr10.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "MiniCPM-OCR 1.0",
+        "description": "The upstream 1.3B-parameter visual recognition model, loaded from its pinned Hugging Face revision.",
+        "url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0",
+        "aliases": [
+          "MiniCPM-OCR 1.0"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      },
+      {
+        "name": "PP-DocLayoutV3",
+        "description": "A document-layout detector that labels regions such as titles, text, tables and figures. Its block labels and the Markdown assembler help determine the emitted hierarchy.",
+        "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors",
+        "aliases": [
+          "PP-DocLayoutV3"
+        ]
+      }
+    ],
+    "training": []
+  },
+  "xiaomi_ocr0": {
+    "family": "Whole-page vision-language OCR",
+    "summary": "Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.",
+    "stages": [
+      {
+        "title": "Render the fixed WFP sample",
+        "detail": "Render all 32 audit pages at 200 DPI for Xiaomi-OCR-0. Supply pixels only: no native PDF text, tags, reference headings or earlier-page memory."
+      },
+      {
+        "title": "Read the entire page with Xiaomi-OCR-0",
+        "detail": "Use the documented e2e_img2md instruction: extract the main body in reading order as Markdown, with OTSL tables and LaTeX formulas; ignore headers and footers. The Qwen3.5-based 0.8B model runs through MLX on Metal."
+      },
+      {
+        "title": "Keep the model’s own hierarchy",
+        "detail": "Greedy decoding, temperature 0, seed 42, thinking disabled, maximum 16,384 output tokens per page. Read Markdown heading tokens as H1–H6, including setext headings. Do not infer headings from bold text or adjust levels."
+      },
+      {
+        "title": "Score titles and levels together",
+        "detail": "Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time."
+      }
+    ],
+    "parameters": [
+      [
+        "Model",
+        "xiaomi-research/Xiaomi-OCR-0; revision bbd8cf8d21f256b3644b44cb860f3a7cecb93c30"
+      ],
+      [
+        "Model size / weights",
+        "0.8B parameters; original BF16 weights, no weight quantization or fine-tuning"
+      ],
+      [
+        "Runtime",
+        "MLX 0.32.4; mlx-vlm 0.8.0; Transformers 5.23.0; Apple M4 Pro, 48 GB unified memory"
+      ],
+      [
+        "Input",
+        "32 fixed physical PDF pages; PyMuPDF render at 200 DPI; pixels only"
+      ],
+      [
+        "Decoding",
+        "temperature=0; seed=42; enable_thinking=False"
+      ],
+      [
+        "Concurrency",
+        "One model and one page at a time; region recognition sequential; Metal kernels internally parallel"
+      ],
+      [
+        "Limits",
+        "Soft 600-second timeout per recognition request, checked between streamed chunks"
+      ],
+      [
+        "Timing",
+        "Includes rendering, CPU layout when used, recognition and assembly; model loading recorded separately"
+      ],
+      [
+        "Output budget",
+        "16,384 tokens per whole page"
+      ],
+      [
+        "Prompt",
+        "Exact upstream evaluation_pipeline/e2e_img2md.py whole-page Markdown instruction; recorded in runner"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What was trained, and by whom",
+        "paragraphs": [
+          "We use the published Xiaomi-OCR-0 weights at the pinned revision. We do not train, fine-tune or select checkpoints on these four WFP reports. The model card documents the upstream training; our contribution here is the Apple Silicon evaluation adapter."
+        ]
+      },
+      {
+        "title": "What this row establishes",
+        "paragraphs": [
+          "This is the documented whole-page variant, not Xiaomi’s two-stage layout-plus-recognition configuration behind its strongest published scores.",
+          "Broad OCR benchmark quality does not establish correct heading depth. This row scores the headings the pipeline actually emits, without document-specific corrections. Native prose retention measures overlapping five-word sequences from PDF paragraphs of at least 50 words; it does not measure table accuracy or reading order."
+        ]
+      }
+    ],
+    "limitation": "This is the documented whole-page variant, not Xiaomi’s two-stage layout-plus-recognition configuration behind its strongest published scores.",
+    "sources": [
+      {
+        "label": "Official model and model card",
+        "url": "https://huggingface.co/xiaomi-research/Xiaomi-OCR-0"
+      },
+      {
+        "label": "Upstream implementation and documentation",
+        "url": "https://github.com/xiaomi-research/Xiaomi-OCR-0"
+      },
+      {
+        "label": "Exact local runner and prompts",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py"
+      },
+      {
+        "label": "Download pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json"
+      },
+      {
+        "label": "Protocol and reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md"
+      },
+      {
+        "label": "Measured predictions and page telemetry",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/xiaomi_ocr0.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "Xiaomi-OCR-0",
+        "description": "The upstream 0.8B-parameter visual recognition model, loaded from its pinned Hugging Face revision.",
+        "url": "https://huggingface.co/xiaomi-research/Xiaomi-OCR-0",
+        "aliases": [
+          "Xiaomi-OCR-0"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      }
+    ],
+    "training": []
+  },
+  "paddleocr_vl16": {
+    "family": "Layout detection plus regional vision-language OCR",
+    "summary": "PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "stages": [
+      {
+        "title": "Render the fixed WFP sample",
+        "detail": "Render all 32 audit pages at 200 DPI for PaddleOCR-VL-1.6. Supply pixels only: no native PDF text, tags, reference headings or earlier-page memory."
+      },
+      {
+        "title": "Locate and crop document regions",
+        "detail": "Run PP-DocLayoutV3 on CPU with four Torch threads, detection threshold 0.3 and non-maximum suppression. MiniCPM SDK 1.0.5 provides the layout detector, ordered crops and block labels."
+      },
+      {
+        "title": "Recognize each crop with PaddleOCR-VL-1.6",
+        "detail": "Load original BF16 weights in MLX on Metal. Use class-specific instructions: OCR:, Table Recognition:, Formula Recognition:, Chart Recognition:, Seal Recognition: Decode one region at a time, temperature 0; retain the raw response and region metadata."
+      },
+      {
+        "title": "Assemble the native Markdown outline",
+        "detail": "MiniCPM SDK 1.0.5 assigns document titles H1. Its default numbered paragraph-title formatter makes “2” H2, “2.1” H3 and unnumbered section titles H2. Headers, footers and footnotes are excluded by the upstream assembly defaults. We retain this hierarchy even when it disagrees with the reference."
+      },
+      {
+        "title": "Score titles and levels together",
+        "detail": "Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time."
+      }
+    ],
+    "parameters": [
+      [
+        "Model",
+        "PaddlePaddle/PaddleOCR-VL-1.6; revision 132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd"
+      ],
+      [
+        "Model size / weights",
+        "0.9B parameters; original BF16 weights, no weight quantization or fine-tuning"
+      ],
+      [
+        "Runtime",
+        "MLX 0.32.4; mlx-vlm 0.8.0; Transformers 5.23.0; Apple M4 Pro, 48 GB unified memory"
+      ],
+      [
+        "Input",
+        "32 fixed physical PDF pages; PyMuPDF render at 200 DPI; pixels only"
+      ],
+      [
+        "Decoding",
+        "temperature=0; seed=42; enable_thinking=False"
+      ],
+      [
+        "Concurrency",
+        "One model and one page at a time; region recognition sequential; Metal kernels internally parallel"
+      ],
+      [
+        "Limits",
+        "Soft 600-second timeout per recognition request, checked between streamed chunks"
+      ],
+      [
+        "Timing",
+        "Includes rendering, CPU layout when used, recognition and assembly; model loading recorded separately"
+      ],
+      [
+        "Layout model",
+        "PaddlePaddle/PP-DocLayoutV3_safetensors; revision e4f489dc536556fc1be02b973ba06756e0d4a2ac"
+      ],
+      [
+        "Layout settings",
+        "CPU; torch.set_num_threads(4); threshold=0.3; nms=True; chart and seal recognition enabled; image-block OCR disabled"
+      ],
+      [
+        "SDK",
+        "minicpm-ocr==1.0.5; direct detector/crop/assemble_markdown components"
+      ],
+      [
+        "Output budgets",
+        "Upstream class recipes: titles 512; body text 4096; tables 8192; display formulas 2048; charts 4096; seals 256 tokens"
+      ],
+      [
+        "Hierarchy",
+        "SDK title_style=numbered; no offset correction or WFP-specific rules"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What was trained, and by whom",
+        "paragraphs": [
+          "We use the published PaddleOCR-VL-1.6 weights at the pinned revision. We do not train, fine-tune or select checkpoints on these four WFP reports. The model card documents the upstream training; our contribution here is the Apple Silicon evaluation adapter."
+        ]
+      },
+      {
+        "title": "What this row establishes",
+        "paragraphs": [
+          "This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.",
+          "Broad OCR benchmark quality does not establish correct heading depth. This row scores the headings the pipeline actually emits, without document-specific corrections. Native prose retention measures overlapping five-word sequences from PDF paragraphs of at least 50 words; it does not measure table accuracy or reading order."
+        ]
+      }
+    ],
+    "limitation": "This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.",
+    "sources": [
+      {
+        "label": "Official model and model card",
+        "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6"
+      },
+      {
+        "label": "Upstream implementation and documentation",
+        "url": "https://github.com/PaddlePaddle/PaddleOCR"
+      },
+      {
+        "label": "Exact local runner and prompts",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py"
+      },
+      {
+        "label": "Download pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json"
+      },
+      {
+        "label": "Protocol and reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md"
+      },
+      {
+        "label": "Measured predictions and page telemetry",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/paddleocr_vl16.json"
+      },
+      {
+        "label": "PaddleOCR-VL-1.6 paper",
+        "url": "https://arxiv.org/abs/2606.03264"
+      }
+    ],
+    "terms": [
+      {
+        "name": "PaddleOCR-VL-1.6",
+        "description": "The upstream 0.9B-parameter visual recognition model, loaded from its pinned Hugging Face revision.",
+        "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+        "aliases": [
+          "PaddleOCR-VL-1.6"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      },
+      {
+        "name": "PP-DocLayoutV3",
+        "description": "A document-layout detector that labels regions such as titles, text, tables and figures. Its block labels and the Markdown assembler help determine the emitted hierarchy.",
+        "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors",
+        "aliases": [
+          "PP-DocLayoutV3"
+        ]
+      }
+    ],
+    "training": []
   }
 }

@@ -1,0 +1,6 @@
+-r mlx.txt
+torch==2.15.0
+minicpm-ocr==1.0.5
+markdown-it-py==4.0.0
+opencv-python-headless
+shapely

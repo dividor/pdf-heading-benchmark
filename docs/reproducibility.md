@@ -65,3 +65,7 @@ uv run pdf-headings report
 The import rejects changed source/input hashes and incomplete audit scopes. Only successfully completed configurations are scored. Raw responses and system telemetry stay outside Git; compact predictions, page timings and aggregate telemetry are sufficient to regenerate the public comparison offline using `uv run python scripts/repeat_report.py`. The main league retains the frozen heading predictions and scores; its timing column adopts a completed rerun only after exact equality of page/title/level predictions is verified. Earlier measurements remain in the repeat comparison. [Timing definitions and batching caveat](sequential-repeat.md).
 
 To refresh the local HTML report as each configuration completes, run the importer in a second terminal with `--run /path/to/new-sequential-run --watch`. It stops when the queue finishes or a completed process reports failure. It does not commit or push results.
+
+## New field candidates
+
+See [the field-trial protocol](field-candidates.md) for pinned MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 runs. These use pixels only, with no PDF tags or candidate-heading inputs. The portable region pipelines combine a CPU layout detector, MLX recognition and documented Markdown assembly. Their frozen compact evidence is in `outputs/field-candidates/`; `scripts/field_candidates_report.py` independently recomputes their scores offline.

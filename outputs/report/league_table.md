@@ -1,12 +1,14 @@
 # On-premises PDF heading benchmark: scores, timings and methods
 
-**25 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
+**28 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
 
 **Primary metric: joint heading-and-level F0.5**, with joint precision and joint recall alongside it. A correct prediction must match the heading title, PDF page and exact level. Wrong levels and extra headings reduce precision; missed or incorrectly leveled headings reduce recall. There is no separate PASS/FAIL gate. Definitions and worked examples follow the table.
 
 Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **82.3% joint precision**, 65/77 correct heading-level pairs and two extras. Chandra scores **72.6% F0.5**, 73.6% joint precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
 
 **Sequential GPU reruns:** seven selected MLX configurations were repeated one at a time on all 32 audit pages. Every heading title, page and level was reproduced exactly, with no parse errors, timeouts or truncations. The main table uses the new **average time per page** measurements, marked “Latest sequential run”. Chandra and LightOn were faster in these repeats; Qwen timings were mixed. [Original versus repeated timings, GPU observations and protocol](#sequential-gpu-reruns).
+
+**New OCR field trials:** all three new candidates completed the same 32 pages, one model at a time, using pixels only. Xiaomi-OCR-0 whole-page scores **39.7% joint F0.5**; MiniCPM-OCR 1.0 and PaddleOCR-VL-1.6 with CPU layout each score **22.2%**. They retain 98.1–98.8% of measured prose and take 4 min 39 sec to 7 min 50 sec per 32 pages, but none improves on Chandra’s hierarchy score. The region pipelines use the MiniCPM SDK’s native numbering-based Markdown levels. These are Apple Silicon configurations, not replications of the external NVIDIA chart; earlier Qwen configurations also receive extra document context. [Protocol, exact settings and measured evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/report.md).
 
 **Our new precision-selected method:** [jump to the highlighted row](#our-trained-model). A validation-selected confidence filter raises historical joint F0.5 from **58.8% to 70.5%** and reduces extra headings from **23 to 2**, reaching **82.9% joint precision (34/41)** and **44.2% joint recall (34/77)**. It emits fewer headings: correct title-and-level pairs fall from **50/77 to 34/77**, with 38 titles missed. This is an explicit precision/recall trade-off. The three small CPU classifiers are unchanged; the LLM supplied training annotations and is not used at inference.
 
@@ -16,7 +18,7 @@ The candidate was selected from a fixed 36-setting grid on four separate validat
 
 [Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/league_table.md) · [Score exports](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/results.json)
 
-[Can newer models beat Chandra 2? Published comparison, diagram and sources](#published-comparison). These external scores are separate from our WFP results.
+[The recent OCR field: quality-versus-speed diagram and sources](#published-comparison). These external scores are separate from our WFP results.
 
 ## Documents and their sources
 
@@ -66,6 +68,7 @@ This is **sampled-page heading accuracy**, even when a parser processed the full
 | [LLM annotations → Extra Trees v1 (CPU)](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py) | **44.5%** | 44.3% (35/79) | 45.5% (35/77) | [Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/compare.py) | completed | 76.6% (59/77) | 20 | — | **0.015 sec** | **0.473 sec**<br>Estimated from 7.7 sec measured over 523 pages |
 | [MinerU 4.2.3 basic CPU](https://github.com/opendatalab/MinerU) | **44.4%** | 45.6% (31/68) | 40.3% (31/77) | [MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru.py) | completed | 85.7% (66/77) | 2 | 99.1% | **1.3 sec** | **41.1 sec**<br>Estimated from 11 min 12 sec measured over 523 pages |
 | [Qwen3.5-4B / union candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **41.0%** | 43.9% (25/57) | 32.5% (25/77) | [Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 70.1% (54/77) | 3 | — | Page average unavailable<br>1 min 41 sec for the hierarchy stage | Unavailable |
+| [Xiaomi-OCR-0 — MLX whole page](https://huggingface.co/xiaomi-research/Xiaomi-OCR-0) | **39.7%** | 40.3% (29/72) | 37.7% (29/77) | [Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py) | completed | 89.6% (69/77) | 3 | 98.8% | **11.6 sec** | **6 min 12 sec**<br>Measured |
 | [Qwen3.5-4B / PyMuPDF candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **37.5%** | 40.7% (22/54) | 28.6% (22/77) | [Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 70.1% (54/77) | 0 | — | Page average unavailable<br>1 min 29 sec for the hierarchy stage | Unavailable |
 | [PyMuPDF4LLM 2.1](https://github.com/pymupdf/pymupdf4llm) | **37.5%** | 37.8% (28/74) | 36.4% (28/77) | [PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_pymupdf4llm.py) | completed | 93.5% (72/77) | 2 | 98.8% | **0.099 sec** | **3.2 sec**<br>Estimated from 51.8 sec measured over 523 pages |
 | [Qwen3.5-4B / MinerU candidates](https://huggingface.co/Qwen/Qwen3.5-4B) | **33.3%** | 34.3% (23/67) | 29.9% (23/77) | [Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) | completed | 85.7% (66/77) | 1 | — | Page average unavailable<br>1 min 16 sec for the hierarchy stage | Unavailable |
@@ -73,6 +76,8 @@ This is **sampled-page heading accuracy**, even when a parser processed the full
 | [Marker 2.2 no OCR/LLM](https://github.com/datalab-to/marker) | **25.5%** | 25.7% (19/74) | 24.7% (19/77) | [Marker 2.2 parses the complete PDF locally on the CPU.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_marker.py) | completed | 84.4% (65/77) | 9 | 98.8% | **0.084 sec** | **2.7 sec**<br>Estimated from 44 sec measured over 523 pages |
 | [Docling 2.151.1 default](https://github.com/docling-project/docling) | **22.4%** | 22.9% (16/70) | 20.8% (16/77) | [Use the heading levels returned by Docling 2.151.1 when it first reads the PDF.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 88.3% (68/77) | 2 | 98.4% | **0.196 sec** | **6.3 sec**<br>Estimated from 1 min 42 sec measured over 523 pages |
 | [Docling built-in hierarchy](https://github.com/docling-project/docling) | **22.4%** | 22.9% (16/70) | 20.8% (16/77) | [Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) | completed | 88.3% (68/77) | 2 | 98.4% | **0.196 sec** | **6.3 sec**<br>Estimated from 1 min 42 sec measured over 523 pages |
+| [MiniCPM-OCR 1.0 — MLX + CPU layout](https://huggingface.co/openbmb/MiniCPM-OCR-1.0) | **22.2%** | 22.5% (16/71) | 20.8% (16/77) | [PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py) | completed | 88.3% (68/77) | 3 | 98.1% | **14.7 sec** | **7 min 50 sec**<br>Measured |
+| [PaddleOCR-VL-1.6 — MLX + CPU layout](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6) | **22.2%** | 22.5% (16/71) | 20.8% (16/77) | [PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py) | completed | 88.3% (68/77) | 3 | 98.4% | **8.7 sec** | **4 min 39 sec**<br>Measured |
 | [Popo + Docling / experimental MLX 8-bit](https://github.com/opendatalab/MinerU-Popo) | **21.0%** | 21.4% (15/70) | 19.5% (15/77) | [Use MinerU-Popo to assign levels to headings first detected by Docling.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_popo_mlx.py) | completed | 88.3% (68/77) | 2 | 98.4% | Page average unavailable<br>14 min 57 sec for the hierarchy stage | Unavailable |
 | [MinerU2.5-Pro-2605-1.2B / direct MLX interface](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B) | **0.0%** | 0.0% (0/72) | 0.0% (0/77) | [MinerU2.5-Pro-2605-1.2B reads the layout and text of page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru_pro.py) | completed | 89.6% (69/77) | 3 | 99.0% | **17.8 sec** | **9 min 30 sec**<br>Measured |
 
@@ -179,25 +184,19 @@ GPU and swap measurements are system-wide; they include other applications and m
 
 ## Published comparison
 
-**Can newer models beat Chandra 2?** MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 score higher on three parsing benchmarks in OpenBMB's published comparison. Chandra leads these candidates on olmOCR. This is evidence for a shortlist, not a universal winner.
+### The recent OCR field: quality versus speed
 
-[Open the original comparison table](https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/ocr-benchmarks.png) · [Author's evaluation and methodology](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation).
+[![OpenBMB field overview of fourteen OCR systems: average document-parsing quality against throughput. The upper-right models combine higher quality with greater throughput in this author-reported NVIDIA comparison.](../../docs/images/ocr-field-overview.png)](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation)
 
-[![Four comparisons: MiniCPM, Xiaomi and Paddle exceed Chandra on OmniDocBench, Real5 and Wild; Chandra leads these candidates on olmOCR. These are external parsing scores, not WFP heading-and-level results.](../../docs/images/published-comparison.png)](https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/ocr-benchmarks.png)
+*Figure: OpenBMB / MiniCPM-OCR, reproduced unchanged under Apache 2.0. From the October 27, 2026 model release; source snapshot checked November 23, 2026. [Original figure](https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/efficiency-performance-en.png) · [Full evaluation, comparison tables and methodology](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation) · [Interactive model-size perspective from Jina, September 2026](https://jina.ai/models/jina-ocr-v1/).*
 
-*Original diagram of reported values. Click the diagram for the source table. Higher is better within each column; scores from different benchmarks must not be compared directly.*
+**How to read it:** farther right means more pages per second; higher means a higher average across OmniDocBench 1.6, Real5-OmniDocBench, Wild-OmniDocBench and olmOCR-bench. The horizontal axis is logarithmic. The author reports NVIDIA RTX 5090 timings with one page in flight; recognition regions within a page can run concurrently. This is a recent view of the quality/speed frontier among the included systems, not an independent or exhaustive ranking of every available model. The labels and configurations are the author's; some differ from our tested variants.
 
-| Model | OmniDocBench 1.6 | Real5 | Wild | olmOCR |
-| --- | ---: | ---: | ---: | ---: |
-| [Chandra 2](https://huggingface.co/datalab-to/chandra-ocr-2) | 92.27 | 88.74 | 89.08 | **85.8** |
-| [MiniCPM-OCR 1.0](https://huggingface.co/openbmb/MiniCPM-OCR-1.0) | 96.51 | **93.68** | **92.39** | 82.7 |
-| [Xiaomi-OCR-0](https://huggingface.co/xiaomi-research/Xiaomi-OCR-0) | **96.83** | 92.73 | 92.06 | 82.1 |
-| [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6) | 96.34 | 93.19 | 91.49 | 80.2 |
-| [Unlimited-OCR-2](https://huggingface.co/baidu/Unlimited-OCR-2) | 94.02 | 87.93 | 87.79 | 79.5 |
+**What we tested from it:** MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 occupied the promising high-quality, high-throughput area. All three have now completed our same 32 WFP pages, one model at a time. Their measured rows are in the main table, with diagrams, exact parameters and every predicted-versus-reference heading. [Results and timing](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/report.md) · [Protocol and runnable code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md).
 
-**Source and scope:** OpenBMB's MiniCPM-OCR 1.0 comparison, checked November 23, 2026; links pin the source revision. Bold marks the highest score among these five candidates. These are results reported by a competing model's authors, not independent measurements by this project. Values preserve that comparison's configurations; later model-card updates can differ. Datalab's own Chandra 2 release announcement reports 85.9 on olmOCR, whereas this comparison reports 85.8. [Chandra release report](https://www.datalab.to/blog/chandra-2).
+**What happened locally:** Xiaomi’s documented whole-page variant scores **39.7% joint F0.5**; the MiniCPM and Paddle region pipelines each score **22.2%**. Prose retention is **98.1–98.8%**. These models can read the text well without reproducing our required heading hierarchy. MiniCPM and Paddle share layout detection and native Markdown assembly here; their identical heading counts are not independent evidence for the assembly strategy. We did not adjust their levels to match the reference. Xiaomi’s strongest published scores use a different two-stage pipeline, and our Paddle row is a portable MLX adaptation rather than the complete official CUDA deployment.
 
-These benchmarks evaluate broader document parsing. They do not establish performance on our WFP titles, pages and exact heading levels. None of these external scores enters our ranking or changes our joint F0.5 results. The next comparison would run candidate pipelines on the same WFP pages and record both joint heading-and-level quality and processing time on the Mac.
+**Different tasks and hardware:** broad parsing quality does not establish correct heading hierarchy. These throughput figures are not Mac measurements. Our main table continues to rank only our measured joint heading-and-level F0.5 results. The model cards, source links and deployment differences remain visible in each method’s modal.
 
 
 ## Results by report
@@ -304,6 +303,18 @@ These benchmarks evaluate broader document parsing. They do not establish perfor
 | run_qwen_sparse_memory.py / qwen36_35b_visual_memory | midterm | 18/18 | 16/18 | 0 | 100.0% |
 | run_qwen_sparse_memory.py / qwen36_35b_visual_memory | indonesia | 19/21 | 11/21 | 0 | 100.0% |
 | run_qwen_sparse_memory.py / qwen36_35b_visual_memory | colombia | 23/23 | 12/23 | 0 | 100.0% |
+| run_field_candidate.py / minicpm_ocr10 | targeting | 13/15 | 4/15 | 1 | 92.9% |
+| run_field_candidate.py / minicpm_ocr10 | midterm | 18/18 | 5/18 | 1 | 94.7% |
+| run_field_candidate.py / minicpm_ocr10 | indonesia | 17/21 | 3/21 | 1 | 94.4% |
+| run_field_candidate.py / minicpm_ocr10 | colombia | 20/23 | 4/23 | 0 | 100.0% |
+| run_field_candidate.py / xiaomi_ocr0 | targeting | 13/15 | 7/15 | 0 | 100.0% |
+| run_field_candidate.py / xiaomi_ocr0 | midterm | 18/18 | 7/18 | 0 | 100.0% |
+| run_field_candidate.py / xiaomi_ocr0 | indonesia | 17/21 | 7/21 | 1 | 94.4% |
+| run_field_candidate.py / xiaomi_ocr0 | colombia | 21/23 | 8/23 | 2 | 91.3% |
+| run_field_candidate.py / paddleocr_vl16 | targeting | 13/15 | 4/15 | 1 | 92.9% |
+| run_field_candidate.py / paddleocr_vl16 | midterm | 18/18 | 5/18 | 1 | 94.7% |
+| run_field_candidate.py / paddleocr_vl16 | indonesia | 17/21 | 3/21 | 1 | 94.4% |
+| run_field_candidate.py / paddleocr_vl16 | colombia | 20/23 | 4/23 | 0 | 100.0% |
 
 ## Technique diagrams and sources
 
@@ -3400,6 +3411,174 @@ A missing candidate cannot be recovered by this refinement. JSON is validated; i
 [Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_qwen_ids.py) · [Base model / Hugging Face](https://huggingface.co/Qwen/Qwen3.5-4B) · [Tested 4-bit model / HF](https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit) · [Exact PROMPT, sampling and validation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py) · [Model revision pins](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json) · [Candidate union and order preservation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/build_union.py) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py)
 
 
+### Xiaomi-OCR-0 — MLX whole page
+
+Whole-page vision-language OCR
+
+Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+29 correct · 40 wrong/absent level · 8 missed · 3 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+7 correct · 6 wrong/absent level · 2 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H2 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Correct heading + level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H2 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H2 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H2 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+7 correct · 11 wrong/absent level · 0 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H2 — Executive summary | Wrong or absent level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H2 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H2 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H2 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
+| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H2 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H2 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H2 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H2 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H2 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
+| 98 | H1 — Annex III. Methodology | H2 — Annex III. Methodology | Wrong or absent level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+7 correct · 10 wrong/absent level · 4 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H2 — Evaluation key insights and conclusions | Correct heading + level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
+| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
+| 20 | H3 — Geography, Demography, and Government | H2 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H2 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
+| 68 | — | H2 — 142. Conclusion 2 (CCS): There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence of emergent support to government via the CCS pathways. | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+8 correct · 13 wrong/absent level · 2 missed · 2 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | H2 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | Wrong or absent level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 28 | H1 — 1. Introducción | H2 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
+| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
+| 28 | H3 — Contexto general | H2 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H2 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 42 | — | H2 — Resumen | Extra prediction |
+| 56 | H4 — Dimensión 2: Entorno político | H2 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H2 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H2 — Resultados \( ^{92} \) | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 72 | — | H2 — Resumen | Extra prediction |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H2 — 3. Conclusiones y recomendaciones | Wrong or absent level |
+| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
+
+
+**Inference:** Render the fixed WFP sample → Read the entire page with Xiaomi-OCR-0 → Keep the model’s own hierarchy → Score titles and levels together
+
+- **Render the fixed WFP sample:** Render all 32 audit pages at 200 DPI for Xiaomi-OCR-0. Supply pixels only: no native PDF text, tags, reference headings or earlier-page memory.
+- **Read the entire page with Xiaomi-OCR-0:** Use the documented e2e_img2md instruction: extract the main body in reading order as Markdown, with OTSL tables and LaTeX formulas; ignore headers and footers. The Qwen3.5-based 0.8B model runs through MLX on Metal.
+- **Keep the model’s own hierarchy:** Greedy decoding, temperature 0, seed 42, thinking disabled, maximum 16,384 output tokens per page. Read Markdown heading tokens as H1–H6, including setext headings. Do not infer headings from bold text or adjust levels.
+- **Score titles and levels together:** Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time.
+
+
+
+**Models and terms explained**
+
+- [Xiaomi-OCR-0](https://huggingface.co/xiaomi-research/Xiaomi-OCR-0): The upstream 0.8B-parameter visual recognition model, loaded from its pinned Hugging Face revision.
+- [MLX](https://github.com/ml-explore/mlx): Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.
+
+**Parameters used in this run**
+
+| Parameter | Recorded value |
+| --- | --- |
+| Model | xiaomi-research/Xiaomi-OCR-0; revision bbd8cf8d21f256b3644b44cb860f3a7cecb93c30 |
+| Model size / weights | 0.8B parameters; original BF16 weights, no weight quantization or fine-tuning |
+| Runtime | MLX 0.32.4; mlx-vlm 0.8.0; Transformers 5.23.0; Apple M4 Pro, 48 GB unified memory |
+| Input | 32 fixed physical PDF pages; PyMuPDF render at 200 DPI; pixels only |
+| Decoding | temperature=0; seed=42; enable_thinking=False |
+| Concurrency | One model and one page at a time; region recognition sequential; Metal kernels internally parallel |
+| Limits | Soft 600-second timeout per recognition request, checked between streamed chunks |
+| Timing | Includes rendering, CPU layout when used, recognition and assembly; model loading recorded separately |
+| Output budget | 16,384 tokens per whole page |
+| Prompt | Exact upstream evaluation_pipeline/e2e_img2md.py whole-page Markdown instruction; recorded in runner |
+
+**What was trained, and by whom**
+
+We use the published Xiaomi-OCR-0 weights at the pinned revision. We do not train, fine-tune or select checkpoints on these four WFP reports. The model card documents the upstream training; our contribution here is the Apple Silicon evaluation adapter.
+
+
+**What this row establishes**
+
+This is the documented whole-page variant, not Xiaomi’s two-stage layout-plus-recognition configuration behind its strongest published scores.
+
+Broad OCR benchmark quality does not establish correct heading depth. This row scores the headings the pipeline actually emits, without document-specific corrections. Native prose retention measures overlapping five-word sequences from PDF paragraphs of at least 50 words; it does not measure table accuracy or reading order.
+
+This is the documented whole-page variant, not Xiaomi’s two-stage layout-plus-recognition configuration behind its strongest published scores.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py) · [Official model and model card](https://huggingface.co/xiaomi-research/Xiaomi-OCR-0) · [Upstream implementation and documentation](https://github.com/xiaomi-research/Xiaomi-OCR-0) · [Download pins](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json) · [Protocol and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md) · [Measured predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/xiaomi_ocr0.json)
+
+
 ### Qwen3.5-4B / PyMuPDF candidates
 
 Text-only LLM refinement · local MLX
@@ -4568,6 +4747,352 @@ The main table matches titles on the same physical PDF page at normalized simila
 These variants share detected blocks. A hierarchy stage cannot recover a heading absent from its inputs. The tolerance variant is exploratory.
 
 [Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_docling.py) · [Project / GitHub](https://github.com/docling-project/docling) · [Docling technical report (2024)](https://arxiv.org/abs/2408.09869) · [Conversion and both hierarchy passes](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py) · [Pinned environment](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py)
+
+
+### MiniCPM-OCR 1.0 — MLX + CPU layout
+
+Layout detection plus regional vision-language OCR
+
+PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+16 correct · 52 wrong/absent level · 9 missed · 3 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+4 correct · 9 wrong/absent level · 2 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H2 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H5 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H5 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | H2 — EQ2.1 EQ3.1 EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H3 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+5 correct · 13 wrong/absent level · 0 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H2 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H2 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H3 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 26 | — | H3 — 3. The MTE&#x27;s key features are: | Extra prediction |
+| 27 | H2 — 1.2 CONTEXT | H3 — 1.2 CONTEXT | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H2 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H3 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H4 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H3 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H3 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+3 correct · 14 wrong/absent level · 4 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H4 — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H4 — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H2 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H2 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H4 — 3.1. Conclusions | Wrong or absent level |
+| 68 | — | H3 — 142. Conclusion 2 (CCS): There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence of emergent support to government via the CCS pathways | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+4 correct · 16 wrong/absent level · 3 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H3 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H4 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H4 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H2 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H3 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H4 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H2 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H2 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H2 — Resultados \( ^{92} \) | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H4 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H4 — 3.1. CONCLUSIONES | Wrong or absent level |
+
+
+**Inference:** Render the fixed WFP sample → Locate and crop document regions → Recognize each crop with MiniCPM-OCR 1.0 → Assemble the native Markdown outline → Score titles and levels together
+
+- **Render the fixed WFP sample:** Render all 32 audit pages at 200 DPI for MiniCPM-OCR 1.0. Supply pixels only: no native PDF text, tags, reference headings or earlier-page memory.
+- **Locate and crop document regions:** Run PP-DocLayoutV3 on CPU with four Torch threads, detection threshold 0.3 and non-maximum suppression. MiniCPM SDK 1.0.5 provides the layout detector, ordered crops and block labels.
+- **Recognize each crop with MiniCPM-OCR 1.0:** Load original BF16 weights in MLX on Metal. Use class-specific instructions: Text Recognition:, Table Recognition:, Formula Recognition:, Chart to Table:, Seal Recognition: Decode one region at a time, temperature 0; retain the raw response and region metadata.
+- **Assemble the native Markdown outline:** MiniCPM SDK 1.0.5 assigns document titles H1. Its default numbered paragraph-title formatter makes “2” H2, “2.1” H3 and unnumbered section titles H2. Headers, footers and footnotes are excluded by the upstream assembly defaults. We retain this hierarchy even when it disagrees with the reference.
+- **Score titles and levels together:** Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time.
+
+
+
+**Models and terms explained**
+
+- [MiniCPM-OCR 1.0](https://huggingface.co/openbmb/MiniCPM-OCR-1.0): The upstream 1.3B-parameter visual recognition model, loaded from its pinned Hugging Face revision.
+- [MLX](https://github.com/ml-explore/mlx): Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.
+- [PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors): A document-layout detector that labels regions such as titles, text, tables and figures. Its block labels and the Markdown assembler help determine the emitted hierarchy.
+
+**Parameters used in this run**
+
+| Parameter | Recorded value |
+| --- | --- |
+| Model | openbmb/MiniCPM-OCR-1.0; revision 883ca368d17335b9ce5aa6fef4d000ef0684fcaa |
+| Model size / weights | 1.3B parameters; original BF16 weights, no weight quantization or fine-tuning |
+| Runtime | MLX 0.32.4; mlx-vlm 0.8.0; Transformers 5.23.0; Apple M4 Pro, 48 GB unified memory |
+| Input | 32 fixed physical PDF pages; PyMuPDF render at 200 DPI; pixels only |
+| Decoding | temperature=0; seed=42; enable_thinking=False |
+| Concurrency | One model and one page at a time; region recognition sequential; Metal kernels internally parallel |
+| Limits | Soft 600-second timeout per recognition request, checked between streamed chunks |
+| Timing | Includes rendering, CPU layout when used, recognition and assembly; model loading recorded separately |
+| Layout model | PaddlePaddle/PP-DocLayoutV3_safetensors; revision e4f489dc536556fc1be02b973ba06756e0d4a2ac |
+| Layout settings | CPU; torch.set_num_threads(4); threshold=0.3; nms=True; chart and seal recognition enabled; image-block OCR disabled |
+| SDK | minicpm-ocr==1.0.5; direct detector/crop/assemble_markdown components |
+| Output budgets | Upstream class recipes: titles 512; body text 4096; tables 8192; display formulas 2048; charts 4096; seals 256 tokens |
+| Hierarchy | SDK title_style=numbered; no offset correction or WFP-specific rules |
+
+**What was trained, and by whom**
+
+We use the published MiniCPM-OCR 1.0 weights at the pinned revision. We do not train, fine-tune or select checkpoints on these four WFP reports. The model card documents the upstream training; our contribution here is the Apple Silicon evaluation adapter.
+
+
+**What this row establishes**
+
+This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.
+
+Broad OCR benchmark quality does not establish correct heading depth. This row scores the headings the pipeline actually emits, without document-specific corrections. Native prose retention measures overlapping five-word sequences from PDF paragraphs of at least 50 words; it does not measure table accuracy or reading order.
+
+This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py) · [Official model and model card](https://huggingface.co/openbmb/MiniCPM-OCR-1.0) · [Upstream implementation and documentation](https://github.com/OpenBMB/MiniCPM-OCR) · [Download pins](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json) · [Protocol and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md) · [Measured predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/minicpm_ocr10.json)
+
+
+### PaddleOCR-VL-1.6 — MLX + CPU layout
+
+Layout detection plus regional vision-language OCR
+
+PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.
+
+
+**Predicted headings versus reference (all scored pages)**
+
+16 correct · 52 wrong/absent level · 9 missed · 3 extra
+
+Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
+
+
+**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
+
+4 correct · 9 wrong/absent level · 2 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 11 | H4 — Appropriateness | H2 — Appropriateness | Wrong or absent level |
+| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | — | Missed heading |
+| 24 | H1 — 1 Introduction | H2 — 1 Introduction | Wrong or absent level |
+| 24 | H2 — 1.1 Evaluation features | H3 — 1.1 Evaluation features | Wrong or absent level |
+| 33 | H1 — 2 Evaluation findings | H2 — 2 Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H3 — 2.1 How relevant and appropriate are WFP&#x27;s approaches to targeting and prioritization? | Wrong or absent level |
+| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H4 — 2.1.1 WFP&#x27;s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Wrong or absent level |
+| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H5 — 2.1.1.1 WFP&#x27;s normative framework on targeting and prioritization has clarified key aspects of the process | Wrong or absent level |
+| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H5 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
+| 67 | — | H2 — EQ2.1 EQ3.1 EQ4.3 | Extra prediction |
+| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
+| 96 | H2 — 3.1 Conclusions | H3 — 3.1 Conclusions | Wrong or absent level |
+| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | — | Missed heading |
+| 109 | H2 — Objectives and users of the evaluation | H2 — Objectives and users of the evaluation | Correct heading + level |
+| 109 | H2 — Evaluation questions | H2 — Evaluation questions | Correct heading + level |
+| 109 | H2 — Methodology and ethical considerations | H2 — Methodology and ethical considerations | Correct heading + level |
+
+**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
+
+5 correct · 13 wrong/absent level · 0 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 8 | H2 — INTRODUCTION | H2 — INTRODUCTION | Correct heading + level |
+| 8 | H3 — What was evaluated? | H2 — What was evaluated? | Wrong or absent level |
+| 8 | H3 — Why was the evaluation conducted and in which context? | H2 — Why was the evaluation conducted and in which context? | Wrong or absent level |
+| 10 | H2 — FINDINGS | H2 — FINDINGS | Correct heading + level |
+| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H2 — Relevance and strategic focus of the design of the strategic plan | Wrong or absent level |
+| 26 | H1 — 1. Introduction | H3 — 1. Introduction | Wrong or absent level |
+| 26 | H2 — 1.1 EVALUATION FEATURES | H3 — 1.1 EVALUATION FEATURES | Wrong or absent level |
+| 26 | — | H3 — 3. The MTE&#x27;s key features are: | Extra prediction |
+| 27 | H2 — 1.2 CONTEXT | H3 — 1.2 CONTEXT | Wrong or absent level |
+| 27 | H3 — Global economic, climate, conflict and inequality trends | H2 — Global economic, climate, conflict and inequality trends | Wrong or absent level |
+| 36 | H1 — 2. Evaluation findings | H3 — 2. Evaluation findings | Wrong or absent level |
+| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H3 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Wrong or absent level |
+| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H4 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Wrong or absent level |
+| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H4 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Wrong or absent level |
+| 87 | H1 — 3. Conclusions and recommendations | H3 — 3. Conclusions and recommendations | Wrong or absent level |
+| 87 | H2 — 2.3 3.1 CONCLUSIONS | H3 — 2.3 3.1 CONCLUSIONS | Wrong or absent level |
+| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
+| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
+
+**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
+
+3 correct · 14 wrong/absent level · 4 missed · 1 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
+| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
+| 7 | H3 — Evaluation features | H2 — Evaluation features | Wrong or absent level |
+| 7 | H3 — Context | H2 — Context | Wrong or absent level |
+| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
+| 11 | H3 — Insight 1. CSP architecture | H2 — Insight 1. CSP architecture | Wrong or absent level |
+| 11 | H3 — Insight 2. Country capacity strengthening | H2 — Insight 2. Country capacity strengthening | Wrong or absent level |
+| 20 | H1 — Introduction | H2 — Introduction | Wrong or absent level |
+| 20 | H2 — 1.1. Evaluation features | H4 — 1.1. Evaluation features | Wrong or absent level |
+| 20 | H2 — 1.2. Context | H4 — 1.2. Context | Wrong or absent level |
+| 20 | H3 — Geography, Demography, and Government | H2 — Geography, Demography, and Government | Wrong or absent level |
+| 20 | H3 — National policies and Sustainable Development Goals (SDG) | H2 — National policies and Sustainable Development Goals (SDG) | Wrong or absent level |
+| 33 | H1 — Evaluation findings | H2 — Evaluation findings | Wrong or absent level |
+| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | — | Missed heading |
+| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
+| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
+| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | H2 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | Wrong or absent level |
+| 48 | H5 — SO1: Evidence and Data | H2 — SO1: Evidence and Data | Wrong or absent level |
+| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
+| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
+| 68 | H2 — 3.1. Conclusions | H4 — 3.1. Conclusions | Wrong or absent level |
+| 68 | — | H3 — 142. Conclusion 2 (CCS): There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence of emergent support to government via the CCS pathways | Extra prediction |
+
+**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
+
+4 correct · 16 wrong/absent level · 3 missed · 0 extra
+
+| Page | Reference heading and level | Predicted heading and level | Result |
+| --- | --- | --- | --- |
+| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
+| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
+| 7 | H3 — Características de la evaluación | H2 — Características de la evaluación | Wrong or absent level |
+| 7 | H3 — Contexto | H2 — Contexto | Wrong or absent level |
+| 13 | H2 — Hallazgos derivados de la evaluación | H2 — Hallazgos derivados de la evaluación | Correct heading + level |
+| 13 | H4 — Pertinencia con respecto a las necesidades | H2 — Pertinencia con respecto a las necesidades | Wrong or absent level |
+| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | H2 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | Wrong or absent level |
+| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
+| 28 | H1 — 1. Introducción | H3 — 1. Introducción | Wrong or absent level |
+| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H4 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Wrong or absent level |
+| 28 | H2 — 1.2. CONTEXTO | H4 — 1.2. CONTEXTO | Wrong or absent level |
+| 28 | H3 — Contexto general | H2 — Contexto general | Wrong or absent level |
+| 42 | H1 — 2. Resultados de la evaluación | H3 — 2. Resultados de la evaluación | Wrong or absent level |
+| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H4 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Wrong or absent level |
+| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
+| 56 | H4 — Dimensión 2: Entorno político | H2 — Dimensión 2: Entorno político | Wrong or absent level |
+| 56 | H5 — Productos | H2 — Productos | Wrong or absent level |
+| 56 | H5 — Resultados | H2 — Resultados\(^{92}\) | Wrong or absent level |
+| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H4 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Wrong or absent level |
+| 72 | H4 — Productos y logros | H2 — Productos y logros | Wrong or absent level |
+| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
+| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
+| 93 | H2 — 3.1. CONCLUSIONES | H4 — 3.1. CONCLUSIONES | Wrong or absent level |
+
+
+**Inference:** Render the fixed WFP sample → Locate and crop document regions → Recognize each crop with PaddleOCR-VL-1.6 → Assemble the native Markdown outline → Score titles and levels together
+
+- **Render the fixed WFP sample:** Render all 32 audit pages at 200 DPI for PaddleOCR-VL-1.6. Supply pixels only: no native PDF text, tags, reference headings or earlier-page memory.
+- **Locate and crop document regions:** Run PP-DocLayoutV3 on CPU with four Torch threads, detection threshold 0.3 and non-maximum suppression. MiniCPM SDK 1.0.5 provides the layout detector, ordered crops and block labels.
+- **Recognize each crop with PaddleOCR-VL-1.6:** Load original BF16 weights in MLX on Metal. Use class-specific instructions: OCR:, Table Recognition:, Formula Recognition:, Chart Recognition:, Seal Recognition: Decode one region at a time, temperature 0; retain the raw response and region metadata.
+- **Assemble the native Markdown outline:** MiniCPM SDK 1.0.5 assigns document titles H1. Its default numbered paragraph-title formatter makes “2” H2, “2.1” H3 and unnumbered section titles H2. Headers, footers and footnotes are excluded by the upstream assembly defaults. We retain this hierarchy even when it disagrees with the reference.
+- **Score titles and levels together:** Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time.
+
+
+
+**Models and terms explained**
+
+- [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6): The upstream 0.9B-parameter visual recognition model, loaded from its pinned Hugging Face revision.
+- [MLX](https://github.com/ml-explore/mlx): Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.
+- [PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors): A document-layout detector that labels regions such as titles, text, tables and figures. Its block labels and the Markdown assembler help determine the emitted hierarchy.
+
+**Parameters used in this run**
+
+| Parameter | Recorded value |
+| --- | --- |
+| Model | PaddlePaddle/PaddleOCR-VL-1.6; revision 132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd |
+| Model size / weights | 0.9B parameters; original BF16 weights, no weight quantization or fine-tuning |
+| Runtime | MLX 0.32.4; mlx-vlm 0.8.0; Transformers 5.23.0; Apple M4 Pro, 48 GB unified memory |
+| Input | 32 fixed physical PDF pages; PyMuPDF render at 200 DPI; pixels only |
+| Decoding | temperature=0; seed=42; enable_thinking=False |
+| Concurrency | One model and one page at a time; region recognition sequential; Metal kernels internally parallel |
+| Limits | Soft 600-second timeout per recognition request, checked between streamed chunks |
+| Timing | Includes rendering, CPU layout when used, recognition and assembly; model loading recorded separately |
+| Layout model | PaddlePaddle/PP-DocLayoutV3_safetensors; revision e4f489dc536556fc1be02b973ba06756e0d4a2ac |
+| Layout settings | CPU; torch.set_num_threads(4); threshold=0.3; nms=True; chart and seal recognition enabled; image-block OCR disabled |
+| SDK | minicpm-ocr==1.0.5; direct detector/crop/assemble_markdown components |
+| Output budgets | Upstream class recipes: titles 512; body text 4096; tables 8192; display formulas 2048; charts 4096; seals 256 tokens |
+| Hierarchy | SDK title_style=numbered; no offset correction or WFP-specific rules |
+
+**What was trained, and by whom**
+
+We use the published PaddleOCR-VL-1.6 weights at the pinned revision. We do not train, fine-tune or select checkpoints on these four WFP reports. The model card documents the upstream training; our contribution here is the Apple Silicon evaluation adapter.
+
+
+**What this row establishes**
+
+This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.
+
+Broad OCR benchmark quality does not establish correct heading depth. This row scores the headings the pipeline actually emits, without document-specific corrections. Native prose retention measures overlapping five-word sequences from PDF paragraphs of at least 50 words; it does not measure table accuracy or reading order.
+
+This is a portable MLX recognition and CPU layout adaptation. It is not the vendor’s CUDA deployment, and its speed cannot be compared directly with the NVIDIA field chart.
+
+[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py) · [Official model and model card](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6) · [Upstream implementation and documentation](https://github.com/PaddlePaddle/PaddleOCR) · [Download pins](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json) · [Protocol and reproduction commands](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md) · [Measured predictions and page telemetry](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/paddleocr_vl16.json) · [PaddleOCR-VL-1.6 paper](https://arxiv.org/abs/2606.03264)
 
 
 ### Popo + Docling / experimental MLX 8-bit

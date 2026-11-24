@@ -188,7 +188,7 @@ def build_report():
     rows = report_rows("league_table.json")
     (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
-    diagram = "published-comparison.png"
+    diagram = "ocr-field-overview.png"
     (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
     rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
     rendered = rendered.replace(

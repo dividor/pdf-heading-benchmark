@@ -2,7 +2,7 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 25 completed local configurations with scores, processing times and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 28 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took **54.0 minutes in the sequential rerun**, versus 61.8 minutes originally, for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
@@ -86,7 +86,7 @@ uv run pdf-headings score --historical
 uv run pdf-headings report
 ```
 
-Open `outputs/report/index.html` locally, or read the Markdown version on GitHub. GitHub's file view displays HTML source, not the rendered report. The scorer recomputes the bundled historical predictions. The report selects the 25 local configurations listed in `configs/report-methods.json`; original historical records remain unchanged. Report generation runs entirely offline.
+Open `outputs/report/index.html` locally, or read the Markdown version on GitHub. GitHub's file view displays HTML source, not the rendered report. The scorer recomputes the bundled historical predictions. The report selects the 28 local configurations listed in `configs/report-methods.json`; original historical records remain unchanged. Report generation runs entirely offline.
 
 ## Run the benchmark yourself
 
@@ -165,3 +165,7 @@ The [decoding-calibration experiment](outputs/structure-calibration/report.md) i
 The report includes the nine-setting validation search, all report sources, frozen audit predictions, measured timings and runnable commands. Pass `--calibration /path/to/calibration-run` to `scripts/structure/predict.py` to try the selected setting; omit it for original v2 behavior. More varied fully reviewed negatives and untouched report-family evaluation are the next priorities.
 
 The timing columns separate **Time per page** from **Time for 32 pages**. The latter is marked **Measured** for actual 32-page runs, or **Estimated** when calculated as 32 times the average from a longer run. Estimates retain the original measured duration and page count; they are not new benchmark measurements.
+
+## Recent OCR field and new local trials
+
+The [field-wide quality/speed diagram](docs/published-comparison.md) shows OpenBMB’s October 2026 comparison of fourteen OCR systems. It reports broad parsing quality and NVIDIA throughput, separately from this repository’s WFP hierarchy scores. [Local trial protocol and commands](docs/field-candidates.md) describe MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6, their pinned weights and Apple Silicon adaptations. Completed trials enter the main table with per-page predictions and measured timings.

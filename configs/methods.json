@@ -549,5 +549,50 @@
         "per_document": false
       }
     ]
+  },
+  "minicpm_ocr10": {
+    "description": "PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "code": "scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/benchmark_field_candidate.py",
+        "environment": "field-mlx",
+        "args": [
+          "minicpm_ocr10"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "xiaomi_ocr0": {
+    "description": "Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.",
+    "code": "scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/benchmark_field_candidate.py",
+        "environment": "field-mlx",
+        "args": [
+          "xiaomi_ocr0"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "paddleocr_vl16": {
+    "description": "PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "code": "scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/benchmark_field_candidate.py",
+        "environment": "field-mlx",
+        "args": [
+          "paddleocr_vl16"
+        ],
+        "per_document": false
+      }
+    ]
   }
 }

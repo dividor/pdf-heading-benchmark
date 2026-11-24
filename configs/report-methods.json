@@ -23,5 +23,8 @@
   "structure_recall",
   "qwen36_27b_compact",
   "qwen36_35b_compact",
-  "qwen36_35b_visual_memory"
+  "qwen36_35b_visual_memory",
+  "minicpm_ocr10",
+  "xiaomi_ocr0",
+  "paddleocr_vl16"
 ]

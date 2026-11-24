@@ -1,0 +1,9 @@
+{
+  "source": "https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation",
+  "image": "https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/efficiency-performance-en.png",
+  "sha256": "8d8fe39d3c6c768a09af894b592fa3ac0e94e010c8aad1573076f82cadba3805",
+  "checked": "2026-11-23",
+  "release": "2026-10-27",
+  "attribution": "OpenBMB / MiniCPM-OCR, Apache-2.0. Reproduced without alteration.",
+  "scope": "Published author comparison of open OCR systems. RTX 5090 throughput at image concurrency 1; recognition regions can run concurrently. Quality averages four parsing benchmarks. Not measured WFP heading-level accuracy or Mac throughput."
+}
