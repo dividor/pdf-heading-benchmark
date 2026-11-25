@@ -4,6 +4,7 @@ from markdown_it import MarkdownIt
 
 from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
+from pdf_heading_benchmark.report_layout import tabbed_report
 from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix
 from pdf_heading_benchmark.timing_format import readable_time
 from pdf_heading_benchmark.timing_updates import latest_timings
@@ -161,13 +162,15 @@ def build_report():
         ]
         for r in details
     ]
-    markdown = intro + "\n" + corpus_table() + "\n\n" + protocol
+    markdown = intro + "\n" + results_table()
+    markdown += "\n\n" + (REPO / "docs/published-comparison.md").read_text()
+    markdown += "\n\n" + (REPO / "docs/report-documents.md").read_text() + "\n" + corpus_table()
+    markdown += "\n\n" + protocol
     metric = (REPO / "docs/joint-metric.md").read_text()
-    markdown += "\n" + results_table() + "\n\n" + metric + "\n\n" + notes
+    markdown += "\n\n" + metric + "\n\n" + notes
     repeat = REPO / "outputs/sequential-repeat/summary.md"
     if repeat.exists():
         markdown += "\n\n" + repeat.read_text()
-    markdown += "\n\n" + (REPO / "docs/published-comparison.md").read_text()
     markdown += "\n\n## Results by report\n\n" + table(
         [
             "Runner / configuration",
@@ -194,8 +197,9 @@ def build_report():
     rendered = rendered.replace(
         "<h2>Published comparison</h2>", '<h2 id="published-comparison">Published comparison</h2>'
     )
-    rendered = enhance_html(rendered, rows, methods)
+    rendered = enhance_html(tabbed_report(rendered), rows, methods)
     css = (REPO / "docs/report.css").read_text()
+    css += (REPO / "docs/report-tabs.css").read_text()
     html = (
         '<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'

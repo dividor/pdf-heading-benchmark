@@ -121,19 +121,13 @@ def enhance_html(rendered: str, rows: list[dict], methods: dict) -> str:
                 cell.append(" ")
                 cell.append(info_button(soup, "technique-" + row["method"], label))
                 continue
-            comparison_label = soup.new_tag("strong")
-            comparison_label.string = "Predictions vs reference · "
-            anchor.insert(0, comparison_label)
+            anchor.clear()
+            anchor.string = "Method & predictions"
+            anchor["aria-label"] = "Method and predictions: " + row["name"]
             anchor["data-technique"] = "technique-" + row["method"]
             anchor["aria-haspopup"] = "dialog"
             anchor["aria-controls"] = "technique-" + row["method"]
             anchor["title"] = "Open technique diagram and source links"
-    hint = soup.new_tag("p", attrs={"class": "technique-hint"})
-    hint.string = (
-        "Select an i button beside a column heading for its definition, or beside a configuration "
-        "for predicted versus reference headings, its diagram, exact parameters, tuning, code and sources."
-    )
-    results.insert_before(hint)
     help_panels = column_help(soup, results)
     audits = comparisons([r["method"] for r in rows])
     panels = "".join(

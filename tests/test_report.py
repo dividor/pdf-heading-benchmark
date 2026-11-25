@@ -14,8 +14,7 @@ def test_report_is_reproducible_and_has_all_method_links():
     build_report()
     assert [p.read_bytes() for p in paths] == before
     soup = BeautifulSoup(paths[0].read_text(), "html.parser")
-    tables = soup.find_all("table")
-    corpus_rows = tables[0].find("tbody").find_all("tr")
+    corpus_rows = soup.select_one("#panel-documents table tbody").find_all("tr")
     corpus = read_json(REPO / "configs/corpus.json")
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = soup.select_one("table.league-table")
@@ -169,3 +168,28 @@ def test_32_page_time_distinguishes_measurements_from_projections():
     assert estimate == "**32 sec**<br>Estimated from 8 min 43 sec measured over 523 pages"
     assert time_for_32_pages(dict(measured_seconds=100, processed_pages=None)) == "Unavailable"
     assert time_for_32_pages(dict(measured_seconds=None, processed_pages=32)) == "Unavailable"
+
+
+def test_tabs_preserve_deep_links_and_keep_results_first():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    tabs = soup.select('.report-tabs [role="tab"]')
+    assert [tab.get_text() for tab in tabs] == [
+        "Results",
+        "The OCR field",
+        "Methods & scoring",
+        "Documents",
+        "Timing & evidence",
+    ]
+    for tab in tabs:
+        panel = soup.find(id=tab["aria-controls"])
+        assert panel["aria-labelledby"] == tab["id"]
+    results = soup.find(id="panel-results")
+    assert results.select_one(".league-table")
+    assert results.find(id="our-trained-model")
+    assert soup.find(id="published-comparison").find_parent(class_="report-panel")["id"] == "panel-field"
+    assert soup.find(id="sequential-gpu-reruns").find_parent(class_="report-panel")["id"] == "panel-evidence"
+    assert soup.find(id="show-diagnostics")
+    assert "Ovis-OCR2" in soup.find(id="panel-field").get_text()
+    assert not soup.select(".report-panel dialog")
+
+    assert soup.find(id="sequential-gpu-reruns").find("summary").get_text() == "Sequential GPU reruns"

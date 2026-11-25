@@ -1,54 +1,20 @@
-# On-premises PDF heading benchmark: scores, timings and methods
+# Can local AI recover document headings?
 
-**28 completed local configurations, suitable for on-premises inference.** This experiment asks whether parsers and local models can recover heading titles, PDF pages and levels while retaining the text of long WFP evaluation reports.
+Headings tell a search system what a passage is for: an executive summary may answer a user’s question; an acronyms list may not. We tested local tools on WFP evaluation reports to see whether they preserve both headings and their hierarchy.
 
-**Primary metric: joint heading-and-level F0.5**, with joint precision and joint recall alongside it. A correct prediction must match the heading title, PDF page and exact level. Wrong levels and extra headings reduce precision; missed or incorrectly leveled headings reduce recall. There is no separate PASS/FAIL gate. Definitions and worked examples follow the table.
+## Results at a glance
 
-Qwen3.6-27B with sampled visual memory leads at **82.7% joint F0.5**, with **82.3% joint precision**, 65/77 correct heading-level pairs and two extras. Chandra scores **72.6% F0.5**, 73.6% joint precision and 53/77 correct pairs. These are configuration-specific results from a small, assistant-annotated sample, without independent human validation.
+**28 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
 
-**Sequential GPU reruns:** seven selected MLX configurations were repeated one at a time on all 32 audit pages. Every heading title, page and level was reproduced exactly, with no parse errors, timeouts or truncations. The main table uses the new **average time per page** measurements, marked “Latest sequential run”. Chandra and LightOn were faster in these repeats; Qwen timings were mixed. [Original versus repeated timings, GPU observations and protocol](#sequential-gpu-reruns).
+- **Highest score:** Qwen3.6-27B with visual memory gets **65/77** heading-level pairs right; **54 min 2 sec** for 32 pages. It receives extra PDF text, tags and document context.
+- **Image-only alternative:** Chandra OCR 2 gets **53/77** right in **14 min 46 sec**. The three newer OCR trials did not beat its heading-level score.
+- **OUR METHOD:** small trained CPU classifiers get **34/77** right with two extra headings. Fast, but the missing headings make this configuration unsuitable when coverage matters.
 
-**New OCR field trials:** all three new candidates completed the same 32 pages, one model at a time, using pixels only. Xiaomi-OCR-0 whole-page scores **39.7% joint F0.5**; MiniCPM-OCR 1.0 and PaddleOCR-VL-1.6 with CPU layout each score **22.2%**. They retain 98.1–98.8% of measured prose and take 4 min 39 sec to 7 min 50 sec per 32 pages, but none improves on Chandra’s hierarchy score. The region pipelines use the MiniCPM SDK’s native numbering-based Markdown levels. These are Apple Silicon configurations, not replications of the external NVIDIA chart; earlier Qwen configurations also receive extra document context. [Protocol, exact settings and measured evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/report.md).
-
-**Our new precision-selected method:** [jump to the highlighted row](#our-trained-model). A validation-selected confidence filter raises historical joint F0.5 from **58.8% to 70.5%** and reduces extra headings from **23 to 2**, reaching **82.9% joint precision (34/41)** and **44.2% joint recall (34/77)**. It emits fewer headings: correct title-and-level pairs fall from **50/77 to 34/77**, with 38 titles missed. This is an explicit precision/recall trade-off. The three small CPU classifiers are unchanged; the LLM supplied training annotations and is not used at inference.
-
-The candidate was selected from a fixed 36-setting grid on four separate validation reports. The original league and the previously inspected 38-heading set were scored only after selection. Both are regression evidence, not new independent tests. The historical selection rule included a 95% heading-only precision constraint; that rule remains documented in the experiment but is no longer a league-table qualification gate. [Experiment, every setting and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
-
-**Coverage retraining trial:** the additional OUR METHOD row refits the trees and restores title recovery to 66/77 (85.7%), but has only 50 correct heading-level pairs and 21 extras. None of the 64 validation configurations met both 80% joint precision and recall. It is a diagnostic fallback, not a recommended replacement. [Experiment and complete evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/report.md).
-
-[Repository and runnable instructions](https://github.com/dividor/pdf-heading-benchmark) · [Markdown report](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/league_table.md) · [Score exports](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/report/results.json)
-
-[The recent OCR field: quality-versus-speed diagram and sources](#published-comparison). These external scores are separate from our WFP results.
-
-## Documents and their sources
-
-All four PDFs were obtained from WFP's public document servers. Each title below links directly to its official source PDF. The [corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json) records the download URLs, page counts and SHA-256 hashes; the downloader verifies the files against those hashes.
-
-The corpus contains **523 pages: three English reports and one Spanish report**. All four contain native digital text. None has PDF outline bookmarks. The standalone PDF-tag baseline is excluded from this comparison because it relies on structure already supplied by the PDF author. The recorded Qwen3.6 runs still use available author tags as input alongside text and images; their scores do not establish performance on untagged PDFs. This does not test scanned-document performance. The original 2018 resilience report that prompted the investigation was excluded after document-specific exploratory work.
-
-The audit covers **eight selected pages per report, 32 pages and 77 reference headings in total**. Page numbers below are **one-based physical PDF pages**, including covers and front matter, rather than printed page labels. These are the exact pages scored for every completed configuration.
-
-[Sequential GPU reruns: before/after timing, accuracy and GPU activity](#sequential-gpu-reruns). The main table marks verified rerun timings; the historical source evidence remains frozen.
-
-| WFP report / official PDF | Language | PDF pages | Audited PDF pages | Reference headings |
-| --- | --- | --- | --- | --- |
-| [Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/) | English | 172 | 7, 11, 24, 27, 33, 67, 96, 109 | 15 |
-| [Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/) | English | 176 | 8, 10, 26, 27, 36, 61, 87, 98 | 18 |
-| [Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/) | English | 76 | 7, 11, 20, 33, 42, 48, 56, 68 | 21 |
-| [Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/) | Spanish | 99 | 7, 13, 28, 42, 56, 72, 73, 93 | 23 |
-
-## What was tested and how
-
-1. **Select and annotate pages.** Pages were deliberately selected across front matter, chapters, subsections and annexes. A single AI assistant visually annotated heading titles and levels. The [page selection](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/audit_pages.json) and [frozen reference labels](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/gold.json) are public. They have not been independently reviewed by a human, and the selection is not random.
-2. **Run the configured extractor or hierarchy stage.** CPU parsers processed all 523 pages; the later local OCR models processed the 32 audit pages. Hierarchy stages consumed extracted candidates and, for some configurations, PDF tags or page images. No reference titles or reference levels were supplied to inference. The table links to each runner; [method configuration steps](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/methods.json), [model revisions](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/models.json) and [reproducibility notes](https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/reproducibility.md) give dependencies, prompts and settings. No per-report heading correction rules are applied.
-3. **Score the same audit pages.** The [scorer](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py) matches titles on the same original PDF page, using normalized text similarity of at least 90% after one-to-one Hungarian assignment. A combined success requires the exact reference H level too. Main chapters and annexes are H1; the cover title does not shift the body hierarchy. Joint precision divides correct heading-level pairs by all predictions; joint recall divides them by the 77 references. Joint F0.5 combines these with more emphasis on precision, penalizing extra predictions and wrong levels as well as missed headings.
-4. **Check prose and record resources.** Native prose retention measures preserved five-word sequences from native PDF blocks of at least 50 words on the audit pages. It does not measure character accuracy, reading order or table extraction. Processing times were observed on a shared 48 GB Apple M4 Pro and have different scopes. Hardware, electricity, engineering, review and licensing costs were not measured in dollars.
-
-This is **sampled-page heading accuracy**, even when a parser processed the full document. The completed configurations include variants of the same packages and models; they are not independent products. The single annotator, small purposive sample and exploratory configuration choices limit any claim about general robustness.
+**Read the score as heading + page + level, all correct.** Joint F0.5 penalizes false headings and wrong levels, with more weight on precision. Check recall alongside it: a high score can still hide missed headings. These are exploratory results from one assistant’s annotations, without independent human review.
 
 ## Full configuration results
 
-**Ranked by joint heading-and-level F0.5**, with **joint precision and joint recall** next to it. The first score column is highlighted. There are no PASS/FAIL labels; heading-only precision appears in the detailed results as a diagnostic. See the definitions and worked example below the table. In HTML, select the **i** beside a configuration, or its **Method / code** for its predicted-versus-reference heading comparison, diagram, parameters and sources. Markdown retains those links and the detailed technique appendix. All configurations ran locally. Missing measurements remain unavailable rather than being assigned zero.
+All runs are local. Select **i** for definitions, or **Method & predictions** for each configuration’s diagram, settings, code and heading-by-heading comparison. Times marked “Estimated” are scaled from longer runs; they are not measured 32-page runs.
 
 | Configuration | Primary score: joint F0.5 | Joint precision | Joint recall | Method / code | Status | Headings recovered | False headings | Native prose retention | Time per page | Time for 32 pages |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -81,29 +47,95 @@ This is **sampled-page heading accuracy**, even when a parser processed the full
 | [Popo + Docling / experimental MLX 8-bit](https://github.com/opendatalab/MinerU-Popo) | **21.0%** | 21.4% (15/70) | 19.5% (15/77) | [Use MinerU-Popo to assign levels to headings first detected by Docling.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_popo_mlx.py) | completed | 88.3% (68/77) | 2 | 98.4% | Page average unavailable<br>14 min 57 sec for the hierarchy stage | Unavailable |
 | [MinerU2.5-Pro-2605-1.2B / direct MLX interface](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B) | **0.0%** | 0.0% (0/72) | 0.0% (0/77) | [MinerU2.5-Pro-2605-1.2B reads the layout and text of page images.](https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/runners/run_mineru_pro.py) | completed | 89.6% (69/77) | 3 | 99.0% | **17.8 sec** | **9 min 30 sec**<br>Measured |
 
+## Published comparison
+
+### The OCR field: quality versus speed
+
+Higher means better document parsing; farther right means faster processing. **Four models sit above Chandra OCR 2 on quality. We tested three; Ovis-OCR2 remains a gap.**
+
+[![OpenBMB comparison of fourteen OCR systems: document-parsing quality versus throughput.](../../docs/images/ocr-field-overview.png)](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation)
+
+*OpenBMB, October 27, 2026. Original figure reproduced unchanged under Apache 2.0. [Source and methodology](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation) · [Original image](https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/efficiency-performance-en.png).*
+
+This author-reported chart averages four parsing benchmarks and measures throughput on an RTX 5090, with one page at a time and possible region concurrency. It does **not** measure our WFP heading-level accuracy or Mac speed. Its selected models are not the whole field.
+
+### Which chart models did we test?
+
+| Model in the chart | Quality relative to Chandra in this chart | Our WFP coverage |
+| --- | --- | --- |
+| MiniCPM-OCR 1.0 | Higher | Tested: MLX + CPU layout, **22.2%** joint F0.5. |
+| Xiaomi-OCR-0 | Higher | Tested: whole-page MLX, **39.7%**. The chart’s stronger two-stage pipeline was not reproduced. |
+| PaddleOCR-VL-1.6 | Higher | Tested: MLX + CPU layout, **22.2%**. Portable adaptation; not the complete official CUDA pipeline. |
+| [Ovis-OCR2](https://huggingface.co/ATH-MaaS/OvisOCR2) | Higher | **Not tested. First remaining candidate above Chandra.** |
+| Chandra OCR 2 | Reference | Tested: MLX, **72.6%**. |
+| TeleOCR | Lower | Not tested. |
+| MinerU2.5-Pro | Lower | Tested through the direct MLX interface; no heading levels returned. |
+| Unlimited-OCR-2 | Lower | Not tested. |
+| GLM-OCR | Lower | Not tested. |
+| HunyuanOCR-1.5 | Lower | Not tested. |
+| Surya OCR 2 | Lower | No standalone run of this chart configuration. |
+| dots.ocr | Lower | Not tested. |
+| LightOnOCR-3-1B | Lower | Exact chart variant not tested; our rows use 0.8B and 4B variants. |
+| Unlimited-OCR | Lower | Not tested. |
+
+### Why the gap?
+
+The previous shortlist selected MiniCPM, Xiaomi and Paddle. **It was incomplete.** We have no recorded failed compatibility test or other demonstrated blocker for Ovis-OCR2, so it should not have been silently omitted. Its authors describe a compact **0.8B, Qwen3.5-based** model, making a local trial worth investigating. Compatibility and heading quality still need measurement. [Official model card](https://huggingface.co/ATH-MaaS/OvisOCR2).
+
+The other untested entries are faster than Chandra in this chart but have lower aggregate quality. They remain potential speed/quality alternatives, not demonstrated heading-level winners. Untested configurations receive no score in our results table.
+
+**Why our results differ:** good text recognition does not guarantee the required hierarchy. Xiaomi gets 29/77 heading-level pairs right. MiniCPM and Paddle each get 16/77 and share the same layout and Markdown assembly. We preserved their native levels; we did not adjust them to match the reference. [Local run protocol and evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md).
+
+
+## Documents and their sources
+
+Four born-digital WFP evaluation reports: **523 pages**, three English and one Spanish. The table links the official PDFs; the [manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json) records download URLs and checksums.
+
+We scored **eight selected pages per report**. Page numbers are physical PDF pages, counting from the cover. Pages span front matter, chapters, subsections and annexes; this is not a random sample. The assistant-created reference labels have not been independently reviewed.
+
+The original 2018 resilience report was excluded after document-specific exploratory work. Scanned documents are outside this experiment. None of these PDFs has outline bookmarks; some Qwen configurations do use available author-supplied structure tags.
+
+| WFP report / official PDF | Language | PDF pages | Audited PDF pages | Reference headings |
+| --- | --- | --- | --- | --- |
+| [Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/) | English | 172 | 7, 11, 24, 27, 33, 67, 96, 109 | 15 |
+| [Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/) | English | 176 | 8, 10, 26, 27, 36, 61, 87, 98 | 18 |
+| [Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/) | English | 76 | 7, 11, 20, 33, 42, 48, 56, 68 | 21 |
+| [Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/) | Spanish | 99 | 7, 13, 28, 42, 56, 72, 73, 93 | 23 |
+
+## How the experiment works
+
+1. **Annotate:** identify heading text, page and level on the same 32 pages. Main chapters and annexes are H1. [Pages](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/audit_pages.json) · [Reference labels](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/gold.json).
+2. **Extract:** run each local configuration without reference labels. CPU parsers process the complete PDFs; later OCR models process page images. Some Qwen runs also receive native text, tags and document context. These are different input conditions.
+3. **Match and score:** match titles one-to-one on the same page, using normalized similarity ≥90%. Award joint credit only when the level also matches. [Scorer](https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/evaluation.py).
+4. **Measure:** record processing time and, where applicable, retained prose. Run large models one at a time. No per-report heading corrections are applied.
+
+### Three kinds of technique
+
+| Approach | What happens | Examples |
+| --- | --- | --- |
+| PDF parser | Read existing text and layout; infer heading styles and hierarchy. | Docling, PyMuPDF4LLM, MinerU basic |
+| Local vision model | Read page images; generate text and structure. Some configurations add text or document context. | Chandra, Qwen, MiniCPM, Xiaomi, Paddle |
+| OUR METHOD | Use assistant-labeled reports to train small Extra Trees classifiers for line grouping, heading levels and neighboring-heading relationships. No LLM runs at inference. | Original, calibrated and confidence-filtered variants |
+
+Each result’s **Method & predictions** link opens the exact model names, training provenance, parameters, diagram and predictions. [Runnable repository](https://github.com/dividor/pdf-heading-benchmark) · [Reproduction guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/reproducibility.md).
+
+
 ## Primary metric: heading-and-level F0.5
 
-A useful output must identify a real heading, put it on the correct PDF page and assign the correct level. Invented headings also matter. We therefore rank by **joint heading-and-level F0.5**, supported by **joint precision** and **joint recall**. All three require the heading and its level to be correct. There is no separate PASS/FAIL qualification gate.
+A correct prediction must match **title, page and exact level**. Let **C** be correct predictions, **P** all predictions and **G** reference headings. Counts are pooled across the four reports before scoring.
 
-Let **G** be the number of reference headings, **P** all predicted headings, **M** the one-to-one title/page matches and **C** those matches with the exact reference level. Matching uses the unchanged same-page, normalized-title similarity ≥0.90 contract. Counts are pooled across reports before calculating metrics (micro averaging).
-
-| Measure | Definition | What it tells us |
+| Measure | Formula | Meaning |
 | --- | --- | --- |
-| Joint precision | C / P | Fraction of emitted headings with both title/page and level correct |
-| Joint recall | C / G | Fraction of reference headings recovered at the correct level |
-| Joint F1 | 2C / (P + G) | Equal precision/recall emphasis |
-| **Joint F0.5** | **1.25C / (P + 0.25G)** | Primary score; emphasizes precision more than recall |
-| Heading-detection precision | M / P | Diagnostic only: real headings regardless of level; shown in detailed results |
+| **Joint F0.5** | **1.25C / (P + 0.25G)** | Primary score; weights precision more than recall. |
+| Joint precision | C / P | How much of the output is correct, including level? |
+| Joint recall | C / G | How much of the reference was recovered correctly? |
+| Joint F1 | 2C / (P + G) | Equal emphasis on precision and recall. |
 
-Joint true positives are **C**, false positives are **P − C**, and false negatives are **G − C**. A wrong-level heading is both a joint false positive and a joint false negative. A missing heading contributes a false negative; an extra heading contributes a false positive. No predictions gives a zero score. Unknown levels earn no joint credit. Heading-only precision ignores wrong levels, so it is a diagnostic rather than a quality requirement.
+**Wrong level = both a false positive and a false negative.** An invented heading is a false positive; a missed heading is a false negative. Unknown levels receive no joint credit. No predictions scores zero. Heading-only detection ignores level mistakes and is available as a diagnostic; there is no separate PASS/FAIL gate.
 
-For example, 10 reference headings, 12 predictions, 10 title matches and 9 correct levels give joint precision 75%, recall 90%, F1 81.8% and F0.5 77.6%. Recovering every title does not imply correct hierarchy.
+**Example:** 10 reference headings, 12 predictions and 9 correct heading-level pairs give precision **75%**, recall **90%**, and F0.5 **77.6%**. Recovering every title is not enough if the levels are wrong.
 
-MinerU basic illustrates why the distinction matters: 66 of its 68 predictions match real titles, but only 31 have the correct level. Its joint precision is **45.6% (31/68)**, joint recall **40.3% (31/77)** and joint F0.5 **44.4%**. The 97.1% heading-only precision ignores 35 wrong levels. OUR METHOD's confidence-filtered configuration has **82.9% joint precision (34/41)** and **44.2% joint recall (34/77)**, yielding **70.5% joint F0.5**. Its two extra headings are separate from its five wrong-level headings.
-
-For future optimization, select using validation joint F0.5, report joint precision and recall alongside it, then freeze the configuration before evaluation elsewhere. Do not choose settings using the main league or inspected regression pages.
-
-**Historical selection remains unchanged:** the published 36-setting confidence-filter experiment selected the highest validation joint F0.5 among candidates with at least 95% heading-only precision. That was its actual selection rule, and its protocol and results remain available. We have removed this gate from the league table because it ignores level errors. Recomputing or presenting joint metrics does not retrain models or retroactively change how any configuration was selected.
+**Selection history:** OUR METHOD’s confidence filter was selected on separate validation reports using joint F0.5 with a heading-only precision constraint. The published training procedure has not been changed retrospectively. Its full selection rule, thresholds and provenance are in the method modal and [experiment record](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
 
 
 ## How to read the table
@@ -180,23 +212,6 @@ Chandra and the two LightOn runs took **14–31% less processing time**. Qwen re
 | Qwen3.6-27B / MLX 4-bit / sampled visual memory | 326 | 100.0 | 100 | 0.758 | 1.513 |
 
 GPU and swap measurements are system-wide; they include other applications and model loading. A high GPU percentage confirms activity but does not prove optimal inference or identify a bottleneck.
-
-
-## Published comparison
-
-### The recent OCR field: quality versus speed
-
-[![OpenBMB field overview of fourteen OCR systems: average document-parsing quality against throughput. The upper-right models combine higher quality with greater throughput in this author-reported NVIDIA comparison.](../../docs/images/ocr-field-overview.png)](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation)
-
-*Figure: OpenBMB / MiniCPM-OCR, reproduced unchanged under Apache 2.0. From the October 27, 2026 model release; source snapshot checked November 23, 2026. [Original figure](https://raw.githubusercontent.com/OpenBMB/MiniCPM-OCR/c21a3ca524263ef8166cb6d350864b10c3056b61/assets/minicpm-ocr/efficiency-performance-en.png) · [Full evaluation, comparison tables and methodology](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation) · [Interactive model-size perspective from Jina, September 2026](https://jina.ai/models/jina-ocr-v1/).*
-
-**How to read it:** farther right means more pages per second; higher means a higher average across OmniDocBench 1.6, Real5-OmniDocBench, Wild-OmniDocBench and olmOCR-bench. The horizontal axis is logarithmic. The author reports NVIDIA RTX 5090 timings with one page in flight; recognition regions within a page can run concurrently. This is a recent view of the quality/speed frontier among the included systems, not an independent or exhaustive ranking of every available model. The labels and configurations are the author's; some differ from our tested variants.
-
-**What we tested from it:** MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 occupied the promising high-quality, high-throughput area. All three have now completed our same 32 WFP pages, one model at a time. Their measured rows are in the main table, with diagrams, exact parameters and every predicted-versus-reference heading. [Results and timing](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/report.md) · [Protocol and runnable code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md).
-
-**What happened locally:** Xiaomi’s documented whole-page variant scores **39.7% joint F0.5**; the MiniCPM and Paddle region pipelines each score **22.2%**. Prose retention is **98.1–98.8%**. These models can read the text well without reproducing our required heading hierarchy. MiniCPM and Paddle share layout detection and native Markdown assembly here; their identical heading counts are not independent evidence for the assembly strategy. We did not adjust their levels to match the reference. Xiaomi’s strongest published scores use a different two-stage pipeline, and our Paddle row is a portable MLX adaptation rather than the complete official CUDA deployment.
-
-**Different tasks and hardware:** broad parsing quality does not establish correct heading hierarchy. These throughput figures are not Mac measurements. Our main table continues to rank only our measured joint heading-and-level F0.5 results. The model cards, source links and deployment differences remain visible in each method’s modal.
 
 
 ## Results by report
