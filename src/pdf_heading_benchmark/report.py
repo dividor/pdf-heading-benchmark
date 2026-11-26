@@ -12,6 +12,7 @@ from pdf_heading_benchmark.timing_updates import latest_timings
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
     "Configuration",
+    "Time for 32 pages",
     "Primary score: joint F0.5",
     "Joint precision",
     "Joint recall",
@@ -21,7 +22,6 @@ HEADERS = [
     "False headings",
     "Native prose retention",
     "Time per page",
-    "Time for 32 pages",
 ]
 
 
@@ -86,6 +86,7 @@ def cells(row, method):
         )
     return [
         configuration,
+        time_for_32_pages(row),
         f"**{percent(row.get('joint_f05'))}**",
         precision,
         recall,
@@ -95,7 +96,6 @@ def cells(row, method):
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
         duration(row),
-        time_for_32_pages(row),
     ]
 
 

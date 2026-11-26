@@ -5,7 +5,7 @@ from html import escape
 from bs4 import BeautifulSoup
 
 from pdf_heading_benchmark.io import REPO, read_json
-from pdf_heading_benchmark.report import build_report
+from pdf_heading_benchmark.report import build_report, time_for_32_pages
 
 
 def test_report_is_reproducible_and_has_all_method_links():
@@ -18,7 +18,11 @@ def test_report_is_reproducible_and_has_all_method_links():
     corpus = read_json(REPO / "configs/corpus.json")
     assert [row.find("a")["href"] for row in corpus_rows] == [doc["url"] for doc in corpus]
     results = soup.select_one("table.league-table")
-    assert results.find_all("th")[1].contents[0].strip() == "Primary score: joint F0.5"
+    assert [th.contents[0].strip() for th in results.find_all("th")][:3] == [
+        "Configuration",
+        "Time for 32 pages",
+        "Primary score: joint F0.5",
+    ]
     scores = read_json(REPO / "outputs/report/results.json")
     combined_scores = [r["joint_f05"] for r in scores]
     assert combined_scores == sorted(combined_scores, reverse=True)
@@ -27,13 +31,27 @@ def test_report_is_reproducible_and_has_all_method_links():
     for row in rows:
         assert len(row.find_all("td")) == 11
         assert (
-            row.find_all("td")[4]
+            row.find_all("td")[5]
             .find("a")["href"]
             .startswith("https://github.com/dividor/pdf-heading-benchmark/blob/")
         )
     for method in read_json(REPO / "configs/methods.json").values():
         for step in method["steps"]:
             assert (REPO / step["script"]).is_file()
+
+
+def test_32_page_times_stay_with_their_configuration_before_the_score():
+    from markdown_it import MarkdownIt
+
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    rows = soup.select("table.league-table tbody tr")
+    records = read_json(REPO / "outputs/report/results.json")
+    for row, record in zip(rows, records, strict=True):
+        expected = BeautifulSoup(MarkdownIt().render(time_for_32_pages(record)), "html.parser")
+        assert row.find_all("td")[1].get_text().strip() == expected.get_text().strip()
+        assert row.find_all("td")[2].get_text().strip() == f"{record['joint_f05']:.1%}"
+    help_button = soup.select_one("table.league-table th:nth-child(2) button")
+    assert "Estimated" in soup.find(id=help_button["aria-controls"]).get_text()
 
 
 def test_report_contains_only_on_premises_methods():
@@ -109,7 +127,7 @@ def test_information_buttons_resolve_to_named_dialogs():
         assert button["type"] == "button"
         assert button["aria-haspopup"] == "dialog"
         assert button["aria-label"].startswith("About ")
-    score_help = soup.find("dialog", id="column-help-1")
+    score_help = soup.find("dialog", id="column-help-2")
     assert "1.25C / (P + 0.25G)" in score_help.get_text()
     assert "no separate PASS/FAIL" in score_help.get_text()
 
@@ -136,7 +154,7 @@ def test_league_shows_joint_precision_and_recall_without_detection_gate():
     soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
     table = soup.select_one("table.league-table")
     headers = [th.contents[0].strip() for th in table.find_all("th")]
-    assert headers[1:4] == ["Primary score: joint F0.5", "Joint precision", "Joint recall"]
+    assert headers[2:5] == ["Primary score: joint F0.5", "Joint precision", "Joint recall"]
     assert "PASS" not in table.get_text() and "FAIL" not in table.get_text()
     rows = {row["method"]: row for row in read_json(REPO / "outputs/report/results.json")}
     for key in ("mineru_basic", "structure_precision"):
@@ -144,8 +162,8 @@ def test_league_shows_joint_precision_and_recall_without_detection_gate():
         values = [td.get_text() for td in cell.find_all("td")]
         row = rows[key]
         expected = f"{row['correct_level'] / row['predicted']:.1%}"
-        assert values[2].startswith(expected)
-        assert values[3].startswith(f"{row['correct_level'] / row['gold']:.1%}")
+        assert values[3].startswith(expected)
+        assert values[4].startswith(f"{row['correct_level'] / row['gold']:.1%}")
     assert "Heading-only precision (diagnostic)" in soup.get_text()
 
 
