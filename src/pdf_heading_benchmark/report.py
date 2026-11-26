@@ -193,9 +193,9 @@ def build_report():
     (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
     (output / "method-records.md").write_text(method_records(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
-    diagram = "ocr-field-overview.png"
-    (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
-    rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
+    for diagram in ("ocr-field-overview.png", "ocr-text-layout.png"):
+        (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
+        rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
     rendered = rendered.replace(
         "<h2>Published comparison</h2>", '<h2 id="published-comparison">Published comparison</h2>'
     )

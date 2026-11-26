@@ -1,5 +1,15 @@
 ## Published comparison
 
+### Text and layout across the field
+
+[![Published text extraction scores on X and layout classification scores on Y for 17 local models and hosted systems. Higher and farther right is better.](../../docs/images/ocr-text-layout.png)](https://github.com/datalab-to/omni_parse_bench#results)
+
+*Figure by the author from [Datalab’s OmniParseBench results](https://github.com/datalab-to/omni_parse_bench#results), retrieved November 26, 2026. Both axes use published scores out of 100. This is a selected field overview, not our WFP experiment.*
+
+The [layout score](https://github.com/datalab-to/omni_parse_bench/blob/main/docs/scoring/layout_kind.md) tests whether blocks are labeled as text, heading or table at the expected location. It does not test heading levels. Models without a published layout score, including Xiaomi-OCR-0, are omitted. Our trained model has not been evaluated on this benchmark.
+
+Text and layout scores cover both local and hosted systems. Published timings do not cover the local models, so this plot does not use speed. The planned service runs will compare heading-and-level quality and seconds per page on our WFP sample. [Chart data](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-overview.json) · [Reproduce the plot](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/field_overview.py).
+
 ### Cloud services queued for comparison
 
 These requested API configurations are the next comparison group. They are not included in the 34 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.

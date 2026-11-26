@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1120" viewBox="0 0 1400 1120">
+<rect width="1400" height="1120" fill="#fbfaf7"/>
+<text x="65" y="60" font-family="Helvetica" font-size="42" fill="#243447" font-weight="bold">The document parsing field</text>
+<text x="65" y="102" font-family="Helvetica" font-size="24" fill="#243447" >Text extraction vs layout classification • Selected local models and hosted services</text>
+<circle cx="74" cy="146" r="8" fill="#087f8c"/>
+<text x="93" y="153" font-family="Helvetica" font-size="21" fill="#243447" >Open models, locally runnable</text>
+<circle cx="499" cy="146" r="8" fill="#6653c6"/>
+<text x="518" y="153" font-family="Helvetica" font-size="21" fill="#243447" >Hosted services / models</text>
+<text x="1035" y="153" font-family="Helvetica" font-size="20" fill="#243447" >Better toward top right ↗</text>
+<text x="120" y="207" font-family="Helvetica" font-size="21" fill="#243447" font-weight="bold">Layout classification score</text>
+<line x1="120" y1="850.0" x2="1280" y2="850.0" stroke="#dfe4e8"/>
+<text x="102" y="857.0" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="end">85</text>
+<line x1="120" y1="726.0" x2="1280" y2="726.0" stroke="#dfe4e8"/>
+<text x="102" y="733.0" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="end">88</text>
+<line x1="120" y1="602.0" x2="1280" y2="602.0" stroke="#dfe4e8"/>
+<text x="102" y="609.0" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="end">91</text>
+<line x1="120" y1="478.0" x2="1280" y2="478.0" stroke="#dfe4e8"/>
+<text x="102" y="485.0" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="end">94</text>
+<line x1="120" y1="354.0" x2="1280" y2="354.0" stroke="#dfe4e8"/>
+<text x="102" y="361.0" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="end">97</text>
+<line x1="120" y1="230.0" x2="1280" y2="230.0" stroke="#dfe4e8"/>
+<text x="102" y="237.0" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="end">100</text>
+<line x1="120" y1="230" x2="120" y2="850" stroke="#dfe4e8"/>
+<text x="120" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">60</text>
+<line x1="265" y1="230" x2="265" y2="850" stroke="#dfe4e8"/>
+<text x="265" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">65</text>
+<line x1="410" y1="230" x2="410" y2="850" stroke="#dfe4e8"/>
+<text x="410" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">70</text>
+<line x1="555" y1="230" x2="555" y2="850" stroke="#dfe4e8"/>
+<text x="555" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">75</text>
+<line x1="700" y1="230" x2="700" y2="850" stroke="#dfe4e8"/>
+<text x="700" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">80</text>
+<line x1="845" y1="230" x2="845" y2="850" stroke="#dfe4e8"/>
+<text x="845" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">85</text>
+<line x1="990" y1="230" x2="990" y2="850" stroke="#dfe4e8"/>
+<text x="990" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">90</text>
+<line x1="1135" y1="230" x2="1135" y2="850" stroke="#dfe4e8"/>
+<text x="1135" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">95</text>
+<line x1="1280" y1="230" x2="1280" y2="850" stroke="#dfe4e8"/>
+<text x="1280" y="882" font-family="Helvetica" font-size="19" fill="#243447" text-anchor="middle">100</text>
+<line x1="1117.6000000000001" y1="378.7999999999997" x2="1097.6000000000001" y2="345.7999999999997" stroke="#6653c6" stroke-opacity="0.45"/>
+<circle cx="1117.6000000000001" cy="378.7999999999997" r="7" fill="#6653c6" stroke="#fbfaf7" stroke-width="2"/>
+<text x="1097.6000000000001" y="350.7999999999997" font-family="Helvetica" font-size="19" fill="#243447" >Gemini 4 Argon †</text>
+<line x1="1065.3999999999999" y1="395.3333333333333" x2="1090.3999999999999" y2="398.3333333333333" stroke="#6653c6" stroke-opacity="0.45"/>
+<circle cx="1065.3999999999999" cy="395.3333333333333" r="7" fill="#6653c6" stroke="#fbfaf7" stroke-width="2"/>
+<text x="1090.3999999999999" y="403.3333333333333" font-family="Helvetica" font-size="19" fill="#243447" >Datalab Accurate</text>
+<line x1="972.6000000000001" y1="643.3333333333333" x2="992.6000000000001" y2="646.3333333333333" stroke="#6653c6" stroke-opacity="0.45"/>
+<circle cx="972.6000000000001" cy="643.3333333333333" r="7" fill="#6653c6" stroke="#fbfaf7" stroke-width="2"/>
+<text x="992.6000000000001" y="651.3333333333333" font-family="Helvetica" font-size="19" fill="#243447" >LlamaParse</text>
+<line x1="929.1000000000001" y1="420.1333333333331" x2="949.1000000000001" y2="435.1333333333331" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="929.1000000000001" cy="420.1333333333331" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="949.1000000000001" y="440.1333333333331" font-family="Helvetica" font-size="19" fill="#243447" >Chandra OCR 2</text>
+<line x1="804.3999999999999" y1="486.26666666666677" x2="724.3999999999999" y2="459.26666666666677" stroke="#6653c6" stroke-opacity="0.45"/>
+<circle cx="804.3999999999999" cy="486.26666666666677" r="7" fill="#6653c6" stroke="#fbfaf7" stroke-width="2"/>
+<text x="724.3999999999999" y="464.26666666666677" font-family="Helvetica" font-size="19" fill="#243447" >Mistral OCR</text>
+<line x1="789.8999999999999" y1="540.0" x2="739.8999999999999" y2="560.0" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="789.8999999999999" cy="540.0" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="739.8999999999999" y="565.0" font-family="Helvetica" font-size="19" fill="#243447" >dots.mocr</text>
+<line x1="642.0" y1="573.0666666666666" x2="512.0" y2="553.0666666666666" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="642.0" cy="573.0666666666666" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="512.0" y="558.0666666666666" font-family="Helvetica" font-size="19" fill="#243447" >MinerU 2.5 Pro</text>
+<line x1="813.1000000000001" y1="498.66666666666663" x2="835.1000000000001" y2="518.6666666666666" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="813.1000000000001" cy="498.66666666666663" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="835.1000000000001" y="523.6666666666666" font-family="Helvetica" font-size="19" fill="#243447" >InfinityParser 2 Pro</text>
+<line x1="824.6999999999999" y1="403.6000000000001" x2="724.6999999999999" y2="373.6000000000001" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="824.6999999999999" cy="403.6000000000001" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="724.6999999999999" y="378.6000000000001" font-family="Helvetica" font-size="19" fill="#243447" >Surya OCR 2.5</text>
+<line x1="647.8000000000001" y1="618.5333333333335" x2="677.8000000000001" y2="603.5333333333335" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="647.8000000000001" cy="618.5333333333335" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="677.8000000000001" y="608.5333333333335" font-family="Helvetica" font-size="19" fill="#243447" >OvisOCR3</text>
+<line x1="508.60000000000014" y1="742.5333333333335" x2="333.60000000000014" y2="759.5333333333335" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="508.60000000000014" cy="742.5333333333335" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="333.60000000000014" y="764.5333333333335" font-family="Helvetica" font-size="19" fill="#243447" >MiniCPM-OCR 1.0</text>
+<line x1="560.8000000000001" y1="527.6000000000001" x2="485.80000000000007" y2="487.60000000000014" stroke="#6653c6" stroke-opacity="0.45"/>
+<circle cx="560.8000000000001" cy="527.6000000000001" r="7" fill="#6653c6" stroke="#fbfaf7" stroke-width="2"/>
+<text x="485.80000000000007" y="492.60000000000014" font-family="Helvetica" font-size="19" fill="#243447" >Azure</text>
+<line x1="827.6000000000001" y1="478.0" x2="932.6000000000001" y2="463.0" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="827.6000000000001" cy="478.0" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="932.6000000000001" y="468.0" font-family="Helvetica" font-size="19" fill="#243447" >LightOnOCR 3 4B</text>
+<line x1="456.39999999999986" y1="672.2666666666668" x2="401.39999999999986" y2="695.2666666666668" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="456.39999999999986" cy="672.2666666666668" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="401.39999999999986" y="700.2666666666668" font-family="Helvetica" font-size="19" fill="#243447" >GLM-OCR</text>
+<line x1="386.80000000000007" y1="614.3999999999999" x2="206.80000000000007" y2="644.3999999999999" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="386.80000000000007" cy="614.3999999999999" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="206.80000000000007" y="649.3999999999999" font-family="Helvetica" font-size="19" fill="#243447" >PaddleOCR-VL 1.6</text>
+<line x1="485.39999999999986" y1="643.3333333333333" x2="503.39999999999986" y2="642.3333333333333" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="485.39999999999986" cy="643.3333333333333" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="503.39999999999986" y="647.3333333333333" font-family="Helvetica" font-size="19" fill="#243447" >Nemotron 3.5 Parse</text>
+<line x1="253.39999999999984" y1="585.4666666666665" x2="188.39999999999984" y2="532.4666666666665" stroke="#087f8c" stroke-opacity="0.45"/>
+<circle cx="253.39999999999984" cy="585.4666666666665" r="7" fill="#087f8c" stroke="#fbfaf7" stroke-width="2"/>
+<text x="188.39999999999984" y="537.4666666666665" font-family="Helvetica" font-size="19" fill="#243447" >DeepSeek-OCR 2</text>
+<text x="700" y="928" font-family="Helvetica" font-size="23" fill="#243447" text-anchor="middle" font-weight="bold">Text extraction score</text>
+<text x="65" y="980" font-family="Helvetica" font-size="20" fill="#243447" >OmniParseBench 1.7.0 · Scores out of 100 · Axes cropped to show model differences</text>
+<text x="65" y="1012" font-family="Helvetica" font-size="19" fill="#243447" >Source: Datalab’s vendor-run benchmark, retrieved 26 November 2026. † Gemini includes failed-page retries.</text>
+<text x="65" y="1044" font-family="Helvetica" font-size="19" fill="#243447" >Layout tests classify blocks as text, heading or table. They do not test heading levels.</text>
+<text x="65" y="1076" font-family="Helvetica" font-size="18" fill="#243447" >github.com/datalab-to/omni_parse_bench · Models without published layout scores are omitted.</text>
+</svg>

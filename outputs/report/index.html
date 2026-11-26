@@ -609,6 +609,11 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 </tbody>
 </table></div>
 </section><section aria-labelledby="tab-field" class="report-panel" id="panel-field"><h2 id="published-comparison">Published comparison</h2>
+<h3>Text and layout across the field</h3>
+<p><a href="https://github.com/datalab-to/omni_parse_bench#results"><img alt="Published text extraction scores on X and layout classification scores on Y for 17 local models and hosted systems. Higher and farther right is better." src="ocr-text-layout.png"/></a></p>
+<p><em>Figure by the author from <a href="https://github.com/datalab-to/omni_parse_bench#results">Datalab’s OmniParseBench results</a>, retrieved November 26, 2026. Both axes use published scores out of 100. This is a selected field overview, not our WFP experiment.</em></p>
+<p>The <a href="https://github.com/datalab-to/omni_parse_bench/blob/main/docs/scoring/layout_kind.md">layout score</a> tests whether blocks are labeled as text, heading or table at the expected location. It does not test heading levels. Models without a published layout score, including Xiaomi-OCR-0, are omitted. Our trained model has not been evaluated on this benchmark.</p>
+<p>Text and layout scores cover both local and hosted systems. Published timings do not cover the local models, so this plot does not use speed. The planned service runs will compare heading-and-level quality and seconds per page on our WFP sample. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-overview.json">Chart data</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/field_overview.py">Reproduce the plot</a>.</p>
 <h3>Cloud services queued for comparison</h3>
 <p>These requested API configurations are the next comparison group. They are not included in the 34 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.</p>
 <div aria-label="Scrollable data table" class="report-table-scroll" role="region" tabindex="0"><table>
