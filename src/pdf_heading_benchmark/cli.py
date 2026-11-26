@@ -32,7 +32,7 @@ def run_method(method: str, root: Path) -> None:
     config = read_json(REPO / "configs/methods.json")[method]
     if not config["steps"]:
         raise ValueError(
-            "This pipeline requires a separately started local model server. "
+            "This pipeline requires its dedicated runner and environment. "
             "Use the runner and commands in docs/official-pipelines.md."
         )
     manifest = read_json(root / "corpus/manifest.json")

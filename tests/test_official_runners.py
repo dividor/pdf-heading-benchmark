@@ -17,9 +17,18 @@ REPORT = runpy.run_path(str(REPO / "scripts/official_pipelines_report.py"))
 XIAOMI = runpy.run_path(str(REPO / "scripts/runners/run_official_xiaomi.py"))
 
 
-def test_cli_does_not_silently_complete_a_pipeline_requiring_a_local_server(tmp_path):
-    with pytest.raises(ValueError, match="separately started local model server"):
-        run_method("paddleocr_vl16_official", tmp_path)
+@pytest.mark.parametrize(
+    "method",
+    [
+        "paddleocr_vl16_official",
+        "ovisocr3_official_metal",
+        "minicpm_ocr10_official_ollama",
+        "xiaomi_ocr0_official_metal",
+    ],
+)
+def test_cli_directs_pipeline_users_to_the_dedicated_runner(method, tmp_path):
+    with pytest.raises(ValueError, match="dedicated runner and environment"):
+        run_method(method, tmp_path)
 
 
 def test_paddle_runner_uses_native_markdown_and_saves_evidence(tmp_path):
