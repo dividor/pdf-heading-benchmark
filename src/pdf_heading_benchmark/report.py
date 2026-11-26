@@ -166,6 +166,7 @@ def build_report():
     markdown += "\n\n" + (REPO / "docs/published-comparison.md").read_text()
     markdown += "\n\n" + (REPO / "docs/report-documents.md").read_text() + "\n" + corpus_table()
     markdown += "\n\n" + protocol
+    markdown += "\n\n" + (REPO / "docs/level-audit.md").read_text()
     metric = (REPO / "docs/joint-metric.md").read_text()
     markdown += "\n\n" + metric + "\n\n" + notes
     repeat = REPO / "outputs/sequential-repeat/summary.md"

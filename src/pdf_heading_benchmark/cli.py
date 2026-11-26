@@ -30,6 +30,11 @@ def runner_command(step: dict) -> list[str]:
 
 def run_method(method: str, root: Path) -> None:
     config = read_json(REPO / "configs/methods.json")[method]
+    if not config["steps"]:
+        raise ValueError(
+            "This pipeline requires a separately started local model server. "
+            "Use the runner and commands in docs/official-pipelines.md."
+        )
     manifest = read_json(root / "corpus/manifest.json")
     environment = dict(os.environ, PDF_BENCHMARK_DATA=str(root))
     for step in config["steps"]:

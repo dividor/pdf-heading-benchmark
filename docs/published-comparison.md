@@ -2,7 +2,7 @@
 
 ### The OCR field: quality versus speed
 
-Higher means better document parsing; farther right means faster processing. **Four models sit above Chandra OCR 2 on quality. We tested three; Ovis-OCR2 remains a gap.**
+Higher means better document parsing; farther right means faster processing. **This is OpenBMB’s October 27, 2026 snapshot, not a live ranking.** It omits OvisOCR3, which we now test separately.
 
 [![OpenBMB comparison of fourteen OCR systems: document-parsing quality versus throughput.](../../docs/images/ocr-field-overview.png)](https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation)
 
@@ -14,10 +14,10 @@ This author-reported chart averages four parsing benchmarks and measures through
 
 | Model in the chart | Quality relative to Chandra in this chart | Our WFP coverage |
 | --- | --- | --- |
-| MiniCPM-OCR 1.0 | Higher | Tested: MLX + CPU layout, **22.2%** joint F0.5. |
-| Xiaomi-OCR-0 | Higher | Tested: whole-page MLX, **39.7%**. The chart’s stronger two-stage pipeline was not reproduced. |
-| PaddleOCR-VL-1.6 | Higher | Tested: MLX + CPU layout, **22.2%**. Portable adaptation; not the complete official CUDA pipeline. |
-| [Ovis-OCR2](https://huggingface.co/ATH-MaaS/OvisOCR2) | Higher | **Not tested. First remaining candidate above Chandra.** |
+| MiniCPM-OCR 1.0 | Higher | Official package with Ollama Q8 + DSpark: **22.2%** joint F0.5. Earlier MLX adaptation: also **22.2%**. |
+| Xiaomi-OCR-0 | Higher | Upstream two-stage pipeline on Metal: **42.9%**. Earlier whole-page MLX: **39.7%**. |
+| PaddleOCR-VL-1.6 | Higher | Official Apple Silicon pipeline: **24.9%**. Earlier MiniCPM-assembly adaptation: **22.2%**. |
+| [Ovis-OCR2](https://huggingface.co/ATH-MaaS/OvisOCR2) | Higher | Not tested. The newer OvisOCR3 is tested separately below. |
 | Chandra OCR 2 | Reference | Tested: MLX, **72.6%**. |
 | TeleOCR | Lower | Not tested. |
 | MinerU2.5-Pro | Lower | Tested through the direct MLX interface; no heading levels returned. |
@@ -29,10 +29,12 @@ This author-reported chart averages four parsing benchmarks and measures through
 | LightOnOCR-3-1B | Lower | Exact chart variant not tested; our rows use 0.8B and 4B variants. |
 | Unlimited-OCR | Lower | Not tested. |
 
-### Why the gap?
+### A newer Ovis model is now included
 
-The previous shortlist selected MiniCPM, Xiaomi and Paddle. **It was incomplete.** We have no recorded failed compatibility test or other demonstrated blocker for Ovis-OCR2, so it should not have been silently omitted. Its authors describe a compact **0.8B, Qwen3.5-based** model, making a local trial worth investigating. Compatibility and heading quality still need measurement. [Official model card](https://huggingface.co/ATH-MaaS/OvisOCR2).
+[OvisOCR3](https://huggingface.co/ATH-MaaS/OvisOCR3), described in its [October 20, 2026 paper](https://arxiv.org/abs/2610.33066), is absent from this chart. Our run uses its official Markdown recipe with vLLM Metal: **65.0% joint F0.5**, **36/77 correct title-level pairs**, one extra heading and **6 min 58 sec for 32 pages**. This does not retrospectively test OvisOCR2.
 
-The other untested entries are faster than Chandra in this chart but have lower aggregate quality. They remain potential speed/quality alternatives, not demonstrated heading-level winners. Untested configurations receive no score in our results table.
+### Why the published chart does not predict our heading scores
 
-**Why our results differ:** good text recognition does not guarantee the required hierarchy. Xiaomi gets 29/77 heading-level pairs right. MiniCPM and Paddle each get 16/77 and share the same layout and Markdown assembly. We preserved their native levels; we did not adjust them to match the reference. [Local run protocol and evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md).
+The chart measures broad document parsing. Our score requires the exact heading depth as well as the title and page. We also use different hardware and, in the earlier trials, different assembly pipelines. We cannot attribute score differences to the weights alone.
+
+The Methods & scoring tab now shows a measured level-error audit. New runs preserve the upstream pipeline’s output; they do not apply corrections fitted to WFP labels. [Official pipeline details and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/official-pipelines.md).

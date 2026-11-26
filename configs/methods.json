@@ -594,5 +594,29 @@
         "per_document": false
       }
     ]
+  },
+  "paddleocr_vl16_official": {
+    "description": "PaddleOCR 3.7.0 runs its complete v1.6 pipeline: native PaddleX layout on CPU, PaddleOCR-VL-1.6 on Metal, then Paddle’s own Markdown assembly.",
+    "code": "scripts/runners/run_official_paddle.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_paddle.py",
+    "steps": []
+  },
+  "ovisocr3_official_metal": {
+    "description": "OvisOCR3 reads each page with its official Markdown prompt through vLLM Metal. We use the upstream cleanup and preserve the model’s heading levels.",
+    "code": "scripts/runners/run_ovis_official.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_ovis_official.py",
+    "steps": []
+  },
+  "minicpm_ocr10_official_ollama": {
+    "description": "MiniCPM’s official package rotates pages, detects layout, recognizes crops through Ollama with Q8 weights and DSpark, then assembles its native Markdown.",
+    "code": "scripts/runners/run_official_minicpm.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_minicpm.py",
+    "steps": []
+  },
+  "xiaomi_ocr0_official_metal": {
+    "description": "Xiaomi’s upstream two-stage pipeline detects page regions with PaddleX on CPU, recognizes each crop with original BF16 weights on Metal, and assembles Markdown using its default title profile.",
+    "code": "scripts/runners/run_official_xiaomi.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_xiaomi.py",
+    "steps": []
   }
 }

@@ -169,3 +169,18 @@ The timing columns separate **Time per page** from **Time for 32 pages**. The la
 ## Recent OCR field and new local trials
 
 The [field-wide quality/speed diagram](docs/published-comparison.md) shows OpenBMB’s October 2026 comparison of fourteen OCR systems. It reports broad parsing quality and NVIDIA throughput, separately from this repository’s WFP hierarchy scores. [Local trial protocol and commands](docs/field-candidates.md) describe MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6, their pinned weights and Apple Silicon adaptations. Completed trials enter the main table with per-page predictions and measured timings.
+
+### Official pipeline reruns and heading errors
+
+We reran the same 32 pages, one model at a time, with the upstream parsing pipelines or documented inference recipes. These are Mac configurations, with CPU layout and Metal recognition. CUDA-only runs were omitted.
+
+| Configuration | Joint F0.5 | Correct title + level | Extra headings | Measured time for 32 pages |
+| --- | ---: | ---: | ---: | --- |
+| OvisOCR3, official prompt with vLLM Metal | 65.0% | 36/77 | 1 | 6 min 58 sec |
+| Xiaomi-OCR-0, upstream two-stage pipeline with Metal | 42.9% | 31/77 | 3 | 7 min 52 sec |
+| PaddleOCR-VL-1.6, official Apple Silicon pipeline | 24.9% | 18/77 | 3 | 4 min 52 sec |
+| MiniCPM-OCR 1.0, official package with Ollama Q8 + DSpark | 22.2% | 16/77 | 3 | 7 min 46 sec |
+
+The [level-error audit](docs/level-audit.md) separates wrong levels from missing titles. Xiaomi’s default formatter assigns H2 to paragraph titles. MiniCPM’s numbering formatter can put a main heading and its subsection at the same depth. Ovis sometimes transcribes titles as ordinary text. These observed output behaviors explain specific errors; the experiment does not isolate model weights from parsing and formatting.
+
+See [commands, pins and runtime differences](docs/official-pipelines.md), [compact measured evidence](outputs/official-pipelines), and the [interactive report](outputs/report/index.html) for each method’s diagram, parameters and full prediction-versus-reference table. The original runs remain visible as separate configurations.

@@ -26,5 +26,9 @@
   "qwen36_35b_visual_memory",
   "minicpm_ocr10",
   "xiaomi_ocr0",
-  "paddleocr_vl16"
+  "paddleocr_vl16",
+  "paddleocr_vl16_official",
+  "ovisocr3_official_metal",
+  "minicpm_ocr10_official_ollama",
+  "xiaomi_ocr0_official_metal"
 ]

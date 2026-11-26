@@ -4204,5 +4204,583 @@
       }
     ],
     "training": []
+  },
+  "paddleocr_vl16_official": {
+    "family": "Official PaddleOCR Apple Silicon pipeline",
+    "summary": "PaddleOCR 3.7.0 runs its complete v1.6 pipeline: native PaddleX layout on CPU, PaddleOCR-VL-1.6 on Metal, then Paddle’s own Markdown assembly.",
+    "stages": [
+      {
+        "title": "Render each audit page",
+        "detail": "PyMuPDF renders the same 32 physical PDF pages at 200 DPI. Only RGB pixels enter the pipeline. No PDF text, tags, reference labels or previous-page context is supplied."
+      },
+      {
+        "title": "Run Paddle’s native layout detector",
+        "detail": "PaddleOCRVL(pipeline_version=\"v1.6\", device=\"cpu\") uses PP-DocLayoutV3 in PaddlePaddle 3.3.1. PaddleX 3.7.2 applies its own threshold 0.3, suppression, box merging and reading-order processing."
+      },
+      {
+        "title": "Recognize regions on the Mac GPU",
+        "detail": "The pipeline sends its crops and task prompts to the official mlx-vlm-server backend. The original BF16 PaddleOCR-VL-1.6 weights run in MLX 0.32.4 / mlx-vlm 0.8.0. Temperature is 0; requests are sequential."
+      },
+      {
+        "title": "Use Paddle’s own Markdown output",
+        "detail": "Read result.markdown[\"markdown_texts\"] from the unmodified Paddle pipeline. Preserve every heading marker. The native pipeline still emits \"1. Introduction\" as H3 on the mid-term report, page 26; this is measured output, not a level correction."
+      },
+      {
+        "title": "Score against the frozen reference",
+        "detail": "Match headings once by physical page and normalized title, then require the exact reference H level for credit. Evaluate all 77 references with the same joint F0.5 scorer as every other row."
+      }
+    ],
+    "parameters": [
+      [
+        "Pipeline",
+        "paddleocr==3.7.0; paddlex==3.7.2; paddlepaddle==3.3.1; pipeline_version=v1.6"
+      ],
+      [
+        "Weights",
+        "PaddlePaddle/PaddleOCR-VL-1.6 @132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd; original BF16"
+      ],
+      [
+        "Hardware",
+        "Apple M4 Pro; 48 GB unified memory; Paddle layout on CPU, MLX recognition on Metal"
+      ],
+      [
+        "Concurrency",
+        "One model, one page and one recognition request at a time; use_queues=False; vl_rec_max_concurrency=1"
+      ],
+      [
+        "Layout",
+        "PP-DocLayoutV3 native Paddle weights; threshold=0.3; native v1.6 merging defaults"
+      ],
+      [
+        "Recognition",
+        "temperature=0; upstream per-region output budget and task prompts"
+      ],
+      [
+        "Other pipeline options",
+        "v1.6 defaults: chart recognition=False, seal recognition=False, document preprocessing=False; merge_layout_blocks=True"
+      ],
+      [
+        "Image bounds limitation",
+        "Paddle’s mlx-vlm client warns that min_pixels and max_pixels are not supported by this backend. The model processor uses its own bounds."
+      ],
+      [
+        "Timing",
+        "291.97 seconds for 32 pages (9.12 seconds/page). Includes rendering, layout, recognition, assembly and JSON saving. CPU pipeline initialization: 1.52 seconds separately. Recognition model was preloaded."
+      ],
+      [
+        "Request telemetry",
+        "No page errors. Per-request finish reasons and token-limit counts are not exposed by this pipeline, so they are not reported as zero."
+      ]
+    ],
+    "sections": [
+      {
+        "title": "What changed from the earlier Paddle row",
+        "paragraphs": [
+          "The earlier adaptation used a Transformers layout detector and MiniCPM’s Markdown assembler. This run calls PaddleOCRVL directly and uses Paddle’s native pipeline throughout. Model weights and the 32-page sample are unchanged.",
+          "Correct title-and-level matches rose from 16 to 18. There are still 50 matched titles with wrong levels, 9 missing reference headings and 3 extra predictions. This run does not establish general document-hierarchy accuracy."
+        ]
+      }
+    ],
+    "limitation": "This is the documented Apple Silicon pipeline, not the NVIDIA deployment used in published OCR charts. Frozen references are assistant annotations, not independently human-validated. No hierarchy repairs were applied.",
+    "sources": [
+      {
+        "label": "Official Apple Silicon pipeline guide",
+        "url": "https://www.paddleocr.ai/latest/en/version3.x/pipeline_usage/PaddleOCR-VL-Apple-Silicon.html"
+      },
+      {
+        "label": "Model weights and model card",
+        "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6"
+      },
+      {
+        "label": "Exact runner",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_paddle.py"
+      },
+      {
+        "label": "Dependency pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/paddle-official.txt"
+      },
+      {
+        "label": "Measured run evidence",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/paddleocr_vl16_official.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "PaddleOCR-VL-1.6",
+        "description": "The upstream 0.9B-parameter visual recognition model, loaded from its pinned Hugging Face revision.",
+        "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+        "aliases": [
+          "PaddleOCR-VL-1.6"
+        ]
+      },
+      {
+        "name": "MLX",
+        "description": "Apple’s machine-learning framework; recognition uses Metal GPU kernels. Layout detection, where present, runs separately on CPU.",
+        "url": "https://github.com/ml-explore/mlx",
+        "aliases": [
+          "MLX"
+        ]
+      },
+      {
+        "name": "PP-DocLayoutV3",
+        "description": "A document-layout detector that labels regions such as titles, text, tables and figures. Its block labels and the Markdown assembler help determine the emitted hierarchy.",
+        "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors",
+        "aliases": [
+          "PP-DocLayoutV3"
+        ]
+      },
+      {
+        "name": "PaddleX",
+        "description": "Paddle’s pipeline framework. This run uses its native layout detector and Markdown assembly, not MiniCPM’s replacements.",
+        "url": "https://github.com/PaddlePaddle/PaddleX",
+        "aliases": [
+          "PaddleX"
+        ]
+      }
+    ],
+    "training": []
+  },
+  "ovisocr3_official_metal": {
+    "family": "Whole-page vision-language document parsing",
+    "summary": "OvisOCR3 reads each page with its official Markdown prompt through vLLM Metal. We use the upstream cleanup and preserve the model’s heading levels.",
+    "stages": [
+      {
+        "title": "Render a page without extracting its text",
+        "detail": "Render each of the 32 audit pages at 200 DPI in RGB. Supply one image at a time, without native PDF text, tags, reference headings or adjacent-page context."
+      },
+      {
+        "title": "Apply the official document-parsing prompt",
+        "detail": "Read document_markdown.txt from the pinned ATH-MaaS/OvisOCR3 checkpoint. The prompt requests natural reading order, Markdown text, LaTeX formulas, HTML tables and image crop tags. Apply the checkpoint’s chat template with thinking disabled."
+      },
+      {
+        "title": "Generate with OvisOCR3 on Metal",
+        "detail": "The original BF16 0.8B Qwen3.5-based model runs through vLLM 0.34.0 and vllm-metal 0.34.0. Temperature 0, seed 42, maximum 16,384 output tokens, one sequence. Image bounds remain 448² to 2880² pixels."
+      },
+      {
+        "title": "Apply only the documented cleanup",
+        "detail": "Preserve raw output, then remove image-tag blocks and apply the model card’s repeated-tail cleanup. Parse the resulting native Markdown headings. Bold text is not promoted to a heading, and H levels are never shifted."
+      },
+      {
+        "title": "Score all 77 reference headings",
+        "detail": "The run finds 49 reference titles. Of those, 36 have the correct level and 13 have the wrong level. It misses 28 titles and emits one extra heading. Joint F0.5 is 65.0%; every comparison is available in this modal."
+      }
+    ],
+    "parameters": [
+      [
+        "Checkpoint",
+        "ATH-MaaS/OvisOCR3 @5b252386ba615bd464a5a26597560eaba87dae5c"
+      ],
+      [
+        "Weights",
+        "0.8B parameters; original BF16 weights; no quantization or WFP fine-tuning"
+      ],
+      [
+        "Runtime",
+        "vllm==0.34.0+cpu with vllm-metal==0.34.0; MLX backend on Apple M4 Pro GPU"
+      ],
+      [
+        "Official-example difference",
+        "Model card uses vLLM 0.22.1 with gdn_prefill_backend=triton. Metal selects its own kernels; this is not a CUDA benchmark replication."
+      ],
+      [
+        "Prompt",
+        "Pinned prompts/document_markdown.txt; official chat template; enable_thinking=False"
+      ],
+      [
+        "Sampling",
+        "temperature=0; max_tokens=16384; seed=42; max_num_seqs=1; tensor_parallel_size=1"
+      ],
+      [
+        "Images",
+        "One RGB image per call; minimum 448×448 and maximum 2880×2880 pixel area; current processor size API"
+      ],
+      [
+        "Memory",
+        "gpu_memory_utilization=0.8; native Metal attention kernels; upstream default context limit 262144"
+      ],
+      [
+        "Cleanup",
+        "Filter image-tag blocks; upstream repeated-tail thresholds: minimum text 8000 characters, period 1–200, repeat span ≥100 characters and ≥5 repetitions"
+      ],
+      [
+        "Timing",
+        "418.19 seconds for 32 pages (13.07 seconds/page); 20.64 seconds model initialization separately"
+      ],
+      [
+        "Completion",
+        "32/32 pages; zero errors; zero length-limit stops; raw responses, tokens and finish reasons retained"
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Training and provenance",
+        "paragraphs": [
+          "OvisOCR3 is the authors’ published Qwen3.5-0.8B-based model. Its model card describes continued pretraining, mid-training, on-policy distillation and reinforcement learning. We did not train it on WFP reports or select its prompt using our reference labels."
+        ]
+      },
+      {
+        "title": "How to interpret this result",
+        "paragraphs": [
+          "The model emitted 50 headings and 36 had both the correct title and level. Its one extra heading should not hide the 28 missing reference headings. The 65.0% score is lower than the recorded Chandra configuration’s 72.6%, while measured processing time is shorter. Backend and pipeline differences prevent attributing that difference solely to the weights."
+        ]
+      },
+      {
+        "title": "Some missed headings were transcribed as ordinary text",
+        "paragraphs": [
+          "On Indonesia PDF page 7, the raw response begins with Executive summary, Introduction and Evaluation features as plain text, without Markdown heading markers. On targeting page 33, it transcribes 2 Evaluation findings as plain text while marking its subsections H2, H3 and H4. These are heading-classification misses even though the title text was recognized. We do not promote these lines using our reference labels."
+        ]
+      }
+    ],
+    "limitation": "Original weights and official task recipe, with a newer vLLM runtime and Metal hardware plugin. Published CUDA accuracy and speed have not been reproduced. References are not independently human-validated.",
+    "sources": [
+      {
+        "label": "Pinned model card and inference recipe",
+        "url": "https://huggingface.co/ATH-MaaS/OvisOCR3/blob/5b252386ba615bd464a5a26597560eaba87dae5c/README.md"
+      },
+      {
+        "label": "OvisOCR3 paper",
+        "url": "https://arxiv.org/abs/2610.33066"
+      },
+      {
+        "label": "Exact runner",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_ovis_official.py"
+      },
+      {
+        "label": "Cleanup implementation",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/ovis_output.py"
+      },
+      {
+        "label": "Runtime pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/ovis-metal.txt"
+      },
+      {
+        "label": "Measured run and predictions",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/ovisocr3_official_metal.json"
+      },
+      {
+        "label": "Raw examples of missing heading markers",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/ovis-heading-examples.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "OvisOCR3",
+        "description": "A compact visual language model from ATH-MaaS for document parsing and other OCR tasks. This row uses its Markdown task.",
+        "url": "https://huggingface.co/ATH-MaaS/OvisOCR3",
+        "aliases": [
+          "OvisOCR3"
+        ]
+      },
+      {
+        "name": "vLLM Metal",
+        "description": "A community-maintained vLLM hardware plugin that runs supported models on Apple GPUs through MLX. It uses different kernels from NVIDIA Triton.",
+        "url": "https://github.com/vllm-project/vllm-metal",
+        "aliases": [
+          "vLLM Metal",
+          "vllm-metal"
+        ]
+      },
+      {
+        "name": "BF16",
+        "description": "A 16-bit floating-point weight format. These are the original published weights, not a smaller quantized conversion.",
+        "url": "https://huggingface.co/ATH-MaaS/OvisOCR3",
+        "aliases": [
+          "BF16"
+        ]
+      }
+    ],
+    "training": []
+  },
+  "minicpm_ocr10_official_ollama": {
+    "family": "Official MiniCPM package with quantized recognition and speculative decoding",
+    "summary": "MiniCPM’s official package rotates pages, detects layout, recognizes crops through Ollama with Q8 weights and DSpark, then assembles its native Markdown.",
+    "stages": [
+      {
+        "title": "Render the same 32 pages",
+        "detail": "Render fixed physical pages at 200 DPI. Treat each PNG as a separate document with --split-images. The package receives pixels only; no reference labels, native PDF text or adjacent-page context."
+      },
+      {
+        "title": "Run the package’s page and layout processing",
+        "detail": "minicpm-ocr 1.0.5 uses its orientation models and native PaddleX PP-DocLayoutV3 on CPU, threshold 0.3. It chooses the crops, their order and labels, and the per-class prompts. Chart and seal recognition stay enabled."
+      },
+      {
+        "title": "Recognize crops through official Ollama deployment",
+        "detail": "Ollama 0.40.17 loads the official Q8_0 MiniCPM main model, F16 4× vision projector and matching Q8_0 DSpark draft. DSpark proposes token blocks and the main model verifies them. Logs show 25/25 main-model layers and 6/6 draft layers offloaded to the GPU, and accepted draft tokens."
+      },
+      {
+        "title": "Keep the package’s heading formatter",
+        "detail": "Use the default numbered-title Markdown assembly without changes. Document-title blocks become H1. Paragraph titles are assigned markers using their number prefix; unnumbered paragraph titles become H2. We do not repair the resulting depths."
+      },
+      {
+        "title": "Check completion and score",
+        "detail": "The package reports 32 successful pages and 447 recognition blocks, with zero failed pages or blocks. Native Markdown yields 71 predictions: 16 correct title-level pairs, 52 wrong levels and 3 extra headings. Nine reference titles are missed."
+      }
+    ],
+    "parameters": [
+      [
+        "Package",
+        "minicpm-ocr==1.0.5; paddlepaddle==3.3.1; paddleocr==3.7.0; paddlex==3.7.2"
+      ],
+      [
+        "Main and vision files",
+        "MiniCPM-OCR-1_0-Q8_0.gguf and mmproj-model-f16-4x.gguf; openbmb/MiniCPM-OCR-1.0-gguf @0133ad8db635210441a55dcf421e25bfb9915142"
+      ],
+      [
+        "Draft file",
+        "dspark-MiniCPM-OCR-1_0-Q8_0.gguf; openbmb/MiniCPM-OCR-1.0-DSpark-gguf @cab493a5a26516a1c4c6e07c73b4470ff854a898"
+      ],
+      [
+        "Weight verification",
+        "The runner verifies that Ollama’s registered main, projector and draft blob hashes match the pinned official files."
+      ],
+      [
+        "Runtime",
+        "Ollama 0.40.17; llama.cpp engine on Apple M4 Pro Metal; 48 GB unified memory"
+      ],
+      [
+        "Sampling",
+        "temperature=0; top_p=0.001; top_k=1; repeat_penalty=1; Ollama num_ctx=8192; draft_num_predict=15"
+      ],
+      [
+        "Concurrency",
+        "One model configuration and one recognition request at a time. SDK queue_mode=concurrent can group regions across pages; max_workers=1 and page_workers=1; layout/recognition overlap=False."
+      ],
+      [
+        "Layout and orientation",
+        "Native PP-DocLayoutV3, threshold=0.3, nms=True; SDK orientation models downloaded and warmed before the scored run"
+      ],
+      [
+        "Output budgets",
+        "SDK class defaults: paragraph/doc titles 512; body text 4096; table 8192; display formula 2048; chart 4096; seal 256"
+      ],
+      [
+        "Timing",
+        "465.87 seconds measured for 32 pages (14.56 seconds/page). Includes rendering and the complete CPU pipeline initialization. Ollama weights were loaded by the cover smoke test."
+      ],
+      [
+        "Result",
+        "Joint F0.5 22.2%; 16/77 correct title-level pairs; 3 extra predictions; heading metrics unchanged from the earlier BF16 MLX adaptation."
+      ]
+    ],
+    "sections": [
+      {
+        "title": "Which components were trained",
+        "paragraphs": [
+          "The main model, vision projector and DSpark draft are upstream published models. We did not train or fine-tune them. Q8_0 stores the main and draft weights in an 8-bit quantized format; the projector stays in F16. This differs from the earlier original-BF16 run."
+        ]
+      },
+      {
+        "title": "What this rerun establishes",
+        "paragraphs": [
+          "Running the full official package on its documented Mac deployment did not improve the heading-level counts. Its native formatter still disagrees with our reference hierarchy. This result describes the complete configuration and does not isolate the recognition weights from layout and assembly.",
+          "The package queues crops across the sample. Our measured time is for all 32 pages; the table’s per-page time is that total divided by 32, not a claim that each individual page completed in 14.56 seconds."
+        ]
+      }
+    ],
+    "limitation": "Official Ollama route with Q8 main/draft weights, not the BF16 NVIDIA deployment from the published field chart. The reference labels are not independently human-validated.",
+    "sources": [
+      {
+        "label": "Official Ollama deployment instructions",
+        "url": "https://github.com/OpenBMB/MiniCPM-OCR/blob/main/docs/ollama_deploy.md"
+      },
+      {
+        "label": "Official main model and projector",
+        "url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0-gguf"
+      },
+      {
+        "label": "Official DSpark draft",
+        "url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0-DSpark-gguf"
+      },
+      {
+        "label": "Exact runner",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_minicpm.py"
+      },
+      {
+        "label": "Pinned files and hashes",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/official-pipelines.json"
+      },
+      {
+        "label": "Measured evidence",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/minicpm_ocr10_official_ollama.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "MiniCPM-OCR",
+        "description": "OpenBMB’s document-recognition model and official parsing package. The package also performs layout detection and Markdown assembly.",
+        "url": "https://github.com/OpenBMB/MiniCPM-OCR",
+        "aliases": [
+          "MiniCPM",
+          "minicpm-ocr"
+        ]
+      },
+      {
+        "name": "DSpark",
+        "description": "A smaller draft model proposes several tokens at once; the main model checks them. Accepted draft tokens can reduce the number of main-model decoding steps.",
+        "url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0-DSpark",
+        "aliases": [
+          "DSpark"
+        ]
+      },
+      {
+        "name": "Ollama",
+        "description": "The local model server used by this official deployment. This run executes its model layers on Metal.",
+        "url": "https://github.com/ollama/ollama",
+        "aliases": [
+          "Ollama"
+        ]
+      },
+      {
+        "name": "Q8_0",
+        "description": "An 8-bit GGUF weight format. It is a quantized model file, so this row is distinct from the earlier BF16 configuration.",
+        "url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0-gguf",
+        "aliases": [
+          "Q8_0",
+          "Q8"
+        ]
+      }
+    ],
+    "training": []
+  },
+  "xiaomi_ocr0_official_metal": {
+    "family": "Two-stage OCR · CPU layout and Metal recognition",
+    "summary": "Run Xiaomi’s published two-stage parsing code with CPU layout and a Metal recognition server. Preserve its default Markdown hierarchy; do not correct levels using WFP labels.",
+    "stages": [
+      {
+        "title": "Render each audited PDF page",
+        "detail": "Render the same 32 physical pages at 200 DPI in RGB. No native PDF text, document tags or reference headings enter inference."
+      },
+      {
+        "title": "Locate text, titles, tables and formulas",
+        "detail": "Run native PP-DocLayoutV3 through PaddleX on CPU with the published benchmark threshold 0.25. Xiaomi’s upstream serializer preserves the detected regions and reading order."
+      },
+      {
+        "title": "Recognize each crop with Xiaomi-OCR-0",
+        "detail": "The unchanged upstream CLI sends one region at a time to vLLM Metal. Original BF16 weights receive the official text, formula or table prompt; tables use Xiaomi’s structured table tokens."
+      },
+      {
+        "title": "Apply the upstream retry and assembly code",
+        "detail": "Use the official repetition retry policy, then convert formulas and tables and assemble the page. The default title_profile=\"v2\" makes document titles H1 and paragraph titles H2. No retry was triggered across these 32 pages."
+      },
+      {
+        "title": "Score the native Markdown headings",
+        "detail": "Match each predicted title to a reference on the same physical page, then require the exact H level. The result is 31 correct pairs, 37 wrong levels, nine missed titles and three extra predictions."
+      }
+    ],
+    "parameters": [
+      [
+        "Weights",
+        "xiaomi-research/Xiaomi-OCR-0, original BF16; revision bbd8cf8d21f256b3644b44cb860f3a7cecb93c30"
+      ],
+      [
+        "Upstream code",
+        "SeerRay-Lab/Xiaomi-OCR-0, revision 4abc240285b69a2965cf64762101ddb4ab35f32d"
+      ],
+      [
+        "Layout",
+        "PaddleX 3.7.2 / PaddlePaddle 3.3.1; native PP-DocLayoutV3; CPU; threshold=0.25"
+      ],
+      [
+        "Recognition runtime",
+        "vLLM 0.34.0 with vllm-metal 0.34.0; original BF16; one concurrent sequence; seed=42; GPU memory fraction=0.8"
+      ],
+      [
+        "Decoding",
+        "temperature=0; top_p=0.8; presence_penalty=0; repetition_penalty=1; max_tokens=16384; timeout=600 seconds"
+      ],
+      [
+        "Repetition retry",
+        "Enabled; retry presence penalty=1.5; same-character run=128; minimum repeats=8; minimum repeated characters=512; ratio=0.5; maximum unit=256 characters"
+      ],
+      [
+        "Assembly",
+        "Default MergeOptions(title_profile=\"v2\"); no number-based title profile or hierarchy repair"
+      ],
+      [
+        "Concurrency",
+        "One OCR model at a time; one page and one upstream worker at a time"
+      ]
+    ],
+    "limitation": "The default assembler limits detected title regions to H1/H2. This is a measurement of the complete local pipeline, not an isolated test of the recognition weights or a reproduction of CUDA benchmark throughput.",
+    "sources": [
+      {
+        "label": "Model / Hugging Face",
+        "url": "https://huggingface.co/xiaomi-research/Xiaomi-OCR-0"
+      },
+      {
+        "label": "Official evaluation instructions",
+        "url": "https://github.com/SeerRay-Lab/Xiaomi-OCR-0/blob/4abc240285b69a2965cf64762101ddb4ab35f32d/evaluation_pipeline/README.md"
+      },
+      {
+        "label": "Official heading formatter",
+        "url": "https://github.com/SeerRay-Lab/Xiaomi-OCR-0/blob/4abc240285b69a2965cf64762101ddb4ab35f32d/postprocess/markdown_merge.py#L301"
+      },
+      {
+        "label": "Benchmark runner",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_xiaomi.py"
+      },
+      {
+        "label": "Measured evidence and predictions",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/xiaomi_ocr0_official_metal.json"
+      },
+      {
+        "label": "Reproduction and runtime differences",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/official-pipelines.md"
+      },
+      {
+        "label": "Metal runtime",
+        "url": "https://github.com/vllm-project/vllm-metal/tree/v0.34.0"
+      }
+    ],
+    "training": [],
+    "sections": [
+      {
+        "title": "What changed from the earlier Xiaomi row",
+        "paragraphs": [
+          "The earlier trial sent each complete page directly to Xiaomi through MLX. This run uses the upstream layout, crop recognition, table conversion and page assembly pipeline. Correct title-level pairs increase from 29 to 31 out of 77; joint F0.5 increases from 39.7% to 42.9%.",
+          "The pipeline remains adapted to this Mac: layout uses CPU, and recognition uses vLLM Metal instead of the documented CUDA servers. The model weights and upstream recognition/assembly code are pinned."
+        ]
+      },
+      {
+        "title": "Why the heading levels are limited",
+        "paragraphs": [
+          "We executed the upstream paragraph-title formatter on “# Introduction”, “### Methods” and “1.1 Features”. It returned H2 for all three. In the actual mid-term report, page 26, both “1. Introduction” and “1.1 EVALUATION FEATURES” are H2. The ordinary paragraph beginning “3. The MTE’s key features are” is also emitted as H2.",
+          "The saved region field named merged has already passed through assembly. It is not an untouched model response. We therefore do not claim the recognition model itself chose every reported level."
+        ]
+      },
+      {
+        "title": "What the timing includes",
+        "paragraphs": [
+          "Measured total: 7 min 52 sec for 32 pages, averaging 14.8 seconds per page. Includes rendering, CPU layout, launching the upstream command separately for each page, recognition, assembly and saving. CPU layout initialization took a separate 2.0 seconds; recognition weights were already loaded after the cover smoke test.",
+          "All 32 pages completed without reported recognition failures. The upstream retry reports show zero repetition retries. Complete per-request finish reasons are unavailable, so token-limit hits are not reported as zero. Only this OCR model was running; unrelated host workloads were not controlled."
+        ]
+      }
+    ],
+    "terms": [
+      {
+        "name": "PP-DocLayoutV3",
+        "description": "Paddle’s model for locating and classifying page regions, such as a title, paragraph, table or formula.",
+        "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3",
+        "aliases": [
+          "PP-DocLayoutV3"
+        ]
+      },
+      {
+        "name": "BF16",
+        "description": "A 16-bit floating-point format for model weights. This run uses the original weights rather than a quantized conversion.",
+        "url": "https://huggingface.co/xiaomi-research/Xiaomi-OCR-0",
+        "aliases": [
+          "BF16"
+        ]
+      },
+      {
+        "name": "vLLM Metal",
+        "description": "A plugin that runs supported vLLM models on Apple’s Metal GPU backend. It differs from the CUDA runtime used in the published benchmark.",
+        "url": "https://github.com/vllm-project/vllm-metal",
+        "aliases": [
+          "vLLM Metal"
+        ]
+      }
+    ]
   }
 }

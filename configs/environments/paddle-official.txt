@@ -1,0 +1,6 @@
+# Official PaddleOCR Apple Silicon pipeline; recognition server uses field-mlx.txt.
+paddlepaddle==3.3.1
+paddleocr[doc-parser]==3.7.0
+paddlex[ocr]==3.7.2
+pymupdf==2.1.0
+markdown-it-py==4.0.0

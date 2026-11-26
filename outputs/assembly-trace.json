@@ -1,0 +1,162 @@
+[
+  {
+    "method": "minicpm_ocr10",
+    "document": "midterm",
+    "page": 26,
+    "raw_region": "1. Introduction",
+    "assembled_title": "### 1. Introduction",
+    "raw_page_sha256": "ca2b15c035ffc42bddaf035ce1dffebcf6ab210d99c42feedc2b4255cc3919d4"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "midterm",
+    "page": 26,
+    "raw_region": "1.1 EVALUATION FEATURES",
+    "assembled_title": "### 1.1 EVALUATION FEATURES",
+    "raw_page_sha256": "ca2b15c035ffc42bddaf035ce1dffebcf6ab210d99c42feedc2b4255cc3919d4"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "midterm",
+    "page": 26,
+    "raw_region": "3. The MTE's key features are:",
+    "assembled_title": "### 3. The MTE's key features are:",
+    "raw_page_sha256": "ca2b15c035ffc42bddaf035ce1dffebcf6ab210d99c42feedc2b4255cc3919d4"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "Introduction",
+    "assembled_title": "## Introduction",
+    "raw_page_sha256": "9d554b2a38bff3678b8709444f117030d12ac18c26467b7ad8c8399d7619ad18"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "1.1. Evaluation features",
+    "assembled_title": "#### 1.1. Evaluation features",
+    "raw_page_sha256": "9d554b2a38bff3678b8709444f117030d12ac18c26467b7ad8c8399d7619ad18"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "1.2. Context",
+    "assembled_title": "#### 1.2. Context",
+    "raw_page_sha256": "9d554b2a38bff3678b8709444f117030d12ac18c26467b7ad8c8399d7619ad18"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "Geography, Demography, and Government",
+    "assembled_title": "## Geography, Demography, and Government",
+    "raw_page_sha256": "9d554b2a38bff3678b8709444f117030d12ac18c26467b7ad8c8399d7619ad18"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "National policies and Sustainable Development Goals (SDG)",
+    "assembled_title": "## National policies and Sustainable Development Goals (SDG)",
+    "raw_page_sha256": "9d554b2a38bff3678b8709444f117030d12ac18c26467b7ad8c8399d7619ad18"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "targeting",
+    "page": 24,
+    "raw_region": "1 Introduction",
+    "assembled_title": "## 1 Introduction",
+    "raw_page_sha256": "f29ae0f3290b33c24eaf6a631e1f4472c4e6bb132b38826b672f458266d5d964"
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "targeting",
+    "page": 24,
+    "raw_region": "1.1 Evaluation features",
+    "assembled_title": "### 1.1 Evaluation features",
+    "raw_page_sha256": "f29ae0f3290b33c24eaf6a631e1f4472c4e6bb132b38826b672f458266d5d964"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "midterm",
+    "page": 26,
+    "raw_region": "1. Introduction",
+    "assembled_title": "### 1. Introduction",
+    "raw_page_sha256": "daef23d475ffe61827df33976780634966851b1814b483ff2873d6178613128c"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "midterm",
+    "page": 26,
+    "raw_region": "1.1 EVALUATION FEATURES",
+    "assembled_title": "### 1.1 EVALUATION FEATURES",
+    "raw_page_sha256": "daef23d475ffe61827df33976780634966851b1814b483ff2873d6178613128c"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "midterm",
+    "page": 26,
+    "raw_region": "3. The MTE's key features are:",
+    "assembled_title": "### 3. The MTE's key features are:",
+    "raw_page_sha256": "daef23d475ffe61827df33976780634966851b1814b483ff2873d6178613128c"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "Introduction",
+    "assembled_title": "## Introduction",
+    "raw_page_sha256": "1888bc8cd0eb9c3e188e09e7743f3a997b0300e865ba692b3dcb1a5de2a7b92f"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "1.1. Evaluation features",
+    "assembled_title": "#### 1.1. Evaluation features",
+    "raw_page_sha256": "1888bc8cd0eb9c3e188e09e7743f3a997b0300e865ba692b3dcb1a5de2a7b92f"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "1.2. Context",
+    "assembled_title": "#### 1.2. Context",
+    "raw_page_sha256": "1888bc8cd0eb9c3e188e09e7743f3a997b0300e865ba692b3dcb1a5de2a7b92f"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "Geography, Demography, and Government",
+    "assembled_title": "## Geography, Demography, and Government",
+    "raw_page_sha256": "1888bc8cd0eb9c3e188e09e7743f3a997b0300e865ba692b3dcb1a5de2a7b92f"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "page": 20,
+    "raw_region": "National policies and Sustainable Development Goals (SDG)",
+    "assembled_title": "## National policies and Sustainable Development Goals (SDG)",
+    "raw_page_sha256": "1888bc8cd0eb9c3e188e09e7743f3a997b0300e865ba692b3dcb1a5de2a7b92f"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "targeting",
+    "page": 24,
+    "raw_region": "1 Introduction",
+    "assembled_title": "## 1 Introduction",
+    "raw_page_sha256": "50e31c4e2fbb9569fac00139be059a318a876fd2af915262796c57591b67f3e7"
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "targeting",
+    "page": 24,
+    "raw_region": "1.1 Evaluation features",
+    "assembled_title": "### 1.1 Evaluation features",
+    "raw_page_sha256": "50e31c4e2fbb9569fac00139be059a318a876fd2af915262796c57591b67f3e7"
+  }
+]
