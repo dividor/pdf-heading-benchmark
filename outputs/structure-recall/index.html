@@ -93,6 +93,16 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .comparison-wrong { background: #fff4d9; }
 .comparison-missing { background: #fff0f0; }
 .comparison-extra { background: #f5edff; }
+
+/* Show the run itself first; keep long records available on demand. */
+.technique-shell > details { border-top: 1px solid #cbdde4; padding: 14px 0; margin: 0; }
+.technique-shell > details > summary { cursor: pointer; font-weight: 650; }
+.technique-shell > .prediction-comparison { background: transparent; border-radius: 0; border-right: 0; border-bottom: 0; border-left: 0; }
+.technique-shell > .technique-limit { margin-top: 16px; }
+.technique-shell .technique-flow { margin: 18px 0; }
+.technique-shell .technique-flow li { padding: 12px; }
+.technique-shell .technique-description { margin-bottom: 12px; }
+.technique-shell .technique-links { margin: 14px 0; }
 </style></head><body><main><h1>OUR METHOD: retraining for greater coverage</h1>
 <p><strong>Outcome: coverage improved over the confidence-filtered model, but the practical quality problem remains.</strong> On the original 77-heading benchmark, this experiment recovers 66 titles (85.7%), with 50 at the right level (64.9%) and 21 extras. The confidence-filtered model recovered 39 titles, with 34 at the right level and two extras. The older unfiltered context model already had 50 correct heading-level pairs and 23 extras. This is not a breakthrough or a production-ready result.</p>
 <p>Published run: <strong>structure-recall/run-002</strong>. It repeats the initial trial after adding explicit Python type annotations; the selected settings and heading predictions are unchanged. Run directories are kept separate.</p>

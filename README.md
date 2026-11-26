@@ -2,13 +2,21 @@
 
 How well do PDF parsers recover **heading text, page numbers and hierarchy levels** from long evaluation reports?
 
-This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 28 completed local configurations with scores, processing times and links to the exact method code.
+This repository packages a small experiment on four public World Food Programme reports. It includes runnable extraction methods, frozen annotations and predictions, and a reproducible on-premises league table of 34 completed local configurations with scores, processing times and links to the exact method code.
 
 **TL;DR:** Larger models can do a great job of recovering document structure, but their compute overhead and processing times may prevent their use in many practical settings. The strongest configuration here, Qwen3.6-27B with sampled visual memory, recovered 65/77 headings at the correct level (84.4%), all 77 titles, and two extra headings. Its heading stage took **54.0 minutes in the sequential rerun**, versus 61.8 minutes originally, for 32 sampled pages on a shared 48 GB Apple M4 Pro, excluding candidate extraction. These observations do not establish a universal runtime or isolate model size from the rest of the configuration.
 
 Chandra OCR 2 reached 53/77; LightOnOCR-3-0.8B and 4B each reached 46/77. These are configuration-specific results on 32 selected pages, annotated visually by one assistant. They do not establish general document accuracy. Hardware, electricity, setup, review and licensing costs were not measured in dollars.
 
 [Full local scores, timings and methods (Markdown)](outputs/report/league_table.md) · [HTML report](outputs/report/index.html) · [Reproducibility and limitations](docs/reproducibility.md) · [Source documents](configs/corpus.json)
+
+## EvidenceLab and full-page OCR
+
+EvidenceLab’s complete parsing pipeline is now included, using the pinned Docker image from the local service. Its final contents list gets **37/77 heading-level pairs correct**, with **7 extra headings** and **51.8% joint F0.5**. It processes the 523 pages in **9 min 50 sec** on four CPU cores inside Docker. This includes its hierarchical post-processor and final TOC normalization.
+
+Forced full-page RapidOCR in Docling gets **15/77** correct pairs and **21.2% joint F0.5**, compared with **16/77** and **22.4%** without OCR. It took **9 min 23 sec** for 523 pages. OCR did not improve these selectable-text reports.
+
+[Exact settings, model pins and reproduction commands](docs/evidencelab-and-ocr.md). Each method’s information dialog now shows its own short processing diagram. Settings and predictions expand on demand; shared explanations live in the Methods tab.
 
 ## Consistent timing and sequential GPU reruns
 

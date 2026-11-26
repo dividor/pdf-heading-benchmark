@@ -93,6 +93,16 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .comparison-wrong { background: #fff4d9; }
 .comparison-missing { background: #fff0f0; }
 .comparison-extra { background: #f5edff; }
+
+/* Show the run itself first; keep long records available on demand. */
+.technique-shell > details { border-top: 1px solid #cbdde4; padding: 14px 0; margin: 0; }
+.technique-shell > details > summary { cursor: pointer; font-weight: 650; }
+.technique-shell > .prediction-comparison { background: transparent; border-radius: 0; border-right: 0; border-bottom: 0; border-left: 0; }
+.technique-shell > .technique-limit { margin-top: 16px; }
+.technique-shell .technique-flow { margin: 18px 0; }
+.technique-shell .technique-flow li { padding: 12px; }
+.technique-shell .technique-description { margin-bottom: 12px; }
+.technique-shell .technique-links { margin: 14px 0; }
 img{max-width:100%}</style></head><body><main><h1>Training a small local heading model: second experiment</h1>
 <p><strong>Current comparison metric:</strong> the league now ranks by joint heading-and-level F0.5 with joint precision and joint recall alongside it; no league-table PASS/FAIL gate. <a href="../../docs/joint-metric.md">Definitions and worked example</a> · <a href="../structure-precision/report.md">New precision experiment</a>. The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.</p>
 <p>The selected model improved exact heading-group-and-level F1 from <strong>71.6% to 85.7%</strong> on 32 fully reviewed pages from four fresh WFP reports. It recovered all 38 reference groups, assigned 36 the correct level, and emitted eight extra groups. This is a small pilot using one assistant's labels, without independent human adjudication.</p>

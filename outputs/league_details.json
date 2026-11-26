@@ -40108,5 +40108,1966 @@
       }
     ],
     "extras": []
+  },
+  {
+    "document": "targeting",
+    "method": "evidencelab",
+    "gold": 15,
+    "predicted": 13,
+    "matched": 11,
+    "correct_level": 7,
+    "matches": [
+      {
+        "reference": {
+          "page": 11,
+          "level": 4,
+          "title": "Appropriateness"
+        },
+        "prediction": {
+          "title": "Appropriateness",
+          "level": 1,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 24,
+          "level": 1,
+          "title": "1 Introduction"
+        },
+        "prediction": {
+          "title": "1 Introduction",
+          "level": 1,
+          "page": 24
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 24,
+          "level": 2,
+          "title": "1.1 Evaluation features"
+        },
+        "prediction": {
+          "title": "1.1 Evaluation features",
+          "level": 2,
+          "page": 24
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 1,
+          "title": "2 Evaluation findings"
+        },
+        "prediction": {
+          "title": "2 Evaluation findings",
+          "level": 1,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 2,
+          "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?"
+        },
+        "prediction": {
+          "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritiz",
+          "level": 2,
+          "page": 33
+        },
+        "similarity": 0.9640287769784173
+      },
+      {
+        "reference": {
+          "page": 67,
+          "level": 4,
+          "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied"
+        },
+        "prediction": {
+          "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+          "level": 4,
+          "page": 67
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 96,
+          "level": 1,
+          "title": "3 Conclusions and recommendations"
+        },
+        "prediction": {
+          "title": "3 Conclusions and recommendations",
+          "level": 1,
+          "page": 96
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 96,
+          "level": 2,
+          "title": "3.1 Conclusions"
+        },
+        "prediction": {
+          "title": "3.1 Conclusions",
+          "level": 2,
+          "page": 96
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 109,
+          "level": 2,
+          "title": "Objectives and users of the evaluation"
+        },
+        "prediction": {
+          "title": "Objectives and users of the evaluation",
+          "level": 3,
+          "page": 109
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 109,
+          "level": 2,
+          "title": "Evaluation questions"
+        },
+        "prediction": {
+          "title": "Evaluation questions",
+          "level": 3,
+          "page": 109
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 109,
+          "level": 2,
+          "title": "Methodology and ethical considerations"
+        },
+        "prediction": {
+          "title": "Methodology and ethical considerations",
+          "level": 3,
+          "page": 109
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 11,
+        "level": 3,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative."
+      },
+      {
+        "page": 33,
+        "level": 3,
+        "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation"
+      },
+      {
+        "page": 33,
+        "level": 4,
+        "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process"
+      },
+      {
+        "page": 96,
+        "level": 3,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts."
+      }
+    ],
+    "extras": [
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and priorit",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified",
+        "level": 4,
+        "page": 33
+      }
+    ]
+  },
+  {
+    "document": "midterm",
+    "method": "evidencelab",
+    "gold": 18,
+    "predicted": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "matches": [
+      {
+        "reference": {
+          "page": 8,
+          "level": 1,
+          "title": "Executive summary"
+        },
+        "prediction": {
+          "title": "Executive summary",
+          "level": 2,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 8,
+          "level": 2,
+          "title": "INTRODUCTION"
+        },
+        "prediction": {
+          "title": "INTRODUCTION",
+          "level": 3,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 8,
+          "level": 3,
+          "title": "What was evaluated?"
+        },
+        "prediction": {
+          "title": "What was evaluated?",
+          "level": 3,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 8,
+          "level": 3,
+          "title": "Why was the evaluation conducted and in which context?"
+        },
+        "prediction": {
+          "title": "Why was the evaluation conducted and in which context?",
+          "level": 3,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 10,
+          "level": 2,
+          "title": "FINDINGS"
+        },
+        "prediction": {
+          "title": "FINDINGS",
+          "level": 3,
+          "page": 10
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 10,
+          "level": 3,
+          "title": "Relevance and strategic focus of the design of the strategic plan"
+        },
+        "prediction": {
+          "title": "Relevance and strategic focus of the design of the strategic plan",
+          "level": 4,
+          "page": 10
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 26,
+          "level": 1,
+          "title": "1. Introduction"
+        },
+        "prediction": {
+          "title": "1. Introduction",
+          "level": 2,
+          "page": 26
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 26,
+          "level": 2,
+          "title": "1.1 EVALUATION FEATURES"
+        },
+        "prediction": {
+          "title": "1.1 EVALUATION FEATURES",
+          "level": 3,
+          "page": 26
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 27,
+          "level": 2,
+          "title": "1.2 CONTEXT"
+        },
+        "prediction": {
+          "title": "1.2 CONTEXT",
+          "level": 3,
+          "page": 27
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 27,
+          "level": 3,
+          "title": "Global economic, climate, conflict and inequality trends"
+        },
+        "prediction": {
+          "title": "Global economic, climate, conflict and inequality trends",
+          "level": 4,
+          "page": 27
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 36,
+          "level": 1,
+          "title": "2. Evaluation findings"
+        },
+        "prediction": {
+          "title": "2. Evaluation findings",
+          "level": 2,
+          "page": 36
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 36,
+          "level": 2,
+          "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN"
+        },
+        "prediction": {
+          "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+          "level": 3,
+          "page": 36
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 36,
+          "level": 3,
+          "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?"
+        },
+        "prediction": {
+          "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+          "level": 4,
+          "page": 36
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 61,
+          "level": 3,
+          "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?"
+        },
+        "prediction": {
+          "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding",
+          "level": 3,
+          "page": 61
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 87,
+          "level": 1,
+          "title": "3. Conclusions and recommendations"
+        },
+        "prediction": {
+          "title": "3. Conclusions and recommendations",
+          "level": 1,
+          "page": 87
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 87,
+          "level": 2,
+          "title": "2.3 3.1 CONCLUSIONS"
+        },
+        "prediction": {
+          "title": "2.3 3.1 CONCLUSIONS",
+          "level": 2,
+          "page": 87
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 98,
+          "level": 1,
+          "title": "Annex III. Methodology"
+        },
+        "prediction": {
+          "title": "Annex III. Methodology",
+          "level": 2,
+          "page": 98
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 98,
+          "level": 2,
+          "title": "Overall approach"
+        },
+        "prediction": {
+          "title": "Overall approach",
+          "level": 3,
+          "page": 98
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [],
+    "extras": []
+  },
+  {
+    "document": "indonesia",
+    "method": "evidencelab",
+    "gold": 21,
+    "predicted": 17,
+    "matched": 17,
+    "correct_level": 15,
+    "matches": [
+      {
+        "reference": {
+          "page": 7,
+          "level": 1,
+          "title": "Executive summary"
+        },
+        "prediction": {
+          "title": "Executive summary",
+          "level": 1,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 2,
+          "title": "Introduction"
+        },
+        "prediction": {
+          "title": "Introduction",
+          "level": 2,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Evaluation features"
+        },
+        "prediction": {
+          "title": "Evaluation features",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Context"
+        },
+        "prediction": {
+          "title": "Context",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 11,
+          "level": 2,
+          "title": "Evaluation key insights and conclusions"
+        },
+        "prediction": {
+          "title": "Evaluation key insights and conclusions",
+          "level": 2,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 11,
+          "level": 3,
+          "title": "Insight 1. CSP architecture"
+        },
+        "prediction": {
+          "title": "Insight 1. CSP architecture",
+          "level": 3,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 11,
+          "level": 3,
+          "title": "Insight 2. Country capacity strengthening"
+        },
+        "prediction": {
+          "title": "Insight 2. Country capacity strengthening",
+          "level": 3,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 1,
+          "title": "Introduction"
+        },
+        "prediction": {
+          "title": "Introduction",
+          "level": 1,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 2,
+          "title": "1.1. Evaluation features"
+        },
+        "prediction": {
+          "title": "1.1. Evaluation features",
+          "level": 2,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 2,
+          "title": "1.2. Context"
+        },
+        "prediction": {
+          "title": "1.2. Context",
+          "level": 2,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 3,
+          "title": "Geography, Demography, and Government"
+        },
+        "prediction": {
+          "title": "Geography, Demography, and Government",
+          "level": 3,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 3,
+          "title": "National policies and Sustainable Development Goals (SDG)"
+        },
+        "prediction": {
+          "title": "National policies and Sustainable Development Goals (SDG)",
+          "level": 3,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 1,
+          "title": "Evaluation findings"
+        },
+        "prediction": {
+          "title": "Evaluation findings",
+          "level": 1,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 42,
+          "level": 4,
+          "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes"
+        },
+        "prediction": {
+          "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+          "level": 3,
+          "page": 42
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 48,
+          "level": 5,
+          "title": "SO1: Evidence and Data"
+        },
+        "prediction": {
+          "title": "SO1: Evidence and Data",
+          "level": 3,
+          "page": 48
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 68,
+          "level": 1,
+          "title": "Conclusions and recommendations"
+        },
+        "prediction": {
+          "title": "Conclusions and recommendations",
+          "level": 1,
+          "page": 68
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 68,
+          "level": 2,
+          "title": "3.1. Conclusions"
+        },
+        "prediction": {
+          "title": "3.1. Conclusions",
+          "level": 2,
+          "page": 68
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 33,
+        "level": 2,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?"
+      },
+      {
+        "page": 33,
+        "level": 3,
+        "title": "EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government?"
+      },
+      {
+        "page": 33,
+        "level": 3,
+        "title": "EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs?"
+      },
+      {
+        "page": 56,
+        "level": 3,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?"
+      }
+    ],
+    "extras": []
+  },
+  {
+    "document": "colombia",
+    "method": "evidencelab",
+    "gold": 23,
+    "predicted": 22,
+    "matched": 17,
+    "correct_level": 10,
+    "matches": [
+      {
+        "reference": {
+          "page": 7,
+          "level": 1,
+          "title": "Resumen ejecutivo"
+        },
+        "prediction": {
+          "title": "Resumen ejecutivo",
+          "level": 2,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 2,
+          "title": "Introducción"
+        },
+        "prediction": {
+          "title": "Introducción",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Características de la evaluación"
+        },
+        "prediction": {
+          "title": "Características de la evaluación",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Contexto"
+        },
+        "prediction": {
+          "title": "Contexto",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 13,
+          "level": 2,
+          "title": "Hallazgos derivados de la evaluación"
+        },
+        "prediction": {
+          "title": "Hallazgos derivados de la evaluación",
+          "level": 3,
+          "page": 13
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 13,
+          "level": 4,
+          "title": "Pertinencia con respecto a las necesidades"
+        },
+        "prediction": {
+          "title": "Pertinencia con respecto a las necesidades",
+          "level": 4,
+          "page": 13
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 1,
+          "title": "1. Introducción"
+        },
+        "prediction": {
+          "title": "1. Introducción",
+          "level": 1,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 2,
+          "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN"
+        },
+        "prediction": {
+          "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+          "level": 2,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 2,
+          "title": "1.2. CONTEXTO"
+        },
+        "prediction": {
+          "title": "1.2. CONTEXTO",
+          "level": 2,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 3,
+          "title": "Contexto general"
+        },
+        "prediction": {
+          "title": "Contexto general",
+          "level": 3,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 42,
+          "level": 1,
+          "title": "2. Resultados de la evaluación"
+        },
+        "prediction": {
+          "title": "2. Resultados de la evaluación",
+          "level": 1,
+          "page": 42
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 56,
+          "level": 4,
+          "title": "Dimensión 2: Entorno político"
+        },
+        "prediction": {
+          "title": "Dimensión 2: Entorno político",
+          "level": 3,
+          "page": 56
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 56,
+          "level": 5,
+          "title": "Productos"
+        },
+        "prediction": {
+          "title": "Productos",
+          "level": 4,
+          "page": 56
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 56,
+          "level": 5,
+          "title": "Resultados"
+        },
+        "prediction": {
+          "title": "Resultados 92",
+          "level": 3,
+          "page": 56
+        },
+        "similarity": 0.9090909090909091
+      },
+      {
+        "reference": {
+          "page": 72,
+          "level": 4,
+          "title": "Productos y logros"
+        },
+        "prediction": {
+          "title": "Productos y logros",
+          "level": 3,
+          "page": 72
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 93,
+          "level": 1,
+          "title": "3. Conclusiones y recomendaciones"
+        },
+        "prediction": {
+          "title": "3. Conclusiones y recomendaciones",
+          "level": 1,
+          "page": 93
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 93,
+          "level": 2,
+          "title": "3.1. CONCLUSIONES"
+        },
+        "prediction": {
+          "title": "3.1. CONCLUSIONES",
+          "level": 2,
+          "page": 93
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 13,
+        "level": 3,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?"
+      },
+      {
+        "page": 13,
+        "level": 3,
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?"
+      },
+      {
+        "page": 42,
+        "level": 2,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?"
+      },
+      {
+        "page": 42,
+        "level": 3,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?"
+      },
+      {
+        "page": 72,
+        "level": 2,
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?"
+      },
+      {
+        "page": 72,
+        "level": 3,
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?"
+      }
+    ],
+    "extras": [
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos est",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "2.1.  PE 1:  ¿EN  QUÉ  MEDIDA  EL  PEP  ESTÁ  BASADO  EN  EVIDENCIA  Y  ORIENTAD",
+        "level": 2,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "2.3.  PE 3:  ¿EN  QUÉ  MEDIDA  EL  PMA  HA  UTILIZADO  SUS  RECURSOS  DE  MANERA",
+        "level": 2,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 3,
+        "page": 72
+      }
+    ]
+  },
+  {
+    "document": "targeting",
+    "method": "docling_ocr",
+    "gold": 15,
+    "predicted": 13,
+    "matched": 13,
+    "correct_level": 1,
+    "matches": [
+      {
+        "reference": {
+          "page": 11,
+          "level": 4,
+          "title": "Appropriateness"
+        },
+        "prediction": {
+          "title": "Appropriateness",
+          "level": 4,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 24,
+          "level": 1,
+          "title": "1 Introduction"
+        },
+        "prediction": {
+          "title": "1 Introduction",
+          "level": 2,
+          "page": 24
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 24,
+          "level": 2,
+          "title": "1.1 Evaluation features"
+        },
+        "prediction": {
+          "title": "1.1 Evaluation features",
+          "level": 3,
+          "page": 24
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 1,
+          "title": "2 Evaluation findings"
+        },
+        "prediction": {
+          "title": "2 Evaluation findings",
+          "level": 2,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 2,
+          "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?"
+        },
+        "prediction": {
+          "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritization?",
+          "level": 3,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 3,
+          "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation"
+        },
+        "prediction": {
+          "title": "2.1.1 WFP's normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+          "level": 4,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 4,
+          "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process"
+        },
+        "prediction": {
+          "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified key aspects of the process",
+          "level": 5,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 67,
+          "level": 4,
+          "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied"
+        },
+        "prediction": {
+          "title": "2.2.1.4  Good practices in reducing targeting errors are unevenly applied",
+          "level": 5,
+          "page": 67
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 96,
+          "level": 1,
+          "title": "3 Conclusions and recommendations"
+        },
+        "prediction": {
+          "title": "3 Conclusions and recommendations",
+          "level": 2,
+          "page": 96
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 96,
+          "level": 2,
+          "title": "3.1 Conclusions"
+        },
+        "prediction": {
+          "title": "3.1 Conclusions",
+          "level": 3,
+          "page": 96
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 109,
+          "level": 2,
+          "title": "Objectives and users of the evaluation"
+        },
+        "prediction": {
+          "title": "Objectives and users of the evaluation",
+          "level": 4,
+          "page": 109
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 109,
+          "level": 2,
+          "title": "Evaluation questions"
+        },
+        "prediction": {
+          "title": "Evaluation questions",
+          "level": 4,
+          "page": 109
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 109,
+          "level": 2,
+          "title": "Methodology and ethical considerations"
+        },
+        "prediction": {
+          "title": "Methodology and ethical considerations",
+          "level": 4,
+          "page": 109
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 11,
+        "level": 3,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative."
+      },
+      {
+        "page": 96,
+        "level": 3,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts."
+      }
+    ],
+    "extras": []
+  },
+  {
+    "document": "midterm",
+    "method": "docling_ocr",
+    "gold": 18,
+    "predicted": 17,
+    "matched": 17,
+    "correct_level": 1,
+    "matches": [
+      {
+        "reference": {
+          "page": 8,
+          "level": 1,
+          "title": "Executive summary"
+        },
+        "prediction": {
+          "title": "Executive summary",
+          "level": 3,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 8,
+          "level": 2,
+          "title": "INTRODUCTION"
+        },
+        "prediction": {
+          "title": "INTRODUCTION",
+          "level": 4,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 8,
+          "level": 3,
+          "title": "What was evaluated?"
+        },
+        "prediction": {
+          "title": "What was evaluated?",
+          "level": 5,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 8,
+          "level": 3,
+          "title": "Why was the evaluation conducted and in which context?"
+        },
+        "prediction": {
+          "title": "Why was the evaluation conducted and in which context?",
+          "level": 5,
+          "page": 8
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 10,
+          "level": 2,
+          "title": "FINDINGS"
+        },
+        "prediction": {
+          "title": "FINDINGS",
+          "level": 4,
+          "page": 10
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 10,
+          "level": 3,
+          "title": "Relevance and strategic focus of the design of the strategic plan"
+        },
+        "prediction": {
+          "title": "Relevance and strategic focus of the design of the strategic plan",
+          "level": 5,
+          "page": 10
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 26,
+          "level": 1,
+          "title": "1. Introduction"
+        },
+        "prediction": {
+          "title": "1. Introduction",
+          "level": 2,
+          "page": 26
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 26,
+          "level": 2,
+          "title": "1.1 EVALUATION FEATURES"
+        },
+        "prediction": {
+          "title": "1.1 EVALUATION FEATURES",
+          "level": 3,
+          "page": 26
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 27,
+          "level": 3,
+          "title": "Global economic, climate, conflict and inequality trends"
+        },
+        "prediction": {
+          "title": "Global economic, climate, conflict and inequality trends",
+          "level": 5,
+          "page": 27
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 36,
+          "level": 1,
+          "title": "2. Evaluation findings"
+        },
+        "prediction": {
+          "title": "2. Evaluation findings",
+          "level": 2,
+          "page": 36
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 36,
+          "level": 2,
+          "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN"
+        },
+        "prediction": {
+          "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+          "level": 3,
+          "page": 36
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 36,
+          "level": 3,
+          "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?"
+        },
+        "prediction": {
+          "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+          "level": 4,
+          "page": 36
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 61,
+          "level": 3,
+          "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?"
+        },
+        "prediction": {
+          "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+          "level": 4,
+          "page": 61
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 87,
+          "level": 1,
+          "title": "3. Conclusions and recommendations"
+        },
+        "prediction": {
+          "title": "3. Conclusions and recommendations",
+          "level": 2,
+          "page": 87
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 87,
+          "level": 2,
+          "title": "2.3 3.1 CONCLUSIONS"
+        },
+        "prediction": {
+          "title": "2.3 3.1 CONCLUSIONS",
+          "level": 3,
+          "page": 87
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 98,
+          "level": 1,
+          "title": "Annex III. Methodology"
+        },
+        "prediction": {
+          "title": "Annex III. Methodology",
+          "level": 1,
+          "page": 98
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 98,
+          "level": 2,
+          "title": "Overall approach"
+        },
+        "prediction": {
+          "title": "Overall approach",
+          "level": 5,
+          "page": 98
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 27,
+        "level": 2,
+        "title": "1.2 CONTEXT"
+      }
+    ],
+    "extras": []
+  },
+  {
+    "document": "indonesia",
+    "method": "docling_ocr",
+    "gold": 21,
+    "predicted": 17,
+    "matched": 17,
+    "correct_level": 4,
+    "matches": [
+      {
+        "reference": {
+          "page": 7,
+          "level": 1,
+          "title": "Executive summary"
+        },
+        "prediction": {
+          "title": "Executive summary",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 2,
+          "title": "Introduction"
+        },
+        "prediction": {
+          "title": "Introduction",
+          "level": 6,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Evaluation features"
+        },
+        "prediction": {
+          "title": "Evaluation features",
+          "level": 6,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Context"
+        },
+        "prediction": {
+          "title": "Context",
+          "level": 6,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 11,
+          "level": 2,
+          "title": "Evaluation key insights and conclusions"
+        },
+        "prediction": {
+          "title": "Evaluation key insights and conclusions",
+          "level": 6,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 11,
+          "level": 3,
+          "title": "Insight 1. CSP architecture"
+        },
+        "prediction": {
+          "title": "Insight 1. CSP architecture",
+          "level": 6,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 11,
+          "level": 3,
+          "title": "Insight 2. Country capacity strengthening"
+        },
+        "prediction": {
+          "title": "Insight 2. Country capacity strengthening",
+          "level": 6,
+          "page": 11
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 1,
+          "title": "Introduction"
+        },
+        "prediction": {
+          "title": "Introduction",
+          "level": 5,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 2,
+          "title": "1.1. Evaluation features"
+        },
+        "prediction": {
+          "title": "1.1. Evaluation features",
+          "level": 2,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 2,
+          "title": "1.2. Context"
+        },
+        "prediction": {
+          "title": "1.2. Context",
+          "level": 2,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 3,
+          "title": "Geography, Demography, and Government"
+        },
+        "prediction": {
+          "title": "Geography, Demography, and Government",
+          "level": 6,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 20,
+          "level": 3,
+          "title": "National policies and Sustainable Development Goals (SDG)"
+        },
+        "prediction": {
+          "title": "National policies and Sustainable Development Goals (SDG)",
+          "level": 6,
+          "page": 20
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 33,
+          "level": 1,
+          "title": "Evaluation findings"
+        },
+        "prediction": {
+          "title": "Evaluation findings",
+          "level": 1,
+          "page": 33
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 42,
+          "level": 4,
+          "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes"
+        },
+        "prediction": {
+          "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+          "level": 6,
+          "page": 42
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 48,
+          "level": 5,
+          "title": "SO1: Evidence and Data"
+        },
+        "prediction": {
+          "title": "s01: Evidence and Data",
+          "level": 6,
+          "page": 48
+        },
+        "similarity": 0.9444444444444444
+      },
+      {
+        "reference": {
+          "page": 68,
+          "level": 1,
+          "title": "Conclusions and recommendations"
+        },
+        "prediction": {
+          "title": "Conclusions and recommendations",
+          "level": 5,
+          "page": 68
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 68,
+          "level": 2,
+          "title": "3.1. Conclusions"
+        },
+        "prediction": {
+          "title": "3.1. Conclusions",
+          "level": 2,
+          "page": 68
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 33,
+        "level": 2,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?"
+      },
+      {
+        "page": 33,
+        "level": 3,
+        "title": "EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government?"
+      },
+      {
+        "page": 33,
+        "level": 3,
+        "title": "EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs?"
+      },
+      {
+        "page": 56,
+        "level": 3,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?"
+      }
+    ],
+    "extras": []
+  },
+  {
+    "document": "colombia",
+    "method": "docling_ocr",
+    "gold": 23,
+    "predicted": 22,
+    "matched": 20,
+    "correct_level": 9,
+    "matches": [
+      {
+        "reference": {
+          "page": 7,
+          "level": 1,
+          "title": "Resumen ejecutivo"
+        },
+        "prediction": {
+          "title": "Resumen ejecutivo",
+          "level": 3,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 2,
+          "title": "Introducción"
+        },
+        "prediction": {
+          "title": "Introducción",
+          "level": 5,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Características de la evaluación"
+        },
+        "prediction": {
+          "title": "Características de la evaluación",
+          "level": 5,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 7,
+          "level": 3,
+          "title": "Contexto"
+        },
+        "prediction": {
+          "title": "Contexto",
+          "level": 5,
+          "page": 7
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 13,
+          "level": 2,
+          "title": "Hallazgos derivados de la evaluación"
+        },
+        "prediction": {
+          "title": "Hallazgos derivados de la evaluación",
+          "level": 5,
+          "page": 13
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 13,
+          "level": 4,
+          "title": "Pertinencia con respecto a las necesidades"
+        },
+        "prediction": {
+          "title": "Pertinencia con respecto a las necesidades",
+          "level": 5,
+          "page": 13
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 13,
+          "level": 3,
+          "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?"
+        },
+        "prediction": {
+          "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+          "level": 5,
+          "page": 13
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 1,
+          "title": "1. Introducción"
+        },
+        "prediction": {
+          "title": "1. Introducción",
+          "level": 1,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 2,
+          "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN"
+        },
+        "prediction": {
+          "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+          "level": 2,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 2,
+          "title": "1.2. CONTEXTO"
+        },
+        "prediction": {
+          "title": "1.2. CONTEXTO",
+          "level": 2,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 28,
+          "level": 3,
+          "title": "Contexto general"
+        },
+        "prediction": {
+          "title": "Contexto general",
+          "level": 5,
+          "page": 28
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 42,
+          "level": 1,
+          "title": "2. Resultados de la evaluación"
+        },
+        "prediction": {
+          "title": "2. Resultados de la evaluación",
+          "level": 1,
+          "page": 42
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 56,
+          "level": 4,
+          "title": "Dimensión 2: Entorno político"
+        },
+        "prediction": {
+          "title": "Dimensión 2: Entorno político",
+          "level": 5,
+          "page": 56
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 56,
+          "level": 5,
+          "title": "Productos"
+        },
+        "prediction": {
+          "title": "Productos",
+          "level": 5,
+          "page": 56
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 56,
+          "level": 5,
+          "title": "Resultados"
+        },
+        "prediction": {
+          "title": "Resultados92",
+          "level": 5,
+          "page": 56
+        },
+        "similarity": 0.9090909090909091
+      },
+      {
+        "reference": {
+          "page": 72,
+          "level": 2,
+          "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?"
+        },
+        "prediction": {
+          "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+          "level": 2,
+          "page": 72
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 72,
+          "level": 3,
+          "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?"
+        },
+        "prediction": {
+          "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+          "level": 5,
+          "page": 72
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 72,
+          "level": 4,
+          "title": "Productos y logros"
+        },
+        "prediction": {
+          "title": "Productos y logros",
+          "level": 5,
+          "page": 72
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 93,
+          "level": 1,
+          "title": "3. Conclusiones y recomendaciones"
+        },
+        "prediction": {
+          "title": "3. Conclusiones y recomendaciones",
+          "level": 1,
+          "page": 93
+        },
+        "similarity": 1.0
+      },
+      {
+        "reference": {
+          "page": 93,
+          "level": 2,
+          "title": "3.1. CONCLUSIONES"
+        },
+        "prediction": {
+          "title": "3.1. CONCLUSIONES",
+          "level": 2,
+          "page": 93
+        },
+        "similarity": 1.0
+      }
+    ],
+    "missing": [
+      {
+        "page": 13,
+        "level": 3,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?"
+      },
+      {
+        "page": 42,
+        "level": 2,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?"
+      },
+      {
+        "page": 42,
+        "level": 3,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?"
+      }
+    ],
+    "extras": [
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 72
+      }
+    ]
   }
 ]

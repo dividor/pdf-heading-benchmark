@@ -93,6 +93,16 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .comparison-wrong { background: #fff4d9; }
 .comparison-missing { background: #fff0f0; }
 .comparison-extra { background: #f5edff; }
+
+/* Show the run itself first; keep long records available on demand. */
+.technique-shell > details { border-top: 1px solid #cbdde4; padding: 14px 0; margin: 0; }
+.technique-shell > details > summary { cursor: pointer; font-weight: 650; }
+.technique-shell > .prediction-comparison { background: transparent; border-radius: 0; border-right: 0; border-bottom: 0; border-left: 0; }
+.technique-shell > .technique-limit { margin-top: 16px; }
+.technique-shell .technique-flow { margin: 18px 0; }
+.technique-shell .technique-flow li { padding: 12px; }
+.technique-shell .technique-description { margin-bottom: 12px; }
+.technique-shell .technique-links { margin: 14px 0; }
 </style></head><body><main><h1>Optimizing heading-and-level quality with few false headings</h1>
 <p>The new candidate raises joint F0.5 from <strong>58.8% to 70.5%</strong> on the historical four-report benchmark and reduces extra headings from <strong>23 to 2</strong>. Heading-detection precision is <strong>95.1%</strong>, just above the agreed 95% gate. It does so by emitting fewer headings: <strong>34/77 correct title-and-level pairs</strong>, down from 50/77. This is a precision/recall trade-off, not an improvement in every measure.</p>
 <h2>What changed</h2>

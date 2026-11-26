@@ -5,7 +5,7 @@ from markdown_it import MarkdownIt
 from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.report_layout import tabbed_report
-from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix
+from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix, method_records
 from pdf_heading_benchmark.timing_format import readable_time
 from pdf_heading_benchmark.timing_updates import latest_timings
 
@@ -191,6 +191,7 @@ def build_report():
     write_json(output / "details.json", [{key: row[key] for key in summary_keys} for row in details])
     rows = report_rows("league_table.json")
     (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
+    (output / "method-records.md").write_text(method_records(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
     diagram = "ocr-field-overview.png"
     (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())

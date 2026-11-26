@@ -12,6 +12,7 @@
     panel.querySelector('h2').focus();
   });
   document.querySelectorAll('.technique-dialog').forEach((panel) => {
+    panel.querySelector('[data-overview]')?.addEventListener('click', () => panel.close());
     panel.querySelector('.technique-close').addEventListener('click', () => panel.close());
     panel.addEventListener('click', (event) => {
       if (event.target === panel) panel.close();

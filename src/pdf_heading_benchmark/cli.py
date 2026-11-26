@@ -33,7 +33,7 @@ def run_method(method: str, root: Path) -> None:
     if not config["steps"]:
         raise ValueError(
             "This pipeline requires its dedicated runner and environment. "
-            "Use the runner and commands in docs/official-pipelines.md."
+            "Use docs/official-pipelines.md, or docs/evidencelab-and-ocr.md for EvidenceLab and Docling OCR."
         )
     manifest = read_json(root / "corpus/manifest.json")
     environment = dict(os.environ, PDF_BENCHMARK_DATA=str(root))

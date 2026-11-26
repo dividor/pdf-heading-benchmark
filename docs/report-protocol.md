@@ -9,8 +9,14 @@
 
 | Approach | What happens | Examples |
 | --- | --- | --- |
-| PDF parser | Read existing text and layout; infer heading styles and hierarchy. | Docling, PyMuPDF4LLM, MinerU basic |
+| PDF parser | Read PDF text or use OCR; infer heading styles and hierarchy. | Docling, PyMuPDF4LLM, MinerU basic |
 | Local vision model | Read page images; generate text and structure. Some configurations add text or document context. | Chandra, Qwen, MiniCPM, Xiaomi, Paddle |
 | OUR METHOD | Use assistant-labeled reports to train small Extra Trees classifiers for line grouping, heading levels and neighboring-heading relationships. No LLM runs at inference. | Original, calibrated and confidence-filtered variants |
 
-Each result’s **Method & predictions** link opens the exact model names, training provenance, parameters, diagram and predictions. [Runnable repository](https://github.com/dividor/pdf-heading-benchmark) · [Reproduction guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/reproducibility.md).
+A row’s **i** opens only that configuration’s flow and settings. Expand its predictions to inspect misses and wrong levels. [Runnable repository](https://github.com/dividor/pdf-heading-benchmark) · [Reproduction guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/reproducibility.md).
+
+### What is shared across the runs?
+
+We preserve each pipeline’s output without WFP-specific level repairs. Different inputs are explicit: native-text parsers, image-only OCR, and Qwen with additional document context. Page numbers count from the cover. Predictions and references use the same scorer in the table and dialogs.
+
+OUR METHOD uses Extra Trees: classifiers that combine randomized decision trees. Its variants learn from assistant annotations on separate reports. Each dialog identifies the fitted components and the validation choices for that variant; it links the full training record.

@@ -1022,5 +1022,69 @@
     "matched": 20,
     "correct_level": 9,
     "predicted": 20
+  },
+  {
+    "method": "evidencelab",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 11,
+    "correct_level": 7,
+    "predicted": 13
+  },
+  {
+    "method": "evidencelab",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 18
+  },
+  {
+    "method": "evidencelab",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 15,
+    "predicted": 17
+  },
+  {
+    "method": "evidencelab",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 17,
+    "correct_level": 10,
+    "predicted": 22
+  },
+  {
+    "method": "docling_ocr",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 1,
+    "predicted": 13
+  },
+  {
+    "method": "docling_ocr",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 17,
+    "correct_level": 1,
+    "predicted": 17
+  },
+  {
+    "method": "docling_ocr",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 4,
+    "predicted": 17
+  },
+  {
+    "method": "docling_ocr",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 9,
+    "predicted": 22
   }
 ]

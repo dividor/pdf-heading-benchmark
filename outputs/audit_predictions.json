@@ -12586,5 +12586,720 @@
         "level": 2
       }
     ]
+  },
+  "evidencelab": {
+    "targeting": [
+      {
+        "title": "Appropriateness",
+        "level": 1,
+        "page": 11
+      },
+      {
+        "title": "1 Introduction",
+        "level": 1,
+        "page": 24
+      },
+      {
+        "title": "1.1 Evaluation features",
+        "level": 2,
+        "page": 24
+      },
+      {
+        "title": "2 Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritiz",
+        "level": 2,
+        "page": 33
+      },
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and priorit",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified",
+        "level": 4,
+        "page": 33
+      },
+      {
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4,
+        "page": 67
+      },
+      {
+        "title": "3 Conclusions and recommendations",
+        "level": 1,
+        "page": 96
+      },
+      {
+        "title": "3.1 Conclusions",
+        "level": 2,
+        "page": 96
+      },
+      {
+        "title": "Objectives and users of the evaluation",
+        "level": 3,
+        "page": 109
+      },
+      {
+        "title": "Evaluation questions",
+        "level": 3,
+        "page": 109
+      },
+      {
+        "title": "Methodology and ethical considerations",
+        "level": 3,
+        "page": 109
+      }
+    ],
+    "midterm": [
+      {
+        "title": "Executive summary",
+        "level": 2,
+        "page": 8
+      },
+      {
+        "title": "INTRODUCTION",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "What was evaluated?",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "FINDINGS",
+        "level": 3,
+        "page": 10
+      },
+      {
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 4,
+        "page": 10
+      },
+      {
+        "title": "1. Introduction",
+        "level": 2,
+        "page": 26
+      },
+      {
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 3,
+        "page": 26
+      },
+      {
+        "title": "1.2 CONTEXT",
+        "level": 3,
+        "page": 27
+      },
+      {
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 4,
+        "page": 27
+      },
+      {
+        "title": "2. Evaluation findings",
+        "level": 2,
+        "page": 36
+      },
+      {
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 3,
+        "page": 36
+      },
+      {
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 4,
+        "page": 36
+      },
+      {
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding",
+        "level": 3,
+        "page": 61
+      },
+      {
+        "title": "3. Conclusions and recommendations",
+        "level": 1,
+        "page": 87
+      },
+      {
+        "title": "2.3 3.1 CONCLUSIONS",
+        "level": 2,
+        "page": 87
+      },
+      {
+        "title": "Annex III. Methodology",
+        "level": 2,
+        "page": 98
+      },
+      {
+        "title": "Overall approach",
+        "level": 3,
+        "page": 98
+      }
+    ],
+    "indonesia": [
+      {
+        "title": "Executive summary",
+        "level": 1,
+        "page": 7
+      },
+      {
+        "title": "Introduction",
+        "level": 2,
+        "page": 7
+      },
+      {
+        "title": "Evaluation features",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Context",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Evaluation key insights and conclusions",
+        "level": 2,
+        "page": 11
+      },
+      {
+        "title": "Insight 1. CSP architecture",
+        "level": 3,
+        "page": 11
+      },
+      {
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 3,
+        "page": 11
+      },
+      {
+        "title": "Introduction",
+        "level": 1,
+        "page": 20
+      },
+      {
+        "title": "1.1. Evaluation features",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "1.2. Context",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "Geography, Demography, and Government",
+        "level": 3,
+        "page": 20
+      },
+      {
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3,
+        "page": 20
+      },
+      {
+        "title": "Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "SO1: Evidence and Data",
+        "level": 3,
+        "page": 48
+      },
+      {
+        "title": "Conclusions and recommendations",
+        "level": 1,
+        "page": 68
+      },
+      {
+        "title": "3.1. Conclusions",
+        "level": 2,
+        "page": 68
+      }
+    ],
+    "colombia": [
+      {
+        "title": "Resumen ejecutivo",
+        "level": 2,
+        "page": 7
+      },
+      {
+        "title": "Introducción",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Características de la evaluación",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Contexto",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 3,
+        "page": 13
+      },
+      {
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos est",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "1. Introducción",
+        "level": 1,
+        "page": 28
+      },
+      {
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "1.2. CONTEXTO",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "Contexto general",
+        "level": 3,
+        "page": 28
+      },
+      {
+        "title": "2. Resultados de la evaluación",
+        "level": 1,
+        "page": 42
+      },
+      {
+        "title": "2.1.  PE 1:  ¿EN  QUÉ  MEDIDA  EL  PEP  ESTÁ  BASADO  EN  EVIDENCIA  Y  ORIENTAD",
+        "level": 2,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "Dimensión 2: Entorno político",
+        "level": 3,
+        "page": 56
+      },
+      {
+        "title": "Productos",
+        "level": 4,
+        "page": 56
+      },
+      {
+        "title": "Resultados 92",
+        "level": 3,
+        "page": 56
+      },
+      {
+        "title": "2.3.  PE 3:  ¿EN  QUÉ  MEDIDA  EL  PMA  HA  UTILIZADO  SUS  RECURSOS  DE  MANERA",
+        "level": 2,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 3,
+        "page": 72
+      },
+      {
+        "title": "Productos y logros",
+        "level": 3,
+        "page": 72
+      },
+      {
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1,
+        "page": 93
+      },
+      {
+        "title": "3.1. CONCLUSIONES",
+        "level": 2,
+        "page": 93
+      }
+    ]
+  },
+  "docling_ocr": {
+    "targeting": [
+      {
+        "title": "Appropriateness",
+        "level": 4,
+        "page": 11
+      },
+      {
+        "title": "1 Introduction",
+        "level": 2,
+        "page": 24
+      },
+      {
+        "title": "1.1 Evaluation features",
+        "level": 3,
+        "page": 24
+      },
+      {
+        "title": "2 Evaluation findings",
+        "level": 2,
+        "page": 33
+      },
+      {
+        "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritization?",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 4,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 5,
+        "page": 33
+      },
+      {
+        "title": "2.2.1.4  Good practices in reducing targeting errors are unevenly applied",
+        "level": 5,
+        "page": 67
+      },
+      {
+        "title": "3 Conclusions and recommendations",
+        "level": 2,
+        "page": 96
+      },
+      {
+        "title": "3.1 Conclusions",
+        "level": 3,
+        "page": 96
+      },
+      {
+        "title": "Objectives and users of the evaluation",
+        "level": 4,
+        "page": 109
+      },
+      {
+        "title": "Evaluation questions",
+        "level": 4,
+        "page": 109
+      },
+      {
+        "title": "Methodology and ethical considerations",
+        "level": 4,
+        "page": 109
+      }
+    ],
+    "midterm": [
+      {
+        "title": "Executive summary",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "INTRODUCTION",
+        "level": 4,
+        "page": 8
+      },
+      {
+        "title": "What was evaluated?",
+        "level": 5,
+        "page": 8
+      },
+      {
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 5,
+        "page": 8
+      },
+      {
+        "title": "FINDINGS",
+        "level": 4,
+        "page": 10
+      },
+      {
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 5,
+        "page": 10
+      },
+      {
+        "title": "1. Introduction",
+        "level": 2,
+        "page": 26
+      },
+      {
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 3,
+        "page": 26
+      },
+      {
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 5,
+        "page": 27
+      },
+      {
+        "title": "2. Evaluation findings",
+        "level": 2,
+        "page": 36
+      },
+      {
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 3,
+        "page": 36
+      },
+      {
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 4,
+        "page": 36
+      },
+      {
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 4,
+        "page": 61
+      },
+      {
+        "title": "3. Conclusions and recommendations",
+        "level": 2,
+        "page": 87
+      },
+      {
+        "title": "2.3 3.1 CONCLUSIONS",
+        "level": 3,
+        "page": 87
+      },
+      {
+        "title": "Annex III. Methodology",
+        "level": 1,
+        "page": 98
+      },
+      {
+        "title": "Overall approach",
+        "level": 5,
+        "page": 98
+      }
+    ],
+    "indonesia": [
+      {
+        "title": "Executive summary",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Introduction",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Evaluation features",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Context",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Evaluation key insights and conclusions",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Insight 1. CSP architecture",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Introduction",
+        "level": 5,
+        "page": 20
+      },
+      {
+        "title": "1.1. Evaluation features",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "1.2. Context",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "Geography, Demography, and Government",
+        "level": 6,
+        "page": 20
+      },
+      {
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 6,
+        "page": 20
+      },
+      {
+        "title": "Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 6,
+        "page": 42
+      },
+      {
+        "title": "s01: Evidence and Data",
+        "level": 6,
+        "page": 48
+      },
+      {
+        "title": "Conclusions and recommendations",
+        "level": 5,
+        "page": 68
+      },
+      {
+        "title": "3.1. Conclusions",
+        "level": 2,
+        "page": 68
+      }
+    ],
+    "colombia": [
+      {
+        "title": "Resumen ejecutivo",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Introducción",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Características de la evaluación",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Contexto",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "1. Introducción",
+        "level": 1,
+        "page": 28
+      },
+      {
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "1.2. CONTEXTO",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "Contexto general",
+        "level": 5,
+        "page": 28
+      },
+      {
+        "title": "2. Resultados de la evaluación",
+        "level": 1,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 42
+      },
+      {
+        "title": "Dimensión 2: Entorno político",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Productos",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Resultados92",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2,
+        "page": 72
+      },
+      {
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "Productos y logros",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1,
+        "page": 93
+      },
+      {
+        "title": "3.1. CONCLUSIONES",
+        "level": 2,
+        "page": 93
+      }
+    ]
   }
 }

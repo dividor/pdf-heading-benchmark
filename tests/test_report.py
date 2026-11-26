@@ -59,7 +59,7 @@ def test_every_configuration_has_an_accessible_diagram_and_markdown_sources():
         panel = soup.find("dialog", id="technique-" + key)
         assert panel.find(id=panel["aria-labelledby"])
         assert panel.select_one('button[aria-label="Close technique diagram"]')
-        assert len(panel.select(".technique-flow li")) >= 4
+        assert len(panel.select(".technique-flow li")) >= 3
         for link in panel.select(".technique-links a"):
             assert link["href"].startswith("https://")
             assert link["href"] in markdown
@@ -84,10 +84,12 @@ def test_every_method_exposes_its_run_settings_in_both_formats():
             assert row.find("th", scope="row").get_text() == name
             assert row.find("td").get_text() == value
             assert escape(value, quote=False).replace("|", "&#124;") in markdown
+        record = (REPO / "outputs/report/method-records.md").read_text()
         for section in technique["sections"]:
             for paragraph in section["paragraphs"]:
-                assert paragraph in panel.get_text()
-                assert paragraph in markdown
+                assert paragraph in record
+        assert panel.select_one(".technique-details summary").get_text() == "Exact run settings"
+        assert not panel.select_one(".technique-details").has_attr("open")
         diagrams.append(tuple((s["title"], s["detail"]) for s in technique["stages"]))
     assert len(set(diagrams)) == len(diagrams)
 
@@ -115,15 +117,15 @@ def test_information_buttons_resolve_to_named_dialogs():
 def test_methods_explain_terms_and_link_them_in_context():
     soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
     techniques = read_json(REPO / "configs/techniques.json")
-    markdown = (REPO / "outputs/report/league_table.md").read_text()
     for key in read_json(REPO / "configs/report-methods.json"):
         panel = soup.find("dialog", id="technique-" + key)
-        assert panel.select_one(".method-terms")
+        assert not panel.select_one(".method-terms")
+        shared = soup.select_one("#panel-methods .method-terms")
         assert techniques[key]["terms"]
         for term in techniques[key]["terms"]:
-            assert term["description"] in panel.get_text()
-            assert term["description"] in markdown
-            assert any(a["href"] == term["url"] for a in panel.select(".method-terms a"))
+            assert term["name"] in shared.get_text()
+            assert term["description"] in (REPO / "outputs/report/method-records.md").read_text()
+            assert any(a["href"] == term["url"] for a in shared.select("a"))
         assert panel.select_one(".technique-description a, .technique-flow a")
     chosen = soup.find("dialog", id="technique-structure_precision")
     assert "Reuse frozen v2 trees" not in chosen.get_text()
@@ -193,3 +195,23 @@ def test_tabs_preserve_deep_links_and_keep_results_first():
     assert not soup.select(".report-panel dialog")
 
     assert soup.find(id="sequential-gpu-reruns").find("summary").get_text() == "Sequential GPU reruns"
+
+
+def test_dialogs_prioritize_specific_steps_and_keep_long_records_closed():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    for key in read_json(REPO / "configs/report-methods.json"):
+        panel = soup.find("dialog", id="technique-" + key)
+        assert panel.select_one("[data-overview]")["href"] == "#panel-methods"
+        assert len(panel.select_one(".technique-description").get_text().split()) <= 50
+        assert not panel.select("details[open]")
+        assert panel.select_one(".prediction-comparison").name == "details"
+        assert panel.select_one(".technique-resources").name == "details"
+        assert "Source papers describe" not in panel.get_text()
+    chosen = soup.find(id="technique-structure_precision")
+    visible_flow = chosen.select_one(".technique-flow").get_text()
+    assert "0.70" in visible_flow and "200-tree" in visible_flow
+    assert "142 measurements" in visible_flow
+    assert (
+        soup.find("summary", string="Heading-level audit").find_parent(class_="report-panel")["id"]
+        == "panel-evidence"
+    )

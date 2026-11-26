@@ -17,7 +17,7 @@ SECTIONS = {
     "Published comparison": "field",
     "Documents and their sources": "documents",
     "How the experiment works": "methods",
-    "Heading-level audit": "methods",
+    "Heading-level audit": "evidence",
     "Primary metric: heading-and-level F0.5": "methods",
     "How to read the table": "evidence",
     "Sequential GPU reruns": "evidence",

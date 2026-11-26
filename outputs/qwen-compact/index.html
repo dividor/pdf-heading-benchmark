@@ -93,6 +93,16 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 .comparison-wrong { background: #fff4d9; }
 .comparison-missing { background: #fff0f0; }
 .comparison-extra { background: #f5edff; }
+
+/* Show the run itself first; keep long records available on demand. */
+.technique-shell > details { border-top: 1px solid #cbdde4; padding: 14px 0; margin: 0; }
+.technique-shell > details > summary { cursor: pointer; font-weight: 650; }
+.technique-shell > .prediction-comparison { background: transparent; border-radius: 0; border-right: 0; border-bottom: 0; border-left: 0; }
+.technique-shell > .technique-limit { margin-top: 16px; }
+.technique-shell .technique-flow { margin: 18px 0; }
+.technique-shell .technique-flow li { padding: 12px; }
+.technique-shell .technique-description { margin-bottom: 12px; }
+.technique-shell .technique-links { margin: 14px 0; }
 </style></head><body><main><h1>Qwen local speed and hierarchy experiments</h1>
 <p>We tested whether removing earlier page images could make Qwen practical without sacrificing correct heading text and level. Two fixed configurations use the same input construction: <strong>Qwen3.6-27B MLX 4-bit</strong> and <strong>Qwen3.6-35B-A3B MLX 4-bit</strong>. A third follow-up restores the original multi-image memory with the sparse model. None was fine-tuned on WFP labels. The second is a mixture-of-experts model with 35 billion total parameters and approximately 3 billion activated per token; it still stores the full model weights. <a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B">Official model card</a>.</p>
 <table>

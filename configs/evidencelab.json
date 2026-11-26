@@ -1,0 +1,28 @@
+{
+  "image": "astrobagel/evidencelab@sha256:cab774211d7bd5a2287f5f8948d7698411c4169a4b56e346d2b52c75fa292bee",
+  "revision": "40c4ae48296d68814af8d308a4aa5388c71cdd9e",
+  "platform": "linux/arm64",
+  "cpus": 4,
+  "parser": {
+    "no_ocr": true,
+    "table_mode": "fast",
+    "enable_chunking": false,
+    "use_subprocess": false,
+    "enable_superscripts": true,
+    "ocr_fallback": false
+  },
+  "scored_output": "Final normalized TOC returned by ParseProcessor.process_document; retain native title truncation and level normalization.",
+  "models": [
+    {
+      "repo": "ds4sd/docling-models",
+      "ref": "v2.3.0",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23"
+    },
+    {
+      "repo": "ds4sd/docling-layout-heron",
+      "ref": "main",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8"
+    }
+  ],
+  "postprocessor_package": "docling-hierarchical-pdf==0.1.2"
+}

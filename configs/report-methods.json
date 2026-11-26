@@ -30,5 +30,7 @@
   "paddleocr_vl16_official",
   "ovisocr3_official_metal",
   "minicpm_ocr10_official_ollama",
-  "xiaomi_ocr0_official_metal"
+  "xiaomi_ocr0_official_metal",
+  "evidencelab",
+  "docling_ocr"
 ]

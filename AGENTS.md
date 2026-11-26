@@ -7,3 +7,5 @@ Follow CONTRIBUTING.md. Keep core code in src/pdf_heading_benchmark, backend-spe
 Do not silently repair heading values, invent missing scores, use per-document correction rules, or describe sampled-page results as full-document accuracy. Do not call paid APIs during tests or routine report generation. Changing a prompt/model/configuration requires a fresh run directory and explicit provenance.
 
 Run all pre-commit hooks and pytest. Regenerate both report formats after data/method edits. No suppression comments or ignored checks to get a change through. Blog drafts stay in ignored blog/ and are never published without the user's request.
+
+Report presentation: keep shared explanations in Methods & scoring. Each method dialog should show a short configuration-specific diagram, exact settings, concise training provenance, and expandable predictions. Avoid repeated scoring rules, glossaries and long narrative; link full records.

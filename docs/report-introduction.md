@@ -4,14 +4,14 @@ Headings tell a search system what a passage is for: an executive summary may an
 
 ## Results at a glance
 
-**32 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
+**34 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
 
 - **Highest score:** Qwen3.6-27B with visual memory gets **65/77** heading-level pairs right; **54 min 2 sec** for 32 pages. It receives extra PDF text, tags and document context.
 - **Image-only alternative:** Chandra OCR 2 gets **53/77** right in **14 min 46 sec**. OvisOCR3 gets **36/77** right in **6 min 58 sec**.
 - **OUR METHOD:** small trained CPU classifiers get **34/77** right with two extra headings. Fast, but the missing headings make this configuration unsuitable when coverage matters.
 
-**Read the score as heading + page + level, all correct.** Joint F0.5 penalizes false headings and wrong levels, with more weight on precision. Check recall alongside it: a high score can still hide missed headings. These are exploratory results from one assistant’s annotations, without independent human review.
+**Score = correct title, page and level.** F0.5 favors precision; recall shows what is missing. References are assistant annotations without independent review.
 
 ## Full configuration results
 
-All runs are local. New upstream-pipeline runs have separate rows; the earlier adaptations remain visible. Select **i** for definitions, or **Method & predictions** for each configuration’s diagram, settings, code and heading-by-heading comparison. Times marked “Estimated” are scaled from longer runs; they are not measured 32-page runs.
+Select a row’s **i** for its exact model, steps, settings and predictions. **Estimated** times scale longer runs to 32 pages.

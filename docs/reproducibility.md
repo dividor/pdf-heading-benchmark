@@ -69,3 +69,7 @@ To refresh the local HTML report as each configuration completes, run the import
 ## New field candidates
 
 See [the field-trial protocol](field-candidates.md) for pinned MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 runs. These use pixels only, with no PDF tags or candidate-heading inputs. The portable region pipelines combine a CPU layout detector, MLX recognition and documented Markdown assembly. Their frozen compact evidence is in `outputs/field-candidates/`; `scripts/field_candidates_report.py` independently recomputes their scores offline.
+
+## EvidenceLab and forced OCR
+
+[The full-document pipeline protocol](evidencelab-and-ocr.md) records the pinned EvidenceLab image and post-processor, and Docling’s forced RapidOCR configuration. Both ran on all four complete PDFs, one parser at a time. Model revisions and weight hashes are committed; the runner archives its source, options and input hashes. `scripts/pipeline_report.py` rebuilds their scores from compact published evidence, and CI checks that the report regenerates unchanged.

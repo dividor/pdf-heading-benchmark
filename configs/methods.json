@@ -618,5 +618,17 @@
     "code": "scripts/runners/run_official_xiaomi.py",
     "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_xiaomi.py",
     "steps": []
+  },
+  "evidencelab": {
+    "description": "Parse full PDFs with EvidenceLab’s pinned Docker image, including its hierarchy and final TOC processing.",
+    "code": "scripts/runners/benchmark_evidencelab.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/benchmark_evidencelab.py",
+    "steps": []
+  },
+  "docling_ocr": {
+    "description": "Run full-page RapidOCR in Docling, then its default heading-hierarchy stage.",
+    "code": "scripts/runners/run_docling_ocr.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling_ocr.py",
+    "steps": []
   }
 }

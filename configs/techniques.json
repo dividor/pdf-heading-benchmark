@@ -43,7 +43,7 @@
       }
     ],
     "training": [],
-    "summary": "Use the heading levels returned by Docling 2.151.1 when it first reads the PDF. No additional step changes the hierarchy.",
+    "summary": "Docling 2.151.1 reads native PDF text on CPU. This row uses its original heading levels, without a second hierarchy pass.",
     "parameters": [
       [
         "Package",
@@ -138,7 +138,7 @@
       }
     ],
     "training": [],
-    "summary": "Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels. This tests whether Docling’s extra hierarchy step improves the same detected headings.",
+    "summary": "Docling 2.151.1 detects headings, then HeadingHierarchyModel assigns levels using its default settings.",
     "parameters": [
       [
         "Package",
@@ -233,7 +233,7 @@
       }
     ],
     "training": [],
-    "summary": "Use Docling 2.151.1 with a fixed font-style tolerance of 0.15 in its hierarchy step. This setting was applied to every report; it was an exploratory choice, not a demonstrated best setting.",
+    "summary": "Docling 2.151.1 runs HeadingHierarchyModel with style_size_tolerance=0.15. Detection is shared with the default run.",
     "parameters": [
       [
         "Package",
@@ -328,7 +328,7 @@
       }
     ],
     "training": [],
-    "summary": "PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown. We treat its #, ## and subsequent heading markers as H1, H2 and deeper levels; no language model makes a second decision.",
+    "summary": "PyMuPDF4LLM 2.1 converts selectable text to Markdown. Its heading markers supply the levels; OCR is disabled.",
     "parameters": [
       [
         "Package",
@@ -414,7 +414,7 @@
       }
     ],
     "training": [],
-    "summary": "Marker 2.2 parses the complete PDF locally on the CPU. We read the levels from HTML heading tags in the blocks Marker identifies as section headings; OCR and language-model assistance are disabled.",
+    "summary": "Marker 2.2 runs local CPU models with OCR and LLM assistance disabled. SectionHeader HTML tags supply heading levels.",
     "parameters": [
       [
         "Package",
@@ -504,7 +504,7 @@
       }
     ],
     "training": [],
-    "summary": "MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime. We keep the titles and levels it returns without asking another model to repair them. This is a different implementation from the MinerU Pro image model.",
+    "summary": "MinerU 4.2.3 uses its basic ONNX CPU parser. We retain its document-title and paragraph-title blocks and supplied levels.",
     "parameters": [
       [
         "Package",
@@ -695,7 +695,7 @@
       }
     ],
     "training": [],
-    "summary": "Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM. The model receives titles and page numbers for the whole document, but no page images or parser-supplied levels. It runs locally through MLX using 4-bit weights.",
+    "summary": "Qwen3.5-4B, quantized to 4 bits, assigns levels to the combined Docling and PyMuPDF4LLM candidate list. It receives text and page numbers only.",
     "parameters": [
       [
         "Model",
@@ -821,7 +821,7 @@
       }
     ],
     "training": [],
-    "summary": "Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser. The model receives titles and page numbers for the whole document, but no page images or parser-supplied levels. It runs locally through MLX using 4-bit weights.",
+    "summary": "Qwen3.5-4B, quantized to 4 bits, assigns levels to MinerU basic candidates. It receives text and page numbers only.",
     "parameters": [
       [
         "Model",
@@ -947,7 +947,7 @@
       }
     ],
     "training": [],
-    "summary": "Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM. The model receives titles and page numbers for the whole document, but no page images or parser-supplied levels. It runs locally through MLX using 4-bit weights.",
+    "summary": "Qwen3.5-4B, quantized to 4 bits, assigns levels to PyMuPDF4LLM candidates. It receives text and page numbers only.",
     "parameters": [
       [
         "Model",
@@ -1081,7 +1081,7 @@
       }
     ],
     "training": [],
-    "summary": "Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images. This supplies more context to an already trained model; we did not train it on WFP labels.",
+    "summary": "Qwen3.6-27B uses 4-bit MLX weights. Each call receives the current page, up to six earlier sampled images, native text, candidate titles and author PDF tags.",
     "parameters": [
       [
         "Model",
@@ -1214,7 +1214,7 @@
       }
     ],
     "training": [],
-    "summary": "LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page. We extract its title blocks and use any Markdown heading markers to determine the level.",
+    "summary": "LightOnOCR-3-0.8B reads one page image through MLX. Its grounding output supplies title regions; Markdown markers supply levels.",
     "parameters": [
       [
         "Model",
@@ -1337,7 +1337,7 @@
       }
     ],
     "training": [],
-    "summary": "LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model. This run processes two independent pages together using bf16 weights, with five saved outputs from an earlier single-page run.",
+    "summary": "LightOnOCR-3-4B reads two independent page images per MLX batch using BF16 weights. Title blocks and Markdown markers supply the outline.",
     "parameters": [
       [
         "Model",
@@ -1464,7 +1464,7 @@
       }
     ],
     "training": [],
-    "summary": "Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation. We derive heading levels from the HTML it generates. The local MLX run processes four independent pages together with bf16 weights.",
+    "summary": "Chandra OCR 2 uses its authors’ layout prompt and image preparation. MLX processes four pages per batch with BF16 weights; HTML heading tags supply levels.",
     "parameters": [
       [
         "Model",
@@ -1587,7 +1587,7 @@
       }
     ],
     "training": [],
-    "summary": "MinerU2.5-Pro-2605-1.2B reads the layout and text of page images. Its tested two_step_extract interface found title blocks but supplied no heading levels, so it earns no credit for complete title-and-level answers.",
+    "summary": "MinerU2.5-Pro-2605-1.2B uses two_step_extract through MLX. This interface returned title blocks without heading levels.",
     "parameters": [
       [
         "Model",
@@ -1698,7 +1698,7 @@
       }
     ],
     "training": [],
-    "summary": "Use MinerU-Popo to assign levels to headings first detected by Docling. This is an experimental local adaptation: model weights were converted to 8-bit MLX, and predictions from overlapping groups of page images were reconciled.",
+    "summary": "MinerU-Popo assigns levels to Docling candidates using overlapping eight-page image groups. This row is an experimental 8-bit MLX port.",
     "parameters": [
       [
         "Model",
@@ -1844,7 +1844,7 @@
         "detail": "Extra Trees scored 69.1% exact-level line F1 versus 47.6% for logistic regression. Save the winning trained classifier without fitting it on the benchmark PDFs."
       }
     ],
-    "summary": "Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level. Extra Trees combines votes from many randomized decision trees. An assistant supplied training labels; no language model runs when a new PDF is parsed.",
+    "summary": "OUR METHOD v1 uses one 200-tree Extra Trees classifier trained on 16 WFP reports. It labels PDF text lines, then joins adjacent same-level lines within each block.",
     "parameters": [
       [
         "Estimator",
@@ -2015,7 +2015,7 @@
         "detail": "Use 21 headings in four separate reports to compare the line-only, joined-text and document-context designs. Their original exact group-and-level F1 scores were 55.3%, 63.6% and 69.8%; that earlier selection predates the new F0.5 objective."
       }
     ],
-    "summary": "Test whether more labeled examples improve the original single-classifier design. The same Extra Trees approach now learns from 887 heading groups in 20 reports; heading lines are still joined using their PDF text blocks.",
+    "summary": "The line-only Extra Trees classifier is retrained on 20 reports and 887 heading groups. It uses 33 features and joins titles within PDF blocks.",
     "parameters": [
       [
         "Estimator",
@@ -2188,7 +2188,7 @@
         "detail": "Use 21 headings in four separate reports to compare the line-only, joined-text and document-context designs. Their original exact group-and-level F1 scores were 55.3%, 63.6% and 69.8%; that earlier selection predates the new F0.5 objective."
       }
     ],
-    "summary": "Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5. This tests whether learning how to join wrapped titles helps; it uses 400 trees in total.",
+    "summary": "Two 200-tree Extra Trees classifiers learn line joining and heading levels. This variant uses 100 join features and 43 group features, without document context.",
     "parameters": [
       [
         "Estimator",
@@ -2289,20 +2289,20 @@
     "family": "Learned classifiers · local CPU",
     "stages": [
       {
-        "title": "Join lines that belong to one title",
-        "detail": "A 200-tree Extra Trees classifier uses 100 measurements of adjacent lines to decide whether to join them, including across PDF block boundaries."
+        "title": "Join lines with Extra Trees",
+        "detail": "The 200-tree join classifier uses 100 measurements of adjacent lines, including spacing and style. It can join lines across PDF blocks."
       },
       {
         "title": "Recognize headings and propose levels",
         "detail": "A second 200-tree Extra Trees classifier uses 47 measurements of each text group and the document’s numbering, styles and table of contents. It scores body text and levels H1–H5."
       },
       {
-        "title": "Compare consecutive headings",
-        "detail": "A third 200-tree Extra Trees classifier uses 142 measurements to predict whether the next heading is at a higher, equal or deeper level."
+        "title": "Score heading relationships",
+        "detail": "The 200-tree relation classifier uses 142 measurements of consecutive headings. It predicts shallower, same or deeper."
       },
       {
-        "title": "Choose levels that work together",
-        "detail": "Viterbi decoding is a search algorithm that selects the best-scoring sequence of levels using both heading scores and relationship scores. Relationship weight is 1. It is not another trained model."
+        "title": "Choose the level sequence",
+        "detail": "Viterbi combines accepted headings’ level scores and relationship scores, with relationship weight 1. Rejected text remains in the document."
       }
     ],
     "limitation": "No LLM is needed at inference. Labels are assistant-assisted, not independently human-verified. Parent links are inferred, not evaluated. v2 main-table scores are historical diagnostics; the separate 38-heading pilot has a different metric.",
@@ -2390,7 +2390,7 @@
         "detail": "Use 21 headings in four separate reports to compare the line-only, joined-text and document-context designs. Their original exact group-and-level F1 scores were 55.3%, 63.6% and 69.8%; that earlier selection predates the new F0.5 objective."
       }
     ],
-    "summary": "Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings. A Viterbi search then chooses a consistent sequence. This was the second experiment’s selected design, with 600 trees in total.",
+    "summary": "Three 200-tree Extra Trees classifiers learn line joining, heading levels and relationships. Viterbi selects a level sequence using document context and relationship weight 1.",
     "parameters": [
       [
         "Estimator",
@@ -2576,20 +2576,20 @@
     "family": "Learned classifiers · local CPU",
     "stages": [
       {
-        "title": "Join lines that belong to one title",
-        "detail": "A 200-tree Extra Trees classifier uses 100 measurements of adjacent lines to decide whether to join them, including across PDF block boundaries."
+        "title": "Join lines with Extra Trees",
+        "detail": "The 200-tree join classifier uses 100 measurements of adjacent lines, including spacing and style. It can join lines across PDF blocks."
       },
       {
         "title": "Favor ordinary body text",
         "detail": "Use the same 200-tree heading classifier with 47 measurements. Double its body-text score, then choose the highest-scoring class; this can reject real headings too."
       },
       {
-        "title": "Compare consecutive headings",
-        "detail": "A third 200-tree Extra Trees classifier uses 142 measurements to predict whether the next heading is at a higher, equal or deeper level."
+        "title": "Score heading relationships",
+        "detail": "The 200-tree relation classifier uses 142 measurements of consecutive headings. It predicts shallower, same or deeper."
       },
       {
-        "title": "Choose levels for the remaining headings",
-        "detail": "Run Viterbi decoding with relationship weight 1. Rejected text groups cannot be recovered by this step."
+        "title": "Choose the level sequence",
+        "detail": "Viterbi combines accepted headings’ level scores and relationship scores, with relationship weight 1. Rejected text remains in the document."
       }
     ],
     "limitation": "The models and labels are unchanged. Validation selects a stricter heading decision. Regression on previously inspected pages improves F1 but misses one genuine heading. It is not new independent test evidence.",
@@ -2693,7 +2693,7 @@
         "detail": "Body multiplier 2 and relationship weight 1 scored 81.1% exact group-and-level F1. The original benchmark was evaluated afterwards; it did not choose these settings."
       }
     ],
-    "summary": "Use the three Extra Trees classifiers we trained locally in structure-v2/run-001, then multiply their body-text score by two before choosing a class. Only this decision rule was selected on validation reports; the fitted models are unchanged. The model provenance page documents their original training.",
+    "summary": "The same three trained Extra Trees classifiers are reused. Multiplying the body-text score by two makes heading selection stricter; relationship weight stays 1.",
     "parameters": [
       [
         "Estimator",
@@ -2890,23 +2890,23 @@
     "family": "Learned classifiers · local CPU",
     "stages": [
       {
-        "title": "Join lines that belong to one title",
-        "detail": "A 200-tree Extra Trees classifier uses 100 measurements of adjacent lines to decide whether to join them, including across PDF block boundaries."
+        "title": "Join lines with Extra Trees",
+        "detail": "The 200-tree join classifier uses 100 measurements of adjacent lines, including spacing and style. It can join lines across PDF blocks."
       },
       {
-        "title": "Reject uncertain heading predictions",
-        "detail": "The 47-measurement heading classifier must prefer a heading over body text, and its highest heading score must be at least 0.70. This score is not a verified 70% chance of being correct."
+        "title": "Apply the 0.70 cutoff",
+        "detail": "The 200-tree context classifier uses 47 features. A heading must beat body text and score at least 0.70. Scores are not calibrated probabilities."
       },
       {
-        "title": "Compare consecutive headings",
-        "detail": "A third 200-tree Extra Trees classifier uses 142 measurements to predict whether the next heading is at a higher, equal or deeper level."
+        "title": "Score heading relationships",
+        "detail": "The 200-tree relation classifier uses 142 measurements of consecutive headings. It predicts shallower, same or deeper."
       },
       {
-        "title": "Assign levels to the accepted headings",
-        "detail": "Run Viterbi decoding with relationship weight 1. Keep the full extracted text, including rejected groups. On the original benchmark: 41 predictions, 39 genuine headings, 34 with the correct level."
+        "title": "Choose the level sequence",
+        "detail": "Viterbi combines accepted headings’ level scores and relationship scores, with relationship weight 1. Rejected text remains in the document."
       }
     ],
-    "limitation": "The 95% gate checks whether predicted titles are real headings; it does not check their levels. Here 39/41 titles are real (95.1%), but only 34/41 have correct levels (82.9%), and 38 reference titles are missed. These small, previously inspected datasets do not establish production robustness.",
+    "limitation": "Only 34/77 heading-level pairs are correct. The low extra-heading count does not make this a complete outline.",
     "sources": [
       {
         "label": "Model provenance page",
@@ -2999,19 +2999,19 @@
     ],
     "training": [
       {
-        "title": "Train our three classifiers locally",
-        "detail": "The structure-v2/run-001 training program fits Extra Trees on assistant annotations from 20 WFP reports, on the local M4 Pro CPU. See the model provenance page and training run record. Later decision-setting experiments reuse these fitted models. No further model training occurs in those experiments."
+        "title": "Fit three classifiers locally",
+        "detail": "M4 Pro CPU; scikit-learn 1.9.1. Fit on 20 WFP reports: 6,267 line pairs, 6,736 text groups and 867 heading pairs."
       },
       {
-        "title": "Try 36 ways to reject uncertain headings",
-        "detail": "Use four separate validation reports to compare two text-group classifiers, body-score multipliers 1/2/4, heading-score cutoffs 0/0.5/0.7/0.85 and relationship weights 1/0 where applicable."
+        "title": "Keep tree settings fixed",
+        "detail": "200 trees each; depth 16; minimum leaf size 2; feature fraction 0.8; balanced classes; seed 42. No further model training for the filter."
       },
       {
-        "title": "Choose the best qualifying setting",
-        "detail": "First require at least 95% of emitted titles to be genuine headings, regardless of level. Among qualifying settings, choose the highest joint F0.5. The selected design uses document context, a 0.70 cutoff, body multiplier 1 and relationship weight 1."
+        "title": "Select the confidence cutoff",
+        "detail": "Four validation reports, 21 headings, 36 decision settings. Maximize joint F0.5 subject to 95% heading-only precision. Selected cutoff: 0.70."
       }
     ],
-    "summary": "OUR METHOD uses three Extra Trees classifiers that we trained from scratch for this benchmark in structure-v2/run-001, on the local M4 Pro CPU. They learn line joining, body/heading levels and relationships between headings from assistant annotations of 20 WFP reports. The later experiment keeps these models unchanged and selects a confidence filter. See the model provenance page for training code, source reports, versions and model hashes. The filter reduced extra headings from 23 to two, while correct heading-level pairs fell from 50/77 to 34/77.",
+    "summary": "OUR METHOD reuses three locally trained Extra Trees classifiers. A validation-selected 0.70 score cutoff rejects uncertain headings before sequence decoding. Correct heading-level pairs fall from 50 to 34; extras fall from 23 to two.",
     "parameters": [
       [
         "Estimator",
@@ -3204,7 +3204,7 @@
   },
   "structure_recall": {
     "family": "Learned classifiers · local CPU",
-    "summary": "OUR METHOD refits Extra Trees on the same assistant annotations from 20 WFP reports. Eight tree configurations and eight decision settings give 64 validation comparisons. None reached both 80% joint precision and 80% joint recall. The documented fallback recovers more headings than the confidence filter but produces too many false predictions; it is not a validated replacement.",
+    "summary": "Extra Trees are retrained with eight tree settings and eight decision settings. No candidate meets both 80% joint precision and recall; this row is the recorded diagnostic selection.",
     "limitation": "Original league: 66/77 titles recovered, 50/77 correct heading-level pairs, 21 extra headings and 16 wrong levels. Same correct-pair count as the older unfiltered model. Small reused validation and inspected regression sets; no independent new test or new annotations.",
     "training": [
       {
@@ -3342,7 +3342,7 @@
   },
   "qwen36_27b_compact": {
     "family": "Single-image vision + document context · local MLX",
-    "summary": "Ask Qwen3.6-27B to identify complete heading titles and H1–H6 levels from one current-page image, native text, the full candidate outline, PDF heading tags and previous predictions as text. This is the same dense 27B model as the earlier multi-image run; image size and history changed.",
+    "summary": "Qwen3.6-27B uses 4-bit MLX weights with one current-page image. Earlier predictions are text only; native text, candidate titles and author tags remain inputs.",
     "training": [],
     "stages": [
       {
@@ -3360,10 +3360,6 @@
       {
         "title": "Carry predictions forward as text",
         "detail": "Keep the last predicted heading at each H1–H6 level. Reset memory per report. Save raw JSON replies and native page text; validate schema without changing titles or levels."
-      },
-      {
-        "title": "Score the historical audit pages",
-        "detail": "Compare saved predictions on 32 pages against 77 reference headings using same-page, one-to-one title matching and exact H levels. Retain both speed-trial configurations."
       }
     ],
     "parameters": [
@@ -3487,7 +3483,7 @@
   },
   "qwen36_35b_compact": {
     "family": "Single-image vision + document context · local MLX",
-    "summary": "Ask Qwen3.6-35B-A3B to identify complete heading titles and H1–H6 levels from one current-page image, native text, the full candidate outline, PDF heading tags and previous predictions as text. Its mixture-of-experts architecture activates approximately 3B of 35B parameters per token.",
+    "summary": "Qwen3.6-35B-A3B uses 4-bit MLX weights with one current-page image and text history. Approximately 3B of its 35B parameters are active per token.",
     "training": [],
     "stages": [
       {
@@ -3505,10 +3501,6 @@
       {
         "title": "Carry predictions forward as text",
         "detail": "Keep the last predicted heading at each H1–H6 level. Reset memory per report. Save raw JSON replies and native page text; validate schema without changing titles or levels."
-      },
-      {
-        "title": "Score the historical audit pages",
-        "detail": "Compare saved predictions on 32 pages against 77 reference headings using same-page, one-to-one title matching and exact H levels. Retain both speed-trial configurations."
       }
     ],
     "parameters": [
@@ -3632,7 +3624,7 @@
   },
   "qwen36_35b_visual_memory": {
     "family": "Sparse vision model + sampled visual memory · local MLX",
-    "summary": "Run Qwen3.6-35B-A3B with the exact instruction and multi-image memory procedure from the original 27B experiment. This follow-up was chosen after the sparse single-image run found all titles but assigned only 53/77 levels correctly. Restore visual typography examples while retaining the faster sparse model.",
+    "summary": "Qwen3.6-35B-A3B uses the original multi-image prompt with 4-bit weights. It restores up to six earlier sampled images alongside text, candidates and author tags.",
     "training": [],
     "stages": [
       {
@@ -3650,10 +3642,6 @@
       {
         "title": "Update visual memory from predictions",
         "detail": "Call the unchanged original generate_page function. Retain the latest prediction at each level, deduplicate and sort earlier pages, and reset memory between reports. Save every raw reply without semantic repair."
-      },
-      {
-        "title": "Measure the hierarchy trade-off",
-        "detail": "Score all 32 audit pages against the same 77 references. Retain both earlier speed trials and this follow-up so its selection after observing their results remains visible."
       }
     ],
     "parameters": [
@@ -3780,7 +3768,7 @@
   },
   "minicpm_ocr10": {
     "family": "Layout detection plus regional vision-language OCR",
-    "summary": "PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "summary": "PP-DocLayoutV3 finds crops on CPU. MiniCPM-OCR 1.0 reads them through MLX; MiniCPM SDK 1.0.5 assembles Markdown.",
     "stages": [
       {
         "title": "Render the fixed WFP sample",
@@ -3797,10 +3785,6 @@
       {
         "title": "Assemble the native Markdown outline",
         "detail": "MiniCPM SDK 1.0.5 assigns document titles H1. Its default numbered paragraph-title formatter makes “2” H2, “2.1” H3 and unnumbered section titles H2. Headers, footers and footnotes are excluded by the upstream assembly defaults. We retain this hierarchy even when it disagrees with the reference."
-      },
-      {
-        "title": "Score titles and levels together",
-        "detail": "Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time."
       }
     ],
     "parameters": [
@@ -3929,7 +3913,7 @@
   },
   "xiaomi_ocr0": {
     "family": "Whole-page vision-language OCR",
-    "summary": "Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.",
+    "summary": "Xiaomi-OCR-0 reads whole-page images through MLX using e2e_img2md. Its generated Markdown supplies the heading levels.",
     "stages": [
       {
         "title": "Render the fixed WFP sample",
@@ -3942,10 +3926,6 @@
       {
         "title": "Keep the model’s own hierarchy",
         "detail": "Greedy decoding, temperature 0, seed 42, thinking disabled, maximum 16,384 output tokens per page. Read Markdown heading tokens as H1–H6, including setext headings. Do not infer headings from bold text or adjust levels."
-      },
-      {
-        "title": "Score titles and levels together",
-        "detail": "Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time."
       }
     ],
     "parameters": [
@@ -4054,7 +4034,7 @@
   },
   "paddleocr_vl16": {
     "family": "Layout detection plus regional vision-language OCR",
-    "summary": "PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "summary": "PP-DocLayoutV3 finds crops on CPU. PaddleOCR-VL-1.6 reads them through MLX, but MiniCPM SDK assembles the Markdown in this adaptation.",
     "stages": [
       {
         "title": "Render the fixed WFP sample",
@@ -4071,10 +4051,6 @@
       {
         "title": "Assemble the native Markdown outline",
         "detail": "MiniCPM SDK 1.0.5 assigns document titles H1. Its default numbered paragraph-title formatter makes “2” H2, “2.1” H3 and unnumbered section titles H2. Headers, footers and footnotes are excluded by the upstream assembly defaults. We retain this hierarchy even when it disagrees with the reference."
-      },
-      {
-        "title": "Score titles and levels together",
-        "detail": "Match output headings one-to-one against the 77 fixed references by physical PDF page and the existing title matcher; a true positive also needs the exact level. Publish joint F0.5, precision, recall, every predicted-versus-reference row, prose retention and measured 32-page processing time."
       }
     ],
     "parameters": [
@@ -4207,7 +4183,7 @@
   },
   "paddleocr_vl16_official": {
     "family": "Official PaddleOCR Apple Silicon pipeline",
-    "summary": "PaddleOCR 3.7.0 runs its complete v1.6 pipeline: native PaddleX layout on CPU, PaddleOCR-VL-1.6 on Metal, then Paddle’s own Markdown assembly.",
+    "summary": "PaddleOCR 3.7.0 runs the complete v1.6 pipeline: native PaddleX layout on CPU, PaddleOCR-VL-1.6 on Metal, then Paddle’s Markdown assembler.",
     "stages": [
       {
         "title": "Render each audit page",
@@ -4224,10 +4200,6 @@
       {
         "title": "Use Paddle’s own Markdown output",
         "detail": "Read result.markdown[\"markdown_texts\"] from the unmodified Paddle pipeline. Preserve every heading marker. The native pipeline still emits \"1. Introduction\" as H3 on the mid-term report, page 26; this is measured output, not a level correction."
-      },
-      {
-        "title": "Score against the frozen reference",
-        "detail": "Match headings once by physical page and normalized title, then require the exact reference H level for credit. Evaluate all 77 references with the same joint F0.5 scorer as every other row."
       }
     ],
     "parameters": [
@@ -4342,7 +4314,7 @@
   },
   "ovisocr3_official_metal": {
     "family": "Whole-page vision-language document parsing",
-    "summary": "OvisOCR3 reads each page with its official Markdown prompt through vLLM Metal. We use the upstream cleanup and preserve the model’s heading levels.",
+    "summary": "OvisOCR3 uses original 0.8B BF16 weights through vLLM Metal. The official document_markdown prompt and cleanup produce the scored Markdown.",
     "stages": [
       {
         "title": "Render a page without extracting its text",
@@ -4359,10 +4331,6 @@
       {
         "title": "Apply only the documented cleanup",
         "detail": "Preserve raw output, then remove image-tag blocks and apply the model card’s repeated-tail cleanup. Parse the resulting native Markdown headings. Bold text is not promoted to a heading, and H levels are never shifted."
-      },
-      {
-        "title": "Score all 77 reference headings",
-        "detail": "The run finds 49 reference titles. Of those, 36 have the correct level and 13 have the wrong level. It misses 28 titles and emits one extra heading. Joint F0.5 is 65.0%; every comparison is available in this modal."
       }
     ],
     "parameters": [
@@ -4493,7 +4461,7 @@
   },
   "minicpm_ocr10_official_ollama": {
     "family": "Official MiniCPM package with quantized recognition and speculative decoding",
-    "summary": "MiniCPM’s official package rotates pages, detects layout, recognizes crops through Ollama with Q8 weights and DSpark, then assembles its native Markdown.",
+    "summary": "MiniCPM-OCR 1.0.5 handles orientation, native PaddleX layout and Markdown assembly. Ollama runs the official Q8 model with DSpark speculative decoding on Metal.",
     "stages": [
       {
         "title": "Render the same 32 pages",
@@ -4510,10 +4478,6 @@
       {
         "title": "Keep the package’s heading formatter",
         "detail": "Use the default numbered-title Markdown assembly without changes. Document-title blocks become H1. Paragraph titles are assigned markers using their number prefix; unnumbered paragraph titles become H2. We do not repair the resulting depths."
-      },
-      {
-        "title": "Check completion and score",
-        "detail": "The package reports 32 successful pages and 447 recognition blocks, with zero failed pages or blocks. Native Markdown yields 71 predictions: 16 correct title-level pairs, 52 wrong levels and 3 extra headings. Nine reference titles are missed."
       }
     ],
     "parameters": [
@@ -4644,7 +4608,7 @@
   },
   "xiaomi_ocr0_official_metal": {
     "family": "Two-stage OCR · CPU layout and Metal recognition",
-    "summary": "Run Xiaomi’s published two-stage parsing code with CPU layout and a Metal recognition server. Preserve its default Markdown hierarchy; do not correct levels using WFP labels.",
+    "summary": "Xiaomi’s upstream two-stage pipeline uses native PaddleX layout on CPU and BF16 recognition through vLLM Metal. Its default formatter assigns paragraph titles H2.",
     "stages": [
       {
         "title": "Render each audited PDF page",
@@ -4661,10 +4625,6 @@
       {
         "title": "Apply the upstream retry and assembly code",
         "detail": "Use the official repetition retry policy, then convert formulas and tables and assemble the page. The default title_profile=\"v2\" makes document titles H1 and paragraph titles H2. No retry was triggered across these 32 pages."
-      },
-      {
-        "title": "Score the native Markdown headings",
-        "detail": "Match each predicted title to a reference on the same physical page, then require the exact H level. The result is 31 correct pairs, 37 wrong levels, nine missed titles and three extra predictions."
       }
     ],
     "parameters": [
@@ -4780,6 +4740,249 @@
         "aliases": [
           "vLLM Metal"
         ]
+      }
+    ]
+  },
+  "evidencelab": {
+    "family": "Full document parser · isolated Docker · CPU",
+    "summary": "EvidenceLab combines Docling 2.58.0 with a hierarchical post-processor, font and numbering rules, and final contents-list normalization. We score that final list exactly as returned.",
+    "stages": [
+      {
+        "title": "Parse the full PDF with Docling",
+        "detail": "Docling 2.58.0 uses Heron layout detection and TableFormer fast. OCR is disabled. The isolated Linux ARM64 container has four CPU cores and a 12 GB memory limit."
+      },
+      {
+        "title": "Run EvidenceLab’s hierarchy processing",
+        "detail": "docling-hierarchical-pdf 0.1.2 assigns levels from PDF hierarchy metadata when available, otherwise from heading geometry and font style. EvidenceLab applies its built-in safeguards afterward."
+      },
+      {
+        "title": "Keep the final contents list",
+        "detail": "EvidenceLab creates and normalizes toc.txt, including front matter and numbered sections. We preserve its H levels and 80-character title limit."
+      }
+    ],
+    "limitation": "37/77 heading-level pairs are correct. There are 26 matched headings at the wrong level, 14 missing headings and 7 extra headings. This is not a complete, accurate outline.",
+    "parameters": [
+      [
+        "Source",
+        "dividor/evidencelab @ 40c4ae48296d68814af8d308a4aa5388c71cdd9e"
+      ],
+      [
+        "Image",
+        "sha256:cab774211d7bd5a2287f5f8948d7698411c4169a4b56e346d2b52c75fa292bee"
+      ],
+      [
+        "Packages",
+        "Docling 2.58.0; docling-hierarchical-pdf 0.1.2; runtime versions and image digest recorded"
+      ],
+      [
+        "Runtime",
+        "Linux ARM64; 4 CPU cores; 12 GB memory limit; OMP_NUM_THREADS=4"
+      ],
+      [
+        "Parser",
+        "no_ocr=True; table_mode=fast; enable_chunking=False; use_subprocess=False; enable_superscripts=True; ocr_fallback=False"
+      ],
+      [
+        "Hierarchy",
+        "hierarchical.postprocessor.ResultPostprocessor; upstream safeguards, hybrid font/numbering rules and TOC normalization remain unchanged"
+      ],
+      [
+        "Models",
+        "Heron revision 8f39ad3c0b4c58e9c2d2c84a38465abf757272d8; docling-models revision fc0f2d45e2218ea24bce5045f58a389aed16dc23"
+      ],
+      [
+        "Scored output",
+        "Final toc.txt; native H levels and title truncation retained"
+      ],
+      [
+        "Time",
+        "9 min 50 sec for 523 pages; first-document time includes lazy model loading/download; constructor setup is recorded separately"
+      ],
+      [
+        "Post-processor",
+        "docling-hierarchical-pdf 0.1.2; ResultPostprocessor(result, source=PDF, raise_on_error=False)"
+      ]
+    ],
+    "training": [],
+    "sections": [
+      {
+        "title": "Training and selection",
+        "paragraphs": [
+          "No WFP-specific training or setting search was performed. This configuration reproduces the parser and post-processing in the running EvidenceLab image. It uses an older Docling release than our Docling-only rows, so the difference cannot be attributed to post-processing alone."
+        ]
+      },
+      {
+        "title": "Reproducibility",
+        "paragraphs": [
+          "The runner calls ParseProcessor.process_document without a database. The image digest, source revision, model revisions, file hashes, native headings, full-PDF timings and archived runner hash are recorded. Repeated runs download the recorded model revisions before switching Hugging Face to offline mode."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/evidencelab-and-ocr.md"
+      },
+      {
+        "label": "Importer and output checks",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/pipeline_evidence.py"
+      },
+      {
+        "label": "Pinned EvidenceLab parser",
+        "url": "https://github.com/dividor/evidencelab/blob/40c4ae48296d68814af8d308a4aa5388c71cdd9e/pipeline/processors/parsing/parser.py"
+      },
+      {
+        "label": "Pinned heading post-processing",
+        "url": "https://github.com/dividor/evidencelab/blob/40c4ae48296d68814af8d308a4aa5388c71cdd9e/pipeline/processors/parsing/parser_headings.py"
+      },
+      {
+        "label": "Saved evidence",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/pipeline-runs/evidencelab.json"
+      },
+      {
+        "label": "Hierarchy post-processor source",
+        "url": "https://github.com/krrome/docling-hierarchical-pdf"
+      }
+    ],
+    "terms": [
+      {
+        "name": "Docling",
+        "description": "PDF conversion software used here to detect text, layout and headings.",
+        "url": "https://github.com/docling-project/docling"
+      },
+      {
+        "name": "EvidenceLab",
+        "description": "An evaluation-document application whose parsing pipeline adds hierarchy and contents-list processing to Docling.",
+        "url": "https://github.com/dividor/evidencelab"
+      },
+      {
+        "name": "docling-hierarchical-pdf",
+        "description": "The post-processor used by EvidenceLab to infer hierarchy from PDF metadata or heading layout and font measurements.",
+        "url": "https://github.com/krrome/docling-hierarchical-pdf"
+      }
+    ]
+  },
+  "docling_ocr": {
+    "family": "Full-page OCR · CPU",
+    "summary": "Docling 2.151.1 reads every page image with RapidOCR, using PP-OCRv5 mobile detection and Latin-script recognition. Heron detects layout, then HeadingHierarchyModel assigns heading levels.",
+    "stages": [
+      {
+        "title": "Recognize text across every page",
+        "detail": "RapidOCR 3.10.0 runs PP-OCRv5 mobile detection and Latin-script recognition at 216 dpi with ONNX Runtime on CPU. Full-page mode forces image-based reading even when PDF text exists."
+      },
+      {
+        "title": "Detect layout with Heron",
+        "detail": "Docling groups the recognized text into document blocks. Table reconstruction is disabled; parsed page information is retained for hierarchy processing."
+      },
+      {
+        "title": "Assign heading levels",
+        "detail": "Docling’s HeadingHierarchyModel runs with its default settings. We save each native section_header text, H level and PDF page without correcting them."
+      }
+    ],
+    "limitation": "15/77 heading-level pairs are correct, versus 16/77 for Docling without OCR. There are 52 incorrect levels, 10 missing headings and 2 extras. Forced OCR did not improve this selectable-text corpus.",
+    "parameters": [
+      [
+        "Packages",
+        "docling==2.151.1; docling-core==2.108.0; rapidocr==3.10.0; onnxruntime==1.32.0; torch==2.15.0; pymupdf==2.1"
+      ],
+      [
+        "OCR",
+        "mode=FULL_PAGE; lang=[latin]; backend=onnxruntime; scale=3.0 (216 dpi); model_size=small; text_score=0.5; detect_orientation=False"
+      ],
+      [
+        "Recognition models",
+        "ch_PP-OCRv5_det_mobile.onnx; latin_PP-OCRv5_rec_mobile.onnx; ch_ppocr_mobile_v2.0_cls_mobile.onnx"
+      ],
+      [
+        "Device",
+        "CPU; num_threads=8"
+      ],
+      [
+        "Conversion",
+        "do_ocr=True; do_table_structure=False; generate_parsed_pages=True"
+      ],
+      [
+        "Hierarchy",
+        "HeadingHierarchyOptions(enabled=True); remaining settings use defaults"
+      ],
+      [
+        "Scored output",
+        "Native SectionHeaderItem text, level and first provenance page"
+      ],
+      [
+        "Timing",
+        "Full-PDF conversion plus hierarchy; initialization recorded separately"
+      ],
+      [
+        "Observed time",
+        "9 min 23 sec for 523 pages; 4.12 sec initialization excluded; 1.08 sec/page average"
+      ],
+      [
+        "Model pins",
+        "Heron revision 8f39ad3c0b4c58e9c2d2c84a38465abf757272d8; OCR weight hashes in configs/docling-ocr-models.json"
+      ]
+    ],
+    "training": [],
+    "sections": [
+      {
+        "title": "Training and selection",
+        "paragraphs": [
+          "No models were trained or tuned on WFP reports for this configuration. Latin-script recognition was selected to cover the English and Spanish documents. The earlier Docling configurations explicitly disabled OCR."
+        ]
+      },
+      {
+        "title": "Interpretation",
+        "paragraphs": [
+          "This tests forced full-page OCR on PDFs with selectable text. It does not measure performance on a scanned-document corpus, and it is not an exhaustive comparison of Docling’s OCR engines."
+        ]
+      },
+      {
+        "title": "Observed outputs",
+        "paragraphs": [
+          "The 69 audit predictions comprise 5 H1, 13 H2, 9 H3, 9 H4, 23 H5 and 10 H6 headings. Of 67 matched titles, 52 have the wrong level. Native prose retention is 86.6% on the audit pages. This is a text-retention measure, not a character-accuracy score."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Reproduction commands",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/evidencelab-and-ocr.md"
+      },
+      {
+        "label": "Importer and output checks",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/pipeline_evidence.py"
+      },
+      {
+        "label": "Docling model catalog",
+        "url": "https://docling-project.github.io/docling/usage/model_catalog/"
+      },
+      {
+        "label": "RapidOCR",
+        "url": "https://github.com/RapidAI/RapidOCR"
+      },
+      {
+        "label": "Docling technical report",
+        "url": "https://arxiv.org/abs/2408.09869"
+      },
+      {
+        "label": "Environment pins",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling-ocr.txt"
+      },
+      {
+        "label": "Saved evidence",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/pipeline-runs/docling_ocr.json"
+      }
+    ],
+    "terms": [
+      {
+        "name": "RapidOCR",
+        "description": "An OCR package that detects text in images and recognizes the characters.",
+        "url": "https://github.com/RapidAI/RapidOCR"
+      },
+      {
+        "name": "Heron",
+        "description": "Docling’s layout model, which identifies regions such as text, headings and tables.",
+        "url": "https://huggingface.co/docling-project/docling-layout-heron"
       }
     ]
   }

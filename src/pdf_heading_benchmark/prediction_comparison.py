@@ -86,15 +86,11 @@ def comparison_html(documents: list[dict]) -> str:
             f"</tr></thead><tbody>{html_rows(audit)}</tbody></table></div></details>"
         )
     return (
-        '<section class="prediction-comparison"><h3>Predicted headings versus reference</h3>'
+        '<details class="prediction-comparison"><summary>Predictions versus reference</summary>'
         f'<p class="comparison-counts">{counts([d["audit"] for d in documents])}</p>'
-        "<p>Expand a report to see all reference headings and predictions on its audit pages, "
-        "including misses and extras. This covers the 32 scored pages, not every parsed page. "
-        "References are the frozen assistant annotations, not independently human-verified truth. "
-        "Pairing uses the same one-to-one, same-page title match (similarity ≥90%) as the scores; "
-        "only an exact H level earns joint credit. Titles are shown in full as recorded.</p>"
+        "<p>Choose a report to inspect every scored heading. Page numbers count from the PDF cover.</p>"
         + "".join(sections)
-        + "</section>"
+        + "</details>"
     )
 
 

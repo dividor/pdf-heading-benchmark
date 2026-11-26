@@ -29,12 +29,6 @@ This author-reported chart averages four parsing benchmarks and measures through
 | LightOnOCR-3-1B | Lower | Exact chart variant not tested; our rows use 0.8B and 4B variants. |
 | Unlimited-OCR | Lower | Not tested. |
 
-### A newer Ovis model is now included
+**OvisOCR3 is not in this chart.** Our separate Metal run scores **65.0% joint F0.5**, with **36/77** heading-level pairs correct. Ovis-OCR2 remains untested.
 
-[OvisOCR3](https://huggingface.co/ATH-MaaS/OvisOCR3), described in its [October 20, 2026 paper](https://arxiv.org/abs/2610.33066), is absent from this chart. Our run uses its official Markdown recipe with vLLM Metal: **65.0% joint F0.5**, **36/77 correct title-level pairs**, one extra heading and **6 min 58 sec for 32 pages**. This does not retrospectively test OvisOCR2.
-
-### Why the published chart does not predict our heading scores
-
-The chart measures broad document parsing. Our score requires the exact heading depth as well as the title and page. We also use different hardware and, in the earlier trials, different assembly pipelines. We cannot attribute score differences to the weights alone.
-
-The Methods & scoring tab now shows a measured level-error audit. New runs preserve the upstream pipeline’s output; they do not apply corrections fitted to WFP labels. [Official pipeline details and reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/official-pipelines.md).
+Broad OCR quality does not establish heading-level accuracy. Our WFP measurements use different hardware and input conditions. [Pipeline reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/official-pipelines.md).
