@@ -1,0 +1,30 @@
+{
+  "sequence": [
+    {
+      "candidate": "minicpm_ocr10",
+      "run": "run-001",
+      "status": "completed",
+      "pages": 32
+    },
+    {
+      "candidate": "xiaomi_ocr0",
+      "run": "run-001",
+      "status": "interrupted",
+      "saved_pages": [],
+      "cause": "External USB volume disconnected; process exited 120. Excluded from scoring and timing."
+    },
+    {
+      "candidate": "xiaomi_ocr0",
+      "run": "run-002",
+      "status": "completed",
+      "pages": 32
+    },
+    {
+      "candidate": "paddleocr_vl16",
+      "run": "run-002",
+      "status": "completed",
+      "pages": 32
+    }
+  ],
+  "smoke_tests": "Each candidate is checked on targeting physical page 1, outside the audit set, before its main run. Smoke outputs are excluded."
+}

@@ -1,0 +1,263 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Qwen speed and hierarchy experiments</title><style>body { font: 16px/1.55 system-ui, sans-serif; margin: 0; color: #183247; background: #f5f8fb; }
+main { padding: 32px; max-width: 1800px; margin: auto; overflow-x: auto; }
+p { max-width: 1100px; }
+a { color: #08659a; }
+h1 { line-height: 1.2; }
+table { border-collapse: collapse; background: white; font-size: 14px; width: 100%; margin: 24px 0; }
+main > p > a > img, main > p > img { max-width: 100%; height: auto; }
+th, td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #dce5ec; min-width: 90px; }
+th { background: #e5eff7; }
+td:nth-child(2) { min-width: 240px; }
+.league-table th:nth-child(3), .league-table td:nth-child(3) { background: #dceff1; border-left: 2px solid #087e88; border-right: 2px solid #087e88; }
+.league-table td:nth-child(3) { min-width: 110px; font-size: 20px; color: #074851; }
+.league-table td:nth-child(6) { min-width: 240px; }
+code { background: #e7eef4; padding: 2px 4px; }
+@media (max-width: 600px) { main { padding: 16px; } }
+
+tr:has(#our-trained-model) > td { background: #fff2bd; border-top: 2px solid #b87a00; border-bottom: 2px solid #b87a00; }
+tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; min-width: 210px; }
+#our-trained-model { scroll-margin-top: 32px; }
+
+.technique-hint { border-left: 4px solid #087e88; padding: 10px 16px; background: #e5f5f3; }
+a[data-technique] { text-underline-offset: 3px; }
+a[data-technique]:hover { color: #074851; text-decoration-thickness: 2px; }
+.technique-dialog { border: 0; border-radius: 18px; padding: 0; width: min(1050px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); color: #183247; background: #f9fbfd; box-shadow: 0 24px 100px #001d4055; }
+.technique-dialog::backdrop { background: #10273fbb; backdrop-filter: blur(3px); }
+.technique-shell { padding: 28px; }
+.technique-header { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; }
+.technique-header h2 { margin: 4px 0 12px; line-height: 1.2; font-size: clamp(22px, 3vw, 30px); }
+.technique-family { color: #067078; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; font-weight: 750; margin: 0; }
+.technique-close { flex-shrink: 0; cursor: pointer; background: white; color: #183247; border: 1px solid #adbfce; border-radius: 8px; padding: 8px 12px; font: inherit; }
+.technique-description { margin-bottom: 24px; }
+.technique-details { margin: 28px 0; }
+.technique-details h3 { margin: 28px 0 10px; }
+.technique-details table { table-layout: fixed; overflow-wrap: anywhere; }
+.technique-details caption { text-align: left; color: #4a6273; font-size: 13px; padding-bottom: 8px; }
+.technique-details th { width: 28%; }
+.technique-details th, .technique-details td { min-width: 0; }
+.technique-details p { overflow-wrap: anywhere; }
+.technique-flow { margin: 24px 0; }
+.technique-flow figcaption { font-weight: 750; margin-bottom: 12px; }
+.technique-flow ol { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; padding: 0; margin: 0; }
+.technique-flow li { position: relative; flex: 1 1 160px; min-width: 0; padding: 18px 16px; border: 1px solid #bfd8df; border-radius: 12px; background: white; }
+.technique-flow li:last-child { background: #e6f4f0; border-color: #8dc9ba; }
+.technique-flow li:not(:last-child)::after { content: '→'; position: absolute; right: -20px; top: 44%; color: #14737d; font-size: 22px; }
+.step-number { display: block; color: #087581; font-size: 12px; font-weight: 800; margin-bottom: 10px; }
+.technique-flow strong { display: block; line-height: 1.25; }
+.technique-flow p { font-size: 14px; line-height: 1.45; margin: 10px 0 0; }
+.technique-limit { background: #fff4d9; border-left: 3px solid #cba348; border-radius: 6px; padding: 14px 18px; }
+.technique-limit p { font-size: 14px; margin: 4px 0 0; }
+.technique-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.technique-links a { background: white; border: 1px solid #b8ccd9; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
+.technique-footnote { font-size: 12px; color: #4a6273; margin-top: 20px; }
+:focus-visible { outline: 3px solid #bf6a00; outline-offset: 4px; }
+body:has(.technique-dialog[open]) { overflow: hidden; }
+@media (max-width: 650px) {
+  .technique-shell { padding: 20px; }
+  .technique-flow ol { flex-direction: column; }
+  .technique-flow li { flex-basis: auto; }
+  .technique-flow li:not(:last-child)::after { content: '↓'; top: auto; bottom: -24px; right: 50%; }
+  .technique-header { gap: 8px; }
+}
+@media print {
+  .technique-dialog[open] { position: static; max-height: none; width: auto; box-shadow: none; }
+  .technique-close { display: none; }
+}
+
+tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
+#our-calibrated-model { scroll-margin-top: 32px; }
+
+.info-button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 4px; border: 1px solid #527b88; border-radius: 50%; background: white; color: #075868; font: bold 14px Georgia, serif; cursor: pointer; vertical-align: middle; flex-shrink: 0; }
+.info-button:hover { background: #075868; color: white; }
+.column-dialog { max-width: 680px; }
+.column-dialog h2 { font-size: 24px; margin: 0; }
+
+.method-terms { background: #eaf3f5; border-radius: 12px; padding: 8px 20px; margin-top: 24px; }
+.method-terms dt { font-weight: 700; margin-top: 16px; }
+.method-terms dd { margin: 4px 0 16px; font-size: 15px; }
+.technique-flow a { text-underline-offset: 3px; }
+
+.prediction-comparison { margin: 24px 0; padding: 18px; background: white; border: 1px solid #b8ccd9; border-radius: 12px; }
+.prediction-comparison h3 { margin-top: 0; }
+.comparison-counts { font-weight: 750; }
+.comparison-document { border-top: 1px solid #dce5ec; padding: 12px 0; }
+.comparison-document summary { cursor: pointer; font-weight: 650; }
+.comparison-document summary span { display: block; margin: 5px 0 0 20px; font-size: 13px; font-weight: 400; }
+.comparison-scroll { overflow-x: auto; }
+.comparison-scroll table { table-layout: fixed; min-width: 640px; }
+.comparison-scroll th, .comparison-scroll td { min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.comparison-scroll th:first-child { width: 6%; }
+.comparison-scroll th:nth-child(2), .comparison-scroll th:nth-child(3) { width: 35%; }
+.comparison-scroll caption { text-align: left; font-size: 13px; }
+.comparison-correct { background: #edf8f2; }
+.comparison-wrong { background: #fff4d9; }
+.comparison-missing { background: #fff0f0; }
+.comparison-extra { background: #f5edff; }
+
+/* Show the run itself first; keep long records available on demand. */
+.technique-shell > details { border-top: 1px solid #cbdde4; padding: 14px 0; margin: 0; }
+.technique-shell > details > summary { cursor: pointer; font-weight: 650; }
+.technique-shell > .prediction-comparison { background: transparent; border-radius: 0; border-right: 0; border-bottom: 0; border-left: 0; }
+.technique-shell > .technique-limit { margin-top: 16px; }
+.technique-shell .technique-flow { margin: 18px 0; }
+.technique-shell .technique-flow li { padding: 12px; }
+.technique-shell .technique-description { margin-bottom: 12px; }
+.technique-shell .technique-links { margin: 14px 0; }
+</style></head><body><main><h1>Qwen local speed and hierarchy experiments</h1>
+<p>We tested whether removing earlier page images could make Qwen practical without sacrificing correct heading text and level. Two fixed configurations use the same input construction: <strong>Qwen3.6-27B MLX 4-bit</strong> and <strong>Qwen3.6-35B-A3B MLX 4-bit</strong>. A third follow-up restores the original multi-image memory with the sparse model. None was fine-tuned on WFP labels. The second is a mixture-of-experts model with 35 billion total parameters and approximately 3 billion activated per token; it still stores the full model weights. <a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B">Official model card</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Joint F0.5</th>
+<th>Joint precision</th>
+<th>Correct heading + level</th>
+<th>Titles found</th>
+<th>False headings</th>
+<th>Generation / 32 pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3.6-27B / MLX 4-bit / sampled visual memory</td>
+<td>82.7%</td>
+<td>82.3%</td>
+<td>65/77 (84.4%)</td>
+<td>77/77</td>
+<td>2</td>
+<td>61.8 min</td>
+</tr>
+<tr>
+<td>Qwen3.6-27B 4-bit — single image</td>
+<td>77.1%</td>
+<td>76.9%</td>
+<td>60/77 (77.9%)</td>
+<td>77/77</td>
+<td>1</td>
+<td>34.0 min</td>
+</tr>
+<tr>
+<td>Qwen3.6-35B-A3B 4-bit — single image</td>
+<td>68.8%</td>
+<td>68.8%</td>
+<td>53/77 (68.8%)</td>
+<td>77/77</td>
+<td>0</td>
+<td>5.2 min</td>
+</tr>
+<tr>
+<td>Qwen3.6-35B-A3B 4-bit — visual memory</td>
+<td>69.0%</td>
+<td>69.3%</td>
+<td>52/77 (67.5%)</td>
+<td>75/77</td>
+<td>0</td>
+<td>8.7 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation:</strong> none of the new variants improves the original 27B result’s joint F0.5. The single-image 27B run is about 1.8× faster, but loses five correct levels. The sparse single-image run is about 11.9× faster, but loses twelve correct levels. All 77 titles are still recovered in both single-image runs: their remaining errors are primarily hierarchy mistakes, not a failure to find the text.</p>
+<p>Restoring visual memory to the sparse model does not help: 52 correct pairs versus 53 with one image, two missing titles versus none, and 8.7 minutes versus 5.2. Its slightly higher F0.5 (69.0% versus 68.8%) comes from emitting fewer predictions, not recovering more correct headings. This is not a better solution to the requested high-coverage objective. The original 27B visual-memory configuration remains the most accurate of these four measured Qwen configurations.</p>
+<h2>Documents and scoring</h2>
+<p>These are the original four WFP reports: the targeting and prioritization strategic evaluation, the mid-term evaluation of the 2022–2025 Strategic Plan, the Indonesia country strategic plan evaluation and the Colombia country strategic plan evaluation. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/corpus.json">Official PDF URLs, titles and checksums</a>. Together they contain 523 pages, but this experiment processes only <strong>32 selected page images</strong>, eight per report, with <strong>77 reference headings</strong>. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/audit_pages.json">Exact physical PDF pages</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/gold.json">Reference annotations</a>.</p>
+<p>We have already inspected this small benchmark. These are historical regression results, not an independent generalization test. The reference was annotated by the assistant and is available for review; it is not a certified human gold standard. The first two configurations were specified before their results were scored. After seeing the sparse single-image result (53/77 correct levels), we added a third configuration restoring the original visual-memory procedure. That follow-up is explicitly exploratory and was not pre-planned alongside the first two. Neither the reference headings nor their levels enter the inference runner. Report all three variants, including failures, rather than selecting a winner and hiding the others.</p>
+<p>The primary score is <strong>joint heading-and-level F0.5 = 1.25C / (P + 0.25G)</strong>. C counts one-to-one matches with the correct title, physical page and exact heading level; P is the number predicted and G the number of reference headings. Title matching uses the frozen normalized similarity threshold of 0.90. Joint precision is C/P; joint recall is C/G. A wrong level contributes both a false positive and a false negative. False headings in the table are unmatched predictions; wrong-level headings are additional errors. The main report has the complete prediction-versus-reference table in each method modal.</p>
+<h2>Initial single-image trials</h2>
+<ol>
+<li>Extract native text for the current page. Reuse the full-document PyMuPDF4LLM candidate outline and author-provided PDF heading tags. Candidate levels are omitted; tags may be wrong and are described as fallible evidence.</li>
+<li>Render the current page at twice its PDF dimensions, then thumbnail to a maximum edge of <strong>1,280 pixels</strong>, preserving aspect ratio. Supply <strong>one image</strong>. The earlier configuration supplied a current image up to 1,792 pixels and up to six earlier images at 1,280 pixels.</li>
+<li>Supply the most recent predicted heading at each H1–H6 level as <strong>text only</strong>. Memory starts empty for each document and updates after each sampled page in ascending page order. It does not silently process the intervening pages.</li>
+<li>Generate complete heading text and integer H1–H6 levels locally. Both runs use MLX-VLM 0.8.0, MLX 0.32.4, temperature 0, seed 42, thinking disabled and a 4,096-token cap. A soft 600-second limit is checked between streamed chunks. Save raw replies; validate JSON without semantic title or level repairs.</li>
+<li>Match the saved predictions against the frozen reference only after inference. Preserve the earlier multi-image result as a separate row.</li>
+</ol>
+<p>The full outline and tags are still repeated for each target. This is specifically an image-history/resolution experiment, not a test of compacting all document context. Because both image size and history changed together, it does not identify their separate effects.</p>
+<p><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py">Exact prompt</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py">Inference runner</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/decode_qwen.py">Strict response decoder</a> · <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json">Pinned model revisions</a>.</p>
+<h2>Sparse-model visual-memory follow-up</h2>
+<p>The sparse single-image run found all 77 titles with no extras, but made 24 level mistakes. To test whether the missing typography examples mattered, a third run uses the original multi-image instruction and <code>generate_page</code> function without modifying them. The current image has a 1,792-pixel cap; memory includes up to six earlier sampled-page images at 1,280 pixels, selected by the most recent predicted heading at each level. The model is the same pinned 35B-A3B 4-bit version as the sparse single-image run. Temperature, seed, output cap and soft timeout remain unchanged.</p>
+<p>This restores image history, image size and the associated instruction together. It cannot attribute a change to any one of those components. It is a follow-up prompted by results on this already inspected corpus, not an independent test. <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py">Wrapper calling the original generation function</a>.</p>
+<h2>Timing and provenance</h2>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Model loading</th>
+<th>Page preparation</th>
+<th>Other wrapper time</th>
+<th>Summed time to first chunk</th>
+<th>Output tokens</th>
+<th>Peak MLX allocation</th>
+<th>Parse errors</th>
+<th>Timeouts</th>
+<th>Token caps reached</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3.6-27B 4-bit — single image</td>
+<td>19.9 s</td>
+<td>1.1 s</td>
+<td>—</td>
+<td>31.2 min</td>
+<td>2426</td>
+<td>20.2 GB</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Qwen3.6-35B-A3B 4-bit — single image</td>
+<td>23.6 s</td>
+<td>1.0 s</td>
+<td>—</td>
+<td>4.7 min</td>
+<td>2311</td>
+<td>22.9 GB</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Qwen3.6-35B-A3B 4-bit — visual memory</td>
+<td>23.6 s</td>
+<td>—</td>
+<td>1.4 s</td>
+<td>—</td>
+<td>2327</td>
+<td>23.3 GB</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>In the single-image trials, summed time to the first chunk was 31.2 of 34.0 minutes for the 27B model and 4.7 of 5.2 minutes for the sparse model (about 92% and 90%). This interval includes input processing and the first generated token; it is not an isolated GPU-stage profile. Accelerating only the remaining output-token loop has limited room to improve the total.</p>
+<p>Runs use the shared Apple M4 Pro with 48 GB memory. The main-table time sums generation calls, including their image/text processing, to match the earlier runner's timing boundary. It excludes model downloads, loading and the previously performed candidate/tag extraction. Separate records retain model loading, generated token counts, timeouts, parse failures and peak MLX allocation. The single-image runner also records per-page rendering/prompt preparation and time to first streamed chunk. The visual-memory wrapper instead records all work outside generation together (including image/prompt preparation, parsing and writing); its reused generator does not expose first-token timing, which remains unavailable. Peak MLX allocation is not total system memory. These are single runs on a shared machine, not repeated controlled hardware benchmarks; speed ratios are observational.</p>
+<p>Native page text is exported with the raw page records. We did not rerun an independent prose-retention evaluation, so that field remains blank in the main table. No paid inference API was used. Local hardware, power and elapsed time still have costs; there is no invented dollar charge per page.</p>
+<p>An interrupted 27B attempt (run 001) ended before any page result was written. The completed restart uses a fresh run directory (002) with the same settings. The initial 35B model download was also interrupted and resumed from its partial cache. These partial attempts do not contribute scores or inference timings.</p>
+<p>Compact evidence is stored under <a href="https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/qwen-compact/evidence">outputs/qwen-compact/evidence</a>. It includes every audited prediction, per-page telemetry, model revisions, package versions, source/input checksums and the protocol written before model loading. Downloaded weights, PDFs and full raw text remain outside Git.</p>
+<h2>Reproduce</h2>
+<p>Use the repository setup instructions to download the four PDFs and prepare the existing PyMuPDF4LLM candidates and PDF tags in an external data directory. Use an Apple Silicon environment with the pinned <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mlx.txt">MLX requirements</a>, and set <code>PYTHONPATH=src</code> when invoking the standalone runner from the repository root.</p>
+<pre><code class="language-sh">export PDF_BENCHMARK_DATA=/absolute/path/to/external-data
+export HF_HOME=/absolute/path/to/external-model-cache
+export PYTHONPATH=src
+python scripts/runners/prepare_model.py Qwen3.6-27B-4bit
+python scripts/runners/prepare_model.py Qwen3.6-35B-A3B-4bit
+python scripts/runners/run_qwen_compact.py \
+  --input-data &quot;$PDF_BENCHMARK_DATA&quot; \
+  --model Qwen3.6-27B-4bit \
+  --model-record &quot;$PDF_BENCHMARK_DATA/models/download-Qwen3.6-27B-4bit.json&quot; \
+  --output &quot;$PDF_BENCHMARK_DATA/qwen-compact/27b-run-002&quot;
+python scripts/runners/run_qwen_compact.py \
+  --input-data &quot;$PDF_BENCHMARK_DATA&quot; \
+  --model Qwen3.6-35B-A3B-4bit \
+  --model-record &quot;$PDF_BENCHMARK_DATA/models/download-Qwen3.6-35B-A3B-4bit.json&quot; \
+  --output &quot;$PDF_BENCHMARK_DATA/qwen-compact/35b-run-001&quot;
+</code></pre>
+<p>The runner refuses existing output directories. For the follow-up, run:</p>
+<pre><code class="language-sh">python scripts/runners/run_qwen_sparse_memory.py \
+  --input-data &quot;$PDF_BENCHMARK_DATA&quot; \
+  --model-record &quot;$PDF_BENCHMARK_DATA/models/download-Qwen3.6-35B-A3B-4bit.json&quot; \
+  --output &quot;$PDF_BENCHMARK_DATA/qwen-compact/35b-memory-run-001&quot;
+</code></pre>
+<p>Run the models sequentially to avoid GPU/memory contention. To regenerate the published report without any models, use <code>uv run python scripts/qwen_compact_report.py</code> followed by <code>uv run pdf-headings report</code>. Importing a new run requires explicit <code>--runs /absolute/path/to/external-data/qwen-compact</code>; the importer checks inference source checksums before copying compact evidence. Keep fresh run directories and distinct published rows when changing settings.</p>
+</main></body></html>

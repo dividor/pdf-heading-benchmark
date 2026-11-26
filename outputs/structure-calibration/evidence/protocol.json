@@ -1,0 +1,64 @@
+{
+  "grid": [
+    {
+      "body_weight": 1.0,
+      "relation_weight": 1.0
+    },
+    {
+      "body_weight": 1.0,
+      "relation_weight": 0.5
+    },
+    {
+      "body_weight": 1.0,
+      "relation_weight": 0.0
+    },
+    {
+      "body_weight": 1.5,
+      "relation_weight": 1.0
+    },
+    {
+      "body_weight": 1.5,
+      "relation_weight": 0.5
+    },
+    {
+      "body_weight": 1.5,
+      "relation_weight": 0.0
+    },
+    {
+      "body_weight": 2.0,
+      "relation_weight": 1.0
+    },
+    {
+      "body_weight": 2.0,
+      "relation_weight": 0.5
+    },
+    {
+      "body_weight": 2.0,
+      "relation_weight": 0.0
+    }
+  ],
+  "selection": "Maximum validation exact group+level F1; ties retain first (baseline first).",
+  "config_hashes": {
+    "annotation-changes.json": "f5e835462177ed3eac38e0e562ee0b40f6e8dd1837da0ce684cb814d346f2da5",
+    "annotations.json": "c07ca112f2172b09d32cbefaea21dcddbf4d2cf9da2862b707d12e401a8c59ce",
+    "corpus.json": "38672ddf59b5f281f9fa6b319f53eae4e95f0303440886bba6e9b0f68c2f8379",
+    "decisions.json": "d305d5bed01044c17b5063b3b8016e125744c4a3bdee3fc1fff33d7306200a6c",
+    "excluded.json": "e16f2fa4c0830cdf70d1e6576e8dbd770002e893d410a0400e14adaf556b53c9",
+    "protocol.json": "b3e363c05431fe7fdb7137a3eabcb33c676d0c18bc5a99f0d91f531c64478684",
+    "test-decisions.json": "1485064574970125625f55ff2b2fff35a96bd3a5c855011424a5a4207b6dc65a"
+  },
+  "model_hashes": {
+    "line": "70c904def2b5a8f5a23a0333e8ed6c7113bd1102c4486beb9800804cec9ef517",
+    "join": "dfaa15f128243fa17aea3c26b9c451279d71bce2f05f95f966fcba6da07a18ea",
+    "group": "09f5a467dc0c64b1872ac59a1720dab2f0f0b107fda452d575617aa53738b3be",
+    "context": "1666290d9e5b2e74a2c7be79efa998297dc784f4b17ec2a11ab4945f0d3c1c47",
+    "relation": "82b359ffc0c64093f57b85b4c8fb28d0055ef331c37bbf281acf852e4a1b0196"
+  },
+  "source_hashes": {
+    "scripts/structure/calibrate.py": "f09af298af6784a614e79a1651eb393a318cdff103d59e4a856aa4e16aeddf50",
+    "src/pdf_heading_benchmark/structure_inference.py": "dacc66da00736ebc6abb44580bc66e45b439cbf66a77decd8dd1ff190fd2ca9d",
+    "src/pdf_heading_benchmark/structure_evaluation.py": "92bda01824b81958753ba70ec7697a44b1d14421c9b39ccddba97f3814a0ddf3",
+    "scripts/structure/evaluate.py": "54b110e8e93c66deddee0ef2bc85fc2f18ffb70509eb9a7ea06f1263d29fba5d"
+  },
+  "test_status": "Previously inspected v2 test is a regression set, not fresh evaluation."
+}

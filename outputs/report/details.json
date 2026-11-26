@@ -352,38 +352,6 @@
     "predicted": 22
   },
   {
-    "method": "pdf_tags_audit_only",
-    "document": "targeting",
-    "gold": 15,
-    "matched": 9,
-    "correct_level": 9,
-    "predicted": 9
-  },
-  {
-    "method": "pdf_tags_audit_only",
-    "document": "midterm",
-    "gold": 18,
-    "matched": 13,
-    "correct_level": 13,
-    "predicted": 13
-  },
-  {
-    "method": "pdf_tags_audit_only",
-    "document": "indonesia",
-    "gold": 21,
-    "matched": 14,
-    "correct_level": 10,
-    "predicted": 16
-  },
-  {
-    "method": "pdf_tags_audit_only",
-    "document": "colombia",
-    "gold": 23,
-    "matched": 16,
-    "correct_level": 11,
-    "predicted": 16
-  },
-  {
     "method": "mineru_pro_mlx",
     "document": "targeting",
     "gold": 15,
@@ -542,5 +510,581 @@
     "matched": 19,
     "correct_level": 9,
     "predicted": 21
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 12,
+    "correct_level": 7,
+    "predicted": 23
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 14,
+    "predicted": 18
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 18,
+    "correct_level": 10,
+    "predicted": 31
+  },
+  {
+    "method": "structure_expanded_line",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 10,
+    "predicted": 23
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 12,
+    "predicted": 22
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 16,
+    "correct_level": 14,
+    "predicted": 17
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 21,
+    "correct_level": 12,
+    "predicted": 32
+  },
+  {
+    "method": "structure_learned_groups",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 22,
+    "correct_level": 13,
+    "predicted": 24
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 9,
+    "predicted": 25
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 16,
+    "correct_level": 15,
+    "predicted": 18
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 14,
+    "correct_level": 13,
+    "predicted": 25
+  },
+  {
+    "method": "structure_context_relations",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 19,
+    "correct_level": 13,
+    "predicted": 19
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 9,
+    "predicted": 24
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 16,
+    "correct_level": 15,
+    "predicted": 18
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 12,
+    "correct_level": 11,
+    "predicted": 22
+  },
+  {
+    "method": "structure_calibrated",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 16,
+    "correct_level": 12,
+    "predicted": 16
+  },
+  {
+    "method": "structure_precision",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 7,
+    "correct_level": 6,
+    "predicted": 8
+  },
+  {
+    "method": "structure_precision",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 12,
+    "correct_level": 12,
+    "predicted": 12
+  },
+  {
+    "method": "structure_precision",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 7,
+    "correct_level": 7,
+    "predicted": 8
+  },
+  {
+    "method": "structure_precision",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 13,
+    "correct_level": 9,
+    "predicted": 13
+  },
+  {
+    "method": "structure_recall",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 10,
+    "predicted": 25
+  },
+  {
+    "method": "structure_recall",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 16,
+    "predicted": 18
+  },
+  {
+    "method": "structure_recall",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 14,
+    "correct_level": 12,
+    "predicted": 25
+  },
+  {
+    "method": "structure_recall",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 19,
+    "correct_level": 12,
+    "predicted": 19
+  },
+  {
+    "method": "qwen36_27b_compact",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 13,
+    "predicted": 15
+  },
+  {
+    "method": "qwen36_27b_compact",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 16,
+    "predicted": 18
+  },
+  {
+    "method": "qwen36_27b_compact",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 21,
+    "correct_level": 16,
+    "predicted": 21
+  },
+  {
+    "method": "qwen36_27b_compact",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 23,
+    "correct_level": 15,
+    "predicted": 24
+  },
+  {
+    "method": "qwen36_35b_compact",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 10,
+    "predicted": 15
+  },
+  {
+    "method": "qwen36_35b_compact",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 16,
+    "predicted": 18
+  },
+  {
+    "method": "qwen36_35b_compact",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 21,
+    "correct_level": 12,
+    "predicted": 21
+  },
+  {
+    "method": "qwen36_35b_compact",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 23,
+    "correct_level": 15,
+    "predicted": 23
+  },
+  {
+    "method": "qwen36_35b_visual_memory",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 15,
+    "correct_level": 13,
+    "predicted": 15
+  },
+  {
+    "method": "qwen36_35b_visual_memory",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 16,
+    "predicted": 18
+  },
+  {
+    "method": "qwen36_35b_visual_memory",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 19,
+    "correct_level": 11,
+    "predicted": 19
+  },
+  {
+    "method": "qwen36_35b_visual_memory",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 23,
+    "correct_level": 12,
+    "predicted": 23
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 19
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 3,
+    "predicted": 18
+  },
+  {
+    "method": "minicpm_ocr10",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 4,
+    "predicted": 20
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 7,
+    "predicted": 13
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 7,
+    "predicted": 18
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 7,
+    "predicted": 18
+  },
+  {
+    "method": "xiaomi_ocr0",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 21,
+    "correct_level": 8,
+    "predicted": 23
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 19
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 3,
+    "predicted": 18
+  },
+  {
+    "method": "paddleocr_vl16",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 4,
+    "predicted": 20
+  },
+  {
+    "method": "paddleocr_vl16_official",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "paddleocr_vl16_official",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 19
+  },
+  {
+    "method": "paddleocr_vl16_official",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 5,
+    "predicted": 18
+  },
+  {
+    "method": "paddleocr_vl16_official",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 4,
+    "predicted": 20
+  },
+  {
+    "method": "ovisocr3_official_metal",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 12,
+    "correct_level": 11,
+    "predicted": 12
+  },
+  {
+    "method": "ovisocr3_official_metal",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 12,
+    "correct_level": 9,
+    "predicted": 12
+  },
+  {
+    "method": "ovisocr3_official_metal",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 8,
+    "correct_level": 6,
+    "predicted": 8
+  },
+  {
+    "method": "ovisocr3_official_metal",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 17,
+    "correct_level": 10,
+    "predicted": 18
+  },
+  {
+    "method": "minicpm_ocr10_official_ollama",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 4,
+    "predicted": 14
+  },
+  {
+    "method": "minicpm_ocr10_official_ollama",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 19
+  },
+  {
+    "method": "minicpm_ocr10_official_ollama",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 3,
+    "predicted": 18
+  },
+  {
+    "method": "minicpm_ocr10_official_ollama",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 4,
+    "predicted": 20
+  },
+  {
+    "method": "xiaomi_ocr0_official_metal",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 7,
+    "predicted": 14
+  },
+  {
+    "method": "xiaomi_ocr0_official_metal",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 9,
+    "predicted": 19
+  },
+  {
+    "method": "xiaomi_ocr0_official_metal",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 6,
+    "predicted": 18
+  },
+  {
+    "method": "xiaomi_ocr0_official_metal",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 9,
+    "predicted": 20
+  },
+  {
+    "method": "evidencelab",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 11,
+    "correct_level": 7,
+    "predicted": 13
+  },
+  {
+    "method": "evidencelab",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 18,
+    "correct_level": 5,
+    "predicted": 18
+  },
+  {
+    "method": "evidencelab",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 15,
+    "predicted": 17
+  },
+  {
+    "method": "evidencelab",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 17,
+    "correct_level": 10,
+    "predicted": 22
+  },
+  {
+    "method": "docling_ocr",
+    "document": "targeting",
+    "gold": 15,
+    "matched": 13,
+    "correct_level": 1,
+    "predicted": 13
+  },
+  {
+    "method": "docling_ocr",
+    "document": "midterm",
+    "gold": 18,
+    "matched": 17,
+    "correct_level": 1,
+    "predicted": 17
+  },
+  {
+    "method": "docling_ocr",
+    "document": "indonesia",
+    "gold": 21,
+    "matched": 17,
+    "correct_level": 4,
+    "predicted": 17
+  },
+  {
+    "method": "docling_ocr",
+    "document": "colombia",
+    "gold": 23,
+    "matched": 20,
+    "correct_level": 9,
+    "predicted": 22
   }
 ]

@@ -1,0 +1,145 @@
+{
+  "source": "https://github.com/datalab-to/omni_parse_bench#results",
+  "rows": [
+    {
+      "name": "Gemini 4 Argon †",
+      "text": 94.4,
+      "layout": 96.4,
+      "category": "hosted",
+      "dx": -20,
+      "dy": -28
+    },
+    {
+      "name": "Datalab Accurate",
+      "text": 92.6,
+      "layout": 96.0,
+      "category": "hosted",
+      "dx": 25,
+      "dy": 8
+    },
+    {
+      "name": "LlamaParse",
+      "text": 89.4,
+      "layout": 90.0,
+      "category": "hosted",
+      "dx": 20,
+      "dy": 8
+    },
+    {
+      "name": "Chandra OCR 2",
+      "text": 87.9,
+      "layout": 95.4,
+      "category": "local",
+      "dx": 20,
+      "dy": 20
+    },
+    {
+      "name": "Mistral OCR",
+      "text": 83.6,
+      "layout": 93.8,
+      "category": "hosted",
+      "dx": -80,
+      "dy": -22
+    },
+    {
+      "name": "dots.mocr",
+      "text": 83.1,
+      "layout": 92.5,
+      "category": "local",
+      "dx": -50,
+      "dy": 25
+    },
+    {
+      "name": "MinerU 2.5 Pro",
+      "text": 78.0,
+      "layout": 91.7,
+      "category": "local",
+      "dx": -130,
+      "dy": -15
+    },
+    {
+      "name": "InfinityParser 2 Pro",
+      "text": 83.9,
+      "layout": 93.5,
+      "category": "local",
+      "dx": 22,
+      "dy": 25
+    },
+    {
+      "name": "Surya OCR 2.5",
+      "text": 84.3,
+      "layout": 95.8,
+      "category": "local",
+      "dx": -100,
+      "dy": -25
+    },
+    {
+      "name": "OvisOCR3",
+      "text": 78.2,
+      "layout": 90.6,
+      "category": "local",
+      "dx": 30,
+      "dy": -10
+    },
+    {
+      "name": "MiniCPM-OCR 1.0",
+      "text": 73.4,
+      "layout": 87.6,
+      "category": "local",
+      "dx": -175,
+      "dy": 22
+    },
+    {
+      "name": "Azure",
+      "text": 75.2,
+      "layout": 92.8,
+      "category": "hosted",
+      "dx": -75,
+      "dy": -35
+    },
+    {
+      "name": "LightOnOCR 3 4B",
+      "text": 84.4,
+      "layout": 94.0,
+      "category": "local",
+      "dx": 105,
+      "dy": -10
+    },
+    {
+      "name": "GLM-OCR",
+      "text": 71.6,
+      "layout": 89.3,
+      "category": "local",
+      "dx": -55,
+      "dy": 28
+    },
+    {
+      "name": "PaddleOCR-VL 1.6",
+      "text": 69.2,
+      "layout": 90.7,
+      "category": "local",
+      "dx": -180,
+      "dy": 35
+    },
+    {
+      "name": "Nemotron 3.5 Parse",
+      "text": 72.6,
+      "layout": 90.0,
+      "category": "local",
+      "dx": 18,
+      "dy": 4
+    },
+    {
+      "name": "DeepSeek-OCR 2",
+      "text": 64.6,
+      "layout": 91.4,
+      "category": "local",
+      "dx": -65,
+      "dy": -48
+    }
+  ],
+  "retrieved": "2026-11-26",
+  "benchmark": "OmniParseBench 1.7.0",
+  "selection": "17 selected systems with published text and layout scores; not an exhaustive ranking",
+  "scoring_source": "https://github.com/datalab-to/omni_parse_bench/blob/main/docs/scoring/layout_kind.md"
+}

@@ -1,0 +1,282 @@
+{
+  "decoding": {
+    "body_weight": 2.0,
+    "relation_weight": 1.0
+  },
+  "results": {
+    "baseline": {
+      "gold": 38,
+      "predicted": 46,
+      "matched": 38,
+      "correct": 36,
+      "group_detection_f1": 0.9047619047619048,
+      "group_level_f1": 0.8571428571428571,
+      "correct_group_recall": 0.9473684210526315,
+      "line_metrics": {
+        "lines": 1619,
+        "heading_lines": 47,
+        "predicted_heading_lines": 69,
+        "detected_heading_lines": 47,
+        "correct_level_lines": 44,
+        "detection_precision": 0.6811594202898551,
+        "detection_recall": 1.0,
+        "detection_f1": 0.810344827586207,
+        "exact_level_precision": 0.6376811594202898,
+        "exact_level_recall": 0.9361702127659575,
+        "exact_level_f1": 0.7586206896551724,
+        "level_accuracy_given_detected": 0.9361702127659575,
+        "confusion_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "confusion": [
+          [
+            1550,
+            2,
+            0,
+            20,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            23,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            11,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "per_document": {
+        "321": {
+          "gold": 10,
+          "predicted": 12,
+          "matched": 10,
+          "correct": 10,
+          "group_detection_f1": 0.9090909090909091,
+          "group_level_f1": 0.9090909090909091,
+          "correct_group_recall": 1.0
+        },
+        "844": {
+          "gold": 8,
+          "predicted": 8,
+          "matched": 8,
+          "correct": 8,
+          "group_detection_f1": 1.0,
+          "group_level_f1": 1.0,
+          "correct_group_recall": 1.0
+        },
+        "560": {
+          "gold": 10,
+          "predicted": 15,
+          "matched": 10,
+          "correct": 8,
+          "group_detection_f1": 0.8,
+          "group_level_f1": 0.64,
+          "correct_group_recall": 0.8
+        },
+        "394": {
+          "gold": 10,
+          "predicted": 11,
+          "matched": 10,
+          "correct": 10,
+          "group_detection_f1": 0.9523809523809523,
+          "group_level_f1": 0.9523809523809523,
+          "correct_group_recall": 1.0
+        }
+      },
+      "predict_seconds": 4.365197959006764,
+      "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+    },
+    "selected": {
+      "gold": 38,
+      "predicted": 38,
+      "matched": 37,
+      "correct": 36,
+      "group_detection_f1": 0.9736842105263158,
+      "group_level_f1": 0.9473684210526315,
+      "correct_group_recall": 0.9473684210526315,
+      "line_metrics": {
+        "lines": 1619,
+        "heading_lines": 47,
+        "predicted_heading_lines": 50,
+        "detected_heading_lines": 46,
+        "correct_level_lines": 45,
+        "detection_precision": 0.92,
+        "detection_recall": 0.9787234042553191,
+        "detection_f1": 0.9484536082474226,
+        "exact_level_precision": 0.9,
+        "exact_level_recall": 0.9574468085106383,
+        "exact_level_f1": 0.9278350515463918,
+        "level_accuracy_given_detected": 0.9782608695652174,
+        "confusion_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "confusion": [
+          [
+            1568,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            23,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            13,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "per_document": {
+        "321": {
+          "gold": 10,
+          "predicted": 10,
+          "matched": 10,
+          "correct": 10,
+          "group_detection_f1": 1.0,
+          "group_level_f1": 1.0,
+          "correct_group_recall": 1.0
+        },
+        "844": {
+          "gold": 8,
+          "predicted": 8,
+          "matched": 8,
+          "correct": 8,
+          "group_detection_f1": 1.0,
+          "group_level_f1": 1.0,
+          "correct_group_recall": 1.0
+        },
+        "560": {
+          "gold": 10,
+          "predicted": 11,
+          "matched": 10,
+          "correct": 9,
+          "group_detection_f1": 0.9523809523809523,
+          "group_level_f1": 0.8571428571428571,
+          "correct_group_recall": 0.9
+        },
+        "394": {
+          "gold": 10,
+          "predicted": 9,
+          "matched": 9,
+          "correct": 9,
+          "group_detection_f1": 0.9473684210526315,
+          "group_level_f1": 0.9473684210526315,
+          "correct_group_recall": 0.9
+        }
+      },
+      "predict_seconds": 4.036760499991942,
+      "timing_scope": "Full-document inference on cached extracted lines/features; excludes extraction"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "upstream_revision": "4abc240285b69a2965cf64762101ddb4ab35f32d",
+  "function": "postprocess.markdown_merge._apply_title_profile",
+  "title_profile": "v2",
+  "examples": [
+    {
+      "input": "# Introduction",
+      "native_label": "paragraph_title",
+      "output": "## Introduction"
+    },
+    {
+      "input": "### Methods",
+      "native_label": "paragraph_title",
+      "output": "## Methods"
+    },
+    {
+      "input": "1.1 Features",
+      "native_label": "paragraph_title",
+      "output": "## 1.1 Features"
+    }
+  ],
+  "observed_page": {
+    "document": "midterm",
+    "page": 26,
+    "headings": [
+      {
+        "page": 26,
+        "title": "1. Introduction",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "3. The MTE's key features are:",
+        "level": 2
+      }
+    ]
+  },
+  "retry_pages": 32,
+  "retry_totals": {
+    "triggered": 0,
+    "retry_success": 0,
+    "adopted": 0,
+    "retry_still_suspicious": 0,
+    "retry_failed": 0
+  }
+}

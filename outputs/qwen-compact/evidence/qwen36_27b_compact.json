@@ -1,0 +1,1112 @@
+{
+  "protocol": {
+    "created_at": "2026-11-22T16:00:51.084419+00:00",
+    "model": {
+      "repo": "mlx-community/Qwen3.6-27B-4bit",
+      "revision": "c000ac2c2057d94be3fa931000c31723aac53282"
+    },
+    "settings": {
+      "image_long_edge": 1280,
+      "max_tokens": 4096,
+      "temperature": 0,
+      "seed": 42,
+      "timeout_seconds": 600
+    },
+    "enable_thinking": false,
+    "pages": {
+      "targeting": [
+        7,
+        11,
+        24,
+        27,
+        33,
+        67,
+        96,
+        109
+      ],
+      "midterm": [
+        8,
+        10,
+        26,
+        27,
+        36,
+        61,
+        87,
+        98
+      ],
+      "indonesia": [
+        7,
+        11,
+        20,
+        33,
+        42,
+        48,
+        56,
+        68
+      ],
+      "colombia": [
+        7,
+        13,
+        28,
+        42,
+        56,
+        72,
+        73,
+        93
+      ]
+    },
+    "input_sha256": {
+      "corpus/targeting.pdf": "b6a9ff1f0ca656b5650173f81e10865e2298ca7ee14c4c46538623196ef12463",
+      "results/targeting/pymupdf4llm.headings.json": "e90148d2569aba74e1bf8ab8f37e717c158018cd13e1a5028e2b85e488994117",
+      "results/targeting/pdf_tags_full_context.json": "f28909628447eb609c153631e838d901cd450c6634b98b9a67d6b582be950fb5",
+      "corpus/midterm.pdf": "e36acd375d2f8cc5e7500e1ec9c19bf4088938795fd94830d33abaf7f185733e",
+      "results/midterm/pymupdf4llm.headings.json": "1cb6637ffaeca94f4d86dbd43417b16fd61b18df30e088c109e896f39b198b7d",
+      "results/midterm/pdf_tags_full_context.json": "ef5a0bb45803d4e1ef975dfa7b89ae4916f4fad02ec0d130454c36b2a0abb427",
+      "corpus/indonesia.pdf": "0f501994181b443b86524bd069ecdabb37c7cdd57afb42481c141d7ed86ee853",
+      "results/indonesia/pymupdf4llm.headings.json": "82253bb19e8eb2af239530d2d06f5aec62fab6601f1df8547190515434d2963c",
+      "results/indonesia/pdf_tags_full_context.json": "c53780a0f8f0b2b9d62c56e0196cf86ab8b7a7ce65918e318574f78580bc650c",
+      "corpus/colombia.pdf": "fd250c0dff68adb278dc88701991ba0c80231ad84a89871a2702cbf656727119",
+      "results/colombia/pymupdf4llm.headings.json": "79da035ab30c1682a8cfd7d82017590fbcdb8bcdb584449d13457209a07e2b2c",
+      "results/colombia/pdf_tags_full_context.json": "06a00001db6a63bbdf5307b68196911bb1d7591be676a390c8407315762e6497"
+    },
+    "source_sha256": {
+      "scripts/runners/run_qwen_compact.py": "d64506d6db39fdaefa1a4e65075ded4074473ead10b6ed09a6bd3a65431d8718",
+      "src/pdf_heading_benchmark/compact_prompt.py": "024317b84e73b888bd9c43272b24748c961b932c40f4d464252f957f9edd951d",
+      "scripts/runners/decode_qwen.py": "a21409b92f0ba9c3d370bb1fc170cdf23bbf0751854773137bd72ed2dc2490b0",
+      "configs/audit_pages.json": "fba57416f3a86121c8911dfed3c98c39908fc21b13ed04c1b7d815d308134014"
+    },
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-vlm": "0.8.0",
+      "transformers": "5.23.0",
+      "pymupdf": "2.1",
+      "huggingface-hub": "2.4.0",
+      "pillow": "13.0.0"
+    },
+    "python": "3.12.3",
+    "platform": "macOS-26.1-arm64-arm-64bit",
+    "scope": "32 historical audit pages; regression, not an independent test",
+    "selection": "Two model variants fixed before scoring; report both, no score-driven retries",
+    "memory": "Most recent prediction per level, from earlier sampled pages in this document",
+    "timing": "Generation includes input processing; excludes downloads, loading and candidate extraction"
+  },
+  "predictions": {
+    "targeting": [
+      {
+        "page": 11,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Appropriateness",
+        "level": 3
+      },
+      {
+        "page": 24,
+        "title": "1 Introduction",
+        "level": 1
+      },
+      {
+        "page": 24,
+        "title": "1.1 Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2 Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 4
+      },
+      {
+        "page": 67,
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4
+      },
+      {
+        "page": 96,
+        "title": "3 Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 96,
+        "title": "3.1 Conclusions",
+        "level": 2
+      },
+      {
+        "page": 96,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.",
+        "level": 3
+      },
+      {
+        "page": 109,
+        "title": "Objectives and users of the evaluation",
+        "level": 2
+      },
+      {
+        "page": 109,
+        "title": "Evaluation questions",
+        "level": 2
+      },
+      {
+        "page": 109,
+        "title": "Methodology and ethical considerations",
+        "level": 2
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 8,
+        "title": "INTRODUCTION",
+        "level": 2
+      },
+      {
+        "page": 8,
+        "title": "What was evaluated?",
+        "level": 3
+      },
+      {
+        "page": 8,
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3
+      },
+      {
+        "page": 10,
+        "title": "FINDINGS",
+        "level": 1
+      },
+      {
+        "page": 10,
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "1. Introduction",
+        "level": 1
+      },
+      {
+        "page": 26,
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "1.2 CONTEXT",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 3
+      },
+      {
+        "page": 36,
+        "title": "2. Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 36,
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 2
+      },
+      {
+        "page": 36,
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 3
+      },
+      {
+        "page": 61,
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 3
+      },
+      {
+        "page": 87,
+        "title": "3. Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 87,
+        "title": "3.1 CONCLUSIONS",
+        "level": 2
+      },
+      {
+        "page": 98,
+        "title": "Annex III. Methodology",
+        "level": 1
+      },
+      {
+        "page": 98,
+        "title": "Overall approach",
+        "level": 2
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Evaluation features",
+        "level": 3
+      },
+      {
+        "page": 7,
+        "title": "Context",
+        "level": 3
+      },
+      {
+        "page": 11,
+        "title": "Evaluation key insights and conclusions",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Insight 1. CSP architecture",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Introduction",
+        "level": 1
+      },
+      {
+        "page": 20,
+        "title": "1.1. Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.2. Context",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Geography, Demography, and Government",
+        "level": 3
+      },
+      {
+        "page": 20,
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government?",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs?",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 3
+      },
+      {
+        "page": 48,
+        "title": "SO1: Evidence and Data",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?",
+        "level": 3
+      },
+      {
+        "page": 68,
+        "title": "Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 68,
+        "title": "3.1. Conclusions",
+        "level": 2
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "title": "Resumen ejecutivo",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introducción",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Características de la evaluación",
+        "level": 3
+      },
+      {
+        "page": 7,
+        "title": "Contexto",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 13,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?",
+        "level": 2
+      },
+      {
+        "page": 13,
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1. Introducción",
+        "level": 1
+      },
+      {
+        "page": 28,
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1.2. CONTEXTO",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "Contexto general",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "2. Resultados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 42,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?",
+        "level": 2
+      },
+      {
+        "page": 42,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "Resumen",
+        "level": 4
+      },
+      {
+        "page": 56,
+        "title": "Dimensión 2: Entorno político",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Productos",
+        "level": 4
+      },
+      {
+        "page": 56,
+        "title": "Resultados",
+        "level": 4
+      },
+      {
+        "page": 72,
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2
+      },
+      {
+        "page": 72,
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "Productos y logros",
+        "level": 3
+      },
+      {
+        "page": 93,
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1
+      },
+      {
+        "page": 93,
+        "title": "3.1. CONCLUSIONES",
+        "level": 2
+      }
+    ]
+  },
+  "timing": {
+    "load_seconds": 19.87574808300269,
+    "documents": {
+      "targeting": {
+        "seconds": 650.2892816680178,
+        "preparation_seconds": 0.34273529301572125,
+        "pages": 8,
+        "errors": 0,
+        "timeouts": 0
+      },
+      "midterm": {
+        "seconds": 465.6107095010011,
+        "preparation_seconds": 0.25227174998872215,
+        "pages": 8,
+        "errors": 0,
+        "timeouts": 0
+      },
+      "indonesia": {
+        "seconds": 401.62502645799395,
+        "preparation_seconds": 0.2527511660082382,
+        "pages": 8,
+        "errors": 0,
+        "timeouts": 0
+      },
+      "colombia": {
+        "seconds": 520.9600549560128,
+        "preparation_seconds": 0.2433850009983871,
+        "pages": 8,
+        "errors": 0,
+        "timeouts": 0
+      }
+    }
+  },
+  "pages": {
+    "targeting": [
+      {
+        "page": 7,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 90.4478849579973,
+        "preparation_seconds": 0.06829341699631186,
+        "first_token_seconds": 89.7181622499993,
+        "prompt_tokens": 8818,
+        "tokens": 11,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.17427004,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 11,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 85.7491213750036,
+        "preparation_seconds": 0.0528402920026565,
+        "first_token_seconds": 77.66496204199939,
+        "prompt_tokens": 8925,
+        "tokens": 119,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.183248472,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 24,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 78.53371741700539,
+        "preparation_seconds": 0.030120209004962817,
+        "first_token_seconds": 75.85090916700574,
+        "prompt_tokens": 9259,
+        "tokens": 40,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.186656344,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 27,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 73.76912337500107,
+        "preparation_seconds": 0.03590870799962431,
+        "first_token_seconds": 73.6895566250023,
+        "prompt_tokens": 9146,
+        "tokens": 2,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.186656344,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 33,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 83.01166704200295,
+        "preparation_seconds": 0.025593042002583388,
+        "first_token_seconds": 74.47922204200586,
+        "prompt_tokens": 9207,
+        "tokens": 124,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.186656344,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 67,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 78.6644846670024,
+        "preparation_seconds": 0.04569962500681868,
+        "first_token_seconds": 76.3409530420031,
+        "prompt_tokens": 9529,
+        "tokens": 35,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 96,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 81.97983541700523,
+        "preparation_seconds": 0.04432337500475114,
+        "first_token_seconds": 75.14248575000238,
+        "prompt_tokens": 9301,
+        "tokens": 101,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 109,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 78.13344741699984,
+        "preparation_seconds": 0.03995662499801256,
+        "first_token_seconds": 74.0984878340023,
+        "prompt_tokens": 9188,
+        "tokens": 58,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 56.33466095800395,
+        "preparation_seconds": 0.037671416997909546,
+        "first_token_seconds": 51.18025970800227,
+        "prompt_tokens": 6177,
+        "tokens": 71,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 10,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 58.21306370799721,
+        "preparation_seconds": 0.027962833002675325,
+        "first_token_seconds": 54.620949457996176,
+        "prompt_tokens": 6349,
+        "tokens": 50,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 26,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 57.39853374999802,
+        "preparation_seconds": 0.033698250001179986,
+        "first_token_seconds": 54.27857958399545,
+        "prompt_tokens": 6361,
+        "tokens": 45,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 27,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 58.60858945899963,
+        "preparation_seconds": 0.023999665994779207,
+        "first_token_seconds": 53.4427977919986,
+        "prompt_tokens": 6401,
+        "tokens": 72,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 36,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 62.089259416999994,
+        "preparation_seconds": 0.03065858400077559,
+        "first_token_seconds": 56.347820374998264,
+        "prompt_tokens": 6523,
+        "tokens": 80,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 61,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 58.92897141700087,
+        "preparation_seconds": 0.03230841700133169,
+        "first_token_seconds": 56.16593854199891,
+        "prompt_tokens": 6751,
+        "tokens": 41,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 87,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 57.10416370900202,
+        "preparation_seconds": 0.02884612499474315,
+        "first_token_seconds": 54.12256558400259,
+        "prompt_tokens": 6680,
+        "tokens": 45,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 98,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 56.933467082999414,
+        "preparation_seconds": 0.037126457995327655,
+        "first_token_seconds": 54.09106929200061,
+        "prompt_tokens": 6454,
+        "tokens": 41,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 47.78706354199676,
+        "preparation_seconds": 0.031269291001081,
+        "first_token_seconds": 43.46643079199566,
+        "prompt_tokens": 5163,
+        "tokens": 61,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 11,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 48.82673304100172,
+        "preparation_seconds": 0.029774583999824245,
+        "first_token_seconds": 44.35669320799934,
+        "prompt_tokens": 5283,
+        "tokens": 64,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 20,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 55.67264462499588,
+        "preparation_seconds": 0.029684458000701852,
+        "first_token_seconds": 45.59075366599427,
+        "prompt_tokens": 5506,
+        "tokens": 148,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 33,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 57.59822195900051,
+        "preparation_seconds": 0.02786708399798954,
+        "first_token_seconds": 42.826647166999464,
+        "prompt_tokens": 5171,
+        "tokens": 213,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 42,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 49.489126833002956,
+        "preparation_seconds": 0.03192624999792315,
+        "first_token_seconds": 47.02863445800176,
+        "prompt_tokens": 5742,
+        "tokens": 37,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 48,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 46.36593445800099,
+        "preparation_seconds": 0.044487666003988124,
+        "first_token_seconds": 44.0031431660027,
+        "prompt_tokens": 5458,
+        "tokens": 35,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 56,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 48.53793420799775,
+        "preparation_seconds": 0.02986520800186554,
+        "first_token_seconds": 44.157684749996406,
+        "prompt_tokens": 5343,
+        "tokens": 64,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 68,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 47.347367791997385,
+        "preparation_seconds": 0.027876625004864763,
+        "first_token_seconds": 44.45905291700183,
+        "prompt_tokens": 5377,
+        "tokens": 43,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 60.82912550000037,
+        "preparation_seconds": 0.029941834000055678,
+        "first_token_seconds": 57.49032766700111,
+        "prompt_tokens": 6999,
+        "tokens": 48,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 13,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 67.85912025000289,
+        "preparation_seconds": 0.028910749999340624,
+        "first_token_seconds": 57.675270667001314,
+        "prompt_tokens": 6957,
+        "tokens": 149,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 28,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 68.07858541599853,
+        "preparation_seconds": 0.029571041006420273,
+        "first_token_seconds": 59.50141254100163,
+        "prompt_tokens": 7287,
+        "tokens": 125,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 42,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 70.13355341600254,
+        "preparation_seconds": 0.03107274999638321,
+        "first_token_seconds": 57.70327283300139,
+        "prompt_tokens": 7099,
+        "tokens": 181,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 56,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 66.02137991700147,
+        "preparation_seconds": 0.03015120900090551,
+        "first_token_seconds": 59.85867895899719,
+        "prompt_tokens": 7262,
+        "tokens": 90,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 72,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 68.48116279100213,
+        "preparation_seconds": 0.026221374995657243,
+        "first_token_seconds": 57.47623891600233,
+        "prompt_tokens": 6984,
+        "tokens": 153,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 73,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 52.54639112500445,
+        "preparation_seconds": 0.036614832999475766,
+        "first_token_seconds": 52.10691491699981,
+        "prompt_tokens": 6254,
+        "tokens": 7,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      },
+      {
+        "page": 93,
+        "image_size": [
+          905,
+          1280
+        ],
+        "seconds": 67.01073654100037,
+        "preparation_seconds": 0.03090120900014881,
+        "first_token_seconds": 62.00388854100311,
+        "prompt_tokens": 7311,
+        "tokens": 73,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 20.18942524,
+        "memory_pages": null,
+        "outside_generation_seconds": null
+      }
+    ]
+  }
+}

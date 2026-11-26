@@ -1,0 +1,771 @@
+{
+  "method": "qwen36_35b_compact",
+  "started_at": "2026-11-22T17:50:40.332105+00:00",
+  "ended_at": "2026-11-22T17:56:52.597249+00:00",
+  "device": {
+    "default_device": "Device(gpu, 0)",
+    "device_info": {
+      "device_name": "Apple M4 Pro",
+      "max_recommended_working_set_size": 40200896512,
+      "memory_size": 51539607552,
+      "architecture": "applegpu_g16s",
+      "max_buffer_length": 30150672384,
+      "resource_limit": 499000
+    },
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-vlm": "0.8.0",
+      "transformers": "5.23.0",
+      "pymupdf": "2.1",
+      "pillow": "13.0.0",
+      "huggingface-hub": "2.4.0"
+    }
+  },
+  "process_wall_seconds": 372.22827812500327,
+  "predictions": {
+    "targeting": [
+      {
+        "page": 11,
+        "title": "Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative.",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Appropriateness",
+        "level": 2
+      },
+      {
+        "page": 24,
+        "title": "1 Introduction",
+        "level": 1
+      },
+      {
+        "page": 24,
+        "title": "1.1 Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2 Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 4
+      },
+      {
+        "page": 67,
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4
+      },
+      {
+        "page": 96,
+        "title": "3 Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 96,
+        "title": "3.1 Conclusions",
+        "level": 2
+      },
+      {
+        "page": 96,
+        "title": "Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts.",
+        "level": 3
+      },
+      {
+        "page": 109,
+        "title": "Objectives and users of the evaluation",
+        "level": 1
+      },
+      {
+        "page": 109,
+        "title": "Evaluation questions",
+        "level": 1
+      },
+      {
+        "page": 109,
+        "title": "Methodology and ethical considerations",
+        "level": 1
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 8,
+        "title": "INTRODUCTION",
+        "level": 2
+      },
+      {
+        "page": 8,
+        "title": "What was evaluated?",
+        "level": 3
+      },
+      {
+        "page": 8,
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3
+      },
+      {
+        "page": 10,
+        "title": "FINDINGS",
+        "level": 1
+      },
+      {
+        "page": 10,
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 2
+      },
+      {
+        "page": 26,
+        "title": "1. Introduction",
+        "level": 1
+      },
+      {
+        "page": 26,
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "1.2 CONTEXT",
+        "level": 2
+      },
+      {
+        "page": 27,
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 3
+      },
+      {
+        "page": 36,
+        "title": "2. Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 36,
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 2
+      },
+      {
+        "page": 36,
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 3
+      },
+      {
+        "page": 61,
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 3
+      },
+      {
+        "page": 87,
+        "title": "3. Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 87,
+        "title": "3.1 CONCLUSIONS",
+        "level": 2
+      },
+      {
+        "page": 98,
+        "title": "Annex III. Methodology",
+        "level": 1
+      },
+      {
+        "page": 98,
+        "title": "Overall approach",
+        "level": 2
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "title": "Executive summary",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Context",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Evaluation key insights and conclusions",
+        "level": 1
+      },
+      {
+        "page": 11,
+        "title": "Insight 1. CSP architecture",
+        "level": 2
+      },
+      {
+        "page": 11,
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Introduction",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.1. Evaluation features",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "1.2. Context",
+        "level": 2
+      },
+      {
+        "page": 20,
+        "title": "Geography, Demography, and Government",
+        "level": 3
+      },
+      {
+        "page": 20,
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "Evaluation findings",
+        "level": 1
+      },
+      {
+        "page": 33,
+        "title": "2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia?",
+        "level": 2
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government?",
+        "level": 3
+      },
+      {
+        "page": 33,
+        "title": "EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs?",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 2
+      },
+      {
+        "page": 48,
+        "title": "SO1: Evidence and Data",
+        "level": 2
+      },
+      {
+        "page": 56,
+        "title": "EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective?",
+        "level": 2
+      },
+      {
+        "page": 68,
+        "title": "Conclusions and recommendations",
+        "level": 1
+      },
+      {
+        "page": 68,
+        "title": "3.1. Conclusions",
+        "level": 2
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "title": "Resumen ejecutivo",
+        "level": 1
+      },
+      {
+        "page": 7,
+        "title": "Introducción",
+        "level": 2
+      },
+      {
+        "page": 7,
+        "title": "Características de la evaluación",
+        "level": 3
+      },
+      {
+        "page": 7,
+        "title": "Contexto",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 13,
+        "title": "¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables?",
+        "level": 2
+      },
+      {
+        "page": 13,
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 3
+      },
+      {
+        "page": 13,
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1. Introducción",
+        "level": 1
+      },
+      {
+        "page": 28,
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "1.2. CONTEXTO",
+        "level": 2
+      },
+      {
+        "page": 28,
+        "title": "Contexto general",
+        "level": 3
+      },
+      {
+        "page": 42,
+        "title": "2. Resultados de la evaluación",
+        "level": 1
+      },
+      {
+        "page": 42,
+        "title": "2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?",
+        "level": 2
+      },
+      {
+        "page": 42,
+        "title": "PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad?",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Dimensión 2: Entorno político",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Productos",
+        "level": 3
+      },
+      {
+        "page": 56,
+        "title": "Resultados92",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2
+      },
+      {
+        "page": 72,
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 3
+      },
+      {
+        "page": 72,
+        "title": "Productos y logros",
+        "level": 3
+      },
+      {
+        "page": 93,
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1
+      },
+      {
+        "page": 93,
+        "title": "3.1. CONCLUSIONES",
+        "level": 2
+      }
+    ]
+  },
+  "pages": {
+    "targeting": [
+      {
+        "page": 7,
+        "seconds": 15.619178375003685,
+        "tokens": 16,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.887291316,
+        "first_token_seconds": 15.36410933300067
+      },
+      {
+        "page": 11,
+        "seconds": 16.206289749999996,
+        "tokens": 145,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.891682228,
+        "first_token_seconds": 13.921684917004313
+      },
+      {
+        "page": 24,
+        "seconds": 15.824455417001445,
+        "tokens": 66,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.8930421,
+        "first_token_seconds": 14.758020417000807
+      },
+      {
+        "page": 27,
+        "seconds": 14.836063541995827,
+        "tokens": 11,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.8930421,
+        "first_token_seconds": 14.67151791699871
+      },
+      {
+        "page": 33,
+        "seconds": 17.537888167003985,
+        "tokens": 168,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.8930421,
+        "first_token_seconds": 14.749615917004121
+      },
+      {
+        "page": 67,
+        "seconds": 15.866642249995493,
+        "tokens": 56,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 14.94657775000087
+      },
+      {
+        "page": 96,
+        "seconds": 14.659873416996561,
+        "tokens": 136,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 12.581842999999935
+      },
+      {
+        "page": 109,
+        "seconds": 13.547349291999126,
+        "tokens": 93,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 12.14700408399949
+      }
+    ],
+    "midterm": [
+      {
+        "page": 8,
+        "seconds": 9.167802333002328,
+        "tokens": 62,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.296611041005235
+      },
+      {
+        "page": 10,
+        "seconds": 9.089477333000104,
+        "tokens": 43,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.50756695799646
+      },
+      {
+        "page": 26,
+        "seconds": 9.946761416998925,
+        "tokens": 38,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 9.41057033299876
+      },
+      {
+        "page": 27,
+        "seconds": 9.4714550839999,
+        "tokens": 41,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.93491870899743
+      },
+      {
+        "page": 36,
+        "seconds": 9.925151750001532,
+        "tokens": 73,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.924710250001226
+      },
+      {
+        "page": 61,
+        "seconds": 9.553351167000073,
+        "tokens": 38,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 9.043696667002223
+      },
+      {
+        "page": 87,
+        "seconds": 9.293853041999682,
+        "tokens": 40,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.747174125004676
+      },
+      {
+        "page": 98,
+        "seconds": 9.020557415999065,
+        "tokens": 36,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.522612540997216
+      }
+    ],
+    "indonesia": [
+      {
+        "page": 7,
+        "seconds": 7.576384708001569,
+        "tokens": 52,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 6.8787770829949295
+      },
+      {
+        "page": 11,
+        "seconds": 7.653035750001436,
+        "tokens": 57,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 6.904086333997839
+      },
+      {
+        "page": 20,
+        "seconds": 9.017935916999704,
+        "tokens": 138,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 7.157250249998469
+      },
+      {
+        "page": 33,
+        "seconds": 9.022300083001028,
+        "tokens": 167,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 6.76622537500225
+      },
+      {
+        "page": 42,
+        "seconds": 7.723216833997867,
+        "tokens": 34,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 7.2907816669976455
+      },
+      {
+        "page": 48,
+        "seconds": 7.468485167002655,
+        "tokens": 25,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 7.1471478329985985
+      },
+      {
+        "page": 56,
+        "seconds": 7.695894083000894,
+        "tokens": 61,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 6.8893934579973575
+      },
+      {
+        "page": 68,
+        "seconds": 7.444752124996739,
+        "tokens": 38,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 6.94578220800031
+      }
+    ],
+    "colombia": [
+      {
+        "page": 7,
+        "seconds": 9.588382750000164,
+        "tokens": 57,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.830091875002836
+      },
+      {
+        "page": 13,
+        "seconds": 11.019192416002625,
+        "tokens": 171,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.727213083002425
+      },
+      {
+        "page": 28,
+        "seconds": 10.000839167005324,
+        "tokens": 72,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 9.016797625001345
+      },
+      {
+        "page": 42,
+        "seconds": 11.072367542001302,
+        "tokens": 161,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.84956150000653
+      },
+      {
+        "page": 56,
+        "seconds": 9.648065458000929,
+        "tokens": 50,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.981622832994617
+      },
+      {
+        "page": 72,
+        "seconds": 10.2443981250035,
+        "tokens": 113,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 8.706468832999235
+      },
+      {
+        "page": 73,
+        "seconds": 7.954320291995828,
+        "tokens": 11,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 7.813633584002673
+      },
+      {
+        "page": 93,
+        "seconds": 9.7429676249958,
+        "tokens": 42,
+        "timeout": false,
+        "hit_token_limit": false,
+        "error": null,
+        "peak_mlx_memory_gb": 22.894156212,
+        "first_token_seconds": 9.178720665993751
+      }
+    ]
+  },
+  "gpu": {
+    "samples": 38,
+    "median_percent": 99.0,
+    "max_percent": 100,
+    "swap_start": "total = 16384.00M  used = 15263.56M  free = 1120.44M  (encrypted)",
+    "swap_end": "total = 20480.00M  used = 19315.44M  free = 1164.56M  (encrypted)",
+    "swap_in_bytes": 492421120,
+    "swap_out_bytes": 4718592000,
+    "load_average_start": [
+      4.3623046875,
+      4.1298828125,
+      3.70703125
+    ],
+    "load_average_end": [
+      5.3916015625,
+      5.77294921875,
+      4.70166015625
+    ],
+    "thermal_end": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+    "scope": "System-wide samples every approximately 10 seconds, including model loading"
+  }
+}

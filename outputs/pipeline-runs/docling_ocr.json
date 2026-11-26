@@ -1,0 +1,1009 @@
+{
+  "protocol": {
+    "platform": "macOS-26.1-arm64-arm-64bit",
+    "options": {
+      "document_timeout": null,
+      "accelerator_options": {
+        "num_threads": 8,
+        "device": "cpu",
+        "cuda_use_flash_attention2": false
+      },
+      "enable_remote_services": false,
+      "allow_external_plugins": false,
+      "artifacts_path": null,
+      "do_picture_classification": false,
+      "picture_classification_options": {
+        "engine_options": {
+          "engine_type": "transformers",
+          "top_k": null
+        },
+        "model_spec": {
+          "name": "document_figure_classifier_v2",
+          "repo_id": "docling-project/DocumentFigureClassifier-v2.5",
+          "revision": "main",
+          "engine_overrides": {}
+        }
+      },
+      "do_picture_description": false,
+      "picture_description_options": {
+        "batch_size": 8,
+        "scale": 2.0,
+        "picture_area_threshold": 0.05,
+        "classification_allow": null,
+        "classification_deny": null,
+        "classification_min_confidence": 0.0
+      },
+      "do_chart_extraction": false,
+      "chart_extraction_options": {
+        "engine_options": {
+          "engine_type": "auto_inline",
+          "prefer_vllm": false,
+          "trust_remote_code": false
+        },
+        "model_spec": {
+          "name": "Granite-Vision-4.1-4B",
+          "default_repo_id": "ibm-granite/granite-vision-4.1-4b",
+          "revision": "dd48e97503de471803850df70843cf9eb5da8712",
+          "prompt": "<chart2csv>",
+          "response_format": "plaintext",
+          "supported_engines": [
+            "transformers",
+            "api_lmstudio",
+            "api_openai",
+            "api_ollama",
+            "mlx"
+          ],
+          "engine_overrides": {
+            "transformers": {
+              "repo_id": null,
+              "revision": null,
+              "torch_dtype": "bfloat16",
+              "min_engine_version": null,
+              "extra_config": {
+                "transformers_model_type": "automodel-imagetexttotext"
+              }
+            },
+            "mlx": {
+              "repo_id": null,
+              "revision": null,
+              "torch_dtype": null,
+              "min_engine_version": "0.7.0",
+              "extra_config": {}
+            }
+          },
+          "api_overrides": {
+            "api_lmstudio": {
+              "params": {
+                "model": "granite-vision-4.1-4b"
+              }
+            },
+            "api_ollama": {
+              "params": {
+                "model": "granite-vision-4.1-4b"
+              }
+            },
+            "api_openai": {
+              "params": {
+                "model": "granite-vision-4.1-4b"
+              }
+            }
+          },
+          "trust_remote_code": true,
+          "stop_strings": [],
+          "temperature": 0.0,
+          "max_new_tokens": 4096,
+          "extra_generation_config": {}
+        },
+        "chart2csv": true,
+        "chart2summary": false,
+        "chart2code": false,
+        "scale": 4.0,
+        "output_format": "granite_vision_charts",
+        "use_natural_language_prompts": false
+      },
+      "images_scale": 1.0,
+      "generate_page_images": false,
+      "generate_picture_images": false,
+      "do_table_structure": false,
+      "extract_form_fields": false,
+      "do_ocr": true,
+      "do_code_enrichment": false,
+      "do_formula_enrichment": false,
+      "force_backend_text": false,
+      "table_structure_options": {},
+      "ocr_options": {
+        "mode": "full_page",
+        "lang": [
+          "latin"
+        ],
+        "scale": 3.0,
+        "replace_broken_text_layer": false,
+        "force_full_page_ocr": true
+      },
+      "layout_options": {
+        "keep_empty_clusters": false,
+        "skip_cell_assignment": false,
+        "create_orphan_clusters": true
+      },
+      "code_formula_options": {
+        "engine_options": {
+          "engine_type": "auto_inline",
+          "prefer_vllm": false,
+          "trust_remote_code": false
+        },
+        "model_spec": {
+          "name": "CodeFormulaV2",
+          "default_repo_id": "docling-project/CodeFormulaV2",
+          "revision": "main",
+          "prompt": "",
+          "response_format": "plaintext",
+          "supported_engines": null,
+          "engine_overrides": {
+            "transformers": {
+              "repo_id": null,
+              "revision": null,
+              "torch_dtype": null,
+              "min_engine_version": null,
+              "extra_config": {
+                "transformers_model_type": "automodel-imagetexttotext",
+                "extra_generation_config": {
+                  "skip_special_tokens": false
+                },
+                "torch_dtype": "bfloat16"
+              }
+            }
+          },
+          "api_overrides": {},
+          "trust_remote_code": false,
+          "stop_strings": [
+            "</doctag>",
+            "<end_of_utterance>"
+          ],
+          "temperature": 0.0,
+          "max_new_tokens": 4096,
+          "extra_generation_config": {}
+        },
+        "scale": 2.0,
+        "max_size": null,
+        "extract_code": true,
+        "extract_formulas": true,
+        "expansion_factor": 0.18,
+        "stop_on_repetition": true
+      },
+      "use_embedded_picture_images": false,
+      "generate_table_images": false,
+      "generate_parsed_pages": true,
+      "use_reading_order_separators": true,
+      "heading_hierarchy_options": {
+        "enabled": false,
+        "use_bookmarks": true,
+        "use_numbering": true,
+        "use_style": true,
+        "use_font_style": true,
+        "style_size_tolerance": 0.05,
+        "numbering_schemes": null,
+        "max_level": 6,
+        "bookmark_match_threshold": 0.8
+      },
+      "script_position_options": {
+        "enabled": false
+      },
+      "ocr_batch_size": 4,
+      "layout_batch_size": 4,
+      "table_batch_size": 4,
+      "batch_polling_interval_seconds": 0.5,
+      "queue_max_size": 100,
+      "stage_shutdown_timeout_seconds": 15.0
+    },
+    "source_sha256": "52e6a5dba3ac41602970d829e094859329736b4a3d87f704b5347636f8c4afb7",
+    "packages": {
+      "docling": "2.151.1",
+      "docling-core": "2.108.0",
+      "rapidocr": "3.10.0",
+      "onnxruntime": "1.32.0",
+      "torch": "2.15.0",
+      "pymupdf": "2.1"
+    }
+  },
+  "model_files": {
+    "layout": [
+      {
+        "repo": "docling-project/docling-layout-heron",
+        "ref": "main",
+        "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+        "files": {
+          ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+          "README.md": "175700839bc7808eac6af1d0c23e4f483606ab2276fe01122f4093e61a1a65b6",
+          "config.json": "fdea30805ce2f5666b147fca941dcdd27ad468e27d6ed21902207d3da056a97d",
+          "docling_heron_400.png": "e7f78610372b32a7938e480d2c7fa1c3037ee170bd82282a5bd026232f6e6f9e",
+          "model.safetensors": "00333a43451945aaf89db8ca9c0a17e75d1537c17db60fdb91aa95f4c7929e0c",
+          "preprocessor_config.json": "cd38cd59999e7a95d68e487fbe5132df3d4e5c32a0836add57e6126ba0c4eaf1"
+        }
+      }
+    ],
+    "rapidocr": [
+      {
+        "name": "ch_PP-OCRv5_det_mobile.onnx",
+        "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv5/det/ch_PP-OCRv5_det_mobile.onnx",
+        "sha256": "4d97c44a20d30a81aad087d6a396b08f786c4635742afc391f6621f5c6ae78ae"
+      },
+      {
+        "name": "latin_PP-OCRv5_rec_mobile.onnx",
+        "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv5/rec/latin_PP-OCRv5_rec_mobile.onnx",
+        "sha256": "b20bd37c168a570f583afbc8cd7925603890efbcdc000a59e22c269d160b5f5a"
+      },
+      {
+        "name": "ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+        "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+        "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+      }
+    ]
+  },
+  "predictions": {
+    "targeting": [
+      {
+        "title": "Appropriateness",
+        "level": 4,
+        "page": 11
+      },
+      {
+        "title": "1 Introduction",
+        "level": 2,
+        "page": 24
+      },
+      {
+        "title": "1.1 Evaluation features",
+        "level": 3,
+        "page": 24
+      },
+      {
+        "title": "2 Evaluation findings",
+        "level": 2,
+        "page": 33
+      },
+      {
+        "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritization?",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 4,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 5,
+        "page": 33
+      },
+      {
+        "title": "2.2.1.4  Good practices in reducing targeting errors are unevenly applied",
+        "level": 5,
+        "page": 67
+      },
+      {
+        "title": "3 Conclusions and recommendations",
+        "level": 2,
+        "page": 96
+      },
+      {
+        "title": "3.1 Conclusions",
+        "level": 3,
+        "page": 96
+      },
+      {
+        "title": "Objectives and users of the evaluation",
+        "level": 4,
+        "page": 109
+      },
+      {
+        "title": "Evaluation questions",
+        "level": 4,
+        "page": 109
+      },
+      {
+        "title": "Methodology and ethical considerations",
+        "level": 4,
+        "page": 109
+      }
+    ],
+    "midterm": [
+      {
+        "title": "Executive summary",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "INTRODUCTION",
+        "level": 4,
+        "page": 8
+      },
+      {
+        "title": "What was evaluated?",
+        "level": 5,
+        "page": 8
+      },
+      {
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 5,
+        "page": 8
+      },
+      {
+        "title": "FINDINGS",
+        "level": 4,
+        "page": 10
+      },
+      {
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 5,
+        "page": 10
+      },
+      {
+        "title": "1. Introduction",
+        "level": 2,
+        "page": 26
+      },
+      {
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 3,
+        "page": 26
+      },
+      {
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 5,
+        "page": 27
+      },
+      {
+        "title": "2. Evaluation findings",
+        "level": 2,
+        "page": 36
+      },
+      {
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 3,
+        "page": 36
+      },
+      {
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 4,
+        "page": 36
+      },
+      {
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 4,
+        "page": 61
+      },
+      {
+        "title": "3. Conclusions and recommendations",
+        "level": 2,
+        "page": 87
+      },
+      {
+        "title": "2.3 3.1 CONCLUSIONS",
+        "level": 3,
+        "page": 87
+      },
+      {
+        "title": "Annex III. Methodology",
+        "level": 1,
+        "page": 98
+      },
+      {
+        "title": "Overall approach",
+        "level": 5,
+        "page": 98
+      }
+    ],
+    "indonesia": [
+      {
+        "title": "Executive summary",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Introduction",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Evaluation features",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Context",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Evaluation key insights and conclusions",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Insight 1. CSP architecture",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Introduction",
+        "level": 5,
+        "page": 20
+      },
+      {
+        "title": "1.1. Evaluation features",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "1.2. Context",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "Geography, Demography, and Government",
+        "level": 6,
+        "page": 20
+      },
+      {
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 6,
+        "page": 20
+      },
+      {
+        "title": "Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 6,
+        "page": 42
+      },
+      {
+        "title": "s01: Evidence and Data",
+        "level": 6,
+        "page": 48
+      },
+      {
+        "title": "Conclusions and recommendations",
+        "level": 5,
+        "page": 68
+      },
+      {
+        "title": "3.1. Conclusions",
+        "level": 2,
+        "page": 68
+      }
+    ],
+    "colombia": [
+      {
+        "title": "Resumen ejecutivo",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Introducción",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Características de la evaluación",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Contexto",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "1. Introducción",
+        "level": 1,
+        "page": 28
+      },
+      {
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "1.2. CONTEXTO",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "Contexto general",
+        "level": 5,
+        "page": 28
+      },
+      {
+        "title": "2. Resultados de la evaluación",
+        "level": 1,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 42
+      },
+      {
+        "title": "Dimensión 2: Entorno político",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Productos",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Resultados92",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2,
+        "page": 72
+      },
+      {
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "Productos y logros",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1,
+        "page": 93
+      },
+      {
+        "title": "3.1. CONCLUSIONES",
+        "level": 2,
+        "page": 93
+      }
+    ]
+  },
+  "prose": {
+    "targeting": {
+      "retained": 2666,
+      "total": 3022
+    },
+    "midterm": {
+      "retained": 518,
+      "total": 562
+    },
+    "indonesia": {
+      "retained": 2395,
+      "total": 2900
+    },
+    "colombia": {
+      "retained": 3208,
+      "total": 3662
+    }
+  },
+  "timing": {
+    "seconds": 563.4529559999937,
+    "pages": 523
+  },
+  "documents": [
+    {
+      "document": "targeting",
+      "pages": 172,
+      "seconds": 189.32197549997363,
+      "input_sha256": "b6a9ff1f0ca656b5650173f81e10865e2298ca7ee14c4c46538623196ef12463"
+    },
+    {
+      "document": "midterm",
+      "pages": 176,
+      "seconds": 171.93109099997673,
+      "input_sha256": "e36acd375d2f8cc5e7500e1ec9c19bf4088938795fd94830d33abaf7f185733e"
+    },
+    {
+      "document": "indonesia",
+      "pages": 76,
+      "seconds": 88.54333975003101,
+      "input_sha256": "0f501994181b443b86524bd069ecdabb37c7cdd57afb42481c141d7ed86ee853"
+    },
+    {
+      "document": "colombia",
+      "pages": 99,
+      "seconds": 113.65654975001235,
+      "input_sha256": "fd250c0dff68adb278dc88701991ba0c80231ad84a89871a2702cbf656727119"
+    }
+  ],
+  "artifact_sha256": {
+    "targeting.json": "ba1a1ab464267fe24f74e65d38f39adee50803e652ffd5fb6e297b2cf8535960",
+    "midterm.json": "293027ff984dbb26ebb821f850d995a5125b8d1042fafc50a123a13de91c2d43",
+    "indonesia.json": "b21fbb49788318344ccf7ec5bc3ead5c7b64d35ed8fa6b6725f63a6d4d8c9e57",
+    "colombia.json": "11a6cc833eb8adcab45ff992a39f9474efb05aabe757c1a0da2bdadf75da0c58"
+  },
+  "initialization": {
+    "seconds": 4.121937624993734
+  },
+  "structured_headings": {
+    "targeting": [
+      {
+        "title": "Appropriateness",
+        "level": 4,
+        "page": 11
+      },
+      {
+        "title": "1 Introduction",
+        "level": 2,
+        "page": 24
+      },
+      {
+        "title": "1.1 Evaluation features",
+        "level": 3,
+        "page": 24
+      },
+      {
+        "title": "2 Evaluation findings",
+        "level": 2,
+        "page": 33
+      },
+      {
+        "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritization?",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 4,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 5,
+        "page": 33
+      },
+      {
+        "title": "2.2.1.4  Good practices in reducing targeting errors are unevenly applied",
+        "level": 5,
+        "page": 67
+      },
+      {
+        "title": "3 Conclusions and recommendations",
+        "level": 2,
+        "page": 96
+      },
+      {
+        "title": "3.1 Conclusions",
+        "level": 3,
+        "page": 96
+      },
+      {
+        "title": "Objectives and users of the evaluation",
+        "level": 4,
+        "page": 109
+      },
+      {
+        "title": "Evaluation questions",
+        "level": 4,
+        "page": 109
+      },
+      {
+        "title": "Methodology and ethical considerations",
+        "level": 4,
+        "page": 109
+      }
+    ],
+    "midterm": [
+      {
+        "title": "Executive summary",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "INTRODUCTION",
+        "level": 4,
+        "page": 8
+      },
+      {
+        "title": "What was evaluated?",
+        "level": 5,
+        "page": 8
+      },
+      {
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 5,
+        "page": 8
+      },
+      {
+        "title": "FINDINGS",
+        "level": 4,
+        "page": 10
+      },
+      {
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 5,
+        "page": 10
+      },
+      {
+        "title": "1. Introduction",
+        "level": 2,
+        "page": 26
+      },
+      {
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 3,
+        "page": 26
+      },
+      {
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 5,
+        "page": 27
+      },
+      {
+        "title": "2. Evaluation findings",
+        "level": 2,
+        "page": 36
+      },
+      {
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 3,
+        "page": 36
+      },
+      {
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 4,
+        "page": 36
+      },
+      {
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 4,
+        "page": 61
+      },
+      {
+        "title": "3. Conclusions and recommendations",
+        "level": 2,
+        "page": 87
+      },
+      {
+        "title": "2.3 3.1 CONCLUSIONS",
+        "level": 3,
+        "page": 87
+      },
+      {
+        "title": "Annex III. Methodology",
+        "level": 1,
+        "page": 98
+      },
+      {
+        "title": "Overall approach",
+        "level": 5,
+        "page": 98
+      }
+    ],
+    "indonesia": [
+      {
+        "title": "Executive summary",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Introduction",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Evaluation features",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Context",
+        "level": 6,
+        "page": 7
+      },
+      {
+        "title": "Evaluation key insights and conclusions",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Insight 1. CSP architecture",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 6,
+        "page": 11
+      },
+      {
+        "title": "Introduction",
+        "level": 5,
+        "page": 20
+      },
+      {
+        "title": "1.1. Evaluation features",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "1.2. Context",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "Geography, Demography, and Government",
+        "level": 6,
+        "page": 20
+      },
+      {
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 6,
+        "page": 20
+      },
+      {
+        "title": "Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 6,
+        "page": 42
+      },
+      {
+        "title": "s01: Evidence and Data",
+        "level": 6,
+        "page": 48
+      },
+      {
+        "title": "Conclusions and recommendations",
+        "level": 5,
+        "page": 68
+      },
+      {
+        "title": "3.1. Conclusions",
+        "level": 2,
+        "page": 68
+      }
+    ],
+    "colombia": [
+      {
+        "title": "Resumen ejecutivo",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Introducción",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Características de la evaluación",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Contexto",
+        "level": 5,
+        "page": 7
+      },
+      {
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 5,
+        "page": 13
+      },
+      {
+        "title": "1. Introducción",
+        "level": 1,
+        "page": 28
+      },
+      {
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "1.2. CONTEXTO",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "Contexto general",
+        "level": 5,
+        "page": 28
+      },
+      {
+        "title": "2. Resultados de la evaluación",
+        "level": 1,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 42
+      },
+      {
+        "title": "Dimensión 2: Entorno político",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Productos",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Resultados92",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 2,
+        "page": 72
+      },
+      {
+        "title": "PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto?",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "Productos y logros",
+        "level": 5,
+        "page": 72
+      },
+      {
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1,
+        "page": 93
+      },
+      {
+        "title": "3.1. CONCLUSIONES",
+        "level": 2,
+        "page": 93
+      }
+    ]
+  }
+}

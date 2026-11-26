@@ -1,0 +1,565 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local heading model v2: controlled experiment</title><style>body { font: 16px/1.55 system-ui, sans-serif; margin: 0; color: #183247; background: #f5f8fb; }
+main { padding: 32px; max-width: 1800px; margin: auto; overflow-x: auto; }
+p { max-width: 1100px; }
+a { color: #08659a; }
+h1 { line-height: 1.2; }
+table { border-collapse: collapse; background: white; font-size: 14px; width: 100%; margin: 24px 0; }
+main > p > a > img, main > p > img { max-width: 100%; height: auto; }
+th, td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #dce5ec; min-width: 90px; }
+th { background: #e5eff7; }
+td:nth-child(2) { min-width: 240px; }
+.league-table th:nth-child(3), .league-table td:nth-child(3) { background: #dceff1; border-left: 2px solid #087e88; border-right: 2px solid #087e88; }
+.league-table td:nth-child(3) { min-width: 110px; font-size: 20px; color: #074851; }
+.league-table td:nth-child(6) { min-width: 240px; }
+code { background: #e7eef4; padding: 2px 4px; }
+@media (max-width: 600px) { main { padding: 16px; } }
+
+tr:has(#our-trained-model) > td { background: #fff2bd; border-top: 2px solid #b87a00; border-bottom: 2px solid #b87a00; }
+tr:has(#our-trained-model) > td:first-child { border-left: 6px solid #b87a00; min-width: 210px; }
+#our-trained-model { scroll-margin-top: 32px; }
+
+.technique-hint { border-left: 4px solid #087e88; padding: 10px 16px; background: #e5f5f3; }
+a[data-technique] { text-underline-offset: 3px; }
+a[data-technique]:hover { color: #074851; text-decoration-thickness: 2px; }
+.technique-dialog { border: 0; border-radius: 18px; padding: 0; width: min(1050px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); color: #183247; background: #f9fbfd; box-shadow: 0 24px 100px #001d4055; }
+.technique-dialog::backdrop { background: #10273fbb; backdrop-filter: blur(3px); }
+.technique-shell { padding: 28px; }
+.technique-header { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; }
+.technique-header h2 { margin: 4px 0 12px; line-height: 1.2; font-size: clamp(22px, 3vw, 30px); }
+.technique-family { color: #067078; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; font-weight: 750; margin: 0; }
+.technique-close { flex-shrink: 0; cursor: pointer; background: white; color: #183247; border: 1px solid #adbfce; border-radius: 8px; padding: 8px 12px; font: inherit; }
+.technique-description { margin-bottom: 24px; }
+.technique-details { margin: 28px 0; }
+.technique-details h3 { margin: 28px 0 10px; }
+.technique-details table { table-layout: fixed; overflow-wrap: anywhere; }
+.technique-details caption { text-align: left; color: #4a6273; font-size: 13px; padding-bottom: 8px; }
+.technique-details th { width: 28%; }
+.technique-details th, .technique-details td { min-width: 0; }
+.technique-details p { overflow-wrap: anywhere; }
+.technique-flow { margin: 24px 0; }
+.technique-flow figcaption { font-weight: 750; margin-bottom: 12px; }
+.technique-flow ol { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; padding: 0; margin: 0; }
+.technique-flow li { position: relative; flex: 1 1 160px; min-width: 0; padding: 18px 16px; border: 1px solid #bfd8df; border-radius: 12px; background: white; }
+.technique-flow li:last-child { background: #e6f4f0; border-color: #8dc9ba; }
+.technique-flow li:not(:last-child)::after { content: '→'; position: absolute; right: -20px; top: 44%; color: #14737d; font-size: 22px; }
+.step-number { display: block; color: #087581; font-size: 12px; font-weight: 800; margin-bottom: 10px; }
+.technique-flow strong { display: block; line-height: 1.25; }
+.technique-flow p { font-size: 14px; line-height: 1.45; margin: 10px 0 0; }
+.technique-limit { background: #fff4d9; border-left: 3px solid #cba348; border-radius: 6px; padding: 14px 18px; }
+.technique-limit p { font-size: 14px; margin: 4px 0 0; }
+.technique-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.technique-links a { background: white; border: 1px solid #b8ccd9; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
+.technique-footnote { font-size: 12px; color: #4a6273; margin-top: 20px; }
+:focus-visible { outline: 3px solid #bf6a00; outline-offset: 4px; }
+body:has(.technique-dialog[open]) { overflow: hidden; }
+@media (max-width: 650px) {
+  .technique-shell { padding: 20px; }
+  .technique-flow ol { flex-direction: column; }
+  .technique-flow li { flex-basis: auto; }
+  .technique-flow li:not(:last-child)::after { content: '↓'; top: auto; bottom: -24px; right: 50%; }
+  .technique-header { gap: 8px; }
+}
+@media print {
+  .technique-dialog[open] { position: static; max-height: none; width: auto; box-shadow: none; }
+  .technique-close { display: none; }
+}
+
+tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
+#our-calibrated-model { scroll-margin-top: 32px; }
+
+.info-button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 4px; border: 1px solid #527b88; border-radius: 50%; background: white; color: #075868; font: bold 14px Georgia, serif; cursor: pointer; vertical-align: middle; flex-shrink: 0; }
+.info-button:hover { background: #075868; color: white; }
+.column-dialog { max-width: 680px; }
+.column-dialog h2 { font-size: 24px; margin: 0; }
+
+.method-terms { background: #eaf3f5; border-radius: 12px; padding: 8px 20px; margin-top: 24px; }
+.method-terms dt { font-weight: 700; margin-top: 16px; }
+.method-terms dd { margin: 4px 0 16px; font-size: 15px; }
+.technique-flow a { text-underline-offset: 3px; }
+
+.prediction-comparison { margin: 24px 0; padding: 18px; background: white; border: 1px solid #b8ccd9; border-radius: 12px; }
+.prediction-comparison h3 { margin-top: 0; }
+.comparison-counts { font-weight: 750; }
+.comparison-document { border-top: 1px solid #dce5ec; padding: 12px 0; }
+.comparison-document summary { cursor: pointer; font-weight: 650; }
+.comparison-document summary span { display: block; margin: 5px 0 0 20px; font-size: 13px; font-weight: 400; }
+.comparison-scroll { overflow-x: auto; }
+.comparison-scroll table { table-layout: fixed; min-width: 640px; }
+.comparison-scroll th, .comparison-scroll td { min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.comparison-scroll th:first-child { width: 6%; }
+.comparison-scroll th:nth-child(2), .comparison-scroll th:nth-child(3) { width: 35%; }
+.comparison-scroll caption { text-align: left; font-size: 13px; }
+.comparison-correct { background: #edf8f2; }
+.comparison-wrong { background: #fff4d9; }
+.comparison-missing { background: #fff0f0; }
+.comparison-extra { background: #f5edff; }
+
+/* Show the run itself first; keep long records available on demand. */
+.technique-shell > details { border-top: 1px solid #cbdde4; padding: 14px 0; margin: 0; }
+.technique-shell > details > summary { cursor: pointer; font-weight: 650; }
+.technique-shell > .prediction-comparison { background: transparent; border-radius: 0; border-right: 0; border-bottom: 0; border-left: 0; }
+.technique-shell > .technique-limit { margin-top: 16px; }
+.technique-shell .technique-flow { margin: 18px 0; }
+.technique-shell .technique-flow li { padding: 12px; }
+.technique-shell .technique-description { margin-bottom: 12px; }
+.technique-shell .technique-links { margin: 14px 0; }
+img{max-width:100%}</style></head><body><main><h1>Training a small local heading model: second experiment</h1>
+<p><strong>Current comparison metric:</strong> the league now ranks by joint heading-and-level F0.5 with joint precision and joint recall alongside it; no league-table PASS/FAIL gate. <a href="../../docs/joint-metric.md">Definitions and worked example</a> · <a href="../structure-precision/report.md">New precision experiment</a>. The F1 results and selection criteria below describe the original frozen experiment; they have not been retroactively changed. Published primary scores use the league's same-page title matching rule.</p>
+<p>The selected model improved exact heading-group-and-level F1 from <strong>71.6% to 85.7%</strong> on 32 fully reviewed pages from four fresh WFP reports. It recovered all 38 reference groups, assigned 36 the correct level, and emitted eight extra groups. This is a small pilot using one assistant's labels, without independent human adjudication.</p>
+<p><img src="../../docs/structure-v2-method.svg" alt="Training and evaluation pipeline" /></p>
+<h2>What changed</h2>
+<p>The original Extra Trees model had 154 training heading groups from 16 reports. The expanded set has <strong>887 groups from 20 training reports</strong>, including English, French and Spanish. There are 7,039 labelled training lines. These are 859 newly reviewed group decisions (including re-reviewed existing headings) plus retained v1 annotations; they are not 859 additional disjoint headings. Three changes to overlapping v1 annotations are recorded explicitly in <code>configs/structure-v2/annotation-changes.json</code>; v1 evidence is unchanged.</p>
+<p>Training coverage is deliberately partial. The 112 original fully reviewed training pages supply ordinary-text negatives. Added candidate-guided headings supply positive labels on other pages. Unreviewed lines stay unlabelled. Candidate review used boldness, font size and numbering to propose examples, with extracted text, TOCs and rendered page/snippet inspection to assess them. This can under-sample subtle headings and still contains annotation errors. It is not a complete-document gold corpus.</p>
+<p>The four validation reports retain their original 20 reviewed pages and 21 groups. Selection used exact group-and-level F1 on those reports. The final test uses <strong>32 fully reviewed pages and 38 groups from four new reports</strong>: Niger malnutrition interventions (English), anticipatory action in Nepal (English), Chad country strategic plan (French), and Ecuador country strategic plan (Spanish). Each contributes two continuous four-page windows, covering introduction/context and findings. All page numbers are physical PDF pages. Labels and the protocol were frozen before fitting; the test was evaluated after selection. The original four test reports from v1 were excluded entirely.</p>
+<p>These are report-disjoint splits, <strong>not template-family-disjoint splits</strong>. For example, the Niger and Chad impact evaluations share a 3ie publishing style. The selection was purposive rather than random and the test has only one H4 and no H5/H6 headings. It does not establish whole-document or cross-publisher accuracy.</p>
+<h2>Three controlled variants</h2>
+<ol>
+<li><strong>Extra annotations only:</strong> retain v1's line features, 200-tree Extra Trees settings and same-block grouping. This isolates the effect of more labels and four extra training reports.</li>
+<li><strong>Learned grouping:</strong> a separate tree classifier learns whether adjacent extracted lines belong to one heading, including across PDF block boundaries. Another classifier assigns the resulting group a body/H1–H6 label.</li>
+<li><strong>Context and relationships:</strong> add document-wide style/numbering statistics and an exact normalized TOC-title feature. A learned pair model scores whether successive heading levels rise, stay equal or fall; Viterbi decoding combines those scores with group-level probabilities. The relation weight is fixed at 1.0. TOC presence is optional. This is a lightweight context model, not a fine-tuned language model.</li>
+</ol>
+<p>All variants use the same training split and seed. Group training uses explicitly annotated groups plus known ordinary-text lines. Pair training only uses pairs whose labels are known. Context features use the input PDF, never reference labels. No report-specific inference corrections were added. The context variant combines extra features and sequence decoding; this experiment does not isolate their individual contributions.</p>
+<p>Parent IDs are inferred from the resulting level sequence and remain unevaluated. Native text is retained, but reading order, tables and OCR quality are not solved by this model. Non-adjacent fragments and headings separated by running headers remain possible grouping failures.</p>
+<h2>Results and costs</h2>
+<p>Exact group F1 requires the complete ordered set of source line IDs; matching individual fragments does not count. Exact group-and-level F1 additionally requires the right H level. F1 is <code>2 × correct / (reference groups + predicted groups)</code>, so false headings reduce the score. This is stricter than the title-matching metric in the historical league table.</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Validation exact F1</th>
+<th>Fresh test exact F1</th>
+<th>Groups recovered</th>
+<th>Groups + levels correct</th>
+<th>Extra groups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original model v1</td>
+<td>Not used for v2 selection</td>
+<td>71.6%</td>
+<td>35/38</td>
+<td>29/38</td>
+<td>8</td>
+</tr>
+<tr>
+<td>v2: more annotations</td>
+<td>55.3%</td>
+<td>81.4%</td>
+<td>37/38</td>
+<td>35/38</td>
+<td>11</td>
+</tr>
+<tr>
+<td>v2: learned grouping</td>
+<td>63.6%</td>
+<td>80.5%</td>
+<td>38/38</td>
+<td>35/38</td>
+<td>11</td>
+</tr>
+<tr>
+<td>v2: context + relationships (selected)</td>
+<td>69.8%</td>
+<td>85.7%</td>
+<td>38/38</td>
+<td>36/38</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Selection remains the context model</strong>, chosen before looking at the test or historical results. Learned grouping alone scored slightly better on the historical benchmark. That does not justify switching after examining those results. The new context model also regressed slightly on Chad's exact F1 despite getting one more level right: false positives increased. More data is not a substitute for testing individual reports.</p>
+<table>
+<thead>
+<tr>
+<th>Fresh report ID</th>
+<th>v1 exact F1</th>
+<th>Selected v2 exact F1</th>
+<th>Correct groups + levels</th>
+<th>Extra groups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>321</td>
+<td>85.7%</td>
+<td>90.9%</td>
+<td>10/10</td>
+<td>2</td>
+</tr>
+<tr>
+<td>844</td>
+<td>94.1%</td>
+<td>100.0%</td>
+<td>8/8</td>
+<td>0</td>
+</tr>
+<tr>
+<td>560</td>
+<td>66.7%</td>
+<td>64.0%</td>
+<td>8/10</td>
+<td>5</td>
+</tr>
+<tr>
+<td>394</td>
+<td>45.5%</td>
+<td>95.2%</td>
+<td>10/10</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The original 77-heading benchmark was already inspected during development and is now a <strong>diagnostic</strong>. Each new variant ran over all 523 pages, then used the unchanged reference, audit pages and title matcher. Fresh-test F1 and historical correct-heading recall have different denominators and should not be compared directly.</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Titles recovered</th>
+<th>Correct title + level</th>
+<th>Extra headings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2: more annotations</td>
+<td>69/77</td>
+<td>41/77</td>
+<td>26</td>
+</tr>
+<tr>
+<td>v2: learned grouping</td>
+<td>74/77</td>
+<td>51/77</td>
+<td>21</td>
+</tr>
+<tr>
+<td>v2: context + relationships (selected)</td>
+<td>64/77</td>
+<td>50/77</td>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+<p>Runs were local on an Apple M4 Pro with 48 GB RAM. There were no inference API calls or per-page service charges. Dollar costs for electricity, hardware ownership and annotation work were not measured. Model fit time excludes feature preparation, JSON export and validation; inference time includes PDF extraction, features and model inference, but excludes model loading and output writes. The 500-page number below is a linear normalization of an actual 523-page run, not another measured run.</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Component model fits</th>
+<th>Deployment JSON</th>
+<th>Measured / 523 pages</th>
+<th>Normalized / 500 pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2: more annotations</td>
+<td>1.01 s</td>
+<td>21.7 MiB</td>
+<td>9.27 s</td>
+<td>8.86 s</td>
+</tr>
+<tr>
+<td>v2: learned grouping</td>
+<td>1.81 s</td>
+<td>18.6 MiB</td>
+<td>11.97 s</td>
+<td>11.44 s</td>
+</tr>
+<tr>
+<td>v2: context + relationships (selected)</td>
+<td>2.09 s</td>
+<td>23.2 MiB</td>
+<td>12.56 s</td>
+<td>12.00 s</td>
+</tr>
+</tbody>
+</table>
+<p>The selected deployment needs the join, context and relation JSON models. Models, original PDFs, rendered pages and complete extracted text remain outside Git. Published annotations, compact predictions, scores and model/configuration hashes are committed for audit. PyMuPDF's licensing must be considered separately from this repository's MIT code license.</p>
+<h2>Source documents and exact coverage</h2>
+<p>Reports came from the supplied <strong>Evaluation list – Phase 1.xlsx</strong> catalogue and its <code>20261121T043910Z</code> local archive snapshot. The reproducible preparation script extracts exact manifest members, verifies their SHA-256 hashes and checks document overlap. It does not require a public download service. Official public source links are listed below; archive filesystem locations are not published. Catalogue entry 962 (GAFSP) was excluded before fitting because it was not a WFP evaluation and was replaced by Niger report 321.</p>
+<p>“Full pages” below means every extracted line on those pages has an annotation decision. Extra positive headings can appear elsewhere on training reports. The annotation viewer includes <strong>all 946 groups</strong>, full reviewed pages including zero-heading pages, and pages containing additional positive groups; it distinguishes those coverage types.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Report / public source</th>
+<th>Language</th>
+<th>Split</th>
+<th>PDF pages</th>
+<th>Full pages</th>
+<th>Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>347</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000023485/download/">Annual Synthesis of Operation Evaluations (2016-2017)</a></td>
+<td>English</td>
+<td>train</td>
+<td>31</td>
+<td>3, 6, 11, 13, 21, 23, 28</td>
+<td>61</td>
+</tr>
+<tr>
+<td>534</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000115570/download">Synthesis of evidence and lessons from WFP's policy evaluations (2011 - 2019)</a></td>
+<td>English</td>
+<td>train</td>
+<td>32</td>
+<td>2, 3, 7, 11, 12, 20, 29</td>
+<td>22</td>
+</tr>
+<tr>
+<td>584</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000127565/download/">Synthesis of evidence and lessons on country capacity strengthening from decentralized evaluations</a></td>
+<td>English</td>
+<td>train</td>
+<td>30</td>
+<td>2, 4, 10, 13, 15, 18, 21</td>
+<td>28</td>
+</tr>
+<tr>
+<td>425</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000063326/download/">Four Evaluations of the Impact of WFP Programmes on Nutrition in Humanitarian Contexts in the Sahel: A Synthesis</a></td>
+<td>English</td>
+<td>train</td>
+<td>38</td>
+<td>3, 7, 8, 13, 17, 26, 36</td>
+<td>32</td>
+</tr>
+<tr>
+<td>443</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000127163/download/">Evaluation Series on Emergency School Feeding in Lebanon 2015-2019</a></td>
+<td>English</td>
+<td>train</td>
+<td>49</td>
+<td>3, 10, 23, 35, 36, 39, 49</td>
+<td>66</td>
+</tr>
+<tr>
+<td>44</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000107946/download/">Evaluation of the Satellite Index Insurance for Pastoralists in Ethiopia (SIIPE) Programme: Impact Evaluation of the SIIPE Pilot (2017 – 2019)</a></td>
+<td>English</td>
+<td>train</td>
+<td>50</td>
+<td>3, 10, 15, 23, 34, 36, 49</td>
+<td>60</td>
+</tr>
+<tr>
+<td>104</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000023073/download/">Final Evaluation of USDA McGovern-Dole-funded International Food for Education and Child Nutrition Program’s Support in Liberia (2013-2016)</a></td>
+<td>English</td>
+<td>train</td>
+<td>58</td>
+<td>3, 17, 30, 31, 44, 57, 58</td>
+<td>71</td>
+</tr>
+<tr>
+<td>79</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000101797/download/">Evaluation of WFP’s General Food Assistance to Syrian Refugees in Jordan from 2015 to mid-2018</a></td>
+<td>English</td>
+<td>train</td>
+<td>58</td>
+<td>3, 9, 15, 24, 36, 40, 55</td>
+<td>53</td>
+</tr>
+<tr>
+<td>177</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000100401/download/">Emergency Social Safety Nets (ESSN) Mid-term Evaluation in Turkey</a></td>
+<td>English</td>
+<td>train</td>
+<td>64</td>
+<td>3, 10, 17, 27, 43, 60, 63</td>
+<td>43</td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000099834/download/">Evaluation of the Nutrition Components of the Algeria PRRO 200301</a></td>
+<td>English</td>
+<td>train</td>
+<td>64</td>
+<td>3, 13, 15, 30, 37, 46, 63</td>
+<td>26</td>
+</tr>
+<tr>
+<td>448</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000139663/download/">Evaluation of WFP’s support to smallholder farmers and expanded portfolio across the agriculture value chain in Bhutan, 2019-2021</a></td>
+<td>English</td>
+<td>train</td>
+<td>62</td>
+<td>4, 11, 28, 30, 34, 44, 61</td>
+<td>71</td>
+</tr>
+<tr>
+<td>857</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000160228/download/">Mid-term Evaluation of WFP’s Private Sector Partnerships and Fundraising Strategy 2020-2025</a></td>
+<td>English</td>
+<td>train</td>
+<td>78</td>
+<td>4, 17, 28, 36, 56, 60, 75</td>
+<td>13</td>
+</tr>
+<tr>
+<td>37</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000073498/download/">Evaluación final de la relevancia del rol y la respuesta del PMA para avanzar en un enfoque de asistencia alimentaria vinculado a los sistemas de protección social en Ecuador</a></td>
+<td>Spanish</td>
+<td>train</td>
+<td>53</td>
+<td>3, 12, 24, 30, 37, 42, 49</td>
+<td>59</td>
+</tr>
+<tr>
+<td>494</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000118909/download/">Contribution des cantines scolaires aux résultats de l’éducation dans le sud de Madagascar (2015 à 2019) : Une analyse de la contribution</a></td>
+<td>French</td>
+<td>train</td>
+<td>93</td>
+<td>3, 9, 21, 33, 45, 52, 83</td>
+<td>56</td>
+</tr>
+<tr>
+<td>340</td>
+<td><a href="https://docs.wfp.org/api/documents/72403381cf214e11925fb73b5b1968b9/download/">Djibouti IPSR 200824 : Une évaluation d’opération à mi-parcours du PAM</a></td>
+<td>French</td>
+<td>train</td>
+<td>96</td>
+<td>2, 27, 49, 72, 87, 90, 94</td>
+<td>7</td>
+</tr>
+<tr>
+<td>324</td>
+<td><a href="https://www.3ieimpact.org/sites/default/files/GFR-TW6.1039-food-insecure-population-mali.pdf">The Impact of Humanitarian Aid on Food Insecure Populations During Conflict in Mali: An impact evaluation</a></td>
+<td>English</td>
+<td>train</td>
+<td>78</td>
+<td>5, 7, 25, 29, 38, 42, 60</td>
+<td>5</td>
+</tr>
+<tr>
+<td>103</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000128024/download/">Evaluation of WFP Livelihoods and Resilience Activities in Lebanon from 2016 to 2019</a></td>
+<td>English</td>
+<td>validation</td>
+<td>54</td>
+<td>3, 10, 24, 39, 53</td>
+<td>3</td>
+</tr>
+<tr>
+<td>538</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000164067/download/">Evaluation of School Feeding Modalities Applied in Armenia</a></td>
+<td>English</td>
+<td>validation</td>
+<td>65</td>
+<td>4, 10, 28, 46, 64</td>
+<td>9</td>
+</tr>
+<tr>
+<td>176</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000108206/download/">Evaluation of WFP’s capacity strengthening activities  to develop the  School Meals Programme from 2016 to 2018 in Tunisia</a></td>
+<td>French</td>
+<td>validation</td>
+<td>105</td>
+<td>3, 10, 24, 37, 51</td>
+<td>5</td>
+</tr>
+<tr>
+<td>128</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000138855/download/">Evaluación Intermedia del Proyecto BOOST en las zonas de Nueva Segovia, Madriz, Estelí, Matagalpa,  Jinotega y la RACCN en Nicaragua, 2018-2021</a></td>
+<td>Spanish</td>
+<td>validation</td>
+<td>89</td>
+<td>4, 11, 27, 44, 60</td>
+<td>4</td>
+</tr>
+<tr>
+<td>321</td>
+<td><a href="https://www.3ieimpact.org/sites/default/files/2019-01/IE80-WFP-malnutrition-Niger.pdf">WFP Malnutrition Interventions in Niger</a></td>
+<td>English</td>
+<td>test</td>
+<td>73</td>
+<td>13, 14, 15, 16, 34, 35, 36, 37</td>
+<td>10</td>
+</tr>
+<tr>
+<td>844</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000165767/download/?_ga=2.213186772.1572714128.1747122969-1660177980.1674680269">Impact evaluation of Anticipatory Action in Nepal</a></td>
+<td>English</td>
+<td>test</td>
+<td>67</td>
+<td>10, 11, 12, 13, 19, 20, 21, 22</td>
+<td>8</td>
+</tr>
+<tr>
+<td>560</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000146206/download/">Evaluation of Chad WFP Country Strategic Plan 2019-2023</a></td>
+<td>French</td>
+<td>test</td>
+<td>92</td>
+<td>21, 22, 23, 24, 36, 37, 38, 39</td>
+<td>10</td>
+</tr>
+<tr>
+<td>394</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000143384/download/">Ecuador: an Evaluation of WFP's Strategic Plan (2017-2021)</a></td>
+<td>Spanish</td>
+<td>test</td>
+<td>103</td>
+<td>27, 28, 29, 30, 46, 47, 48, 49</td>
+<td>10</td>
+</tr>
+<tr>
+<td>323</td>
+<td><a href="https://www.3ieimpact.org/sites/default/files/2019-01/IE78-MAM-Chad_1.pdf">Targeting Moderate Acute Malnutrition in Humanitarian Situations in Chad</a></td>
+<td>English</td>
+<td>train</td>
+<td>80</td>
+<td>None: positive-only additions</td>
+<td>51</td>
+</tr>
+<tr>
+<td>33</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000063843/download/">Cote d'Ivoire PRRO 200464: a decentralized evaluation</a></td>
+<td>French</td>
+<td>train</td>
+<td>140</td>
+<td>None: positive-only additions</td>
+<td>47</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000103099/download/">Evaluación Final del Programa de País del Programa Mundial de Alimentos de las Naciones Unidas en el Estado Plurinacional de Bolivia – PP 200381 2013 - 2017</a></td>
+<td>Spanish</td>
+<td>train</td>
+<td>118</td>
+<td>None: positive-only additions</td>
+<td>92</td>
+</tr>
+<tr>
+<td>334</td>
+<td><a href="https://docs.wfp.org/api/documents/WFP-0000015489/download/">Evaluation of the WFP Corporate Partnership Strategy (2014-2017)</a></td>
+<td>English</td>
+<td>train</td>
+<td>83</td>
+<td>None: positive-only additions</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<h2>Reproduce and run on your own PDF</h2>
+<p>Use Python 3.12 and the committed uv lockfile. From a checkout:</p>
+<pre><code class="language-bash">uv sync --locked --extra training
+export STRUCTURE_DATA=/path/outside/the/repository/structure-v2
+uv run python scripts/structure/prepare.py --data &quot;$STRUCTURE_DATA&quot; --archive /path/to/wfp-20261121T043910Z.tar
+uv run python scripts/structure/train.py --data &quot;$STRUCTURE_DATA&quot; --output &quot;$STRUCTURE_DATA/run-001&quot;
+uv run python scripts/structure/evaluate.py --data &quot;$STRUCTURE_DATA&quot; --run &quot;$STRUCTURE_DATA/run-001&quot; --original-model /path/to/v1/trees.json
+uv run python scripts/structure/predict.py --pdf /path/to/report.pdf --run &quot;$STRUCTURE_DATA/run-001&quot; --output /path/to/new-output.json
+uv run python scripts/structure/review.py --data &quot;$STRUCTURE_DATA&quot; --run &quot;$STRUCTURE_DATA/run-001&quot; --output &quot;$STRUCTURE_DATA/viewer&quot;
+uv run python scripts/structure/active_review.py --data &quot;$STRUCTURE_DATA&quot; --run &quot;$STRUCTURE_DATA/run-001&quot; --output &quot;$STRUCTURE_DATA/next-review-queue.json&quot;
+</code></pre>
+<p>Preparation uses the committed materialized annotations. <code>compile_annotations.py</code> can rebuild them from the explicit index decisions and v1 labels; it never generates labels using typography rules. Training/evaluation reject stale configuration hashes and existing run directories. Evaluation additionally needs the four historical PDFs in the sibling <code>corpus</code> directory, prepared by the original benchmark instructions, and the frozen v1 model for the before/after comparison. Output JSON contains every native text line, headings and tentative parent IDs; Markdown retains those lines with heading markers.</p>
+<p>The package runner is also available through <code>pdf-headings run structure_context_relations</code> with <code>PDF_HEADING_STRUCTURE_RUN</code> pointing at the trained run. Native digital PDFs are required; scanned documents need a text/OCR stage first.</p>
+<h2>Next improvement target</h2>
+<p>The remaining problem is primarily false positives and transfer across document styles. Review the eight fresh-test false headings as diagnostic examples, but reserve another untouched test set before further tuning. Expand fully reviewed sections, especially caption/table-heavy pages and unnumbered H3–H5 headings; independently check ambiguous labels; and hold out entire template families. The current 887-group training set is the completed first expansion, short of the proposed 1,000–2,000-group target. <code>active_review.py</code> ranks up to 200 unlabelled groups from training reports by uncalibrated predictive entropy. It never samples validation or test reports and never turns its suggestions into labels automatically. A queue for the next annotation round has been generated outside Git. A calibrated reject/review option is also a useful next experiment. No confidence calibration or human review guarantee is claimed here.</p>
+</main></body></html>

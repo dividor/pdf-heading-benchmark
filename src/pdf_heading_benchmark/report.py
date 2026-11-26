@@ -3,17 +3,25 @@
 from markdown_it import MarkdownIt
 
 from pdf_heading_benchmark.io import REPO, read_json, write_json
+from pdf_heading_benchmark.joint_metrics import scored_counts
+from pdf_heading_benchmark.report_layout import tabbed_report
+from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix, method_records
+from pdf_heading_benchmark.timing_format import readable_time
+from pdf_heading_benchmark.timing_updates import latest_timings
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
 HEADERS = [
     "Configuration",
+    "Time for 32 pages",
+    "Primary score: joint F0.5",
+    "Joint precision",
+    "Joint recall",
     "Method / code",
     "Status",
     "Headings recovered",
-    "Correct heading + level",
     "False headings",
     "Native prose retention",
-    "Measured time",
+    "Time per page",
 ]
 
 
@@ -22,29 +30,69 @@ def percent(value):
 
 
 def duration(row):
-    seconds = row["measured_seconds"]
-    if not seconds:
+    seconds, pages = row["measured_seconds"], row["processed_pages"]
+    if seconds is None:
         return "—"
-    label = f"{seconds / 60:.1f} min" if seconds >= 60 else f"{seconds:.1f} s"
-    scope = f"{row['processed_pages']} pages" if row["processed_pages"] else "hierarchy stage only"
-    return f"{label} / {scope}"
+    if not pages:
+        return f"Page average unavailable<br>{readable_time(seconds)} for the hierarchy stage"
+    source = ""
+    if row.get("timing_source"):
+        source = (
+            "<br>Latest sequential run"
+            if row["timing_source"] == "sequential rerun"
+            else "<br>Original run; see timing comparison"
+        )
+    return f"**{readable_time(seconds / pages)}**{source}"
+
+
+def time_for_32_pages(row):
+    seconds, pages = row["measured_seconds"], row["processed_pages"]
+    if seconds is None or not pages:
+        return "Unavailable"
+    if pages == 32:
+        return f"**{readable_time(seconds)}**<br>Measured"
+    return (
+        f"**{readable_time(seconds / pages * 32)}**<br>Estimated from "
+        f"{readable_time(seconds)} measured over {pages} pages"
+    )
 
 
 def cells(row, method):
     completed = row["status"] == "completed"
-    combined = percent(row["correct_heading_and_level"])
-    recall = percent(row["heading_recall"])
+    precision = percent(row.get("joint_precision"))
+    recall = percent(row.get("joint_recall"))
+    recovered = percent(row["heading_recall"])
     if completed:
-        combined += f" ({row['correct_level']}/77)"
-        recall += f" ({row['matched']}/77)"
-    if row["method"] == "mineru_pro_mlx":
-        combined = "Levels not supplied (0/77 complete outputs)"
+        precision += f" ({row['correct_level']}/{row['predicted']})"
+        recall += f" ({row['correct_level']}/{row['gold']})"
+        recovered += f" ({row['matched']}/{row['gold']})"
+    configuration = f"[{row['name']}]({row['source_url']})"
+    if row["method"] == "supervised_extra_trees":
+        configuration = f"[LLM annotations → Extra Trees v1 (CPU)]({row['source_url']})"
+    if row["method"] == "structure_context_relations":
+        configuration = (
+            '<span id="our-original-model"></span>'
+            f"[OUR METHOD — grouped context v2 (previous selection)]({row['source_url']})"
+        )
+    if row["method"] == "structure_precision":
+        configuration = (
+            '<span id="our-trained-model"></span>'
+            f"[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**]({row['source_url']})"
+        )
+    if row["method"] == "structure_calibrated":
+        configuration = (
+            '<span id="our-calibrated-model"></span>'
+            f"[**OUR METHOD — calibrated decoding (experimental)**]({row['source_url']})"
+        )
     return [
-        f"[{row['name']}]({row['source_url']})",
-        f"[{method['description']}]({REMOTE}{method['code']})",
-        row["status"],
+        configuration,
+        time_for_32_pages(row),
+        f"**{percent(row.get('joint_f05'))}**",
+        precision,
         recall,
-        combined,
+        f"[{method['description']}]({method.get('code_url', REMOTE + method['code'])})",
+        row["status"],
+        recovered,
         str(row["false_headings"]) if completed else "—",
         percent(row["native_prose_retention"]),
         duration(row),
@@ -79,11 +127,16 @@ def corpus_table():
 
 def report_rows(filename):
     selected = set(read_json(REPO / "configs/report-methods.json"))
-    return [
+    rows = [
         {key: value for key, value in row.items() if not key.startswith("api_")}
         for row in read_json(REPO / "outputs" / filename)
         if row["method"] in selected
     ]
+    if filename == "league_table.json":
+        rows = [scored_counts(row) if row["status"] == "completed" else row for row in rows]
+        rows = latest_timings(rows)
+        rows.sort(key=lambda row: row.get("joint_f05", -1), reverse=True)
+    return rows
 
 
 def results_table():
@@ -105,13 +158,29 @@ def build_report():
             f"{r['matched']}/{r['gold']}",
             f"{r['correct_level']}/{r['gold']}",
             r["predicted"] - r["matched"],
+            percent(r["matched"] / r["predicted"] if r["predicted"] else 0),
         ]
         for r in details
     ]
-    markdown = intro + "\n" + corpus_table() + "\n\n" + protocol
-    markdown += "\n" + results_table() + "\n\n" + notes
+    markdown = intro + "\n" + results_table()
+    markdown += "\n\n" + (REPO / "docs/published-comparison.md").read_text()
+    markdown += "\n\n" + (REPO / "docs/report-documents.md").read_text() + "\n" + corpus_table()
+    markdown += "\n\n" + protocol
+    markdown += "\n\n" + (REPO / "docs/level-audit.md").read_text()
+    metric = (REPO / "docs/joint-metric.md").read_text()
+    markdown += "\n\n" + metric + "\n\n" + notes
+    repeat = REPO / "outputs/sequential-repeat/summary.md"
+    if repeat.exists():
+        markdown += "\n\n" + repeat.read_text()
     markdown += "\n\n## Results by report\n\n" + table(
-        ["Runner / configuration", "Report", "Recovered", "Correct heading + level", "False headings"],
+        [
+            "Runner / configuration",
+            "Report",
+            "Recovered",
+            "Correct heading + level",
+            "False headings",
+            "Heading-only precision (diagnostic)",
+        ],
         per_report,
     )
     markdown += "\n"
@@ -120,9 +189,19 @@ def build_report():
     write_json(output / "results.json", report_rows("league_table.json"))
     summary_keys = ("method", "document", "gold", "matched", "correct_level", "predicted")
     write_json(output / "details.json", [{key: row[key] for key in summary_keys} for row in details])
-    (output / "league_table.md").write_text(markdown)
+    rows = report_rows("league_table.json")
+    (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
+    (output / "method-records.md").write_text(method_records(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
+    for diagram in ("ocr-field-overview.png", "ocr-text-layout.png"):
+        (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
+        rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
+    rendered = rendered.replace(
+        "<h2>Published comparison</h2>", '<h2 id="published-comparison">Published comparison</h2>'
+    )
+    rendered = enhance_html(tabbed_report(rendered), rows, methods)
     css = (REPO / "docs/report.css").read_text()
+    css += (REPO / "docs/report-tabs.css").read_text()
     html = (
         '<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'

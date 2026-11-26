@@ -1,6 +1,6 @@
 {
   "docling_default": {
-    "description": "CPU, OCR and tables off; native SectionHeaderItem levels; full PDFs.",
+    "description": "Use the heading levels returned by Docling 2.151.1 when it first reads the PDF.",
     "code": "scripts/runners/run_docling.py",
     "steps": [
       {
@@ -12,7 +12,7 @@
     ]
   },
   "docling_hierarchy": {
-    "description": "Same Docling blocks, built-in HeadingHierarchyModel enabled.",
+    "description": "Use Docling 2.151.1 to find headings, then run its built-in HeadingHierarchyModel to assign their levels.",
     "code": "scripts/runners/run_docling.py",
     "steps": [
       {
@@ -24,7 +24,7 @@
     ]
   },
   "docling_tuned": {
-    "description": "Same blocks, fixed style_size_tolerance=0.15 on every report; exploratory variant.",
+    "description": "Use Docling 2.151.1 with a fixed font-style tolerance of 0.15 in its hierarchy step.",
     "code": "scripts/runners/run_docling.py",
     "steps": [
       {
@@ -36,7 +36,7 @@
     ]
   },
   "pymupdf4llm": {
-    "description": "Full PDFs to page-chunk Markdown; read Markdown heading levels and page provenance.",
+    "description": "PyMuPDF4LLM 2.1 turns the PDF’s existing text into Markdown.",
     "code": "scripts/runners/run_pymupdf4llm.py",
     "steps": [
       {
@@ -48,7 +48,7 @@
     ]
   },
   "marker": {
-    "description": "Full PDFs; CPU no-OCR/no-LLM; decode SectionHeader HTML tags.",
+    "description": "Marker 2.2 parses the complete PDF locally on the CPU.",
     "code": "scripts/runners/run_marker.py",
     "steps": [
       {
@@ -60,7 +60,7 @@
     ]
   },
   "mineru_basic": {
-    "description": "Full PDFs; basic ONNX CPU tier, no external LLM; native title-block levels.",
+    "description": "MinerU 4.2.3 uses its basic PDF parser on the CPU through ONNX Runtime.",
     "code": "scripts/runners/run_mineru.py",
     "steps": [
       {
@@ -72,7 +72,7 @@
     ]
   },
   "lighton_mlx": {
-    "description": "32 page images; 0.8B MLX, grounding prompt, greedy 8192 tokens; decode title/continuation blocks.",
+    "description": "LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page.",
     "code": "scripts/runners/run_lighton_mlx.py",
     "steps": [
       {
@@ -84,7 +84,7 @@
     ]
   },
   "popo_docling": {
-    "description": "Docling candidates + Popo MLX 8-bit; 8-page chunks, page mosaics, upstream overlap alignment; experimental port.",
+    "description": "Use MinerU-Popo to assign levels to headings first detected by Docling.",
     "code": "scripts/runners/run_popo_mlx.py",
     "steps": [
       {
@@ -110,7 +110,7 @@
     ]
   },
   "qwen_ids_union": {
-    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: union.",
+    "description": "Ask Qwen3.5-4B to assign levels to possible headings extracted by Docling and PyMuPDF4LLM.",
     "code": "scripts/runners/run_qwen_ids.py",
     "steps": [
       {
@@ -150,7 +150,7 @@
     ]
   },
   "qwen_ids_mineru_basic": {
-    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: mineru_basic.",
+    "description": "Ask Qwen3.5-4B to assign levels to possible headings extracted by MinerU’s basic parser.",
     "code": "scripts/runners/run_qwen_ids.py",
     "steps": [
       {
@@ -178,7 +178,7 @@
     ]
   },
   "qwen_ids_pymupdf4llm": {
-    "description": "Full-document candidate IDs + Qwen3.5-4B MLX 4-bit; JSON levels/null, no images; source: pymupdf4llm.",
+    "description": "Ask Qwen3.5-4B to assign levels to possible headings extracted by PyMuPDF4LLM.",
     "code": "scripts/runners/run_qwen_ids.py",
     "steps": [
       {
@@ -206,7 +206,7 @@
     ]
   },
   "pdf_tags_audit_only": {
-    "description": "Read author H1–H6 structure-tree tags on 32 audit pages; no inferred repairs.",
+    "description": "Read PDF heading tags—the heading labels already embedded by the PDF’s author.",
     "code": "scripts/runners/run_pdf_tags.py",
     "steps": [
       {
@@ -218,7 +218,7 @@
     ]
   },
   "mineru_pro_mlx": {
-    "description": "32 images; direct MLX two_step_extract; preserve title blocks and absent levels as null.",
+    "description": "MinerU2.5-Pro-2605-1.2B reads the layout and text of page images.",
     "code": "scripts/runners/run_mineru_pro.py",
     "steps": [
       {
@@ -238,7 +238,7 @@
     ]
   },
   "lighton4b_mlx": {
-    "description": "32 images; MLX grounding prompt, 2048-pixel limit; batch 2 after 5 single-page historical checkpoints.",
+    "description": "LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model.",
     "code": "scripts/runners/run_chandra_batch.py",
     "steps": [
       {
@@ -260,7 +260,7 @@
     ]
   },
   "chandra2_mlx": {
-    "description": "32 images; author OCR-layout prompt/rendering; MLX batch 4; read HTML heading levels.",
+    "description": "Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.",
     "code": "scripts/runners/run_chandra_batch.py",
     "steps": [
       {
@@ -282,7 +282,7 @@
     ]
   },
   "qwen36_visual_memory": {
-    "description": "32 targets; Qwen3.6-27B MLX 4-bit, native text, full-document candidates/tags, prior sampled-page images.",
+    "description": "Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.",
     "code": "scripts/runners/run_qwen_visual_memory.py",
     "steps": [
       {
@@ -342,7 +342,7 @@
     ]
   },
   "supervised_extra_trees": {
-    "description": "Frozen 200-tree classifier trained on 16 different WFP reports; PyMuPDF line features; full PDFs. No refit on benchmark.",
+    "description": "Train one Extra Trees classifier to decide whether each PDF text line is body text or a heading at a particular level.",
     "code": "scripts/supervised/compare.py",
     "steps": [
       {
@@ -352,5 +352,283 @@
         "per_document": true
       }
     ]
+  },
+  "structure_expanded_line": {
+    "description": "Test whether more labeled examples improve the original single-classifier design.",
+    "code": "scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "expanded_line"
+        ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_learned_groups": {
+    "description": "Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5.",
+    "code": "scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "learned_groups"
+        ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_context_relations": {
+    "description": "Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.",
+    "code": "scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "context_relations"
+        ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_calibrated": {
+    "description": "Reuse our three Extra Trees classifiers trained locally on 20 WFP reports; apply a validation-selected body-score multiplier of two.",
+    "code": "scripts/structure/calibrate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_structure.py",
+        "environment": "project",
+        "args": [
+          "--variant",
+          "context_relations",
+          "--calibrated"
+        ],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_precision": {
+    "description": "Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.",
+    "code": "scripts/structure/optimize_precision.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_precision.py",
+        "environment": "project",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "structure_recall": {
+    "description": "Refit Extra Trees on the same 20 training reports; compare 64 validation settings for precision and coverage. No setting met both 80% targets; this is the predeclared diagnostic fallback.",
+    "code": "scripts/structure/retrain_recall.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/retrain_recall.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_recall.py",
+        "environment": "project",
+        "args": [],
+        "per_document": true
+      }
+    ]
+  },
+  "qwen36_27b_compact": {
+    "description": "Qwen3.6-27B MLX 4-bit; one 1280-pixel image and text-only heading memory.",
+    "code": "scripts/runners/run_qwen_compact.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-27B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/benchmark_qwen_compact.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-27B-4bit"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen36_35b_compact": {
+    "description": "Qwen3.6-35B-A3B MLX 4-bit; one 1280-pixel image and text-only heading memory.",
+    "code": "scripts/runners/run_qwen_compact.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/benchmark_qwen_compact.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "qwen36_35b_visual_memory": {
+    "description": "Qwen3.6-35B-A3B MLX 4-bit; original prompt, larger current image and up to six previous page images.",
+    "code": "scripts/runners/run_qwen_sparse_memory.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py",
+    "steps": [
+      {
+        "script": "scripts/runners/run_pymupdf4llm.py",
+        "environment": "pymupdf",
+        "args": [],
+        "per_document": true
+      },
+      {
+        "script": "scripts/runners/extract_tag_context.py",
+        "environment": "core",
+        "args": [],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/prepare_model.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit"
+        ],
+        "per_document": false
+      },
+      {
+        "script": "scripts/runners/benchmark_qwen_compact.py",
+        "environment": "mlx",
+        "args": [
+          "Qwen3.6-35B-A3B-4bit",
+          "--visual-memory"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "minicpm_ocr10": {
+    "description": "PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "code": "scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/benchmark_field_candidate.py",
+        "environment": "field-mlx",
+        "args": [
+          "minicpm_ocr10"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "xiaomi_ocr0": {
+    "description": "Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.",
+    "code": "scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/benchmark_field_candidate.py",
+        "environment": "field-mlx",
+        "args": [
+          "xiaomi_ocr0"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "paddleocr_vl16": {
+    "description": "PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
+    "code": "scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "steps": [
+      {
+        "script": "scripts/runners/benchmark_field_candidate.py",
+        "environment": "field-mlx",
+        "args": [
+          "paddleocr_vl16"
+        ],
+        "per_document": false
+      }
+    ]
+  },
+  "paddleocr_vl16_official": {
+    "description": "PaddleOCR 3.7.0 runs its complete v1.6 pipeline: native PaddleX layout on CPU, PaddleOCR-VL-1.6 on Metal, then Paddle’s own Markdown assembly.",
+    "code": "scripts/runners/run_official_paddle.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_paddle.py",
+    "steps": []
+  },
+  "ovisocr3_official_metal": {
+    "description": "OvisOCR3 reads each page with its official Markdown prompt through vLLM Metal. We use the upstream cleanup and preserve the model’s heading levels.",
+    "code": "scripts/runners/run_ovis_official.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_ovis_official.py",
+    "steps": []
+  },
+  "minicpm_ocr10_official_ollama": {
+    "description": "MiniCPM’s official package rotates pages, detects layout, recognizes crops through Ollama with Q8 weights and DSpark, then assembles its native Markdown.",
+    "code": "scripts/runners/run_official_minicpm.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_minicpm.py",
+    "steps": []
+  },
+  "xiaomi_ocr0_official_metal": {
+    "description": "Xiaomi’s upstream two-stage pipeline detects page regions with PaddleX on CPU, recognizes each crop with original BF16 weights on Metal, and assembles Markdown using its default title profile.",
+    "code": "scripts/runners/run_official_xiaomi.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_xiaomi.py",
+    "steps": []
+  },
+  "evidencelab": {
+    "description": "Parse full PDFs with EvidenceLab’s pinned Docker image, including its hierarchy and final TOC processing.",
+    "code": "scripts/runners/benchmark_evidencelab.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/benchmark_evidencelab.py",
+    "steps": []
+  },
+  "docling_ocr": {
+    "description": "Run full-page RapidOCR in Docling, then its default heading-hierarchy stage.",
+    "code": "scripts/runners/run_docling_ocr.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling_ocr.py",
+    "steps": []
   }
 }

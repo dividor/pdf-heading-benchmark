@@ -1,0 +1,6 @@
+# vLLM's official macOS wheel with its community-maintained Metal hardware plugin.
+# This is a different runtime from OvisOCR3's vLLM 0.22.1 / Triton example.
+vllm @ https://github.com/vllm-project/vllm/releases/download/v0.34.0/vllm-0.34.0%2Bcpu-cp38-abi3-macosx_11_0_arm64.whl
+vllm-metal @ https://github.com/vllm-project/vllm-metal/releases/download/v0.34.0/vllm_metal-0.34.0-cp312-cp312-macosx_15_0_arm64.whl
+pymupdf==2.1.0
+markdown-it-py==4.0.0

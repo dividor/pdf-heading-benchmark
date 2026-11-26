@@ -20,6 +20,14 @@ uv run python -m http.server 8765 --bind 127.0.0.1 --directory "$DATA/visual-rev
 
 Open http://127.0.0.1:8765. Keep `index.html` and its `assets` directory together. The full review pack includes source-page images and extracted page text, and stays outside Git. This directory contains the template and browser code; the generator is [visual_review.py](../../scripts/supervised/visual_review.py). The repository includes a small number of illustrative images, rather than the full page-image collection.
 
+## Coverage is a page sample, not a complete outline
+
+Only 152 of the corpus's 1,524 PDF pages were annotated. Each report has five or seven reviewed pages. All 202 frozen heading groups are included, but headings on other pages were never labelled. The viewer shows each report's reviewed-page count, exact page numbers and number of heading groups per reviewed page. A reviewed page with zero heading groups is different from an unreviewed page.
+
+For example, report 611 has 87 pages. Its reviewed pages are 4, 23, 44, 65 and 86, with seven heading groups in total. The last annotated heading is on page 65; reviewed page 86 has no heading annotations. This does not imply that the report has no other headings after page 65.
+
+The sidebar has an explicit end marker. Use **Expand list without internal scrolling** to view a long list in the normal page flow. Page navigation visits included sample/context pages, not every page in the source PDF. The model-prediction overlay is also restricted to included pages; it is not a full-document prediction browser.
+
 ## Review the annotations
 
 1. Choose a report and compare its contents pages with the indented assessed-heading list. Collapse the contents section when you want more room for the body page.

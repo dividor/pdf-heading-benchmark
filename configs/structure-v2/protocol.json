@@ -1,0 +1,17 @@
+{
+  "experiment": "structure-v2",
+  "annotation_policy": "Explicit LLM-assisted source review. Existing reviewed-page negatives retained; added positive-only groups do not make unreviewed lines negative. No claim of human-verified gold or complete-document coverage.",
+  "test": "32 full pages: two four-page contiguous windows from each of four fresh WFP reports. Not a template-family holdout. Frozen before fitting.",
+  "selection": "Highest validation exact heading-group plus level F1; ties prefer simpler variant. Test scores are read after selection.",
+  "variants": [
+    "expanded_line",
+    "learned_groups",
+    "context_relations"
+  ],
+  "join_threshold": 0.5,
+  "relation_weight": 1.0,
+  "historical_benchmark": "Diagnostic only: its errors informed this method. No training labels from those PDFs.",
+  "cost": "CPU inference, no API calls. Annotation labour and machine ownership excluded from runtime; not zero total cost.",
+  "deferred": "Further training annotation toward 1000-2000 groups and independently reviewed complete reports remain follow-up work.",
+  "source_exclusion": "Catalogue 962 GAFSP was removed before fitting because it is not a WFP evaluation; replaced by WFP Niger report 321."
+}

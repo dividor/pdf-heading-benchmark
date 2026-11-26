@@ -1,0 +1,309 @@
+[
+  {
+    "report_id": 103,
+    "headings": [
+      {
+        "id": "p003b001l00",
+        "page": 3,
+        "level": 1,
+        "line_ids": [
+          "p003b001l00"
+        ],
+        "text": "Table of Contents",
+        "bboxes": [
+          [
+            236.57000732421875,
+            71.62196350097656,
+            339.518798828125,
+            88.07684326171875
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p010b002l00",
+        "page": 10,
+        "level": 1,
+        "line_ids": [
+          "p010b002l00"
+        ],
+        "text": "1. Introduction",
+        "bboxes": [
+          [
+            256.25,
+            71.96784210205078,
+            342.2370300292969,
+            86.19840240478516
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      }
+    ]
+  },
+  {
+    "report_id": 538,
+    "headings": [
+      {
+        "id": "p004b004l00",
+        "page": 4,
+        "level": 1,
+        "line_ids": [
+          "p004b004l00"
+        ],
+        "text": "Contents",
+        "bboxes": [
+          [
+            60.98400115966797,
+            67.00397491455078,
+            180.02000427246094,
+            98.41997528076172
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p010b004l00",
+        "page": 10,
+        "level": 1,
+        "line_ids": [
+          "p010b004l00"
+        ],
+        "text": "1. Introduction",
+        "bboxes": [
+          [
+            60.98400115966797,
+            99.13072204589844,
+            273.4795837402344,
+            135.73036193847656
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p010b006l00",
+        "page": 10,
+        "level": 2,
+        "line_ids": [
+          "p010b006l00",
+          "p010b006l01"
+        ],
+        "text": "1.1. EVALUATION FEATURES",
+        "bboxes": [
+          [
+            60.98400115966797,
+            225.45819091796875,
+            83.25312042236328,
+            239.9095458984375
+          ],
+          [
+            96.98400115966797,
+            225.45819091796875,
+            229.9604034423828,
+            239.9095458984375
+          ]
+        ],
+        "parent_id": "p010b004l00",
+        "level_jump": false
+      },
+      {
+        "id": "p028b004l00",
+        "page": 28,
+        "level": 1,
+        "line_ids": [
+          "p028b004l00"
+        ],
+        "text": "2. Evaluation findings",
+        "bboxes": [
+          [
+            60.98400115966797,
+            67.21073913574219,
+            361.9396057128906,
+            103.81037902832031
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      }
+    ]
+  },
+  {
+    "report_id": 176,
+    "headings": [
+      {
+        "id": "p003b001l00",
+        "page": 3,
+        "level": 1,
+        "line_ids": [
+          "p003b001l00"
+        ],
+        "text": "Table des Matières",
+        "bboxes": [
+          [
+            245.69000244140625,
+            74.59820556640625,
+            354.5404052734375,
+            89.049560546875
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p010b003l00",
+        "page": 10,
+        "level": 1,
+        "line_ids": [
+          "p010b003l00"
+        ],
+        "text": "1. Introduction",
+        "bboxes": [
+          [
+            242.80999755859375,
+            56.23822021484375,
+            333.160400390625,
+            70.6895751953125
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p010b008l00",
+        "page": 10,
+        "level": 2,
+        "line_ids": [
+          "p010b008l00"
+        ],
+        "text": "1.1 Vue d’ensemble du sujet de l’évaluation",
+        "bboxes": [
+          [
+            49.68000030517578,
+            583.0419921875,
+            318.7699890136719,
+            598.75
+          ]
+        ],
+        "parent_id": "p010b003l00",
+        "level_jump": false
+      },
+      {
+        "id": "p037b005l00",
+        "page": 37,
+        "level": 2,
+        "line_ids": [
+          "p037b005l00"
+        ],
+        "text": "2.3 Quels sont les facteurs qui ont influencé les résultats",
+        "bboxes": [
+          [
+            50.63999938964844,
+            368.70196533203125,
+            400.75,
+            384.40997314453125
+          ]
+        ],
+        "parent_id": "p018b003l00",
+        "level_jump": false
+      }
+    ]
+  },
+  {
+    "report_id": 128,
+    "headings": [
+      {
+        "id": "p004b001l00",
+        "page": 4,
+        "level": 1,
+        "line_ids": [
+          "p004b001l00"
+        ],
+        "text": "Índice",
+        "bboxes": [
+          [
+            72.02400207519531,
+            72.04401397705078,
+            153.74000549316406,
+            103.46001434326172
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p011b001l00",
+        "page": 11,
+        "level": 1,
+        "line_ids": [
+          "p011b001l00"
+        ],
+        "text": "1. Introducción",
+        "bboxes": [
+          [
+            72.02400207519531,
+            72.04401397705078,
+            272.80999755859375,
+            103.46001434326172
+          ]
+        ],
+        "parent_id": null,
+        "level_jump": false
+      },
+      {
+        "id": "p011b002l00",
+        "page": 11,
+        "level": 2,
+        "line_ids": [
+          "p011b002l00",
+          "p011b002l01"
+        ],
+        "text": "1.1. Características de la evaluación",
+        "bboxes": [
+          [
+            72.02400207519531,
+            122.61822509765625,
+            94.29312133789062,
+            137.069580078125
+          ],
+          [
+            108.0199966430664,
+            122.61822509765625,
+            291.5404052734375,
+            137.069580078125
+          ]
+        ],
+        "parent_id": "p011b001l00",
+        "level_jump": false
+      },
+      {
+        "id": "p011b009l00",
+        "page": 11,
+        "level": 2,
+        "line_ids": [
+          "p011b009l00",
+          "p011b009l01"
+        ],
+        "text": "1.2. Contexto",
+        "bboxes": [
+          [
+            72.02400207519531,
+            562.9782104492188,
+            94.29312133789062,
+            577.4295654296875
+          ],
+          [
+            108.0199966430664,
+            562.9782104492188,
+            163.2404022216797,
+            577.4295654296875
+          ]
+        ],
+        "parent_id": "p011b001l00",
+        "level_jump": false
+      }
+    ]
+  }
+]

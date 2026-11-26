@@ -12,7 +12,7 @@ The original gold file SHA256 was `6cd638fb840879fd997238c599aa6e1db5ec4063852a8
 
 `src/pdf_heading_benchmark/evaluation.py` preserves the original evaluation contract. Titles are stripped of HTML tags, Unicode NFKC-normalized, case-folded and reduced to alphanumeric characters. Similarities are `SequenceMatcher(..., autojunk=False)` ratios on the same original PDF page. Hungarian assignment maximizes total similarity, then matches below 0.90 are discarded. This assignment-before-threshold detail is intentional historical behavior, not a claim that it is the only reasonable matching algorithm.
 
-A recovered heading counts toward the main score only if its integer level equals the reference. The denominator is all 77 reference headings. False headings do not reduce that denominator-based score, so their separate column is essential. Null levels cannot earn a correct-level point. Missing runs remain unscored. Original records also include exploratory shift/order diagnostics; these are not used for ranking, and no gold-tuned shift is applied.
+A recovered heading counts as a correct pair only if its integer level equals the reference. The primary score is joint F0.5 = 1.25C / (P + 0.25G), where C counts correct pairs, P all predictions and G all 77 reference headings. Wrong levels and extra predictions both reduce this score. Joint recall C/G and joint precision C/P are shown separately. Null levels cannot earn a correct-level point. Missing runs remain unscored. Original records also include exploratory shift/order diagnostics; these are not used for ranking, and no gold-tuned shift is applied.
 
 `outputs/audit_predictions.json` holds every completed configuration's predictions on the audited pages. `score --historical` reproduces the table counts. `outputs/league_details.json` preserves the original per-report matches and errors, including those additional diagnostics. `outputs/text_retention.json` retains page-level text numerator/denominator counts. Published summaries remain frozen when you run new experiments; fresh scores are written to the external data directory instead of overwriting the published evidence.
 
@@ -30,15 +30,14 @@ A recovered heading counts toward the main score only if its integer level equal
 - **MinerU Pro:** direct MLX `two_step_extract`, image analysis disabled, 400 dpi downscaled to 2048. The model detects title blocks, but this interface supplied no heading levels. No hierarchy model was added afterward.
 - **Qwen3.5 candidate reranking:** 4-bit MLX; full-document candidate IDs with titles and pages, no images. Output must map every ID to an integer level or null. Candidate sources are PyMuPDF, MinerU, or the union of Docling + PyMuPDF (0.90 same-page fuzzy deduplication). Greedy, 4096 tokens, thinking disabled. Invalid output rejects the candidates and remains recorded as an error.
 - **Qwen3.6 sampled visual memory:** 27B 4-bit MLX, native page text, full-document PyMuPDF candidate titles without levels, full-document PDF heading tags, current image (1792-pixel cap), and previous sampled-page images (1280 cap) for the latest predicted heading at each H1–H6. Only earlier processed sampled pages can become visual memory. Greedy, 4096-token cap, 600-second soft timeout, seed 42. Generic JSON decoding accepts an array, a `headings` wrapper or one fenced JSON block; no values are repaired. Seven historical formatting deviations were accepted this way. This is not a reproduction of a paper's full-document benchmark. New Markdown output preserves native page text; predicted headings are separate JSON.
+- **Qwen3.6 single-image trials:** the pinned 27B and 35B-A3B MLX 4-bit models use the same full text context and a single current-page image capped at 1280 pixels, with previous predictions as text only. Both are newly executed regression trials on the 32 audit pages. [Exact settings, provenance and commands](qwen-compact.md).
 - **Popo:** experimental 8-bit affine MLX conversion (group size 64), upstream title filtering/chunking/mosaics and overlap bias alignment, eight-page chunks rather than the upstream larger setting. Starts from Docling candidates, demotes unassigned/negative levels according to the upstream acceptance contract. No gold-label correction. Code and model revisions are pinned in the setup runner.
-- **Azure:** full original PDFs, prebuilt-layout API `2024-11-30`, Markdown output, Unicode code-point offsets, paragraph title/sectionHeading roles. The service's Markdown supplies the heading level, including H7 when emitted. Completed raw responses and operation references are cached externally.
-- **Mistral:** prepared OCR `mistral-ocr-4-1` runner, full PDF as base64 document URL, header/footer/block extraction, headings from page Markdown. Not run in the original study; no quality or timing score is claimed.
 
 ## Costs, timing and text
 
-Local prices are API charges only. Hardware, electricity, licensing, engineering and review are not priced. Azure is a provisional $10/1,000 regional estimate, not an invoice. Mistral's recorded standard rate is $4/1,000; no Mistral spend occurred. Model licenses may affect commercial use.
+The current report includes local inference configurations only. Hardware, electricity, licensing, engineering and review were not priced in dollars. Model licenses may affect commercial use.
 
-Timings are observational on a shared 48 GB Apple M4 Pro. CPU and Azure inputs span all 523 pages; the new image models span 32 audit pages; hierarchy-only methods omit the upstream candidate-extraction time. New-model measurements exclude loading, downloads and aborted adapter attempts; earlier CPU runs may include setup. Batch wall time was allocated equally to pages. Do not compare these as controlled pages-per-second benchmarks.
+Timings are observational on a shared 48 GB Apple M4 Pro. Earlier CPU inputs span all 523 pages; the new image models span 32 audit pages; hierarchy-only methods omit the upstream candidate-extraction time. New-model measurements exclude loading, downloads and aborted adapter attempts; earlier CPU runs may include setup. Batch wall time was allocated equally to pages. Do not compare these as controlled pages-per-second benchmarks.
 
 Native prose retention is a proxy: five-word sequence recall against native PDF text blocks of at least 50 words, on the 32 audit pages. It does not establish character accuracy, reading order or table fidelity. `scripts/runners/evaluate_text.py` is the original text-retention protocol and expects the baseline document outputs; it can be run after all CPU baselines are available. The compact committed counts allow the published weighted values to be checked without re-OCR.
 
@@ -46,6 +45,31 @@ Native prose retention is a proxy: five-word sequence recall against native PDF 
 
 The original experiment scripts were reorganized for portable paths, external data, explicit dependencies and small functions. Core dependency versions are locked; heavyweight backend manifests pin principal versions but not every transitive dependency. Upstream prompts, model revisions and inference settings are retained except the disclosed clean-run LightOn batching difference. Error handling no longer silently falls back to a different model path. Model-generated malformed values are retained as failures; runtime setup errors stop the run.
 
-Offline tests recalculate all 17 published heading scores and check decoding, page provenance, missing levels, one-to-one matching, paid-job resumption, missing credentials, and deterministic reports. The PDF download/hash path and complete PDF-tag and PyMuPDF CPU runs are smoke-tested separately. The packaged Qwen, Chandra and LightOn decoders were also replayed against 128 saved raw page responses, and the Azure decoder against four full-document responses; their final heading exports match the historical exports. Refactored model adapters have not all been re-executed through full inference; these are historical measured results accompanied by packaged runners, not a claim of a second complete benchmark.
+Offline tests recalculate all published heading scores and check decoding, page provenance, missing levels, one-to-one matching, paid-job resumption, missing credentials, and deterministic reports. The PDF download/hash path and complete PDF-tag and PyMuPDF CPU runs are smoke-tested separately. The packaged Qwen, Chandra and LightOn decoders were also replayed against 128 saved raw page responses, and the Azure decoder against four full-document responses; their final heading exports match the historical exports. Refactored model adapters have not all been re-executed through full inference; these are historical measured results accompanied by packaged runners, not a claim of a second complete benchmark.
 
 Use a fresh external run directory when changing prompts, revisions or documents. Resuming assumes unchanged inputs and configuration. A full-document run on your own PDF is useful experimentation, but requires its own reference labels to establish accuracy.
+
+## Repeat the GPU configurations sequentially
+
+Use the pinned MLX environment, with models and original candidate/tag inputs already prepared. The output directory must be new. The queue runs seven configurations in separate processes and stops on a failed process; it never fills missing predictions with historical output. GPU selection is checked inside each inference process.
+
+```bash
+PYTHONPATH=src /path/to/mlx-env/bin/python scripts/runners/repeat_models.py \
+  --input-data /path/to/prepared-benchmark-data \
+  --extra-models /path/to/additional-model-download-records \
+  --output /path/to/new-sequential-run
+uv run python scripts/repeat_report.py --run /path/to/new-sequential-run
+uv run pdf-headings report
+```
+
+The import rejects changed source/input hashes and incomplete audit scopes. Only successfully completed configurations are scored. Raw responses and system telemetry stay outside Git; compact predictions, page timings and aggregate telemetry are sufficient to regenerate the public comparison offline using `uv run python scripts/repeat_report.py`. The main league retains the frozen heading predictions and scores; its timing column adopts a completed rerun only after exact equality of page/title/level predictions is verified. Earlier measurements remain in the repeat comparison. [Timing definitions and batching caveat](sequential-repeat.md).
+
+To refresh the local HTML report as each configuration completes, run the importer in a second terminal with `--run /path/to/new-sequential-run --watch`. It stops when the queue finishes or a completed process reports failure. It does not commit or push results.
+
+## New field candidates
+
+See [the field-trial protocol](field-candidates.md) for pinned MiniCPM-OCR 1.0, Xiaomi-OCR-0 and PaddleOCR-VL-1.6 runs. These use pixels only, with no PDF tags or candidate-heading inputs. The portable region pipelines combine a CPU layout detector, MLX recognition and documented Markdown assembly. Their frozen compact evidence is in `outputs/field-candidates/`; `scripts/field_candidates_report.py` independently recomputes their scores offline.
+
+## EvidenceLab and forced OCR
+
+[The full-document pipeline protocol](evidencelab-and-ocr.md) records the pinned EvidenceLab image and post-processor, and Docling’s forced RapidOCR configuration. Both ran on all four complete PDFs, one parser at a time. Model revisions and weight hashes are committed; the runner archives its source, options and input hashes. `scripts/pipeline_report.py` rebuilds their scores from compact published evidence, and CI checks that the report regenerates unchanged.

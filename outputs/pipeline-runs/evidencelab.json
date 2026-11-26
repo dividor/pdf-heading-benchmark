@@ -1,0 +1,837 @@
+{
+  "protocol": {
+    "config": {
+      "image": "astrobagel/evidencelab@sha256:cab774211d7bd5a2287f5f8948d7698411c4169a4b56e346d2b52c75fa292bee",
+      "revision": "40c4ae48296d68814af8d308a4aa5388c71cdd9e",
+      "platform": "linux/arm64",
+      "cpus": 4,
+      "parser": {
+        "no_ocr": true,
+        "table_mode": "fast",
+        "enable_chunking": false,
+        "use_subprocess": false,
+        "enable_superscripts": true,
+        "ocr_fallback": false
+      },
+      "scored_output": "Final normalized TOC returned by ParseProcessor.process_document; retain native title truncation and level normalization."
+    },
+    "platform": "Linux-6.12.76-linuxkit-aarch64-with-glibc2.41",
+    "packages": {
+      "docling": "2.58.0",
+      "docling-core": "2.70.1",
+      "torch": "2.14.1"
+    },
+    "source_sha256": "ac0c031833ea6c896b0055de253cd3e0f72aee8dc5828dce47f8fd96a5d51bfe"
+  },
+  "model_files": [
+    {
+      "repo": "ds4sd/docling-models",
+      "ref": "v2.3.0",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "files": {
+        ".gitattributes": "360aba3ff7ce75396f13f0a77925fe9e79997e8d4bac064595ebb00c82700386",
+        ".gitignore": "b44b404189eaff3631c470946e7350c2e88cead304d332a8ad50325e6f56e95d",
+        "README.md": "d17f233378eff1240b623b36da76ee8b40afcca05d505949713bf03f7e00822a",
+        "config.json": "9c34024dc28ff47b75818f415e769809798c29bf9bde6f2ccc63a4acb62396d9",
+        "model_artifacts/tableformer/accurate/tableformer_accurate.safetensors": "2a7d6c924b3cd12fb99a09280ca9c33a89c5d60b93253617d2e088c1a40374d9",
+        "model_artifacts/tableformer/accurate/tm_config.json": "984e122ceb8ccf84d84c9d2882f6f2302a44b4f1e577babd6289892c36f3cffd",
+        "model_artifacts/tableformer/fast/tableformer_fast.safetensors": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718",
+        "model_artifacts/tableformer/fast/tm_config.json": "dca6762508dddfae6d57d6cb4ef822c6000119dff0f3b6489db7413118c2622a"
+      }
+    },
+    {
+      "repo": "ds4sd/docling-layout-heron",
+      "ref": "main",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "files": {
+        ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+        "README.md": "175700839bc7808eac6af1d0c23e4f483606ab2276fe01122f4093e61a1a65b6",
+        "config.json": "fdea30805ce2f5666b147fca941dcdd27ad468e27d6ed21902207d3da056a97d",
+        "docling_heron_400.png": "e7f78610372b32a7938e480d2c7fa1c3037ee170bd82282a5bd026232f6e6f9e",
+        "model.safetensors": "00333a43451945aaf89db8ca9c0a17e75d1537c17db60fdb91aa95f4c7929e0c",
+        "preprocessor_config.json": "cd38cd59999e7a95d68e487fbe5132df3d4e5c32a0836add57e6126ba0c4eaf1"
+      }
+    }
+  ],
+  "predictions": {
+    "targeting": [
+      {
+        "title": "Appropriateness",
+        "level": 1,
+        "page": 11
+      },
+      {
+        "title": "1 Introduction",
+        "level": 1,
+        "page": 24
+      },
+      {
+        "title": "1.1 Evaluation features",
+        "level": 2,
+        "page": 24
+      },
+      {
+        "title": "2 Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritiz",
+        "level": 2,
+        "page": 33
+      },
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and priorit",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified",
+        "level": 4,
+        "page": 33
+      },
+      {
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4,
+        "page": 67
+      },
+      {
+        "title": "3 Conclusions and recommendations",
+        "level": 1,
+        "page": 96
+      },
+      {
+        "title": "3.1 Conclusions",
+        "level": 2,
+        "page": 96
+      },
+      {
+        "title": "Objectives and users of the evaluation",
+        "level": 3,
+        "page": 109
+      },
+      {
+        "title": "Evaluation questions",
+        "level": 3,
+        "page": 109
+      },
+      {
+        "title": "Methodology and ethical considerations",
+        "level": 3,
+        "page": 109
+      }
+    ],
+    "midterm": [
+      {
+        "title": "Executive summary",
+        "level": 2,
+        "page": 8
+      },
+      {
+        "title": "INTRODUCTION",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "What was evaluated?",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "FINDINGS",
+        "level": 3,
+        "page": 10
+      },
+      {
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 4,
+        "page": 10
+      },
+      {
+        "title": "1. Introduction",
+        "level": 2,
+        "page": 26
+      },
+      {
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 3,
+        "page": 26
+      },
+      {
+        "title": "1.2 CONTEXT",
+        "level": 3,
+        "page": 27
+      },
+      {
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 4,
+        "page": 27
+      },
+      {
+        "title": "2. Evaluation findings",
+        "level": 2,
+        "page": 36
+      },
+      {
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 3,
+        "page": 36
+      },
+      {
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 4,
+        "page": 36
+      },
+      {
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding",
+        "level": 3,
+        "page": 61
+      },
+      {
+        "title": "3. Conclusions and recommendations",
+        "level": 1,
+        "page": 87
+      },
+      {
+        "title": "2.3 3.1 CONCLUSIONS",
+        "level": 2,
+        "page": 87
+      },
+      {
+        "title": "Annex III. Methodology",
+        "level": 2,
+        "page": 98
+      },
+      {
+        "title": "Overall approach",
+        "level": 3,
+        "page": 98
+      }
+    ],
+    "indonesia": [
+      {
+        "title": "Executive summary",
+        "level": 1,
+        "page": 7
+      },
+      {
+        "title": "Introduction",
+        "level": 2,
+        "page": 7
+      },
+      {
+        "title": "Evaluation features",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Context",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Evaluation key insights and conclusions",
+        "level": 2,
+        "page": 11
+      },
+      {
+        "title": "Insight 1. CSP architecture",
+        "level": 3,
+        "page": 11
+      },
+      {
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 3,
+        "page": 11
+      },
+      {
+        "title": "Introduction",
+        "level": 1,
+        "page": 20
+      },
+      {
+        "title": "1.1. Evaluation features",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "1.2. Context",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "Geography, Demography, and Government",
+        "level": 3,
+        "page": 20
+      },
+      {
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3,
+        "page": 20
+      },
+      {
+        "title": "Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "SO1: Evidence and Data",
+        "level": 3,
+        "page": 48
+      },
+      {
+        "title": "Conclusions and recommendations",
+        "level": 1,
+        "page": 68
+      },
+      {
+        "title": "3.1. Conclusions",
+        "level": 2,
+        "page": 68
+      }
+    ],
+    "colombia": [
+      {
+        "title": "Resumen ejecutivo",
+        "level": 2,
+        "page": 7
+      },
+      {
+        "title": "Introducción",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Características de la evaluación",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Contexto",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 3,
+        "page": 13
+      },
+      {
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos est",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "1. Introducción",
+        "level": 1,
+        "page": 28
+      },
+      {
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "1.2. CONTEXTO",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "Contexto general",
+        "level": 3,
+        "page": 28
+      },
+      {
+        "title": "2. Resultados de la evaluación",
+        "level": 1,
+        "page": 42
+      },
+      {
+        "title": "2.1.  PE 1:  ¿EN  QUÉ  MEDIDA  EL  PEP  ESTÁ  BASADO  EN  EVIDENCIA  Y  ORIENTAD",
+        "level": 2,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "Dimensión 2: Entorno político",
+        "level": 3,
+        "page": 56
+      },
+      {
+        "title": "Productos",
+        "level": 4,
+        "page": 56
+      },
+      {
+        "title": "Resultados 92",
+        "level": 3,
+        "page": 56
+      },
+      {
+        "title": "2.3.  PE 3:  ¿EN  QUÉ  MEDIDA  EL  PMA  HA  UTILIZADO  SUS  RECURSOS  DE  MANERA",
+        "level": 2,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 3,
+        "page": 72
+      },
+      {
+        "title": "Productos y logros",
+        "level": 3,
+        "page": 72
+      },
+      {
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 1,
+        "page": 93
+      },
+      {
+        "title": "3.1. CONCLUSIONES",
+        "level": 2,
+        "page": 93
+      }
+    ]
+  },
+  "prose": {
+    "targeting": {
+      "retained": 2970,
+      "total": 3022
+    },
+    "midterm": {
+      "retained": 558,
+      "total": 562
+    },
+    "indonesia": {
+      "retained": 2708,
+      "total": 2900
+    },
+    "colombia": {
+      "retained": 3571,
+      "total": 3662
+    }
+  },
+  "timing": {
+    "seconds": 589.6544342289853,
+    "pages": 523
+  },
+  "documents": [
+    {
+      "document": "targeting",
+      "pages": 172,
+      "seconds": 191.98952550499234,
+      "input_sha256": "b6a9ff1f0ca656b5650173f81e10865e2298ca7ee14c4c46538623196ef12463"
+    },
+    {
+      "document": "midterm",
+      "pages": 176,
+      "seconds": 186.1201937940059,
+      "input_sha256": "e36acd375d2f8cc5e7500e1ec9c19bf4088938795fd94830d33abaf7f185733e"
+    },
+    {
+      "document": "indonesia",
+      "pages": 76,
+      "seconds": 95.97010241899989,
+      "input_sha256": "0f501994181b443b86524bd069ecdabb37c7cdd57afb42481c141d7ed86ee853"
+    },
+    {
+      "document": "colombia",
+      "pages": 99,
+      "seconds": 115.57461251098721,
+      "input_sha256": "fd250c0dff68adb278dc88701991ba0c80231ad84a89871a2702cbf656727119"
+    }
+  ],
+  "artifact_sha256": {
+    "targeting.toc": "2a79acd0aecd326136c4e6f445b9ed4639c668a95fe83b2892362e8281b7ad52",
+    "targeting.json": "113f6f379e08f7f7f87c78830bd73ef1ce7459dcbb8e60468348b8d14f16ff36",
+    "midterm.toc": "7f164efa841ab739f6ffd2baabb1c834d76211a97103e7edb1e81623e9a98a49",
+    "midterm.json": "7605ea09eb85cb1b7c4d1f8eb345ec6ff26ca728c6b3e750186c5d372e3a3219",
+    "indonesia.toc": "0426ead709acd275c1248b3649dcb6e493778a54e1345f4a0b8a2ddbc42553d6",
+    "indonesia.json": "cbd0ce2228c08dfaf336ffeb00a68f3c70663a86ce7ef4f8697150637262bdf1",
+    "colombia.toc": "7507fadaf11bb37b176bb6e5772384f214dfdd0a66bfcd5ccf76507d2d8cd71e",
+    "colombia.json": "0918c517b37da6fde18c5bbd55772121b57e1b4312dcf3101f5f10048a2cb03a"
+  },
+  "initialization": {
+    "seconds": 0.0028925829974468797
+  },
+  "structured_headings": {
+    "targeting": [
+      {
+        "title": "Appropriateness",
+        "level": 1,
+        "page": 11
+      },
+      {
+        "title": "1 Introduction",
+        "level": 1,
+        "page": 24
+      },
+      {
+        "title": "1.1 Evaluation features",
+        "level": 2,
+        "page": 24
+      },
+      {
+        "title": "2 Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "2.1 How relevant and appropriate are WFP's approaches to targeting and prioritization?",
+        "level": 2,
+        "page": 33
+      },
+      {
+        "title": "2.1.1 WFP's normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation",
+        "level": 3,
+        "page": 33
+      },
+      {
+        "title": "2.1.1.1 WFP's normative framework on targeting and prioritization has clarified key aspects of the process",
+        "level": 4,
+        "page": 33
+      },
+      {
+        "title": "2.2.1.4 Good practices in reducing targeting errors are unevenly applied",
+        "level": 4,
+        "page": 67
+      },
+      {
+        "title": "3 Conclusions and recommendations",
+        "level": 1,
+        "page": 96
+      },
+      {
+        "title": "3.1 Conclusions",
+        "level": 2,
+        "page": 96
+      },
+      {
+        "title": "Objectives and users of the evaluation",
+        "level": 3,
+        "page": 109
+      },
+      {
+        "title": "Evaluation questions",
+        "level": 3,
+        "page": 109
+      },
+      {
+        "title": "Methodology and ethical considerations",
+        "level": 3,
+        "page": 109
+      }
+    ],
+    "midterm": [
+      {
+        "title": "Executive summary",
+        "level": 2,
+        "page": 8
+      },
+      {
+        "title": "INTRODUCTION",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "What was evaluated?",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "Why was the evaluation conducted and in which context?",
+        "level": 3,
+        "page": 8
+      },
+      {
+        "title": "FINDINGS",
+        "level": 3,
+        "page": 10
+      },
+      {
+        "title": "Relevance and strategic focus of the design of the strategic plan",
+        "level": 4,
+        "page": 10
+      },
+      {
+        "title": "1. Introduction",
+        "level": 2,
+        "page": 26
+      },
+      {
+        "title": "1.1 EVALUATION FEATURES",
+        "level": 3,
+        "page": 26
+      },
+      {
+        "title": "1.2 CONTEXT",
+        "level": 3,
+        "page": 27
+      },
+      {
+        "title": "Global economic, climate, conflict and inequality trends",
+        "level": 4,
+        "page": 27
+      },
+      {
+        "title": "2. Evaluation findings",
+        "level": 2,
+        "page": 36
+      },
+      {
+        "title": "2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN",
+        "level": 3,
+        "page": 36
+      },
+      {
+        "title": "2.1.1 Did the SP in its design clearly articulate its intended changes?",
+        "level": 4,
+        "page": 36
+      },
+      {
+        "title": "2.2.3 How does the ambition of the SP compare to the evolving reality of funding?",
+        "level": 4,
+        "page": 61
+      },
+      {
+        "title": "3. Conclusions and recommendations",
+        "level": 2,
+        "page": 87
+      },
+      {
+        "title": "2.3 3.1 CONCLUSIONS",
+        "level": 3,
+        "page": 87
+      },
+      {
+        "title": "Annex III. Methodology",
+        "level": 2,
+        "page": 98
+      },
+      {
+        "title": "Overall approach",
+        "level": 3,
+        "page": 98
+      }
+    ],
+    "indonesia": [
+      {
+        "title": "Executive summary",
+        "level": 1,
+        "page": 7
+      },
+      {
+        "title": "Introduction",
+        "level": 2,
+        "page": 7
+      },
+      {
+        "title": "Evaluation features",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Context",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Evaluation key insights and conclusions",
+        "level": 2,
+        "page": 11
+      },
+      {
+        "title": "Insight 1. CSP architecture",
+        "level": 3,
+        "page": 11
+      },
+      {
+        "title": "Insight 2. Country capacity strengthening",
+        "level": 3,
+        "page": 11
+      },
+      {
+        "title": "Introduction",
+        "level": 1,
+        "page": 20
+      },
+      {
+        "title": "1.1. Evaluation features",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "1.2. Context",
+        "level": 2,
+        "page": 20
+      },
+      {
+        "title": "Geography, Demography, and Government",
+        "level": 3,
+        "page": 20
+      },
+      {
+        "title": "National policies and Sustainable Development Goals (SDG)",
+        "level": 3,
+        "page": 20
+      },
+      {
+        "title": "Evaluation findings",
+        "level": 1,
+        "page": 33
+      },
+      {
+        "title": "EQ2.1a: CSP Output Achievements and Contributions to Outcomes",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "SO1: Evidence and Data",
+        "level": 3,
+        "page": 48
+      },
+      {
+        "title": "Conclusions and recommendations",
+        "level": 1,
+        "page": 68
+      },
+      {
+        "title": "3.1. Conclusions",
+        "level": 2,
+        "page": 68
+      }
+    ],
+    "colombia": [
+      {
+        "title": "Resumen ejecutivo",
+        "level": 2,
+        "page": 7
+      },
+      {
+        "title": "Introducción",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Características de la evaluación",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Contexto",
+        "level": 3,
+        "page": 7
+      },
+      {
+        "title": "Hallazgos derivados de la evaluación",
+        "level": 3,
+        "page": 13
+      },
+      {
+        "title": "Pertinencia con respecto a las necesidades",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia?",
+        "level": 4,
+        "page": 13
+      },
+      {
+        "title": "1. Introducción",
+        "level": 2,
+        "page": 28
+      },
+      {
+        "title": "1.1. CARACTERÍSTICAS DE LA EVALUACIÓN",
+        "level": 3,
+        "page": 28
+      },
+      {
+        "title": "1.2. CONTEXTO",
+        "level": 3,
+        "page": 28
+      },
+      {
+        "title": "Contexto general",
+        "level": 4,
+        "page": 28
+      },
+      {
+        "title": "2. Resultados de la evaluación",
+        "level": 2,
+        "page": 42
+      },
+      {
+        "title": "2.1.  PE 1:  ¿EN  QUÉ  MEDIDA  EL  PEP  ESTÁ  BASADO  EN  EVIDENCIA  Y  ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES?",
+        "level": 3,
+        "page": 42
+      },
+      {
+        "title": "Resumen",
+        "level": 4,
+        "page": 42
+      },
+      {
+        "title": "Dimensión 2: Entorno político",
+        "level": 4,
+        "page": 56
+      },
+      {
+        "title": "Productos",
+        "level": 5,
+        "page": 56
+      },
+      {
+        "title": "Resultados ^92",
+        "level": 4,
+        "page": 56
+      },
+      {
+        "title": "2.3.  PE 3:  ¿EN  QUÉ  MEDIDA  EL  PMA  HA  UTILIZADO  SUS  RECURSOS  DE  MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP?",
+        "level": 3,
+        "page": 72
+      },
+      {
+        "title": "Resumen",
+        "level": 4,
+        "page": 72
+      },
+      {
+        "title": "Productos y logros",
+        "level": 4,
+        "page": 72
+      },
+      {
+        "title": "3. Conclusiones y recomendaciones",
+        "level": 2,
+        "page": 93
+      },
+      {
+        "title": "3.1. CONCLUSIONES",
+        "level": 3,
+        "page": 93
+      }
+    ]
+  }
+}

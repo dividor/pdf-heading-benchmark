@@ -1,0 +1,6 @@
+docling==2.151.1
+docling-core==2.108.0
+rapidocr==3.10.0
+onnxruntime==1.32.0
+torch==2.15.0
+pymupdf==2.1

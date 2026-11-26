@@ -1,0 +1,112 @@
+{
+  "created_at": "2026-11-22T17:50:40.285781+00:00",
+  "order": [
+    "qwen36_35b_compact",
+    "qwen36_35b_visual_memory",
+    "chandra2_mlx",
+    "lighton4b_mlx",
+    "lighton_mlx",
+    "qwen36_27b_compact",
+    "qwen36_visual_memory"
+  ],
+  "source_sha256": {
+    "scripts/runners/decode_chandra.py": "8df9ca7229d9f151a5889cab7772f088045d2ad6e2bbcbd33a809b4ba57e1b13",
+    "scripts/runners/run_chandra_batch.py": "d6f4dbe3e25d7faf3187d5a8d363111c498d25dd4ca712174eb370aa0dbb5b5c",
+    "scripts/runners/repeat_models.py": "598cbcb49cb926a3e5ab6451f7041a19a29378d1851c2d3f414ecc3cc5a28ec5",
+    "scripts/runners/parse_lighton.py": "a61166c76604a847c216ef8f31559b420efe2c5dcae4ecb56726f429e7755117",
+    "scripts/runners/run_mineru.py": "d64181337a7cb640afb13daebb5781ed2b524c7054c5a4c5cfea71c73448ba40",
+    "scripts/runners/run_docling.py": "ace23018735eaaf3472e90eb792b6682d74f5c4ddf8c568904ce818cec09f173",
+    "scripts/runners/run_lighton_mlx.py": "d4d82672e5f1888bc8bc98ffe54e0a33315798387a8c881caa6f9a36220fde4e",
+    "scripts/runners/run_qwen_compact.py": "d64506d6db39fdaefa1a4e65075ded4074473ead10b6ed09a6bd3a65431d8718",
+    "scripts/runners/extract_tag_context.py": "19168e0e37513a358687ef2d5bdf9e8858766a56f00d84928ea5a62d0b4c43e9",
+    "scripts/runners/run_qwen_ids.py": "051f8edb09d5e9dda7be1c7aa74926de8e9648b2952da2e0f51851e4ba5ec779",
+    "scripts/runners/run_marker.py": "caa22411ae6143409e72594ea1c28f2263526a801018988513a6f4643d1825cd",
+    "scripts/runners/runtime.py": "39209addd569fb00b409e2a81adb6436957ee193a86c1c8ad7bd45a4b0c81e4c",
+    "scripts/runners/run_qwen_visual_memory.py": "e3d4955706445fffc1c4e07dbd5a6f600ab69186c5c0895508652d0622425156",
+    "scripts/runners/evaluate_text.py": "d17d65e83c99494dda50d4cf40c572c160ae1e3962f70cca5160521bbc453f46",
+    "scripts/runners/run_structure.py": "c5e2faacd354c44105a1af548e047035468cc1419f58ee7c49830ace939452f6",
+    "scripts/runners/run_supervised.py": "b6f9b3c2d6ceba9856c8a0280d46d3158f5cb2c412c94f3a3c259de53e5885a0",
+    "scripts/runners/run_pdf_tags.py": "48e83c013a615f10d55c55aa66ab4da20efee150e11d04d39c54686caa5783d9",
+    "scripts/runners/run_pymupdf4llm.py": "d197572912d92e954a7863628eb1fd79dd733ce617e5831516a84b889832c0ed",
+    "scripts/runners/run_precision.py": "77d6772379790beb8348cc48a2888529f7aeb38eeabae2ee506527f3b07e972c",
+    "scripts/runners/prepare_model.py": "e1304ac6b5c91874d7e091a20ffe0662e1a9048f13238193b04efee7e5700e99",
+    "scripts/runners/run_qwen_sparse_memory.py": "1e054e0b91a585208f537fe4dcca57d306342ec3654182b875f1c869b104bccf",
+    "scripts/runners/run_recall.py": "67ab4cfac380565b21ec0f8d03ecd490c7c5302c81f9c96f001fb777ea193cca",
+    "scripts/runners/run_mineru_pro.py": "04666563d642ad4b412bfffd61eae2cb5c81fc4f054e7745e1867fb3d00edd38",
+    "scripts/runners/build_union.py": "b8a9215f767efff013bd8075c3275028f10eb874dffb20de38a89c5bdf352d2b",
+    "scripts/runners/run_popo_mlx.py": "f0441ee8cd1e41abdb5b57866bb408e47e634bdfef0ca208136a8f9fc1359b30",
+    "scripts/runners/benchmark_qwen_compact.py": "e73fe4914545eeedba4448bd0511a85cecb4b11fd29c2a7e34069dff97dbad32",
+    "scripts/runners/decode_qwen.py": "a21409b92f0ba9c3d370bb1fc170cdf23bbf0751854773137bd72ed2dc2490b0",
+    "scripts/runners/run_hosted_ocr.py": "42ddc1a47a0db3a6df0508c623a4032777b9272dd381aba5dac0d7c9f0aa0bbc",
+    "src/pdf_heading_benchmark/compact_prompt.py": "024317b84e73b888bd9c43272b24748c961b932c40f4d464252f957f9edd951d"
+  },
+  "audit_pages": {
+    "targeting": [
+      7,
+      11,
+      24,
+      27,
+      33,
+      67,
+      96,
+      109
+    ],
+    "midterm": [
+      8,
+      10,
+      26,
+      27,
+      36,
+      61,
+      87,
+      98
+    ],
+    "indonesia": [
+      7,
+      11,
+      20,
+      33,
+      42,
+      48,
+      56,
+      68
+    ],
+    "colombia": [
+      7,
+      13,
+      28,
+      42,
+      56,
+      72,
+      73,
+      93
+    ]
+  },
+  "input_sha256": {
+    "models/download-Qwen3.6-35B-A3B-4bit.json": "d081521b2b8bbfb1b39e54152dd92f34173be854576c6924f5233c11ee7f3a88",
+    "models/download-chandra-ocr-2.json": "1cf54391b8a1b96bc154d5f378eb75be7164ce14d464810c2999ef2cba3c9e21",
+    "models/download-Qwen3.6-27B-4bit.json": "a089dedae1946969232174ce4857e4f54a399302bcce4a801ddfd80567b60a29",
+    "models/download-LightOnOCR-3-4B.json": "6cb6e0d890b2af34cab2f1ad0c66df0700e5ecfb4c6e3693f8e2193c1296816c",
+    "models/download-MinerU2.5-Pro-2605-1.2B.json": "48d2f249e87ba1bad62d705f440208c12b23a2f1da5f8f45592b49beb48ecda2",
+    "reference/audit_pages.json": "fba57416f3a86121c8911dfed3c98c39908fc21b13ed04c1b7d815d308134014",
+    "results/targeting/pymupdf4llm.headings.json": "e90148d2569aba74e1bf8ab8f37e717c158018cd13e1a5028e2b85e488994117",
+    "results/targeting/pdf_tags_full_context.json": "f28909628447eb609c153631e838d901cd450c6634b98b9a67d6b582be950fb5",
+    "results/indonesia/pymupdf4llm.headings.json": "82253bb19e8eb2af239530d2d06f5aec62fab6601f1df8547190515434d2963c",
+    "results/indonesia/pdf_tags_full_context.json": "c53780a0f8f0b2b9d62c56e0196cf86ab8b7a7ce65918e318574f78580bc650c",
+    "results/colombia/pymupdf4llm.headings.json": "79da035ab30c1682a8cfd7d82017590fbcdb8bcdb584449d13457209a07e2b2c",
+    "results/colombia/pdf_tags_full_context.json": "06a00001db6a63bbdf5307b68196911bb1d7591be676a390c8407315762e6497",
+    "results/midterm/pymupdf4llm.headings.json": "1cb6637ffaeca94f4d86dbd43417b16fd61b18df30e088c109e896f39b198b7d",
+    "results/midterm/pdf_tags_full_context.json": "ef5a0bb45803d4e1ef975dfa7b89ae4916f4fad02ec0d130454c36b2a0abb427"
+  },
+  "pdf_sha256": {
+    "colombia.pdf": "fd250c0dff68adb278dc88701991ba0c80231ad84a89871a2702cbf656727119",
+    "targeting.audit.pdf": "27421826baf6f9937c40d160bff9792e2361658bda6acf46a0caf80c44521d61",
+    "colombia.audit.pdf": "d6efd075ad028a40f3ba92b45b0de8641c3f5ba8e8ccfdcebc91db29bb6ee616",
+    "targeting.pdf": "b6a9ff1f0ca656b5650173f81e10865e2298ca7ee14c4c46538623196ef12463",
+    "indonesia.audit.pdf": "208093772b49531487bb3ce24f814f51c0a8efe6d10dde92ace7844516011630",
+    "midterm.pdf": "e36acd375d2f8cc5e7500e1ec9c19bf4088938795fd94830d33abaf7f185733e",
+    "midterm.audit.pdf": "9ba5caeb6564a5360c069454615d87093f148e1e268178fa16d4c8a2f865bc82",
+    "indonesia.pdf": "0f501994181b443b86524bd069ecdabb37c7cdd57afb42481c141d7ed86ee853"
+  },
+  "note": "One fresh process at a time; same prompts/settings. LightOn 4B uses batch two throughout; historical result mixed single pages and batches. GPU samples are system-wide. Process wall time includes loading/preparation/writes; page timers retain original boundaries."
+}

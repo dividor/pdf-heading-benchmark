@@ -1,0 +1,2 @@
+-r paddle-official.txt
+minicpm-ocr==1.0.5
