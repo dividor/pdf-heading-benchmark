@@ -54,15 +54,25 @@ def test_32_page_times_stay_with_their_configuration_before_the_score():
     assert "Estimated" in soup.find(id=help_button["aria-controls"]).get_text()
 
 
-def test_report_contains_only_on_premises_methods():
+def test_measured_table_remains_local_with_requested_cloud_services_queued():
     selected = set(read_json(REPO / "configs/report-methods.json"))
     assert len(selected) >= 21
     for filename in ("results.json", "details.json"):
         rows = read_json(REPO / "outputs/report" / filename)
         assert {row["method"] for row in rows} == selected
-    report = (REPO / "outputs/report/league_table.md").read_text()
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    report = str(soup.select_one(".league-table"))
     for excluded in ("Azure", "Mistral", "azure_layout", "mistral_ocr41", "API USD"):
         assert excluded not in report
+    field = soup.select_one("#panel-field").get_text()
+    for candidate in (
+        "mistral-ocr-2512",
+        "prebuilt-layout",
+        "pretrained-layout-parser-v3.5-2026-07-09",
+        "LlamaParse",
+    ):
+        assert candidate in field
+    assert "Cloud services queued for comparison" in field
 
 
 def test_every_configuration_has_an_accessible_diagram_and_markdown_sources():

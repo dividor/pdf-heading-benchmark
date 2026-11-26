@@ -55,6 +55,21 @@ Select a row’s **i** for its exact model, steps, settings and predictions. **E
 
 ## Published comparison
 
+### Cloud services queued for comparison
+
+These requested API configurations are the next comparison group. They are not included in the 34 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.
+
+| Service | Configuration to test | Status |
+| --- | --- | --- |
+| [Mistral OCR 3](https://docs.mistral.ai/models/ocr-3-25-12) | `mistral-ocr-2512`; native Markdown, without custom annotations | Queued. The older runner targets OCR 4.1, so it is not this configuration. |
+| [Azure Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0) | `prebuilt-layout`, API `2024-11-30`, Markdown and section hierarchy | Earlier API evidence is archived outside the local table; verify its configuration before reuse. |
+| [Google Document AI Layout Parser](https://docs.cloud.google.com/document-ai/docs/layout-parse-chunk) | Gemini Layout Parser `pretrained-layout-parser-v3.5-2026-07-09`, listed as stable November 18, 2026 | Queued. Score its document hierarchy, rather than basic text-only OCR. |
+| [LlamaParse](https://www.llamaindex.ai/pricing) | Cost Effective, Agentic and Agentic Plus as separate configurations; record the resolved model version | Queued. Compare price against heading-level quality. |
+
+**Published league tables and diagrams (checked November 26, 2026):** [ParseBench-2 interactive charts](https://www.llamaindex.ai/blog/introducing-parsebench-v2) and [leaderboard](https://www.parsebench.ai/) cover current LlamaParse, Azure and Mistral OCR 4.1. [Mistral's OCR 3 comparison chart](https://mistral.ai/news/mistral-ocr-3/) covers the requested OCR 3 alongside Azure and Google, but dates from December 2025 and omits LlamaParse. [OmniParseBench](https://github.com/datalab-to/omni_parse_bench) provides another open leaderboard.
+
+These are vendor-produced benchmarks of broader parsing quality, not our heading-and-level score. The sources do not establish a common ranking of all four exact requested configurations. In particular, OCR 4.1 results are not OCR 3 results, and direct Gemini results are not Document AI Layout Parser results.
+
 ### The OCR field: quality versus speed
 
 Higher means better document parsing; farther right means faster processing. **This is OpenBMB’s October 27, 2026 snapshot, not a live ranking.** It omits OvisOCR3, which we now test separately.

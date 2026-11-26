@@ -609,6 +609,41 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 </tbody>
 </table></div>
 </section><section aria-labelledby="tab-field" class="report-panel" id="panel-field"><h2 id="published-comparison">Published comparison</h2>
+<h3>Cloud services queued for comparison</h3>
+<p>These requested API configurations are the next comparison group. They are not included in the 34 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.</p>
+<div aria-label="Scrollable data table" class="report-table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Configuration to test</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.mistral.ai/models/ocr-3-25-12">Mistral OCR 3</a></td>
+<td><code>mistral-ocr-2512</code>; native Markdown, without custom annotations</td>
+<td>Queued. The older runner targets OCR 4.1, so it is not this configuration.</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0">Azure Document Intelligence</a></td>
+<td><code>prebuilt-layout</code>, API <code>2024-11-30</code>, Markdown and section hierarchy</td>
+<td>Earlier API evidence is archived outside the local table; verify its configuration before reuse.</td>
+</tr>
+<tr>
+<td><a href="https://docs.cloud.google.com/document-ai/docs/layout-parse-chunk">Google Document AI Layout Parser</a></td>
+<td>Gemini Layout Parser <code>pretrained-layout-parser-v3.5-2026-07-09</code>, listed as stable November 18, 2026</td>
+<td>Queued. Score its document hierarchy, rather than basic text-only OCR.</td>
+</tr>
+<tr>
+<td><a href="https://www.llamaindex.ai/pricing">LlamaParse</a></td>
+<td>Cost Effective, Agentic and Agentic Plus as separate configurations; record the resolved model version</td>
+<td>Queued. Compare price against heading-level quality.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Published league tables and diagrams (checked November 26, 2026):</strong> <a href="https://www.llamaindex.ai/blog/introducing-parsebench-v2">ParseBench-2 interactive charts</a> and <a href="https://www.parsebench.ai/">leaderboard</a> cover current LlamaParse, Azure and Mistral OCR 4.1. <a href="https://mistral.ai/news/mistral-ocr-3/">Mistral's OCR 3 comparison chart</a> covers the requested OCR 3 alongside Azure and Google, but dates from December 2025 and omits LlamaParse. <a href="https://github.com/datalab-to/omni_parse_bench">OmniParseBench</a> provides another open leaderboard.</p>
+<p>These are vendor-produced benchmarks of broader parsing quality, not our heading-and-level score. The sources do not establish a common ranking of all four exact requested configurations. In particular, OCR 4.1 results are not OCR 3 results, and direct Gemini results are not Document AI Layout Parser results.</p>
 <h3>The OCR field: quality versus speed</h3>
 <p>Higher means better document parsing; farther right means faster processing. <strong>This is OpenBMB’s October 27, 2026 snapshot, not a live ranking.</strong> It omits OvisOCR3, which we now test separately.</p>
 <p><a href="https://github.com/OpenBMB/MiniCPM-OCR/blob/c21a3ca524263ef8166cb6d350864b10c3056b61/docs/minicpm_ocr_1dot0_en.md#evaluation"><img alt="OpenBMB comparison of fourteen OCR systems: document-parsing quality versus throughput." src="ocr-field-overview.png"/></a></p>
