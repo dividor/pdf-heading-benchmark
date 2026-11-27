@@ -13,3 +13,35 @@ models/
 blog/
 dist/
 *.egg-info/
+.ipynb_checkpoints/
+._*
+# Downloaded documents, archives, raw runs and learned weights stay outside Git.
+pdf-heading-benchmark-data/
+corpus/
+raw/
+runs/
+rebuilds/
+*.pdf
+*.download
+*.log
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.safetensors
+*.gguf
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.pkl
+*.pickle
+*.joblib
+# These are exported classifier weights, not compact audit records.
+join.json
+group.json
+context.json
+relation.json
+line.json
+trees.json

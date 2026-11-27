@@ -560,6 +560,7 @@ tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid 
 </tbody>
 </table>
 <h2>Reproduce the experiment</h2>
+<p>Start with the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/docs/rebuild-heading-model.md">fresh-checkout guide</a> to download the public PDFs, train new models and select settings for those model hashes. The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/notebooks/rebuild_heading_model.ipynb">notebook</a> executes those steps in order. No original model bundle is required.</p>
 <p>Use the existing <a href="../structure-v2/report.md">v2 data preparation and training instructions</a>. Keep PDFs, cached text and models outside Git. From the repository root, set <code>DATA</code> to the external <code>structure-v2</code> directory and <code>MODELS</code> to its frozen <code>run-001</code> directory. <code>RUN</code> must be a fresh external output directory.</p>
 <pre><code class="language-bash">uv run python scripts/structure/optimize_precision.py select --data &quot;$DATA&quot; --run &quot;$MODELS&quot; --output &quot;$RUN&quot;
 uv run python scripts/structure/optimize_precision.py regression --data &quot;$DATA&quot; --run &quot;$MODELS&quot; --output &quot;$RUN&quot;
