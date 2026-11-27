@@ -95,6 +95,8 @@ A correct prediction must match **title, page and exact level**. Let **C** be co
 
 ## Reproduce the experiment
 
+Start with the [fresh-checkout guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/docs/rebuild-heading-model.md) to download the public PDFs, train new models and select settings for those model hashes. The [notebook](https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/notebooks/rebuild_heading_model.ipynb) executes those steps in order. No original model bundle is required.
+
 Use the existing [v2 data preparation and training instructions](../structure-v2/report.md). Keep PDFs, cached text and models outside Git. From the repository root, set `DATA` to the external `structure-v2` directory and `MODELS` to its frozen `run-001` directory. `RUN` must be a fresh external output directory.
 
 ```bash
