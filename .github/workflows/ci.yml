@@ -51,6 +51,9 @@ jobs:
       - name: Run unit tests
         run: uv run --all-extras pytest -q
 
+      - name: Test interactive chart controls
+        run: npm test
+
       # The report and the README's results section are built from the committed results alone, so they must
       # come out byte for byte the same.
       - name: Check the report and README match the committed results

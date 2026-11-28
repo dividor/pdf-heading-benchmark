@@ -1,0 +1,479 @@
+{
+  "Gemini 4 Argon †": {
+    "provider": "llm",
+    "description": "The page image is sent to this general vision-language model through OpenRouter. Separate prompts request page HTML and labeled layout boxes.",
+    "settings": {
+      "Adapter output limit": "32,000 tokens per output",
+      "Sampling": "No sampling parameters sent",
+      "Input": "PNG, high detail"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Gemini 4 Argon †"
+  },
+  "Gemini 4 Carbon †": {
+    "provider": "llm",
+    "description": "The page image is sent to this general vision-language model through OpenRouter. Separate prompts request page HTML and labeled layout boxes.",
+    "settings": {
+      "Adapter output limit": "32,000 tokens per output",
+      "Sampling": "No sampling parameters sent",
+      "Input": "PNG, high detail"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Gemini 4 Carbon †"
+  },
+  "Gemini 3.8 Flash *": {
+    "provider": "llm",
+    "description": "The page image is sent to this general vision-language model through OpenRouter. Separate prompts request page HTML and labeled layout boxes.",
+    "settings": {
+      "Adapter output limit": "32,000 tokens per output",
+      "Sampling": "No sampling parameters sent",
+      "Input": "PNG, high detail"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Gemini 3.8 Flash *"
+  },
+  "Claude Sonnet 5.5 *": {
+    "provider": "llm",
+    "description": "The page image is sent to this general vision-language model through OpenRouter. Separate prompts request page HTML and labeled layout boxes.",
+    "settings": {
+      "Adapter output limit": "32,000 tokens per output",
+      "Sampling": "No sampling parameters sent",
+      "Input": "PNG, high detail"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Claude Sonnet 5.5 *"
+  },
+  "GPT-5.6 Sol": {
+    "provider": "llm",
+    "description": "The page image is sent to this general vision-language model through OpenRouter. Separate prompts request page HTML and labeled layout boxes.",
+    "settings": {
+      "Adapter output limit": "32,000 tokens per output",
+      "Sampling": "No sampling parameters sent",
+      "Input": "PNG, high detail"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "GPT-5.6 Sol"
+  },
+  "Datalab accurate (Datalab)": {
+    "provider": "datalab",
+    "description": "Datalab converts each page through its hosted accurate pipeline. Returned chunks supply the labeled regions; its HTML supplies the text.",
+    "settings": {
+      "Mode": "accurate",
+      "Endpoint": "/api/v1/convert",
+      "Page headers and footers": "Kept",
+      "Caching": "Skipped"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Datalab accurate"
+  },
+  "Datalab balanced (Datalab)": {
+    "provider": "datalab",
+    "description": "Datalab converts each page through its hosted balanced pipeline. Returned chunks supply the labeled regions; its HTML supplies the text.",
+    "settings": {
+      "Mode": "balanced",
+      "Endpoint": "/api/v1/convert",
+      "Page headers and footers": "Kept",
+      "Caching": "Skipped"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Datalab balanced"
+  },
+  "Reducto": {
+    "provider": "reducto",
+    "description": "Reducto r-1 processes the uploaded page asynchronously. The adapter reads its page content and typed blocks.",
+    "settings": {
+      "Model": "r-1",
+      "Tables": "HTML",
+      "Chunking": "Off"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Reducto"
+  },
+  "LlamaParse": {
+    "provider": "llamaparse",
+    "description": "The v2 parsing API runs the Agentic Plus tier. The adapter rejoins page headers, Markdown and footers, and reads layout boxes throughout the item tree.",
+    "settings": {
+      "Tier": "agentic_plus",
+      "Version requested": "latest; no resolved model version stated",
+      "Saved predictions": "September 30 and October 6, 2026"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "LlamaParse"
+  },
+  "Mistral OCR": {
+    "provider": "mistral",
+    "description": "Mistral OCR 4.1 returns page Markdown and typed regions. The adapter puts separate tables, headers and footers back into the text.",
+    "settings": {
+      "Model": "mistral-ocr-4-1; not mistral-ocr-2512",
+      "Endpoint": "/v1/ocr",
+      "Options": "HTML tables; blocks, headers and footers on; image data off"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Mistral OCR"
+  },
+  "Azure": {
+    "provider": "azure",
+    "description": "Azure Content Understanding analyzes pages with its prebuilt layout analyzer. Paragraph roles, tables and figures supply the layout boxes. This is a different product from Azure Document Intelligence queued in our study.",
+    "settings": {
+      "Product": "Azure Content Understanding",
+      "Analyzer": "prebuilt-layout",
+      "API version": "2025-11-01"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Azure Content Understanding"
+  },
+  "Extend": {
+    "provider": "extend",
+    "description": "Extend uploads the page and starts an asynchronous parse run. Its returned blocks supply both the page content and labeled regions.",
+    "settings": {
+      "Engine": "parse_performance",
+      "Agentic passes": "Text and tables enabled",
+      "Image-to-PDF quality": "High"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Extend"
+  },
+  "chandra-ocr-2 (Datalab)": {
+    "provider": "chandra_ocr",
+    "description": "Chandra OCR 2 reads the page image and returns structured content with labeled regions. The benchmark keeps page headers and footers.",
+    "settings": {
+      "PDF rendering": "300 DPI",
+      "Sampling": "temperature 0; top_p 0.1",
+      "Output limit": "12,384 tokens"
+    },
+    "model_url": "https://huggingface.co/datalab-to/chandra-ocr-2",
+    "study_method": "chandra2_mlx",
+    "label": "Chandra OCR 2"
+  },
+  "LightOnOCR-3-4B": {
+    "provider": "lighton",
+    "description": "The LightOnOCR-3 4B checkpoint reads page images and emits text associated with labeled regions. The adapter maps its title and continuation labels to benchmark blocks.",
+    "settings": {
+      "PDF rendering": "400 DPI; 5,000,000-pixel limit",
+      "Sampling": "temperature 0.1; top_p 1",
+      "Output limit": "12,288 tokens"
+    },
+    "model_url": "https://huggingface.co/lightonai/LightOnOCR-3-4B",
+    "study_method": "lighton4b_mlx",
+    "label": "LightOnOCR-3-4B"
+  },
+  "LightOnOCR-3-0.8B": {
+    "provider": "lighton",
+    "description": "The LightOnOCR-3 0.8B checkpoint reads page images and emits text associated with labeled regions. The adapter maps its title and continuation labels to benchmark blocks.",
+    "settings": {
+      "PDF rendering": "400 DPI; 5,000,000-pixel limit",
+      "Sampling": "temperature 0.1; top_p 1",
+      "Output limit": "12,288 tokens"
+    },
+    "model_url": "https://huggingface.co/lightonai/LightOnOCR-3-0.8B",
+    "study_method": "lighton_mlx",
+    "label": "LightOnOCR-3-0.8B"
+  },
+  "MinerU2.5-Pro": {
+    "provider": "mineru",
+    "description": "MinerU2.5-Pro uses the served document parsing pipeline. Its content and native block types are converted to HTML and benchmark layout labels.",
+    "settings": {
+      "Checkpoint": "MinerU2.5-Pro-2605-1.2B",
+      "Outputs": "HTML and labeled blocks"
+    },
+    "model_url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B",
+    "study_method": "mineru_pro_mlx",
+    "label": "MinerU2.5-Pro"
+  },
+  "OvisOCR3": {
+    "provider": "ovisocr3",
+    "description": "OvisOCR3 is called twice per page: its Markdown prompt produces text and its structured prompt produces labeled boxes. Our study uses its Markdown output for heading levels.",
+    "settings": {
+      "Sampling": "temperature 0",
+      "Output limit": "16,384 tokens",
+      "Image area": "448² to 2880² pixels",
+      "Image-only tags": "Removed from Markdown"
+    },
+    "model_url": "https://huggingface.co/ATH-MaaS/OvisOCR3",
+    "study_method": "ovisocr3_official_metal",
+    "label": "OvisOCR3"
+  },
+  "MiniCPM-OCR-1.0": {
+    "provider": "minicpm_ocr",
+    "description": "The official MiniCPM document parsing SDK uses PP-DocLayoutV3 to locate regions, then MiniCPM-OCR-1.0 recognizes their content.",
+    "settings": {
+      "Layout": "PP-DocLayoutV3 on CPU",
+      "Region workers": "32 per page",
+      "Page workers": "4"
+    },
+    "model_url": "https://huggingface.co/openbmb/MiniCPM-OCR-1.0",
+    "study_method": "minicpm_ocr10_official_ollama",
+    "label": "MiniCPM-OCR-1.0"
+  },
+  "PaddleOCR-VL-1.6": {
+    "provider": "paddleocr_vl",
+    "description": "The PaddleOCR-VL-1.6 pipeline produces recognized content and labeled page regions. Its native title categories become heading blocks.",
+    "settings": {
+      "PDF rendering": "144 DPI",
+      "Checkpoint": "PaddlePaddle/PaddleOCR-VL-1.6"
+    },
+    "model_url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+    "study_method": "paddleocr_vl16_official",
+    "label": "PaddleOCR-VL-1.6"
+  },
+  "dots.mocr": {
+    "provider": "dots",
+    "description": "dots.mocr reads page images and returns content with category labels and boxes. The adapter distinguishes titles, section headings, body text and page furniture.",
+    "settings": {
+      "PDF rendering": "200 DPI",
+      "Sampling": "temperature 0.1; top_p 1",
+      "Output limit": "32,768 tokens"
+    },
+    "model_url": "https://huggingface.co/rednote-hilab/dots.mocr",
+    "study_method": null,
+    "label": "dots.mocr"
+  },
+  "Infinity-Parser2-Pro": {
+    "provider": "infinity",
+    "description": "The Pro checkpoint of Infinity-Parser2 reads page images. The adapter converts its native content and box categories into HTML and labeled regions.",
+    "settings": {
+      "PDF rendering": "300 DPI",
+      "Sampling": "temperature 0; top_p 1",
+      "Output limit": "32,768 tokens",
+      "Maximum image area": "16,777,216 pixels"
+    },
+    "model_url": "https://huggingface.co/infly/Infinity-Parser2-Pro",
+    "study_method": null,
+    "label": "Infinity-Parser2-Pro"
+  },
+  "Infinity-Parser2-Flash": {
+    "provider": "infinity",
+    "description": "The Flash checkpoint of Infinity-Parser2 reads page images. The adapter converts its native content and box categories into HTML and labeled regions.",
+    "settings": {
+      "PDF rendering": "300 DPI",
+      "Sampling": "temperature 0; top_p 1",
+      "Output limit": "32,768 tokens",
+      "Maximum image area": "16,777,216 pixels"
+    },
+    "model_url": "https://huggingface.co/infly/Infinity-Parser2-Flash",
+    "study_method": null,
+    "label": "Infinity-Parser2-Flash"
+  },
+  "OCRia-1 (+ vendor grounding, Docling Heron)": {
+    "provider": "ocria_1",
+    "description": "OCRia-1 reads page text. Its experimental vendor grounding code and the Docling Heron detector add the layout boxes. This score describes that combined pipeline.",
+    "settings": {
+      "Layout": "Enabled; OCRia grounding + Docling Heron",
+      "PDF rendering": "300 DPI; 4,100,000-pixel budget",
+      "Sampling": "temperature 0",
+      "Output limit": "24,576 tokens"
+    },
+    "model_url": "https://huggingface.co/llamaindex/OCRia-1",
+    "study_method": null,
+    "label": "OCRia-1 + Heron"
+  },
+  "Surya OCR 2 (Datalab)": {
+    "provider": "surya_ocr",
+    "description": "Surya OCR 2 runs in its own GPU server. The adapter converts its text and native region labels, including section headers, to the benchmark format.",
+    "settings": {
+      "PDF rendering": "192 DPI",
+      "Outputs": "HTML and labeled blocks"
+    },
+    "model_url": "https://huggingface.co/datalab-to/surya-ocr-2",
+    "study_method": null,
+    "label": "Surya OCR 2"
+  },
+  "Surya OCR 2.5 (Datalab)": {
+    "provider": "surya_ocr25",
+    "description": "Surya OCR 2.5 runs in its own GPU server. The adapter converts its text and native region labels, including section headers, to the benchmark format.",
+    "settings": {
+      "PDF rendering": "192 DPI",
+      "Outputs": "HTML and labeled blocks"
+    },
+    "model_url": "https://huggingface.co/datalab-to/surya-ocr-2.5",
+    "study_method": null,
+    "label": "Surya OCR 2.5"
+  },
+  "OXR-1.0": {
+    "provider": "oxr",
+    "description": "SoMark’s own parsing API runs OXR-1.0 and returns page content with labeled regions. The adapter retains HTML, Markdown and layout blocks.",
+    "settings": {
+      "Checkpoint": "SoMarkAI/OXR-1.0",
+      "Page workers": "8"
+    },
+    "model_url": "https://huggingface.co/SoMarkAI/OXR-1.0",
+    "study_method": null,
+    "label": "OXR-1.0"
+  },
+  "Nemotron 3.5 Parse": {
+    "provider": "nemotron_parse",
+    "description": "NVIDIA’s parser uses triple mode: a full-page pass, a detection pass and additional table/chart crops. The benchmark reads its content and regions.",
+    "settings": {
+      "Mode": "triple",
+      "Sampling": "temperature 0.2; top_k 50; top_p 1; seed 0",
+      "Output limit": "8,744 tokens",
+      "Repetition penalty": "1.05"
+    },
+    "model_url": "https://huggingface.co/nvidia/Nemotron-3.5-Parse",
+    "study_method": null,
+    "label": "Nemotron 3.5 Parse"
+  },
+  "GLM-OCR": {
+    "provider": "glm_ocr",
+    "description": "GLM-OCR runs through its SDK’s self-hosted pipeline. The adapter reads recognized content and native layout categories, including document and paragraph titles.",
+    "settings": {
+      "Checkpoint": "zai-org/GLM-OCR",
+      "Outputs": "HTML and labeled blocks"
+    },
+    "model_url": "https://huggingface.co/zai-org/GLM-OCR",
+    "study_method": null,
+    "label": "GLM-OCR"
+  },
+  "Unlimited-OCR": {
+    "provider": "unlimited",
+    "description": "Unlimited-OCR reads page images with its own labeled output format. Titles and subtitles become heading blocks; page headers remain separate.",
+    "settings": {
+      "PDF rendering": "300 DPI",
+      "Sampling": "temperature 0; top_p 1",
+      "Output limit": "28,000 tokens",
+      "Repetition guard": "35-token n-grams; window 128"
+    },
+    "model_url": "https://huggingface.co/baidu/Unlimited-OCR",
+    "study_method": null,
+    "label": "Unlimited-OCR"
+  },
+  "Unlimited-OCR 2": {
+    "provider": "unlimited_ocr2",
+    "description": "Unlimited-OCR 2 reads tiled page images. Its labels identify text, headings and regions continued across pages or columns.",
+    "settings": {
+      "PDF rendering": "300 DPI",
+      "Crop mode": "Enabled (tiles)",
+      "Sampling": "temperature 0",
+      "Output and page limits": "20,000 tokens"
+    },
+    "model_url": "https://huggingface.co/baidu/Unlimited-OCR-2",
+    "study_method": null,
+    "label": "Unlimited-OCR 2"
+  },
+  "MonkeyOCR": {
+    "provider": "monkeyocr",
+    "description": "MonkeyOCR-pro-3B uses its layout and recognition pipeline. The benchmark also reads regions the layout model would otherwise abandon, then restores their original labels.",
+    "settings": {
+      "Checkpoint": "MonkeyOCR-pro-3B",
+      "Option": "--pred-abandon",
+      "Published hardware": "One H100",
+      "Failed pages": "14 of 2,937; counted in scores"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "MonkeyOCR-pro-3B"
+  },
+  "Indra OCR (Datalab)": {
+    "provider": "indra_ocr",
+    "description": "Indra OCR 1.2.0 runs on CPU through ONNX Runtime. Its native block boxes supply the layout; math recognition is enabled.",
+    "settings": {
+      "Package": "indra-ocr==1.2.0",
+      "Math": "On",
+      "Word boxes": "Off",
+      "Execution": "One worker process per CPU core"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Indra OCR 1.2"
+  },
+  "DeepSeek-OCR-2": {
+    "provider": "deepseek_ocr",
+    "description": "DeepSeek-OCR-2 reads page images and emits content with region categories. Its title and subtitle categories become heading blocks.",
+    "settings": {
+      "PDF rendering": "144 DPI",
+      "Sampling": "temperature 0; top_p 1",
+      "Output limit": "8,192 tokens",
+      "Repetition guard": "40-token n-grams; window 90"
+    },
+    "model_url": "https://huggingface.co/deepseek-ai/DeepSeek-OCR-2",
+    "study_method": null,
+    "label": "DeepSeek-OCR-2"
+  },
+  "LiteParse (ocria-nano)": {
+    "provider": "liteparse",
+    "description": "LiteParse uses the ocria-nano recognition and LayoutNet models on CPU. The output includes page headers and footers as separate region types.",
+    "settings": {
+      "Package": "LiteParse 2.21.1",
+      "Rendering": "250 DPI",
+      "Models": "ocria-nano recognition + LayoutNet"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "LiteParse + ocria-nano"
+  },
+  "HunyuanOCR-1.5": {
+    "provider": "hunyuan",
+    "description": "HunyuanOCR runs its layout_parse task to obtain text and labeled regions. The adapter reads the vendor’s native region categories.",
+    "settings": {
+      "Task": "layout_parse",
+      "Sampling": "temperature 0; top_p 1",
+      "Output limit": "32,768 tokens",
+      "Repetition penalty": "1.08"
+    },
+    "model_url": "https://huggingface.co/tencent/HunyuanOCR",
+    "study_method": null,
+    "label": "HunyuanOCR-1.5"
+  },
+  "Docling": {
+    "provider": "docling",
+    "description": "Docling’s standard PDF pipeline combines text extraction, RapidOCR and layout analysis. Its own HTML export and labeled document items are scored.",
+    "settings": {
+      "OCR": "RapidOCR, auto choice in the published image",
+      "Formula enrichment": "Off",
+      "Published hardware": "B200; auto device"
+    },
+    "model_url": null,
+    "study_method": "docling_default",
+    "label": "Docling"
+  },
+  "Docling (formula)": {
+    "provider": "docling",
+    "description": "Docling’s standard pipeline adds CodeFormulaV2 to read formula regions as LaTeX. The adapter reads the HTML export’s TeX annotations.",
+    "settings": {
+      "OCR": "RapidOCR",
+      "Formula enrichment": "do_formula_enrichment=True",
+      "Formula model": "CodeFormulaV2 @ ecedbe11",
+      "Published hardware": "B200; cuDNN attention disabled for formula stage"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "Docling + formulas"
+  },
+  "PP-StructureV3": {
+    "provider": "pp_structurev3",
+    "description": "PaddleOCR’s PPStructureV3 combines several models to read content and page layout. It preserves every block and transforms boxes back to the original page orientation.",
+    "settings": {
+      "Pipeline": "PPStructureV3 defaults",
+      "Kept labels": "markdown_ignore_labels=[]",
+      "Published hardware": "One H100; PaddlePaddle GPU 3.2.2, CUDA 12.6"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "PP-StructureV3"
+  },
+  "PyMuPDF4LLM (OCR)": {
+    "provider": "pymupdf4llm",
+    "description": "PyMuPDF4LLM 2.1 reads one page at a time with OCR enabled. Markdown supplies the text and the JSON export supplies layout boxes.",
+    "settings": {
+      "OCR": "use_ocr=True; Tesseract in the published run",
+      "Exports": "to_markdown and to_json",
+      "Headers and footers": "Kept",
+      "Failed pages": "17 of 2,937; counted in scores"
+    },
+    "model_url": null,
+    "study_method": null,
+    "label": "PyMuPDF4LLM (OCR)"
+  }
+}

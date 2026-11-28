@@ -79,7 +79,7 @@ def test_every_configuration_has_an_accessible_diagram_and_markdown_sources():
     soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
     configs = read_json(REPO / "configs/report-methods.json")
     assert len(soup.select("a[data-technique]")) == len(configs)
-    assert len(soup.select("dialog:not(.column-dialog)")) == len(configs)
+    assert len(soup.select('dialog[id^="technique-"]')) == len(configs)
     identifiers = [element["id"] for element in soup.select("[id]")]
     assert len(identifiers) == len(set(identifiers))
     markdown = (REPO / "outputs/report/league_table.md").read_text()
@@ -219,8 +219,9 @@ def test_tabs_preserve_deep_links_and_keep_results_first():
     assert soup.find(id="published-comparison").find_parent(class_="report-panel")["id"] == "panel-field"
     assert soup.find(id="sequential-gpu-reruns").find_parent(class_="report-panel")["id"] == "panel-evidence"
     assert soup.find(id="show-diagnostics")
-    assert "Ovis-OCR2" in soup.find(id="panel-field").get_text()
-    assert not soup.select(".report-panel dialog")
+    assert "OvisOCR3" in soup.find(id="panel-field").get_text()
+    assert not soup.select('.report-panel dialog[id^="technique-"]')
+    assert len(soup.select("#panel-field dialog.field-model-dialog")) == 39
 
     assert soup.find(id="sequential-gpu-reruns").find("summary").get_text() == "Sequential GPU reruns"
 

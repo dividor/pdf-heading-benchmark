@@ -2,6 +2,7 @@
 
 from markdown_it import MarkdownIt
 
+from pdf_heading_benchmark.field_explorer import enhance_field
 from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.report_layout import tabbed_report
@@ -193,13 +194,14 @@ def build_report():
     (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
     (output / "method-records.md").write_text(method_records(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
-    for diagram in ("ocr-field-overview.png", "ocr-text-layout.png"):
+    for diagram in ("ocr-text-layout.png",):
         (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
         rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
     rendered = rendered.replace(
         "<h2>Published comparison</h2>", '<h2 id="published-comparison">Published comparison</h2>'
     )
     rendered = enhance_html(tabbed_report(rendered), rows, methods)
+    rendered = enhance_field(rendered, read_json(REPO / "configs/field-overview.json"))
     css = (REPO / "docs/report.css").read_text()
     css += (REPO / "docs/report-tabs.css").read_text()
     html = (

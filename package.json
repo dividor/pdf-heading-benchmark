@@ -1,0 +1,6 @@
+{
+  "name": "pdf-heading-benchmark-report-tests",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test tests/js/*.test.cjs" }
+}
