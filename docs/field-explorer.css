@@ -47,3 +47,6 @@
   #field-explorer .field-model-dialog dl { grid-template-columns: 1fr; gap: 4px; }
   #field-explorer .field-model-dialog dd { margin-bottom: 10px; }
 }
+
+#field-explorer .field-axis { cursor: pointer; }
+#field-explorer .field-axis:hover rect, #field-explorer .field-axis:focus rect { fill: #e8f3f2; fill-opacity: 1; stroke: #007d79; }

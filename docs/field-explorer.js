@@ -71,6 +71,13 @@
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openModel(label.dataset.for); }
     });
   });
+  root.querySelectorAll('[data-open-dialog]').forEach(button => {
+    const open = () => root.querySelector('#' + button.dataset.openDialog).showModal();
+    button.addEventListener('click', open);
+    button.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); }
+    });
+  });
   select.addEventListener('change', () => inspect(points.find(point => point.dataset.index === select.value)));
   root.querySelector('#field-open-model').addEventListener('click', () => openModel(select.value));
   filter.addEventListener('change', applyFilter);

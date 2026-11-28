@@ -31,8 +31,22 @@ def svg_text(x, y, content, size=16, extra="") -> str:
     )
 
 
+def axis_label(axis: str, title: str, transform: str, width: int) -> str:
+    return (
+        f'<g class="field-axis" transform="{transform}" data-open-dialog="field-axis-{axis}" '
+        f'role="button" tabindex="0" aria-haspopup="dialog" aria-controls="field-axis-{axis}" '
+        f'aria-label="About {title.lower()}">'
+        f'<rect x="{-width / 2}" y="-21" width="{width}" height="40" rx="5" '
+        'fill="white" fill-opacity="0"/>'
+        + svg_text(-12, 5, title, 19, 'text-anchor="middle" font-weight="bold"')
+        + f'<circle cx="{width / 2 - 14}" cy="-1" r="8" fill="none" stroke="#526673"/>'
+        + svg_text(width / 2 - 14, 4, "i", 13, 'text-anchor="middle"')
+        + "</g>"
+    )
+
+
 def grid() -> str:
-    parts = [svg_text(80, 55, "Layout score ↑", 19, 'font-weight="bold"')]
+    parts = [axis_label("layout", "Layout score", "translate(23 385) rotate(-90)", 168)]
     for tick in range(70, 101, 5):
         _, y = coordinate(20, tick)
         parts += [
@@ -45,7 +59,7 @@ def grid() -> str:
             f'<line x1="{x}" y1="115" x2="{x}" y2="655" stroke="#e1e7ec"/>',
             svg_text(x, 683, str(tick), 16, 'text-anchor="middle"'),
         ]
-    parts.append(svg_text(510, 724, "Text extraction score →", 19, 'text-anchor="middle" font-weight="bold"'))
+    parts.append(axis_label("text", "Text extraction score", "translate(510 724)", 250))
     return "".join(parts)
 
 

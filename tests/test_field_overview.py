@@ -121,3 +121,25 @@ def test_chart_names_open_their_own_dialog_and_hosted_markers_draw_last():
     assert mistral["data-layout"] == "93.8"
     label = soup.select_one(f'.field-name[data-for="{mistral["data-index"]}"]')
     assert label.get_text() == "Mistral OCR"
+
+
+def test_axis_labels_open_sourced_score_definitions():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    axes = soup.select(".field-axis")
+    assert len(axes) == 2
+    for axis in axes:
+        assert axis["role"] == "button"
+        assert axis["tabindex"] == "0"
+        assert axis["aria-controls"] == axis["data-open-dialog"]
+        dialog = soup.find(id=axis["aria-controls"])
+        assert dialog.find("h2")
+        assert dialog.select_one('.field-dialog-close[aria-label="Close score definition"]')
+        assert "/omni_parse_bench/blob/" in dialog.find("a")["href"]
+        assert "/docs/scoring/" in dialog.find("a")["href"]
+    layout = soup.select_one('[data-open-dialog="field-axis-layout"]')
+    assert layout["transform"] == "translate(23 385) rotate(-90)"
+    assert "2,403" in soup.find(id="field-axis-layout").get_text()
+    assert "heading's level" in soup.find(id="field-axis-layout").get_text()
+    text = soup.find(id="field-axis-text")
+    assert "8,499" in text.get_text() and "38%" in text.get_text()
+    assert "not character-level OCR accuracy" in text.get_text()

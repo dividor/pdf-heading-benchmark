@@ -62,6 +62,42 @@ def model_dialog(row: dict, detail: dict, index: int, data: dict) -> str:
     )
 
 
+def axis_dialogs(data: dict) -> str:
+    source = f"https://github.com/datalab-to/omni_parse_bench/blob/{data['revision']}/docs/scoring/"
+    definitions = {
+        "text": (
+            "Text extraction score",
+            "The percentage of 8,499 text checks passed. These check words, numbers, equations, "
+            "reading order and repetition. Equations account for about 38% of these checks.",
+            "Higher is better. This is not character-level OCR accuracy, and it does not measure "
+            "heading levels. The horizontal axis starts at 20.",
+            "README.md#how-a-score-is-built",
+        ),
+        "layout": (
+            "Layout score",
+            "The percentage of 2,403 layout checks passed. Each checks whether a region at a known "
+            "location is labeled as text, a heading or a table. The scorer uses the smallest "
+            "predicted box covering at least half of the reference line's area.",
+            "Higher is better. This does not check the text inside the box or a heading's level "
+            "(H1, H2, etc.). The vertical axis starts at 70; only scores above 70 are shown.",
+            "layout_kind.md",
+        ),
+    }
+    dialogs = []
+    for key, (title, definition, limitation, path) in definitions.items():
+        dialogs.append(
+            f'<dialog class="field-model-dialog field-axis-dialog" id="field-axis-{key}" '
+            f'aria-labelledby="field-axis-title-{key}">'
+            '<div class="field-dialog-head"><span>OmniParseBench 1.8.0</span>'
+            '<button type="button" class="field-dialog-close" '
+            'aria-label="Close score definition">Close &#215;</button></div>'
+            f'<h2 id="field-axis-title-{key}">{title}</h2><p>{definition}</p><p>{limitation}</p>'
+            f'<div class="field-sources"><a href="{source}{path}" target="_blank" rel="noopener">'
+            "OmniParseBench scoring documentation</a></div></dialog>"
+        )
+    return "".join(dialogs)
+
+
 def explorer(data: dict) -> str:
     rows = eligible_rows(data)
     details = read_json(REPO / "configs/field-model-details.json")
@@ -101,7 +137,7 @@ def explorer(data: dict) -> str:
         '<details class="field-values"><summary>View the plotted scores</summary>'
         '<div class="report-table-scroll" tabindex="0"><table><thead><tr><th>System</th>'
         "<th>Text</th><th>Layout</th></tr></thead>"
-        f"<tbody>{data_rows}</tbody></table></div></details>{dialogs}</section>"
+        f"<tbody>{data_rows}</tbody></table></div></details>{dialogs}{axis_dialogs(data)}</section>"
     )
 
 

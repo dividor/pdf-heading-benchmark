@@ -221,7 +221,7 @@ def test_tabs_preserve_deep_links_and_keep_results_first():
     assert soup.find(id="show-diagnostics")
     assert "OvisOCR3" in soup.find(id="panel-field").get_text()
     assert not soup.select('.report-panel dialog[id^="technique-"]')
-    assert len(soup.select("#panel-field dialog.field-model-dialog")) == 39
+    assert len(soup.select('#panel-field dialog[id^="field-model-"]')) == 39
 
     assert soup.find(id="sequential-gpu-reruns").find("summary").get_text() == "Sequential GPU reruns"
 

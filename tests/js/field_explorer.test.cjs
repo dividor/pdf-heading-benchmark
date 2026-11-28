@@ -49,13 +49,21 @@ function fixture() {
   Object.entries({ '#field-filter': filter, '#field-system': select, '.field-tooltip': tooltip,
     '#field-count': new Element(), '#field-open-model': new Element(), '.field-active-marker': new Element() })
     .forEach(([key, value]) => root.children.set(key, value));
-  const groups = { '.field-point': points, '.field-label': labels,
+  const axes = ['text', 'layout'].map(axis => {
+    const button = new Element({ openDialog: 'field-axis-' + axis });
+    const dialog = new Element();
+    dialog.children.set('.field-dialog-close', new Element());
+    root.children.set('#field-axis-' + axis, dialog);
+    dialogs.push(dialog);
+    return button;
+  });
+  const groups = { '[data-open-dialog]': axes, '.field-point': points, '.field-label': labels,
     '.field-name': labels, '.field-model-dialog': dialogs, '[data-open-model]': [...buttons, ...labels] };
   root.querySelectorAll = selector => groups[selector];
   global.document = { getElementById: id => { assert.equal(id, 'field-explorer'); return root; } };
   delete require.cache[require.resolve('../../docs/field-explorer.js')];
   require('../../docs/field-explorer.js');
-  return { root, points, filter, select, labels, dialogs, buttons, tooltip };
+  return { root, points, filter, select, labels, dialogs, buttons, tooltip, axes };
 }
 
 test('filters markers, labels and selector options together', () => {
@@ -126,5 +134,21 @@ test('chart names highlight and raise their marker, then open the correct dialog
       f.dialogs[i].close();
     }
     label.fire('blur'); assert.equal(f.tooltip.attributes.has('hidden'), true);
+  });
+});
+
+
+test('both axis labels open and close their definitions with mouse and keyboard', () => {
+  const f = fixture();
+  f.axes.forEach(button => {
+    const dialog = f.root.querySelector('#' + button.dataset.openDialog);
+    button.fire('click'); assert.equal(dialog.open, true);
+    dialog.querySelector('.field-dialog-close').fire('click'); assert.equal(dialog.open, false);
+    for (const key of ['Enter', ' ']) {
+      let prevented = false;
+      button.fire('keydown', { key, preventDefault: () => { prevented = true; } });
+      assert.equal(prevented, true); assert.equal(dialog.open, true);
+      dialog.close();
+    }
   });
 });
