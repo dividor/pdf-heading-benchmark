@@ -13,7 +13,7 @@ from pdf_heading_benchmark.prediction_comparison import (
 )
 from pdf_heading_benchmark.report_help import column_help, info_button
 
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 
 
 def resources(row: dict, method: dict, technique: dict) -> list[dict]:
@@ -85,7 +85,7 @@ def dialog(row: dict, method: dict, technique: dict, documents: list[dict]) -> s
         '<a href="#panel-methods" data-overview>Shared methods and scoring</a> · '
         f'<a href="{method.get("code_url", REMOTE + method["code"])}" target="_blank" '
         'rel="noopener noreferrer">Run code</a> · '
-        f'<a href="{REMOTE.replace("/main/", "/codex/technique-explorer/")}outputs/report/method-records.md'
+        f'<a href="{REMOTE}outputs/report/method-records.md'
         f'#{key.replace("_", "-")}" target="_blank" rel="noopener noreferrer">Full run record</a>'
         "</p></div></dialog>"
     )

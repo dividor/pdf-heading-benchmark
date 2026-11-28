@@ -29,7 +29,7 @@
   {
     "method": "qwen36_27b_compact",
     "name": "Qwen3.6-27B 4-bit — single image",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -83,7 +83,7 @@
   {
     "method": "structure_precision",
     "name": "OUR METHOD — confidence-filtered v2 (F0.5-selected)",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-precision/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -108,7 +108,7 @@
   {
     "method": "qwen36_35b_visual_memory",
     "name": "Qwen3.6-35B-A3B 4-bit — visual memory",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -135,7 +135,7 @@
   {
     "method": "qwen36_35b_compact",
     "name": "Qwen3.6-35B-A3B 4-bit — single image",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -187,7 +187,7 @@
   {
     "method": "structure_calibrated",
     "name": "OUR METHOD v2 + calibrated decoding (CPU)",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -212,7 +212,7 @@
   {
     "method": "structure_context_relations",
     "name": "v2: context + relationships (selected)",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -237,7 +237,7 @@
   {
     "method": "structure_recall",
     "name": "OUR METHOD — retrained trees (coverage trial; target not met)",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-recall/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -316,7 +316,7 @@
   {
     "method": "structure_learned_groups",
     "name": "v2: learned grouping",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -366,7 +366,7 @@
   {
     "method": "structure_expanded_line",
     "name": "v2: more annotations",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/report.md",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,
@@ -391,7 +391,7 @@
   {
     "method": "supervised_extra_trees",
     "name": "Supervised Extra Trees / CPU / assistant labels",
-    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py",
+    "source_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py",
     "status": "completed",
     "documents_scored": 4,
     "gold": 77,

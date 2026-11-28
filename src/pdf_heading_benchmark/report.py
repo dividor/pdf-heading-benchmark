@@ -9,7 +9,7 @@ from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix, me
 from pdf_heading_benchmark.timing_format import readable_time
 from pdf_heading_benchmark.timing_updates import latest_timings
 
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 HEADERS = [
     "Configuration",
     "Time for 32 pages",

@@ -14,7 +14,7 @@ The fixed grid contains **36 settings**: learned grouping or contextual classifi
 
 Selection used the existing four validation reports **103, 538, 176 and 128**, with **21 headings on 20 fully reviewed pages**. Twenty-three settings passed the gate; the selected one produced **14 correct predictions, no extras and seven missed titles**, yielding 90.9% joint F0.5. No model weights or annotation labels were changed. Training remains 887 groups across 20 separate WFP reports.
 
-The four 38-heading reports **321, 844, 560 and 394** and the original four league reports were evaluated only after selection was frozen. They have already been inspected in earlier work and are regression sets, not new independent tests. Report URLs, page coverage and split assignments are in the [v2 corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json); the original league reports are in the [main manifest](https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/corpus.json). Source URLs and published annotations enable review; local archive locations are not needed to interpret the results.
+The four 38-heading reports **321, 844, 560 and 394** and the original four league reports were evaluated only after selection was frozen. They have already been inspected in earlier work and are regression sets, not new independent tests. Report URLs, page coverage and split assignments are in the [v2 corpus manifest](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json); the original league reports are in the [main manifest](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/corpus.json). Source URLs and published annotations enable review; local archive locations are not needed to interpret the results.
 
 This experiment uses the **same title/page matching rule as the main league**, including ≥90% normalized text similarity and exact level. Earlier v2 group F1 used exact source-line membership; its original records remain unchanged. The unchanged baseline was rescored under the new contract for the comparison below.
 
@@ -49,7 +49,7 @@ A correct prediction must match **title, page and exact level**. Let **C** be co
 
 **Example:** 10 reference headings, 12 predictions and 9 correct heading-level pairs give precision **75%**, recall **90%**, and F0.5 **77.6%**. Recovering every title is not enough if the levels are wrong.
 
-**Selection history:** OUR METHOD’s confidence filter was selected on separate validation reports using joint F0.5 with a heading-only precision constraint. The published training procedure has not been changed retrospectively. Its full selection rule, thresholds and provenance are in the method modal and [experiment record](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md).
+**Selection history:** OUR METHOD’s confidence filter was selected on separate validation reports using joint F0.5 with a heading-only precision constraint. The published training procedure has not been changed retrospectively. Its full selection rule, thresholds and provenance are in the method modal and [experiment record](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-precision/report.md).
 
 
 ## Every validation setting
@@ -95,7 +95,7 @@ A correct prediction must match **title, page and exact level**. Let **C** be co
 
 ## Reproduce the experiment
 
-Start with the [fresh-checkout guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/docs/rebuild-heading-model.md) to download the public PDFs, train new models and select settings for those model hashes. The [notebook](https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/notebooks/rebuild_heading_model.ipynb) executes those steps in order. No original model bundle is required.
+Start with the [fresh-checkout guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/rebuild-heading-model.md) to download the public PDFs, train new models and select settings for those model hashes. The [notebook](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/notebooks/rebuild_heading_model.ipynb) executes those steps in order. No original model bundle is required.
 
 Use the existing [v2 data preparation and training instructions](../structure-v2/report.md). Keep PDFs, cached text and models outside Git. From the repository root, set `DATA` to the external `structure-v2` directory and `MODELS` to its frozen `run-001` directory. `RUN` must be a fresh external output directory.
 
@@ -107,4 +107,4 @@ uv run python scripts/runners/run_precision.py input.pdf output-dir --run "$MODE
 
 The selection stage reads only validation documents. It writes its grid and source/model/configuration hashes before evaluating candidates. Regression refuses changed code, weights or labels. Both stages require fresh outputs and preserve raw full-document predictions externally. This published evidence came from run-002; run-001 was superseded after source formatting before regression, with the same grid and no selection based on its outcomes.
 
-The compact [protocol](evidence/protocol.json), [all validation scores](evidence/selection.json), [regression scores](evidence/regression.json) and [historical predictions](evidence/historical-audit.json) are committed. The [inference code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/precision_inference.py) and [optimization runner](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py) show the exact implementation.
+The compact [protocol](evidence/protocol.json), [all validation scores](evidence/selection.json), [regression scores](evidence/regression.json) and [historical predictions](evidence/historical-audit.json) are committed. The [inference code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/precision_inference.py) and [optimization runner](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/optimize_precision.py) show the exact implementation.

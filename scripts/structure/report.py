@@ -8,7 +8,7 @@ from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.report import build_report, table
 
 OUT = REPO / "outputs/structure-v2"
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 NAMES = {
     "original_v1": "Original model v1",
     "expanded_line": "v2: more annotations",

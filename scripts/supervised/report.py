@@ -8,7 +8,7 @@ from pdf_heading_benchmark.supervised_data import read_json
 
 ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = ROOT / "outputs/supervised/evidence"
-GH = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
+GH = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 
 
 def score_row(name: str, scope: str, value: dict, fit: float) -> str:

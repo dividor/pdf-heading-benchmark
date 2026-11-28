@@ -6,7 +6,7 @@ from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.report import build_report, table
 
 OUT = REPO / "outputs/structure-calibration"
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 KEY = "structure_calibrated"
 
 

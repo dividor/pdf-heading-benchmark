@@ -8,7 +8,7 @@
 
 The [layout score](https://github.com/datalab-to/omni_parse_bench/blob/main/docs/scoring/layout_kind.md) tests whether blocks are labeled as text, heading or table at the expected location. It does not test heading levels. Models without a published layout score, including Xiaomi-OCR-0, are omitted. Our trained model has not been evaluated on this benchmark.
 
-Text and layout scores cover both local and hosted systems. Published timings do not cover the local models, so this plot does not use speed. The planned service runs will compare heading-and-level quality and seconds per page on our WFP sample. [Chart data](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-overview.json) · [Reproduce the plot](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/field_overview.py).
+Text and layout scores cover both local and hosted systems. Published timings do not cover the local models, so this plot does not use speed. The planned service runs will compare heading-and-level quality and seconds per page on our WFP sample. [Chart data](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/field-overview.json) · [Reproduce the plot](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/field_overview.py).
 
 ### Cloud services queued for comparison
 
@@ -56,4 +56,4 @@ This author-reported chart averages four parsing benchmarks and measures through
 
 **OvisOCR3 is not in this chart.** Our separate Metal run scores **65.0% joint F0.5**, with **36/77** heading-level pairs correct. Ovis-OCR2 remains untested.
 
-Broad OCR quality does not establish heading-level accuracy. Our WFP measurements use different hardware and input conditions. [Pipeline reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/official-pipelines.md).
+Broad OCR quality does not establish heading-level accuracy. Our WFP measurements use different hardware and input conditions. [Pipeline reproduction](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/official-pipelines.md).

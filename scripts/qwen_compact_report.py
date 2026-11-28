@@ -16,7 +16,7 @@ from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.report import table
 
 OUT = REPO / "outputs/qwen-compact"
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 VARIANTS = {
     "qwen36_27b_compact": ("27b-run-002", "Qwen3.6-27B 4-bit — single image"),
     "qwen36_35b_compact": ("35b-run-001", "Qwen3.6-35B-A3B 4-bit — single image"),

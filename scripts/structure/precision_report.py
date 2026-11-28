@@ -7,7 +7,7 @@ from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.report import table
 
 OUT = REPO / "outputs/structure-precision"
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 KEY = "structure_precision"
 
 

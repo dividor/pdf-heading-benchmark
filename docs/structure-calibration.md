@@ -8,11 +8,11 @@
 
 The original v2 corpus has 20 training reports (887 heading groups), four validation reports (21 groups on 20 fully reviewed pages) and four test reports (38 groups on 32 fully reviewed pages). The four test reports were already inspected during v2 analysis, so they are now a **regression set**, not a fresh test. There is no template-family holdout or independent human annotation audit.
 
-The regression reports are WFP malnutrition interventions in Niger (321, English), anticipatory action in Nepal (844, English), the Chad country strategic plan (560, French) and the Ecuador strategic plan (394, Spanish). The [corpus manifest with public source URLs and exact physical PDF pages](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/configs/structure-v2/corpus.json) records all training, validation and regression documents. These are separate from the four historical PDFs in the main league table.
+The regression reports are WFP malnutrition interventions in Niger (321, English), anticipatory action in Nepal (844, English), the Chad country strategic plan (560, French) and the Ecuador strategic plan (394, Spanish). The [corpus manifest with public source URLs and exact physical PDF pages](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json) records all training, validation and regression documents. These are separate from the four historical PDFs in the main league table.
 
 Each candidate multiplies the classifier's **body-class decision score** by 1, 1.5 or 2 before choosing body versus a heading level. This is decision-weight tuning, not a claim that tree probabilities are calibrated. The level relationship decoder has weight 1, 0.5 or 0. All nine combinations were specified before the validation search. Exact group-and-level F1 selects the winner; ties retain the first setting, with the original baseline first. Selection chose **body weight 2, relationship weight 1**. No title strings, report IDs or language-specific correction rules are used at inference.
 
-A preliminary run confirmed the same grid result. The recorded second run repeats that fixed grid and includes the full historical comparison. No fresh-test claim is made for either run. Frozen model/config/code hashes and all nine validation scores are in [the evidence directory](https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/structure-calibration/evidence).
+A preliminary run confirmed the same grid result. The recorded second run repeats that fixed grid and includes the full historical comparison. No fresh-test claim is made for either run. Frozen model/config/code hashes and all nine validation scores are in [the evidence directory](https://github.com/dividor/pdf-heading-benchmark/tree/codex/full-method-verification/outputs/structure-calibration/evidence).
 
 ## Results on the previously inspected 38-heading set
 
@@ -40,7 +40,7 @@ Only 21 validation headings support this choice, and relationship weight makes n
 
 ## Reproduce and use
 
-Run from the repository root after preparing and training v2 as described in [the v2 instructions](https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/outputs/structure-v2/report.md). Keep PDF data and model files outside Git. Choose a new calibration directory for each search.
+Run from the repository root after preparing and training v2 as described in [the v2 instructions](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/report.md). Keep PDF data and model files outside Git. Choose a new calibration directory for each search.
 
 ```bash
 uv run python scripts/structure/calibrate.py select \

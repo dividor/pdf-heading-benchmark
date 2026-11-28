@@ -548,7 +548,7 @@ img{max-width:100%}</style></head><body><main><h1>Training a small local heading
 </tbody>
 </table>
 <h2>Reproduce and run on your own PDF</h2>
-<p>For a fresh checkout, follow the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/docs/rebuild-heading-model.md">complete public-download guide</a> or <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/notebooks/rebuild_heading_model.ipynb">run the notebook</a>. That path rebuilds the confidence-filtered method without the private archive or the old v1 model. The commands below reproduce the older comparison when those additional local inputs are available.</p>
+<p>For a fresh checkout, follow the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/rebuild-heading-model.md">complete public-download guide</a> or <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/notebooks/rebuild_heading_model.ipynb">run the notebook</a>. That path rebuilds the confidence-filtered method without the private archive or the old v1 model. The commands below reproduce the older comparison when those additional local inputs are available.</p>
 <p>Use Python 3.12 and the committed uv lockfile. From a checkout:</p>
 <pre><code class="language-bash">uv sync --locked --extra training
 export STRUCTURE_DATA=/path/outside/the/repository/structure-v2
