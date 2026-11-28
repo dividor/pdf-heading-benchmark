@@ -71,7 +71,7 @@ def axis_dialogs(data: dict) -> str:
             "reading order and repetition. Equations account for about 38% of these checks.",
             "Higher is better. This is not character-level OCR accuracy, and it does not measure "
             "heading levels. The horizontal axis starts at 20.",
-            "README.md#how-a-score-is-built",
+            "README.md",
         ),
         "layout": (
             "Layout score",

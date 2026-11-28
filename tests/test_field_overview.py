@@ -143,3 +143,4 @@ def test_axis_labels_open_sourced_score_definitions():
     text = soup.find(id="field-axis-text")
     assert "8,499" in text.get_text() and "38%" in text.get_text()
     assert "not character-level OCR accuracy" in text.get_text()
+    assert text.find("a")["href"].endswith("/docs/scoring/README.md")
