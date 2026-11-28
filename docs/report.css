@@ -101,3 +101,12 @@ body:has(.technique-dialog[open]) { overflow: hidden; }
 .technique-shell .technique-flow li { padding: 12px; }
 .technique-shell .technique-description { margin-bottom: 12px; }
 .technique-shell .technique-links { margin: 14px 0; }
+
+.score-example { border-top: 1px solid #cbdde4; margin-top: 20px; padding-top: 8px; }
+.score-example-documents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.score-example-documents h4 { margin: 0 0 8px; }
+.score-example pre { background: #edf4f7; padding: 12px; border-radius: 8px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+.score-example-result { background: #e5f5f3; padding: 12px; border-radius: 8px; }
+@media (max-width: 600px) {
+  .score-example-documents { grid-template-columns: 1fr; }
+}
