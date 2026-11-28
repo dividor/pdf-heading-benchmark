@@ -8,7 +8,7 @@ from pdf_heading_benchmark.report import table
 
 KEY = "structure_recall"
 OUT = REPO / "outputs/structure-recall"
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
 
 
 def publish_row(historical: dict) -> dict:

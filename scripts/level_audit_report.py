@@ -56,7 +56,7 @@ def audit_markdown(evidence):
         content += "appear as ordinary text. On targeting page 33, 2 Evaluation findings has no heading "
         content += "marker, although its subsections have H2-H4 markers. These are classification "
         content += "misses, not necessarily unreadable or absent text.\n\n"
-    remote = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/"
+    remote = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
     content += f"[All level disagreements and counts]({remote}outputs/level-audit.json) · "
     content += f"[Raw region-to-heading assembly examples]({remote}outputs/assembly-trace.json) · "
     content += f"[Xiaomi formatter measurements]({remote}outputs/xiaomi-assembly-trace.json) · "

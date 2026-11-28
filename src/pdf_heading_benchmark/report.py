@@ -2,6 +2,7 @@
 
 from markdown_it import MarkdownIt
 
+from pdf_heading_benchmark.field_explorer import enhance_field
 from pdf_heading_benchmark.io import REPO, read_json, write_json
 from pdf_heading_benchmark.joint_metrics import scored_counts
 from pdf_heading_benchmark.report_layout import tabbed_report
@@ -9,7 +10,11 @@ from pdf_heading_benchmark.techniques import enhance_html, markdown_appendix, me
 from pdf_heading_benchmark.timing_format import readable_time
 from pdf_heading_benchmark.timing_updates import latest_timings
 
-REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/main/"
+REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
+DISPLAY_NAMES = {
+    "structure_context_relations": "OUR METHOD — grouped context (previous selection)",
+    "structure_precision": "OUR METHOD — confidence-filtered (F0.5-selected)",
+}
 HEADERS = [
     "Configuration",
     "Time for 32 pages",
@@ -70,20 +75,9 @@ def cells(row, method):
     if row["method"] == "supervised_extra_trees":
         configuration = f"[LLM annotations → Extra Trees v1 (CPU)]({row['source_url']})"
     if row["method"] == "structure_context_relations":
-        configuration = (
-            '<span id="our-original-model"></span>'
-            f"[OUR METHOD — grouped context v2 (previous selection)]({row['source_url']})"
-        )
+        configuration = f'<span id="our-original-model"></span>[{row["name"]}]({row["source_url"]})'
     if row["method"] == "structure_precision":
-        configuration = (
-            '<span id="our-trained-model"></span>'
-            f"[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**]({row['source_url']})"
-        )
-    if row["method"] == "structure_calibrated":
-        configuration = (
-            '<span id="our-calibrated-model"></span>'
-            f"[**OUR METHOD — calibrated decoding (experimental)**]({row['source_url']})"
-        )
+        configuration = f'<span id="our-trained-model"></span>[**{row["name"]}**]({row["source_url"]})'
     return [
         configuration,
         time_for_32_pages(row),
@@ -132,6 +126,9 @@ def report_rows(filename):
         for row in read_json(REPO / "outputs" / filename)
         if row["method"] in selected
     ]
+    for row in rows:
+        if row["method"] in DISPLAY_NAMES and "name" in row:
+            row["name"] = DISPLAY_NAMES[row["method"]]
     if filename == "league_table.json":
         rows = [scored_counts(row) if row["status"] == "completed" else row for row in rows]
         rows = latest_timings(rows)
@@ -193,13 +190,14 @@ def build_report():
     (output / "league_table.md").write_text(markdown + markdown_appendix(rows, methods))
     (output / "method-records.md").write_text(method_records(rows, methods))
     rendered = MarkdownIt("commonmark").enable("table").render(markdown)
-    for diagram in ("ocr-field-overview.png", "ocr-text-layout.png"):
+    for diagram in ("ocr-text-layout.png",):
         (output / diagram).write_bytes((REPO / "docs/images" / diagram).read_bytes())
         rendered = rendered.replace(f"../../docs/images/{diagram}", diagram)
     rendered = rendered.replace(
         "<h2>Published comparison</h2>", '<h2 id="published-comparison">Published comparison</h2>'
     )
     rendered = enhance_html(tabbed_report(rendered), rows, methods)
+    rendered = enhance_field(rendered, read_json(REPO / "configs/field-overview.json"))
     css = (REPO / "docs/report.css").read_text()
     css += (REPO / "docs/report-tabs.css").read_text()
     html = (

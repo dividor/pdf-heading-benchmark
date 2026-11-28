@@ -15,7 +15,7 @@ Restoring visual memory to the sparse model does not help: 52 correct pairs vers
 
 ## Documents and scoring
 
-These are the original four WFP reports: the targeting and prioritization strategic evaluation, the mid-term evaluation of the 2022–2025 Strategic Plan, the Indonesia country strategic plan evaluation and the Colombia country strategic plan evaluation. [Official PDF URLs, titles and checksums](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/corpus.json). Together they contain 523 pages, but this experiment processes only **32 selected page images**, eight per report, with **77 reference headings**. [Exact physical PDF pages](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/audit_pages.json) · [Reference annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/gold.json).
+These are the original four WFP reports: the targeting and prioritization strategic evaluation, the mid-term evaluation of the 2022–2025 Strategic Plan, the Indonesia country strategic plan evaluation and the Colombia country strategic plan evaluation. [Official PDF URLs, titles and checksums](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/corpus.json). Together they contain 523 pages, but this experiment processes only **32 selected page images**, eight per report, with **77 reference headings**. [Exact physical PDF pages](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/audit_pages.json) · [Reference annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/gold.json).
 
 We have already inspected this small benchmark. These are historical regression results, not an independent generalization test. The reference was annotated by the assistant and is available for review; it is not a certified human gold standard. The first two configurations were specified before their results were scored. After seeing the sparse single-image result (53/77 correct levels), we added a third configuration restoring the original visual-memory procedure. That follow-up is explicitly exploratory and was not pre-planned alongside the first two. Neither the reference headings nor their levels enter the inference runner. Report all three variants, including failures, rather than selecting a winner and hiding the others.
 
@@ -31,13 +31,13 @@ The primary score is **joint heading-and-level F0.5 = 1.25C / (P + 0.25G)**. C c
 
 The full outline and tags are still repeated for each target. This is specifically an image-history/resolution experiment, not a test of compacting all document context. Because both image size and history changed together, it does not identify their separate effects.
 
-[Exact prompt](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py) · [Inference runner](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py) · [Strict response decoder](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/decode_qwen.py) · [Pinned model revisions](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json).
+[Exact prompt](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/compact_prompt.py) · [Inference runner](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py) · [Strict response decoder](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/decode_qwen.py) · [Pinned model revisions](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json).
 
 ## Sparse-model visual-memory follow-up
 
 The sparse single-image run found all 77 titles with no extras, but made 24 level mistakes. To test whether the missing typography examples mattered, a third run uses the original multi-image instruction and `generate_page` function without modifying them. The current image has a 1,792-pixel cap; memory includes up to six earlier sampled-page images at 1,280 pixels, selected by the most recent predicted heading at each level. The model is the same pinned 35B-A3B 4-bit version as the sparse single-image run. Temperature, seed, output cap and soft timeout remain unchanged.
 
-This restores image history, image size and the associated instruction together. It cannot attribute a change to any one of those components. It is a follow-up prompted by results on this already inspected corpus, not an independent test. [Wrapper calling the original generation function](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py).
+This restores image history, image size and the associated instruction together. It cannot attribute a change to any one of those components. It is a follow-up prompted by results on this already inspected corpus, not an independent test. [Wrapper calling the original generation function](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_sparse_memory.py).
 
 ## Timing and provenance
 
@@ -55,11 +55,11 @@ Native page text is exported with the raw page records. We did not rerun an inde
 
 An interrupted 27B attempt (run 001) ended before any page result was written. The completed restart uses a fresh run directory (002) with the same settings. The initial 35B model download was also interrupted and resumed from its partial cache. These partial attempts do not contribute scores or inference timings.
 
-Compact evidence is stored under [outputs/qwen-compact/evidence](https://github.com/dividor/pdf-heading-benchmark/tree/codex/technique-explorer/outputs/qwen-compact/evidence). It includes every audited prediction, per-page telemetry, model revisions, package versions, source/input checksums and the protocol written before model loading. Downloaded weights, PDFs and full raw text remain outside Git.
+Compact evidence is stored under [outputs/qwen-compact/evidence](https://github.com/dividor/pdf-heading-benchmark/tree/codex/full-method-verification/outputs/qwen-compact/evidence). It includes every audited prediction, per-page telemetry, model revisions, package versions, source/input checksums and the protocol written before model loading. Downloaded weights, PDFs and full raw text remain outside Git.
 
 ## Reproduce
 
-Use the repository setup instructions to download the four PDFs and prepare the existing PyMuPDF4LLM candidates and PDF tags in an external data directory. Use an Apple Silicon environment with the pinned [MLX requirements](https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mlx.txt), and set `PYTHONPATH=src` when invoking the standalone runner from the repository root.
+Use the repository setup instructions to download the four PDFs and prepare the existing PyMuPDF4LLM candidates and PDF tags in an external data directory. Use an Apple Silicon environment with the pinned [MLX requirements](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/mlx.txt), and set `PYTHONPATH=src` when invoking the standalone runner from the repository root.
 
 ```sh
 export PDF_BENCHMARK_DATA=/absolute/path/to/external-data

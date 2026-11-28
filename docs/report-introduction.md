@@ -4,7 +4,7 @@ Headings tell a search system what a passage is for: an executive summary may an
 
 ## Results at a glance
 
-**34 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
+**33 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
 
 - **Highest score:** Qwen3.6-27B with visual memory gets **65/77** heading-level pairs right; **54 min 2 sec** for 32 pages. It receives extra PDF text, tags and document context.
 - **Image-only alternative:** Chandra OCR 2 gets **53/77** right in **14 min 46 sec**. OvisOCR3 gets **36/77** right in **6 min 58 sec**.

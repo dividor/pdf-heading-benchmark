@@ -1,4 +1,4 @@
-"""Extract the selected local archive members and regenerate label-independent features."""
+"""Prepare frozen annotations from verified public PDFs or a local archive."""
 
 import argparse
 import hashlib
@@ -14,6 +14,7 @@ from pdf_heading_benchmark.supervised_data import (
     write_json,
 )
 from pdf_heading_benchmark.supervised_features import extract_lines, feature_rows
+from pdf_heading_benchmark.training_download import download_training
 
 
 def prepare(config: Path, data: Path, archive: Path | None) -> None:
@@ -74,6 +75,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=Path("configs/supervised"))
     parser.add_argument("--data", type=Path, required=True)
-    parser.add_argument("--archive", type=Path, help="Optional local tar; omit after verified extraction")
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--archive", type=Path, help="Optional local tar; omit after verified extraction")
+    source.add_argument("--download", action="store_true", help="Download the exact public training PDFs")
     args = parser.parse_args()
+    if args.download:
+        download_training(args.config, args.data)
     prepare(args.config, args.data, args.archive)

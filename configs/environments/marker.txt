@@ -3,3 +3,5 @@ beautifulsoup4
 pdfplumber
 requests==2.34.2
 marker-pdf==2.2
+# The published run used Indra 1.1.2; Marker permits newer versions with different weights.
+indra-ocr==1.1.2

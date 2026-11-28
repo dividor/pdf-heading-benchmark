@@ -1,0 +1,31 @@
+<section class="score-example" aria-labelledby="score-example-title">
+  <h3 id="score-example-title">Example: a document with four headings</h3>
+  <p>Assume all headings are on the same PDF page.</p>
+  <div class="score-example-documents">
+    <div>
+      <h4>Reference headings</h4>
+      <pre>H1  Summary
+H1  Findings
+    H2  School attendance
+H1  Recommendations</pre>
+    </div>
+    <div>
+      <h4>Predicted headings</h4>
+      <pre>H1  Summary
+H1  Findings
+H1  School attendance
+    H2  Attendance rose 12%</pre>
+    </div>
+  </div>
+  <ul>
+    <li><strong>Correct:</strong> Summary and Findings have the right level.</li>
+    <li><strong>Wrong level:</strong> School attendance should be H2.</li>
+    <li><strong>Extra heading:</strong> Attendance rose 12% is body text.</li>
+    <li><strong>Missing:</strong> Recommendations was not predicted.</li>
+  </ul>
+  <p><strong>C = 2</strong> correct pairs, <strong>P = 4</strong> predictions,
+    <strong>G = 4</strong> reference headings.</p>
+  <p class="score-example-result"><strong>Joint F0.5 = (1.25 × 2) / (4 + 0.25 × 4) = 50%.</strong></p>
+  <p>The wrong level earns no credit. The extra heading increases P, and the missing
+    heading remains part of G. Four correct predictions with nothing extra score 100%.</p>
+</section>

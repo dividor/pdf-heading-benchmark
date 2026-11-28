@@ -103,7 +103,7 @@ Reports came from the supplied **Evaluation list – Phase 1.xlsx** catalogue an
 
 ## Reproduce and run on your own PDF
 
-For a fresh checkout, follow the [complete public-download guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/docs/rebuild-heading-model.md) or [run the notebook](https://github.com/dividor/pdf-heading-benchmark/blob/codex/rebuild-training-notebook/notebooks/rebuild_heading_model.ipynb). That path rebuilds the confidence-filtered method without the private archive or the old v1 model. The commands below reproduce the older comparison when those additional local inputs are available.
+For a fresh checkout, follow the [complete public-download guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/rebuild-heading-model.md) or [run the notebook](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/notebooks/rebuild_heading_model.ipynb). That path rebuilds the confidence-filtered method without the private archive or the old v1 model. The commands below reproduce the older comparison when those additional local inputs are available.
 
 Use Python 3.12 and the committed uv lockfile. From a checkout:
 

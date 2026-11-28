@@ -2,6 +2,8 @@
 
 from html import escape
 
+from pdf_heading_benchmark.io import REPO
+
 COLUMN_DESCRIPTIONS = {
     "Configuration": [
         (
@@ -161,6 +163,8 @@ def column_help(soup, results) -> str:
         header.append(" ")
         header.append(info_button(soup, target, label))
         paragraphs = "".join(f"<p>{escape(p)}</p>" for p in COLUMN_DESCRIPTIONS[label])
+        if label == "Primary score: joint F0.5":
+            paragraphs += (REPO / "docs/joint-score-example.html").read_text()
         panels.append(
             f'<dialog id="{target}" aria-labelledby="title-{target}" '
             'class="technique-dialog column-dialog"><div class="technique-shell">'

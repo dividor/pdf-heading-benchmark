@@ -2,7 +2,7 @@
 
 Use Python 3.12 and `uv sync --locked`. Create a feature branch (`codex/` for Codex changes), install pre-commit, and use Conventional Commits. Never bypass hooks with `--no-verify`.
 
-Run `uv run pre-commit run --all-files` and `uv run pytest -q` before a PR. Hooks cover file hygiene, Ruff formatting/linting, mypy, Bandit, detect-secrets, Gitleaks, notebook output hygiene and complexity. New and changed functions must have cyclomatic and cognitive complexity <=20. Python file maintainability index must be >=10 (>=20 preferred), matching the reference repo's good/okay/bad bands. The gate includes src, tests and scripts. Refactor failures rather than adding suppression comments or excluding code.
+Run `uv run pre-commit run --all-files`, `uv run pytest -q`, and `npm test` before a PR. The interactive report tests use Node.js 22 or newer and its built-in test runner; no npm dependencies or install step are needed. Hooks cover file hygiene, Ruff formatting/linting, mypy, Bandit, detect-secrets, Gitleaks, notebook output hygiene and complexity. New and changed functions must have cyclomatic and cognitive complexity <=20. Python file maintainability index must be >=10 (>=20 preferred), matching the reference repo's good/okay/bad bands. The gate includes src, tests and scripts. Refactor failures rather than adding suppression comments or excluding code.
 
 Keep tests small, meaningful, offline and free of API credentials. Test model response adapters with synthetic data; never silently repair invalid model replies or substitute a different backend. Preserve raw replies and report failures. Paid-service retries must not blindly resubmit a potentially completed operation.
 

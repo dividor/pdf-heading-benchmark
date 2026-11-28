@@ -18,6 +18,7 @@ def test_custom_document_initialization(tmp_path):
     assert read_json(output / "reference/audit_pages.json") == {"document": [1, 2]}
     manifest = read_json(output / "corpus/manifest.json")
     assert manifest[0]["pages"] == 2
+    assert manifest[0]["title"] == "source"
     assert (output / "corpus/document.pdf").read_bytes() == source.read_bytes()
     assert not (output / "reference/gold.json").exists()
     with pytest.raises(FileExistsError):

@@ -356,7 +356,7 @@
   "structure_expanded_line": {
     "description": "Test whether more labeled examples improve the original single-classifier design.",
     "code": "scripts/structure/train.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py",
     "steps": [
       {
         "script": "scripts/runners/run_structure.py",
@@ -372,7 +372,7 @@
   "structure_learned_groups": {
     "description": "Train two Extra Trees classifiers: one decides which neighboring lines belong to the same heading, and one labels the resulting text groups as body text or H1–H5.",
     "code": "scripts/structure/train.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py",
     "steps": [
       {
         "script": "scripts/runners/run_structure.py",
@@ -388,7 +388,7 @@
   "structure_context_relations": {
     "description": "Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.",
     "code": "scripts/structure/train.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/supervised-structure-v2/scripts/structure/train.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py",
     "steps": [
       {
         "script": "scripts/runners/run_structure.py",
@@ -404,7 +404,7 @@
   "structure_calibrated": {
     "description": "Reuse our three Extra Trees classifiers trained locally on 20 WFP reports; apply a validation-selected body-score multiplier of two.",
     "code": "scripts/structure/calibrate.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/calibrate.py",
     "steps": [
       {
         "script": "scripts/runners/run_structure.py",
@@ -421,7 +421,7 @@
   "structure_precision": {
     "description": "Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.",
     "code": "scripts/structure/optimize_precision.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/optimize_precision.py",
     "steps": [
       {
         "script": "scripts/runners/run_precision.py",
@@ -434,7 +434,7 @@
   "structure_recall": {
     "description": "Refit Extra Trees on the same 20 training reports; compare 64 validation settings for precision and coverage. No setting met both 80% targets; this is the predeclared diagnostic fallback.",
     "code": "scripts/structure/retrain_recall.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/retrain_recall.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/retrain_recall.py",
     "steps": [
       {
         "script": "scripts/runners/run_recall.py",
@@ -447,7 +447,7 @@
   "qwen36_27b_compact": {
     "description": "Qwen3.6-27B MLX 4-bit; one 1280-pixel image and text-only heading memory.",
     "code": "scripts/runners/run_qwen_compact.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py",
     "steps": [
       {
         "script": "scripts/runners/run_pymupdf4llm.py",
@@ -482,7 +482,7 @@
   "qwen36_35b_compact": {
     "description": "Qwen3.6-35B-A3B MLX 4-bit; one 1280-pixel image and text-only heading memory.",
     "code": "scripts/runners/run_qwen_compact.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py",
     "steps": [
       {
         "script": "scripts/runners/run_pymupdf4llm.py",
@@ -517,7 +517,7 @@
   "qwen36_35b_visual_memory": {
     "description": "Qwen3.6-35B-A3B MLX 4-bit; original prompt, larger current image and up to six previous page images.",
     "code": "scripts/runners/run_qwen_sparse_memory.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_sparse_memory.py",
     "steps": [
       {
         "script": "scripts/runners/run_pymupdf4llm.py",
@@ -553,7 +553,7 @@
   "minicpm_ocr10": {
     "description": "PP-DocLayoutV3 detects regions on CPU; MiniCPM-OCR 1.0 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
     "code": "scripts/runners/run_field_candidate.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_field_candidate.py",
     "steps": [
       {
         "script": "scripts/runners/benchmark_field_candidate.py",
@@ -568,7 +568,7 @@
   "xiaomi_ocr0": {
     "description": "Xiaomi-OCR-0 reads each complete page through MLX and returns native Markdown.",
     "code": "scripts/runners/run_field_candidate.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_field_candidate.py",
     "steps": [
       {
         "script": "scripts/runners/benchmark_field_candidate.py",
@@ -583,7 +583,7 @@
   "paddleocr_vl16": {
     "description": "PP-DocLayoutV3 detects regions on CPU; PaddleOCR-VL-1.6 recognizes their content on the Metal GPU; MiniCPM SDK assembles Markdown.",
     "code": "scripts/runners/run_field_candidate.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_field_candidate.py",
     "steps": [
       {
         "script": "scripts/runners/benchmark_field_candidate.py",
@@ -598,37 +598,37 @@
   "paddleocr_vl16_official": {
     "description": "PaddleOCR 3.7.0 runs its complete v1.6 pipeline: native PaddleX layout on CPU, PaddleOCR-VL-1.6 on Metal, then Paddle’s own Markdown assembly.",
     "code": "scripts/runners/run_official_paddle.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_paddle.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_official_paddle.py",
     "steps": []
   },
   "ovisocr3_official_metal": {
     "description": "OvisOCR3 reads each page with its official Markdown prompt through vLLM Metal. We use the upstream cleanup and preserve the model’s heading levels.",
     "code": "scripts/runners/run_ovis_official.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_ovis_official.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_ovis_official.py",
     "steps": []
   },
   "minicpm_ocr10_official_ollama": {
     "description": "MiniCPM’s official package rotates pages, detects layout, recognizes crops through Ollama with Q8 weights and DSpark, then assembles its native Markdown.",
     "code": "scripts/runners/run_official_minicpm.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_minicpm.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_official_minicpm.py",
     "steps": []
   },
   "xiaomi_ocr0_official_metal": {
     "description": "Xiaomi’s upstream two-stage pipeline detects page regions with PaddleX on CPU, recognizes each crop with original BF16 weights on Metal, and assembles Markdown using its default title profile.",
     "code": "scripts/runners/run_official_xiaomi.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_xiaomi.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_official_xiaomi.py",
     "steps": []
   },
   "evidencelab": {
     "description": "Parse full PDFs with EvidenceLab’s pinned Docker image, including its hierarchy and final TOC processing.",
     "code": "scripts/runners/benchmark_evidencelab.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/benchmark_evidencelab.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/benchmark_evidencelab.py",
     "steps": []
   },
   "docling_ocr": {
     "description": "Run full-page RapidOCR in Docling, then its default heading-hierarchy stage.",
     "code": "scripts/runners/run_docling_ocr.py",
-    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling_ocr.py",
+    "code_url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_docling_ocr.py",
     "steps": []
   }
 }

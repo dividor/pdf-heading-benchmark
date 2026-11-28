@@ -19,6 +19,7 @@ def runner_command(step: dict) -> list[str]:
         "uv",
         "run",
         "--no-project",
+        "--isolated",
         "--python",
         "3.12",
         "--with-requirements",

@@ -10,3 +10,4 @@ huggingface-hub==2.4.0
 pillow==13.0.0
 openai
 tqdm
+chandra-ocr @ git+https://github.com/datalab-to/chandra.git@9c3a195573bec72b6e73cd66be099350ac11a4f5

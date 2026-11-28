@@ -4,8 +4,8 @@
 <p>The goal is to preserve extracted text while identifying heading levels cheaply. Headings tell retrieval systems what a passage belongs to: an acronyms list and an executive summary can contain similar words but serve very different user needs. A wrong heading or parent can attach useful text to the wrong section.</p>
 <h2>Documents and separation</h2>
 <p>The supplied <strong>Evaluation list - Phase 1.xlsx</strong>, sheet <strong>Evaluation list</strong>, contains 335 catalogue entries. We matched 333 original PDFs in the supplied WFP archive snapshot <strong>20261121T043910Z</strong>. We selected 24 reports dated 2017–2026: 17 English, four French and three Spanish; 1,524 PDF pages altogether. Selection is a deliberately varied convenience sample, not a random estimate of all WFP reports.</p>
-<p>Sources, catalogue row numbers, exact archive member names and SHA-256 checksums are recorded in the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/supervised/corpus.json">corpus manifest</a>. Archive extraction uses exact members and verifies size and checksum. No network download script was added: the supplied local archive is the reproducible source. Public PDF links are supplied in the table for access outside that archive; their future bytes may change.</p>
-<p>Prior benchmark reports—Colombia, Indonesia, the mid-term strategic plan, targeting, and the original 2018 resilience report—are excluded by catalogue identity, WFP document identifier and checksum where available. An additional resilience entry was conservatively excluded. A GAFSP report was removed during source review because it was not a WFP evaluation, and replaced before fitting. See the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/supervised/excluded.json">exclusion manifest</a>.</p>
+<p>Sources, catalogue row numbers, exact archive member names and SHA-256 checksums are recorded in the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/supervised/corpus.json">corpus manifest</a>. Archive extraction uses exact members and verifies size and checksum. No network download script was added: the supplied local archive is the reproducible source. Public PDF links are supplied in the table for access outside that archive; their future bytes may change.</p>
+<p>Prior benchmark reports—Colombia, Indonesia, the mid-term strategic plan, targeting, and the original 2018 resilience report—are excluded by catalogue identity, WFP document identifier and checksum where available. An additional resilience entry was conservatively excluded. A GAFSP report was removed during source review because it was not a WFP evaluation, and replaced before fitting. See the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/supervised/excluded.json">exclusion manifest</a>.</p>
 <table>
 <thead>
 <tr>
@@ -49,7 +49,7 @@
 <p>The assistant inspected rendered page images, extracted text, contents pages and surrounding sections, assigning body/non-heading (0) or H1–H6. There are <strong>202 heading groups</strong>: 154 training, 21 validation and 27 test. Wrapped titles have explicit constituent line IDs. These are assistant annotations with documented decisions, not independently adjudicated human gold or established 100% accuracy.</p>
 <p>Initially five pages per report were reviewed: contents when detected (otherwise page 2), approximate body start, one-third, two-thirds and end. The catalogue's machine-generated heading columns were not used as labels. The El Salvador body start was corrected from the catalogue using the PDF. After initial validation, two additional pages per training report were selected using numbered/bold-line counts and visually reviewed. Validation and test pages stayed fixed. Exact 1-based PDF pages appear below; they differ from printed page numbers.</p>
 <p>Only reviewed pages contribute examples. Every other extracted line on a reviewed page is a negative. Unreviewed pages are <strong>unlabelled</strong>, never automatically treated as negatives. Contents entries, table captions, boxed findings, running headers and inline bold paragraph lead-ins are excluded. A standalone contents-section title is a heading. These policy choices matter; other applications may want different labels.</p>
-<p>The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/configs/supervised/labels.tsv">labels</a> and <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/supervised/evidence/annotations.json">readable annotations with bounding boxes</a> are committed for review. No model predictions were used as ground truth. Training labels were clarified during expansion; test labels were fixed before fitting and no test scores were examined until final selection.</p>
+<p>The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/supervised/labels.tsv">labels</a> and <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/supervised/evidence/annotations.json">readable annotations with bounding boxes</a> are committed for review. No model predictions were used as ground truth. Training labels were clarified during expansion; test labels were fixed before fitting and no test scores were examined until final selection.</p>
 <h2>Methods and runnable code</h2>
 <table>
 <thead>
@@ -63,42 +63,42 @@
 <tr>
 <td>Local archive preparation</td>
 <td>Extract the selected regular-file members; verify SHA-256 and reject prior-document overlap</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/prepare.py">prepare.py</a>, <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_data.py">data validation</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/supervised/prepare.py">prepare.py</a>, <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_data.py">data validation</a></td>
 </tr>
 <tr>
 <td>Text and features</td>
 <td>PyMuPDF text lines; relative font size, bold/italic, colour, position, repetition, numbering and neighbouring lines</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_features.py">feature extractor</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py">feature extractor</a></td>
 </tr>
 <tr>
 <td>Logistic regression</td>
 <td>Standardized features; balanced class weights; C=1; seed 42</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py">model implementation</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py">model implementation</a></td>
 </tr>
 <tr>
 <td>Extra Trees</td>
 <td>200 trees; depth 16; minimum leaf 2; 80% features; balanced class weights; seed 42; four CPU workers</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_models.py">model implementation</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py">model implementation</a></td>
 </tr>
 <tr>
 <td>Selection</td>
 <td>Fit only training reports; choose highest validation exact-level F1</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/train.py">train.py</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/supervised/train.py">train.py</a></td>
 </tr>
 <tr>
 <td>Final test</td>
 <td>Evaluate only the selected model; refuse changed labels/corpus/model or an existing test result</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/evaluate_test.py">evaluate_test.py</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/supervised/evaluate_test.py">evaluate_test.py</a></td>
 </tr>
 <tr>
 <td>Deployment</td>
 <td>Data-only JSON classifier, preserved text and predicted heading groups; inferred parents flagged as unevaluated</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/predict.py">predict.py</a>, <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/src/pdf_heading_benchmark/supervised_inference.py">inference</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/supervised/predict.py">predict.py</a>, <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_inference.py">inference</a></td>
 </tr>
 <tr>
 <td>Timing</td>
 <td>Run extraction and classification over every page of all 24 PDFs</td>
-<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/scripts/supervised/benchmark.py">benchmark.py</a></td>
+<td><a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/supervised/benchmark.py">benchmark.py</a></td>
 </tr>
 </tbody>
 </table>
@@ -154,7 +154,7 @@
 <p>Actual full-document inference covered <strong>1,524 pages in 21.88 seconds</strong> on an Apple M4 Pro Mac mini (14 CPU cores, 48 GB RAM), CPU only. This sums extraction, feature calculation, classification and heading grouping, excluding interpreter/model loading and output-file writes. That is <strong>7.18 seconds per 500 pages</strong>, a throughput normalization, not a separately timed run. Peak process RSS was 557.5 MiB. The selected JSON model is 9.97 MiB.</p>
 <p><strong>Cost:</strong> no metered API inference spend and no GPU. Electricity, hardware amortization and annotation labour were not measured, so total cost is not reported as zero. Assistant annotation was used to create the dataset; the preparation, training and deployed classifier run locally.</p>
 <p>Detection F1 treats any positive level as a detected heading. Exact-level F1 counts a heading line as correct only at the annotated level; wrong-level predictions reduce both precision and recall. True-negative body lines do not inflate either score. Whole-headings-correct requires every constituent line to have the right level, but does not measure whether predicted groups have perfect boundaries. Scores are micro-averaged over reviewed lines, not full documents.</p>
-<p>The initial 120-page tree run scored 70.4% validation exact-level F1. With 32 extra training pages this was 69.1%, while complete correctly levelled validation headings increased from 14/21 to 15/21. More examples did not automatically improve the line metric. The expanded tree model was selected against the expanded linear baseline (47.6%). An intermediate export failed its sklearn probability-parity check and was corrected to match sklearn's float32 tree traversal; no test was scored during that failure. Frozen run history and predictions are in <a href="https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/evidence">evidence</a>.</p>
+<p>The initial 120-page tree run scored 70.4% validation exact-level F1. With 32 extra training pages this was 69.1%, while complete correctly levelled validation headings increased from 14/21 to 15/21. More examples did not automatically improve the line metric. The expanded tree model was selected against the expanded linear baseline (47.6%). An intermediate export failed its sklearn probability-parity check and was corrected to match sklearn's float32 tree traversal; no test was scored during that failure. Frozen run history and predictions are in <a href="https://github.com/dividor/pdf-heading-benchmark/tree/codex/full-method-verification/outputs/supervised/evidence">evidence</a>.</p>
 <h3>Where the test failed</h3>
 <table>
 <thead>
@@ -206,8 +206,8 @@
 <h2>Visual review and comparison with the original benchmark</h2>
 <p><img src="../../docs/images/supervised-method.png" alt="Method diagram" /></p>
 <p><img src="../../docs/images/supervised-annotation-overlay.png" alt="Actual source page with assistant annotation overlays" /></p>
-<p>The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/docs/annotation-review/README.md">visual review pack</a> displays collated TOCs, all 152 reviewed pages, frozen H-level boxes and optional classifier predictions. You can confirm or propose changes and export a separate review JSON. None of those actions alters the scored labels.</p>
-<p>The frozen model was subsequently tested on the original four benchmark PDFs, all excluded from training. Under the original title-matching and exact-level scoring contract, it recovered <strong>59/77 titles (76.6%)</strong>, with <strong>35/77 correct levels (45.5%)</strong> and <strong>20 extra headings</strong>. Full-document inference took <strong>7.7 seconds over 523 pages</strong>. This result appears in the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/main/outputs/report/league_table.md">main comparison table</a>, with <a href="https://github.com/dividor/pdf-heading-benchmark/tree/main/outputs/supervised/comparison">frozen evidence</a>. It gives a direct comparison to the other methods; the new test set's 82.0% line F1 remains a separate result.</p>
+<p>The <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/annotation-review/README.md">visual review pack</a> displays collated TOCs, all 152 reviewed pages, frozen H-level boxes and optional classifier predictions. You can confirm or propose changes and export a separate review JSON. None of those actions alters the scored labels.</p>
+<p>The frozen model was subsequently tested on the original four benchmark PDFs, all excluded from training. Under the original title-matching and exact-level scoring contract, it recovered <strong>59/77 titles (76.6%)</strong>, with <strong>35/77 correct levels (45.5%)</strong> and <strong>20 extra headings</strong>. Full-document inference took <strong>7.7 seconds over 523 pages</strong>. This result appears in the <a href="https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/report/league_table.md">main comparison table</a>, with <a href="https://github.com/dividor/pdf-heading-benchmark/tree/codex/full-method-verification/outputs/supervised/comparison">frozen evidence</a>. It gives a direct comparison to the other methods; the new test set's 82.0% line F1 remains a separate result.</p>
 <h2>Selected-report table</h2>
 <table>
 <thead>

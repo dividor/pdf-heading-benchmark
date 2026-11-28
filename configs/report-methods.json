@@ -18,7 +18,6 @@
   "structure_expanded_line",
   "structure_learned_groups",
   "structure_context_relations",
-  "structure_calibrated",
   "structure_precision",
   "structure_recall",
   "qwen36_27b_compact",

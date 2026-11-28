@@ -31,15 +31,15 @@
       },
       {
         "label": "Conversion and both hierarchy passes",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_docling.py"
       },
       {
         "label": "Pinned environment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/docling.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -126,15 +126,15 @@
       },
       {
         "label": "Conversion and both hierarchy passes",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_docling.py"
       },
       {
         "label": "Pinned environment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/docling.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -221,15 +221,15 @@
       },
       {
         "label": "Conversion and both hierarchy passes",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_docling.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_docling.py"
       },
       {
         "label": "Pinned environment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/docling.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -316,15 +316,15 @@
       },
       {
         "label": "Markdown conversion and heading regex",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pymupdf4llm.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_pymupdf4llm.py"
       },
       {
         "label": "Pinned environment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/pymupdf.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/pymupdf.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -402,15 +402,15 @@
       },
       {
         "label": "Model construction and JSON decoding",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_marker.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_marker.py"
       },
       {
         "label": "Pinned environment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/marker.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/marker.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -492,15 +492,15 @@
       },
       {
         "label": "ONNX configuration and block extraction",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_mineru.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_mineru.py"
       },
       {
         "label": "Pinned environment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mineru.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/mineru.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -590,11 +590,11 @@
       },
       {
         "label": "Structure tree and MCID recovery",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pdf_tags.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_pdf_tags.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -679,19 +679,19 @@
       },
       {
         "label": "Exact PROMPT, sampling and validation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_ids.py"
       },
       {
         "label": "Model revision pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Candidate union and order preservation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/build_union.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/build_union.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -805,19 +805,19 @@
       },
       {
         "label": "Exact PROMPT, sampling and validation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_ids.py"
       },
       {
         "label": "Model revision pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Candidate parser",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_mineru.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_mineru.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -931,19 +931,19 @@
       },
       {
         "label": "Exact PROMPT, sampling and validation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_ids.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_ids.py"
       },
       {
         "label": "Model revision pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Candidate parser",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_pymupdf4llm.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_pymupdf4llm.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -1057,27 +1057,27 @@
       },
       {
         "label": "Full instruction and memory update",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_visual_memory.py"
       },
       {
         "label": "Structured reply decoder",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/decode_qwen.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/decode_qwen.py"
       },
       {
         "label": "Model revision",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       },
       {
         "label": "Qwen quantization and speed options",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/qwen-speed-options.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/qwen-speed-options.md"
       },
       {
         "label": "Measured single-image speed trials",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md"
       }
     ],
     "training": [],
@@ -1202,15 +1202,15 @@
       },
       {
         "label": "Grounding prompt, image sizing and decoder",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_lighton_mlx.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_lighton_mlx.py"
       },
       {
         "label": "MLX package pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mlx.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/mlx.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -1321,19 +1321,19 @@
       },
       {
         "label": "Batch settings and prompt verification",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_chandra_batch.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_chandra_batch.py"
       },
       {
         "label": "Grounded title decoder",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_lighton_mlx.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_lighton_mlx.py"
       },
       {
         "label": "Checkpoint revisions",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -1448,19 +1448,19 @@
       },
       {
         "label": "Rendering, batch parameters and HTML decoder",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_chandra_batch.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_chandra_batch.py"
       },
       {
         "label": "Author-code download pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/prepare_model.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/prepare_model.py"
       },
       {
         "label": "Model revision",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -1571,19 +1571,19 @@
       },
       {
         "label": "Two-step interface and null-level handling",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_mineru_pro.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_mineru_pro.py"
       },
       {
         "label": "Model revision",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Library pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/mlx.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/mlx.txt"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -1682,19 +1682,19 @@
       },
       {
         "label": "Mosaic prompt and overlap alignment",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_popo_mlx.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_popo_mlx.py"
       },
       {
         "label": "Quantization and author-code preparation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/prepare_model.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/prepare_model.py"
       },
       {
         "label": "Model revision",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/models.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/models.json"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [],
@@ -1803,31 +1803,31 @@
       },
       {
         "label": "Estimator definitions",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py"
       },
       {
         "label": "Line features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py"
       },
       {
         "label": "V1 training and selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/supervised/train.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/supervised/train.py"
       },
       {
         "label": "V1 validation evidence",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/supervised/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/supervised/evidence/selection.json"
       },
       {
         "label": "V1 corpus and source URLs",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/supervised/corpus.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/supervised/corpus.json"
       },
       {
         "label": "Grouping and parent inference",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_inference.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
@@ -1919,7 +1919,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -1927,7 +1927,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -1966,39 +1966,39 @@
       },
       {
         "label": "Exact estimator constructor and JSON export",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py"
       },
       {
         "label": "Native line features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py"
       },
       {
         "label": "Group/context/pair features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py"
       },
       {
         "label": "Training components and variant selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py"
       },
       {
         "label": "Recorded validation scores and training settings",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/evidence/selection.json"
       },
       {
         "label": "PDF sources and report splits",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json"
       },
       {
         "label": "Reviewable heading annotations",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json"
       },
       {
         "label": "Inference, grouping and Viterbi",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
@@ -2092,7 +2092,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -2100,7 +2100,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -2139,39 +2139,39 @@
       },
       {
         "label": "Exact estimator constructor and JSON export",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py"
       },
       {
         "label": "Native line features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py"
       },
       {
         "label": "Group/context/pair features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py"
       },
       {
         "label": "Training components and variant selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py"
       },
       {
         "label": "Recorded validation scores and training settings",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/evidence/selection.json"
       },
       {
         "label": "PDF sources and report splits",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json"
       },
       {
         "label": "Reviewable heading annotations",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json"
       },
       {
         "label": "Inference, grouping and Viterbi",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
@@ -2270,7 +2270,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -2278,7 +2278,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -2309,7 +2309,7 @@
     "sources": [
       {
         "label": "Model provenance page",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md"
       },
       {
         "label": "Training run record",
@@ -2341,39 +2341,39 @@
       },
       {
         "label": "Exact estimator constructor and JSON export",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py"
       },
       {
         "label": "Native line features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py"
       },
       {
         "label": "Group/context/pair features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py"
       },
       {
         "label": "Training components and variant selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py"
       },
       {
         "label": "Recorded validation scores and training settings",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/evidence/selection.json"
       },
       {
         "label": "PDF sources and report splits",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json"
       },
       {
         "label": "Reviewable heading annotations",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json"
       },
       {
         "label": "Inference, grouping and Viterbi",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
@@ -2501,7 +2501,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -2509,7 +2509,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -2517,7 +2517,7 @@
       {
         "name": "Viterbi decoding",
         "description": "An algorithm for choosing the highest-scoring sequence of heading levels. Here it combines each heading’s own scores with scores for the relationship to the preceding heading. It does not train or add another model.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py",
         "aliases": [
           "Viterbi"
         ]
@@ -2525,7 +2525,7 @@
       {
         "name": "model provenance page",
         "description": "Complete training lineage, report list, model identities and reproduction command.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md",
         "aliases": [
           "model provenance page"
         ]
@@ -2596,7 +2596,7 @@
     "sources": [
       {
         "label": "Model provenance page",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md"
       },
       {
         "label": "Training run record",
@@ -2628,55 +2628,55 @@
       },
       {
         "label": "Calibration protocol and regression evidence",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/report.md"
       },
       {
         "label": "Exact estimator constructor and JSON export",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py"
       },
       {
         "label": "Native line features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py"
       },
       {
         "label": "Group/context/pair features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py"
       },
       {
         "label": "Training components and variant selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py"
       },
       {
         "label": "Recorded validation scores and training settings",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-v2/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/evidence/selection.json"
       },
       {
         "label": "PDF sources and report splits",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json"
       },
       {
         "label": "Reviewable heading annotations",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json"
       },
       {
         "label": "Inference, grouping and Viterbi",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py"
       },
       {
         "label": "Nine-setting search implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/calibrate.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/calibrate.py"
       },
       {
         "label": "Recorded search results and selected decision settings",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-calibration/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/evidence/selection.json"
       },
       {
         "label": "Calibration runner and artifact input",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_structure.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_structure.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       }
     ],
     "training": [
@@ -2815,7 +2815,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -2823,7 +2823,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -2831,7 +2831,7 @@
       {
         "name": "Viterbi decoding",
         "description": "An algorithm for choosing the highest-scoring sequence of heading levels. Here it combines each heading’s own scores with scores for the relationship to the preceding heading. It does not train or add another model.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py",
         "aliases": [
           "Viterbi"
         ]
@@ -2839,7 +2839,7 @@
       {
         "name": "model provenance page",
         "description": "Complete training lineage, report list, model identities and reproduction command.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md",
         "aliases": [
           "model provenance page"
         ]
@@ -2910,7 +2910,7 @@
     "sources": [
       {
         "label": "Model provenance page",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md"
       },
       {
         "label": "Training run record",
@@ -2942,59 +2942,59 @@
       },
       {
         "label": "Exact estimator constructor and JSON export",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_models.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py"
       },
       {
         "label": "Native line features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/supervised_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py"
       },
       {
         "label": "Group/context/pair features",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py"
       },
       {
         "label": "Training components and variant selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/train.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py"
       },
       {
         "label": "PDF sources and report splits",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json"
       },
       {
         "label": "Reviewable heading annotations",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/annotations.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json"
       },
       {
         "label": "Inference, grouping and Viterbi",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py"
       },
       {
         "label": "Main-table scoring implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/evaluation.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py"
       },
       {
         "label": "Precision filter and sequence inference",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/precision_inference.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/precision_inference.py"
       },
       {
         "label": "36-setting search and protocol recorded before selection",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/structure/optimize_precision.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/optimize_precision.py"
       },
       {
         "label": "Joint metric implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/joint_metrics.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/joint_metrics.py"
       },
       {
         "label": "All validation results",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-precision/evidence/selection.json"
       },
       {
         "label": "Experiment, trade-offs and reproduction",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-precision/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-precision/report.md"
       },
       {
         "label": "Run on a new PDF",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_precision.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_precision.py"
       }
     ],
     "training": [
@@ -3131,7 +3131,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -3139,7 +3139,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -3147,7 +3147,7 @@
       {
         "name": "Viterbi decoding",
         "description": "An algorithm for choosing the highest-scoring sequence of heading levels. Here it combines each heading’s own scores with scores for the relationship to the preceding heading. It does not train or add another model.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_inference.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py",
         "aliases": [
           "Viterbi"
         ]
@@ -3155,7 +3155,7 @@
       {
         "name": "model provenance page",
         "description": "Complete training lineage, report list, model identities and reproduction command.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md",
         "aliases": [
           "model provenance page"
         ]
@@ -3289,27 +3289,27 @@
     "sources": [
       {
         "label": "Full trial and reproduction",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-recall/report.md"
       },
       {
         "label": "Predeclared protocol",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/evidence/protocol.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-recall/evidence/protocol.json"
       },
       {
         "label": "All validation scores and model hashes",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/structure-recall/evidence/selection.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-recall/evidence/selection.json"
       },
       {
         "label": "Fitting code",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/recall_training.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/recall_training.py"
       },
       {
         "label": "Original training labels and source reports",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/model-provenance.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md"
       },
       {
         "label": "Run on a new PDF",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_recall.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_recall.py"
       }
     ],
     "terms": [
@@ -3325,7 +3325,7 @@
       {
         "name": "Features",
         "description": "The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/structure_features.py",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py",
         "aliases": [
           "features"
         ]
@@ -3333,7 +3333,7 @@
       {
         "name": "Validation reports",
         "description": "Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/structure-v2/corpus.json",
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json",
         "aliases": [
           "validation reports"
         ]
@@ -3435,19 +3435,19 @@
       },
       {
         "label": "Exact inference runner",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py"
       },
       {
         "label": "Exact prompt",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/compact_prompt.py"
       },
       {
         "label": "Protocol, predictions and page telemetry",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_27b_compact.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/evidence/qwen36_27b_compact.json"
       },
       {
         "label": "Experiment and reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md"
       },
       {
         "label": "Pinned architecture and quantization configuration",
@@ -3576,19 +3576,19 @@
       },
       {
         "label": "Exact inference runner",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_compact.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py"
       },
       {
         "label": "Exact prompt",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/compact_prompt.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/compact_prompt.py"
       },
       {
         "label": "Protocol, predictions and page telemetry",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_35b_compact.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/evidence/qwen36_35b_compact.json"
       },
       {
         "label": "Experiment and reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md"
       },
       {
         "label": "Pinned architecture and quantization configuration",
@@ -3720,7 +3720,7 @@
       },
       {
         "label": "Experiment and reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/report.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md"
       },
       {
         "label": "Pinned architecture and quantization configuration",
@@ -3728,15 +3728,15 @@
       },
       {
         "label": "Follow-up wrapper",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_sparse_memory.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_sparse_memory.py"
       },
       {
         "label": "Unchanged original instruction and generation function",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_qwen_visual_memory.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_visual_memory.py"
       },
       {
         "label": "Protocol, predictions and page telemetry",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/qwen-compact/evidence/qwen36_35b_visual_memory.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/evidence/qwen36_35b_visual_memory.json"
       }
     ],
     "terms": [
@@ -3868,19 +3868,19 @@
       },
       {
         "label": "Exact local runner and prompts",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_field_candidate.py"
       },
       {
         "label": "Download pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/field-candidates.json"
       },
       {
         "label": "Protocol and reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/field-candidates.md"
       },
       {
         "label": "Measured predictions and page telemetry",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/minicpm_ocr10.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/field-candidates/minicpm_ocr10.json"
       }
     ],
     "terms": [
@@ -3997,19 +3997,19 @@
       },
       {
         "label": "Exact local runner and prompts",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_field_candidate.py"
       },
       {
         "label": "Download pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/field-candidates.json"
       },
       {
         "label": "Protocol and reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/field-candidates.md"
       },
       {
         "label": "Measured predictions and page telemetry",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/xiaomi_ocr0.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/field-candidates/xiaomi_ocr0.json"
       }
     ],
     "terms": [
@@ -4134,19 +4134,19 @@
       },
       {
         "label": "Exact local runner and prompts",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_field_candidate.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_field_candidate.py"
       },
       {
         "label": "Download pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/field-candidates.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/field-candidates.json"
       },
       {
         "label": "Protocol and reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/field-candidates.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/field-candidates.md"
       },
       {
         "label": "Measured predictions and page telemetry",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/field-candidates/paddleocr_vl16.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/field-candidates/paddleocr_vl16.json"
       },
       {
         "label": "PaddleOCR-VL-1.6 paper",
@@ -4265,15 +4265,15 @@
       },
       {
         "label": "Exact runner",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_paddle.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_official_paddle.py"
       },
       {
         "label": "Dependency pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/paddle-official.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/paddle-official.txt"
       },
       {
         "label": "Measured run evidence",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/paddleocr_vl16_official.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/official-pipelines/paddleocr_vl16_official.json"
       }
     ],
     "terms": [
@@ -4411,23 +4411,23 @@
       },
       {
         "label": "Exact runner",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_ovis_official.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_ovis_official.py"
       },
       {
         "label": "Cleanup implementation",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/ovis_output.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/ovis_output.py"
       },
       {
         "label": "Runtime pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/ovis-metal.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/ovis-metal.txt"
       },
       {
         "label": "Measured run and predictions",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/ovisocr3_official_metal.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/official-pipelines/ovisocr3_official_metal.json"
       },
       {
         "label": "Raw examples of missing heading markers",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/ovis-heading-examples.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/ovis-heading-examples.json"
       }
     ],
     "terms": [
@@ -4557,15 +4557,15 @@
       },
       {
         "label": "Exact runner",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_minicpm.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_official_minicpm.py"
       },
       {
         "label": "Pinned files and hashes",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/official-pipelines.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/official-pipelines.json"
       },
       {
         "label": "Measured evidence",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/minicpm_ocr10_official_ollama.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/official-pipelines/minicpm_ocr10_official_ollama.json"
       }
     ],
     "terms": [
@@ -4677,15 +4677,15 @@
       },
       {
         "label": "Benchmark runner",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/scripts/runners/run_official_xiaomi.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_official_xiaomi.py"
       },
       {
         "label": "Measured evidence and predictions",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/official-pipelines/xiaomi_ocr0_official_metal.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/official-pipelines/xiaomi_ocr0_official_metal.json"
       },
       {
         "label": "Reproduction and runtime differences",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/official-pipelines.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/official-pipelines.md"
       },
       {
         "label": "Metal runtime",
@@ -4821,11 +4821,11 @@
     "sources": [
       {
         "label": "Reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/evidencelab-and-ocr.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/evidencelab-and-ocr.md"
       },
       {
         "label": "Importer and output checks",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/pipeline_evidence.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/pipeline_evidence.py"
       },
       {
         "label": "Pinned EvidenceLab parser",
@@ -4837,7 +4837,7 @@
       },
       {
         "label": "Saved evidence",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/pipeline-runs/evidencelab.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/pipeline-runs/evidencelab.json"
       },
       {
         "label": "Hierarchy post-processor source",
@@ -4946,11 +4946,11 @@
     "sources": [
       {
         "label": "Reproduction commands",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/docs/evidencelab-and-ocr.md"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/evidencelab-and-ocr.md"
       },
       {
         "label": "Importer and output checks",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/src/pdf_heading_benchmark/pipeline_evidence.py"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/pipeline_evidence.py"
       },
       {
         "label": "Docling model catalog",
@@ -4966,11 +4966,11 @@
       },
       {
         "label": "Environment pins",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/configs/environments/docling-ocr.txt"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/docling-ocr.txt"
       },
       {
         "label": "Saved evidence",
-        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/technique-explorer/outputs/pipeline-runs/docling_ocr.json"
+        "url": "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/pipeline-runs/docling_ocr.json"
       }
     ],
     "terms": [
