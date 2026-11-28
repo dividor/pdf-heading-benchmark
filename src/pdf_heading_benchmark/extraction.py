@@ -24,6 +24,7 @@ def initialize(pdf: Path, output: Path) -> None:
         [
             dict(
                 id="document",
+                title=pdf.stem,
                 path=str(destination),
                 pages=pages,
                 sha256=hashlib.sha256(destination.read_bytes()).hexdigest(),

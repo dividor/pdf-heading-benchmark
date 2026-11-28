@@ -1,0 +1,61 @@
+{
+  "id": "document",
+  "archive_id": 351,
+  "title": "Operation Evaluations Series: Regional Synthesis 2013–2017, Southern Africa Region",
+  "pages": 36,
+  "sha256": "e8665cbc2d0ff7cb50365710e8a2a9d018593241a2a2f26182052816a40c6c3a",
+  "selection_reason": "An English regional synthesis with 36 pages, absent by ID and file hash from all four exclusion manifests; chosen before inference.",
+  "exclusion_check": [
+    {
+      "manifest": "configs/corpus.json",
+      "sha256": "8c3b7735e181cb8f14e1b61d7ca3972bd25f1a7c56e23fcc3bc64706ee641cbd",
+      "records": 4,
+      "matches": 0
+    },
+    {
+      "manifest": "configs/supervised/corpus.json",
+      "sha256": "8922d0e0fcdcb8708e2b0d7e89308f745abb6f7f3f409e3a9e7526bfdd8cbe6b",
+      "records": 24,
+      "matches": 0
+    },
+    {
+      "manifest": "configs/structure-v2/corpus.json",
+      "sha256": "38672ddf59b5f281f9fa6b319f53eae4e95f0303440886bba6e9b0f68c2f8379",
+      "records": 28,
+      "matches": 0
+    },
+    {
+      "manifest": "configs/supervised/excluded.json",
+      "sha256": "63a8c8c1ed28956dcdec5b75fc48d4c127d2cdd467c8349275d26559ece69e60",
+      "records": 7,
+      "matches": 0
+    }
+  ],
+  "scope": "All 36 PDF pages. No new reference annotations or accuracy score.",
+  "evidencelab": {
+    "status": "completed",
+    "pages": 36,
+    "seconds": 159.72633815500012,
+    "predicted_headings": 48,
+    "heading_levels": {
+      "H1": 8,
+      "H2": 33,
+      "H3": 7
+    },
+    "markdown_headings": {
+      "H2": 3,
+      "H3": 40,
+      "H4": 8
+    },
+    "configuration": "configs/evidencelab.json",
+    "notes": "Native final TOC and Markdown retained separately. No reference labels or accuracy score for this document."
+  },
+  "chandra2": {
+    "status": "resource_blocked_before_inference",
+    "model_revision": "af93b47dba1b47b6640c86ccf487ed2260ab9a09",
+    "preflight_reclaimable_gib": 14.982254028320312,
+    "required_gib": 12,
+    "reserve_gib": 6,
+    "notes": "Weights downloaded and official Markdown converter tested against saved benchmark outputs. No new-document predictions yet."
+  }
+}

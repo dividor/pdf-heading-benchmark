@@ -108,7 +108,8 @@ def runner_input(tmp_path):
 
 
 @pytest.mark.parametrize("success", [True, False])
-def test_evidencelab_runner_archives_success_and_failure(runner_input, monkeypatch, success):
+@pytest.mark.parametrize("custom_manifest", [True, False])
+def test_evidencelab_runner_archives_success_and_failure(runner_input, monkeypatch, success, custom_manifest):
     calls = []
 
     class Parser:
@@ -130,14 +131,20 @@ def test_evidencelab_runner_archives_success_and_failure(runner_input, monkeypat
     )
     monkeypatch.setattr(run_evidencelab.importlib.metadata, "version", lambda name: "fixture")
     repo, corpus, output = runner_input
+    manifest = repo / "configs/corpus.json"
+    if custom_manifest:
+        manifest = corpus / "manifest.json"
+        (repo / "configs/corpus.json").rename(manifest)
+    manifest_arg = manifest if custom_manifest else None
     if success:
-        run_evidencelab.run(repo, corpus, output)
+        run_evidencelab.run(repo, corpus, output, manifest_arg)
         assert calls[-1] == "teardown"
         assert json.loads((output / "timing.json").read_text())[0]["pages"] == 1
     else:
         with pytest.raises(RuntimeError, match="EvidenceLab failed"):
-            run_evidencelab.run(repo, corpus, output)
+            run_evidencelab.run(repo, corpus, output, manifest_arg)
         assert not (output / "timing.json").exists()
+    assert json.loads((output / "protocol.json").read_text())["manifest"] == json.loads(manifest.read_text())
     assert json.loads((output / "example.result.json").read_text())["success"] == success
     assert (
         json.loads((output / "protocol.json").read_text())["source_sha256"]

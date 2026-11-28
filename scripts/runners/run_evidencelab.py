@@ -14,14 +14,17 @@ def write(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
-def run(repo, corpus, output):
+def run(repo, corpus, output, manifest_path=None):
     from pipeline.processors.parsing.parser import ParseProcessor
 
     output.mkdir(parents=True, exist_ok=False)
     config = json.loads((repo / "configs/evidencelab.json").read_text())
-    manifest = json.loads((repo / "configs/corpus.json").read_text())
+    manifest_file = repo / "configs/corpus.json" if manifest_path is None else manifest_path
+    manifest = json.loads(manifest_file.read_text())
     protocol = dict(
         config=config,
+        manifest=manifest,
+        manifest_sha256=hashlib.sha256(manifest_file.read_bytes()).hexdigest(),
         platform=platform.platform(),
         packages={name: importlib.metadata.version(name) for name in ("docling", "docling-core", "torch")},
         source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
@@ -64,5 +67,6 @@ if __name__ == "__main__":
     arguments.add_argument("--repo", required=True, type=Path)
     arguments.add_argument("--corpus", required=True, type=Path)
     arguments.add_argument("--output", required=True, type=Path)
+    arguments.add_argument("--manifest", type=Path, help="Use a custom document manifest")
     args = arguments.parse_args()
-    run(args.repo, args.corpus, args.output)
+    run(args.repo, args.corpus, args.output, args.manifest)

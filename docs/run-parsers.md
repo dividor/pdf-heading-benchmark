@@ -39,6 +39,9 @@ Other examples are `chandra2_mlx` and `qwen36_visual_memory`. Qwen's command pre
 
 For a custom PDF, image methods process every page. The published results cover only 32 selected benchmark pages; they do not validate full-document accuracy. Keep prompts and inputs unchanged when resuming a run. Use a new external directory for a changed configuration.
 
+For a full-document Chandra OCR 2 and EvidenceLab comparison, including Markdown export,
+see [the worked example](unseen-document.md).
+
 ## Protect a shared Mac
 
 The optional guard records memory use, allows only one guarded experiment at a time and stops its own process group if memory pressure rises. Set `--required-gib` to the method's expected additional memory, beyond the default 6 GiB reserve. The following 4 GiB value is an example for a small model, not a limit suitable for every model:
