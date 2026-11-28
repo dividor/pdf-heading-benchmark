@@ -38,7 +38,7 @@ function fixture() {
     return point;
   });
   select.options = points.map(point => new Element(point.dataset));
-  const labels = points.map(point => new Element({ for: point.dataset.index }));
+  const labels = points.map(point => new Element({ for: point.dataset.index, openModel: point.dataset.index }));
   const buttons = points.map(point => new Element({ openModel: point.dataset.index }));
   const dialogs = points.map(point => {
     const dialog = new Element();
@@ -47,10 +47,10 @@ function fixture() {
     return dialog;
   });
   Object.entries({ '#field-filter': filter, '#field-system': select, '.field-tooltip': tooltip,
-    '#field-count': new Element(), '#field-open-model': new Element() })
+    '#field-count': new Element(), '#field-open-model': new Element(), '.field-active-marker': new Element() })
     .forEach(([key, value]) => root.children.set(key, value));
   const groups = { '.field-point': points, '.field-label': labels,
-    '.field-model-dialog': dialogs, '[data-open-model]': buttons };
+    '.field-name': labels, '.field-model-dialog': dialogs, '[data-open-model]': [...buttons, ...labels] };
   root.querySelectorAll = selector => groups[selector];
   global.document = { getElementById: id => { assert.equal(id, 'field-explorer'); return root; } };
   delete require.cache[require.resolve('../../docs/field-explorer.js')];
@@ -104,4 +104,27 @@ test('hover, focus and selection show the matching score label', () => {
   f.root.querySelector('#field-open-model').fire('click'); assert.equal(f.dialogs[0].open, true);
   f.dialogs[0].fire('click', { target: new Element() }); assert.equal(f.dialogs[0].open, true);
   f.buttons[2].fire('click'); assert.equal(f.dialogs[2].open, true);
+});
+
+
+test('chart names highlight and raise their marker, then open the correct dialog', () => {
+  const f = fixture();
+  f.labels.forEach((label, i) => {
+    label.fire('pointerenter');
+    assert.equal(f.root.querySelector('.field-active-marker').getAttribute('href'), '#field-marker-' + i);
+    assert.equal(f.root.querySelector('.field-active-marker').attributes.has('hidden'), false);
+    assert.equal(label.classes.has('selected'), true);
+    assert.equal(f.labels.filter(item => item.classes.has('selected')).length, 1);
+    label.fire('click'); assert.equal(f.dialogs[i].open, true);
+    f.dialogs[i].close();
+    label.fire('pointerleave'); assert.equal(f.tooltip.attributes.has('hidden'), true);
+    label.fire('focus'); assert.equal(f.select.value, String(i));
+    for (const key of ['Enter', ' ']) {
+      let prevented = false;
+      label.fire('keydown', { key, preventDefault: () => { prevented = true; } });
+      assert.equal(prevented, true); assert.equal(f.dialogs[i].open, true);
+      f.dialogs[i].close();
+    }
+    label.fire('blur'); assert.equal(f.tooltip.attributes.has('hidden'), true);
+  });
 });

@@ -21,7 +21,9 @@ def test_field_plot_renders_every_eligible_coordinate(tmp_path, monkeypatch):
     root = ET.fromstring(svg)
     points = root.findall('.//{http://www.w3.org/2000/svg}g[@class="field-point"]')
     assert len(points) == len(eligible_rows(data)) == 39
-    for point, row in zip(points, eligible_rows(data), strict=True):
+    rows = eligible_rows(data)
+    for point in points:
+        row = rows[int(point.attrib["data-index"])]
         hit = point.find('{http://www.w3.org/2000/svg}circle[@class="field-hit"]')
         assert (float(hit.attrib["cx"]), float(hit.attrib["cy"])) == coordinate(row["text"], row["layout"])
         assert point.attrib["data-name"] == row["name"]
@@ -101,3 +103,21 @@ def test_each_point_has_specific_model_dialog_and_valid_study_mapping():
 def test_missing_field_placeholder_fails(html):
     with pytest.raises(ValueError, match="placeholder"):
         enhance_field(html, {})
+
+
+def test_chart_names_open_their_own_dialog_and_hosted_markers_draw_last():
+    soup = BeautifulSoup((REPO / "outputs/report/index.html").read_text(), "html.parser")
+    for label in soup.select(".field-name"):
+        index = label["data-open-model"]
+        assert label["data-for"] == index
+        assert label["tabindex"] == "0"
+        assert label["role"] == "button"
+        assert soup.find(id=label["aria-controls"])["id"] == "field-model-" + index
+    markers = soup.select(".field-points .field-point")
+    assert all(marker["data-category"] == "hosted" for marker in markers[-12:])
+    mistral = next(marker for marker in markers if marker["data-name"] == "Mistral OCR")
+    assert mistral.find("rect") is not None
+    assert mistral["data-text"] == "83.6"
+    assert mistral["data-layout"] == "93.8"
+    label = soup.select_one(f'.field-name[data-for="{mistral["data-index"]}"]')
+    assert label.get_text() == "Mistral OCR"

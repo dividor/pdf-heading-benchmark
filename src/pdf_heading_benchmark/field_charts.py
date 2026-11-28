@@ -89,7 +89,8 @@ def point(row: dict, detail: dict, index: int) -> str:
     color = COLORS[category(row, detail)]
     label = f"{row['name']}. Text {row['text']:.1f}. Layout {row['layout']:.1f}. Open model details."
     attributes = (
-        f'class="field-point" data-index="{index}" data-category="{category(row, detail)}" '
+        f'class="field-point" id="field-marker-{index}" data-index="{index}" '
+        f'data-category="{category(row, detail)}" '
         f'data-name="{escape(row["name"], quote=True)}" data-text="{row["text"]}" '
         f'data-layout="{row["layout"]}" tabindex="0" role="button" aria-haspopup="dialog" '
         f'aria-controls="field-model-{index}" aria-label="{escape(label, quote=True)}"'
@@ -125,14 +126,23 @@ def plot_svg(data: dict) -> str:
             f'<line x1="{x}" y1="{y}" x2="{end_x}" y2="{end_y}" stroke="#9cabb8" stroke-width="0.8"/></g>',
         ]
         labels += [
-            f'<g class="field-label" data-for="{index}">',
+            f'<g class="field-label field-name" data-for="{index}" data-open-model="{index}" '
+            f'tabindex="0" role="button" aria-haspopup="dialog" aria-controls="field-model-{index}" '
+            f'aria-label="Model details for {escape(row["name"], quote=True)}">',
             f'<rect x="{left}" y="{top}" width="{width}" height="{height}" '
             'rx="3" fill="white" fill-opacity="0.94"/>',
             svg_text(left + 5, top + 16, details[row["name"]]["label"], 15),
             "</g>",
         ]
     parts.extend(labels)
-    parts.extend(point(row, details[row["name"]], i) for i, row in enumerate(rows))
+    parts.append('<g class="field-points">')
+    draw_order = sorted(enumerate(rows), key=lambda item: item[1]["category"] == "hosted")
+    parts.extend(point(row, details[row["name"]], i) for i, row in draw_order)
+    parts.append("</g>")
+    parts.append(
+        '<use class="field-active-marker" href="#field-marker-0" display="none" '
+        'aria-hidden="true" pointer-events="none" hidden="hidden"/>'
+    )
     parts.append(
         '<g class="field-tooltip" pointer-events="none" hidden="hidden">'
         '<rect rx="4" fill="#263b4a"/><text fill="white" font-family="Helvetica,Arial,sans-serif" '

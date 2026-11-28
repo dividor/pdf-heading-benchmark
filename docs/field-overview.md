@@ -4,7 +4,7 @@ The report has one field chart. It shows the 39 OmniParseBench 1.8.0 systems wit
 
 These are Datalab's published results, not our WFP test or the separate OmniDocBench benchmark. Teal identifies eight models or tools also tested in our WFP study; their configurations differ. Purple squares show hosted services and gray circles show other open models and tools.
 
-Every point opens a dialog with its pipeline, settings and source code. On a phone, use the model selector or scroll the chart horizontally. Labels are placed without overlapping other labels or markers, giving priority to study models and hosted services. The PNG uses the same labels and coordinates.
+Every point and visible model name opens a dialog with its pipeline, settings and source code. On a phone, use the model selector or scroll the chart horizontally. Labels are placed without overlapping other labels or markers, giving priority to study models and hosted services. Hovering or focusing a name highlights its connecting line and brings its marker to the front. Hosted squares draw above open-model circles so crowded service markers remain visible. Scores and coordinates do not move. The PNG uses the same labels and coordinates.
 
 ## Download the pinned source and rebuild
 

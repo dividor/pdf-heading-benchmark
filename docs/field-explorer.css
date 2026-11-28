@@ -2,7 +2,11 @@
 #field-explorer .field-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
 #field-explorer label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 650; flex: 1 1 220px; min-width: 0; }
 #field-explorer select, #field-open-model { min-height: 44px; padding: 8px 12px; font: inherit; font-size: 14px; color: #263b4a; background: #fff; border: 1px solid #9fb7c6; border-radius: 6px; }
-#field-explorer select { width: 100%; }
+#field-explorer select {
+  width: 100%; appearance: none; padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23526673' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; background-size: 16px;
+}
 #field-open-model { cursor: pointer; font-weight: 650; }
 #field-explorer .field-legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 18px; font-size: 14px; font-weight: 600; }
 #field-explorer .field-study { color: #007d79; }
@@ -11,8 +15,12 @@
 #field-explorer .field-plot-scroll { overflow-x: auto; scrollbar-width: auto; scrollbar-color: #71839b #eef2f5; }
 #field-explorer .field-svg { display: block; width: 100%; min-width: 760px; height: auto; margin: auto; }
 #field-explorer .field-point { cursor: pointer; }
-#field-explorer .field-point[hidden], #field-explorer .field-label[hidden], #field-explorer .field-tooltip[hidden] { display: none; }
+#field-explorer .field-point[hidden], #field-explorer .field-label[hidden], #field-explorer .field-tooltip[hidden], #field-explorer .field-active-marker[hidden] { display: none; }
 #field-explorer .field-label { pointer-events: none; }
+#field-explorer .field-name { pointer-events: auto; cursor: pointer; }
+#field-explorer .field-label.selected line { stroke: #263b4a; stroke-width: 2; }
+#field-explorer .field-name.selected text { font-weight: 600; }
+#field-explorer .field-name:hover rect, #field-explorer .field-name:focus rect { fill: #e8f3f2; stroke: #007d79; }
 #field-explorer .field-point.selected .field-hit { stroke: #172c3e; stroke-width: 1; }
 #field-explorer .field-point:focus .field-hit { stroke: #172c3e; stroke-width: 3; }
 #field-explorer #field-count, #field-explorer .field-hint { font-size: 13px; color: #526673; }

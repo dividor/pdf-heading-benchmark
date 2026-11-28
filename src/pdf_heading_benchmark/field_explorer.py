@@ -95,7 +95,7 @@ def explorer(data: dict) -> str:
         '<p id="field-count"></p><div class="field-plot-scroll" tabindex="0" '
         'aria-label="Chart; scroll horizontally on a phone">'
         + plot_svg(data)
-        + '</div><p class="field-hint">Click a point for details. '
+        + '</div><p class="field-hint">Click a model name or marker for details. '
         "On a phone, scroll the chart or use Find a model. "
         "Colors identify models and tools; benchmark settings differ from our study.</p>"
         '<details class="field-values"><summary>View the plotted scores</summary>'

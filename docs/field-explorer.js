@@ -7,6 +7,13 @@
   function inspect(point) {
     points.forEach(item => item.classList.toggle('selected', item === point));
     select.value = point.dataset.index;
+    const marker = root.querySelector('.field-active-marker');
+    marker.setAttribute('href', '#field-marker-' + point.dataset.index);
+    marker.removeAttribute('hidden');
+    marker.removeAttribute('display');
+    root.querySelectorAll('.field-label').forEach(label => {
+      label.classList.toggle('selected', label.dataset.for === point.dataset.index);
+    });
     const label = tooltip.querySelector('text');
     const box = tooltip.querySelector('rect');
     const hit = point.querySelector('.field-hit');
@@ -38,6 +45,7 @@
     root.querySelector('#field-count').textContent = visible.length + ' systems · Layout scores above 70 · Higher is better';
     if (!visible.some(point => point.dataset.index === select.value)) select.value = visible[0].dataset.index;
     tooltip.setAttribute('hidden', 'hidden');
+    root.querySelector('.field-active-marker').setAttribute('hidden', 'hidden');
   }
   points.forEach(point => {
     ['pointerenter', 'focus'].forEach(event => point.addEventListener(event, () => inspect(point)));
@@ -54,6 +62,14 @@
   });
   root.querySelectorAll('[data-open-model]').forEach(button => {
     button.addEventListener('click', () => openModel(button.dataset.openModel));
+  });
+  root.querySelectorAll('.field-name').forEach(label => {
+    const point = points.find(item => item.dataset.index === label.dataset.for);
+    ['pointerenter', 'focus'].forEach(event => label.addEventListener(event, () => inspect(point)));
+    ['pointerleave', 'blur'].forEach(event => label.addEventListener(event, () => tooltip.setAttribute('hidden', 'hidden')));
+    label.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openModel(label.dataset.for); }
+    });
   });
   select.addEventListener('change', () => inspect(points.find(point => point.dataset.index === select.value)));
   root.querySelector('#field-open-model').addEventListener('click', () => openModel(select.value));
