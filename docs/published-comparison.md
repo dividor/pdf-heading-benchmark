@@ -20,7 +20,7 @@ Direct Gemini, Claude and GPT calls are separate configurations from managed doc
 
 ### Cloud services queued for comparison
 
-These requested API configurations are the next comparison group. They are not included in the 34 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.
+These requested API configurations are the next comparison group. They are not included in the 33 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.
 
 | Service | Configuration to test | Status |
 | --- | --- | --- |

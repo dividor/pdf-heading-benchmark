@@ -64,8 +64,6 @@ body:has(.technique-dialog[open]) { overflow: hidden; }
   .technique-close { display: none; }
 }
 
-tr:has(#our-calibrated-model) > td { background: #e5f5f3; border-top: 2px solid #14818b; border-bottom: 2px solid #14818b; }
-#our-calibrated-model { scroll-margin-top: 32px; }
 
 .info-button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 4px; border: 1px solid #527b88; border-radius: 50%; background: white; color: #075868; font: bold 14px Georgia, serif; cursor: pointer; vertical-align: middle; flex-shrink: 0; }
 .info-button:hover { background: #075868; color: white; }

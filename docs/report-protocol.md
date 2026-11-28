@@ -11,7 +11,7 @@
 | --- | --- | --- |
 | PDF parser | Read PDF text or use OCR; infer heading styles and hierarchy. | Docling, PyMuPDF4LLM, MinerU basic |
 | Local vision model | Read page images; generate text and structure. Some configurations add text or document context. | Chandra, Qwen, MiniCPM, Xiaomi, Paddle |
-| OUR METHOD | Use assistant-labeled reports to train small Extra Trees classifiers for line grouping, heading levels and neighboring-heading relationships. No LLM runs at inference. | Original, calibrated and confidence-filtered variants |
+| OUR METHOD | Use assistant-labeled reports to train small Extra Trees classifiers for line grouping, heading levels and neighboring-heading relationships. No LLM runs at inference. | Original, confidence-filtered and coverage-trial variants |
 
 A row’s **i** opens only that configuration’s flow and settings. Expand its predictions to inspect misses and wrong levels. [Runnable repository](https://github.com/dividor/pdf-heading-benchmark) · [Reproduction guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/reproducibility.md).
 

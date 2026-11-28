@@ -185,7 +185,7 @@ The measured run uses MLX on the benchmark Mac. Model-card GPU benchmarks use di
 
 ## structure-precision
 
-**OUR METHOD — confidence-filtered v2 (F0.5-selected)**
+**OUR METHOD — confidence-filtered (F0.5-selected)**
 
 OUR METHOD reuses three locally trained Extra Trees classifiers. A validation-selected 0.70 score cutoff rejects uncertain headings before sequence decoding. Correct heading-level pairs fall from 50 to 34; extras fall from 23 to two.
 
@@ -471,123 +471,9 @@ Original weights and official task recipe, with a newer vLLM runtime and Metal h
 [Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_ovis_official.py) · [Pinned model card and inference recipe](https://huggingface.co/ATH-MaaS/OvisOCR3/blob/5b252386ba615bd464a5a26597560eaba87dae5c/README.md) · [OvisOCR3 paper](https://arxiv.org/abs/2610.33066) · [Cleanup implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/ovis_output.py) · [Runtime pins](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/environments/ovis-metal.txt) · [Measured run and predictions](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/official-pipelines/ovisocr3_official_metal.json) · [Raw examples of missing heading markers](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/ovis-heading-examples.json) · [Configuration source / evidence](https://huggingface.co/ATH-MaaS/OvisOCR3)
 
 
-## structure-calibrated
-
-**OUR METHOD v2 + calibrated decoding (CPU)**
-
-The same three trained Extra Trees classifiers are reused. Multiplying the body-text score by two makes heading selection stricter; relationship weight stays 1.
-
-
-**Training:** Train our three classifiers locally → Try nine decision settings → Keep the validation choice
-
-- **Train our three classifiers locally:** The structure-v2/run-001 training program fits Extra Trees on assistant annotations from 20 WFP reports, on the local M4 Pro CPU. See the model provenance page and training run record. Later decision-setting experiments reuse these fitted models. No further model training occurs in those experiments.
-- **Try nine decision settings:** On four validation reports, combine body-score multipliers 1, 1.5 and 2 with relationship weights 1, 0.5 and 0.
-- **Keep the validation choice:** Body multiplier 2 and relationship weight 1 scored 81.1% exact group-and-level F1. The original benchmark was evaluated afterwards; it did not choose these settings.
-
-
-
-**Inference:** Join lines with Extra Trees → Favor ordinary body text → Score heading relationships → Choose the level sequence
-
-- **Join lines with Extra Trees:** The 200-tree join classifier uses 100 measurements of adjacent lines, including spacing and style. It can join lines across PDF blocks.
-- **Favor ordinary body text:** Use the same 200-tree heading classifier with 47 measurements. Double its body-text score, then choose the highest-scoring class; this can reject real headings too.
-- **Score heading relationships:** The 200-tree relation classifier uses 142 measurements of consecutive headings. It predicts shallower, same or deeper.
-- **Choose the level sequence:** Viterbi combines accepted headings’ level scores and relationship scores, with relationship weight 1. Rejected text remains in the document.
-
-
-
-**Models and terms explained**
-
-- [Extra Trees](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html): A classifier that averages predictions from many randomized decision trees. A tree makes a sequence of decisions about input measurements. This benchmark uses scikit-learn’s ExtraTreesClassifier, with 200 trees per component.
-- [Features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py): The numeric measurements supplied to a classifier—for example font size, boldness, line spacing or whether a title occurs in the table of contents. They are calculated from the PDF, not supplied reference answers.
-- [Validation reports](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json): Reports kept separate from model fitting and used to choose between designs or decision settings. The later inspected test reports are now regression checks: they can expose a failure but no longer provide a fresh independent evaluation.
-- [Viterbi decoding](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py): An algorithm for choosing the highest-scoring sequence of heading levels. Here it combines each heading’s own scores with scores for the relationship to the preceding heading. It does not train or add another model.
-- [model provenance page](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md): Complete training lineage, report list, model identities and reproduction command.
-- [training run record](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json): Original structure-v2 training output: counts, versions, selection and saved model hashes.
-- [training program](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py): Code that constructs training examples and fits the five comparison classifiers.
-- [training data manifest](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json): Exact source reports, PDF hashes, report splits and annotation coverage.
-- [Materialized training annotations](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json): Explicit heading line groups and levels reviewed by the assistant.
-- [later filter protocol](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json): Records the same model hashes before the subsequent confidence-filter search.
-
-**Parameters used in this run**
-
-| Parameter | Recorded value |
-| --- | --- |
-| Estimator | sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3 |
-| Trees per classifier | n_estimators=200 |
-| Tree limits | max_depth=16; min_samples_leaf=2 |
-| Feature sampling / weighting | max_features=0.8; class_weight="balanced" |
-| Reproducibility / parallelism | random_state=42; n_jobs=4 |
-| Other estimator options | Library defaults; no tree hyperparameter search was run |
-| Join classifier | ExtraTreesClassifier: 100 features; 6,267 pairs; 200 trees; separate/join |
-| Context classifier | ExtraTreesClassifier: 47 features; 6,736 groups; 200 trees; body/H1–H5 |
-| Relation classifier | ExtraTreesClassifier: 142 features; 867 heading pairs; 200 trees; shallower/same/deeper |
-| Total deployed trees | 3 ×200 =600; join + context + relation |
-| Grid actually searched | body_weight ∈ {1.0, 1.5, 2.0}; relation_weight ∈ {1.0, 0.5, 0.0}; 9 combinations |
-| Selected decoding | body_weight=2.0; relation_weight=1.0 |
-| Selection metric / ties | Validation exact group-and-level F1; first grid entry wins ties, with baseline settings ordered first |
-| Model integrity | Same JSON model hashes as v2; no refitting or label changes |
-
-**Where these three classifiers were trained**
-
-These are our own classifiers, trained from scratch in the structure-v2/run-001 experiment on the local Apple M4 Pro with 48 GB RAM, using CPU. The training run record identifies Python 3.12.3, scikit-learn 1.9.1 and macOS 26.1 arm64. The training program fitted the models from assistant-labeled WFP examples; they were not obtained from a pretrained-model repository.
-
-The deployed files are join.json (200 trees; 6,267 line pairs; 100 features), context.json (200 trees; 6,736 heading/body groups; 47 features), and relation.json (200 trees; 867 heading pairs; 142 features). All use max_depth=16, min_samples_leaf=2, max_features=0.8, class_weight=balanced, random_state=42 and n_jobs=4. Five classifiers were fitted for the comparison variants, but this pipeline uses only these three.
-
-The training data manifest identifies the 20 fitting reports, their official PDF URLs, SHA-256 hashes and reviewed pages. Materialized training annotations contain explicit line groups and levels. Four separate validation reports selected the context-and-relationships pipeline; four further reports were evaluated after selection. No training labels came from the four original league-table PDFs.
-
-The model provenance page lists all reports, the exact reproduction command and the three full model hashes. The hashes agree between the original training run record, the later filter protocol and the local saved files. Model files are stored outside Git. The source records do not capture a precise training timestamp or the annotating assistant model version.
-
-
-**Previously trained models and their examples**
-
-A single assistant reviewed source text, layout/page snippets and table-of-contents context and supplied explicit line groups and H levels. The annotation provenance does not record a precise model version used by the annotating assistant, and there was no independent human adjudication. These labels are reviewable training targets, not demonstrated 100%-accurate reference labels. This trains classical classifiers from labels; it does not fine-tune an LLM or transfer neural weights.
-
-The training split contains 20 WFP reports, 887 heading groups and 7,039 labeled lines. Line classes: body=5,849; H1=238; H2=391; H3=432; H4=128; H5=1; H6=0. Negative examples come from 112 fully reviewed training pages. Unmarked lines on positive-only annotation pages are not automatically negatives. The H5/H6 coverage is a material limitation.
-
-Validation uses reports 103, 538, 176 and 128: 21 reference groups on 20 reviewed pages. The test from the second training experiment uses reports 321, 844, 560 and 394: 38 groups on 32 reviewed pages. Splits are by report, not random lines; report-template families are not held out. Those test pages have now been inspected and are results on previously inspected test documents for subsequent changes.
-
-
-**Features and sequence decoding**
-
-The 33 measurements of selectable PDF text lines cover font size relative to document body text, font-size rank, bold/italic proportions, RGB color, normalized position/width/height, gaps, adjacent-line style/block indicators, repeated-text count, log character/word counts, uppercase/digit fractions, numeric-prefix depth, number-only lines, dot leaders, sentence endings and a generic multilingual caption-prefix indicator. Body font size is the size accounting for the most characters. These are engineered features, including text-pattern indicators; this is not a rule-free model.
-
-The context classifier uses 47 features: the 43 group features plus style_numbered_count, style_mean_depth, style_max_depth and toc_exact_title. Style statistics group lines by rounded font size, bold/italic and color, then summarize numeric-prefix depth. table-of-contents matching normalizes title text, strips its numeric prefix and dot leaders, and checks exact membership among dot-leader lines. This is a learned input feature, not a hard TOC level override.
-
-The relationship classifier uses 142 features: two 47-feature groups, their differences and page delta. Its 867 training pairs are consecutive annotated headings. Target −1 means the next H number is smaller (shallower), 0 means equal and +1 means larger (deeper). It learns direction, not the number of levels skipped.
-
-First, choosing the highest body-or-heading score decides which predicted groups survive. Viterbi then maximizes the sum of log heading-class probabilities and weighted log relationship probabilities for transitions between retained groups. Transition class is sign(next H − previous H); probabilities are clipped below at 1e-12. Default relation weight is 1.0. This decoder is an algorithm, not a fourth trained model, and cannot recover a group already rejected as body.
-
-
-**What calibration changes**
-
-Only the body column of a copy of the group-probability array is multiplied by body_weight before choosing the highest-scoring class. Surviving headings still use the original probabilities in Viterbi. This is decision weighting, not statistical probability calibration.
-
-On the four validation reports, body weights 1.0, 1.5 and 2.0 yield group-and-level F1 of 69.8%, 76.9% and 81.1%. All three relationship weights tie at each body weight, so the ordered grid retains relation_weight=1.0. There is no evidence from this grid that a relationship-weight change helped.
-
-
-**Regression outcome and why this is not promoted**
-
-On the previously inspected 38-heading set, F1 rises from 85.7% to 94.7%: 36 groups remain correctly leveled, false groups fall from 8 to 1, and one genuine group is now missed. This is results on previously inspected test documents, not a new independent test.
-
-On the historical main-table 77 headings, correct title-plus-level matches fall from 50 to 47; matched titles fall from 64 to 59 and false headings from 23 to 21. The candidate therefore remains a separate historical candidate; the current highlighted method is selected using joint F0.5 and the precision gate.
-
-
-**Deployment and measured scope**
-
-Models are exported as data-only JSON arrays. Exported predict_proba is checked against scikit-learn with atol=1e-7. Runtime inference uses NumPy and float32 tree traversal; it needs no LLM or scikit-learn model server. Full selectable PDF text is retained. Parent IDs are derived from the predicted level stack, not separately learned or evaluated.
-
-The main comparison parses all four historical PDFs (523 pages) on an Apple M4 Pro with 48 GB memory, but scores only 77 headings on 32 audited pages. Its fuzzy title matching plus exact level is different from the supervised exact group-and-level F1. Main-table scores are historical diagnostics, not the fresh supervised split. Timing covers extraction, feature construction and prediction; model-file loading occurs before the parser timer.
-
-The runner accepts a separate calibration file and verifies the recorded model and configuration checksums. No score or inference output is changed by this documentation update.
-
-The models and labels are unchanged. Validation selects a stricter heading decision. Regression on previously inspected pages improves F1 but misses one genuine heading. It is not new independent test evidence.
-
-[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/calibrate.py) · [Model provenance page](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md) · [Training run record](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json) · [Training program](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py) · [Training data manifest](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json) · [Materialized training annotations](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json) · [Later filter protocol](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Calibration protocol and regression evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/report.md) · [Exact estimator constructor and JSON export](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py) · [Native line features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py) · [Group/context/pair features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py) · [Training components and variant selection](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py) · [Recorded validation scores and training settings](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/evidence/selection.json) · [PDF sources and report splits](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json) · [Reviewable heading annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json) · [Inference, grouping and Viterbi](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py) · [Recorded search results and selected decision settings](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/evidence/selection.json) · [Calibration runner and artifact input](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_structure.py) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py)
-
-
 ## structure-context-relations
 
-**v2: context + relationships (selected)**
+**OUR METHOD — grouped context (previous selection)**
 
 Three 200-tree Extra Trees classifiers learn line joining, heading levels and relationships. Viterbi selects a level sequence using document context and relationship weight 1.
 

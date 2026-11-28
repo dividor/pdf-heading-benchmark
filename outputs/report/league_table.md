@@ -4,7 +4,7 @@ Headings tell a search system what a passage is for: an executive summary may an
 
 ## Results at a glance
 
-**34 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
+**33 configurations · 4 WFP reports · 32 audited pages · 77 reference headings · Apple M4 Pro, 48 GB**
 
 - **Highest score:** Qwen3.6-27B with visual memory gets **65/77** heading-level pairs right; **54 min 2 sec** for 32 pages. It receives extra PDF text, tags and document context.
 - **Image-only alternative:** Chandra OCR 2 gets **53/77** right in **14 min 46 sec**. OvisOCR3 gets **36/77** right in **6 min 58 sec**.
@@ -21,12 +21,11 @@ Select a row’s **i** for its exact model, steps, settings and predictions. **E
 | [Qwen3.6-27B / MLX 4-bit / sampled visual memory](https://huggingface.co/Qwen/Qwen3.6-27B) | **54 min 2 sec**<br>Measured | **82.7%** | 82.3% (65/79) | 84.4% (65/77) | [Ask Qwen3.6-27B to identify headings using the current page’s image and text, possible headings from the whole document, author-supplied tags and selected earlier page images.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_visual_memory.py) | completed | 100.0% (77/77) | 2 | — | **1 min 41 sec**<br>Latest sequential run |
 | [Qwen3.6-27B 4-bit — single image](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md) | **35 min 33 sec**<br>Measured | **77.1%** | 76.9% (60/78) | 77.9% (60/77) | [Qwen3.6-27B MLX 4-bit; one 1280-pixel image and text-only heading memory.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py) | completed | 100.0% (77/77) | 1 | — | **1 min 7 sec**<br>Latest sequential run |
 | [Chandra OCR 2 / MLX](https://huggingface.co/datalab-to/chandra-ocr-2) | **14 min 46 sec**<br>Measured | **72.6%** | 73.6% (53/72) | 68.8% (53/77) | [Chandra OCR 2 reads page images using its authors’ layout-reading prompt and image preparation.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_chandra_batch.py) | completed | 90.9% (70/77) | 2 | 98.7% | **27.7 sec**<br>Latest sequential run |
-| <span id="our-trained-model"></span>[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-precision/report.md) | **0.714 sec**<br>Estimated from 11.7 sec measured over 523 pages | **70.5%** | 82.9% (34/41) | 44.2% (34/77) | [Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/optimize_precision.py) | completed | 50.6% (39/77) | 2 | — | **0.022 sec** |
+| <span id="our-trained-model"></span>[**OUR METHOD — confidence-filtered (F0.5-selected)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-precision/report.md) | **0.714 sec**<br>Estimated from 11.7 sec measured over 523 pages | **70.5%** | 82.9% (34/41) | 44.2% (34/77) | [Three Extra Trees classifiers trained locally for this benchmark on 20 WFP reports: join lines, assign heading levels and compare successive levels. Reuse those models with a validation-selected 0.70 confidence filter.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/optimize_precision.py) | completed | 50.6% (39/77) | 2 | — | **0.022 sec** |
 | [Qwen3.6-35B-A3B 4-bit — visual memory](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md) | **8 min 19 sec**<br>Measured | **69.0%** | 69.3% (52/75) | 67.5% (52/77) | [Qwen3.6-35B-A3B MLX 4-bit; original prompt, larger current image and up to six previous page images.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_sparse_memory.py) | completed | 97.4% (75/77) | 0 | — | **15.6 sec**<br>Latest sequential run |
 | [Qwen3.6-35B-A3B 4-bit — single image](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/qwen-compact/report.md) | **5 min 42 sec**<br>Measured | **68.8%** | 68.8% (53/77) | 68.8% (53/77) | [Qwen3.6-35B-A3B MLX 4-bit; one 1280-pixel image and text-only heading memory.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_qwen_compact.py) | completed | 100.0% (77/77) | 0 | — | **10.7 sec**<br>Latest sequential run |
 | [OvisOCR3 — upstream prompt and vLLM Metal](https://huggingface.co/ATH-MaaS/OvisOCR3) | **6 min 58 sec**<br>Measured | **65.0%** | 72.0% (36/50) | 46.8% (36/77) | [OvisOCR3 reads each page with its official Markdown prompt through vLLM Metal. We use the upstream cleanup and preserve the model’s heading levels.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_ovis_official.py) | completed | 63.6% (49/77) | 1 | 99.5% | **13.1 sec** |
-| <span id="our-calibrated-model"></span>[**OUR METHOD — calibrated decoding (experimental)**](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/report.md) | **0.885 sec**<br>Estimated from 14.5 sec measured over 523 pages | **59.2%** | 58.8% (47/80) | 61.0% (47/77) | [Reuse our three Extra Trees classifiers trained locally on 20 WFP reports; apply a validation-selected body-score multiplier of two.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/calibrate.py) | completed | 76.6% (59/77) | 21 | — | **0.028 sec** |
-| <span id="our-original-model"></span>[OUR METHOD — grouped context v2 (previous selection)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/report.md) | **0.768 sec**<br>Estimated from 12.6 sec measured over 523 pages | **58.8%** | 57.5% (50/87) | 64.9% (50/77) | [Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py) | completed | 83.1% (64/77) | 23 | — | **0.024 sec** |
+| <span id="our-original-model"></span>[OUR METHOD — grouped context (previous selection)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/report.md) | **0.768 sec**<br>Estimated from 12.6 sec measured over 523 pages | **58.8%** | 57.5% (50/87) | 64.9% (50/77) | [Use three Extra Trees classifiers to join wrapped titles, recognize headings and levels, and compare the levels of neighboring headings.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py) | completed | 83.1% (64/77) | 23 | — | **0.024 sec** |
 | [OUR METHOD — retrained trees (coverage trial; target not met)](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-recall/report.md) | **1 sec**<br>Estimated from 16.4 sec measured over 523 pages | **58.8%** | 57.5% (50/87) | 64.9% (50/77) | [Refit Extra Trees on the same 20 training reports; compare 64 validation settings for precision and coverage. No setting met both 80% targets; this is the predeclared diagnostic fallback.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/retrain_recall.py) | completed | 85.7% (66/77) | 21 | — | **0.031 sec** |
 | [LightOnOCR-3-0.8B / MLX](https://huggingface.co/lightonai/LightOnOCR-3-0.8B) | **6 min 9 sec**<br>Measured | **57.9%** | 57.5% (46/80) | 59.7% (46/77) | [LightOnOCR-3-0.8B reads one page image at a time and returns text with locations on the page.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_lighton_mlx.py) | completed | 93.5% (72/77) | 8 | 99.5% | **11.5 sec**<br>Latest sequential run |
 | [LightOnOCR-3-4B / MLX grounding](https://huggingface.co/lightonai/LightOnOCR-3-4B) | **17 min 36 sec**<br>Measured | **57.9%** | 57.5% (46/80) | 59.7% (46/77) | [LightOnOCR-3-4B reads page images and returns text with page locations, using the same output convention as the 0.8-billion-parameter model.](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_chandra_batch.py) | completed | 93.5% (72/77) | 8 | 99.3% | **33 sec**<br>Latest sequential run |
@@ -75,7 +74,7 @@ Direct Gemini, Claude and GPT calls are separate configurations from managed doc
 
 ### Cloud services queued for comparison
 
-These requested API configurations are the next comparison group. They are not included in the 34 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.
+These requested API configurations are the next comparison group. They are not included in the 33 local result rows. Use the same WFP reference headings and joint F0.5; record service version, request settings, elapsed time and billed usage separately.
 
 | Service | Configuration to test | Status |
 | --- | --- | --- |
@@ -117,7 +116,7 @@ The original 2018 resilience report was excluded after document-specific explora
 | --- | --- | --- |
 | PDF parser | Read PDF text or use OCR; infer heading styles and hierarchy. | Docling, PyMuPDF4LLM, MinerU basic |
 | Local vision model | Read page images; generate text and structure. Some configurations add text or document context. | Chandra, Qwen, MiniCPM, Xiaomi, Paddle |
-| OUR METHOD | Use assistant-labeled reports to train small Extra Trees classifiers for line grouping, heading levels and neighboring-heading relationships. No LLM runs at inference. | Original, calibrated and confidence-filtered variants |
+| OUR METHOD | Use assistant-labeled reports to train small Extra Trees classifiers for line grouping, heading levels and neighboring-heading relationships. No LLM runs at inference. | Original, confidence-filtered and coverage-trial variants |
 
 A row’s **i** opens only that configuration’s flow and settings. Expand its predictions to inspect misses and wrong levels. [Runnable repository](https://github.com/dividor/pdf-heading-benchmark) · [Reproduction guide](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/reproducibility.md).
 
@@ -315,10 +314,6 @@ GPU and swap measurements are system-wide; they include other applications and m
 | train.py / structure_context_relations | midterm | 16/18 | 15/18 | 2 | 88.9% |
 | train.py / structure_context_relations | indonesia | 14/21 | 13/21 | 11 | 56.0% |
 | train.py / structure_context_relations | colombia | 19/23 | 13/23 | 0 | 100.0% |
-| calibrate.py / structure_calibrated | targeting | 15/15 | 9/15 | 9 | 62.5% |
-| calibrate.py / structure_calibrated | midterm | 16/18 | 15/18 | 2 | 88.9% |
-| calibrate.py / structure_calibrated | indonesia | 12/21 | 11/21 | 10 | 54.5% |
-| calibrate.py / structure_calibrated | colombia | 16/23 | 12/23 | 0 | 100.0% |
 | optimize_precision.py / structure_precision | targeting | 7/15 | 6/15 | 1 | 87.5% |
 | optimize_precision.py / structure_precision | midterm | 12/18 | 12/18 | 0 | 100.0% |
 | optimize_precision.py / structure_precision | indonesia | 7/21 | 7/21 | 1 | 87.5% |
@@ -816,7 +811,7 @@ Frozen assistant references; not independently human-verified. Same scorer as th
 </details>
 
 
-### OUR METHOD — confidence-filtered v2 (F0.5-selected)
+### OUR METHOD — confidence-filtered (F0.5-selected)
 
 OUR METHOD reuses three locally trained Extra Trees classifiers. A validation-selected 0.70 score cutoff rejects uncertain headings before sequence decoding. Correct heading-level pairs fall from 50 to 34; extras fall from 23 to two.
 
@@ -1411,179 +1406,7 @@ Frozen assistant references; not independently human-verified. Same scorer as th
 </details>
 
 
-### OUR METHOD v2 + calibrated decoding (CPU)
-
-The same three trained Extra Trees classifiers are reused. Multiplying the body-text score by two makes heading selection stricter; relationship weight stays 1.
-
-- **Join lines with Extra Trees:** The 200-tree join classifier uses 100 measurements of adjacent lines, including spacing and style. It can join lines across PDF blocks.
-- **Favor ordinary body text:** Use the same 200-tree heading classifier with 47 measurements. Double its body-text score, then choose the highest-scoring class; this can reject real headings too.
-- **Score heading relationships:** The 200-tree relation classifier uses 142 measurements of consecutive headings. It predicts shallower, same or deeper.
-- **Choose the level sequence:** Viterbi combines accepted headings’ level scores and relationship scores, with relationship weight 1. Rejected text remains in the document.
-
-<details><summary>Settings, training and sources</summary>
-
-| Setting | Value |
-| --- | --- |
-| Estimator | sklearn.ensemble.ExtraTreesClassifier; scikit-learn 1.9.1; Python 3.12.3 |
-| Trees per classifier | n_estimators=200 |
-| Tree limits | max_depth=16; min_samples_leaf=2 |
-| Feature sampling / weighting | max_features=0.8; class_weight="balanced" |
-| Reproducibility / parallelism | random_state=42; n_jobs=4 |
-| Other estimator options | Library defaults; no tree hyperparameter search was run |
-| Join classifier | ExtraTreesClassifier: 100 features; 6,267 pairs; 200 trees; separate/join |
-| Context classifier | ExtraTreesClassifier: 47 features; 6,736 groups; 200 trees; body/H1–H5 |
-| Relation classifier | ExtraTreesClassifier: 142 features; 867 heading pairs; 200 trees; shallower/same/deeper |
-| Total deployed trees | 3 ×200 =600; join + context + relation |
-| Grid actually searched | body_weight ∈ {1.0, 1.5, 2.0}; relation_weight ∈ {1.0, 0.5, 0.0}; 9 combinations |
-| Selected decoding | body_weight=2.0; relation_weight=1.0 |
-| Selection metric / ties | Validation exact group-and-level F1; first grid entry wins ties, with baseline settings ordered first |
-| Model integrity | Same JSON model hashes as v2; no refitting or label changes |
-
-[Benchmark code](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/calibrate.py) · [Model provenance page](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/docs/model-provenance.md) · [Training run record](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-v2/evidence/selection.json) · [Training program](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/scripts/structure/train.py) · [Training data manifest](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/corpus.json) · [Materialized training annotations](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/configs/structure-v2/annotations.json) · [Later filter protocol](https://github.com/dividor/pdf-heading-benchmark/blob/87e044a/outputs/structure-precision/evidence/protocol.json) · [Extra Trees implementation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html) · [Extra Trees algorithm paper (2006)](https://doi.org/10.1007/s10994-006-6226-1) · [Calibration protocol and regression evidence](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/report.md) · [Exact estimator constructor and JSON export](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_models.py) · [Native line features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/supervised_features.py) · [Group/context/pair features](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_features.py) · [Training components and variant selection](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/structure/train.py) · [Recorded validation scores and training settings](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-v2/evidence/selection.json) · [PDF sources and report splits](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/corpus.json) · [Reviewable heading annotations](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/configs/structure-v2/annotations.json) · [Inference, grouping and Viterbi](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/structure_inference.py) · [Recorded search results and selected decision settings](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/outputs/structure-calibration/evidence/selection.json) · [Calibration runner and artifact input](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/scripts/runners/run_structure.py) · [Main-table scoring implementation](https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/src/pdf_heading_benchmark/evaluation.py)
-
-</details>
-
-<details><summary>All predictions versus reference</summary>
-
-
-**Predicted headings versus reference (all scored pages)**
-
-47 correct · 12 wrong/absent level · 18 missed · 21 extra
-
-Frozen assistant references; not independently human-verified. Same scorer as the table; one-to-one same-page title similarity ≥90%, exact H level. Physical PDF pages.
-
-
-**[Strategic evaluation of WFP’s Approaches to Targeting and Prioritization for Food and Nutrition Assistance](https://api.godocs.wfp.org/api/documents/WFP-0000171594/download/)**
-
-9 correct · 6 wrong/absent level · 0 missed · 9 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 7 | — | H4 — Figure 1: Global humanitarian requirements and resources (2019–2025) | Extra prediction |
-| 11 | H3 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | H4 — Conclusion 2: WFP has a clear understanding of the strengths and weaknesses of various targeting and prioritization approaches and increasingly takes into account vulnerabilities in the way it targets and prioritizes. Selected approaches were found to be largely appropriate for their specific contexts but evidence related to the costs of various approaches is inconclusive. In addition, WFP’s targeting and prioritization practices were found to be insufficiently agile and cooperative. | Wrong or absent level |
-| 11 | H4 — Appropriateness | H3 — Appropriateness | Wrong or absent level |
-| 11 | — | H2 — TABLE 1: OVERVIEW OF TARGETING AND PRIORITIZATION APPROACHES USED | Extra prediction |
-| 11 | — | H3 — Programme type Targeting and prioritization approaches (summary) | Extra prediction |
-| 24 | H1 — 1 Introduction | H1 — 1 Introduction | Correct heading + level |
-| 24 | H2 — 1.1 Evaluation features | H2 — 1.1 Evaluation features | Correct heading + level |
-| 27 | — | H2 — Figure 2. Resources required and allocated contributions, 2018–2025 | Extra prediction |
-| 33 | H1 — 2 Evaluation findings | H1 — 2 Evaluation findings | Correct heading + level |
-| 33 | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | H2 — 2.1 How relevant and appropriate are WFP’s approaches to targeting and prioritization? | Correct heading + level |
-| 33 | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | H3 — 2.1.1 WFP’s normative framework and support structures for targeting and prioritization provide a broad and relevant operational foundation | Correct heading + level |
-| 33 | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | H4 — 2.1.1.1 WFP’s normative framework on targeting and prioritization has clarified key aspects of the process | Correct heading + level |
-| 33 | — | H3 — EQ1 | Extra prediction |
-| 33 | — | H4 — EQ4.1 | Extra prediction |
-| 67 | H4 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | H2 — 2.2.1.4 Good practices in reducing targeting errors are unevenly applied | Wrong or absent level |
-| 67 | — | H3 — EQ2.1 | Extra prediction |
-| 67 | — | H3 — EQ3.1 | Extra prediction |
-| 67 | — | H3 — EQ4.3 | Extra prediction |
-| 96 | H1 — 3 Conclusions and recommendations | H1 — 3 Conclusions and recommendations | Correct heading + level |
-| 96 | H2 — 3.1 Conclusions | H2 — 3.1 Conclusions | Correct heading + level |
-| 96 | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | H3 — Conclusion 1: WFP’s normative framework and support structures for targeting and prioritization have evolved considerably over the past years and largely serve their purpose well, although country offices are asking for clearer strategic guidance in an era of unprecedented budget cuts. | Correct heading + level |
-| 109 | H2 — Objectives and users of the evaluation | H3 — Objectives and users of the evaluation | Wrong or absent level |
-| 109 | H2 — Evaluation questions | H3 — Evaluation questions | Wrong or absent level |
-| 109 | H2 — Methodology and ethical considerations | H3 — Methodology and ethical considerations | Wrong or absent level |
-
-**[Mid-Term Evaluation of WFP’s Strategic Plan 2022–2025](https://docs.wfp.org/api/documents/WFP-0000162023/download/)**
-
-15 correct · 1 wrong/absent level · 2 missed · 2 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 8 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
-| 8 | H3 — Why was the evaluation conducted and in which context? | H3 — Why was the evaluation conducted and in which context? | Correct heading + level |
-| 8 | H2 — INTRODUCTION | — | Missed heading |
-| 8 | H3 — What was evaluated? | — | Missed heading |
-| 8 | — | H3 — INTRODUCTION What was evaluated? | Extra prediction |
-| 10 | H2 — FINDINGS | H1 — FINDINGS | Wrong or absent level |
-| 10 | H3 — Relevance and strategic focus of the design of the strategic plan | H3 — Relevance and strategic focus of the design of the strategic plan | Correct heading + level |
-| 26 | H1 — 1. Introduction | H1 — 1. Introduction | Correct heading + level |
-| 26 | H2 — 1.1 EVALUATION FEATURES | H2 — 1.1 EVALUATION FEATURES | Correct heading + level |
-| 27 | H2 — 1.2 CONTEXT | H2 — 1.2 CONTEXT | Correct heading + level |
-| 27 | H3 — Global economic, climate, conflict and inequality trends | H3 — Global economic, climate, conflict and inequality trends | Correct heading + level |
-| 36 | H1 — 2. Evaluation findings | H1 — 2. Evaluation findings | Correct heading + level |
-| 36 | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | H2 — 2.1 STRENGTH AND RELEVANCE OF STRATEGIC PLAN DESIGN | Correct heading + level |
-| 36 | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | H3 — 2.1.1 Did the SP in its design clearly articulate its intended changes? | Correct heading + level |
-| 61 | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | H3 — 2.2.3 How does the ambition of the SP compare to the evolving reality of funding? | Correct heading + level |
-| 87 | H1 — 3. Conclusions and recommendations | H1 — 3. Conclusions and recommendations | Correct heading + level |
-| 87 | H2 — 2.3 3.1 CONCLUSIONS | H2 — 2.3 3.1 CONCLUSIONS | Correct heading + level |
-| 98 | H1 — Annex III. Methodology | H1 — Annex III. Methodology | Correct heading + level |
-| 98 | H2 — Overall approach | H2 — Overall approach | Correct heading + level |
-| 98 | — | H5 — implementation. | Extra prediction |
-
-**[Evaluation of Indonesia WFP country strategic plan 2021–2025 — Volume I](https://docs.wfp.org/api/documents/WFP-0000168942/download/)**
-
-11 correct · 1 wrong/absent level · 9 missed · 10 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 7 | H1 — Executive summary | H1 — Executive summary | Correct heading + level |
-| 7 | H2 — Introduction | H2 — Introduction | Correct heading + level |
-| 7 | H3 — Evaluation features | H3 — Evaluation features | Correct heading + level |
-| 7 | H3 — Context | H3 — Context | Correct heading + level |
-| 11 | H2 — Evaluation key insights and conclusions | H1 — Evaluation key insights and conclusions | Wrong or absent level |
-| 11 | H3 — Insight 1. CSP architecture | — | Missed heading |
-| 11 | H3 — Insight 2. Country capacity strengthening | — | Missed heading |
-| 11 | — | H3 — The CSP for 2021–2025 has facilitated WFP’s continued strategic positioning in Indonesia and supported the Government in its efforts to achieve its SDG targets. The CSP has contributed to WFP’s increased | Extra prediction |
-| 11 | — | H3 — strategic engagement in an array of humanitarian and development sectors, particularly with regard to | Extra prediction |
-| 11 | — | H3 — strengthening national systems for humanitarian response and food security. The CSP structure has | Extra prediction |
-| 11 | — | H3 — allowed operational flexibility and responsiveness to emerging opportunities and changes in | Extra prediction |
-| 11 | — | H3 — circumstances; however, while CSP activities are aligned with the priorities of government partners, they | Extra prediction |
-| 11 | — | H3 — do not address some issues affecting women, older people, persons with disabilities, people living in | Extra prediction |
-| 11 | — | H3 — remote areas, and children – groups identified in the common country analysis as those most at risk of | Extra prediction |
-| 11 | — | H3 — being left behind. The absence of a framework for assessing emerging opportunities prevented coherent | Extra prediction |
-| 11 | — | H3 — engagement. | Extra prediction |
-| 11 | — | H3 — There is an absence of strategic documentation guiding the operationalization of the CCS pathways, even though there is considerable evidence that the Government was starting to benefit from these pathways. | Extra prediction |
-| 20 | H1 — Introduction | H1 — Introduction | Correct heading + level |
-| 20 | H2 — 1.1. Evaluation features | H2 — 1.1. Evaluation features | Correct heading + level |
-| 20 | H2 — 1.2. Context | H2 — 1.2. Context | Correct heading + level |
-| 20 | H3 — Geography, Demography, and Government | — | Missed heading |
-| 20 | H3 — National policies and Sustainable Development Goals (SDG) | — | Missed heading |
-| 33 | H1 — Evaluation findings | H1 — Evaluation findings | Correct heading + level |
-| 33 | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | H2 — 2.1. EQ1: To what extent and in what ways is the CSP evidence-based and strategically focused to address the institutional capacity needs on food security, nutrition, and emergency preparedness of the Government of Indonesia? | Correct heading + level |
-| 33 | H3 — EQ 1.1 To what extent was the design of the CSP informed by credible evidence (including by the evaluation of the previous CSP as relevant) and strategically and realistically targeted to address the food security, nutrition, and emergency preparedness institutional capacity needs of the Government? | — | Missed heading |
-| 33 | H3 — EQ 1.2 To what extent and in what ways was the CSP designed to support the UN cooperation framework and the SDGs? | — | Missed heading |
-| 42 | H4 — EQ2.1a: CSP Output Achievements and Contributions to Outcomes | — | Missed heading |
-| 48 | H5 — SO1: Evidence and Data | — | Missed heading |
-| 56 | H3 — EQ 2.3 To what extent are the enhanced food security, nutrition and emergency preparedness country capacities envisaged by the CSP likely to be sustainable, in particular from a financial, social, and institutional perspective? | — | Missed heading |
-| 68 | H1 — Conclusions and recommendations | H1 — Conclusions and recommendations | Correct heading + level |
-| 68 | H2 — 3.1. Conclusions | H2 — 3.1. Conclusions | Correct heading + level |
-
-**[Evaluación del Plan estratégico para Colombia 2021–2024](https://docs.wfp.org/api/documents/WFP-0000157262/download/)**
-
-12 correct · 4 wrong/absent level · 7 missed · 0 extra
-
-| Page | Reference heading and level | Predicted heading and level | Result |
-| --- | --- | --- | --- |
-| 7 | H1 — Resumen ejecutivo | H1 — Resumen ejecutivo | Correct heading + level |
-| 7 | H2 — Introducción | H2 — Introducción | Correct heading + level |
-| 7 | H3 — Características de la evaluación | H3 — Características de la evaluación | Correct heading + level |
-| 7 | H3 — Contexto | H3 — Contexto | Correct heading + level |
-| 13 | H2 — Hallazgos derivados de la evaluación | H1 — Hallazgos derivados de la evaluación | Wrong or absent level |
-| 13 | H4 — Pertinencia con respecto a las necesidades | H3 — Pertinencia con respecto a las necesidades | Wrong or absent level |
-| 13 | H3 — ¿En qué medida el plan estratégico para el país se basa en datos empíricos y está orientado estratégicamente para atender las necesidades de los más vulnerables? | — | Missed heading |
-| 13 | H3 — ¿Cuáles son el alcance y la calidad de la contribución del PMA a los efectos estratégicos del plan estratégico para Colombia? | — | Missed heading |
-| 28 | H1 — 1. Introducción | H1 — 1. Introducción | Correct heading + level |
-| 28 | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | H2 — 1.1. CARACTERÍSTICAS DE LA EVALUACIÓN | Correct heading + level |
-| 28 | H2 — 1.2. CONTEXTO | H2 — 1.2. CONTEXTO | Correct heading + level |
-| 28 | H3 — Contexto general | — | Missed heading |
-| 42 | H1 — 2. Resultados de la evaluación | H1 — 2. Resultados de la evaluación | Correct heading + level |
-| 42 | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | H2 — 2.1. PE 1: ¿EN QUÉ MEDIDA EL PEP ESTÁ BASADO EN EVIDENCIA Y ORIENTADO ESTRATÉGICAMENTE A SATISFACER LAS NECESIDADES DE LOS MÁS VULNERABLES? | Correct heading + level |
-| 42 | H3 — PE 1.1: ¿En qué medida el PEP se basó en los datos empíricos existentes sobre los desafíos relacionados con el hambre y los problemas de seguridad alimentaria y nutrición imperantes en el país, para asegurar así la pertinencia de su diseño a nivel territorial, tomando en cuenta la interculturalidad? | — | Missed heading |
-| 56 | H5 — Productos | H3 — Productos | Wrong or absent level |
-| 56 | H5 — Resultados | H3 — Resultados 92 | Wrong or absent level |
-| 56 | H4 — Dimensión 2: Entorno político | — | Missed heading |
-| 72 | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | H2 — 2.3. PE 3: ¿EN QUÉ MEDIDA EL PMA HA UTILIZADO SUS RECURSOS DE MANERA EFICIENTE PARA CONTRIBUIR A LOS PRODUCTOS Y EFECTOS ESTRATÉGICOS DEL PEP? | Correct heading + level |
-| 72 | H3 — PE 3.1 ¿En qué medida se entregaron los productos en el plazo previsto? | — | Missed heading |
-| 72 | H4 — Productos y logros | — | Missed heading |
-| 93 | H1 — 3. Conclusiones y recomendaciones | H1 — 3. Conclusiones y recomendaciones | Correct heading + level |
-| 93 | H2 — 3.1. CONCLUSIONES | H2 — 3.1. CONCLUSIONES | Correct heading + level |
-
-
-</details>
-
-
-### v2: context + relationships (selected)
+### OUR METHOD — grouped context (previous selection)
 
 Three 200-tree Extra Trees classifiers learn line joining, heading levels and relationships. Viterbi selects a level sequence using document context and relationship weight 1.
 

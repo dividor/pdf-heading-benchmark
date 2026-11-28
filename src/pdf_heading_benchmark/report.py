@@ -11,6 +11,10 @@ from pdf_heading_benchmark.timing_format import readable_time
 from pdf_heading_benchmark.timing_updates import latest_timings
 
 REMOTE = "https://github.com/dividor/pdf-heading-benchmark/blob/codex/full-method-verification/"
+DISPLAY_NAMES = {
+    "structure_context_relations": "OUR METHOD — grouped context (previous selection)",
+    "structure_precision": "OUR METHOD — confidence-filtered (F0.5-selected)",
+}
 HEADERS = [
     "Configuration",
     "Time for 32 pages",
@@ -71,20 +75,9 @@ def cells(row, method):
     if row["method"] == "supervised_extra_trees":
         configuration = f"[LLM annotations → Extra Trees v1 (CPU)]({row['source_url']})"
     if row["method"] == "structure_context_relations":
-        configuration = (
-            '<span id="our-original-model"></span>'
-            f"[OUR METHOD — grouped context v2 (previous selection)]({row['source_url']})"
-        )
+        configuration = f'<span id="our-original-model"></span>[{row["name"]}]({row["source_url"]})'
     if row["method"] == "structure_precision":
-        configuration = (
-            '<span id="our-trained-model"></span>'
-            f"[**OUR METHOD — confidence-filtered v2 (F0.5-selected)**]({row['source_url']})"
-        )
-    if row["method"] == "structure_calibrated":
-        configuration = (
-            '<span id="our-calibrated-model"></span>'
-            f"[**OUR METHOD — calibrated decoding (experimental)**]({row['source_url']})"
-        )
+        configuration = f'<span id="our-trained-model"></span>[**{row["name"]}**]({row["source_url"]})'
     return [
         configuration,
         time_for_32_pages(row),
@@ -133,6 +126,9 @@ def report_rows(filename):
         for row in read_json(REPO / "outputs" / filename)
         if row["method"] in selected
     ]
+    for row in rows:
+        if row["method"] in DISPLAY_NAMES and "name" in row:
+            row["name"] = DISPLAY_NAMES[row["method"]]
     if filename == "league_table.json":
         rows = [scored_counts(row) if row["status"] == "completed" else row for row in rows]
         rows = latest_timings(rows)
