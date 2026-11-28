@@ -3,6 +3,7 @@
 import argparse
 import io
 import json
+import signal
 import subprocess
 import sys
 
@@ -117,9 +118,11 @@ def test_cli_uses_shared_exclusive_lock(tmp_path, monkeypatch):
         return 0
 
     monkeypatch.setattr(run_guard, "run_guarded", check)
+    previous = signal.getsignal(signal.SIGTERM)
     with pytest.raises(SystemExit) as stopped:
         run_guard.main()
     assert stopped.value.code == 0
+    assert signal.getsignal(signal.SIGTERM) is previous
 
 
 def test_failed_monitor_is_not_recorded_as_running(tmp_path, monkeypatch):
@@ -134,3 +137,15 @@ def test_failed_monitor_is_not_recorded_as_running(tmp_path, monkeypatch):
     with pytest.raises(RuntimeError, match="Cannot monitor"):
         run_guard.run_guarded(args)
     assert json.loads((args.output / "status.json").read_text())["status"] == "interrupted_or_monitor_failed"
+
+
+def test_signal_interrupt_enters_normal_cleanup():
+    with pytest.raises(KeyboardInterrupt, match="Received signal"):
+        run_guard.interrupt(signal.SIGTERM, None)
+
+
+def test_cleanup_reaps_an_already_finished_child():
+    process = subprocess.Popen([sys.executable, "-c", "pass"], start_new_session=True)
+    process.wait(timeout=10)
+    run_guard.terminate_group(process)
+    assert process.returncode == 0

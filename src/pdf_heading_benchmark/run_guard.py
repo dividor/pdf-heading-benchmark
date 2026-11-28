@@ -48,6 +48,7 @@ def unsafe_reason(sample: dict, baseline: dict, reserve: float, swap_growth: flo
 
 
 def terminate_group(process: subprocess.Popen) -> None:
+    process.poll()
     try:
         os.killpg(process.pid, signal.SIGTERM)
     except ProcessLookupError:
@@ -61,6 +62,10 @@ def terminate_group(process: subprocess.Popen) -> None:
     except ProcessLookupError:
         pass
     process.wait(timeout=10)
+
+
+def interrupt(signum, frame) -> None:
+    raise KeyboardInterrupt(f"Received signal {signum}")
 
 
 def monitor(process: subprocess.Popen, telemetry, baseline: dict, args) -> tuple[str, str | None]:
@@ -153,9 +158,13 @@ def main() -> None:
     if min(args.required_gib, args.reserve_gib, args.swap_growth_gib) < 0:
         parser.error("Memory limits cannot be negative")
     args.lock.parent.mkdir(parents=True, exist_ok=True)
-    with args.lock.open("a") as lock:
-        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        raise SystemExit(run_guarded(args))
+    previous = signal.signal(signal.SIGTERM, interrupt)
+    try:
+        with args.lock.open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            raise SystemExit(run_guarded(args))
+    finally:
+        signal.signal(signal.SIGTERM, previous)
 
 
 if __name__ == "__main__":

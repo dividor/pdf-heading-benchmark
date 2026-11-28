@@ -1,0 +1,353 @@
+{
+  "as_of": "2026-11-28",
+  "scope": "Fresh-checkout validation. Historical table values remain unchanged.",
+  "source_commit_before_fixes": "e702f4a026f2387721f94ada65700c799b454ef7",
+  "comparison": "Exact audit page, title and level equality; not merely equal aggregate scores.",
+  "methods": {
+    "qwen36_visual_memory": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "chandra2_mlx": {
+      "status": "pending"
+    },
+    "lighton_mlx": {
+      "status": "resource_blocked",
+      "reason": "macOS memory pressure is not normal",
+      "baseline": {
+        "reclaimable_gib": 10.791580200195312,
+        "swap_used_gib": 5.614931640625,
+        "pressure": 2
+      },
+      "evidence": "jobs/12-lighton-08b/status.json"
+    },
+    "lighton4b_mlx": {
+      "status": "pending"
+    },
+    "supervised_extra_trees": {
+      "status": "completed",
+      "evidence": "comparisons/supervised_extra_trees.json",
+      "evidence_sha256": "0cc93838ab69f4097fbc8d47a712835ab6594fbcf31c71f0148ab46248914e02",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 79,
+        "matched": 59,
+        "correct_level": 35,
+        "joint_precision": 0.4430379746835443,
+        "joint_recall": 0.45454545454545453,
+        "joint_f1": 0.44871794871794873,
+        "joint_f05": 0.44529262086513993,
+        "heading_precision": 0.7468354430379747,
+        "precision_gate_pass": false,
+        "joint_false_positives": 44,
+        "joint_false_negatives": 42
+      }
+    },
+    "mineru_basic": {
+      "status": "resource_abort",
+      "reason": "macOS memory pressure is not normal",
+      "elapsed_seconds": 357.42931012500776,
+      "evidence": "jobs/10-mineru-basic/status.json"
+    },
+    "pymupdf4llm": {
+      "status": "completed",
+      "evidence": "comparisons/pymupdf4llm.json",
+      "evidence_sha256": "32e25c333a9e452854d790bb36c1ce9a773f8fd1c44cdc681ff9348071799c46",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 74,
+        "matched": 72,
+        "correct_level": 28,
+        "joint_precision": 0.3783783783783784,
+        "joint_recall": 0.36363636363636365,
+        "joint_f1": 0.3708609271523179,
+        "joint_f05": 0.3753351206434316,
+        "heading_precision": 0.972972972972973,
+        "precision_gate_pass": true,
+        "joint_false_positives": 46,
+        "joint_false_negatives": 49
+      }
+    },
+    "qwen_ids_union": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "qwen_ids_mineru_basic": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "docling_tuned": {
+      "status": "completed",
+      "evidence": "comparisons/docling_tuned.json",
+      "evidence_sha256": "0864bb6d29479167d13787870c1165e32a71082d0b05ccfee28474eb37796765",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 70,
+        "matched": 68,
+        "correct_level": 22,
+        "joint_precision": 0.3142857142857143,
+        "joint_recall": 0.2857142857142857,
+        "joint_f1": 0.29931972789115646,
+        "joint_f05": 0.3081232492997199,
+        "heading_precision": 0.9714285714285714,
+        "precision_gate_pass": true,
+        "joint_false_positives": 48,
+        "joint_false_negatives": 55
+      }
+    },
+    "qwen_ids_pymupdf4llm": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "marker": {
+      "status": "completed",
+      "evidence": "comparisons/marker.json",
+      "evidence_sha256": "1273bc2d6933aceb7d29bb19de0d1f6cf1e56ce5749659d28e70f950b9a5c837",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 74,
+        "matched": 65,
+        "correct_level": 19,
+        "joint_precision": 0.25675675675675674,
+        "joint_recall": 0.24675324675324675,
+        "joint_f1": 0.25165562913907286,
+        "joint_f05": 0.2546916890080429,
+        "heading_precision": 0.8783783783783784,
+        "precision_gate_pass": false,
+        "joint_false_positives": 55,
+        "joint_false_negatives": 58
+      }
+    },
+    "docling_default": {
+      "status": "completed",
+      "evidence": "comparisons/docling_default.json",
+      "evidence_sha256": "1774101f3c4355be4c0202eed68e2c1a2c4c6db872cb92f007d1fe838e13085c",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 70,
+        "matched": 68,
+        "correct_level": 16,
+        "joint_precision": 0.22857142857142856,
+        "joint_recall": 0.2077922077922078,
+        "joint_f1": 0.21768707482993196,
+        "joint_f05": 0.22408963585434175,
+        "heading_precision": 0.9714285714285714,
+        "precision_gate_pass": true,
+        "joint_false_positives": 54,
+        "joint_false_negatives": 61
+      }
+    },
+    "docling_hierarchy": {
+      "status": "completed",
+      "evidence": "comparisons/docling_hierarchy.json",
+      "evidence_sha256": "60fe6f30cde1773b73e1068d70bdedb6f1f4782216368375966581771f4bf525",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 70,
+        "matched": 68,
+        "correct_level": 16,
+        "joint_precision": 0.22857142857142856,
+        "joint_recall": 0.2077922077922078,
+        "joint_f1": 0.21768707482993196,
+        "joint_f05": 0.22408963585434175,
+        "heading_precision": 0.9714285714285714,
+        "precision_gate_pass": true,
+        "joint_false_positives": 54,
+        "joint_false_negatives": 61
+      }
+    },
+    "popo_docling": {
+      "status": "pending"
+    },
+    "mineru_pro_mlx": {
+      "status": "pending"
+    },
+    "structure_expanded_line": {
+      "status": "completed",
+      "evidence": "comparisons/structure_expanded_line.json",
+      "evidence_sha256": "256fee74bd6a201ab3ff69d87e63e47d59a01f0b3b95f1c0f99df3a0366eeccb",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 95,
+        "matched": 69,
+        "correct_level": 41,
+        "joint_precision": 0.43157894736842106,
+        "joint_recall": 0.5324675324675324,
+        "joint_f1": 0.47674418604651164,
+        "joint_f05": 0.4485776805251641,
+        "heading_precision": 0.7263157894736842,
+        "precision_gate_pass": false,
+        "joint_false_positives": 54,
+        "joint_false_negatives": 36
+      }
+    },
+    "structure_learned_groups": {
+      "status": "completed",
+      "evidence": "comparisons/structure_learned_groups.json",
+      "evidence_sha256": "e68ec01bc92026404bd910adfb10b36fcbc9811211fd6b2c6b12b1ab5db7a97c",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 95,
+        "matched": 74,
+        "correct_level": 51,
+        "joint_precision": 0.5368421052631579,
+        "joint_recall": 0.6623376623376623,
+        "joint_f1": 0.5930232558139535,
+        "joint_f05": 0.5579868708971554,
+        "heading_precision": 0.7789473684210526,
+        "precision_gate_pass": false,
+        "joint_false_positives": 44,
+        "joint_false_negatives": 26
+      }
+    },
+    "structure_context_relations": {
+      "status": "completed",
+      "evidence": "comparisons/structure_context_relations.json",
+      "evidence_sha256": "b95a1216555dff940c1ac25b2d9ffeaf2e51360ba92c9fc02f4435006c20aa93",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 87,
+        "matched": 64,
+        "correct_level": 50,
+        "joint_precision": 0.5747126436781609,
+        "joint_recall": 0.6493506493506493,
+        "joint_f1": 0.6097560975609756,
+        "joint_f05": 0.5882352941176471,
+        "heading_precision": 0.735632183908046,
+        "precision_gate_pass": false,
+        "joint_false_positives": 37,
+        "joint_false_negatives": 27
+      }
+    },
+    "structure_calibrated": {
+      "status": "completed",
+      "evidence": "comparisons/structure_calibrated.json",
+      "evidence_sha256": "a1aeb7a48603d838154557f26de51ace212004eb5e4df34ad8b55c34f495a446",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 80,
+        "matched": 59,
+        "correct_level": 47,
+        "joint_precision": 0.5875,
+        "joint_recall": 0.6103896103896104,
+        "joint_f1": 0.5987261146496815,
+        "joint_f05": 0.5919395465994962,
+        "heading_precision": 0.7375,
+        "precision_gate_pass": false,
+        "joint_false_positives": 33,
+        "joint_false_negatives": 30
+      }
+    },
+    "structure_precision": {
+      "status": "completed",
+      "evidence": "comparisons/structure_precision.json",
+      "evidence_sha256": "e0a02440c0d878c89f2a5959cea5f15b37941c6fe23dc87637fad0d86f4e9121",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 41,
+        "matched": 39,
+        "correct_level": 34,
+        "joint_precision": 0.8292682926829268,
+        "joint_recall": 0.44155844155844154,
+        "joint_f1": 0.576271186440678,
+        "joint_f05": 0.7053941908713693,
+        "heading_precision": 0.9512195121951219,
+        "precision_gate_pass": true,
+        "joint_false_positives": 7,
+        "joint_false_negatives": 43
+      }
+    },
+    "structure_recall": {
+      "status": "completed",
+      "evidence": "comparisons/structure_recall.json",
+      "evidence_sha256": "f20e27ed57a0906dbc4306fc93b1a7e93da86bf864920f6157c4aa6b05256e40",
+      "predictions_identical": true,
+      "counts": {
+        "gold": 77,
+        "predicted": 87,
+        "matched": 66,
+        "correct_level": 50,
+        "joint_precision": 0.5747126436781609,
+        "joint_recall": 0.6493506493506493,
+        "joint_f1": 0.6097560975609756,
+        "joint_f05": 0.5882352941176471,
+        "heading_precision": 0.7586206896551724,
+        "precision_gate_pass": false,
+        "joint_false_positives": 37,
+        "joint_false_negatives": 27
+      }
+    },
+    "qwen36_27b_compact": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "qwen36_35b_compact": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "qwen36_35b_visual_memory": {
+      "status": "configuration_checks_only",
+      "scope": "Pinned configurations, processors, chat templates, model implementations and runner imports checked. No weights loaded and no generation rerun, as requested.",
+      "evidence": "qwen-runtime-check.json"
+    },
+    "minicpm_ocr10": {
+      "status": "pending"
+    },
+    "xiaomi_ocr0": {
+      "status": "pending"
+    },
+    "paddleocr_vl16": {
+      "status": "pending"
+    },
+    "paddleocr_vl16_official": {
+      "status": "pending"
+    },
+    "ovisocr3_official_metal": {
+      "status": "pending"
+    },
+    "minicpm_ocr10_official_ollama": {
+      "status": "pending"
+    },
+    "xiaomi_ocr0_official_metal": {
+      "status": "pending"
+    },
+    "evidencelab": {
+      "status": "pending"
+    },
+    "docling_ocr": {
+      "status": "pending"
+    }
+  },
+  "marker_dependency_check": {
+    "published_environment": {
+      "indra-ocr": "1.1.2",
+      "marker-pdf": "2.2.0"
+    },
+    "fresh_environment": {
+      "indra-ocr": "1.2.0",
+      "marker-pdf": "2.2.0"
+    },
+    "published_lock_sha256": "51ea351f6fb7478692477abe349f75102a03385f7efbf9f08de4b11768a6fd66",
+    "published_model_snapshot": "bd02167fdf2005a19962cc15188f8496a2c87d3b",
+    "fresh_model_snapshot": "a04fa100e778192aa54d040a983983c6d3ee4ce5",
+    "status": "Controlled rerun completed: pinning indra-ocr==1.1.2 reproduced every published audit heading, page and level.",
+    "comparison": "comparisons/marker.json"
+  }
+}

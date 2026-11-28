@@ -11,7 +11,7 @@ The workflow downloads the exact 28 public World Food Programme (WFP) PDFs in th
 Install Git and [uv](https://docs.astral.sh/uv/getting-started/installation/). Use Python 3.12, selected by the repository's `.python-version`. If using an ExFAT drive on macOS, first set `UV_PROJECT_ENVIRONMENT` as shown below. Then run:
 
 ```bash
-git clone --branch codex/rebuild-training-notebook https://github.com/dividor/pdf-heading-benchmark.git
+git clone --branch codex/full-method-verification https://github.com/dividor/pdf-heading-benchmark.git
 cd pdf-heading-benchmark
 uv sync --locked --extra training --extra notebook
 export PDF_BENCHMARK_DATA="$(pwd)/../pdf-heading-benchmark-data"

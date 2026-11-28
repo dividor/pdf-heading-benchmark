@@ -43,6 +43,8 @@ Native prose retention is a proxy: five-word sequence recall against native PDF 
 
 ## What packaging changed and what was verified
 
+See the [fresh-checkout validation record](validation.md) for completed reruns, differences and remaining work.
+
 The original experiment scripts were reorganized for portable paths, external data, explicit dependencies and small functions. Core dependency versions are locked; heavyweight backend manifests pin principal versions but not every transitive dependency. Upstream prompts, model revisions and inference settings are retained except the disclosed clean-run LightOn batching difference. Error handling no longer silently falls back to a different model path. Model-generated malformed values are retained as failures; runtime setup errors stop the run.
 
 Offline tests recalculate all published heading scores and check decoding, page provenance, missing levels, one-to-one matching, paid-job resumption, missing credentials, and deterministic reports. The PDF download/hash path and complete PDF-tag and PyMuPDF CPU runs are smoke-tested separately. The packaged Qwen, Chandra and LightOn decoders were also replayed against 128 saved raw page responses, and the Azure decoder against four full-document responses; their final heading exports match the historical exports. Refactored model adapters have not all been re-executed through full inference; these are historical measured results accompanied by packaged runners, not a claim of a second complete benchmark.
